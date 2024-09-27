@@ -180,7 +180,7 @@ class TestRoles:
         role = client.auth.roles.delete(
             "role_id",
         )
-        assert role is None
+        assert_matches_type(object, role, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Asktable) -> None:
@@ -191,7 +191,7 @@ class TestRoles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         role = response.parse()
-        assert role is None
+        assert_matches_type(object, role, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Asktable) -> None:
@@ -202,7 +202,7 @@ class TestRoles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             role = response.parse()
-            assert role is None
+            assert_matches_type(object, role, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -380,7 +380,7 @@ class TestAsyncRoles:
         role = await async_client.auth.roles.delete(
             "role_id",
         )
-        assert role is None
+        assert_matches_type(object, role, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncAsktable) -> None:
@@ -391,7 +391,7 @@ class TestAsyncRoles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         role = await response.parse()
-        assert role is None
+        assert_matches_type(object, role, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncAsktable) -> None:
@@ -402,7 +402,7 @@ class TestAsyncRoles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             role = await response.parse()
-            assert role is None
+            assert_matches_type(object, role, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

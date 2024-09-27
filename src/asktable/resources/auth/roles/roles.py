@@ -14,7 +14,7 @@ from .policies import (
     PoliciesResourceWithStreamingResponse,
     AsyncPoliciesResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._utils import (
     maybe_transform,
     async_maybe_transform,
@@ -253,7 +253,7 @@ class RolesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> None:
+    ) -> object:
         """
         删除某个角色
 
@@ -268,13 +268,12 @@ class RolesResource(SyncAPIResource):
         """
         if not role_id:
             raise ValueError(f"Expected a non-empty value for `role_id` but received {role_id!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/auth/roles/{role_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=object,
         )
 
 
@@ -488,7 +487,7 @@ class AsyncRolesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> None:
+    ) -> object:
         """
         删除某个角色
 
@@ -503,13 +502,12 @@ class AsyncRolesResource(AsyncAPIResource):
         """
         if not role_id:
             raise ValueError(f"Expected a non-empty value for `role_id` but received {role_id!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/auth/roles/{role_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=object,
         )
 
 

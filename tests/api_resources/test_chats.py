@@ -139,7 +139,7 @@ class TestChats:
         chat = client.chats.delete_conversation(
             "chat_id",
         )
-        assert_matches_type(object, chat, path=["response"])
+        assert chat is None
 
     @parametrize
     def test_raw_response_delete_conversation(self, client: Asktable) -> None:
@@ -150,7 +150,7 @@ class TestChats:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         chat = response.parse()
-        assert_matches_type(object, chat, path=["response"])
+        assert chat is None
 
     @parametrize
     def test_streaming_response_delete_conversation(self, client: Asktable) -> None:
@@ -161,7 +161,7 @@ class TestChats:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             chat = response.parse()
-            assert_matches_type(object, chat, path=["response"])
+            assert chat is None
 
         assert cast(Any, response.is_closed) is True
 
@@ -335,7 +335,7 @@ class TestAsyncChats:
         chat = await async_client.chats.delete_conversation(
             "chat_id",
         )
-        assert_matches_type(object, chat, path=["response"])
+        assert chat is None
 
     @parametrize
     async def test_raw_response_delete_conversation(self, async_client: AsyncAsktable) -> None:
@@ -346,7 +346,7 @@ class TestAsyncChats:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         chat = await response.parse()
-        assert_matches_type(object, chat, path=["response"])
+        assert chat is None
 
     @parametrize
     async def test_streaming_response_delete_conversation(self, async_client: AsyncAsktable) -> None:
@@ -357,7 +357,7 @@ class TestAsyncChats:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             chat = await response.parse()
-            assert_matches_type(object, chat, path=["response"])
+            assert chat is None
 
         assert cast(Any, response.is_closed) is True
 

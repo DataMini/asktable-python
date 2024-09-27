@@ -18,9 +18,6 @@ from .bot_list_response import BotListResponse as BotListResponse
 from .bot_update_params import BotUpdateParams as BotUpdateParams
 from .chat_create_params import ChatCreateParams as ChatCreateParams
 from .chat_list_response import ChatListResponse as ChatListResponse
-from .extapi_list_params import ExtapiListParams as ExtapiListParams
-from .extapi_create_params import ExtapiCreateParams as ExtapiCreateParams
-from .extapi_list_response import ExtapiListResponse as ExtapiListResponse
 from .extapi_update_params import ExtapiUpdateParams as ExtapiUpdateParams
 from .chat_retrieve_response import ChatRetrieveResponse as ChatRetrieveResponse
 from .datasource_list_params import DatasourceListParams as DatasourceListParams
