@@ -101,6 +101,7 @@ class DatasourcesResource(SyncAPIResource):
         *,
         access_config: datasource_create_params.AccessConfig,
         engine: Literal["mysql", "tidb", "postgresql", "oceanbase", "clickhouse", "csv", "excel"],
+        async_process_meta: bool | NotGiven = NOT_GIVEN,
         skip_process_meta: bool | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -117,6 +118,8 @@ class DatasourcesResource(SyncAPIResource):
           access_config: 不同引擎有不同的配置
 
           engine: 数据源引擎
+
+          async_process_meta: 是否异步处理元数据
 
           skip_process_meta: 是否跳过元数据处理
 
@@ -146,7 +149,11 @@ class DatasourcesResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform(
-                    {"skip_process_meta": skip_process_meta}, datasource_create_params.DatasourceCreateParams
+                    {
+                        "async_process_meta": async_process_meta,
+                        "skip_process_meta": skip_process_meta,
+                    },
+                    datasource_create_params.DatasourceCreateParams,
                 ),
             ),
             cast_to=Datasource,
@@ -378,6 +385,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         *,
         access_config: datasource_create_params.AccessConfig,
         engine: Literal["mysql", "tidb", "postgresql", "oceanbase", "clickhouse", "csv", "excel"],
+        async_process_meta: bool | NotGiven = NOT_GIVEN,
         skip_process_meta: bool | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -394,6 +402,8 @@ class AsyncDatasourcesResource(AsyncAPIResource):
           access_config: 不同引擎有不同的配置
 
           engine: 数据源引擎
+
+          async_process_meta: 是否异步处理元数据
 
           skip_process_meta: 是否跳过元数据处理
 
@@ -423,7 +433,11 @@ class AsyncDatasourcesResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform(
-                    {"skip_process_meta": skip_process_meta}, datasource_create_params.DatasourceCreateParams
+                    {
+                        "async_process_meta": async_process_meta,
+                        "skip_process_meta": skip_process_meta,
+                    },
+                    datasource_create_params.DatasourceCreateParams,
                 ),
             ),
             cast_to=Datasource,

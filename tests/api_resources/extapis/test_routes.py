@@ -256,7 +256,7 @@ class TestRoutes:
             route_id="route_id",
             extapi_id="extapi_id",
         )
-        assert_matches_type(object, route, path=["response"])
+        assert route is None
 
     @parametrize
     def test_raw_response_delete(self, client: Asktable) -> None:
@@ -268,7 +268,7 @@ class TestRoutes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         route = response.parse()
-        assert_matches_type(object, route, path=["response"])
+        assert route is None
 
     @parametrize
     def test_streaming_response_delete(self, client: Asktable) -> None:
@@ -280,7 +280,7 @@ class TestRoutes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             route = response.parse()
-            assert_matches_type(object, route, path=["response"])
+            assert route is None
 
         assert cast(Any, response.is_closed) is True
 
@@ -540,7 +540,7 @@ class TestAsyncRoutes:
             route_id="route_id",
             extapi_id="extapi_id",
         )
-        assert_matches_type(object, route, path=["response"])
+        assert route is None
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncAsktable) -> None:
@@ -552,7 +552,7 @@ class TestAsyncRoutes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         route = await response.parse()
-        assert_matches_type(object, route, path=["response"])
+        assert route is None
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncAsktable) -> None:
@@ -564,7 +564,7 @@ class TestAsyncRoutes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             route = await response.parse()
-            assert_matches_type(object, route, path=["response"])
+            assert route is None
 
         assert cast(Any, response.is_closed) is True
 

@@ -8,7 +8,6 @@ from typing import Any, cast
 import pytest
 
 from asktable import Asktable, AsyncAsktable
-from tests.utils import assert_matches_type
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -21,7 +20,7 @@ class TestCaches:
         cach = client.caches.delete(
             "cache_id",
         )
-        assert_matches_type(object, cach, path=["response"])
+        assert cach is None
 
     @parametrize
     def test_raw_response_delete(self, client: Asktable) -> None:
@@ -32,7 +31,7 @@ class TestCaches:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         cach = response.parse()
-        assert_matches_type(object, cach, path=["response"])
+        assert cach is None
 
     @parametrize
     def test_streaming_response_delete(self, client: Asktable) -> None:
@@ -43,7 +42,7 @@ class TestCaches:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             cach = response.parse()
-            assert_matches_type(object, cach, path=["response"])
+            assert cach is None
 
         assert cast(Any, response.is_closed) is True
 
@@ -63,7 +62,7 @@ class TestAsyncCaches:
         cach = await async_client.caches.delete(
             "cache_id",
         )
-        assert_matches_type(object, cach, path=["response"])
+        assert cach is None
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncAsktable) -> None:
@@ -74,7 +73,7 @@ class TestAsyncCaches:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         cach = await response.parse()
-        assert_matches_type(object, cach, path=["response"])
+        assert cach is None
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncAsktable) -> None:
@@ -85,7 +84,7 @@ class TestAsyncCaches:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             cach = await response.parse()
-            assert_matches_type(object, cach, path=["response"])
+            assert cach is None
 
         assert cast(Any, response.is_closed) is True
 

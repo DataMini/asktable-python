@@ -2,8 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
-from datetime import datetime
+from typing import Dict, Optional
 
 import httpx
 
@@ -15,7 +14,7 @@ from .routes import (
     RoutesResourceWithStreamingResponse,
     AsyncRoutesResourceWithStreamingResponse,
 )
-from ...types import extapi_list_params, extapi_create_params, extapi_update_params
+from ...types import extapi_update_params
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -31,7 +30,6 @@ from ..._response import (
 )
 from ..._base_client import make_request_options
 from ...types.ext_api_model import ExtAPIModel
-from ...types.extapi_list_response import ExtapiListResponse
 
 __all__ = ["ExtapisResource", "AsyncExtapisResource"]
 
@@ -59,61 +57,6 @@ class ExtapisResource(SyncAPIResource):
         For more information, see https://www.github.com/stainless-sdks/asktable-python#with_streaming_response
         """
         return ExtapisResourceWithStreamingResponse(self)
-
-    def create(
-        self,
-        *,
-        id: str,
-        base_url: str,
-        created_at: Union[str, datetime],
-        name: str,
-        project_id: str,
-        headers: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
-        updated_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ExtAPIModel:
-        """
-        创建一个新的 ExtAPI
-
-        Args:
-          base_url: 根 URL
-
-          name: 名称，不超过 64 个字符
-
-          headers: HTTP Headers，JSON 格式
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._post(
-            "/extapis",
-            body=maybe_transform(
-                {
-                    "id": id,
-                    "base_url": base_url,
-                    "created_at": created_at,
-                    "name": name,
-                    "project_id": project_id,
-                    "headers": headers,
-                    "updated_at": updated_at,
-                },
-                extapi_create_params.ExtapiCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=ExtAPIModel,
-        )
 
     def retrieve(
         self,
@@ -198,56 +141,6 @@ class ExtapisResource(SyncAPIResource):
             cast_to=ExtAPIModel,
         )
 
-    def list(
-        self,
-        *,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        size: int | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ExtapiListResponse:
-        """
-        查询所有 ExtAPI
-
-        Args:
-          name: 名称
-
-          page: Page number
-
-          size: Page size
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._get(
-            "/extapis",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "name": name,
-                        "page": page,
-                        "size": size,
-                    },
-                    extapi_list_params.ExtapiListParams,
-                ),
-            ),
-            cast_to=ExtapiListResponse,
-        )
-
     def delete(
         self,
         extapi_id: str,
@@ -305,61 +198,6 @@ class AsyncExtapisResource(AsyncAPIResource):
         For more information, see https://www.github.com/stainless-sdks/asktable-python#with_streaming_response
         """
         return AsyncExtapisResourceWithStreamingResponse(self)
-
-    async def create(
-        self,
-        *,
-        id: str,
-        base_url: str,
-        created_at: Union[str, datetime],
-        name: str,
-        project_id: str,
-        headers: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
-        updated_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ExtAPIModel:
-        """
-        创建一个新的 ExtAPI
-
-        Args:
-          base_url: 根 URL
-
-          name: 名称，不超过 64 个字符
-
-          headers: HTTP Headers，JSON 格式
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._post(
-            "/extapis",
-            body=await async_maybe_transform(
-                {
-                    "id": id,
-                    "base_url": base_url,
-                    "created_at": created_at,
-                    "name": name,
-                    "project_id": project_id,
-                    "headers": headers,
-                    "updated_at": updated_at,
-                },
-                extapi_create_params.ExtapiCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=ExtAPIModel,
-        )
 
     async def retrieve(
         self,
@@ -444,56 +282,6 @@ class AsyncExtapisResource(AsyncAPIResource):
             cast_to=ExtAPIModel,
         )
 
-    async def list(
-        self,
-        *,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        size: int | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ExtapiListResponse:
-        """
-        查询所有 ExtAPI
-
-        Args:
-          name: 名称
-
-          page: Page number
-
-          size: Page size
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._get(
-            "/extapis",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "name": name,
-                        "page": page,
-                        "size": size,
-                    },
-                    extapi_list_params.ExtapiListParams,
-                ),
-            ),
-            cast_to=ExtapiListResponse,
-        )
-
     async def delete(
         self,
         extapi_id: str,
@@ -532,17 +320,11 @@ class ExtapisResourceWithRawResponse:
     def __init__(self, extapis: ExtapisResource) -> None:
         self._extapis = extapis
 
-        self.create = to_raw_response_wrapper(
-            extapis.create,
-        )
         self.retrieve = to_raw_response_wrapper(
             extapis.retrieve,
         )
         self.update = to_raw_response_wrapper(
             extapis.update,
-        )
-        self.list = to_raw_response_wrapper(
-            extapis.list,
         )
         self.delete = to_raw_response_wrapper(
             extapis.delete,
@@ -557,17 +339,11 @@ class AsyncExtapisResourceWithRawResponse:
     def __init__(self, extapis: AsyncExtapisResource) -> None:
         self._extapis = extapis
 
-        self.create = async_to_raw_response_wrapper(
-            extapis.create,
-        )
         self.retrieve = async_to_raw_response_wrapper(
             extapis.retrieve,
         )
         self.update = async_to_raw_response_wrapper(
             extapis.update,
-        )
-        self.list = async_to_raw_response_wrapper(
-            extapis.list,
         )
         self.delete = async_to_raw_response_wrapper(
             extapis.delete,
@@ -582,17 +358,11 @@ class ExtapisResourceWithStreamingResponse:
     def __init__(self, extapis: ExtapisResource) -> None:
         self._extapis = extapis
 
-        self.create = to_streamed_response_wrapper(
-            extapis.create,
-        )
         self.retrieve = to_streamed_response_wrapper(
             extapis.retrieve,
         )
         self.update = to_streamed_response_wrapper(
             extapis.update,
-        )
-        self.list = to_streamed_response_wrapper(
-            extapis.list,
         )
         self.delete = to_streamed_response_wrapper(
             extapis.delete,
@@ -607,17 +377,11 @@ class AsyncExtapisResourceWithStreamingResponse:
     def __init__(self, extapis: AsyncExtapisResource) -> None:
         self._extapis = extapis
 
-        self.create = async_to_streamed_response_wrapper(
-            extapis.create,
-        )
         self.retrieve = async_to_streamed_response_wrapper(
             extapis.retrieve,
         )
         self.update = async_to_streamed_response_wrapper(
             extapis.update,
-        )
-        self.list = async_to_streamed_response_wrapper(
-            extapis.list,
         )
         self.delete = async_to_streamed_response_wrapper(
             extapis.delete,
