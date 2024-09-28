@@ -2,14 +2,14 @@
 
 from typing import List, Optional
 
-from ..._models import BaseModel
-from .q2a_model import Q2aModel
+from .._models import BaseModel
+from .data_source_out import DataSourceOut
 
-__all__ = ["Q2aListResponse"]
+__all__ = ["PageDataSourceOut"]
 
 
-class Q2aListResponse(BaseModel):
-    items: List[Q2aModel]
+class PageDataSourceOut(BaseModel):
+    items: List[DataSourceOut]
 
     page: Optional[int] = None
 

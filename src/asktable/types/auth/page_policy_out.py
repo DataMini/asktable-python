@@ -2,14 +2,14 @@
 
 from typing import List, Optional
 
-from ..message import Message
 from ..._models import BaseModel
+from ..shared.policy_out import PolicyOut
 
-__all__ = ["MessageListResponse"]
+__all__ = ["PagePolicyOut"]
 
 
-class MessageListResponse(BaseModel):
-    items: List[Message]
+class PagePolicyOut(BaseModel):
+    items: List[PolicyOut]
 
     page: Optional[int] = None
 

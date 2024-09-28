@@ -6,10 +6,10 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["Datasource"]
+__all__ = ["DataSourceOut"]
 
 
-class Datasource(BaseModel):
+class DataSourceOut(BaseModel):
     id: str
     """数据源 ID"""
 

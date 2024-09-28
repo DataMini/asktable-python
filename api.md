@@ -1,7 +1,7 @@
 # Shared Types
 
 ```python
-from asktable.types import Policy
+from asktable.types import AnswerModel, MessageModel, PolicyOut
 ```
 
 # Sys
@@ -11,14 +11,15 @@ from asktable.types import Policy
 Types:
 
 ```python
-from asktable.types.sys import Project, ProjectListResponse, ProjectDeleteResponse
+from asktable.types.sys import PageProjectModel, ProjectModel, ProjectDeleteResponse
 ```
 
 Methods:
 
-- <code title="post /sys/projects">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">create</a>(\*\*<a href="src/asktable/types/sys/project_create_params.py">params</a>) -> <a href="./src/asktable/types/sys/project.py">Project</a></code>
-- <code title="get /sys/projects/{project_id}">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">retrieve</a>(project_id) -> <a href="./src/asktable/types/sys/project.py">Project</a></code>
-- <code title="get /sys/projects">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">list</a>(\*\*<a href="src/asktable/types/sys/project_list_params.py">params</a>) -> <a href="./src/asktable/types/sys/project_list_response.py">ProjectListResponse</a></code>
+- <code title="post /sys/projects">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">create</a>(\*\*<a href="src/asktable/types/sys/project_create_params.py">params</a>) -> <a href="./src/asktable/types/sys/project_model.py">ProjectModel</a></code>
+- <code title="get /sys/projects/{project_id}">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">retrieve</a>(project_id) -> <a href="./src/asktable/types/sys/project_model.py">ProjectModel</a></code>
+- <code title="patch /sys/projects/{project_id}">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">update</a>(project_id, \*\*<a href="src/asktable/types/sys/project_update_params.py">params</a>) -> <a href="./src/asktable/types/sys/project_model.py">ProjectModel</a></code>
+- <code title="get /sys/projects">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">list</a>(\*\*<a href="src/asktable/types/sys/project_list_params.py">params</a>) -> <a href="./src/asktable/types/sys/page_project_model.py">PageProjectModel</a></code>
 - <code title="delete /sys/projects/{project_id}">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">delete</a>(project_id) -> <a href="./src/asktable/types/sys/project_delete_response.py">object</a></code>
 
 ### APIKeys
@@ -27,7 +28,8 @@ Types:
 
 ```python
 from asktable.types.sys.projects import (
-    APIKeyCreateResponse,
+    APIKeyCreateOut,
+    APIKeyOut,
     APIKeyListResponse,
     APIKeyDeleteResponse,
 )
@@ -35,7 +37,7 @@ from asktable.types.sys.projects import (
 
 Methods:
 
-- <code title="post /sys/projects/{project_id}/api-keys">client.sys.projects.api_keys.<a href="./src/asktable/resources/sys/projects/api_keys.py">create</a>(project_id, \*\*<a href="src/asktable/types/sys/projects/api_key_create_params.py">params</a>) -> <a href="./src/asktable/types/sys/projects/api_key_create_response.py">APIKeyCreateResponse</a></code>
+- <code title="post /sys/projects/{project_id}/api-keys">client.sys.projects.api_keys.<a href="./src/asktable/resources/sys/projects/api_keys.py">create</a>(project_id, \*\*<a href="src/asktable/types/sys/projects/api_key_create_params.py">params</a>) -> <a href="./src/asktable/types/sys/projects/api_key_create_out.py">APIKeyCreateOut</a></code>
 - <code title="get /sys/projects/{project_id}/api-keys">client.sys.projects.api_keys.<a href="./src/asktable/resources/sys/projects/api_keys.py">list</a>(project_id) -> <a href="./src/asktable/types/sys/projects/api_key_list_response.py">APIKeyListResponse</a></code>
 - <code title="delete /sys/projects/{project_id}/api-keys/{key_id}">client.sys.projects.api_keys.<a href="./src/asktable/resources/sys/projects/api_keys.py">delete</a>(key_id, \*, project_id) -> <a href="./src/asktable/types/sys/projects/api_key_delete_response.py">object</a></code>
 
@@ -56,7 +58,7 @@ Methods:
 Types:
 
 ```python
-from asktable.types import SecureTunnel, SecuretunnelUpdateResponse, SecuretunnelListResponse
+from asktable.types import PageSecureTunnel, SecureTunnel, SecuretunnelUpdateResponse
 ```
 
 Methods:
@@ -64,7 +66,7 @@ Methods:
 - <code title="post /securetunnels/">client.securetunnels.<a href="./src/asktable/resources/securetunnels/securetunnels.py">create</a>(\*\*<a href="src/asktable/types/securetunnel_create_params.py">params</a>) -> <a href="./src/asktable/types/secure_tunnel.py">SecureTunnel</a></code>
 - <code title="get /securetunnels/{securetunnel_id}">client.securetunnels.<a href="./src/asktable/resources/securetunnels/securetunnels.py">retrieve</a>(securetunnel_id) -> <a href="./src/asktable/types/secure_tunnel.py">SecureTunnel</a></code>
 - <code title="patch /securetunnels/{securetunnel_id}">client.securetunnels.<a href="./src/asktable/resources/securetunnels/securetunnels.py">update</a>(securetunnel_id, \*\*<a href="src/asktable/types/securetunnel_update_params.py">params</a>) -> <a href="./src/asktable/types/securetunnel_update_response.py">object</a></code>
-- <code title="get /securetunnels/">client.securetunnels.<a href="./src/asktable/resources/securetunnels/securetunnels.py">list</a>(\*\*<a href="src/asktable/types/securetunnel_list_params.py">params</a>) -> <a href="./src/asktable/types/securetunnel_list_response.py">SecuretunnelListResponse</a></code>
+- <code title="get /securetunnels/">client.securetunnels.<a href="./src/asktable/resources/securetunnels/securetunnels.py">list</a>(\*\*<a href="src/asktable/types/securetunnel_list_params.py">params</a>) -> <a href="./src/asktable/types/page_secure_tunnel.py">PageSecureTunnel</a></code>
 - <code title="delete /securetunnels/{securetunnel_id}">client.securetunnels.<a href="./src/asktable/resources/securetunnels/securetunnels.py">delete</a>(securetunnel_id) -> None</code>
 
 ## Links
@@ -72,12 +74,12 @@ Methods:
 Types:
 
 ```python
-from asktable.types.securetunnels import LinkListResponse
+from asktable.types.securetunnels import PageSecureTunnelLink
 ```
 
 Methods:
 
-- <code title="get /securetunnels/{securetunnel_id}/links">client.securetunnels.links.<a href="./src/asktable/resources/securetunnels/links.py">list</a>(securetunnel_id, \*\*<a href="src/asktable/types/securetunnels/link_list_params.py">params</a>) -> <a href="./src/asktable/types/securetunnels/link_list_response.py">LinkListResponse</a></code>
+- <code title="get /securetunnels/{securetunnel_id}/links">client.securetunnels.links.<a href="./src/asktable/resources/securetunnels/links.py">list</a>(securetunnel_id, \*\*<a href="src/asktable/types/securetunnels/link_list_params.py">params</a>) -> <a href="./src/asktable/types/securetunnels/page_secure_tunnel_link.py">PageSecureTunnelLink</a></code>
 
 # Auth
 
@@ -86,15 +88,15 @@ Methods:
 Types:
 
 ```python
-from asktable.types.auth import Role, RoleListResponse, RoleDeleteResponse
+from asktable.types.auth import PageRoleModel, RoleModel, RoleDeleteResponse
 ```
 
 Methods:
 
-- <code title="post /auth/roles">client.auth.roles.<a href="./src/asktable/resources/auth/roles/roles.py">create</a>(\*\*<a href="src/asktable/types/auth/role_create_params.py">params</a>) -> <a href="./src/asktable/types/auth/role.py">Role</a></code>
-- <code title="get /auth/roles/{role_id}">client.auth.roles.<a href="./src/asktable/resources/auth/roles/roles.py">retrieve</a>(role_id) -> <a href="./src/asktable/types/auth/role.py">Role</a></code>
-- <code title="patch /auth/roles/{role_id}">client.auth.roles.<a href="./src/asktable/resources/auth/roles/roles.py">update</a>(role_id, \*\*<a href="src/asktable/types/auth/role_update_params.py">params</a>) -> <a href="./src/asktable/types/auth/role.py">Role</a></code>
-- <code title="get /auth/roles">client.auth.roles.<a href="./src/asktable/resources/auth/roles/roles.py">list</a>(\*\*<a href="src/asktable/types/auth/role_list_params.py">params</a>) -> <a href="./src/asktable/types/auth/role_list_response.py">RoleListResponse</a></code>
+- <code title="post /auth/roles">client.auth.roles.<a href="./src/asktable/resources/auth/roles/roles.py">create</a>(\*\*<a href="src/asktable/types/auth/role_create_params.py">params</a>) -> <a href="./src/asktable/types/auth/role_model.py">RoleModel</a></code>
+- <code title="get /auth/roles/{role_id}">client.auth.roles.<a href="./src/asktable/resources/auth/roles/roles.py">retrieve</a>(role_id) -> <a href="./src/asktable/types/auth/role_model.py">RoleModel</a></code>
+- <code title="patch /auth/roles/{role_id}">client.auth.roles.<a href="./src/asktable/resources/auth/roles/roles.py">update</a>(role_id, \*\*<a href="src/asktable/types/auth/role_update_params.py">params</a>) -> <a href="./src/asktable/types/auth/role_model.py">RoleModel</a></code>
+- <code title="get /auth/roles">client.auth.roles.<a href="./src/asktable/resources/auth/roles/roles.py">list</a>(\*\*<a href="src/asktable/types/auth/role_list_params.py">params</a>) -> <a href="./src/asktable/types/auth/page_role_model.py">PageRoleModel</a></code>
 - <code title="delete /auth/roles/{role_id}">client.auth.roles.<a href="./src/asktable/resources/auth/roles/roles.py">delete</a>(role_id) -> <a href="./src/asktable/types/auth/role_delete_response.py">object</a></code>
 
 ### Policies
@@ -126,15 +128,15 @@ Methods:
 Types:
 
 ```python
-from asktable.types.auth import PolicyListResponse
+from asktable.types.auth import PagePolicyOut
 ```
 
 Methods:
 
-- <code title="post /auth/policies">client.auth.policies.<a href="./src/asktable/resources/auth/policies.py">create</a>(\*\*<a href="src/asktable/types/auth/policy_create_params.py">params</a>) -> <a href="./src/asktable/types/shared/policy.py">Policy</a></code>
-- <code title="get /auth/policies/{policy_id}">client.auth.policies.<a href="./src/asktable/resources/auth/policies.py">retrieve</a>(policy_id) -> <a href="./src/asktable/types/shared/policy.py">Policy</a></code>
-- <code title="patch /auth/policies/{policy_id}">client.auth.policies.<a href="./src/asktable/resources/auth/policies.py">update</a>(policy_id, \*\*<a href="src/asktable/types/auth/policy_update_params.py">params</a>) -> <a href="./src/asktable/types/shared/policy.py">Policy</a></code>
-- <code title="get /auth/policies">client.auth.policies.<a href="./src/asktable/resources/auth/policies.py">list</a>(\*\*<a href="src/asktable/types/auth/policy_list_params.py">params</a>) -> <a href="./src/asktable/types/auth/policy_list_response.py">PolicyListResponse</a></code>
+- <code title="post /auth/policies">client.auth.policies.<a href="./src/asktable/resources/auth/policies.py">create</a>(\*\*<a href="src/asktable/types/auth/policy_create_params.py">params</a>) -> <a href="./src/asktable/types/shared/policy_out.py">PolicyOut</a></code>
+- <code title="get /auth/policies/{policy_id}">client.auth.policies.<a href="./src/asktable/resources/auth/policies.py">retrieve</a>(policy_id) -> <a href="./src/asktable/types/shared/policy_out.py">PolicyOut</a></code>
+- <code title="patch /auth/policies/{policy_id}">client.auth.policies.<a href="./src/asktable/resources/auth/policies.py">update</a>(policy_id, \*\*<a href="src/asktable/types/auth/policy_update_params.py">params</a>) -> <a href="./src/asktable/types/shared/policy_out.py">PolicyOut</a></code>
+- <code title="get /auth/policies">client.auth.policies.<a href="./src/asktable/resources/auth/policies.py">list</a>(\*\*<a href="src/asktable/types/auth/policy_list_params.py">params</a>) -> <a href="./src/asktable/types/auth/page_policy_out.py">PagePolicyOut</a></code>
 - <code title="delete /auth/policies/{policy_id}">client.auth.policies.<a href="./src/asktable/resources/auth/policies.py">delete</a>(policy_id) -> None</code>
 
 # Chats
@@ -142,44 +144,48 @@ Methods:
 Types:
 
 ```python
-from asktable.types import Chat, Message, ChatRetrieveResponse, ChatListResponse
+from asktable.types import ChatModel, ChatOut, PageChatListOut
 ```
 
 Methods:
 
-- <code title="post /chats/">client.chats.<a href="./src/asktable/resources/chats/chats.py">create</a>(\*\*<a href="src/asktable/types/chat_create_params.py">params</a>) -> <a href="./src/asktable/types/chat.py">Chat</a></code>
-- <code title="get /chats/{chat_id}">client.chats.<a href="./src/asktable/resources/chats/chats.py">retrieve</a>(chat_id) -> <a href="./src/asktable/types/chat_retrieve_response.py">ChatRetrieveResponse</a></code>
-- <code title="get /chats/">client.chats.<a href="./src/asktable/resources/chats/chats.py">list</a>(\*\*<a href="src/asktable/types/chat_list_params.py">params</a>) -> <a href="./src/asktable/types/chat_list_response.py">ChatListResponse</a></code>
-- <code title="delete /chats/{chat_id}">client.chats.<a href="./src/asktable/resources/chats/chats.py">delete_conversation</a>(chat_id) -> None</code>
-- <code title="post /chats/{chat_id}">client.chats.<a href="./src/asktable/resources/chats/chats.py">send</a>(chat_id, \*\*<a href="src/asktable/types/chat_send_params.py">params</a>) -> <a href="./src/asktable/types/message.py">Message</a></code>
+- <code title="post /chats/{chat_id}">client.chats.<a href="./src/asktable/resources/chats/chats.py">create</a>(chat_id, \*\*<a href="src/asktable/types/chat_create_params.py">params</a>) -> <a href="./src/asktable/types/shared/message_model.py">MessageModel</a></code>
+- <code title="get /chats/{chat_id}">client.chats.<a href="./src/asktable/resources/chats/chats.py">retrieve</a>(chat_id) -> <a href="./src/asktable/types/chat_out.py">ChatOut</a></code>
+- <code title="get /chats/">client.chats.<a href="./src/asktable/resources/chats/chats.py">list</a>(\*\*<a href="src/asktable/types/chat_list_params.py">params</a>) -> <a href="./src/asktable/types/page_chat_list_out.py">PageChatListOut</a></code>
+- <code title="delete /chats/{chat_id}">client.chats.<a href="./src/asktable/resources/chats/chats.py">delete</a>(chat_id) -> None</code>
 
 ## Messages
 
 Types:
 
 ```python
-from asktable.types.chats import MessageListResponse
+from asktable.types.chats import PageMessageModel
 ```
 
 Methods:
 
-- <code title="get /chats/{chat_id}/messages/{message_id}">client.chats.messages.<a href="./src/asktable/resources/chats/messages.py">retrieve</a>(message_id, \*, chat_id) -> <a href="./src/asktable/types/message.py">Message</a></code>
-- <code title="get /chats/{chat_id}/messages">client.chats.messages.<a href="./src/asktable/resources/chats/messages.py">list</a>(chat_id, \*\*<a href="src/asktable/types/chats/message_list_params.py">params</a>) -> <a href="./src/asktable/types/chats/message_list_response.py">MessageListResponse</a></code>
+- <code title="get /chats/{chat_id}/messages/{message_id}">client.chats.messages.<a href="./src/asktable/resources/chats/messages.py">retrieve</a>(message_id, \*, chat_id) -> <a href="./src/asktable/types/shared/message_model.py">MessageModel</a></code>
+- <code title="get /chats/{chat_id}/messages">client.chats.messages.<a href="./src/asktable/resources/chats/messages.py">list</a>(chat_id, \*\*<a href="src/asktable/types/chats/message_list_params.py">params</a>) -> <a href="./src/asktable/types/chats/page_message_model.py">PageMessageModel</a></code>
 
 # Datasources
 
 Types:
 
 ```python
-from asktable.types import Datasource, Meta, DatasourceListResponse, DatasourceDeleteResponse
+from asktable.types import (
+    DataSourceOut,
+    MetaModelOutput,
+    PageDataSourceOut,
+    DatasourceDeleteResponse,
+)
 ```
 
 Methods:
 
-- <code title="post /datasources/">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">create</a>(\*\*<a href="src/asktable/types/datasource_create_params.py">params</a>) -> <a href="./src/asktable/types/datasource.py">Datasource</a></code>
-- <code title="get /datasources/{datasource_id}">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">retrieve</a>(datasource_id) -> <a href="./src/asktable/types/datasource.py">Datasource</a></code>
-- <code title="patch /datasources/{datasource_id}">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">update</a>(datasource_id, \*\*<a href="src/asktable/types/datasource_update_params.py">params</a>) -> <a href="./src/asktable/types/datasource.py">Datasource</a></code>
-- <code title="get /datasources/">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">list</a>(\*\*<a href="src/asktable/types/datasource_list_params.py">params</a>) -> <a href="./src/asktable/types/datasource_list_response.py">DatasourceListResponse</a></code>
+- <code title="post /datasources/">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">create</a>(\*\*<a href="src/asktable/types/datasource_create_params.py">params</a>) -> <a href="./src/asktable/types/data_source_out.py">DataSourceOut</a></code>
+- <code title="get /datasources/{datasource_id}">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">retrieve</a>(datasource_id) -> <a href="./src/asktable/types/data_source_out.py">DataSourceOut</a></code>
+- <code title="patch /datasources/{datasource_id}">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">update</a>(datasource_id, \*\*<a href="src/asktable/types/datasource_update_params.py">params</a>) -> <a href="./src/asktable/types/data_source_out.py">DataSourceOut</a></code>
+- <code title="get /datasources/">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">list</a>(\*\*<a href="src/asktable/types/datasource_list_params.py">params</a>) -> <a href="./src/asktable/types/page_data_source_out.py">PageDataSourceOut</a></code>
 - <code title="delete /datasources/{datasource_id}">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">delete</a>(datasource_id) -> <a href="./src/asktable/types/datasource_delete_response.py">object</a></code>
 
 ## Meta
@@ -193,8 +199,8 @@ from asktable.types.datasources import MetaCreateResponse, MetaUpdateResponse
 Methods:
 
 - <code title="post /datasources/{datasource_id}/meta">client.datasources.meta.<a href="./src/asktable/resources/datasources/meta.py">create</a>(datasource_id) -> <a href="./src/asktable/types/datasources/meta_create_response.py">object</a></code>
-- <code title="get /datasources/{datasource_id}/meta">client.datasources.meta.<a href="./src/asktable/resources/datasources/meta.py">retrieve</a>(datasource_id, \*\*<a href="src/asktable/types/datasources/meta_retrieve_params.py">params</a>) -> <a href="./src/asktable/types/meta.py">Meta</a></code>
 - <code title="put /datasources/{datasource_id}/meta">client.datasources.meta.<a href="./src/asktable/resources/datasources/meta.py">update</a>(\*, path_datasource_id, \*\*<a href="src/asktable/types/datasources/meta_update_params.py">params</a>) -> <a href="./src/asktable/types/datasources/meta_update_response.py">object</a></code>
+- <code title="get /datasources/{datasource_id}/meta">client.datasources.meta.<a href="./src/asktable/resources/datasources/meta.py">list</a>(datasource_id, \*\*<a href="src/asktable/types/datasources/meta_list_params.py">params</a>) -> <a href="./src/asktable/types/meta_model_output.py">MetaModelOutput</a></code>
 
 ## UploadParams
 
@@ -237,7 +243,7 @@ Methods:
 Types:
 
 ```python
-from asktable.types import ChatBot, BotListResponse, BotDeleteResponse
+from asktable.types import ChatBot, PageChatBot, BotDeleteResponse
 ```
 
 Methods:
@@ -245,7 +251,7 @@ Methods:
 - <code title="post /bots/">client.bots.<a href="./src/asktable/resources/bots.py">create</a>(\*\*<a href="src/asktable/types/bot_create_params.py">params</a>) -> <a href="./src/asktable/types/chat_bot.py">ChatBot</a></code>
 - <code title="get /bots/{bot_id}">client.bots.<a href="./src/asktable/resources/bots.py">retrieve</a>(bot_id) -> <a href="./src/asktable/types/chat_bot.py">ChatBot</a></code>
 - <code title="patch /bots/{bot_id}">client.bots.<a href="./src/asktable/resources/bots.py">update</a>(bot_id, \*\*<a href="src/asktable/types/bot_update_params.py">params</a>) -> <a href="./src/asktable/types/chat_bot.py">ChatBot</a></code>
-- <code title="get /bots/">client.bots.<a href="./src/asktable/resources/bots.py">list</a>(\*\*<a href="src/asktable/types/bot_list_params.py">params</a>) -> <a href="./src/asktable/types/bot_list_response.py">BotListResponse</a></code>
+- <code title="get /bots/">client.bots.<a href="./src/asktable/resources/bots.py">list</a>(\*\*<a href="src/asktable/types/bot_list_params.py">params</a>) -> <a href="./src/asktable/types/page_chat_bot.py">PageChatBot</a></code>
 - <code title="delete /bots/{bot_id}">client.bots.<a href="./src/asktable/resources/bots.py">delete</a>(bot_id) -> <a href="./src/asktable/types/bot_delete_response.py">object</a></code>
 
 # Extapis
@@ -253,13 +259,15 @@ Methods:
 Types:
 
 ```python
-from asktable.types import ExtAPIModel, ExtapiDeleteResponse
+from asktable.types import ExtapiModel, ExtapiListResponse, ExtapiDeleteResponse
 ```
 
 Methods:
 
-- <code title="get /extapis/{extapi_id}">client.extapis.<a href="./src/asktable/resources/extapis/extapis.py">retrieve</a>(extapi_id) -> <a href="./src/asktable/types/ext_api_model.py">ExtAPIModel</a></code>
-- <code title="post /extapis/{extapi_id}">client.extapis.<a href="./src/asktable/resources/extapis/extapis.py">update</a>(extapi_id, \*\*<a href="src/asktable/types/extapi_update_params.py">params</a>) -> <a href="./src/asktable/types/ext_api_model.py">ExtAPIModel</a></code>
+- <code title="post /extapis/">client.extapis.<a href="./src/asktable/resources/extapis/extapis.py">create</a>(\*\*<a href="src/asktable/types/extapi_create_params.py">params</a>) -> <a href="./src/asktable/types/extapi_model.py">ExtapiModel</a></code>
+- <code title="get /extapis/{extapi_id}">client.extapis.<a href="./src/asktable/resources/extapis/extapis.py">retrieve</a>(extapi_id) -> <a href="./src/asktable/types/extapi_model.py">ExtapiModel</a></code>
+- <code title="post /extapis/{extapi_id}">client.extapis.<a href="./src/asktable/resources/extapis/extapis.py">update</a>(extapi_id, \*\*<a href="src/asktable/types/extapi_update_params.py">params</a>) -> <a href="./src/asktable/types/extapi_model.py">ExtapiModel</a></code>
+- <code title="get /extapis/">client.extapis.<a href="./src/asktable/resources/extapis/extapis.py">list</a>(\*\*<a href="src/asktable/types/extapi_list_params.py">params</a>) -> <a href="./src/asktable/types/extapi_list_response.py">ExtapiListResponse</a></code>
 - <code title="delete /extapis/{extapi_id}">client.extapis.<a href="./src/asktable/resources/extapis/extapis.py">delete</a>(extapi_id) -> <a href="./src/asktable/types/extapi_delete_response.py">object</a></code>
 
 ## Routes
@@ -267,14 +275,14 @@ Methods:
 Types:
 
 ```python
-from asktable.types.extapis import ExtAPIRouteModel, RouteListResponse
+from asktable.types.extapis import ExtapiRouteModel, RouteListResponse
 ```
 
 Methods:
 
-- <code title="post /extapis/{extapi_id}/routes">client.extapis.routes.<a href="./src/asktable/resources/extapis/routes.py">create</a>(\*, path_extapi_id, \*\*<a href="src/asktable/types/extapis/route_create_params.py">params</a>) -> <a href="./src/asktable/types/extapis/ext_api_route_model.py">ExtAPIRouteModel</a></code>
-- <code title="get /extapis/{extapi_id}/routes/{route_id}">client.extapis.routes.<a href="./src/asktable/resources/extapis/routes.py">retrieve</a>(route_id, \*, extapi_id) -> <a href="./src/asktable/types/extapis/ext_api_route_model.py">ExtAPIRouteModel</a></code>
-- <code title="post /extapis/{extapi_id}/routes/{route_id}">client.extapis.routes.<a href="./src/asktable/resources/extapis/routes.py">update</a>(route_id, \*, extapi_id, \*\*<a href="src/asktable/types/extapis/route_update_params.py">params</a>) -> <a href="./src/asktable/types/extapis/ext_api_route_model.py">ExtAPIRouteModel</a></code>
+- <code title="post /extapis/{extapi_id}/routes">client.extapis.routes.<a href="./src/asktable/resources/extapis/routes.py">create</a>(\*, path_extapi_id, \*\*<a href="src/asktable/types/extapis/route_create_params.py">params</a>) -> <a href="./src/asktable/types/extapis/extapi_route_model.py">ExtapiRouteModel</a></code>
+- <code title="get /extapis/{extapi_id}/routes/{route_id}">client.extapis.routes.<a href="./src/asktable/resources/extapis/routes.py">retrieve</a>(route_id, \*, extapi_id) -> <a href="./src/asktable/types/extapis/extapi_route_model.py">ExtapiRouteModel</a></code>
+- <code title="post /extapis/{extapi_id}/routes/{route_id}">client.extapis.routes.<a href="./src/asktable/resources/extapis/routes.py">update</a>(route_id, \*, extapi_id, \*\*<a href="src/asktable/types/extapis/route_update_params.py">params</a>) -> <a href="./src/asktable/types/extapis/extapi_route_model.py">ExtapiRouteModel</a></code>
 - <code title="get /extapis/{extapi_id}/routes">client.extapis.routes.<a href="./src/asktable/resources/extapis/routes.py">list</a>(extapi_id) -> <a href="./src/asktable/types/extapis/route_list_response.py">RouteListResponse</a></code>
 - <code title="delete /extapis/{extapi_id}/routes/{route_id}">client.extapis.routes.<a href="./src/asktable/resources/extapis/routes.py">delete</a>(route_id, \*, extapi_id) -> None</code>
 
@@ -311,12 +319,12 @@ Methods:
 Types:
 
 ```python
-from asktable.types.single_turn import AnswerModel, Q2aListResponse
+from asktable.types.single_turn import Q2aModel, Q2aListResponse
 ```
 
 Methods:
 
-- <code title="post /single-turn/q2a">client.single_turn.q2a.<a href="./src/asktable/resources/single_turn/q2a.py">create</a>(\*\*<a href="src/asktable/types/single_turn/q2a_create_params.py">params</a>) -> <a href="./src/asktable/types/single_turn/answer_model.py">AnswerModel</a></code>
+- <code title="post /single-turn/q2a">client.single_turn.q2a.<a href="./src/asktable/resources/single_turn/q2a.py">create</a>(\*\*<a href="src/asktable/types/single_turn/q2a_create_params.py">params</a>) -> <a href="./src/asktable/types/shared/answer_model.py">AnswerModel</a></code>
 - <code title="get /single-turn/q2a">client.single_turn.q2a.<a href="./src/asktable/resources/single_turn/q2a.py">list</a>(\*\*<a href="src/asktable/types/single_turn/q2a_list_params.py">params</a>) -> <a href="./src/asktable/types/single_turn/q2a_list_response.py">Q2aListResponse</a></code>
 
 ## Q2s
@@ -324,12 +332,12 @@ Methods:
 Types:
 
 ```python
-from asktable.types.single_turn import Q2SResponse, Q2ListResponse
+from asktable.types.single_turn import Q2sModel, Q2sResponse, Q2ListResponse
 ```
 
 Methods:
 
-- <code title="post /single-turn/q2s">client.single_turn.q2s.<a href="./src/asktable/resources/single_turn/q2s.py">create</a>(\*\*<a href="src/asktable/types/single_turn/q2_create_params.py">params</a>) -> <a href="./src/asktable/types/single_turn/q2_s_response.py">Q2SResponse</a></code>
+- <code title="post /single-turn/q2s">client.single_turn.q2s.<a href="./src/asktable/resources/single_turn/q2s.py">create</a>(\*\*<a href="src/asktable/types/single_turn/q2_create_params.py">params</a>) -> <a href="./src/asktable/types/single_turn/q2s_response.py">Q2sResponse</a></code>
 - <code title="get /single-turn/q2s">client.single_turn.q2s.<a href="./src/asktable/resources/single_turn/q2s.py">list</a>(\*\*<a href="src/asktable/types/single_turn/q2_list_params.py">params</a>) -> <a href="./src/asktable/types/single_turn/q2_list_response.py">Q2ListResponse</a></code>
 
 # Caches
@@ -337,3 +345,9 @@ Methods:
 Methods:
 
 - <code title="delete /caches/{cache_id}">client.caches.<a href="./src/asktable/resources/caches.py">delete</a>(cache_id) -> None</code>
+
+# Integration
+
+Methods:
+
+- <code title="post /integration/excel_ask">client.integration.<a href="./src/asktable/resources/integration.py">excel_ask</a>(\*\*<a href="src/asktable/types/integration_excel_ask_params.py">params</a>) -> <a href="./src/asktable/types/shared/answer_model.py">AnswerModel</a></code>

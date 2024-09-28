@@ -2,11 +2,9 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Optional
-
 import httpx
 
-from ...types import chat_list_params, chat_send_params, chat_create_params
+from ...types import chat_list_params, chat_create_params
 from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -28,11 +26,10 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...types.chat import Chat
 from ..._base_client import make_request_options
-from ...types.message import Message
-from ...types.chat_list_response import ChatListResponse
-from ...types.chat_retrieve_response import ChatRetrieveResponse
+from ...types.chat_out import ChatOut
+from ...types.page_chat_list_out import PageChatListOut
+from ...types.shared.message_model import MessageModel
 
 __all__ = ["ChatsResource", "AsyncChatsResource"]
 
@@ -63,38 +60,20 @@ class ChatsResource(SyncAPIResource):
 
     def create(
         self,
+        chat_id: str,
         *,
-        bot_id: Optional[str] | NotGiven = NOT_GIVEN,
-        datasource_ids: Optional[List[str]] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        role_id: Optional[str] | NotGiven = NOT_GIVEN,
-        role_variables: Optional[Dict[str, Union[str, int, bool]]] | NotGiven = NOT_GIVEN,
-        user_profile: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
+        question: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Chat:
+    ) -> MessageModel:
         """
-        创建对话
+        发消息
 
         Args:
-          bot_id: 机器人 ID，如果需要使用高级功能，请使用 bot_id 来创建对话。在机器人中你可以定义
-              可以访问的数据、可以执行的任务以及是否开启调试模式等设置。
-
-          datasource_ids: 直接与数据源对话，我们会自动为你创建一个机器人, only support one datasource
-
-          name: New name for the chat
-
-          role_id: 角色 ID，将扮演这个角色来执行对话，用于权限控制。若无，则跳过鉴权，即可查询所有
-              数据
-
-          role_variables: 在扮演这个角色时需要传递的变量值，用 Key-Value 形式传递
-
-          user_profile: 用户信息，用于在对话中传递用户的信息，用 Key-Value 形式传递
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -103,23 +82,18 @@ class ChatsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not chat_id:
+            raise ValueError(f"Expected a non-empty value for `chat_id` but received {chat_id!r}")
         return self._post(
-            "/chats/",
-            body=maybe_transform(
-                {
-                    "bot_id": bot_id,
-                    "datasource_ids": datasource_ids,
-                    "name": name,
-                    "role_id": role_id,
-                    "role_variables": role_variables,
-                    "user_profile": user_profile,
-                },
-                chat_create_params.ChatCreateParams,
-            ),
+            f"/chats/{chat_id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"question": question}, chat_create_params.ChatCreateParams),
             ),
-            cast_to=Chat,
+            cast_to=MessageModel,
         )
 
     def retrieve(
@@ -132,7 +106,7 @@ class ChatsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ChatRetrieveResponse:
+    ) -> ChatOut:
         """
         获取某个对话
 
@@ -152,7 +126,7 @@ class ChatsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ChatRetrieveResponse,
+            cast_to=ChatOut,
         )
 
     def list(
@@ -166,7 +140,7 @@ class ChatsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ChatListResponse:
+    ) -> PageChatListOut:
         """
         查询对话列表
 
@@ -198,10 +172,10 @@ class ChatsResource(SyncAPIResource):
                     chat_list_params.ChatListParams,
                 ),
             ),
-            cast_to=ChatListResponse,
+            cast_to=PageChatListOut,
         )
 
-    def delete_conversation(
+    def delete(
         self,
         chat_id: str,
         *,
@@ -235,44 +209,6 @@ class ChatsResource(SyncAPIResource):
             cast_to=NoneType,
         )
 
-    def send(
-        self,
-        chat_id: str,
-        *,
-        question: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Message:
-        """
-        发消息
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not chat_id:
-            raise ValueError(f"Expected a non-empty value for `chat_id` but received {chat_id!r}")
-        return self._post(
-            f"/chats/{chat_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform({"question": question}, chat_send_params.ChatSendParams),
-            ),
-            cast_to=Message,
-        )
-
 
 class AsyncChatsResource(AsyncAPIResource):
     @cached_property
@@ -300,38 +236,20 @@ class AsyncChatsResource(AsyncAPIResource):
 
     async def create(
         self,
+        chat_id: str,
         *,
-        bot_id: Optional[str] | NotGiven = NOT_GIVEN,
-        datasource_ids: Optional[List[str]] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        role_id: Optional[str] | NotGiven = NOT_GIVEN,
-        role_variables: Optional[Dict[str, Union[str, int, bool]]] | NotGiven = NOT_GIVEN,
-        user_profile: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
+        question: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Chat:
+    ) -> MessageModel:
         """
-        创建对话
+        发消息
 
         Args:
-          bot_id: 机器人 ID，如果需要使用高级功能，请使用 bot_id 来创建对话。在机器人中你可以定义
-              可以访问的数据、可以执行的任务以及是否开启调试模式等设置。
-
-          datasource_ids: 直接与数据源对话，我们会自动为你创建一个机器人, only support one datasource
-
-          name: New name for the chat
-
-          role_id: 角色 ID，将扮演这个角色来执行对话，用于权限控制。若无，则跳过鉴权，即可查询所有
-              数据
-
-          role_variables: 在扮演这个角色时需要传递的变量值，用 Key-Value 形式传递
-
-          user_profile: 用户信息，用于在对话中传递用户的信息，用 Key-Value 形式传递
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -340,23 +258,18 @@ class AsyncChatsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not chat_id:
+            raise ValueError(f"Expected a non-empty value for `chat_id` but received {chat_id!r}")
         return await self._post(
-            "/chats/",
-            body=await async_maybe_transform(
-                {
-                    "bot_id": bot_id,
-                    "datasource_ids": datasource_ids,
-                    "name": name,
-                    "role_id": role_id,
-                    "role_variables": role_variables,
-                    "user_profile": user_profile,
-                },
-                chat_create_params.ChatCreateParams,
-            ),
+            f"/chats/{chat_id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform({"question": question}, chat_create_params.ChatCreateParams),
             ),
-            cast_to=Chat,
+            cast_to=MessageModel,
         )
 
     async def retrieve(
@@ -369,7 +282,7 @@ class AsyncChatsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ChatRetrieveResponse:
+    ) -> ChatOut:
         """
         获取某个对话
 
@@ -389,7 +302,7 @@ class AsyncChatsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ChatRetrieveResponse,
+            cast_to=ChatOut,
         )
 
     async def list(
@@ -403,7 +316,7 @@ class AsyncChatsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ChatListResponse:
+    ) -> PageChatListOut:
         """
         查询对话列表
 
@@ -435,10 +348,10 @@ class AsyncChatsResource(AsyncAPIResource):
                     chat_list_params.ChatListParams,
                 ),
             ),
-            cast_to=ChatListResponse,
+            cast_to=PageChatListOut,
         )
 
-    async def delete_conversation(
+    async def delete(
         self,
         chat_id: str,
         *,
@@ -472,44 +385,6 @@ class AsyncChatsResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
-    async def send(
-        self,
-        chat_id: str,
-        *,
-        question: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Message:
-        """
-        发消息
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not chat_id:
-            raise ValueError(f"Expected a non-empty value for `chat_id` but received {chat_id!r}")
-        return await self._post(
-            f"/chats/{chat_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform({"question": question}, chat_send_params.ChatSendParams),
-            ),
-            cast_to=Message,
-        )
-
 
 class ChatsResourceWithRawResponse:
     def __init__(self, chats: ChatsResource) -> None:
@@ -524,11 +399,8 @@ class ChatsResourceWithRawResponse:
         self.list = to_raw_response_wrapper(
             chats.list,
         )
-        self.delete_conversation = to_raw_response_wrapper(
-            chats.delete_conversation,
-        )
-        self.send = to_raw_response_wrapper(
-            chats.send,
+        self.delete = to_raw_response_wrapper(
+            chats.delete,
         )
 
     @cached_property
@@ -549,11 +421,8 @@ class AsyncChatsResourceWithRawResponse:
         self.list = async_to_raw_response_wrapper(
             chats.list,
         )
-        self.delete_conversation = async_to_raw_response_wrapper(
-            chats.delete_conversation,
-        )
-        self.send = async_to_raw_response_wrapper(
-            chats.send,
+        self.delete = async_to_raw_response_wrapper(
+            chats.delete,
         )
 
     @cached_property
@@ -574,11 +443,8 @@ class ChatsResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             chats.list,
         )
-        self.delete_conversation = to_streamed_response_wrapper(
-            chats.delete_conversation,
-        )
-        self.send = to_streamed_response_wrapper(
-            chats.send,
+        self.delete = to_streamed_response_wrapper(
+            chats.delete,
         )
 
     @cached_property
@@ -599,11 +465,8 @@ class AsyncChatsResourceWithStreamingResponse:
         self.list = async_to_streamed_response_wrapper(
             chats.list,
         )
-        self.delete_conversation = async_to_streamed_response_wrapper(
-            chats.delete_conversation,
-        )
-        self.send = async_to_streamed_response_wrapper(
-            chats.send,
+        self.delete = async_to_streamed_response_wrapper(
+            chats.delete,
         )
 
     @cached_property

@@ -37,8 +37,8 @@ from ...._response import (
 )
 from ....types.auth import role_list_params, role_create_params, role_update_params
 from ...._base_client import make_request_options
-from ....types.auth.role import Role
-from ....types.auth.role_list_response import RoleListResponse
+from ....types.auth.role_model import RoleModel
+from ....types.auth.page_role_model import PageRoleModel
 
 __all__ = ["RolesResource", "AsyncRolesResource"]
 
@@ -82,7 +82,7 @@ class RolesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Role:
+    ) -> RoleModel:
         """
         创建一个新的角色
 
@@ -111,7 +111,7 @@ class RolesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Role,
+            cast_to=RoleModel,
         )
 
     def retrieve(
@@ -124,7 +124,7 @@ class RolesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Role:
+    ) -> RoleModel:
         """
         获取某个角色
 
@@ -144,7 +144,7 @@ class RolesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Role,
+            cast_to=RoleModel,
         )
 
     def update(
@@ -159,7 +159,7 @@ class RolesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Role:
+    ) -> RoleModel:
         """
         更新某个角色
 
@@ -190,7 +190,7 @@ class RolesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Role,
+            cast_to=RoleModel,
         )
 
     def list(
@@ -205,7 +205,7 @@ class RolesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RoleListResponse:
+    ) -> PageRoleModel:
         """
         查询所有的角色
 
@@ -240,7 +240,7 @@ class RolesResource(SyncAPIResource):
                     role_list_params.RoleListParams,
                 ),
             ),
-            cast_to=RoleListResponse,
+            cast_to=PageRoleModel,
         )
 
     def delete(
@@ -316,7 +316,7 @@ class AsyncRolesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Role:
+    ) -> RoleModel:
         """
         创建一个新的角色
 
@@ -345,7 +345,7 @@ class AsyncRolesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Role,
+            cast_to=RoleModel,
         )
 
     async def retrieve(
@@ -358,7 +358,7 @@ class AsyncRolesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Role:
+    ) -> RoleModel:
         """
         获取某个角色
 
@@ -378,7 +378,7 @@ class AsyncRolesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Role,
+            cast_to=RoleModel,
         )
 
     async def update(
@@ -393,7 +393,7 @@ class AsyncRolesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Role:
+    ) -> RoleModel:
         """
         更新某个角色
 
@@ -424,7 +424,7 @@ class AsyncRolesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Role,
+            cast_to=RoleModel,
         )
 
     async def list(
@@ -439,7 +439,7 @@ class AsyncRolesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RoleListResponse:
+    ) -> PageRoleModel:
         """
         查询所有的角色
 
@@ -474,7 +474,7 @@ class AsyncRolesResource(AsyncAPIResource):
                     role_list_params.RoleListParams,
                 ),
             ),
-            cast_to=RoleListResponse,
+            cast_to=PageRoleModel,
         )
 
     async def delete(

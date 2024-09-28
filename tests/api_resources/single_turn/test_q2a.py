@@ -9,7 +9,8 @@ import pytest
 
 from asktable import Asktable, AsyncAsktable
 from tests.utils import assert_matches_type
-from asktable.types.single_turn import AnswerModel, Q2aListResponse
+from asktable.types.shared import AnswerModel
+from asktable.types.single_turn import Q2aListResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

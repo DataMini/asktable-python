@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from .answer_model import AnswerModel as AnswerModel
-from .q2_s_response import Q2SResponse as Q2SResponse
+from .q2a_model import Q2aModel as Q2aModel
+from .q2s_model import Q2sModel as Q2sModel
+from .q2s_response import Q2sResponse as Q2sResponse
 from .q2_list_params import Q2ListParams as Q2ListParams
 from .q2a_list_params import Q2aListParams as Q2aListParams
 from .q2_create_params import Q2CreateParams as Q2CreateParams

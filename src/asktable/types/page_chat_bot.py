@@ -2,14 +2,14 @@
 
 from typing import List, Optional
 
-from ..._models import BaseModel
-from ..shared.policy import Policy
+from .._models import BaseModel
+from .chat_bot import ChatBot
 
-__all__ = ["PolicyListResponse"]
+__all__ = ["PageChatBot"]
 
 
-class PolicyListResponse(BaseModel):
-    items: List[Policy]
+class PageChatBot(BaseModel):
+    items: List[ChatBot]
 
     page: Optional[int] = None
 

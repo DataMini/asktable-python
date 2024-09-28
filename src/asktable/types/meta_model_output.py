@@ -4,7 +4,7 @@ from typing import Dict, List, Optional
 
 from .._models import BaseModel
 
-__all__ = ["Meta", "Schemas", "SchemasTables", "SchemasTablesFields"]
+__all__ = ["MetaModelOutput", "Schemas", "SchemasTables", "SchemasTablesFields"]
 
 
 class SchemasTablesFields(BaseModel):
@@ -68,7 +68,7 @@ class Schemas(BaseModel):
     tables: Optional[Dict[str, SchemasTables]] = None
 
 
-class Meta(BaseModel):
+class MetaModelOutput(BaseModel):
     datasource_id: str
     """datasource_id"""
 

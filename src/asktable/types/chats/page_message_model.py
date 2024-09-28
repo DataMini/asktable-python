@@ -2,14 +2,14 @@
 
 from typing import List, Optional
 
-from .._models import BaseModel
-from .datasource import Datasource
+from ..._models import BaseModel
+from ..shared.message_model import MessageModel
 
-__all__ = ["DatasourceListResponse"]
+__all__ = ["PageMessageModel"]
 
 
-class DatasourceListResponse(BaseModel):
-    items: List[Datasource]
+class PageMessageModel(BaseModel):
+    items: List[MessageModel]
 
     page: Optional[int] = None
 

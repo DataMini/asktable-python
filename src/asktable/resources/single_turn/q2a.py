@@ -21,7 +21,7 @@ from ..._response import (
 )
 from ..._base_client import make_request_options
 from ...types.single_turn import q2a_list_params, q2a_create_params
-from ...types.single_turn.answer_model import AnswerModel
+from ...types.shared.answer_model import AnswerModel
 from ...types.single_turn.q2a_list_response import Q2aListResponse
 
 __all__ = ["Q2aResource", "AsyncQ2aResource"]

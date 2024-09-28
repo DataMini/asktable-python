@@ -22,7 +22,7 @@ from .._response import (
 )
 from .._base_client import make_request_options
 from ..types.chat_bot import ChatBot
-from ..types.bot_list_response import BotListResponse
+from ..types.page_chat_bot import PageChatBot
 
 __all__ = ["BotsResource", "AsyncBotsResource"]
 
@@ -237,7 +237,7 @@ class BotsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BotListResponse:
+    ) -> PageChatBot:
         """
         查询所有 Bot
 
@@ -272,7 +272,7 @@ class BotsResource(SyncAPIResource):
                     bot_list_params.BotListParams,
                 ),
             ),
-            cast_to=BotListResponse,
+            cast_to=PageChatBot,
         )
 
     def delete(
@@ -519,7 +519,7 @@ class AsyncBotsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BotListResponse:
+    ) -> PageChatBot:
         """
         查询所有 Bot
 
@@ -554,7 +554,7 @@ class AsyncBotsResource(AsyncAPIResource):
                     bot_list_params.BotListParams,
                 ),
             ),
-            cast_to=BotListResponse,
+            cast_to=PageChatBot,
         )
 
     async def delete(

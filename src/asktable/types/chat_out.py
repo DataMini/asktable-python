@@ -5,24 +5,16 @@ from datetime import datetime
 
 from .._models import BaseModel
 
-__all__ = ["ChatListResponse", "Item"]
+__all__ = ["ChatOut"]
 
 
-class Item(BaseModel):
+class ChatOut(BaseModel):
     id: str
     """对话 ID"""
 
-    ai_msgs: int
-    """机器人消息数"""
-
     created: datetime
-    """创建时间"""
-
-    human_msgs: int
-    """用户消息数"""
 
     modified: datetime
-    """修改时间"""
 
     project_id: str
 
@@ -36,7 +28,6 @@ class Item(BaseModel):
     """直接与数据源对话，我们会自动为你创建一个机器人, only support one datasource"""
 
     latest_msg: Optional[datetime] = None
-    """最新消息时间"""
 
     name: Optional[str] = None
     """New name for the chat"""
@@ -52,15 +43,3 @@ class Item(BaseModel):
 
     user_profile: Optional[Dict[str, str]] = None
     """用户信息，用于在对话中传递用户的信息，用 Key-Value 形式传递"""
-
-
-class ChatListResponse(BaseModel):
-    items: List[Item]
-
-    page: Optional[int] = None
-
-    size: Optional[int] = None
-
-    total: Optional[int] = None
-
-    pages: Optional[int] = None
