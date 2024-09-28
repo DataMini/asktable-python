@@ -4,8 +4,12 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["ChatSendParams"]
+__all__ = ["IntegrationExcelAskParams"]
 
 
-class ChatSendParams(TypedDict, total=False):
+class IntegrationExcelAskParams(TypedDict, total=False):
+    excel_file_url: Required[str]
+    """Excel 文件 URL"""
+
     question: Required[str]
+    """查询语句"""

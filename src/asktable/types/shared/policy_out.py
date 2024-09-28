@@ -6,7 +6,7 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["Policy", "DatasetConfig", "DatasetConfigRegexPatterns"]
+__all__ = ["PolicyOut", "DatasetConfig", "DatasetConfigRegexPatterns"]
 
 
 class DatasetConfigRegexPatterns(BaseModel):
@@ -38,7 +38,7 @@ class DatasetConfig(BaseModel):
     """行过滤器"""
 
 
-class Policy(BaseModel):
+class PolicyOut(BaseModel):
     id: str
 
     created_at: datetime

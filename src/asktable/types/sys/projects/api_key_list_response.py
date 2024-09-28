@@ -1,35 +1,10 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-from datetime import datetime
-from typing_extensions import Literal, TypeAlias
+from typing import List
+from typing_extensions import TypeAlias
 
-from ...._models import BaseModel
+from .api_key_out import APIKeyOut
 
-__all__ = ["APIKeyListResponse", "APIKeyListResponseItem"]
+__all__ = ["APIKeyListResponse"]
 
-
-class APIKeyListResponseItem(BaseModel):
-    id: str
-    """API Key ID"""
-
-    ak_role: Literal["sys", "admin", "asker"]
-    """API key 的角色"""
-
-    created_at: datetime
-    """创建时间"""
-
-    masked_ak_value: str
-    """打码后的 API Key"""
-
-    project_id: str
-    """项目 ID"""
-
-    status: int
-    """状态"""
-
-    last_used_at: Optional[datetime] = None
-    """最后使用时间"""
-
-
-APIKeyListResponse: TypeAlias = List[APIKeyListResponseItem]
+APIKeyListResponse: TypeAlias = List[APIKeyOut]

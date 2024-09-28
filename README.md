@@ -31,10 +31,10 @@ from asktable import Asktable
 
 client = Asktable()
 
-project = client.sys.projects.create(
+project_model = client.sys.projects.create(
     name="name",
 )
-print(project.id)
+print(project_model.id)
 ```
 
 ## Async usage
@@ -49,10 +49,10 @@ client = AsyncAsktable()
 
 
 async def main() -> None:
-    project = await client.sys.projects.create(
+    project_model = await client.sys.projects.create(
         name="name",
     )
-    print(project.id)
+    print(project_model.id)
 
 
 asyncio.run(main())

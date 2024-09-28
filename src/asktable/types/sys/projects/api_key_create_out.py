@@ -6,10 +6,10 @@ from typing_extensions import Literal
 
 from ...._models import BaseModel
 
-__all__ = ["APIKeyCreateResponse"]
+__all__ = ["APIKeyCreateOut"]
 
 
-class APIKeyCreateResponse(BaseModel):
+class APIKeyCreateOut(BaseModel):
     id: str
     """API Key ID"""
 

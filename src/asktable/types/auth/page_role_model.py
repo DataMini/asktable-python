@@ -2,14 +2,14 @@
 
 from typing import List, Optional
 
-from .role import Role
 from ..._models import BaseModel
+from .role_model import RoleModel
 
-__all__ = ["RoleListResponse"]
+__all__ = ["PageRoleModel"]
 
 
-class RoleListResponse(BaseModel):
-    items: List[Role]
+class PageRoleModel(BaseModel):
+    items: List[RoleModel]
 
     page: Optional[int] = None
 

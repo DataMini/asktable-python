@@ -6,10 +6,10 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["ExtAPIRouteModel"]
+__all__ = ["ExtapiRouteModel"]
 
 
-class ExtAPIRouteModel(BaseModel):
+class ExtapiRouteModel(BaseModel):
     id: str
 
     created_at: datetime

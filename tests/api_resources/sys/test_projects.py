@@ -9,7 +9,10 @@ import pytest
 
 from asktable import Asktable, AsyncAsktable
 from tests.utils import assert_matches_type
-from asktable.types.sys import Project, ProjectListResponse
+from asktable.types.sys import (
+    ProjectModel,
+    PageProjectModel,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -22,7 +25,7 @@ class TestProjects:
         project = client.sys.projects.create(
             name="name",
         )
-        assert_matches_type(Project, project, path=["response"])
+        assert_matches_type(ProjectModel, project, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Asktable) -> None:
@@ -33,7 +36,7 @@ class TestProjects:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         project = response.parse()
-        assert_matches_type(Project, project, path=["response"])
+        assert_matches_type(ProjectModel, project, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Asktable) -> None:
@@ -44,7 +47,7 @@ class TestProjects:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             project = response.parse()
-            assert_matches_type(Project, project, path=["response"])
+            assert_matches_type(ProjectModel, project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -53,7 +56,7 @@ class TestProjects:
         project = client.sys.projects.retrieve(
             "project_id",
         )
-        assert_matches_type(Project, project, path=["response"])
+        assert_matches_type(ProjectModel, project, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: Asktable) -> None:
@@ -64,7 +67,7 @@ class TestProjects:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         project = response.parse()
-        assert_matches_type(Project, project, path=["response"])
+        assert_matches_type(ProjectModel, project, path=["response"])
 
     @parametrize
     def test_streaming_response_retrieve(self, client: Asktable) -> None:
@@ -75,7 +78,7 @@ class TestProjects:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             project = response.parse()
-            assert_matches_type(Project, project, path=["response"])
+            assert_matches_type(ProjectModel, project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -87,9 +90,56 @@ class TestProjects:
             )
 
     @parametrize
+    def test_method_update(self, client: Asktable) -> None:
+        project = client.sys.projects.update(
+            project_id="project_id",
+        )
+        assert_matches_type(ProjectModel, project, path=["response"])
+
+    @parametrize
+    def test_method_update_with_all_params(self, client: Asktable) -> None:
+        project = client.sys.projects.update(
+            project_id="project_id",
+            locked=True,
+            name="name",
+        )
+        assert_matches_type(ProjectModel, project, path=["response"])
+
+    @parametrize
+    def test_raw_response_update(self, client: Asktable) -> None:
+        response = client.sys.projects.with_raw_response.update(
+            project_id="project_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        project = response.parse()
+        assert_matches_type(ProjectModel, project, path=["response"])
+
+    @parametrize
+    def test_streaming_response_update(self, client: Asktable) -> None:
+        with client.sys.projects.with_streaming_response.update(
+            project_id="project_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            project = response.parse()
+            assert_matches_type(ProjectModel, project, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_update(self, client: Asktable) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_id` but received ''"):
+            client.sys.projects.with_raw_response.update(
+                project_id="",
+            )
+
+    @parametrize
     def test_method_list(self, client: Asktable) -> None:
         project = client.sys.projects.list()
-        assert_matches_type(ProjectListResponse, project, path=["response"])
+        assert_matches_type(PageProjectModel, project, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Asktable) -> None:
@@ -98,7 +148,7 @@ class TestProjects:
             project_ids=["string", "string", "string"],
             size=1,
         )
-        assert_matches_type(ProjectListResponse, project, path=["response"])
+        assert_matches_type(PageProjectModel, project, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Asktable) -> None:
@@ -107,7 +157,7 @@ class TestProjects:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         project = response.parse()
-        assert_matches_type(ProjectListResponse, project, path=["response"])
+        assert_matches_type(PageProjectModel, project, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Asktable) -> None:
@@ -116,7 +166,7 @@ class TestProjects:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             project = response.parse()
-            assert_matches_type(ProjectListResponse, project, path=["response"])
+            assert_matches_type(PageProjectModel, project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -167,7 +217,7 @@ class TestAsyncProjects:
         project = await async_client.sys.projects.create(
             name="name",
         )
-        assert_matches_type(Project, project, path=["response"])
+        assert_matches_type(ProjectModel, project, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncAsktable) -> None:
@@ -178,7 +228,7 @@ class TestAsyncProjects:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         project = await response.parse()
-        assert_matches_type(Project, project, path=["response"])
+        assert_matches_type(ProjectModel, project, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncAsktable) -> None:
@@ -189,7 +239,7 @@ class TestAsyncProjects:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             project = await response.parse()
-            assert_matches_type(Project, project, path=["response"])
+            assert_matches_type(ProjectModel, project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -198,7 +248,7 @@ class TestAsyncProjects:
         project = await async_client.sys.projects.retrieve(
             "project_id",
         )
-        assert_matches_type(Project, project, path=["response"])
+        assert_matches_type(ProjectModel, project, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncAsktable) -> None:
@@ -209,7 +259,7 @@ class TestAsyncProjects:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         project = await response.parse()
-        assert_matches_type(Project, project, path=["response"])
+        assert_matches_type(ProjectModel, project, path=["response"])
 
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncAsktable) -> None:
@@ -220,7 +270,7 @@ class TestAsyncProjects:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             project = await response.parse()
-            assert_matches_type(Project, project, path=["response"])
+            assert_matches_type(ProjectModel, project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -232,9 +282,56 @@ class TestAsyncProjects:
             )
 
     @parametrize
+    async def test_method_update(self, async_client: AsyncAsktable) -> None:
+        project = await async_client.sys.projects.update(
+            project_id="project_id",
+        )
+        assert_matches_type(ProjectModel, project, path=["response"])
+
+    @parametrize
+    async def test_method_update_with_all_params(self, async_client: AsyncAsktable) -> None:
+        project = await async_client.sys.projects.update(
+            project_id="project_id",
+            locked=True,
+            name="name",
+        )
+        assert_matches_type(ProjectModel, project, path=["response"])
+
+    @parametrize
+    async def test_raw_response_update(self, async_client: AsyncAsktable) -> None:
+        response = await async_client.sys.projects.with_raw_response.update(
+            project_id="project_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        project = await response.parse()
+        assert_matches_type(ProjectModel, project, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_update(self, async_client: AsyncAsktable) -> None:
+        async with async_client.sys.projects.with_streaming_response.update(
+            project_id="project_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            project = await response.parse()
+            assert_matches_type(ProjectModel, project, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_update(self, async_client: AsyncAsktable) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_id` but received ''"):
+            await async_client.sys.projects.with_raw_response.update(
+                project_id="",
+            )
+
+    @parametrize
     async def test_method_list(self, async_client: AsyncAsktable) -> None:
         project = await async_client.sys.projects.list()
-        assert_matches_type(ProjectListResponse, project, path=["response"])
+        assert_matches_type(PageProjectModel, project, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncAsktable) -> None:
@@ -243,7 +340,7 @@ class TestAsyncProjects:
             project_ids=["string", "string", "string"],
             size=1,
         )
-        assert_matches_type(ProjectListResponse, project, path=["response"])
+        assert_matches_type(PageProjectModel, project, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncAsktable) -> None:
@@ -252,7 +349,7 @@ class TestAsyncProjects:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         project = await response.parse()
-        assert_matches_type(ProjectListResponse, project, path=["response"])
+        assert_matches_type(PageProjectModel, project, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncAsktable) -> None:
@@ -261,7 +358,7 @@ class TestAsyncProjects:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             project = await response.parse()
-            assert_matches_type(ProjectListResponse, project, path=["response"])
+            assert_matches_type(PageProjectModel, project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

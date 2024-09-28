@@ -4,12 +4,12 @@ from typing import Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from .._models import BaseModel
+from ..._models import BaseModel
 
-__all__ = ["Message"]
+__all__ = ["MessageModel"]
 
 
-class Message(BaseModel):
+class MessageModel(BaseModel):
     id: str
 
     content: object

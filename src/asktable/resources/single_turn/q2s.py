@@ -21,7 +21,7 @@ from ..._response import (
 )
 from ..._base_client import make_request_options
 from ...types.single_turn import q2_list_params, q2_create_params
-from ...types.single_turn.q2_s_response import Q2SResponse
+from ...types.single_turn.q2s_response import Q2sResponse
 from ...types.single_turn.q2_list_response import Q2ListResponse
 
 __all__ = ["Q2sResource", "AsyncQ2sResource"]
@@ -60,7 +60,7 @@ class Q2sResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Q2SResponse:
+    ) -> Q2sResponse:
         """
         发起生成 sql 的请求
 
@@ -96,7 +96,7 @@ class Q2sResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Q2SResponse,
+            cast_to=Q2sResponse,
         )
 
     def list(
@@ -183,7 +183,7 @@ class AsyncQ2sResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Q2SResponse:
+    ) -> Q2sResponse:
         """
         发起生成 sql 的请求
 
@@ -219,7 +219,7 @@ class AsyncQ2sResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Q2SResponse,
+            cast_to=Q2sResponse,
         )
 
     async def list(

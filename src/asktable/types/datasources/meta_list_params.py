@@ -4,9 +4,9 @@ from __future__ import annotations
 
 from typing_extensions import TypedDict
 
-__all__ = ["MetaRetrieveParams"]
+__all__ = ["MetaListParams"]
 
 
-class MetaRetrieveParams(TypedDict, total=False):
+class MetaListParams(TypedDict, total=False):
     from_where: str
     """获取元数据的来源"""

@@ -2,14 +2,14 @@
 
 from typing import List, Optional
 
-from .project import Project
-from ..._models import BaseModel
+from .._models import BaseModel
+from .secure_tunnel import SecureTunnel
 
-__all__ = ["ProjectListResponse"]
+__all__ = ["PageSecureTunnel"]
 
 
-class ProjectListResponse(BaseModel):
-    items: List[Project]
+class PageSecureTunnel(BaseModel):
+    items: List[SecureTunnel]
 
     page: Optional[int] = None
 

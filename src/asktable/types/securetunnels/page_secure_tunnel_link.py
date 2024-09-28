@@ -5,7 +5,7 @@ from datetime import datetime
 
 from ..._models import BaseModel
 
-__all__ = ["LinkListResponse", "Item"]
+__all__ = ["PageSecureTunnelLink", "Item"]
 
 
 class Item(BaseModel):
@@ -28,7 +28,7 @@ class Item(BaseModel):
     target_port: int
 
 
-class LinkListResponse(BaseModel):
+class PageSecureTunnelLink(BaseModel):
     items: List[Item]
 
     page: Optional[int] = None

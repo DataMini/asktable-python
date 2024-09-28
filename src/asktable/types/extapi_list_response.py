@@ -3,13 +3,13 @@
 from typing import List, Optional
 
 from .._models import BaseModel
-from .chat_bot import ChatBot
+from .extapi_model import ExtapiModel
 
-__all__ = ["BotListResponse"]
+__all__ = ["ExtapiListResponse"]
 
 
-class BotListResponse(BaseModel):
-    items: List[ChatBot]
+class ExtapiListResponse(BaseModel):
+    items: List[ExtapiModel]
 
     page: Optional[int] = None
 

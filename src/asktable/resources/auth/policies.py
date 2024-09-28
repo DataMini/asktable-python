@@ -22,8 +22,8 @@ from ..._response import (
 )
 from ...types.auth import policy_list_params, policy_create_params, policy_update_params
 from ..._base_client import make_request_options
-from ...types.shared.policy import Policy
-from ...types.auth.policy_list_response import PolicyListResponse
+from ...types.shared.policy_out import PolicyOut
+from ...types.auth.page_policy_out import PagePolicyOut
 
 __all__ = ["PoliciesResource", "AsyncPoliciesResource"]
 
@@ -60,7 +60,7 @@ class PoliciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Policy:
+    ) -> PolicyOut:
         """
         定义一个新的策略
 
@@ -92,7 +92,7 @@ class PoliciesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Policy,
+            cast_to=PolicyOut,
         )
 
     def retrieve(
@@ -105,7 +105,7 @@ class PoliciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Policy:
+    ) -> PolicyOut:
         """
         获取某个策略
 
@@ -125,7 +125,7 @@ class PoliciesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Policy,
+            cast_to=PolicyOut,
         )
 
     def update(
@@ -141,7 +141,7 @@ class PoliciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Policy:
+    ) -> PolicyOut:
         """
         更新某个策略
 
@@ -175,7 +175,7 @@ class PoliciesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Policy,
+            cast_to=PolicyOut,
         )
 
     def list(
@@ -190,7 +190,7 @@ class PoliciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PolicyListResponse:
+    ) -> PagePolicyOut:
         """
         查询所有策略
 
@@ -225,7 +225,7 @@ class PoliciesResource(SyncAPIResource):
                     policy_list_params.PolicyListParams,
                 ),
             ),
-            cast_to=PolicyListResponse,
+            cast_to=PagePolicyOut,
         )
 
     def delete(
@@ -295,7 +295,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Policy:
+    ) -> PolicyOut:
         """
         定义一个新的策略
 
@@ -327,7 +327,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Policy,
+            cast_to=PolicyOut,
         )
 
     async def retrieve(
@@ -340,7 +340,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Policy:
+    ) -> PolicyOut:
         """
         获取某个策略
 
@@ -360,7 +360,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Policy,
+            cast_to=PolicyOut,
         )
 
     async def update(
@@ -376,7 +376,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Policy:
+    ) -> PolicyOut:
         """
         更新某个策略
 
@@ -410,7 +410,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Policy,
+            cast_to=PolicyOut,
         )
 
     async def list(
@@ -425,7 +425,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PolicyListResponse:
+    ) -> PagePolicyOut:
         """
         查询所有策略
 
@@ -460,7 +460,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
                     policy_list_params.PolicyListParams,
                 ),
             ),
-            cast_to=PolicyListResponse,
+            cast_to=PagePolicyOut,
         )
 
     async def delete(
