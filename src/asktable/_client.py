@@ -48,12 +48,10 @@ __all__ = [
 class Asktable(SyncAPIClient):
     sys: resources.SysResource
     securetunnels: resources.SecuretunnelsResource
-    auth: resources.AuthResource
     chats: resources.ChatsResource
     datasources: resources.DatasourcesResource
     bots: resources.BotsResource
     extapis: resources.ExtapisResource
-    at_auth: resources.AtAuthResource
     single_turn: resources.SingleTurnResource
     caches: resources.CachesResource
     integration: resources.IntegrationResource
@@ -103,12 +101,10 @@ class Asktable(SyncAPIClient):
 
         self.sys = resources.SysResource(self)
         self.securetunnels = resources.SecuretunnelsResource(self)
-        self.auth = resources.AuthResource(self)
         self.chats = resources.ChatsResource(self)
         self.datasources = resources.DatasourcesResource(self)
         self.bots = resources.BotsResource(self)
         self.extapis = resources.ExtapisResource(self)
-        self.at_auth = resources.AtAuthResource(self)
         self.single_turn = resources.SingleTurnResource(self)
         self.caches = resources.CachesResource(self)
         self.integration = resources.IntegrationResource(self)
@@ -118,7 +114,7 @@ class Asktable(SyncAPIClient):
     @property
     @override
     def qs(self) -> Querystring:
-        return Querystring(array_format="comma")
+        return Querystring(array_format="repeat")
 
     @property
     @override
@@ -215,12 +211,10 @@ class Asktable(SyncAPIClient):
 class AsyncAsktable(AsyncAPIClient):
     sys: resources.AsyncSysResource
     securetunnels: resources.AsyncSecuretunnelsResource
-    auth: resources.AsyncAuthResource
     chats: resources.AsyncChatsResource
     datasources: resources.AsyncDatasourcesResource
     bots: resources.AsyncBotsResource
     extapis: resources.AsyncExtapisResource
-    at_auth: resources.AsyncAtAuthResource
     single_turn: resources.AsyncSingleTurnResource
     caches: resources.AsyncCachesResource
     integration: resources.AsyncIntegrationResource
@@ -270,12 +264,10 @@ class AsyncAsktable(AsyncAPIClient):
 
         self.sys = resources.AsyncSysResource(self)
         self.securetunnels = resources.AsyncSecuretunnelsResource(self)
-        self.auth = resources.AsyncAuthResource(self)
         self.chats = resources.AsyncChatsResource(self)
         self.datasources = resources.AsyncDatasourcesResource(self)
         self.bots = resources.AsyncBotsResource(self)
         self.extapis = resources.AsyncExtapisResource(self)
-        self.at_auth = resources.AsyncAtAuthResource(self)
         self.single_turn = resources.AsyncSingleTurnResource(self)
         self.caches = resources.AsyncCachesResource(self)
         self.integration = resources.AsyncIntegrationResource(self)
@@ -285,7 +277,7 @@ class AsyncAsktable(AsyncAPIClient):
     @property
     @override
     def qs(self) -> Querystring:
-        return Querystring(array_format="comma")
+        return Querystring(array_format="repeat")
 
     @property
     @override
@@ -383,12 +375,10 @@ class AsktableWithRawResponse:
     def __init__(self, client: Asktable) -> None:
         self.sys = resources.SysResourceWithRawResponse(client.sys)
         self.securetunnels = resources.SecuretunnelsResourceWithRawResponse(client.securetunnels)
-        self.auth = resources.AuthResourceWithRawResponse(client.auth)
         self.chats = resources.ChatsResourceWithRawResponse(client.chats)
         self.datasources = resources.DatasourcesResourceWithRawResponse(client.datasources)
         self.bots = resources.BotsResourceWithRawResponse(client.bots)
         self.extapis = resources.ExtapisResourceWithRawResponse(client.extapis)
-        self.at_auth = resources.AtAuthResourceWithRawResponse(client.at_auth)
         self.single_turn = resources.SingleTurnResourceWithRawResponse(client.single_turn)
         self.caches = resources.CachesResourceWithRawResponse(client.caches)
         self.integration = resources.IntegrationResourceWithRawResponse(client.integration)
@@ -398,12 +388,10 @@ class AsyncAsktableWithRawResponse:
     def __init__(self, client: AsyncAsktable) -> None:
         self.sys = resources.AsyncSysResourceWithRawResponse(client.sys)
         self.securetunnels = resources.AsyncSecuretunnelsResourceWithRawResponse(client.securetunnels)
-        self.auth = resources.AsyncAuthResourceWithRawResponse(client.auth)
         self.chats = resources.AsyncChatsResourceWithRawResponse(client.chats)
         self.datasources = resources.AsyncDatasourcesResourceWithRawResponse(client.datasources)
         self.bots = resources.AsyncBotsResourceWithRawResponse(client.bots)
         self.extapis = resources.AsyncExtapisResourceWithRawResponse(client.extapis)
-        self.at_auth = resources.AsyncAtAuthResourceWithRawResponse(client.at_auth)
         self.single_turn = resources.AsyncSingleTurnResourceWithRawResponse(client.single_turn)
         self.caches = resources.AsyncCachesResourceWithRawResponse(client.caches)
         self.integration = resources.AsyncIntegrationResourceWithRawResponse(client.integration)
@@ -413,12 +401,10 @@ class AsktableWithStreamedResponse:
     def __init__(self, client: Asktable) -> None:
         self.sys = resources.SysResourceWithStreamingResponse(client.sys)
         self.securetunnels = resources.SecuretunnelsResourceWithStreamingResponse(client.securetunnels)
-        self.auth = resources.AuthResourceWithStreamingResponse(client.auth)
         self.chats = resources.ChatsResourceWithStreamingResponse(client.chats)
         self.datasources = resources.DatasourcesResourceWithStreamingResponse(client.datasources)
         self.bots = resources.BotsResourceWithStreamingResponse(client.bots)
         self.extapis = resources.ExtapisResourceWithStreamingResponse(client.extapis)
-        self.at_auth = resources.AtAuthResourceWithStreamingResponse(client.at_auth)
         self.single_turn = resources.SingleTurnResourceWithStreamingResponse(client.single_turn)
         self.caches = resources.CachesResourceWithStreamingResponse(client.caches)
         self.integration = resources.IntegrationResourceWithStreamingResponse(client.integration)
@@ -428,12 +414,10 @@ class AsyncAsktableWithStreamedResponse:
     def __init__(self, client: AsyncAsktable) -> None:
         self.sys = resources.AsyncSysResourceWithStreamingResponse(client.sys)
         self.securetunnels = resources.AsyncSecuretunnelsResourceWithStreamingResponse(client.securetunnels)
-        self.auth = resources.AsyncAuthResourceWithStreamingResponse(client.auth)
         self.chats = resources.AsyncChatsResourceWithStreamingResponse(client.chats)
         self.datasources = resources.AsyncDatasourcesResourceWithStreamingResponse(client.datasources)
         self.bots = resources.AsyncBotsResourceWithStreamingResponse(client.bots)
         self.extapis = resources.AsyncExtapisResourceWithStreamingResponse(client.extapis)
-        self.at_auth = resources.AsyncAtAuthResourceWithStreamingResponse(client.at_auth)
         self.single_turn = resources.AsyncSingleTurnResourceWithStreamingResponse(client.single_turn)
         self.caches = resources.AsyncCachesResourceWithStreamingResponse(client.caches)
         self.integration = resources.AsyncIntegrationResourceWithStreamingResponse(client.integration)

@@ -8,14 +8,6 @@ from .sys import (
     SysResourceWithStreamingResponse,
     AsyncSysResourceWithStreamingResponse,
 )
-from .auth import (
-    AuthResource,
-    AsyncAuthResource,
-    AuthResourceWithRawResponse,
-    AsyncAuthResourceWithRawResponse,
-    AuthResourceWithStreamingResponse,
-    AsyncAuthResourceWithStreamingResponse,
-)
 from .bots import (
     BotsResource,
     AsyncBotsResource,
@@ -39,14 +31,6 @@ from .caches import (
     AsyncCachesResourceWithRawResponse,
     CachesResourceWithStreamingResponse,
     AsyncCachesResourceWithStreamingResponse,
-)
-from .at_auth import (
-    AtAuthResource,
-    AsyncAtAuthResource,
-    AtAuthResourceWithRawResponse,
-    AsyncAtAuthResourceWithRawResponse,
-    AtAuthResourceWithStreamingResponse,
-    AsyncAtAuthResourceWithStreamingResponse,
 )
 from .extapis import (
     ExtapisResource,
@@ -102,12 +86,6 @@ __all__ = [
     "AsyncSecuretunnelsResourceWithRawResponse",
     "SecuretunnelsResourceWithStreamingResponse",
     "AsyncSecuretunnelsResourceWithStreamingResponse",
-    "AuthResource",
-    "AsyncAuthResource",
-    "AuthResourceWithRawResponse",
-    "AsyncAuthResourceWithRawResponse",
-    "AuthResourceWithStreamingResponse",
-    "AsyncAuthResourceWithStreamingResponse",
     "ChatsResource",
     "AsyncChatsResource",
     "ChatsResourceWithRawResponse",
@@ -132,12 +110,6 @@ __all__ = [
     "AsyncExtapisResourceWithRawResponse",
     "ExtapisResourceWithStreamingResponse",
     "AsyncExtapisResourceWithStreamingResponse",
-    "AtAuthResource",
-    "AsyncAtAuthResource",
-    "AtAuthResourceWithRawResponse",
-    "AsyncAtAuthResourceWithRawResponse",
-    "AtAuthResourceWithStreamingResponse",
-    "AsyncAtAuthResourceWithStreamingResponse",
     "SingleTurnResource",
     "AsyncSingleTurnResource",
     "SingleTurnResourceWithRawResponse",

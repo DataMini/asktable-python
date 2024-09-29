@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Optional
 
 import httpx
 
@@ -35,10 +35,9 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....types.sys import project_list_params, project_create_params, project_update_params
+from ....types.sys import project_update_params
 from ...._base_client import make_request_options
 from ....types.sys.project_model import ProjectModel
-from ....types.sys.page_project_model import PageProjectModel
 
 __all__ = ["ProjectsResource", "AsyncProjectsResource"]
 
@@ -70,40 +69,6 @@ class ProjectsResource(SyncAPIResource):
         For more information, see https://www.github.com/stainless-sdks/asktable-python#with_streaming_response
         """
         return ProjectsResourceWithStreamingResponse(self)
-
-    def create(
-        self,
-        *,
-        name: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ProjectModel:
-        """
-        Create Project View
-
-        Args:
-          name: 项目名称
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._post(
-            "/sys/projects",
-            body=maybe_transform({"name": name}, project_create_params.ProjectCreateParams),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=ProjectModel,
-        )
 
     def retrieve(
         self,
@@ -152,7 +117,7 @@ class ProjectsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ProjectModel:
         """
-        Update Project View
+        Update Project
 
         Args:
           locked: 是否锁定
@@ -182,56 +147,6 @@ class ProjectsResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=ProjectModel,
-        )
-
-    def list(
-        self,
-        *,
-        page: int | NotGiven = NOT_GIVEN,
-        project_ids: Optional[List[str]] | NotGiven = NOT_GIVEN,
-        size: int | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageProjectModel:
-        """
-        List Projects
-
-        Args:
-          page: Page number
-
-          project_ids: 项目 ID 列表
-
-          size: Page size
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._get(
-            "/sys/projects",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "page": page,
-                        "project_ids": project_ids,
-                        "size": size,
-                    },
-                    project_list_params.ProjectListParams,
-                ),
-            ),
-            cast_to=PageProjectModel,
         )
 
     def delete(
@@ -296,40 +211,6 @@ class AsyncProjectsResource(AsyncAPIResource):
         """
         return AsyncProjectsResourceWithStreamingResponse(self)
 
-    async def create(
-        self,
-        *,
-        name: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ProjectModel:
-        """
-        Create Project View
-
-        Args:
-          name: 项目名称
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._post(
-            "/sys/projects",
-            body=await async_maybe_transform({"name": name}, project_create_params.ProjectCreateParams),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=ProjectModel,
-        )
-
     async def retrieve(
         self,
         project_id: str,
@@ -377,7 +258,7 @@ class AsyncProjectsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ProjectModel:
         """
-        Update Project View
+        Update Project
 
         Args:
           locked: 是否锁定
@@ -407,56 +288,6 @@ class AsyncProjectsResource(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=ProjectModel,
-        )
-
-    async def list(
-        self,
-        *,
-        page: int | NotGiven = NOT_GIVEN,
-        project_ids: Optional[List[str]] | NotGiven = NOT_GIVEN,
-        size: int | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageProjectModel:
-        """
-        List Projects
-
-        Args:
-          page: Page number
-
-          project_ids: 项目 ID 列表
-
-          size: Page size
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._get(
-            "/sys/projects",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "page": page,
-                        "project_ids": project_ids,
-                        "size": size,
-                    },
-                    project_list_params.ProjectListParams,
-                ),
-            ),
-            cast_to=PageProjectModel,
         )
 
     async def delete(
@@ -497,17 +328,11 @@ class ProjectsResourceWithRawResponse:
     def __init__(self, projects: ProjectsResource) -> None:
         self._projects = projects
 
-        self.create = to_raw_response_wrapper(
-            projects.create,
-        )
         self.retrieve = to_raw_response_wrapper(
             projects.retrieve,
         )
         self.update = to_raw_response_wrapper(
             projects.update,
-        )
-        self.list = to_raw_response_wrapper(
-            projects.list,
         )
         self.delete = to_raw_response_wrapper(
             projects.delete,
@@ -526,17 +351,11 @@ class AsyncProjectsResourceWithRawResponse:
     def __init__(self, projects: AsyncProjectsResource) -> None:
         self._projects = projects
 
-        self.create = async_to_raw_response_wrapper(
-            projects.create,
-        )
         self.retrieve = async_to_raw_response_wrapper(
             projects.retrieve,
         )
         self.update = async_to_raw_response_wrapper(
             projects.update,
-        )
-        self.list = async_to_raw_response_wrapper(
-            projects.list,
         )
         self.delete = async_to_raw_response_wrapper(
             projects.delete,
@@ -555,17 +374,11 @@ class ProjectsResourceWithStreamingResponse:
     def __init__(self, projects: ProjectsResource) -> None:
         self._projects = projects
 
-        self.create = to_streamed_response_wrapper(
-            projects.create,
-        )
         self.retrieve = to_streamed_response_wrapper(
             projects.retrieve,
         )
         self.update = to_streamed_response_wrapper(
             projects.update,
-        )
-        self.list = to_streamed_response_wrapper(
-            projects.list,
         )
         self.delete = to_streamed_response_wrapper(
             projects.delete,
@@ -584,17 +397,11 @@ class AsyncProjectsResourceWithStreamingResponse:
     def __init__(self, projects: AsyncProjectsResource) -> None:
         self._projects = projects
 
-        self.create = async_to_streamed_response_wrapper(
-            projects.create,
-        )
         self.retrieve = async_to_streamed_response_wrapper(
             projects.retrieve,
         )
         self.update = async_to_streamed_response_wrapper(
             projects.update,
-        )
-        self.list = async_to_streamed_response_wrapper(
-            projects.list,
         )
         self.delete = async_to_streamed_response_wrapper(
             projects.delete,

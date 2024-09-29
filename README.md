@@ -31,8 +31,8 @@ from asktable import Asktable
 
 client = Asktable()
 
-project_model = client.sys.projects.create(
-    name="name",
+project_model = client.sys.projects.retrieve(
+    "project_id",
 )
 print(project_model.id)
 ```
@@ -49,8 +49,8 @@ client = AsyncAsktable()
 
 
 async def main() -> None:
-    project_model = await client.sys.projects.create(
-        name="name",
+    project_model = await client.sys.projects.retrieve(
+        "project_id",
     )
     print(project_model.id)
 
@@ -85,8 +85,8 @@ from asktable import Asktable
 client = Asktable()
 
 try:
-    client.sys.projects.create(
-        name="name",
+    client.sys.projects.retrieve(
+        "project_id",
     )
 except asktable.APIConnectionError as e:
     print("The server could not be reached")
@@ -130,8 +130,8 @@ client = Asktable(
 )
 
 # Or, configure per-request:
-client.with_options(max_retries=5).sys.projects.create(
-    name="name",
+client.with_options(max_retries=5).sys.projects.retrieve(
+    "project_id",
 )
 ```
 
@@ -155,8 +155,8 @@ client = Asktable(
 )
 
 # Override per-request:
-client.with_options(timeout=5.0).sys.projects.create(
-    name="name",
+client.with_options(timeout=5.0).sys.projects.retrieve(
+    "project_id",
 )
 ```
 
@@ -196,12 +196,12 @@ The "raw" Response object can be accessed by prefixing `.with_raw_response.` to 
 from asktable import Asktable
 
 client = Asktable()
-response = client.sys.projects.with_raw_response.create(
-    name="name",
+response = client.sys.projects.with_raw_response.retrieve(
+    "project_id",
 )
 print(response.headers.get('X-My-Header'))
 
-project = response.parse()  # get the object that `sys.projects.create()` would have returned
+project = response.parse()  # get the object that `sys.projects.retrieve()` would have returned
 print(project.id)
 ```
 
@@ -216,8 +216,8 @@ The above interface eagerly reads the full response body when you make the reque
 To stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
 
 ```python
-with client.sys.projects.with_streaming_response.create(
-    name="name",
+with client.sys.projects.with_streaming_response.retrieve(
+    "project_id",
 ) as response:
     print(response.headers.get("X-My-Header"))
 

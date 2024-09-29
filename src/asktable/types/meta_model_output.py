@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
+from typing import Dict, Optional
 
 from .._models import BaseModel
 
@@ -26,7 +26,7 @@ class SchemasTablesFields(BaseModel):
     origin_desc: Optional[str] = None
     """field description from database"""
 
-    sample_data: Optional[List[str]] = None
+    sample_data: Optional[str] = None
     """field sample data"""
 
 

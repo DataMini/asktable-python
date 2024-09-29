@@ -16,10 +16,8 @@ from asktable.types.sys import PageProjectModel, ProjectModel, ProjectDeleteResp
 
 Methods:
 
-- <code title="post /sys/projects">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">create</a>(\*\*<a href="src/asktable/types/sys/project_create_params.py">params</a>) -> <a href="./src/asktable/types/sys/project_model.py">ProjectModel</a></code>
 - <code title="get /sys/projects/{project_id}">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">retrieve</a>(project_id) -> <a href="./src/asktable/types/sys/project_model.py">ProjectModel</a></code>
 - <code title="patch /sys/projects/{project_id}">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">update</a>(project_id, \*\*<a href="src/asktable/types/sys/project_update_params.py">params</a>) -> <a href="./src/asktable/types/sys/project_model.py">ProjectModel</a></code>
-- <code title="get /sys/projects">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">list</a>(\*\*<a href="src/asktable/types/sys/project_list_params.py">params</a>) -> <a href="./src/asktable/types/sys/page_project_model.py">PageProjectModel</a></code>
 - <code title="delete /sys/projects/{project_id}">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">delete</a>(project_id) -> <a href="./src/asktable/types/sys/project_delete_response.py">object</a></code>
 
 ### APIKeys
@@ -27,19 +25,14 @@ Methods:
 Types:
 
 ```python
-from asktable.types.sys.projects import (
-    APIKeyCreateOut,
-    APIKeyOut,
-    APIKeyListResponse,
-    APIKeyDeleteResponse,
-)
+from asktable.types.sys.projects import APIKeyCreateOut, APIKeyOut, APIKeyListResponse
 ```
 
 Methods:
 
 - <code title="post /sys/projects/{project_id}/api-keys">client.sys.projects.api_keys.<a href="./src/asktable/resources/sys/projects/api_keys.py">create</a>(project_id, \*\*<a href="src/asktable/types/sys/projects/api_key_create_params.py">params</a>) -> <a href="./src/asktable/types/sys/projects/api_key_create_out.py">APIKeyCreateOut</a></code>
 - <code title="get /sys/projects/{project_id}/api-keys">client.sys.projects.api_keys.<a href="./src/asktable/resources/sys/projects/api_keys.py">list</a>(project_id) -> <a href="./src/asktable/types/sys/projects/api_key_list_response.py">APIKeyListResponse</a></code>
-- <code title="delete /sys/projects/{project_id}/api-keys/{key_id}">client.sys.projects.api_keys.<a href="./src/asktable/resources/sys/projects/api_keys.py">delete</a>(key_id, \*, project_id) -> <a href="./src/asktable/types/sys/projects/api_key_delete_response.py">object</a></code>
+- <code title="delete /sys/projects/{project_id}/api-keys/{key_id}">client.sys.projects.api_keys.<a href="./src/asktable/resources/sys/projects/api_keys.py">delete</a>(key_id, \*, project_id) -> None</code>
 
 ### Tokens
 
@@ -88,40 +81,8 @@ Methods:
 Types:
 
 ```python
-from asktable.types.auth import PageRoleModel, RoleModel, RoleDeleteResponse
+from asktable.types.auth import PageRoleModel, RoleModel
 ```
-
-Methods:
-
-- <code title="post /auth/roles">client.auth.roles.<a href="./src/asktable/resources/auth/roles/roles.py">create</a>(\*\*<a href="src/asktable/types/auth/role_create_params.py">params</a>) -> <a href="./src/asktable/types/auth/role_model.py">RoleModel</a></code>
-- <code title="get /auth/roles/{role_id}">client.auth.roles.<a href="./src/asktable/resources/auth/roles/roles.py">retrieve</a>(role_id) -> <a href="./src/asktable/types/auth/role_model.py">RoleModel</a></code>
-- <code title="patch /auth/roles/{role_id}">client.auth.roles.<a href="./src/asktable/resources/auth/roles/roles.py">update</a>(role_id, \*\*<a href="src/asktable/types/auth/role_update_params.py">params</a>) -> <a href="./src/asktable/types/auth/role_model.py">RoleModel</a></code>
-- <code title="get /auth/roles">client.auth.roles.<a href="./src/asktable/resources/auth/roles/roles.py">list</a>(\*\*<a href="src/asktable/types/auth/role_list_params.py">params</a>) -> <a href="./src/asktable/types/auth/page_role_model.py">PageRoleModel</a></code>
-- <code title="delete /auth/roles/{role_id}">client.auth.roles.<a href="./src/asktable/resources/auth/roles/roles.py">delete</a>(role_id) -> <a href="./src/asktable/types/auth/role_delete_response.py">object</a></code>
-
-### Policies
-
-Types:
-
-```python
-from asktable.types.auth.roles import PolicyListResponse
-```
-
-Methods:
-
-- <code title="get /auth/roles/{role_id}/policies">client.auth.roles.policies.<a href="./src/asktable/resources/auth/roles/policies.py">list</a>(role_id) -> <a href="./src/asktable/types/auth/roles/policy_list_response.py">PolicyListResponse</a></code>
-
-### Variables
-
-Types:
-
-```python
-from asktable.types.auth.roles import VariableListResponse
-```
-
-Methods:
-
-- <code title="get /auth/roles/{role_id}/variables">client.auth.roles.variables.<a href="./src/asktable/resources/auth/roles/variables.py">list</a>(role_id, \*\*<a href="src/asktable/types/auth/roles/variable_list_params.py">params</a>) -> <a href="./src/asktable/types/auth/roles/variable_list_response.py">object</a></code>
 
 ## Policies
 
@@ -130,14 +91,6 @@ Types:
 ```python
 from asktable.types.auth import PagePolicyOut
 ```
-
-Methods:
-
-- <code title="post /auth/policies">client.auth.policies.<a href="./src/asktable/resources/auth/policies.py">create</a>(\*\*<a href="src/asktable/types/auth/policy_create_params.py">params</a>) -> <a href="./src/asktable/types/shared/policy_out.py">PolicyOut</a></code>
-- <code title="get /auth/policies/{policy_id}">client.auth.policies.<a href="./src/asktable/resources/auth/policies.py">retrieve</a>(policy_id) -> <a href="./src/asktable/types/shared/policy_out.py">PolicyOut</a></code>
-- <code title="patch /auth/policies/{policy_id}">client.auth.policies.<a href="./src/asktable/resources/auth/policies.py">update</a>(policy_id, \*\*<a href="src/asktable/types/auth/policy_update_params.py">params</a>) -> <a href="./src/asktable/types/shared/policy_out.py">PolicyOut</a></code>
-- <code title="get /auth/policies">client.auth.policies.<a href="./src/asktable/resources/auth/policies.py">list</a>(\*\*<a href="src/asktable/types/auth/policy_list_params.py">params</a>) -> <a href="./src/asktable/types/auth/page_policy_out.py">PagePolicyOut</a></code>
-- <code title="delete /auth/policies/{policy_id}">client.auth.policies.<a href="./src/asktable/resources/auth/policies.py">delete</a>(policy_id) -> None</code>
 
 # Chats
 
@@ -285,32 +238,6 @@ Methods:
 - <code title="post /extapis/{extapi_id}/routes/{route_id}">client.extapis.routes.<a href="./src/asktable/resources/extapis/routes.py">update</a>(route_id, \*, extapi_id, \*\*<a href="src/asktable/types/extapis/route_update_params.py">params</a>) -> <a href="./src/asktable/types/extapis/extapi_route_model.py">ExtapiRouteModel</a></code>
 - <code title="get /extapis/{extapi_id}/routes">client.extapis.routes.<a href="./src/asktable/resources/extapis/routes.py">list</a>(extapi_id) -> <a href="./src/asktable/types/extapis/route_list_response.py">RouteListResponse</a></code>
 - <code title="delete /extapis/{extapi_id}/routes/{route_id}">client.extapis.routes.<a href="./src/asktable/resources/extapis/routes.py">delete</a>(route_id, \*, extapi_id) -> None</code>
-
-# AtAuth
-
-## Tokens
-
-Types:
-
-```python
-from asktable.types.at_auth import TokenCreateResponse
-```
-
-Methods:
-
-- <code title="post /at-auth/tokens">client.at_auth.tokens.<a href="./src/asktable/resources/at_auth/tokens.py">create</a>(\*\*<a href="src/asktable/types/at_auth/token_create_params.py">params</a>) -> <a href="./src/asktable/types/at_auth/token_create_response.py">object</a></code>
-
-## Me
-
-Types:
-
-```python
-from asktable.types.at_auth import MeRetrieveResponse
-```
-
-Methods:
-
-- <code title="get /at-auth/me">client.at_auth.me.<a href="./src/asktable/resources/at_auth/me.py">retrieve</a>() -> <a href="./src/asktable/types/at_auth/me_retrieve_response.py">object</a></code>
 
 # SingleTurn
 

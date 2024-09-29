@@ -19,8 +19,6 @@ class APIKeyCreateOut(BaseModel):
     created_at: datetime
     """创建时间"""
 
-    hashed_ak_value: str
-
     masked_ak_value: str
     """打码后的 API Key"""
 

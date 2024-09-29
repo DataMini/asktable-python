@@ -103,7 +103,7 @@ class TestAPIKeys:
             key_id="key_id",
             project_id="project_id",
         )
-        assert_matches_type(object, api_key, path=["response"])
+        assert api_key is None
 
     @parametrize
     def test_raw_response_delete(self, client: Asktable) -> None:
@@ -115,7 +115,7 @@ class TestAPIKeys:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         api_key = response.parse()
-        assert_matches_type(object, api_key, path=["response"])
+        assert api_key is None
 
     @parametrize
     def test_streaming_response_delete(self, client: Asktable) -> None:
@@ -127,7 +127,7 @@ class TestAPIKeys:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             api_key = response.parse()
-            assert_matches_type(object, api_key, path=["response"])
+            assert api_key is None
 
         assert cast(Any, response.is_closed) is True
 
@@ -235,7 +235,7 @@ class TestAsyncAPIKeys:
             key_id="key_id",
             project_id="project_id",
         )
-        assert_matches_type(object, api_key, path=["response"])
+        assert api_key is None
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncAsktable) -> None:
@@ -247,7 +247,7 @@ class TestAsyncAPIKeys:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         api_key = await response.parse()
-        assert_matches_type(object, api_key, path=["response"])
+        assert api_key is None
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncAsktable) -> None:
@@ -259,7 +259,7 @@ class TestAsyncAPIKeys:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             api_key = await response.parse()
-            assert_matches_type(object, api_key, path=["response"])
+            assert api_key is None
 
         assert cast(Any, response.is_closed) is True
 

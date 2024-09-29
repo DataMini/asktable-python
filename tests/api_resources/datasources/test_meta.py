@@ -92,7 +92,7 @@ class TestMeta:
                                     "name": "name",
                                     "data_type": "data_type",
                                     "origin_desc": "origin_desc",
-                                    "sample_data": ["string", "string", "string"],
+                                    "sample_data": "sample_data",
                                 }
                             },
                         }
@@ -264,7 +264,7 @@ class TestAsyncMeta:
                                     "name": "name",
                                     "data_type": "data_type",
                                     "origin_desc": "origin_desc",
-                                    "sample_data": ["string", "string", "string"],
+                                    "sample_data": "sample_data",
                                 }
                             },
                         }
