@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
+from typing import Dict, Optional
 from typing_extensions import Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
@@ -41,7 +41,7 @@ class SchemasTablesFields(TypedDict, total=False):
     origin_desc: Optional[str]
     """field description from database"""
 
-    sample_data: Optional[List[str]]
+    sample_data: Optional[str]
     """field sample data"""
 
 
