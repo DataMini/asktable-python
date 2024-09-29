@@ -3,13 +3,13 @@
 from typing import List, Optional
 
 from .._models import BaseModel
-from .extapi_model import ExtapiModel
+from .ext_api_model import ExtAPIModel
 
 __all__ = ["ExtapiListResponse"]
 
 
 class ExtapiListResponse(BaseModel):
-    items: List[ExtapiModel]
+    items: List[ExtAPIModel]
 
     page: Optional[int] = None
 

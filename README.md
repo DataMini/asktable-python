@@ -31,11 +31,16 @@ from asktable import Asktable
 
 client = Asktable()
 
-project_model = client.sys.projects.retrieve(
-    "project_id",
+project = client.sys.projects.create(
+    name="name",
 )
-print(project_model.id)
+print(project.id)
 ```
+
+While you can provide a `bearer_token` keyword argument,
+we recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)
+to add `ASKTABLE_BEARER_TOKEN="My Bearer Token"` to your `.env` file
+so that your Bearer Token is not stored in source control.
 
 ## Async usage
 
@@ -49,10 +54,10 @@ client = AsyncAsktable()
 
 
 async def main() -> None:
-    project_model = await client.sys.projects.retrieve(
-        "project_id",
+    project = await client.sys.projects.create(
+        name="name",
     )
-    print(project_model.id)
+    print(project.id)
 
 
 asyncio.run(main())
@@ -85,8 +90,8 @@ from asktable import Asktable
 client = Asktable()
 
 try:
-    client.sys.projects.retrieve(
-        "project_id",
+    client.sys.projects.create(
+        name="name",
     )
 except asktable.APIConnectionError as e:
     print("The server could not be reached")
@@ -130,8 +135,8 @@ client = Asktable(
 )
 
 # Or, configure per-request:
-client.with_options(max_retries=5).sys.projects.retrieve(
-    "project_id",
+client.with_options(max_retries=5).sys.projects.create(
+    name="name",
 )
 ```
 
@@ -155,8 +160,8 @@ client = Asktable(
 )
 
 # Override per-request:
-client.with_options(timeout=5.0).sys.projects.retrieve(
-    "project_id",
+client.with_options(timeout=5.0).sys.projects.create(
+    name="name",
 )
 ```
 
@@ -196,12 +201,12 @@ The "raw" Response object can be accessed by prefixing `.with_raw_response.` to 
 from asktable import Asktable
 
 client = Asktable()
-response = client.sys.projects.with_raw_response.retrieve(
-    "project_id",
+response = client.sys.projects.with_raw_response.create(
+    name="name",
 )
 print(response.headers.get('X-My-Header'))
 
-project = response.parse()  # get the object that `sys.projects.retrieve()` would have returned
+project = response.parse()  # get the object that `sys.projects.create()` would have returned
 print(project.id)
 ```
 
@@ -216,8 +221,8 @@ The above interface eagerly reads the full response body when you make the reque
 To stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
 
 ```python
-with client.sys.projects.with_streaming_response.retrieve(
-    "project_id",
+with client.sys.projects.with_streaming_response.create(
+    name="name",
 ) as response:
     print(response.headers.get("X-My-Header"))
 

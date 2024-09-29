@@ -28,8 +28,8 @@ from ..._response import (
 )
 from ..._base_client import make_request_options
 from ...types.chat_out import ChatOut
-from ...types.page_chat_list_out import PageChatListOut
-from ...types.shared.message_model import MessageModel
+from ...types.shared.message import Message
+from ...types.chat_list_response import ChatListResponse
 
 __all__ = ["ChatsResource", "AsyncChatsResource"]
 
@@ -69,7 +69,7 @@ class ChatsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MessageModel:
+    ) -> Message:
         """
         发消息
 
@@ -93,7 +93,7 @@ class ChatsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"question": question}, chat_create_params.ChatCreateParams),
             ),
-            cast_to=MessageModel,
+            cast_to=Message,
         )
 
     def retrieve(
@@ -140,7 +140,7 @@ class ChatsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageChatListOut:
+    ) -> ChatListResponse:
         """
         查询对话列表
 
@@ -172,7 +172,7 @@ class ChatsResource(SyncAPIResource):
                     chat_list_params.ChatListParams,
                 ),
             ),
-            cast_to=PageChatListOut,
+            cast_to=ChatListResponse,
         )
 
     def delete(
@@ -245,7 +245,7 @@ class AsyncChatsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MessageModel:
+    ) -> Message:
         """
         发消息
 
@@ -269,7 +269,7 @@ class AsyncChatsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform({"question": question}, chat_create_params.ChatCreateParams),
             ),
-            cast_to=MessageModel,
+            cast_to=Message,
         )
 
     async def retrieve(
@@ -316,7 +316,7 @@ class AsyncChatsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageChatListOut:
+    ) -> ChatListResponse:
         """
         查询对话列表
 
@@ -348,7 +348,7 @@ class AsyncChatsResource(AsyncAPIResource):
                     chat_list_params.ChatListParams,
                 ),
             ),
-            cast_to=PageChatListOut,
+            cast_to=ChatListResponse,
         )
 
     async def delete(

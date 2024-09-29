@@ -30,7 +30,7 @@ from ..._response import (
 )
 from ..._base_client import make_request_options
 from ...types.secure_tunnel import SecureTunnel
-from ...types.page_secure_tunnel import PageSecureTunnel
+from ...types.securetunnel_list_response import SecuretunnelListResponse
 
 __all__ = ["SecuretunnelsResource", "AsyncSecuretunnelsResource"]
 
@@ -187,7 +187,7 @@ class SecuretunnelsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageSecureTunnel:
+    ) -> SecuretunnelListResponse:
         """
         查询安全隧道列表
 
@@ -219,7 +219,7 @@ class SecuretunnelsResource(SyncAPIResource):
                     securetunnel_list_params.SecuretunnelListParams,
                 ),
             ),
-            cast_to=PageSecureTunnel,
+            cast_to=SecuretunnelListResponse,
         )
 
     def delete(
@@ -409,7 +409,7 @@ class AsyncSecuretunnelsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageSecureTunnel:
+    ) -> SecuretunnelListResponse:
         """
         查询安全隧道列表
 
@@ -441,7 +441,7 @@ class AsyncSecuretunnelsResource(AsyncAPIResource):
                     securetunnel_list_params.SecuretunnelListParams,
                 ),
             ),
-            cast_to=PageSecureTunnel,
+            cast_to=SecuretunnelListResponse,
         )
 
     async def delete(

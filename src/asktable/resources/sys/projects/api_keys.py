@@ -21,7 +21,7 @@ from ...._response import (
 )
 from ...._base_client import make_request_options
 from ....types.sys.projects import api_key_create_params
-from ....types.sys.projects.api_key_create_out import APIKeyCreateOut
+from ....types.sys.projects.api_key_create import APIKeyCreate
 from ....types.sys.projects.api_key_list_response import APIKeyListResponse
 
 __all__ = ["APIKeysResource", "AsyncAPIKeysResource"]
@@ -58,7 +58,7 @@ class APIKeysResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> APIKeyCreateOut:
+    ) -> APIKeyCreate:
         """
         创建 API Key
 
@@ -81,7 +81,7 @@ class APIKeysResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=APIKeyCreateOut,
+            cast_to=APIKeyCreate,
         )
 
     def list(
@@ -186,7 +186,7 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> APIKeyCreateOut:
+    ) -> APIKeyCreate:
         """
         创建 API Key
 
@@ -209,7 +209,7 @@ class AsyncAPIKeysResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=APIKeyCreateOut,
+            cast_to=APIKeyCreate,
         )
 
     async def list(

@@ -9,7 +9,7 @@ import pytest
 
 from asktable import Asktable, AsyncAsktable
 from tests.utils import assert_matches_type
-from asktable.types.sys.projects import APIKeyCreateOut, APIKeyListResponse
+from asktable.types.sys.projects import APIKeyCreate, APIKeyListResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -23,7 +23,7 @@ class TestAPIKeys:
             project_id="project_id",
             ak_role="sys",
         )
-        assert_matches_type(APIKeyCreateOut, api_key, path=["response"])
+        assert_matches_type(APIKeyCreate, api_key, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Asktable) -> None:
@@ -35,7 +35,7 @@ class TestAPIKeys:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         api_key = response.parse()
-        assert_matches_type(APIKeyCreateOut, api_key, path=["response"])
+        assert_matches_type(APIKeyCreate, api_key, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Asktable) -> None:
@@ -47,7 +47,7 @@ class TestAPIKeys:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             api_key = response.parse()
-            assert_matches_type(APIKeyCreateOut, api_key, path=["response"])
+            assert_matches_type(APIKeyCreate, api_key, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -155,7 +155,7 @@ class TestAsyncAPIKeys:
             project_id="project_id",
             ak_role="sys",
         )
-        assert_matches_type(APIKeyCreateOut, api_key, path=["response"])
+        assert_matches_type(APIKeyCreate, api_key, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncAsktable) -> None:
@@ -167,7 +167,7 @@ class TestAsyncAPIKeys:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         api_key = await response.parse()
-        assert_matches_type(APIKeyCreateOut, api_key, path=["response"])
+        assert_matches_type(APIKeyCreate, api_key, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncAsktable) -> None:
@@ -179,7 +179,7 @@ class TestAsyncAPIKeys:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             api_key = await response.parse()
-            assert_matches_type(APIKeyCreateOut, api_key, path=["response"])
+            assert_matches_type(APIKeyCreate, api_key, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

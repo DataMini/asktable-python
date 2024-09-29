@@ -8,6 +8,14 @@ from .sys import (
     SysResourceWithStreamingResponse,
     AsyncSysResourceWithStreamingResponse,
 )
+from .auth import (
+    AuthResource,
+    AsyncAuthResource,
+    AuthResourceWithRawResponse,
+    AsyncAuthResourceWithRawResponse,
+    AuthResourceWithStreamingResponse,
+    AsyncAuthResourceWithStreamingResponse,
+)
 from .bots import (
     BotsResource,
     AsyncBotsResource,
@@ -24,6 +32,14 @@ from .chats import (
     ChatsResourceWithStreamingResponse,
     AsyncChatsResourceWithStreamingResponse,
 )
+from .roles import (
+    RolesResource,
+    AsyncRolesResource,
+    RolesResourceWithRawResponse,
+    AsyncRolesResourceWithRawResponse,
+    RolesResourceWithStreamingResponse,
+    AsyncRolesResourceWithStreamingResponse,
+)
 from .caches import (
     CachesResource,
     AsyncCachesResource,
@@ -39,6 +55,14 @@ from .extapis import (
     AsyncExtapisResourceWithRawResponse,
     ExtapisResourceWithStreamingResponse,
     AsyncExtapisResourceWithStreamingResponse,
+)
+from .policies import (
+    PoliciesResource,
+    AsyncPoliciesResource,
+    PoliciesResourceWithRawResponse,
+    AsyncPoliciesResourceWithRawResponse,
+    PoliciesResourceWithStreamingResponse,
+    AsyncPoliciesResourceWithStreamingResponse,
 )
 from .datasources import (
     DatasourcesResource,
@@ -86,6 +110,18 @@ __all__ = [
     "AsyncSecuretunnelsResourceWithRawResponse",
     "SecuretunnelsResourceWithStreamingResponse",
     "AsyncSecuretunnelsResourceWithStreamingResponse",
+    "RolesResource",
+    "AsyncRolesResource",
+    "RolesResourceWithRawResponse",
+    "AsyncRolesResourceWithRawResponse",
+    "RolesResourceWithStreamingResponse",
+    "AsyncRolesResourceWithStreamingResponse",
+    "PoliciesResource",
+    "AsyncPoliciesResource",
+    "PoliciesResourceWithRawResponse",
+    "AsyncPoliciesResourceWithRawResponse",
+    "PoliciesResourceWithStreamingResponse",
+    "AsyncPoliciesResourceWithStreamingResponse",
     "ChatsResource",
     "AsyncChatsResource",
     "ChatsResourceWithRawResponse",
@@ -110,6 +146,12 @@ __all__ = [
     "AsyncExtapisResourceWithRawResponse",
     "ExtapisResourceWithStreamingResponse",
     "AsyncExtapisResourceWithStreamingResponse",
+    "AuthResource",
+    "AsyncAuthResource",
+    "AuthResourceWithRawResponse",
+    "AsyncAuthResourceWithRawResponse",
+    "AuthResourceWithStreamingResponse",
+    "AsyncAuthResourceWithStreamingResponse",
     "SingleTurnResource",
     "AsyncSingleTurnResource",
     "SingleTurnResourceWithRawResponse",

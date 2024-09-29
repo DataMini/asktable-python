@@ -30,7 +30,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
-from ...types.extapi_model import ExtapiModel
+from ...types.ext_api_model import ExtAPIModel
 from ...types.extapi_list_response import ExtapiListResponse
 
 __all__ = ["ExtapisResource", "AsyncExtapisResource"]
@@ -76,7 +76,7 @@ class ExtapisResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ExtapiModel:
+    ) -> ExtAPIModel:
         """
         创建一个新的 ExtAPI
 
@@ -112,7 +112,7 @@ class ExtapisResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ExtapiModel,
+            cast_to=ExtAPIModel,
         )
 
     def retrieve(
@@ -125,7 +125,7 @@ class ExtapisResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ExtapiModel:
+    ) -> ExtAPIModel:
         """
         获取某个 ExtAPI
 
@@ -145,7 +145,7 @@ class ExtapisResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ExtapiModel,
+            cast_to=ExtAPIModel,
         )
 
     def update(
@@ -161,7 +161,7 @@ class ExtapisResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ExtapiModel:
+    ) -> ExtAPIModel:
         """
         更新某个 ExtAPI
 
@@ -195,7 +195,7 @@ class ExtapisResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ExtapiModel,
+            cast_to=ExtAPIModel,
         )
 
     def list(
@@ -322,7 +322,7 @@ class AsyncExtapisResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ExtapiModel:
+    ) -> ExtAPIModel:
         """
         创建一个新的 ExtAPI
 
@@ -358,7 +358,7 @@ class AsyncExtapisResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ExtapiModel,
+            cast_to=ExtAPIModel,
         )
 
     async def retrieve(
@@ -371,7 +371,7 @@ class AsyncExtapisResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ExtapiModel:
+    ) -> ExtAPIModel:
         """
         获取某个 ExtAPI
 
@@ -391,7 +391,7 @@ class AsyncExtapisResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ExtapiModel,
+            cast_to=ExtAPIModel,
         )
 
     async def update(
@@ -407,7 +407,7 @@ class AsyncExtapisResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ExtapiModel:
+    ) -> ExtAPIModel:
         """
         更新某个 ExtAPI
 
@@ -441,7 +441,7 @@ class AsyncExtapisResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ExtapiModel,
+            cast_to=ExtAPIModel,
         )
 
     async def list(
