@@ -3,8 +3,8 @@
 from typing import List
 from typing_extensions import TypeAlias
 
-from .extapi_route_model import ExtapiRouteModel
+from .ext_api_route_model import ExtAPIRouteModel
 
 __all__ = ["RouteListResponse"]
 
-RouteListResponse: TypeAlias = List[ExtapiRouteModel]
+RouteListResponse: TypeAlias = List[ExtAPIRouteModel]

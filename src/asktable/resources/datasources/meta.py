@@ -20,8 +20,8 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
-from ...types.datasources import meta_list_params, meta_update_params
-from ...types.meta_model_output import MetaModelOutput
+from ...types.datasources import meta_update_params, meta_retrieve_params
+from ...types.datasources.meta import Meta
 
 __all__ = ["MetaResource", "AsyncMetaResource"]
 
@@ -79,6 +79,46 @@ class MetaResource(SyncAPIResource):
             cast_to=object,
         )
 
+    def retrieve(
+        self,
+        datasource_id: str,
+        *,
+        from_where: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Meta:
+        """
+        从数据源中获取最新的元数据
+
+        Args:
+          from_where: 获取元数据的来源
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not datasource_id:
+            raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
+        return self._get(
+            f"/datasources/{datasource_id}/meta",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"from_where": from_where}, meta_retrieve_params.MetaRetrieveParams),
+            ),
+            cast_to=Meta,
+        )
+
     def update(
         self,
         *,
@@ -125,46 +165,6 @@ class MetaResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=object,
-        )
-
-    def list(
-        self,
-        datasource_id: str,
-        *,
-        from_where: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MetaModelOutput:
-        """
-        从数据源中获取最新的元数据
-
-        Args:
-          from_where: 获取元数据的来源
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not datasource_id:
-            raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
-        return self._get(
-            f"/datasources/{datasource_id}/meta",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform({"from_where": from_where}, meta_list_params.MetaListParams),
-            ),
-            cast_to=MetaModelOutput,
         )
 
 
@@ -221,6 +221,46 @@ class AsyncMetaResource(AsyncAPIResource):
             cast_to=object,
         )
 
+    async def retrieve(
+        self,
+        datasource_id: str,
+        *,
+        from_where: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Meta:
+        """
+        从数据源中获取最新的元数据
+
+        Args:
+          from_where: 获取元数据的来源
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not datasource_id:
+            raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
+        return await self._get(
+            f"/datasources/{datasource_id}/meta",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform({"from_where": from_where}, meta_retrieve_params.MetaRetrieveParams),
+            ),
+            cast_to=Meta,
+        )
+
     async def update(
         self,
         *,
@@ -269,46 +309,6 @@ class AsyncMetaResource(AsyncAPIResource):
             cast_to=object,
         )
 
-    async def list(
-        self,
-        datasource_id: str,
-        *,
-        from_where: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MetaModelOutput:
-        """
-        从数据源中获取最新的元数据
-
-        Args:
-          from_where: 获取元数据的来源
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not datasource_id:
-            raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
-        return await self._get(
-            f"/datasources/{datasource_id}/meta",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform({"from_where": from_where}, meta_list_params.MetaListParams),
-            ),
-            cast_to=MetaModelOutput,
-        )
-
 
 class MetaResourceWithRawResponse:
     def __init__(self, meta: MetaResource) -> None:
@@ -317,11 +317,11 @@ class MetaResourceWithRawResponse:
         self.create = to_raw_response_wrapper(
             meta.create,
         )
+        self.retrieve = to_raw_response_wrapper(
+            meta.retrieve,
+        )
         self.update = to_raw_response_wrapper(
             meta.update,
-        )
-        self.list = to_raw_response_wrapper(
-            meta.list,
         )
 
 
@@ -332,11 +332,11 @@ class AsyncMetaResourceWithRawResponse:
         self.create = async_to_raw_response_wrapper(
             meta.create,
         )
+        self.retrieve = async_to_raw_response_wrapper(
+            meta.retrieve,
+        )
         self.update = async_to_raw_response_wrapper(
             meta.update,
-        )
-        self.list = async_to_raw_response_wrapper(
-            meta.list,
         )
 
 
@@ -347,11 +347,11 @@ class MetaResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             meta.create,
         )
+        self.retrieve = to_streamed_response_wrapper(
+            meta.retrieve,
+        )
         self.update = to_streamed_response_wrapper(
             meta.update,
-        )
-        self.list = to_streamed_response_wrapper(
-            meta.list,
         )
 
 
@@ -362,9 +362,9 @@ class AsyncMetaResourceWithStreamingResponse:
         self.create = async_to_streamed_response_wrapper(
             meta.create,
         )
+        self.retrieve = async_to_streamed_response_wrapper(
+            meta.retrieve,
+        )
         self.update = async_to_streamed_response_wrapper(
             meta.update,
-        )
-        self.list = async_to_streamed_response_wrapper(
-            meta.list,
         )

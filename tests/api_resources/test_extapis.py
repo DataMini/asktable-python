@@ -10,7 +10,7 @@ import pytest
 from asktable import Asktable, AsyncAsktable
 from tests.utils import assert_matches_type
 from asktable.types import (
-    ExtapiModel,
+    ExtAPIModel,
     ExtapiListResponse,
 )
 from asktable._utils import parse_datetime
@@ -30,7 +30,7 @@ class TestExtapis:
             name="name",
             project_id="project_id",
         )
-        assert_matches_type(ExtapiModel, extapi, path=["response"])
+        assert_matches_type(ExtAPIModel, extapi, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Asktable) -> None:
@@ -43,7 +43,7 @@ class TestExtapis:
             headers={"Authorization": "Bearer <token>"},
             updated_at=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
-        assert_matches_type(ExtapiModel, extapi, path=["response"])
+        assert_matches_type(ExtAPIModel, extapi, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Asktable) -> None:
@@ -58,7 +58,7 @@ class TestExtapis:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         extapi = response.parse()
-        assert_matches_type(ExtapiModel, extapi, path=["response"])
+        assert_matches_type(ExtAPIModel, extapi, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Asktable) -> None:
@@ -73,7 +73,7 @@ class TestExtapis:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             extapi = response.parse()
-            assert_matches_type(ExtapiModel, extapi, path=["response"])
+            assert_matches_type(ExtAPIModel, extapi, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -82,7 +82,7 @@ class TestExtapis:
         extapi = client.extapis.retrieve(
             "extapi_id",
         )
-        assert_matches_type(ExtapiModel, extapi, path=["response"])
+        assert_matches_type(ExtAPIModel, extapi, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: Asktable) -> None:
@@ -93,7 +93,7 @@ class TestExtapis:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         extapi = response.parse()
-        assert_matches_type(ExtapiModel, extapi, path=["response"])
+        assert_matches_type(ExtAPIModel, extapi, path=["response"])
 
     @parametrize
     def test_streaming_response_retrieve(self, client: Asktable) -> None:
@@ -104,7 +104,7 @@ class TestExtapis:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             extapi = response.parse()
-            assert_matches_type(ExtapiModel, extapi, path=["response"])
+            assert_matches_type(ExtAPIModel, extapi, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -120,7 +120,7 @@ class TestExtapis:
         extapi = client.extapis.update(
             extapi_id="extapi_id",
         )
-        assert_matches_type(ExtapiModel, extapi, path=["response"])
+        assert_matches_type(ExtAPIModel, extapi, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Asktable) -> None:
@@ -130,7 +130,7 @@ class TestExtapis:
             headers={"Authorization": "Bearer <token>"},
             name="name",
         )
-        assert_matches_type(ExtapiModel, extapi, path=["response"])
+        assert_matches_type(ExtAPIModel, extapi, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Asktable) -> None:
@@ -141,7 +141,7 @@ class TestExtapis:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         extapi = response.parse()
-        assert_matches_type(ExtapiModel, extapi, path=["response"])
+        assert_matches_type(ExtAPIModel, extapi, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Asktable) -> None:
@@ -152,7 +152,7 @@ class TestExtapis:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             extapi = response.parse()
-            assert_matches_type(ExtapiModel, extapi, path=["response"])
+            assert_matches_type(ExtAPIModel, extapi, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -248,7 +248,7 @@ class TestAsyncExtapis:
             name="name",
             project_id="project_id",
         )
-        assert_matches_type(ExtapiModel, extapi, path=["response"])
+        assert_matches_type(ExtAPIModel, extapi, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncAsktable) -> None:
@@ -261,7 +261,7 @@ class TestAsyncExtapis:
             headers={"Authorization": "Bearer <token>"},
             updated_at=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
-        assert_matches_type(ExtapiModel, extapi, path=["response"])
+        assert_matches_type(ExtAPIModel, extapi, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncAsktable) -> None:
@@ -276,7 +276,7 @@ class TestAsyncExtapis:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         extapi = await response.parse()
-        assert_matches_type(ExtapiModel, extapi, path=["response"])
+        assert_matches_type(ExtAPIModel, extapi, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncAsktable) -> None:
@@ -291,7 +291,7 @@ class TestAsyncExtapis:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             extapi = await response.parse()
-            assert_matches_type(ExtapiModel, extapi, path=["response"])
+            assert_matches_type(ExtAPIModel, extapi, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -300,7 +300,7 @@ class TestAsyncExtapis:
         extapi = await async_client.extapis.retrieve(
             "extapi_id",
         )
-        assert_matches_type(ExtapiModel, extapi, path=["response"])
+        assert_matches_type(ExtAPIModel, extapi, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncAsktable) -> None:
@@ -311,7 +311,7 @@ class TestAsyncExtapis:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         extapi = await response.parse()
-        assert_matches_type(ExtapiModel, extapi, path=["response"])
+        assert_matches_type(ExtAPIModel, extapi, path=["response"])
 
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncAsktable) -> None:
@@ -322,7 +322,7 @@ class TestAsyncExtapis:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             extapi = await response.parse()
-            assert_matches_type(ExtapiModel, extapi, path=["response"])
+            assert_matches_type(ExtAPIModel, extapi, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -338,7 +338,7 @@ class TestAsyncExtapis:
         extapi = await async_client.extapis.update(
             extapi_id="extapi_id",
         )
-        assert_matches_type(ExtapiModel, extapi, path=["response"])
+        assert_matches_type(ExtAPIModel, extapi, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncAsktable) -> None:
@@ -348,7 +348,7 @@ class TestAsyncExtapis:
             headers={"Authorization": "Bearer <token>"},
             name="name",
         )
-        assert_matches_type(ExtapiModel, extapi, path=["response"])
+        assert_matches_type(ExtAPIModel, extapi, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncAsktable) -> None:
@@ -359,7 +359,7 @@ class TestAsyncExtapis:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         extapi = await response.parse()
-        assert_matches_type(ExtapiModel, extapi, path=["response"])
+        assert_matches_type(ExtAPIModel, extapi, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncAsktable) -> None:
@@ -370,7 +370,7 @@ class TestAsyncExtapis:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             extapi = await response.parse()
-            assert_matches_type(ExtapiModel, extapi, path=["response"])
+            assert_matches_type(ExtAPIModel, extapi, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from .q2a_model import Q2aModel as Q2aModel
-from .q2s_model import Q2sModel as Q2sModel
 from .q2s_response import Q2sResponse as Q2sResponse
 from .q2_list_params import Q2ListParams as Q2ListParams
 from .q2a_list_params import Q2aListParams as Q2aListParams

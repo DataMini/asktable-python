@@ -3,4 +3,4 @@
 from __future__ import annotations
 
 from .link_list_params import LinkListParams as LinkListParams
-from .page_secure_tunnel_link import PageSecureTunnelLink as PageSecureTunnelLink
+from .secure_tunnel_link import SecureTunnelLink as SecureTunnelLink

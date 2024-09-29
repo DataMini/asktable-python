@@ -54,8 +54,8 @@ from .upload_params import (
     AsyncUploadParamsResourceWithStreamingResponse,
 )
 from ..._base_client import make_request_options
-from ...types.data_source_out import DataSourceOut
-from ...types.page_data_source_out import PageDataSourceOut
+from ...types.data_source import DataSource
+from ...types.datasource_list_response import DatasourceListResponse
 
 __all__ = ["DatasourcesResource", "AsyncDatasourcesResource"]
 
@@ -110,7 +110,7 @@ class DatasourcesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DataSourceOut:
+    ) -> DataSource:
         """
         创建数据源
 
@@ -156,7 +156,7 @@ class DatasourcesResource(SyncAPIResource):
                     datasource_create_params.DatasourceCreateParams,
                 ),
             ),
-            cast_to=DataSourceOut,
+            cast_to=DataSource,
         )
 
     def retrieve(
@@ -169,7 +169,7 @@ class DatasourcesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DataSourceOut:
+    ) -> DataSource:
         """
         获取某个数据源
 
@@ -189,7 +189,7 @@ class DatasourcesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DataSourceOut,
+            cast_to=DataSource,
         )
 
     def update(
@@ -210,7 +210,7 @@ class DatasourcesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DataSourceOut:
+    ) -> DataSource:
         """
         修改数据源
 
@@ -259,7 +259,7 @@ class DatasourcesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DataSourceOut,
+            cast_to=DataSource,
         )
 
     def list(
@@ -274,7 +274,7 @@ class DatasourcesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageDataSourceOut:
+    ) -> DatasourceListResponse:
         """
         获取数据源列表
 
@@ -307,7 +307,7 @@ class DatasourcesResource(SyncAPIResource):
                     datasource_list_params.DatasourceListParams,
                 ),
             ),
-            cast_to=PageDataSourceOut,
+            cast_to=DatasourceListResponse,
         )
 
     def delete(
@@ -394,7 +394,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DataSourceOut:
+    ) -> DataSource:
         """
         创建数据源
 
@@ -440,7 +440,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
                     datasource_create_params.DatasourceCreateParams,
                 ),
             ),
-            cast_to=DataSourceOut,
+            cast_to=DataSource,
         )
 
     async def retrieve(
@@ -453,7 +453,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DataSourceOut:
+    ) -> DataSource:
         """
         获取某个数据源
 
@@ -473,7 +473,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DataSourceOut,
+            cast_to=DataSource,
         )
 
     async def update(
@@ -494,7 +494,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DataSourceOut:
+    ) -> DataSource:
         """
         修改数据源
 
@@ -543,7 +543,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DataSourceOut,
+            cast_to=DataSource,
         )
 
     async def list(
@@ -558,7 +558,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageDataSourceOut:
+    ) -> DatasourceListResponse:
         """
         获取数据源列表
 
@@ -591,7 +591,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
                     datasource_list_params.DatasourceListParams,
                 ),
             ),
-            cast_to=PageDataSourceOut,
+            cast_to=DatasourceListResponse,
         )
 
     async def delete(

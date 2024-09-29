@@ -25,7 +25,7 @@ from ._utils import (
 )
 from ._version import __version__
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
-from ._exceptions import APIStatusError
+from ._exceptions import AsktableError, APIStatusError
 from ._base_client import (
     DEFAULT_MAX_RETRIES,
     SyncAPIClient,
@@ -48,10 +48,13 @@ __all__ = [
 class Asktable(SyncAPIClient):
     sys: resources.SysResource
     securetunnels: resources.SecuretunnelsResource
+    roles: resources.RolesResource
+    policies: resources.PoliciesResource
     chats: resources.ChatsResource
     datasources: resources.DatasourcesResource
     bots: resources.BotsResource
     extapis: resources.ExtapisResource
+    auth: resources.AuthResource
     single_turn: resources.SingleTurnResource
     caches: resources.CachesResource
     integration: resources.IntegrationResource
@@ -59,10 +62,12 @@ class Asktable(SyncAPIClient):
     with_streaming_response: AsktableWithStreamedResponse
 
     # client options
+    bearer_token: str
 
     def __init__(
         self,
         *,
+        bearer_token: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -82,7 +87,18 @@ class Asktable(SyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
     ) -> None:
-        """Construct a new synchronous asktable client instance."""
+        """Construct a new synchronous asktable client instance.
+
+        This automatically infers the `bearer_token` argument from the `ASKTABLE_BEARER_TOKEN` environment variable if it is not provided.
+        """
+        if bearer_token is None:
+            bearer_token = os.environ.get("ASKTABLE_BEARER_TOKEN")
+        if bearer_token is None:
+            raise AsktableError(
+                "The bearer_token client option must be set either by passing bearer_token to the client or by setting the ASKTABLE_BEARER_TOKEN environment variable"
+            )
+        self.bearer_token = bearer_token
+
         if base_url is None:
             base_url = os.environ.get("ASKTABLE_BASE_URL")
         if base_url is None:
@@ -101,10 +117,13 @@ class Asktable(SyncAPIClient):
 
         self.sys = resources.SysResource(self)
         self.securetunnels = resources.SecuretunnelsResource(self)
+        self.roles = resources.RolesResource(self)
+        self.policies = resources.PoliciesResource(self)
         self.chats = resources.ChatsResource(self)
         self.datasources = resources.DatasourcesResource(self)
         self.bots = resources.BotsResource(self)
         self.extapis = resources.ExtapisResource(self)
+        self.auth = resources.AuthResource(self)
         self.single_turn = resources.SingleTurnResource(self)
         self.caches = resources.CachesResource(self)
         self.integration = resources.IntegrationResource(self)
@@ -118,6 +137,12 @@ class Asktable(SyncAPIClient):
 
     @property
     @override
+    def auth_headers(self) -> dict[str, str]:
+        bearer_token = self.bearer_token
+        return {"Authorization": f"Bearer {bearer_token}"}
+
+    @property
+    @override
     def default_headers(self) -> dict[str, str | Omit]:
         return {
             **super().default_headers,
@@ -128,6 +153,7 @@ class Asktable(SyncAPIClient):
     def copy(
         self,
         *,
+        bearer_token: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
         http_client: httpx.Client | None = None,
@@ -161,6 +187,7 @@ class Asktable(SyncAPIClient):
 
         http_client = http_client or self._client
         return self.__class__(
+            bearer_token=bearer_token or self.bearer_token,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
@@ -211,10 +238,13 @@ class Asktable(SyncAPIClient):
 class AsyncAsktable(AsyncAPIClient):
     sys: resources.AsyncSysResource
     securetunnels: resources.AsyncSecuretunnelsResource
+    roles: resources.AsyncRolesResource
+    policies: resources.AsyncPoliciesResource
     chats: resources.AsyncChatsResource
     datasources: resources.AsyncDatasourcesResource
     bots: resources.AsyncBotsResource
     extapis: resources.AsyncExtapisResource
+    auth: resources.AsyncAuthResource
     single_turn: resources.AsyncSingleTurnResource
     caches: resources.AsyncCachesResource
     integration: resources.AsyncIntegrationResource
@@ -222,10 +252,12 @@ class AsyncAsktable(AsyncAPIClient):
     with_streaming_response: AsyncAsktableWithStreamedResponse
 
     # client options
+    bearer_token: str
 
     def __init__(
         self,
         *,
+        bearer_token: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -245,7 +277,18 @@ class AsyncAsktable(AsyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
     ) -> None:
-        """Construct a new async asktable client instance."""
+        """Construct a new async asktable client instance.
+
+        This automatically infers the `bearer_token` argument from the `ASKTABLE_BEARER_TOKEN` environment variable if it is not provided.
+        """
+        if bearer_token is None:
+            bearer_token = os.environ.get("ASKTABLE_BEARER_TOKEN")
+        if bearer_token is None:
+            raise AsktableError(
+                "The bearer_token client option must be set either by passing bearer_token to the client or by setting the ASKTABLE_BEARER_TOKEN environment variable"
+            )
+        self.bearer_token = bearer_token
+
         if base_url is None:
             base_url = os.environ.get("ASKTABLE_BASE_URL")
         if base_url is None:
@@ -264,10 +307,13 @@ class AsyncAsktable(AsyncAPIClient):
 
         self.sys = resources.AsyncSysResource(self)
         self.securetunnels = resources.AsyncSecuretunnelsResource(self)
+        self.roles = resources.AsyncRolesResource(self)
+        self.policies = resources.AsyncPoliciesResource(self)
         self.chats = resources.AsyncChatsResource(self)
         self.datasources = resources.AsyncDatasourcesResource(self)
         self.bots = resources.AsyncBotsResource(self)
         self.extapis = resources.AsyncExtapisResource(self)
+        self.auth = resources.AsyncAuthResource(self)
         self.single_turn = resources.AsyncSingleTurnResource(self)
         self.caches = resources.AsyncCachesResource(self)
         self.integration = resources.AsyncIntegrationResource(self)
@@ -281,6 +327,12 @@ class AsyncAsktable(AsyncAPIClient):
 
     @property
     @override
+    def auth_headers(self) -> dict[str, str]:
+        bearer_token = self.bearer_token
+        return {"Authorization": f"Bearer {bearer_token}"}
+
+    @property
+    @override
     def default_headers(self) -> dict[str, str | Omit]:
         return {
             **super().default_headers,
@@ -291,6 +343,7 @@ class AsyncAsktable(AsyncAPIClient):
     def copy(
         self,
         *,
+        bearer_token: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
         http_client: httpx.AsyncClient | None = None,
@@ -324,6 +377,7 @@ class AsyncAsktable(AsyncAPIClient):
 
         http_client = http_client or self._client
         return self.__class__(
+            bearer_token=bearer_token or self.bearer_token,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
@@ -375,10 +429,13 @@ class AsktableWithRawResponse:
     def __init__(self, client: Asktable) -> None:
         self.sys = resources.SysResourceWithRawResponse(client.sys)
         self.securetunnels = resources.SecuretunnelsResourceWithRawResponse(client.securetunnels)
+        self.roles = resources.RolesResourceWithRawResponse(client.roles)
+        self.policies = resources.PoliciesResourceWithRawResponse(client.policies)
         self.chats = resources.ChatsResourceWithRawResponse(client.chats)
         self.datasources = resources.DatasourcesResourceWithRawResponse(client.datasources)
         self.bots = resources.BotsResourceWithRawResponse(client.bots)
         self.extapis = resources.ExtapisResourceWithRawResponse(client.extapis)
+        self.auth = resources.AuthResourceWithRawResponse(client.auth)
         self.single_turn = resources.SingleTurnResourceWithRawResponse(client.single_turn)
         self.caches = resources.CachesResourceWithRawResponse(client.caches)
         self.integration = resources.IntegrationResourceWithRawResponse(client.integration)
@@ -388,10 +445,13 @@ class AsyncAsktableWithRawResponse:
     def __init__(self, client: AsyncAsktable) -> None:
         self.sys = resources.AsyncSysResourceWithRawResponse(client.sys)
         self.securetunnels = resources.AsyncSecuretunnelsResourceWithRawResponse(client.securetunnels)
+        self.roles = resources.AsyncRolesResourceWithRawResponse(client.roles)
+        self.policies = resources.AsyncPoliciesResourceWithRawResponse(client.policies)
         self.chats = resources.AsyncChatsResourceWithRawResponse(client.chats)
         self.datasources = resources.AsyncDatasourcesResourceWithRawResponse(client.datasources)
         self.bots = resources.AsyncBotsResourceWithRawResponse(client.bots)
         self.extapis = resources.AsyncExtapisResourceWithRawResponse(client.extapis)
+        self.auth = resources.AsyncAuthResourceWithRawResponse(client.auth)
         self.single_turn = resources.AsyncSingleTurnResourceWithRawResponse(client.single_turn)
         self.caches = resources.AsyncCachesResourceWithRawResponse(client.caches)
         self.integration = resources.AsyncIntegrationResourceWithRawResponse(client.integration)
@@ -401,10 +461,13 @@ class AsktableWithStreamedResponse:
     def __init__(self, client: Asktable) -> None:
         self.sys = resources.SysResourceWithStreamingResponse(client.sys)
         self.securetunnels = resources.SecuretunnelsResourceWithStreamingResponse(client.securetunnels)
+        self.roles = resources.RolesResourceWithStreamingResponse(client.roles)
+        self.policies = resources.PoliciesResourceWithStreamingResponse(client.policies)
         self.chats = resources.ChatsResourceWithStreamingResponse(client.chats)
         self.datasources = resources.DatasourcesResourceWithStreamingResponse(client.datasources)
         self.bots = resources.BotsResourceWithStreamingResponse(client.bots)
         self.extapis = resources.ExtapisResourceWithStreamingResponse(client.extapis)
+        self.auth = resources.AuthResourceWithStreamingResponse(client.auth)
         self.single_turn = resources.SingleTurnResourceWithStreamingResponse(client.single_turn)
         self.caches = resources.CachesResourceWithStreamingResponse(client.caches)
         self.integration = resources.IntegrationResourceWithStreamingResponse(client.integration)
@@ -414,10 +477,13 @@ class AsyncAsktableWithStreamedResponse:
     def __init__(self, client: AsyncAsktable) -> None:
         self.sys = resources.AsyncSysResourceWithStreamingResponse(client.sys)
         self.securetunnels = resources.AsyncSecuretunnelsResourceWithStreamingResponse(client.securetunnels)
+        self.roles = resources.AsyncRolesResourceWithStreamingResponse(client.roles)
+        self.policies = resources.AsyncPoliciesResourceWithStreamingResponse(client.policies)
         self.chats = resources.AsyncChatsResourceWithStreamingResponse(client.chats)
         self.datasources = resources.AsyncDatasourcesResourceWithStreamingResponse(client.datasources)
         self.bots = resources.AsyncBotsResourceWithStreamingResponse(client.bots)
         self.extapis = resources.AsyncExtapisResourceWithStreamingResponse(client.extapis)
+        self.auth = resources.AsyncAuthResourceWithStreamingResponse(client.auth)
         self.single_turn = resources.AsyncSingleTurnResourceWithStreamingResponse(client.single_turn)
         self.caches = resources.AsyncCachesResourceWithStreamingResponse(client.caches)
         self.integration = resources.AsyncIntegrationResourceWithStreamingResponse(client.integration)

@@ -3,8 +3,8 @@
 from typing import List
 from typing_extensions import TypeAlias
 
-from .api_key_out import APIKeyOut
+from .api_key import APIKey
 
 __all__ = ["APIKeyListResponse"]
 
-APIKeyListResponse: TypeAlias = List[APIKeyOut]
+APIKeyListResponse: TypeAlias = List[APIKey]
