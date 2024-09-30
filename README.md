@@ -16,7 +16,7 @@ The REST API documentation can be found on [docs.asktable.com](https://docs.askt
 
 ```sh
 # install from PyPI
-pip install --pre asktable
+pip install asktable
 ```
 
 ## Usage
