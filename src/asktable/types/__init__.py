@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from .chat import Chat as Chat
 from .role import Role as Role
 from .shared import Policy as Policy, Message as Message, AnswerModel as AnswerModel
 from .chat_bot import ChatBot as ChatBot
