@@ -9,8 +9,7 @@ import pytest
 
 from asktable import Asktable, AsyncAsktable
 from tests.utils import assert_matches_type
-from asktable.types import ChatOut, ChatListResponse
-from asktable.types.shared import Message
+from asktable.types import Chat, ChatOut, ChatListResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -20,45 +19,44 @@ class TestChats:
 
     @parametrize
     def test_method_create(self, client: Asktable) -> None:
+        chat = client.chats.create()
+        assert_matches_type(Chat, chat, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params(self, client: Asktable) -> None:
         chat = client.chats.create(
-            chat_id="chat_id",
-            question="question",
+            bot_id="bot_42",
+            datasource_ids=["ds_42"],
+            name="name",
+            role_id="role_42",
+            role_variables={"id": "123123123"},
+            user_profile={
+                "age": "string",
+                "is_male": "string",
+                "name": "张三",
+            },
         )
-        assert_matches_type(Message, chat, path=["response"])
+        assert_matches_type(Chat, chat, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Asktable) -> None:
-        response = client.chats.with_raw_response.create(
-            chat_id="chat_id",
-            question="question",
-        )
+        response = client.chats.with_raw_response.create()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         chat = response.parse()
-        assert_matches_type(Message, chat, path=["response"])
+        assert_matches_type(Chat, chat, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Asktable) -> None:
-        with client.chats.with_streaming_response.create(
-            chat_id="chat_id",
-            question="question",
-        ) as response:
+        with client.chats.with_streaming_response.create() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             chat = response.parse()
-            assert_matches_type(Message, chat, path=["response"])
+            assert_matches_type(Chat, chat, path=["response"])
 
         assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    def test_path_params_create(self, client: Asktable) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `chat_id` but received ''"):
-            client.chats.with_raw_response.create(
-                chat_id="",
-                question="question",
-            )
 
     @parametrize
     def test_method_retrieve(self, client: Asktable) -> None:
@@ -175,45 +173,44 @@ class TestAsyncChats:
 
     @parametrize
     async def test_method_create(self, async_client: AsyncAsktable) -> None:
+        chat = await async_client.chats.create()
+        assert_matches_type(Chat, chat, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncAsktable) -> None:
         chat = await async_client.chats.create(
-            chat_id="chat_id",
-            question="question",
+            bot_id="bot_42",
+            datasource_ids=["ds_42"],
+            name="name",
+            role_id="role_42",
+            role_variables={"id": "123123123"},
+            user_profile={
+                "age": "string",
+                "is_male": "string",
+                "name": "张三",
+            },
         )
-        assert_matches_type(Message, chat, path=["response"])
+        assert_matches_type(Chat, chat, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncAsktable) -> None:
-        response = await async_client.chats.with_raw_response.create(
-            chat_id="chat_id",
-            question="question",
-        )
+        response = await async_client.chats.with_raw_response.create()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         chat = await response.parse()
-        assert_matches_type(Message, chat, path=["response"])
+        assert_matches_type(Chat, chat, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncAsktable) -> None:
-        async with async_client.chats.with_streaming_response.create(
-            chat_id="chat_id",
-            question="question",
-        ) as response:
+        async with async_client.chats.with_streaming_response.create() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             chat = await response.parse()
-            assert_matches_type(Message, chat, path=["response"])
+            assert_matches_type(Chat, chat, path=["response"])
 
         assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    async def test_path_params_create(self, async_client: AsyncAsktable) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `chat_id` but received ''"):
-            await async_client.chats.with_raw_response.create(
-                chat_id="",
-                question="question",
-            )
 
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncAsktable) -> None:
