@@ -97,7 +97,7 @@ class ProjectsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/sys/projects/",
+            "/sys/projects",
             body=maybe_transform({"name": name}, project_create_params.ProjectCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -216,7 +216,7 @@ class ProjectsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/sys/projects/",
+            "/sys/projects",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -322,7 +322,7 @@ class AsyncProjectsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/sys/projects/",
+            "/sys/projects",
             body=await async_maybe_transform({"name": name}, project_create_params.ProjectCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -441,7 +441,7 @@ class AsyncProjectsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/sys/projects/",
+            "/sys/projects",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
