@@ -15,12 +15,9 @@ The REST API documentation can be found on [docs.asktable.com](https://docs.askt
 ## Installation
 
 ```sh
-# install from this staging repo
-pip install git+ssh://git@github.com/stainless-sdks/asktable-python.git
+# install from PyPI
+pip install asktable
 ```
-
-> [!NOTE]
-> Once this package is [published to PyPI](https://app.stainlessapi.com/docs/guides/publish), this will become: `pip install --pre asktable`
 
 ## Usage
 
@@ -210,9 +207,9 @@ project = response.parse()  # get the object that `sys.projects.create()` would 
 print(project.id)
 ```
 
-These methods return an [`APIResponse`](https://github.com/stainless-sdks/asktable-python/tree/main/src/asktable/_response.py) object.
+These methods return an [`APIResponse`](https://github.com/DataMini/asktable-python/tree/main/src/asktable/_response.py) object.
 
-The async client returns an [`AsyncAPIResponse`](https://github.com/stainless-sdks/asktable-python/tree/main/src/asktable/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
+The async client returns an [`AsyncAPIResponse`](https://github.com/DataMini/asktable-python/tree/main/src/asktable/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
 
 #### `.with_streaming_response`
 
@@ -308,7 +305,7 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
-We are keen for your feedback; please open an [issue](https://www.github.com/stainless-sdks/asktable-python/issues) with questions, bugs, or suggestions.
+We are keen for your feedback; please open an [issue](https://www.github.com/DataMini/asktable-python/issues) with questions, bugs, or suggestions.
 
 ### Determining the installed version
 
