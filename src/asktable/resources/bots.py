@@ -97,7 +97,7 @@ class BotsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/bots/",
+            "/bots",
             body=maybe_transform(
                 {
                     "datasource_ids": datasource_ids,
@@ -257,7 +257,7 @@ class BotsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/bots/",
+            "/bots",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -379,7 +379,7 @@ class AsyncBotsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/bots/",
+            "/bots",
             body=await async_maybe_transform(
                 {
                     "datasource_ids": datasource_ids,
@@ -539,7 +539,7 @@ class AsyncBotsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/bots/",
+            "/bots",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

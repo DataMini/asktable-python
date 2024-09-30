@@ -100,7 +100,7 @@ class RolesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/roles/",
+            "/roles",
             body=maybe_transform(
                 {
                     "name": name,
@@ -225,7 +225,7 @@ class RolesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/roles/",
+            "/roles",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -334,7 +334,7 @@ class AsyncRolesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/roles/",
+            "/roles",
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -459,7 +459,7 @@ class AsyncRolesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/roles/",
+            "/roles",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

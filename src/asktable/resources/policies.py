@@ -80,7 +80,7 @@ class PoliciesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/policies/",
+            "/policies",
             body=maybe_transform(
                 {
                     "dataset_config": dataset_config,
@@ -210,7 +210,7 @@ class PoliciesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/policies/",
+            "/policies",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -315,7 +315,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/policies/",
+            "/policies",
             body=await async_maybe_transform(
                 {
                     "dataset_config": dataset_config,
@@ -445,7 +445,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/policies/",
+            "/policies",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

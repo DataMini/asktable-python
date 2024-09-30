@@ -134,7 +134,7 @@ class DatasourcesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/datasources/",
+            "/datasources",
             body=maybe_transform(
                 {
                     "access_config": access_config,
@@ -292,7 +292,7 @@ class DatasourcesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/datasources/",
+            "/datasources",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -418,7 +418,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/datasources/",
+            "/datasources",
             body=await async_maybe_transform(
                 {
                     "access_config": access_config,
@@ -576,7 +576,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/datasources/",
+            "/datasources",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

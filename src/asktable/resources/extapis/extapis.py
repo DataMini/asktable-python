@@ -96,7 +96,7 @@ class ExtapisResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/extapis/",
+            "/extapis",
             body=maybe_transform(
                 {
                     "id": id,
@@ -230,7 +230,7 @@ class ExtapisResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/extapis/",
+            "/extapis",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -342,7 +342,7 @@ class AsyncExtapisResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/extapis/",
+            "/extapis",
             body=await async_maybe_transform(
                 {
                     "id": id,
@@ -476,7 +476,7 @@ class AsyncExtapisResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/extapis/",
+            "/extapis",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

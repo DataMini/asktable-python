@@ -85,7 +85,7 @@ class SecuretunnelsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/securetunnels/",
+            "/securetunnels",
             body=maybe_transform({"name": name}, securetunnel_create_params.SecuretunnelCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -205,7 +205,7 @@ class SecuretunnelsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/securetunnels/",
+            "/securetunnels",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -307,7 +307,7 @@ class AsyncSecuretunnelsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/securetunnels/",
+            "/securetunnels",
             body=await async_maybe_transform({"name": name}, securetunnel_create_params.SecuretunnelCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -427,7 +427,7 @@ class AsyncSecuretunnelsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/securetunnels/",
+            "/securetunnels",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

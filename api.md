@@ -16,10 +16,10 @@ from asktable.types.sys import Project, ProjectListResponse, ProjectDeleteRespon
 
 Methods:
 
-- <code title="post /sys/projects/">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">create</a>(\*\*<a href="src/asktable/types/sys/project_create_params.py">params</a>) -> <a href="./src/asktable/types/sys/project.py">Project</a></code>
+- <code title="post /sys/projects">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">create</a>(\*\*<a href="src/asktable/types/sys/project_create_params.py">params</a>) -> <a href="./src/asktable/types/sys/project.py">Project</a></code>
 - <code title="get /sys/projects/{project_id}">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">retrieve</a>(project_id) -> <a href="./src/asktable/types/sys/project.py">Project</a></code>
 - <code title="patch /sys/projects/{project_id}">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">update</a>(project_id, \*\*<a href="src/asktable/types/sys/project_update_params.py">params</a>) -> <a href="./src/asktable/types/sys/project.py">Project</a></code>
-- <code title="get /sys/projects/">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">list</a>(\*\*<a href="src/asktable/types/sys/project_list_params.py">params</a>) -> <a href="./src/asktable/types/sys/project_list_response.py">ProjectListResponse</a></code>
+- <code title="get /sys/projects">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">list</a>(\*\*<a href="src/asktable/types/sys/project_list_params.py">params</a>) -> <a href="./src/asktable/types/sys/project_list_response.py">ProjectListResponse</a></code>
 - <code title="delete /sys/projects/{project_id}">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">delete</a>(project_id) -> <a href="./src/asktable/types/sys/project_delete_response.py">object</a></code>
 
 ### APIKeys
@@ -58,10 +58,10 @@ from asktable.types import SecureTunnel, SecuretunnelUpdateResponse, Securetunne
 
 Methods:
 
-- <code title="post /securetunnels/">client.securetunnels.<a href="./src/asktable/resources/securetunnels/securetunnels.py">create</a>(\*\*<a href="src/asktable/types/securetunnel_create_params.py">params</a>) -> <a href="./src/asktable/types/secure_tunnel.py">SecureTunnel</a></code>
+- <code title="post /securetunnels">client.securetunnels.<a href="./src/asktable/resources/securetunnels/securetunnels.py">create</a>(\*\*<a href="src/asktable/types/securetunnel_create_params.py">params</a>) -> <a href="./src/asktable/types/secure_tunnel.py">SecureTunnel</a></code>
 - <code title="get /securetunnels/{securetunnel_id}">client.securetunnels.<a href="./src/asktable/resources/securetunnels/securetunnels.py">retrieve</a>(securetunnel_id) -> <a href="./src/asktable/types/secure_tunnel.py">SecureTunnel</a></code>
 - <code title="patch /securetunnels/{securetunnel_id}">client.securetunnels.<a href="./src/asktable/resources/securetunnels/securetunnels.py">update</a>(securetunnel_id, \*\*<a href="src/asktable/types/securetunnel_update_params.py">params</a>) -> <a href="./src/asktable/types/securetunnel_update_response.py">object</a></code>
-- <code title="get /securetunnels/">client.securetunnels.<a href="./src/asktable/resources/securetunnels/securetunnels.py">list</a>(\*\*<a href="src/asktable/types/securetunnel_list_params.py">params</a>) -> <a href="./src/asktable/types/securetunnel_list_response.py">SecuretunnelListResponse</a></code>
+- <code title="get /securetunnels">client.securetunnels.<a href="./src/asktable/resources/securetunnels/securetunnels.py">list</a>(\*\*<a href="src/asktable/types/securetunnel_list_params.py">params</a>) -> <a href="./src/asktable/types/securetunnel_list_response.py">SecuretunnelListResponse</a></code>
 - <code title="delete /securetunnels/{securetunnel_id}">client.securetunnels.<a href="./src/asktable/resources/securetunnels/securetunnels.py">delete</a>(securetunnel_id) -> None</code>
 
 ## Links
@@ -86,10 +86,10 @@ from asktable.types import Role, RoleListResponse, RoleDeleteResponse
 
 Methods:
 
-- <code title="post /roles/">client.roles.<a href="./src/asktable/resources/roles/roles.py">create</a>(\*\*<a href="src/asktable/types/role_create_params.py">params</a>) -> <a href="./src/asktable/types/role.py">Role</a></code>
+- <code title="post /roles">client.roles.<a href="./src/asktable/resources/roles/roles.py">create</a>(\*\*<a href="src/asktable/types/role_create_params.py">params</a>) -> <a href="./src/asktable/types/role.py">Role</a></code>
 - <code title="get /roles/{role_id}">client.roles.<a href="./src/asktable/resources/roles/roles.py">retrieve</a>(role_id) -> <a href="./src/asktable/types/role.py">Role</a></code>
 - <code title="patch /roles/{role_id}">client.roles.<a href="./src/asktable/resources/roles/roles.py">update</a>(role_id, \*\*<a href="src/asktable/types/role_update_params.py">params</a>) -> <a href="./src/asktable/types/role.py">Role</a></code>
-- <code title="get /roles/">client.roles.<a href="./src/asktable/resources/roles/roles.py">list</a>(\*\*<a href="src/asktable/types/role_list_params.py">params</a>) -> <a href="./src/asktable/types/role_list_response.py">RoleListResponse</a></code>
+- <code title="get /roles">client.roles.<a href="./src/asktable/resources/roles/roles.py">list</a>(\*\*<a href="src/asktable/types/role_list_params.py">params</a>) -> <a href="./src/asktable/types/role_list_response.py">RoleListResponse</a></code>
 - <code title="delete /roles/{role_id}">client.roles.<a href="./src/asktable/resources/roles/roles.py">delete</a>(role_id) -> <a href="./src/asktable/types/role_delete_response.py">object</a></code>
 
 ## Policies
@@ -126,10 +126,10 @@ from asktable.types import PolicyListResponse
 
 Methods:
 
-- <code title="post /policies/">client.policies.<a href="./src/asktable/resources/policies.py">create</a>(\*\*<a href="src/asktable/types/policy_create_params.py">params</a>) -> <a href="./src/asktable/types/shared/policy.py">Policy</a></code>
+- <code title="post /policies">client.policies.<a href="./src/asktable/resources/policies.py">create</a>(\*\*<a href="src/asktable/types/policy_create_params.py">params</a>) -> <a href="./src/asktable/types/shared/policy.py">Policy</a></code>
 - <code title="get /policies/{policy_id}">client.policies.<a href="./src/asktable/resources/policies.py">retrieve</a>(policy_id) -> <a href="./src/asktable/types/shared/policy.py">Policy</a></code>
 - <code title="patch /policies/{policy_id}">client.policies.<a href="./src/asktable/resources/policies.py">update</a>(policy_id, \*\*<a href="src/asktable/types/policy_update_params.py">params</a>) -> <a href="./src/asktable/types/shared/policy.py">Policy</a></code>
-- <code title="get /policies/">client.policies.<a href="./src/asktable/resources/policies.py">list</a>(\*\*<a href="src/asktable/types/policy_list_params.py">params</a>) -> <a href="./src/asktable/types/policy_list_response.py">PolicyListResponse</a></code>
+- <code title="get /policies">client.policies.<a href="./src/asktable/resources/policies.py">list</a>(\*\*<a href="src/asktable/types/policy_list_params.py">params</a>) -> <a href="./src/asktable/types/policy_list_response.py">PolicyListResponse</a></code>
 - <code title="delete /policies/{policy_id}">client.policies.<a href="./src/asktable/resources/policies.py">delete</a>(policy_id) -> None</code>
 
 # Chats
@@ -144,7 +144,7 @@ Methods:
 
 - <code title="post /chats/{chat_id}">client.chats.<a href="./src/asktable/resources/chats/chats.py">create</a>(chat_id, \*\*<a href="src/asktable/types/chat_create_params.py">params</a>) -> <a href="./src/asktable/types/shared/message.py">Message</a></code>
 - <code title="get /chats/{chat_id}">client.chats.<a href="./src/asktable/resources/chats/chats.py">retrieve</a>(chat_id) -> <a href="./src/asktable/types/chat_out.py">ChatOut</a></code>
-- <code title="get /chats/">client.chats.<a href="./src/asktable/resources/chats/chats.py">list</a>(\*\*<a href="src/asktable/types/chat_list_params.py">params</a>) -> <a href="./src/asktable/types/chat_list_response.py">ChatListResponse</a></code>
+- <code title="get /chats">client.chats.<a href="./src/asktable/resources/chats/chats.py">list</a>(\*\*<a href="src/asktable/types/chat_list_params.py">params</a>) -> <a href="./src/asktable/types/chat_list_response.py">ChatListResponse</a></code>
 - <code title="delete /chats/{chat_id}">client.chats.<a href="./src/asktable/resources/chats/chats.py">delete</a>(chat_id) -> None</code>
 
 ## Messages
@@ -170,10 +170,10 @@ from asktable.types import DataSource, DatasourceListResponse, DatasourceDeleteR
 
 Methods:
 
-- <code title="post /datasources/">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">create</a>(\*\*<a href="src/asktable/types/datasource_create_params.py">params</a>) -> <a href="./src/asktable/types/data_source.py">DataSource</a></code>
+- <code title="post /datasources">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">create</a>(\*\*<a href="src/asktable/types/datasource_create_params.py">params</a>) -> <a href="./src/asktable/types/data_source.py">DataSource</a></code>
 - <code title="get /datasources/{datasource_id}">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">retrieve</a>(datasource_id) -> <a href="./src/asktable/types/data_source.py">DataSource</a></code>
 - <code title="patch /datasources/{datasource_id}">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">update</a>(datasource_id, \*\*<a href="src/asktable/types/datasource_update_params.py">params</a>) -> <a href="./src/asktable/types/data_source.py">DataSource</a></code>
-- <code title="get /datasources/">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">list</a>(\*\*<a href="src/asktable/types/datasource_list_params.py">params</a>) -> <a href="./src/asktable/types/datasource_list_response.py">DatasourceListResponse</a></code>
+- <code title="get /datasources">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">list</a>(\*\*<a href="src/asktable/types/datasource_list_params.py">params</a>) -> <a href="./src/asktable/types/datasource_list_response.py">DatasourceListResponse</a></code>
 - <code title="delete /datasources/{datasource_id}">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">delete</a>(datasource_id) -> <a href="./src/asktable/types/datasource_delete_response.py">object</a></code>
 
 ## Meta
@@ -236,10 +236,10 @@ from asktable.types import ChatBot, BotListResponse, BotDeleteResponse
 
 Methods:
 
-- <code title="post /bots/">client.bots.<a href="./src/asktable/resources/bots.py">create</a>(\*\*<a href="src/asktable/types/bot_create_params.py">params</a>) -> <a href="./src/asktable/types/chat_bot.py">ChatBot</a></code>
+- <code title="post /bots">client.bots.<a href="./src/asktable/resources/bots.py">create</a>(\*\*<a href="src/asktable/types/bot_create_params.py">params</a>) -> <a href="./src/asktable/types/chat_bot.py">ChatBot</a></code>
 - <code title="get /bots/{bot_id}">client.bots.<a href="./src/asktable/resources/bots.py">retrieve</a>(bot_id) -> <a href="./src/asktable/types/chat_bot.py">ChatBot</a></code>
 - <code title="patch /bots/{bot_id}">client.bots.<a href="./src/asktable/resources/bots.py">update</a>(bot_id, \*\*<a href="src/asktable/types/bot_update_params.py">params</a>) -> <a href="./src/asktable/types/chat_bot.py">ChatBot</a></code>
-- <code title="get /bots/">client.bots.<a href="./src/asktable/resources/bots.py">list</a>(\*\*<a href="src/asktable/types/bot_list_params.py">params</a>) -> <a href="./src/asktable/types/bot_list_response.py">BotListResponse</a></code>
+- <code title="get /bots">client.bots.<a href="./src/asktable/resources/bots.py">list</a>(\*\*<a href="src/asktable/types/bot_list_params.py">params</a>) -> <a href="./src/asktable/types/bot_list_response.py">BotListResponse</a></code>
 - <code title="delete /bots/{bot_id}">client.bots.<a href="./src/asktable/resources/bots.py">delete</a>(bot_id) -> <a href="./src/asktable/types/bot_delete_response.py">object</a></code>
 
 # Extapis
@@ -252,10 +252,10 @@ from asktable.types import ExtAPIModel, ExtapiListResponse, ExtapiDeleteResponse
 
 Methods:
 
-- <code title="post /extapis/">client.extapis.<a href="./src/asktable/resources/extapis/extapis.py">create</a>(\*\*<a href="src/asktable/types/extapi_create_params.py">params</a>) -> <a href="./src/asktable/types/ext_api_model.py">ExtAPIModel</a></code>
+- <code title="post /extapis">client.extapis.<a href="./src/asktable/resources/extapis/extapis.py">create</a>(\*\*<a href="src/asktable/types/extapi_create_params.py">params</a>) -> <a href="./src/asktable/types/ext_api_model.py">ExtAPIModel</a></code>
 - <code title="get /extapis/{extapi_id}">client.extapis.<a href="./src/asktable/resources/extapis/extapis.py">retrieve</a>(extapi_id) -> <a href="./src/asktable/types/ext_api_model.py">ExtAPIModel</a></code>
 - <code title="post /extapis/{extapi_id}">client.extapis.<a href="./src/asktable/resources/extapis/extapis.py">update</a>(extapi_id, \*\*<a href="src/asktable/types/extapi_update_params.py">params</a>) -> <a href="./src/asktable/types/ext_api_model.py">ExtAPIModel</a></code>
-- <code title="get /extapis/">client.extapis.<a href="./src/asktable/resources/extapis/extapis.py">list</a>(\*\*<a href="src/asktable/types/extapi_list_params.py">params</a>) -> <a href="./src/asktable/types/extapi_list_response.py">ExtapiListResponse</a></code>
+- <code title="get /extapis">client.extapis.<a href="./src/asktable/resources/extapis/extapis.py">list</a>(\*\*<a href="src/asktable/types/extapi_list_params.py">params</a>) -> <a href="./src/asktable/types/extapi_list_response.py">ExtapiListResponse</a></code>
 - <code title="delete /extapis/{extapi_id}">client.extapis.<a href="./src/asktable/resources/extapis/extapis.py">delete</a>(extapi_id) -> <a href="./src/asktable/types/extapi_delete_response.py">object</a></code>
 
 ## Routes
