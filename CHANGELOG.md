@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.0.1 (2024-10-02)
+
+Full Changelog: [v3.0.0...v3.0.1](https://github.com/DataMini/asktable-python/compare/v3.0.0...v3.0.1)
+
+### Chores
+
+* **internal:** codegen related update ([#4](https://github.com/DataMini/asktable-python/issues/4)) ([df56af1](https://github.com/DataMini/asktable-python/commit/df56af1e43756716339314650602d8cf3b00b781))
+* **internal:** codegen related update ([#6](https://github.com/DataMini/asktable-python/issues/6)) ([6403369](https://github.com/DataMini/asktable-python/commit/640336989f2bf2157a6817dccb06a7f030c45346))
+
 ## 3.0.0 (2024-09-30)
 
 Full Changelog: [v0.0.1-alpha.0...v3.0.0](https://github.com/DataMini/asktable-python/compare/v0.0.1-alpha.0...v3.0.0)
