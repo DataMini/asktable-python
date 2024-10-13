@@ -34,6 +34,7 @@ class TestQ2a:
             max_rows=0,
             role_id="role_id",
             role_variables={},
+            with_json=True,
         )
         assert_matches_type(AnswerModel, q2a, path=["response"])
 
@@ -117,6 +118,7 @@ class TestAsyncQ2a:
             max_rows=0,
             role_id="role_id",
             role_variables={},
+            with_json=True,
         )
         assert_matches_type(AnswerModel, q2a, path=["response"])
 

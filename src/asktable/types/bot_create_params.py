@@ -18,17 +18,20 @@ class BotCreateParams(TypedDict, total=False):
     color_theme: Optional[str]
     """颜色主题"""
 
-    debug: Optional[bool]
+    debug: bool
     """调试模式"""
 
-    extapi_ids: Optional[List[str]]
+    extapi_ids: List[str]
     """扩展 API ID 列表，扩展 API ID 的逗号分隔列表。"""
 
     magic_input: Optional[str]
     """魔法提示词"""
 
-    max_rows: Optional[int]
+    max_rows: int
     """最大返回行数，默认不限制"""
+
+    publish: bool
+    """是否公开"""
 
     sample_questions: Optional[str]
     """示例问题列表"""

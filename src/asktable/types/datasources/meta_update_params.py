@@ -58,10 +58,10 @@ class SchemasTables(TypedDict, total=False):
     name: Required[str]
     """table_name"""
 
-    origin_desc: Required[str]
-    """table description from database"""
-
     fields: Dict[str, SchemasTablesFields]
+
+    origin_desc: Optional[str]
+    """table description from database"""
 
 
 class Schemas(TypedDict, total=False):
@@ -74,10 +74,10 @@ class Schemas(TypedDict, total=False):
     name: Required[str]
     """schema_name"""
 
-    origin_desc: Required[str]
-    """schema description from database"""
-
     custom_configs: Optional[object]
     """custom configs"""
+
+    origin_desc: Optional[str]
+    """schema description from database"""
 
     tables: Dict[str, SchemasTables]

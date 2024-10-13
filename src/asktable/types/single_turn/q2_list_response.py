@@ -16,20 +16,21 @@ class Item(BaseModel):
     datasource_id: str
     """数据源 ID"""
 
-    duration: int
-
-    err_msg: str
+    duration: Optional[int] = None
 
     modified_at: datetime
 
     project_id: str
 
-    query: object
+    query: Optional[object] = None
 
     question: str
     """查询语句"""
 
     status: str
+
+    err_msg: Optional[str] = None
+    """错误信息"""
 
     role_id: Optional[str] = None
     """

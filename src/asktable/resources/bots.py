@@ -53,10 +53,11 @@ class BotsResource(SyncAPIResource):
         datasource_ids: List[str],
         name: str,
         color_theme: Optional[str] | NotGiven = NOT_GIVEN,
-        debug: Optional[bool] | NotGiven = NOT_GIVEN,
-        extapi_ids: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        debug: bool | NotGiven = NOT_GIVEN,
+        extapi_ids: List[str] | NotGiven = NOT_GIVEN,
         magic_input: Optional[str] | NotGiven = NOT_GIVEN,
-        max_rows: Optional[int] | NotGiven = NOT_GIVEN,
+        max_rows: int | NotGiven = NOT_GIVEN,
+        publish: bool | NotGiven = NOT_GIVEN,
         sample_questions: Optional[str] | NotGiven = NOT_GIVEN,
         welcome_message: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -84,6 +85,8 @@ class BotsResource(SyncAPIResource):
 
           max_rows: 最大返回行数，默认不限制
 
+          publish: 是否公开
+
           sample_questions: 示例问题列表
 
           welcome_message: 欢迎消息
@@ -107,6 +110,7 @@ class BotsResource(SyncAPIResource):
                     "extapi_ids": extapi_ids,
                     "magic_input": magic_input,
                     "max_rows": max_rows,
+                    "publish": publish,
                     "sample_questions": sample_questions,
                     "welcome_message": welcome_message,
                 },
@@ -155,6 +159,7 @@ class BotsResource(SyncAPIResource):
         self,
         bot_id: str,
         *,
+        avatar_url: Optional[str] | NotGiven = NOT_GIVEN,
         color_theme: Optional[str] | NotGiven = NOT_GIVEN,
         datasource_ids: Optional[List[str]] | NotGiven = NOT_GIVEN,
         debug: Optional[bool] | NotGiven = NOT_GIVEN,
@@ -162,6 +167,7 @@ class BotsResource(SyncAPIResource):
         magic_input: Optional[str] | NotGiven = NOT_GIVEN,
         max_rows: Optional[int] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
+        publish: Optional[bool] | NotGiven = NOT_GIVEN,
         sample_questions: Optional[str] | NotGiven = NOT_GIVEN,
         welcome_message: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -175,6 +181,8 @@ class BotsResource(SyncAPIResource):
         更新某个 Bot
 
         Args:
+          avatar_url: 头像 URL
+
           color_theme: 颜色主题
 
           datasource_ids: 数据源 ID，目前只支持 1 个数据源。
@@ -188,6 +196,8 @@ class BotsResource(SyncAPIResource):
           max_rows: 最大返回行数，默认不限制
 
           name: 名称，不超过 64 个字符
+
+          publish: 是否公开
 
           sample_questions: 示例问题列表
 
@@ -207,6 +217,7 @@ class BotsResource(SyncAPIResource):
             f"/bots/{bot_id}",
             body=maybe_transform(
                 {
+                    "avatar_url": avatar_url,
                     "color_theme": color_theme,
                     "datasource_ids": datasource_ids,
                     "debug": debug,
@@ -214,6 +225,7 @@ class BotsResource(SyncAPIResource):
                     "magic_input": magic_input,
                     "max_rows": max_rows,
                     "name": name,
+                    "publish": publish,
                     "sample_questions": sample_questions,
                     "welcome_message": welcome_message,
                 },
@@ -335,10 +347,11 @@ class AsyncBotsResource(AsyncAPIResource):
         datasource_ids: List[str],
         name: str,
         color_theme: Optional[str] | NotGiven = NOT_GIVEN,
-        debug: Optional[bool] | NotGiven = NOT_GIVEN,
-        extapi_ids: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        debug: bool | NotGiven = NOT_GIVEN,
+        extapi_ids: List[str] | NotGiven = NOT_GIVEN,
         magic_input: Optional[str] | NotGiven = NOT_GIVEN,
-        max_rows: Optional[int] | NotGiven = NOT_GIVEN,
+        max_rows: int | NotGiven = NOT_GIVEN,
+        publish: bool | NotGiven = NOT_GIVEN,
         sample_questions: Optional[str] | NotGiven = NOT_GIVEN,
         welcome_message: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -366,6 +379,8 @@ class AsyncBotsResource(AsyncAPIResource):
 
           max_rows: 最大返回行数，默认不限制
 
+          publish: 是否公开
+
           sample_questions: 示例问题列表
 
           welcome_message: 欢迎消息
@@ -389,6 +404,7 @@ class AsyncBotsResource(AsyncAPIResource):
                     "extapi_ids": extapi_ids,
                     "magic_input": magic_input,
                     "max_rows": max_rows,
+                    "publish": publish,
                     "sample_questions": sample_questions,
                     "welcome_message": welcome_message,
                 },
@@ -437,6 +453,7 @@ class AsyncBotsResource(AsyncAPIResource):
         self,
         bot_id: str,
         *,
+        avatar_url: Optional[str] | NotGiven = NOT_GIVEN,
         color_theme: Optional[str] | NotGiven = NOT_GIVEN,
         datasource_ids: Optional[List[str]] | NotGiven = NOT_GIVEN,
         debug: Optional[bool] | NotGiven = NOT_GIVEN,
@@ -444,6 +461,7 @@ class AsyncBotsResource(AsyncAPIResource):
         magic_input: Optional[str] | NotGiven = NOT_GIVEN,
         max_rows: Optional[int] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
+        publish: Optional[bool] | NotGiven = NOT_GIVEN,
         sample_questions: Optional[str] | NotGiven = NOT_GIVEN,
         welcome_message: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -457,6 +475,8 @@ class AsyncBotsResource(AsyncAPIResource):
         更新某个 Bot
 
         Args:
+          avatar_url: 头像 URL
+
           color_theme: 颜色主题
 
           datasource_ids: 数据源 ID，目前只支持 1 个数据源。
@@ -470,6 +490,8 @@ class AsyncBotsResource(AsyncAPIResource):
           max_rows: 最大返回行数，默认不限制
 
           name: 名称，不超过 64 个字符
+
+          publish: 是否公开
 
           sample_questions: 示例问题列表
 
@@ -489,6 +511,7 @@ class AsyncBotsResource(AsyncAPIResource):
             f"/bots/{bot_id}",
             body=await async_maybe_transform(
                 {
+                    "avatar_url": avatar_url,
                     "color_theme": color_theme,
                     "datasource_ids": datasource_ids,
                     "debug": debug,
@@ -496,6 +519,7 @@ class AsyncBotsResource(AsyncAPIResource):
                     "magic_input": magic_input,
                     "max_rows": max_rows,
                     "name": name,
+                    "publish": publish,
                     "sample_questions": sample_questions,
                     "welcome_message": welcome_message,
                 },
