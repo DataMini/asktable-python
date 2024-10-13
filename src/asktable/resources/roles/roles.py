@@ -198,6 +198,7 @@ class RolesResource(SyncAPIResource):
         *,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
+        role_ids: Optional[List[str]] | NotGiven = NOT_GIVEN,
         size: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -213,6 +214,8 @@ class RolesResource(SyncAPIResource):
           name: 角色名称
 
           page: Page number
+
+          role_ids: 角色 ID 列表
 
           size: Page size
 
@@ -235,6 +238,7 @@ class RolesResource(SyncAPIResource):
                     {
                         "name": name,
                         "page": page,
+                        "role_ids": role_ids,
                         "size": size,
                     },
                     role_list_params.RoleListParams,
@@ -432,6 +436,7 @@ class AsyncRolesResource(AsyncAPIResource):
         *,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
+        role_ids: Optional[List[str]] | NotGiven = NOT_GIVEN,
         size: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -447,6 +452,8 @@ class AsyncRolesResource(AsyncAPIResource):
           name: 角色名称
 
           page: Page number
+
+          role_ids: 角色 ID 列表
 
           size: Page size
 
@@ -469,6 +476,7 @@ class AsyncRolesResource(AsyncAPIResource):
                     {
                         "name": name,
                         "page": page,
+                        "role_ids": role_ids,
                         "size": size,
                     },
                     role_list_params.RoleListParams,

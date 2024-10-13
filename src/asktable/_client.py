@@ -57,7 +57,6 @@ class Asktable(SyncAPIClient):
     auth: resources.AuthResource
     single_turn: resources.SingleTurnResource
     caches: resources.CachesResource
-    integration: resources.IntegrationResource
     with_raw_response: AsktableWithRawResponse
     with_streaming_response: AsktableWithStreamedResponse
 
@@ -126,7 +125,6 @@ class Asktable(SyncAPIClient):
         self.auth = resources.AuthResource(self)
         self.single_turn = resources.SingleTurnResource(self)
         self.caches = resources.CachesResource(self)
-        self.integration = resources.IntegrationResource(self)
         self.with_raw_response = AsktableWithRawResponse(self)
         self.with_streaming_response = AsktableWithStreamedResponse(self)
 
@@ -247,7 +245,6 @@ class AsyncAsktable(AsyncAPIClient):
     auth: resources.AsyncAuthResource
     single_turn: resources.AsyncSingleTurnResource
     caches: resources.AsyncCachesResource
-    integration: resources.AsyncIntegrationResource
     with_raw_response: AsyncAsktableWithRawResponse
     with_streaming_response: AsyncAsktableWithStreamedResponse
 
@@ -316,7 +313,6 @@ class AsyncAsktable(AsyncAPIClient):
         self.auth = resources.AsyncAuthResource(self)
         self.single_turn = resources.AsyncSingleTurnResource(self)
         self.caches = resources.AsyncCachesResource(self)
-        self.integration = resources.AsyncIntegrationResource(self)
         self.with_raw_response = AsyncAsktableWithRawResponse(self)
         self.with_streaming_response = AsyncAsktableWithStreamedResponse(self)
 
@@ -438,7 +434,6 @@ class AsktableWithRawResponse:
         self.auth = resources.AuthResourceWithRawResponse(client.auth)
         self.single_turn = resources.SingleTurnResourceWithRawResponse(client.single_turn)
         self.caches = resources.CachesResourceWithRawResponse(client.caches)
-        self.integration = resources.IntegrationResourceWithRawResponse(client.integration)
 
 
 class AsyncAsktableWithRawResponse:
@@ -454,7 +449,6 @@ class AsyncAsktableWithRawResponse:
         self.auth = resources.AsyncAuthResourceWithRawResponse(client.auth)
         self.single_turn = resources.AsyncSingleTurnResourceWithRawResponse(client.single_turn)
         self.caches = resources.AsyncCachesResourceWithRawResponse(client.caches)
-        self.integration = resources.AsyncIntegrationResourceWithRawResponse(client.integration)
 
 
 class AsktableWithStreamedResponse:
@@ -470,7 +464,6 @@ class AsktableWithStreamedResponse:
         self.auth = resources.AuthResourceWithStreamingResponse(client.auth)
         self.single_turn = resources.SingleTurnResourceWithStreamingResponse(client.single_turn)
         self.caches = resources.CachesResourceWithStreamingResponse(client.caches)
-        self.integration = resources.IntegrationResourceWithStreamingResponse(client.integration)
 
 
 class AsyncAsktableWithStreamedResponse:
@@ -486,7 +479,6 @@ class AsyncAsktableWithStreamedResponse:
         self.auth = resources.AsyncAuthResourceWithStreamingResponse(client.auth)
         self.single_turn = resources.AsyncSingleTurnResourceWithStreamingResponse(client.single_turn)
         self.caches = resources.AsyncCachesResourceWithStreamingResponse(client.caches)
-        self.integration = resources.AsyncIntegrationResourceWithStreamingResponse(client.integration)
 
 
 Client = Asktable

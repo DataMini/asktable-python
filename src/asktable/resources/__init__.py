@@ -72,14 +72,6 @@ from .datasources import (
     DatasourcesResourceWithStreamingResponse,
     AsyncDatasourcesResourceWithStreamingResponse,
 )
-from .integration import (
-    IntegrationResource,
-    AsyncIntegrationResource,
-    IntegrationResourceWithRawResponse,
-    AsyncIntegrationResourceWithRawResponse,
-    IntegrationResourceWithStreamingResponse,
-    AsyncIntegrationResourceWithStreamingResponse,
-)
 from .single_turn import (
     SingleTurnResource,
     AsyncSingleTurnResource,
@@ -164,10 +156,4 @@ __all__ = [
     "AsyncCachesResourceWithRawResponse",
     "CachesResourceWithStreamingResponse",
     "AsyncCachesResourceWithStreamingResponse",
-    "IntegrationResource",
-    "AsyncIntegrationResource",
-    "IntegrationResourceWithRawResponse",
-    "AsyncIntegrationResourceWithRawResponse",
-    "IntegrationResourceWithStreamingResponse",
-    "AsyncIntegrationResourceWithStreamingResponse",
 ]

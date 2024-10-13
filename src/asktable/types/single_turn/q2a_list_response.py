@@ -11,7 +11,7 @@ __all__ = ["Q2aListResponse", "Item"]
 class Item(BaseModel):
     id: str
 
-    answer: object
+    answer: Optional[object] = None
 
     created_at: datetime
 
@@ -20,8 +20,6 @@ class Item(BaseModel):
 
     duration: int
 
-    err_msg: str
-
     modified_at: datetime
 
     project_id: str
@@ -29,6 +27,9 @@ class Item(BaseModel):
     question: str
 
     status: str
+
+    err_msg: Optional[str] = None
+    """错误信息"""
 
     max_rows: Optional[int] = None
     """最大返回行数，默认为 0，即不限制返回行数"""
@@ -41,6 +42,9 @@ class Item(BaseModel):
 
     role_variables: Optional[object] = None
     """在扮演这个角色时需要传递的变量值，用 Key-Value 形式传递"""
+
+    with_json: Optional[bool] = None
+    """是否同时将数据，作为 json 格式的附件一起返回"""
 
 
 class Q2aListResponse(BaseModel):

@@ -43,10 +43,10 @@ class SchemasTables(BaseModel):
     name: str
     """table_name"""
 
-    origin_desc: str
-    """table description from database"""
-
     fields: Optional[Dict[str, SchemasTablesFields]] = None
+
+    origin_desc: Optional[str] = None
+    """table description from database"""
 
 
 class Schemas(BaseModel):
@@ -59,11 +59,11 @@ class Schemas(BaseModel):
     name: str
     """schema_name"""
 
-    origin_desc: str
-    """schema description from database"""
-
     custom_configs: Optional[object] = None
     """custom configs"""
+
+    origin_desc: Optional[str] = None
+    """schema description from database"""
 
     tables: Optional[Dict[str, SchemasTables]] = None
 
