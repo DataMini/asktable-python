@@ -701,7 +701,7 @@ class TestAsktable:
         with pytest.raises(APITimeoutError):
             self.client.post(
                 "/datasources",
-                body=cast(object, dict(access_config={}, engine="mysql")),
+                body=cast(object, dict(access_config={"engine": "mysql"}, engine="mysql")),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -716,7 +716,7 @@ class TestAsktable:
         with pytest.raises(APIStatusError):
             self.client.post(
                 "/datasources",
-                body=cast(object, dict(access_config={}, engine="mysql")),
+                body=cast(object, dict(access_config={"engine": "mysql"}, engine="mysql")),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -740,7 +740,7 @@ class TestAsktable:
 
         respx_mock.post("/datasources").mock(side_effect=retry_handler)
 
-        response = client.datasources.with_raw_response.create(access_config={}, engine="mysql")
+        response = client.datasources.with_raw_response.create(access_config={"engine": "mysql"}, engine="mysql")
 
         assert response.retries_taken == failures_before_success
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
@@ -765,7 +765,7 @@ class TestAsktable:
         respx_mock.post("/datasources").mock(side_effect=retry_handler)
 
         response = client.datasources.with_raw_response.create(
-            access_config={}, engine="mysql", extra_headers={"x-stainless-retry-count": Omit()}
+            access_config={"engine": "mysql"}, engine="mysql", extra_headers={"x-stainless-retry-count": Omit()}
         )
 
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
@@ -790,7 +790,7 @@ class TestAsktable:
         respx_mock.post("/datasources").mock(side_effect=retry_handler)
 
         response = client.datasources.with_raw_response.create(
-            access_config={}, engine="mysql", extra_headers={"x-stainless-retry-count": "42"}
+            access_config={"engine": "mysql"}, engine="mysql", extra_headers={"x-stainless-retry-count": "42"}
         )
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"
@@ -1461,7 +1461,7 @@ class TestAsyncAsktable:
         with pytest.raises(APITimeoutError):
             await self.client.post(
                 "/datasources",
-                body=cast(object, dict(access_config={}, engine="mysql")),
+                body=cast(object, dict(access_config={"engine": "mysql"}, engine="mysql")),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -1476,7 +1476,7 @@ class TestAsyncAsktable:
         with pytest.raises(APIStatusError):
             await self.client.post(
                 "/datasources",
-                body=cast(object, dict(access_config={}, engine="mysql")),
+                body=cast(object, dict(access_config={"engine": "mysql"}, engine="mysql")),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -1503,7 +1503,7 @@ class TestAsyncAsktable:
 
         respx_mock.post("/datasources").mock(side_effect=retry_handler)
 
-        response = await client.datasources.with_raw_response.create(access_config={}, engine="mysql")
+        response = await client.datasources.with_raw_response.create(access_config={"engine": "mysql"}, engine="mysql")
 
         assert response.retries_taken == failures_before_success
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
@@ -1529,7 +1529,7 @@ class TestAsyncAsktable:
         respx_mock.post("/datasources").mock(side_effect=retry_handler)
 
         response = await client.datasources.with_raw_response.create(
-            access_config={}, engine="mysql", extra_headers={"x-stainless-retry-count": Omit()}
+            access_config={"engine": "mysql"}, engine="mysql", extra_headers={"x-stainless-retry-count": Omit()}
         )
 
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
@@ -1555,7 +1555,7 @@ class TestAsyncAsktable:
         respx_mock.post("/datasources").mock(side_effect=retry_handler)
 
         response = await client.datasources.with_raw_response.create(
-            access_config={}, engine="mysql", extra_headers={"x-stainless-retry-count": "42"}
+            access_config={"engine": "mysql"}, engine="mysql", extra_headers={"x-stainless-retry-count": "42"}
         )
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"
