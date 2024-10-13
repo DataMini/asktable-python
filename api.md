@@ -203,30 +203,6 @@ Methods:
 
 - <code title="post /datasources/upload_params">client.datasources.upload_params.<a href="./src/asktable/resources/datasources/upload_params.py">create</a>(\*\*<a href="src/asktable/types/datasources/upload_param_create_params.py">params</a>) -> <a href="./src/asktable/types/datasources/upload_param_create_response.py">object</a></code>
 
-## UploadFile
-
-Types:
-
-```python
-from asktable.types.datasources import UploadFileCreateResponse
-```
-
-Methods:
-
-- <code title="post /datasources/upload_file">client.datasources.upload_file.<a href="./src/asktable/resources/datasources/upload_file.py">create</a>(\*\*<a href="src/asktable/types/datasources/upload_file_create_params.py">params</a>) -> <a href="./src/asktable/types/datasources/upload_file_create_response.py">object</a></code>
-
-## DownloadURL
-
-Types:
-
-```python
-from asktable.types.datasources import DownloadURLRetrieveResponse
-```
-
-Methods:
-
-- <code title="get /datasources/{datasource_id}/download_url">client.datasources.download_url.<a href="./src/asktable/resources/datasources/download_url.py">retrieve</a>(datasource_id) -> <a href="./src/asktable/types/datasources/download_url_retrieve_response.py">object</a></code>
-
 # Bots
 
 Types:

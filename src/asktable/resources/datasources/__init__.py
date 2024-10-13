@@ -16,22 +16,6 @@ from .datasources import (
     DatasourcesResourceWithStreamingResponse,
     AsyncDatasourcesResourceWithStreamingResponse,
 )
-from .upload_file import (
-    UploadFileResource,
-    AsyncUploadFileResource,
-    UploadFileResourceWithRawResponse,
-    AsyncUploadFileResourceWithRawResponse,
-    UploadFileResourceWithStreamingResponse,
-    AsyncUploadFileResourceWithStreamingResponse,
-)
-from .download_url import (
-    DownloadURLResource,
-    AsyncDownloadURLResource,
-    DownloadURLResourceWithRawResponse,
-    AsyncDownloadURLResourceWithRawResponse,
-    DownloadURLResourceWithStreamingResponse,
-    AsyncDownloadURLResourceWithStreamingResponse,
-)
 from .upload_params import (
     UploadParamsResource,
     AsyncUploadParamsResource,
@@ -54,18 +38,6 @@ __all__ = [
     "AsyncUploadParamsResourceWithRawResponse",
     "UploadParamsResourceWithStreamingResponse",
     "AsyncUploadParamsResourceWithStreamingResponse",
-    "UploadFileResource",
-    "AsyncUploadFileResource",
-    "UploadFileResourceWithRawResponse",
-    "AsyncUploadFileResourceWithRawResponse",
-    "UploadFileResourceWithStreamingResponse",
-    "AsyncUploadFileResourceWithStreamingResponse",
-    "DownloadURLResource",
-    "AsyncDownloadURLResource",
-    "DownloadURLResourceWithRawResponse",
-    "AsyncDownloadURLResourceWithRawResponse",
-    "DownloadURLResourceWithStreamingResponse",
-    "AsyncDownloadURLResourceWithStreamingResponse",
     "DatasourcesResource",
     "AsyncDatasourcesResource",
     "DatasourcesResourceWithRawResponse",
