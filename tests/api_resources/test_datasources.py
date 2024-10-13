@@ -23,7 +23,7 @@ class TestDatasources:
     @parametrize
     def test_method_create(self, client: Asktable) -> None:
         datasource = client.datasources.create(
-            access_config={"engine": "mysql"},
+            access_config={},
             engine="mysql",
         )
         assert_matches_type(DataSource, datasource, path=["response"])
@@ -32,7 +32,6 @@ class TestDatasources:
     def test_method_create_with_all_params(self, client: Asktable) -> None:
         datasource = client.datasources.create(
             access_config={
-                "engine": "mysql",
                 "db": "test",
                 "host": "192.168.0.10",
                 "location_type": "local",
@@ -52,7 +51,7 @@ class TestDatasources:
     @parametrize
     def test_raw_response_create(self, client: Asktable) -> None:
         response = client.datasources.with_raw_response.create(
-            access_config={"engine": "mysql"},
+            access_config={},
             engine="mysql",
         )
 
@@ -64,7 +63,7 @@ class TestDatasources:
     @parametrize
     def test_streaming_response_create(self, client: Asktable) -> None:
         with client.datasources.with_streaming_response.create(
-            access_config={"engine": "mysql"},
+            access_config={},
             engine="mysql",
         ) as response:
             assert not response.is_closed
@@ -125,7 +124,6 @@ class TestDatasources:
         datasource = client.datasources.update(
             datasource_id="datasource_id",
             access_config={
-                "engine": "mysql",
                 "db": "test",
                 "host": "192.168.0.10",
                 "location_type": "local",
@@ -255,7 +253,7 @@ class TestAsyncDatasources:
     @parametrize
     async def test_method_create(self, async_client: AsyncAsktable) -> None:
         datasource = await async_client.datasources.create(
-            access_config={"engine": "mysql"},
+            access_config={},
             engine="mysql",
         )
         assert_matches_type(DataSource, datasource, path=["response"])
@@ -264,7 +262,6 @@ class TestAsyncDatasources:
     async def test_method_create_with_all_params(self, async_client: AsyncAsktable) -> None:
         datasource = await async_client.datasources.create(
             access_config={
-                "engine": "mysql",
                 "db": "test",
                 "host": "192.168.0.10",
                 "location_type": "local",
@@ -284,7 +281,7 @@ class TestAsyncDatasources:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncAsktable) -> None:
         response = await async_client.datasources.with_raw_response.create(
-            access_config={"engine": "mysql"},
+            access_config={},
             engine="mysql",
         )
 
@@ -296,7 +293,7 @@ class TestAsyncDatasources:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncAsktable) -> None:
         async with async_client.datasources.with_streaming_response.create(
-            access_config={"engine": "mysql"},
+            access_config={},
             engine="mysql",
         ) as response:
             assert not response.is_closed
@@ -357,7 +354,6 @@ class TestAsyncDatasources:
         datasource = await async_client.datasources.update(
             datasource_id="datasource_id",
             access_config={
-                "engine": "mysql",
                 "db": "test",
                 "host": "192.168.0.10",
                 "location_type": "local",

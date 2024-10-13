@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Optional
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, TypedDict
 
 __all__ = ["DatasourceUpdateParams", "AccessConfig"]
 
@@ -35,9 +35,6 @@ class DatasourceUpdateParams(TypedDict, total=False):
 
 
 class AccessConfig(TypedDict, total=False):
-    engine: Required[Literal["mysql", "tidb", "postgresql", "oceanbase", "clickhouse", "csv", "excel"]]
-    """数据库引擎"""
-
     db: Optional[str]
     """数据库引擎可以管理多个数据库，此参数用于指定数据库名称"""
 
