@@ -246,6 +246,50 @@ class TestDatasources:
                 "",
             )
 
+    @parametrize
+    def test_method_create_from_file(self, client: Asktable) -> None:
+        datasource = client.datasources.create_from_file(
+            name="name",
+            file=b"raw file contents",
+        )
+        assert_matches_type(DataSource, datasource, path=["response"])
+
+    @parametrize
+    def test_method_create_from_file_with_all_params(self, client: Asktable) -> None:
+        datasource = client.datasources.create_from_file(
+            name="name",
+            file=b"raw file contents",
+            async_process_meta=True,
+            skip_process_meta=True,
+        )
+        assert_matches_type(DataSource, datasource, path=["response"])
+
+    @parametrize
+    def test_raw_response_create_from_file(self, client: Asktable) -> None:
+        response = client.datasources.with_raw_response.create_from_file(
+            name="name",
+            file=b"raw file contents",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        datasource = response.parse()
+        assert_matches_type(DataSource, datasource, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create_from_file(self, client: Asktable) -> None:
+        with client.datasources.with_streaming_response.create_from_file(
+            name="name",
+            file=b"raw file contents",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            datasource = response.parse()
+            assert_matches_type(DataSource, datasource, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
 
 class TestAsyncDatasources:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
@@ -475,3 +519,47 @@ class TestAsyncDatasources:
             await async_client.datasources.with_raw_response.delete(
                 "",
             )
+
+    @parametrize
+    async def test_method_create_from_file(self, async_client: AsyncAsktable) -> None:
+        datasource = await async_client.datasources.create_from_file(
+            name="name",
+            file=b"raw file contents",
+        )
+        assert_matches_type(DataSource, datasource, path=["response"])
+
+    @parametrize
+    async def test_method_create_from_file_with_all_params(self, async_client: AsyncAsktable) -> None:
+        datasource = await async_client.datasources.create_from_file(
+            name="name",
+            file=b"raw file contents",
+            async_process_meta=True,
+            skip_process_meta=True,
+        )
+        assert_matches_type(DataSource, datasource, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create_from_file(self, async_client: AsyncAsktable) -> None:
+        response = await async_client.datasources.with_raw_response.create_from_file(
+            name="name",
+            file=b"raw file contents",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        datasource = await response.parse()
+        assert_matches_type(DataSource, datasource, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create_from_file(self, async_client: AsyncAsktable) -> None:
+        async with async_client.datasources.with_streaming_response.create_from_file(
+            name="name",
+            file=b"raw file contents",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            datasource = await response.parse()
+            assert_matches_type(DataSource, datasource, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
