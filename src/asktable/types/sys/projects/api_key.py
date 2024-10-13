@@ -13,7 +13,7 @@ class APIKey(BaseModel):
     id: str
     """API Key ID"""
 
-    ak_role: Literal["sys", "admin", "asker"]
+    ak_role: Literal["sys", "admin", "asker", "visitor"]
     """API key 的角色"""
 
     created_at: datetime

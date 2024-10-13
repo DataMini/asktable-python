@@ -26,3 +26,6 @@ class Q2aCreateParams(TypedDict, total=False):
 
     role_variables: Optional[object]
     """在扮演这个角色时需要传递的变量值，用 Key-Value 形式传递"""
+
+    with_json: Optional[bool]
+    """是否同时将数据，作为 json 格式的附件一起返回"""

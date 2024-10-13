@@ -49,7 +49,7 @@ class TokensResource(SyncAPIResource):
     def create(
         self,
         *,
-        ak_role: Literal["admin", "asker"] | NotGiven = NOT_GIVEN,
+        ak_role: Literal["sys", "admin", "asker", "visitor"] | NotGiven = NOT_GIVEN,
         chat_role: Optional[token_create_params.ChatRole] | NotGiven = NOT_GIVEN,
         token_ttl: int | NotGiven = NOT_GIVEN,
         user_profile: Optional[object] | NotGiven = NOT_GIVEN,
@@ -121,7 +121,7 @@ class AsyncTokensResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        ak_role: Literal["admin", "asker"] | NotGiven = NOT_GIVEN,
+        ak_role: Literal["sys", "admin", "asker", "visitor"] | NotGiven = NOT_GIVEN,
         chat_role: Optional[token_create_params.ChatRole] | NotGiven = NOT_GIVEN,
         token_ttl: int | NotGiven = NOT_GIVEN,
         user_profile: Optional[object] | NotGiven = NOT_GIVEN,

@@ -9,7 +9,7 @@ __all__ = ["TokenCreateParams", "ChatRole"]
 
 
 class TokenCreateParams(TypedDict, total=False):
-    ak_role: Literal["admin", "asker"]
+    ak_role: Literal["sys", "admin", "asker", "visitor"]
     """The role for the API key"""
 
     chat_role: Optional[ChatRole]

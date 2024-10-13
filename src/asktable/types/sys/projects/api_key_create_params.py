@@ -8,5 +8,5 @@ __all__ = ["APIKeyCreateParams"]
 
 
 class APIKeyCreateParams(TypedDict, total=False):
-    ak_role: Required[Literal["sys", "admin", "asker"]]
+    ak_role: Required[Literal["sys", "admin", "asker", "visitor"]]
     """API key 的角色"""

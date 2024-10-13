@@ -9,6 +9,9 @@ __all__ = ["BotUpdateParams"]
 
 
 class BotUpdateParams(TypedDict, total=False):
+    avatar_url: Optional[str]
+    """头像 URL"""
+
     color_theme: Optional[str]
     """颜色主题"""
 
@@ -29,6 +32,9 @@ class BotUpdateParams(TypedDict, total=False):
 
     name: Optional[str]
     """名称，不超过 64 个字符"""
+
+    publish: Optional[bool]
+    """是否公开"""
 
     sample_questions: Optional[str]
     """示例问题列表"""

@@ -334,9 +334,3 @@ Methods:
 Methods:
 
 - <code title="delete /caches/{cache_id}">client.caches.<a href="./src/asktable/resources/caches.py">delete</a>(cache_id) -> None</code>
-
-# Integration
-
-Methods:
-
-- <code title="post /integration/excel_ask">client.integration.<a href="./src/asktable/resources/integration.py">excel_ask</a>(\*\*<a href="src/asktable/types/integration_excel_ask_params.py">params</a>) -> <a href="./src/asktable/types/shared/answer_model.py">AnswerModel</a></code>

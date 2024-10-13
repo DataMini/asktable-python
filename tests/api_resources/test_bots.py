@@ -35,6 +35,7 @@ class TestBots:
             extapi_ids=["string", "string", "string"],
             magic_input="magic_input",
             max_rows=50,
+            publish=True,
             sample_questions="你好！今天中午有什么适合我的午餐？",
             welcome_message="欢迎使用AskTable",
         )
@@ -115,6 +116,7 @@ class TestBots:
     def test_method_update_with_all_params(self, client: Asktable) -> None:
         bot = client.bots.update(
             bot_id="bot_id",
+            avatar_url="avatar_url",
             color_theme="default",
             datasource_ids=["ds_sJAbnNOUzu3R4DdCCOwe"],
             debug=True,
@@ -122,6 +124,7 @@ class TestBots:
             magic_input="magic_input",
             max_rows=50,
             name="name",
+            publish=True,
             sample_questions="你好！今天中午有什么适合我的午餐？",
             welcome_message="欢迎使用AskTable",
         )
@@ -252,6 +255,7 @@ class TestAsyncBots:
             extapi_ids=["string", "string", "string"],
             magic_input="magic_input",
             max_rows=50,
+            publish=True,
             sample_questions="你好！今天中午有什么适合我的午餐？",
             welcome_message="欢迎使用AskTable",
         )
@@ -332,6 +336,7 @@ class TestAsyncBots:
     async def test_method_update_with_all_params(self, async_client: AsyncAsktable) -> None:
         bot = await async_client.bots.update(
             bot_id="bot_id",
+            avatar_url="avatar_url",
             color_theme="default",
             datasource_ids=["ds_sJAbnNOUzu3R4DdCCOwe"],
             debug=True,
@@ -339,6 +344,7 @@ class TestAsyncBots:
             magic_input="magic_input",
             max_rows=50,
             name="name",
+            publish=True,
             sample_questions="你好！今天中午有什么适合我的午餐？",
             welcome_message="欢迎使用AskTable",
         )

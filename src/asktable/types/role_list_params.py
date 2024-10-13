@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import List, Optional
 from typing_extensions import TypedDict
 
 __all__ = ["RoleListParams"]
@@ -14,6 +14,9 @@ class RoleListParams(TypedDict, total=False):
 
     page: int
     """Page number"""
+
+    role_ids: Optional[List[str]]
+    """角色 ID 列表"""
 
     size: int
     """Page size"""

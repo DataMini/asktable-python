@@ -23,6 +23,9 @@ class ChatBot(BaseModel):
 
     project_id: str
 
+    avatar_url: Optional[str] = None
+    """头像 URL"""
+
     color_theme: Optional[str] = None
     """颜色主题"""
 
@@ -37,6 +40,9 @@ class ChatBot(BaseModel):
 
     max_rows: Optional[int] = None
     """最大返回行数，默认不限制"""
+
+    publish: Optional[bool] = None
+    """是否公开"""
 
     sample_questions: Optional[str] = None
     """示例问题列表"""

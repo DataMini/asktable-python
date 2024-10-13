@@ -51,7 +51,7 @@ class APIKeysResource(SyncAPIResource):
         self,
         project_id: str,
         *,
-        ak_role: Literal["sys", "admin", "asker"],
+        ak_role: Literal["sys", "admin", "asker", "visitor"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -179,7 +179,7 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         self,
         project_id: str,
         *,
-        ak_role: Literal["sys", "admin", "asker"],
+        ak_role: Literal["sys", "admin", "asker", "visitor"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

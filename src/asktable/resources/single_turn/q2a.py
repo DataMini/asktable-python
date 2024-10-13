@@ -55,6 +55,7 @@ class Q2aResource(SyncAPIResource):
         max_rows: Optional[int] | NotGiven = NOT_GIVEN,
         role_id: Optional[str] | NotGiven = NOT_GIVEN,
         role_variables: Optional[object] | NotGiven = NOT_GIVEN,
+        with_json: Optional[bool] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -77,6 +78,8 @@ class Q2aResource(SyncAPIResource):
 
           role_variables: 在扮演这个角色时需要传递的变量值，用 Key-Value 形式传递
 
+          with_json: 是否同时将数据，作为 json 格式的附件一起返回
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -94,6 +97,7 @@ class Q2aResource(SyncAPIResource):
                     "max_rows": max_rows,
                     "role_id": role_id,
                     "role_variables": role_variables,
+                    "with_json": with_json,
                 },
                 q2a_create_params.Q2aCreateParams,
             ),
@@ -182,6 +186,7 @@ class AsyncQ2aResource(AsyncAPIResource):
         max_rows: Optional[int] | NotGiven = NOT_GIVEN,
         role_id: Optional[str] | NotGiven = NOT_GIVEN,
         role_variables: Optional[object] | NotGiven = NOT_GIVEN,
+        with_json: Optional[bool] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -204,6 +209,8 @@ class AsyncQ2aResource(AsyncAPIResource):
 
           role_variables: 在扮演这个角色时需要传递的变量值，用 Key-Value 形式传递
 
+          with_json: 是否同时将数据，作为 json 格式的附件一起返回
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -221,6 +228,7 @@ class AsyncQ2aResource(AsyncAPIResource):
                     "max_rows": max_rows,
                     "role_id": role_id,
                     "role_variables": role_variables,
+                    "with_json": with_json,
                 },
                 q2a_create_params.Q2aCreateParams,
             ),

@@ -229,6 +229,7 @@ class TestPolicies:
         policy = client.policies.list(
             name="name",
             page=1,
+            policy_ids=["string", "string", "string"],
             size=1,
         )
         assert_matches_type(PolicyListResponse, policy, path=["response"])
@@ -506,6 +507,7 @@ class TestAsyncPolicies:
         policy = await async_client.policies.list(
             name="name",
             page=1,
+            policy_ids=["string", "string", "string"],
             size=1,
         )
         assert_matches_type(PolicyListResponse, policy, path=["response"])

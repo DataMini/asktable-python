@@ -37,4 +37,3 @@ from .securetunnel_list_params import SecuretunnelListParams as SecuretunnelList
 from .securetunnel_create_params import SecuretunnelCreateParams as SecuretunnelCreateParams
 from .securetunnel_list_response import SecuretunnelListResponse as SecuretunnelListResponse
 from .securetunnel_update_params import SecuretunnelUpdateParams as SecuretunnelUpdateParams
-from .integration_excel_ask_params import IntegrationExcelAskParams as IntegrationExcelAskParams
