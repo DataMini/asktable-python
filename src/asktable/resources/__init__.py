@@ -72,6 +72,14 @@ from .datasources import (
     DatasourcesResourceWithStreamingResponse,
     AsyncDatasourcesResourceWithStreamingResponse,
 )
+from .integration import (
+    IntegrationResource,
+    AsyncIntegrationResource,
+    IntegrationResourceWithRawResponse,
+    AsyncIntegrationResourceWithRawResponse,
+    IntegrationResourceWithStreamingResponse,
+    AsyncIntegrationResourceWithStreamingResponse,
+)
 from .single_turn import (
     SingleTurnResource,
     AsyncSingleTurnResource,
@@ -90,12 +98,6 @@ from .securetunnels import (
 )
 
 __all__ = [
-    "SysResource",
-    "AsyncSysResource",
-    "SysResourceWithRawResponse",
-    "AsyncSysResourceWithRawResponse",
-    "SysResourceWithStreamingResponse",
-    "AsyncSysResourceWithStreamingResponse",
     "SecuretunnelsResource",
     "AsyncSecuretunnelsResource",
     "SecuretunnelsResourceWithRawResponse",
@@ -156,4 +158,16 @@ __all__ = [
     "AsyncCachesResourceWithRawResponse",
     "CachesResourceWithStreamingResponse",
     "AsyncCachesResourceWithStreamingResponse",
+    "IntegrationResource",
+    "AsyncIntegrationResource",
+    "IntegrationResourceWithRawResponse",
+    "AsyncIntegrationResourceWithRawResponse",
+    "IntegrationResourceWithStreamingResponse",
+    "AsyncIntegrationResourceWithStreamingResponse",
+    "SysResource",
+    "AsyncSysResource",
+    "SysResourceWithRawResponse",
+    "AsyncSysResourceWithRawResponse",
+    "SysResourceWithStreamingResponse",
+    "AsyncSysResourceWithStreamingResponse",
 ]

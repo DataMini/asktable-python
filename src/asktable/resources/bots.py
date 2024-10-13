@@ -6,7 +6,7 @@ from typing import List, Optional
 
 import httpx
 
-from ..types import bot_list_params, bot_create_params, bot_update_params
+from ..types import bot_list_params, bot_create_params, bot_invite_params, bot_update_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
     maybe_transform,
@@ -320,6 +320,44 @@ class BotsResource(SyncAPIResource):
             cast_to=object,
         )
 
+    def invite(
+        self,
+        bot_id: str,
+        *,
+        project_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        邀请用户加入对话
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not bot_id:
+            raise ValueError(f"Expected a non-empty value for `bot_id` but received {bot_id!r}")
+        return self._post(
+            f"/bots/{bot_id}/invite",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"project_id": project_id}, bot_invite_params.BotInviteParams),
+            ),
+            cast_to=object,
+        )
+
 
 class AsyncBotsResource(AsyncAPIResource):
     @cached_property
@@ -614,6 +652,44 @@ class AsyncBotsResource(AsyncAPIResource):
             cast_to=object,
         )
 
+    async def invite(
+        self,
+        bot_id: str,
+        *,
+        project_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        邀请用户加入对话
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not bot_id:
+            raise ValueError(f"Expected a non-empty value for `bot_id` but received {bot_id!r}")
+        return await self._post(
+            f"/bots/{bot_id}/invite",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform({"project_id": project_id}, bot_invite_params.BotInviteParams),
+            ),
+            cast_to=object,
+        )
+
 
 class BotsResourceWithRawResponse:
     def __init__(self, bots: BotsResource) -> None:
@@ -633,6 +709,9 @@ class BotsResourceWithRawResponse:
         )
         self.delete = to_raw_response_wrapper(
             bots.delete,
+        )
+        self.invite = to_raw_response_wrapper(
+            bots.invite,
         )
 
 
@@ -655,6 +734,9 @@ class AsyncBotsResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             bots.delete,
         )
+        self.invite = async_to_raw_response_wrapper(
+            bots.invite,
+        )
 
 
 class BotsResourceWithStreamingResponse:
@@ -676,6 +758,9 @@ class BotsResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             bots.delete,
         )
+        self.invite = to_streamed_response_wrapper(
+            bots.invite,
+        )
 
 
 class AsyncBotsResourceWithStreamingResponse:
@@ -696,4 +781,7 @@ class AsyncBotsResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             bots.delete,
+        )
+        self.invite = async_to_streamed_response_wrapper(
+            bots.invite,
         )
