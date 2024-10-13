@@ -113,7 +113,7 @@ from asktable.types.chats import MessageModel, MessageListResponse
 
 Methods:
 
-- <code title="post /chats/{chat_id}/messages">client.chats.messages.<a href="./src/asktable/resources/chats/messages.py">create</a>(chat_id, \*\*<a href="src/asktable/types/chats/message_create_params.py">params</a>) -> <a href="./src/asktable/types/shared/message.py">Message</a></code>
+- <code title="post /chats/{chat_id}">client.chats.messages.<a href="./src/asktable/resources/chats/messages.py">create</a>(chat_id, \*\*<a href="src/asktable/types/chats/message_create_params.py">params</a>) -> <a href="./src/asktable/types/shared/message.py">Message</a></code>
 - <code title="get /chats/{chat_id}/messages/{message_id}">client.chats.messages.<a href="./src/asktable/resources/chats/messages.py">retrieve</a>(message_id, \*, chat_id) -> <a href="./src/asktable/types/shared/message.py">Message</a></code>
 - <code title="get /chats/{chat_id}/messages">client.chats.messages.<a href="./src/asktable/resources/chats/messages.py">list</a>(chat_id, \*\*<a href="src/asktable/types/chats/message_list_params.py">params</a>) -> <a href="./src/asktable/types/chats/message_list_response.py">MessageListResponse</a></code>
 
@@ -132,7 +132,6 @@ Methods:
 - <code title="patch /datasources/{datasource_id}">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">update</a>(datasource_id, \*\*<a href="src/asktable/types/datasource_update_params.py">params</a>) -> <a href="./src/asktable/types/data_source.py">DataSource</a></code>
 - <code title="get /datasources">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">list</a>(\*\*<a href="src/asktable/types/datasource_list_params.py">params</a>) -> <a href="./src/asktable/types/datasource_list_response.py">DatasourceListResponse</a></code>
 - <code title="delete /datasources/{datasource_id}">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">delete</a>(datasource_id) -> <a href="./src/asktable/types/datasource_delete_response.py">object</a></code>
-- <code title="post /datasources/file">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">create_from_file</a>(\*\*<a href="src/asktable/types/datasource_create_from_file_params.py">params</a>) -> <a href="./src/asktable/types/data_source.py">DataSource</a></code>
 
 ## Meta
 

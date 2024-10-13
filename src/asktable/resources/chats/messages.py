@@ -72,7 +72,7 @@ class MessagesResource(SyncAPIResource):
         if not chat_id:
             raise ValueError(f"Expected a non-empty value for `chat_id` but received {chat_id!r}")
         return self._post(
-            f"/chats/{chat_id}/messages",
+            f"/chats/{chat_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -216,7 +216,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         if not chat_id:
             raise ValueError(f"Expected a non-empty value for `chat_id` but received {chat_id!r}")
         return await self._post(
-            f"/chats/{chat_id}/messages",
+            f"/chats/{chat_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

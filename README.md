@@ -84,7 +84,7 @@ client = Asktable()
 
 try:
     client.datasources.create(
-        access_config={},
+        access_config={"engine": "mysql"},
         engine="mysql",
     )
 except asktable.APIConnectionError as e:
@@ -130,7 +130,7 @@ client = Asktable(
 
 # Or, configure per-request:
 client.with_options(max_retries=5).datasources.create(
-    access_config={},
+    access_config={"engine": "mysql"},
     engine="mysql",
 )
 ```
@@ -156,7 +156,7 @@ client = Asktable(
 
 # Override per-request:
 client.with_options(timeout=5.0).datasources.create(
-    access_config={},
+    access_config={"engine": "mysql"},
     engine="mysql",
 )
 ```
@@ -198,7 +198,9 @@ from asktable import Asktable
 
 client = Asktable()
 response = client.datasources.with_raw_response.create(
-    access_config={},
+    access_config={
+        "engine": "mysql"
+    },
     engine="mysql",
 )
 print(response.headers.get('X-My-Header'))
@@ -219,7 +221,7 @@ To stream the response body, use `.with_streaming_response` instead, which requi
 
 ```python
 with client.datasources.with_streaming_response.create(
-    access_config={},
+    access_config={"engine": "mysql"},
     engine="mysql",
 ) as response:
     print(response.headers.get("X-My-Header"))
