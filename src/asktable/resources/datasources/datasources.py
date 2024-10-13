@@ -29,22 +29,6 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .upload_file import (
-    UploadFileResource,
-    AsyncUploadFileResource,
-    UploadFileResourceWithRawResponse,
-    AsyncUploadFileResourceWithRawResponse,
-    UploadFileResourceWithStreamingResponse,
-    AsyncUploadFileResourceWithStreamingResponse,
-)
-from .download_url import (
-    DownloadURLResource,
-    AsyncDownloadURLResource,
-    DownloadURLResourceWithRawResponse,
-    AsyncDownloadURLResourceWithRawResponse,
-    DownloadURLResourceWithStreamingResponse,
-    AsyncDownloadURLResourceWithStreamingResponse,
-)
 from .upload_params import (
     UploadParamsResource,
     AsyncUploadParamsResource,
@@ -68,14 +52,6 @@ class DatasourcesResource(SyncAPIResource):
     @cached_property
     def upload_params(self) -> UploadParamsResource:
         return UploadParamsResource(self._client)
-
-    @cached_property
-    def upload_file(self) -> UploadFileResource:
-        return UploadFileResource(self._client)
-
-    @cached_property
-    def download_url(self) -> DownloadURLResource:
-        return DownloadURLResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> DatasourcesResourceWithRawResponse:
@@ -352,14 +328,6 @@ class AsyncDatasourcesResource(AsyncAPIResource):
     @cached_property
     def upload_params(self) -> AsyncUploadParamsResource:
         return AsyncUploadParamsResource(self._client)
-
-    @cached_property
-    def upload_file(self) -> AsyncUploadFileResource:
-        return AsyncUploadFileResource(self._client)
-
-    @cached_property
-    def download_url(self) -> AsyncDownloadURLResource:
-        return AsyncDownloadURLResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncDatasourcesResourceWithRawResponse:
@@ -656,14 +624,6 @@ class DatasourcesResourceWithRawResponse:
     def upload_params(self) -> UploadParamsResourceWithRawResponse:
         return UploadParamsResourceWithRawResponse(self._datasources.upload_params)
 
-    @cached_property
-    def upload_file(self) -> UploadFileResourceWithRawResponse:
-        return UploadFileResourceWithRawResponse(self._datasources.upload_file)
-
-    @cached_property
-    def download_url(self) -> DownloadURLResourceWithRawResponse:
-        return DownloadURLResourceWithRawResponse(self._datasources.download_url)
-
 
 class AsyncDatasourcesResourceWithRawResponse:
     def __init__(self, datasources: AsyncDatasourcesResource) -> None:
@@ -692,14 +652,6 @@ class AsyncDatasourcesResourceWithRawResponse:
     @cached_property
     def upload_params(self) -> AsyncUploadParamsResourceWithRawResponse:
         return AsyncUploadParamsResourceWithRawResponse(self._datasources.upload_params)
-
-    @cached_property
-    def upload_file(self) -> AsyncUploadFileResourceWithRawResponse:
-        return AsyncUploadFileResourceWithRawResponse(self._datasources.upload_file)
-
-    @cached_property
-    def download_url(self) -> AsyncDownloadURLResourceWithRawResponse:
-        return AsyncDownloadURLResourceWithRawResponse(self._datasources.download_url)
 
 
 class DatasourcesResourceWithStreamingResponse:
@@ -730,14 +682,6 @@ class DatasourcesResourceWithStreamingResponse:
     def upload_params(self) -> UploadParamsResourceWithStreamingResponse:
         return UploadParamsResourceWithStreamingResponse(self._datasources.upload_params)
 
-    @cached_property
-    def upload_file(self) -> UploadFileResourceWithStreamingResponse:
-        return UploadFileResourceWithStreamingResponse(self._datasources.upload_file)
-
-    @cached_property
-    def download_url(self) -> DownloadURLResourceWithStreamingResponse:
-        return DownloadURLResourceWithStreamingResponse(self._datasources.download_url)
-
 
 class AsyncDatasourcesResourceWithStreamingResponse:
     def __init__(self, datasources: AsyncDatasourcesResource) -> None:
@@ -766,11 +710,3 @@ class AsyncDatasourcesResourceWithStreamingResponse:
     @cached_property
     def upload_params(self) -> AsyncUploadParamsResourceWithStreamingResponse:
         return AsyncUploadParamsResourceWithStreamingResponse(self._datasources.upload_params)
-
-    @cached_property
-    def upload_file(self) -> AsyncUploadFileResourceWithStreamingResponse:
-        return AsyncUploadFileResourceWithStreamingResponse(self._datasources.upload_file)
-
-    @cached_property
-    def download_url(self) -> AsyncDownloadURLResourceWithStreamingResponse:
-        return AsyncDownloadURLResourceWithStreamingResponse(self._datasources.download_url)
