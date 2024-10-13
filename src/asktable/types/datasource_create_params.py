@@ -26,9 +26,6 @@ class DatasourceCreateParams(TypedDict, total=False):
 
 
 class AccessConfig(TypedDict, total=False):
-    engine: Required[Literal["mysql", "tidb", "postgresql", "oceanbase", "clickhouse", "csv", "excel"]]
-    """数据库引擎"""
-
     db: Optional[str]
     """数据库引擎可以管理多个数据库，此参数用于指定数据库名称"""
 
