@@ -121,15 +121,14 @@ class TestMeta:
                     "curr_desc": "curr_desc",
                     "curr_desc_stat": "curr_desc_stat",
                     "name": "name",
-                    "origin_desc": "origin_desc",
                     "custom_configs": {},
+                    "origin_desc": "origin_desc",
                     "tables": {
                         "foo": {
                             "curr_desc": "curr_desc",
                             "curr_desc_stat": "curr_desc_stat",
                             "full_name": "full_name",
                             "name": "name",
-                            "origin_desc": "origin_desc",
                             "fields": {
                                 "foo": {
                                     "curr_desc": "curr_desc",
@@ -141,6 +140,7 @@ class TestMeta:
                                     "sample_data": "sample_data",
                                 }
                             },
+                            "origin_desc": "origin_desc",
                         }
                     },
                 }
@@ -293,15 +293,14 @@ class TestAsyncMeta:
                     "curr_desc": "curr_desc",
                     "curr_desc_stat": "curr_desc_stat",
                     "name": "name",
-                    "origin_desc": "origin_desc",
                     "custom_configs": {},
+                    "origin_desc": "origin_desc",
                     "tables": {
                         "foo": {
                             "curr_desc": "curr_desc",
                             "curr_desc_stat": "curr_desc_stat",
                             "full_name": "full_name",
                             "name": "name",
-                            "origin_desc": "origin_desc",
                             "fields": {
                                 "foo": {
                                     "curr_desc": "curr_desc",
@@ -313,6 +312,7 @@ class TestAsyncMeta:
                                     "sample_data": "sample_data",
                                 }
                             },
+                            "origin_desc": "origin_desc",
                         }
                     },
                 }

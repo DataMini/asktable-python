@@ -1,5 +1,25 @@
 # Changelog
 
+## 3.1.0 (2024-10-13)
+
+Full Changelog: [v3.0.0...v3.1.0](https://github.com/DataMini/asktable-python/compare/v3.0.0...v3.1.0)
+
+### Features
+
+* **api:** api update ([#10](https://github.com/DataMini/asktable-python/issues/10)) ([4cbdddc](https://github.com/DataMini/asktable-python/commit/4cbdddc99448537b9bb986ce647ca048ab807413))
+* **api:** api update ([#11](https://github.com/DataMini/asktable-python/issues/11)) ([f8e9649](https://github.com/DataMini/asktable-python/commit/f8e9649d2d956ad02735ad67f107576d1d9a7b35))
+* **api:** api update ([#12](https://github.com/DataMini/asktable-python/issues/12)) ([8ac4185](https://github.com/DataMini/asktable-python/commit/8ac41859c959e8685213202e85d25b1280fca209))
+* **api:** api update ([#13](https://github.com/DataMini/asktable-python/issues/13)) ([c7f3137](https://github.com/DataMini/asktable-python/commit/c7f31371476e5896dcf230b95f7645f2b5fa42d0))
+* **api:** api update ([#7](https://github.com/DataMini/asktable-python/issues/7)) ([230366d](https://github.com/DataMini/asktable-python/commit/230366dd4f8c19062e7850df73220a025213e221))
+* **api:** api update ([#8](https://github.com/DataMini/asktable-python/issues/8)) ([234cd71](https://github.com/DataMini/asktable-python/commit/234cd71631cb05afac371bc2ad741514d71b15ab))
+* **api:** api update ([#9](https://github.com/DataMini/asktable-python/issues/9)) ([0956b01](https://github.com/DataMini/asktable-python/commit/0956b0100295717552c61de84b38900b57b36984))
+
+
+### Chores
+
+* **internal:** codegen related update ([#4](https://github.com/DataMini/asktable-python/issues/4)) ([df56af1](https://github.com/DataMini/asktable-python/commit/df56af1e43756716339314650602d8cf3b00b781))
+* **internal:** codegen related update ([#6](https://github.com/DataMini/asktable-python/issues/6)) ([6403369](https://github.com/DataMini/asktable-python/commit/640336989f2bf2157a6817dccb06a7f030c45346))
+
 ## 3.0.0 (2024-09-30)
 
 Full Changelog: [v0.0.1-alpha.0...v3.0.0](https://github.com/DataMini/asktable-python/compare/v0.0.1-alpha.0...v3.0.0)

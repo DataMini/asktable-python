@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import List, Optional
 from typing_extensions import Literal
 
 import httpx
@@ -183,6 +183,7 @@ class PoliciesResource(SyncAPIResource):
         *,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
+        policy_ids: Optional[List[str]] | NotGiven = NOT_GIVEN,
         size: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -198,6 +199,8 @@ class PoliciesResource(SyncAPIResource):
           name: 策略名称
 
           page: Page number
+
+          policy_ids: 策略 ID 列表
 
           size: Page size
 
@@ -220,6 +223,7 @@ class PoliciesResource(SyncAPIResource):
                     {
                         "name": name,
                         "page": page,
+                        "policy_ids": policy_ids,
                         "size": size,
                     },
                     policy_list_params.PolicyListParams,
@@ -418,6 +422,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         *,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
+        policy_ids: Optional[List[str]] | NotGiven = NOT_GIVEN,
         size: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -433,6 +438,8 @@ class AsyncPoliciesResource(AsyncAPIResource):
           name: 策略名称
 
           page: Page number
+
+          policy_ids: 策略 ID 列表
 
           size: Page size
 
@@ -455,6 +462,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
                     {
                         "name": name,
                         "page": page,
+                        "policy_ids": policy_ids,
                         "size": size,
                     },
                     policy_list_params.PolicyListParams,

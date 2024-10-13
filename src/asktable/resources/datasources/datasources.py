@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import Mapping, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -15,10 +15,17 @@ from .meta import (
     MetaResourceWithStreamingResponse,
     AsyncMetaResourceWithStreamingResponse,
 )
-from ...types import datasource_list_params, datasource_create_params, datasource_update_params
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...types import (
+    datasource_list_params,
+    datasource_create_params,
+    datasource_update_params,
+    datasource_create_from_file_params,
+)
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
 from ..._utils import (
+    extract_files,
     maybe_transform,
+    deepcopy_minimal,
     async_maybe_transform,
 )
 from ..._compat import cached_property
@@ -28,22 +35,6 @@ from ..._response import (
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
-)
-from .upload_file import (
-    UploadFileResource,
-    AsyncUploadFileResource,
-    UploadFileResourceWithRawResponse,
-    AsyncUploadFileResourceWithRawResponse,
-    UploadFileResourceWithStreamingResponse,
-    AsyncUploadFileResourceWithStreamingResponse,
-)
-from .download_url import (
-    DownloadURLResource,
-    AsyncDownloadURLResource,
-    DownloadURLResourceWithRawResponse,
-    AsyncDownloadURLResourceWithRawResponse,
-    DownloadURLResourceWithStreamingResponse,
-    AsyncDownloadURLResourceWithStreamingResponse,
 )
 from .upload_params import (
     UploadParamsResource,
@@ -68,14 +59,6 @@ class DatasourcesResource(SyncAPIResource):
     @cached_property
     def upload_params(self) -> UploadParamsResource:
         return UploadParamsResource(self._client)
-
-    @cached_property
-    def upload_file(self) -> UploadFileResource:
-        return UploadFileResource(self._client)
-
-    @cached_property
-    def download_url(self) -> DownloadURLResource:
-        return DownloadURLResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> DatasourcesResourceWithRawResponse:
@@ -343,6 +326,63 @@ class DatasourcesResource(SyncAPIResource):
             cast_to=object,
         )
 
+    def create_from_file(
+        self,
+        *,
+        name: str,
+        file: FileTypes,
+        async_process_meta: bool | NotGiven = NOT_GIVEN,
+        skip_process_meta: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DataSource:
+        """
+        上传文件并创建数据源
+
+        Args:
+          async_process_meta: 是否异步处理元数据
+
+          skip_process_meta: 是否跳过元数据处理
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        body = deepcopy_minimal({"file": file})
+        files = extract_files(cast(Mapping[str, object], body), paths=[["file"]])
+        # It should be noted that the actual Content-Type header that will be
+        # sent to the server will contain a `boundary` parameter, e.g.
+        # multipart/form-data; boundary=---abc--
+        extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
+        return self._post(
+            "/datasources/file",
+            body=maybe_transform(body, datasource_create_from_file_params.DatasourceCreateFromFileParams),
+            files=files,
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "name": name,
+                        "async_process_meta": async_process_meta,
+                        "skip_process_meta": skip_process_meta,
+                    },
+                    datasource_create_from_file_params.DatasourceCreateFromFileParams,
+                ),
+            ),
+            cast_to=DataSource,
+        )
+
 
 class AsyncDatasourcesResource(AsyncAPIResource):
     @cached_property
@@ -352,14 +392,6 @@ class AsyncDatasourcesResource(AsyncAPIResource):
     @cached_property
     def upload_params(self) -> AsyncUploadParamsResource:
         return AsyncUploadParamsResource(self._client)
-
-    @cached_property
-    def upload_file(self) -> AsyncUploadFileResource:
-        return AsyncUploadFileResource(self._client)
-
-    @cached_property
-    def download_url(self) -> AsyncDownloadURLResource:
-        return AsyncDownloadURLResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncDatasourcesResourceWithRawResponse:
@@ -627,6 +659,63 @@ class AsyncDatasourcesResource(AsyncAPIResource):
             cast_to=object,
         )
 
+    async def create_from_file(
+        self,
+        *,
+        name: str,
+        file: FileTypes,
+        async_process_meta: bool | NotGiven = NOT_GIVEN,
+        skip_process_meta: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DataSource:
+        """
+        上传文件并创建数据源
+
+        Args:
+          async_process_meta: 是否异步处理元数据
+
+          skip_process_meta: 是否跳过元数据处理
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        body = deepcopy_minimal({"file": file})
+        files = extract_files(cast(Mapping[str, object], body), paths=[["file"]])
+        # It should be noted that the actual Content-Type header that will be
+        # sent to the server will contain a `boundary` parameter, e.g.
+        # multipart/form-data; boundary=---abc--
+        extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
+        return await self._post(
+            "/datasources/file",
+            body=await async_maybe_transform(body, datasource_create_from_file_params.DatasourceCreateFromFileParams),
+            files=files,
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "name": name,
+                        "async_process_meta": async_process_meta,
+                        "skip_process_meta": skip_process_meta,
+                    },
+                    datasource_create_from_file_params.DatasourceCreateFromFileParams,
+                ),
+            ),
+            cast_to=DataSource,
+        )
+
 
 class DatasourcesResourceWithRawResponse:
     def __init__(self, datasources: DatasourcesResource) -> None:
@@ -647,6 +736,9 @@ class DatasourcesResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             datasources.delete,
         )
+        self.create_from_file = to_raw_response_wrapper(
+            datasources.create_from_file,
+        )
 
     @cached_property
     def meta(self) -> MetaResourceWithRawResponse:
@@ -655,14 +747,6 @@ class DatasourcesResourceWithRawResponse:
     @cached_property
     def upload_params(self) -> UploadParamsResourceWithRawResponse:
         return UploadParamsResourceWithRawResponse(self._datasources.upload_params)
-
-    @cached_property
-    def upload_file(self) -> UploadFileResourceWithRawResponse:
-        return UploadFileResourceWithRawResponse(self._datasources.upload_file)
-
-    @cached_property
-    def download_url(self) -> DownloadURLResourceWithRawResponse:
-        return DownloadURLResourceWithRawResponse(self._datasources.download_url)
 
 
 class AsyncDatasourcesResourceWithRawResponse:
@@ -684,6 +768,9 @@ class AsyncDatasourcesResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             datasources.delete,
         )
+        self.create_from_file = async_to_raw_response_wrapper(
+            datasources.create_from_file,
+        )
 
     @cached_property
     def meta(self) -> AsyncMetaResourceWithRawResponse:
@@ -692,14 +779,6 @@ class AsyncDatasourcesResourceWithRawResponse:
     @cached_property
     def upload_params(self) -> AsyncUploadParamsResourceWithRawResponse:
         return AsyncUploadParamsResourceWithRawResponse(self._datasources.upload_params)
-
-    @cached_property
-    def upload_file(self) -> AsyncUploadFileResourceWithRawResponse:
-        return AsyncUploadFileResourceWithRawResponse(self._datasources.upload_file)
-
-    @cached_property
-    def download_url(self) -> AsyncDownloadURLResourceWithRawResponse:
-        return AsyncDownloadURLResourceWithRawResponse(self._datasources.download_url)
 
 
 class DatasourcesResourceWithStreamingResponse:
@@ -721,6 +800,9 @@ class DatasourcesResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             datasources.delete,
         )
+        self.create_from_file = to_streamed_response_wrapper(
+            datasources.create_from_file,
+        )
 
     @cached_property
     def meta(self) -> MetaResourceWithStreamingResponse:
@@ -729,14 +811,6 @@ class DatasourcesResourceWithStreamingResponse:
     @cached_property
     def upload_params(self) -> UploadParamsResourceWithStreamingResponse:
         return UploadParamsResourceWithStreamingResponse(self._datasources.upload_params)
-
-    @cached_property
-    def upload_file(self) -> UploadFileResourceWithStreamingResponse:
-        return UploadFileResourceWithStreamingResponse(self._datasources.upload_file)
-
-    @cached_property
-    def download_url(self) -> DownloadURLResourceWithStreamingResponse:
-        return DownloadURLResourceWithStreamingResponse(self._datasources.download_url)
 
 
 class AsyncDatasourcesResourceWithStreamingResponse:
@@ -758,6 +832,9 @@ class AsyncDatasourcesResourceWithStreamingResponse:
         self.delete = async_to_streamed_response_wrapper(
             datasources.delete,
         )
+        self.create_from_file = async_to_streamed_response_wrapper(
+            datasources.create_from_file,
+        )
 
     @cached_property
     def meta(self) -> AsyncMetaResourceWithStreamingResponse:
@@ -766,11 +843,3 @@ class AsyncDatasourcesResourceWithStreamingResponse:
     @cached_property
     def upload_params(self) -> AsyncUploadParamsResourceWithStreamingResponse:
         return AsyncUploadParamsResourceWithStreamingResponse(self._datasources.upload_params)
-
-    @cached_property
-    def upload_file(self) -> AsyncUploadFileResourceWithStreamingResponse:
-        return AsyncUploadFileResourceWithStreamingResponse(self._datasources.upload_file)
-
-    @cached_property
-    def download_url(self) -> AsyncDownloadURLResourceWithStreamingResponse:
-        return AsyncDownloadURLResourceWithStreamingResponse(self._datasources.download_url)

@@ -98,12 +98,6 @@ from .securetunnels import (
 )
 
 __all__ = [
-    "SysResource",
-    "AsyncSysResource",
-    "SysResourceWithRawResponse",
-    "AsyncSysResourceWithRawResponse",
-    "SysResourceWithStreamingResponse",
-    "AsyncSysResourceWithStreamingResponse",
     "SecuretunnelsResource",
     "AsyncSecuretunnelsResource",
     "SecuretunnelsResourceWithRawResponse",
@@ -170,4 +164,10 @@ __all__ = [
     "AsyncIntegrationResourceWithRawResponse",
     "IntegrationResourceWithStreamingResponse",
     "AsyncIntegrationResourceWithStreamingResponse",
+    "SysResource",
+    "AsyncSysResource",
+    "SysResourceWithRawResponse",
+    "AsyncSysResourceWithRawResponse",
+    "SysResourceWithStreamingResponse",
+    "AsyncSysResourceWithStreamingResponse",
 ]

@@ -6,12 +6,37 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["DataSource"]
+__all__ = ["DataSource", "AccessConfig"]
+
+
+class AccessConfig(BaseModel):
+    db: Optional[str] = None
+    """数据库引擎可以管理多个数据库，此参数用于指定数据库名称"""
+
+    host: Optional[str] = None
+    """数据库地址"""
+
+    location_type: Optional[str] = None
+    """Excel/CSV 文件位置"""
+
+    location_url: Optional[str] = None
+    """Excel/CSV 文件下载地址"""
+
+    port: Optional[int] = None
+    """数据库端口"""
+
+    securetunnel_id: Optional[str] = None
+    """安全隧道 ID"""
+
+    user: Optional[str] = None
+    """数据库用户名"""
 
 
 class DataSource(BaseModel):
     id: str
     """数据源 ID"""
+
+    access_config: AccessConfig
 
     created_at: datetime
     """创建时间"""

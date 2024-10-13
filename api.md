@@ -4,50 +4,6 @@
 from asktable.types import AnswerModel, Message, Policy
 ```
 
-# Sys
-
-## Projects
-
-Types:
-
-```python
-from asktable.types.sys import Project, ProjectListResponse, ProjectDeleteResponse
-```
-
-Methods:
-
-- <code title="post /sys/projects">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">create</a>(\*\*<a href="src/asktable/types/sys/project_create_params.py">params</a>) -> <a href="./src/asktable/types/sys/project.py">Project</a></code>
-- <code title="get /sys/projects/{project_id}">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">retrieve</a>(project_id) -> <a href="./src/asktable/types/sys/project.py">Project</a></code>
-- <code title="patch /sys/projects/{project_id}">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">update</a>(project_id, \*\*<a href="src/asktable/types/sys/project_update_params.py">params</a>) -> <a href="./src/asktable/types/sys/project.py">Project</a></code>
-- <code title="get /sys/projects">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">list</a>(\*\*<a href="src/asktable/types/sys/project_list_params.py">params</a>) -> <a href="./src/asktable/types/sys/project_list_response.py">ProjectListResponse</a></code>
-- <code title="delete /sys/projects/{project_id}">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">delete</a>(project_id) -> <a href="./src/asktable/types/sys/project_delete_response.py">object</a></code>
-
-### APIKeys
-
-Types:
-
-```python
-from asktable.types.sys.projects import APIKey, APIKeyCreate, APIKeyListResponse
-```
-
-Methods:
-
-- <code title="post /sys/projects/{project_id}/api-keys">client.sys.projects.api_keys.<a href="./src/asktable/resources/sys/projects/api_keys.py">create</a>(project_id, \*\*<a href="src/asktable/types/sys/projects/api_key_create_params.py">params</a>) -> <a href="./src/asktable/types/sys/projects/api_key_create.py">APIKeyCreate</a></code>
-- <code title="get /sys/projects/{project_id}/api-keys">client.sys.projects.api_keys.<a href="./src/asktable/resources/sys/projects/api_keys.py">list</a>(project_id) -> <a href="./src/asktable/types/sys/projects/api_key_list_response.py">APIKeyListResponse</a></code>
-- <code title="delete /sys/projects/{project_id}/api-keys/{key_id}">client.sys.projects.api_keys.<a href="./src/asktable/resources/sys/projects/api_keys.py">delete</a>(key_id, \*, project_id) -> None</code>
-
-### Tokens
-
-Types:
-
-```python
-from asktable.types.sys.projects import TokenCreateResponse
-```
-
-Methods:
-
-- <code title="post /sys/projects/{project_id}/tokens">client.sys.projects.tokens.<a href="./src/asktable/resources/sys/projects/tokens.py">create</a>(project_id, \*\*<a href="src/asktable/types/sys/projects/token_create_params.py">params</a>) -> <a href="./src/asktable/types/sys/projects/token_create_response.py">object</a></code>
-
 # Securetunnels
 
 Types:
@@ -152,7 +108,7 @@ Methods:
 Types:
 
 ```python
-from asktable.types.chats import MessageListResponse
+from asktable.types.chats import MessageModel, MessageListResponse
 ```
 
 Methods:
@@ -176,6 +132,7 @@ Methods:
 - <code title="patch /datasources/{datasource_id}">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">update</a>(datasource_id, \*\*<a href="src/asktable/types/datasource_update_params.py">params</a>) -> <a href="./src/asktable/types/data_source.py">DataSource</a></code>
 - <code title="get /datasources">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">list</a>(\*\*<a href="src/asktable/types/datasource_list_params.py">params</a>) -> <a href="./src/asktable/types/datasource_list_response.py">DatasourceListResponse</a></code>
 - <code title="delete /datasources/{datasource_id}">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">delete</a>(datasource_id) -> <a href="./src/asktable/types/datasource_delete_response.py">object</a></code>
+- <code title="post /datasources/file">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">create_from_file</a>(\*\*<a href="src/asktable/types/datasource_create_from_file_params.py">params</a>) -> <a href="./src/asktable/types/data_source.py">DataSource</a></code>
 
 ## Meta
 
@@ -203,36 +160,12 @@ Methods:
 
 - <code title="post /datasources/upload_params">client.datasources.upload_params.<a href="./src/asktable/resources/datasources/upload_params.py">create</a>(\*\*<a href="src/asktable/types/datasources/upload_param_create_params.py">params</a>) -> <a href="./src/asktable/types/datasources/upload_param_create_response.py">object</a></code>
 
-## UploadFile
-
-Types:
-
-```python
-from asktable.types.datasources import UploadFileCreateResponse
-```
-
-Methods:
-
-- <code title="post /datasources/upload_file">client.datasources.upload_file.<a href="./src/asktable/resources/datasources/upload_file.py">create</a>(\*\*<a href="src/asktable/types/datasources/upload_file_create_params.py">params</a>) -> <a href="./src/asktable/types/datasources/upload_file_create_response.py">object</a></code>
-
-## DownloadURL
-
-Types:
-
-```python
-from asktable.types.datasources import DownloadURLRetrieveResponse
-```
-
-Methods:
-
-- <code title="get /datasources/{datasource_id}/download_url">client.datasources.download_url.<a href="./src/asktable/resources/datasources/download_url.py">retrieve</a>(datasource_id) -> <a href="./src/asktable/types/datasources/download_url_retrieve_response.py">object</a></code>
-
 # Bots
 
 Types:
 
 ```python
-from asktable.types import ChatBot, BotListResponse, BotDeleteResponse
+from asktable.types import ChatBot, BotListResponse, BotDeleteResponse, BotInviteResponse
 ```
 
 Methods:
@@ -242,6 +175,7 @@ Methods:
 - <code title="patch /bots/{bot_id}">client.bots.<a href="./src/asktable/resources/bots.py">update</a>(bot_id, \*\*<a href="src/asktable/types/bot_update_params.py">params</a>) -> <a href="./src/asktable/types/chat_bot.py">ChatBot</a></code>
 - <code title="get /bots">client.bots.<a href="./src/asktable/resources/bots.py">list</a>(\*\*<a href="src/asktable/types/bot_list_params.py">params</a>) -> <a href="./src/asktable/types/bot_list_response.py">BotListResponse</a></code>
 - <code title="delete /bots/{bot_id}">client.bots.<a href="./src/asktable/resources/bots.py">delete</a>(bot_id) -> <a href="./src/asktable/types/bot_delete_response.py">object</a></code>
+- <code title="post /bots/{bot_id}/invite">client.bots.<a href="./src/asktable/resources/bots.py">invite</a>(bot_id, \*\*<a href="src/asktable/types/bot_invite_params.py">params</a>) -> <a href="./src/asktable/types/bot_invite_response.py">object</a></code>
 
 # Extapis
 
@@ -337,6 +271,56 @@ Methods:
 
 # Integration
 
+Types:
+
+```python
+from asktable.types import AnswerDataSourceOut
+```
+
 Methods:
 
-- <code title="post /integration/excel_ask">client.integration.<a href="./src/asktable/resources/integration.py">excel_ask</a>(\*\*<a href="src/asktable/types/integration_excel_ask_params.py">params</a>) -> <a href="./src/asktable/types/shared/answer_model.py">AnswerModel</a></code>
+- <code title="post /integration/excel_csv_ask">client.integration.<a href="./src/asktable/resources/integration.py">excel_csv_ask</a>(\*\*<a href="src/asktable/types/integration_excel_csv_ask_params.py">params</a>) -> <a href="./src/asktable/types/answer_data_source_out.py">AnswerDataSourceOut</a></code>
+
+# Sys
+
+## Projects
+
+Types:
+
+```python
+from asktable.types.sys import Project, ProjectListResponse, ProjectDeleteResponse
+```
+
+Methods:
+
+- <code title="post /sys/projects">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">create</a>(\*\*<a href="src/asktable/types/sys/project_create_params.py">params</a>) -> <a href="./src/asktable/types/sys/project.py">Project</a></code>
+- <code title="get /sys/projects/{project_id}">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">retrieve</a>(project_id) -> <a href="./src/asktable/types/sys/project.py">Project</a></code>
+- <code title="patch /sys/projects/{project_id}">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">update</a>(project_id, \*\*<a href="src/asktable/types/sys/project_update_params.py">params</a>) -> <a href="./src/asktable/types/sys/project.py">Project</a></code>
+- <code title="get /sys/projects">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">list</a>(\*\*<a href="src/asktable/types/sys/project_list_params.py">params</a>) -> <a href="./src/asktable/types/sys/project_list_response.py">ProjectListResponse</a></code>
+- <code title="delete /sys/projects/{project_id}">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">delete</a>(project_id) -> <a href="./src/asktable/types/sys/project_delete_response.py">object</a></code>
+
+### APIKeys
+
+Types:
+
+```python
+from asktable.types.sys.projects import APIKey, APIKeyCreate, APIKeyListResponse
+```
+
+Methods:
+
+- <code title="post /sys/projects/{project_id}/api-keys">client.sys.projects.api_keys.<a href="./src/asktable/resources/sys/projects/api_keys.py">create</a>(project_id, \*\*<a href="src/asktable/types/sys/projects/api_key_create_params.py">params</a>) -> <a href="./src/asktable/types/sys/projects/api_key_create.py">APIKeyCreate</a></code>
+- <code title="get /sys/projects/{project_id}/api-keys">client.sys.projects.api_keys.<a href="./src/asktable/resources/sys/projects/api_keys.py">list</a>(project_id) -> <a href="./src/asktable/types/sys/projects/api_key_list_response.py">APIKeyListResponse</a></code>
+- <code title="delete /sys/projects/{project_id}/api-keys/{key_id}">client.sys.projects.api_keys.<a href="./src/asktable/resources/sys/projects/api_keys.py">delete</a>(key_id, \*, project_id) -> None</code>
+
+### Tokens
+
+Types:
+
+```python
+from asktable.types.sys.projects import TokenCreateResponse
+```
+
+Methods:
+
+- <code title="post /sys/projects/{project_id}/tokens">client.sys.projects.tokens.<a href="./src/asktable/resources/sys/projects/tokens.py">create</a>(project_id, \*\*<a href="src/asktable/types/sys/projects/token_create_params.py">params</a>) -> <a href="./src/asktable/types/sys/projects/token_create_response.py">object</a></code>

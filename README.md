@@ -28,10 +28,8 @@ from asktable import Asktable
 
 client = Asktable()
 
-project = client.sys.projects.create(
-    name="name",
-)
-print(project.id)
+datasource = client.datasources.list()
+print(datasource.items)
 ```
 
 While you can provide an `api_key` keyword argument,
@@ -51,10 +49,8 @@ client = AsyncAsktable()
 
 
 async def main() -> None:
-    project = await client.sys.projects.create(
-        name="name",
-    )
-    print(project.id)
+    datasource = await client.datasources.list()
+    print(datasource.items)
 
 
 asyncio.run(main())
@@ -87,8 +83,9 @@ from asktable import Asktable
 client = Asktable()
 
 try:
-    client.sys.projects.create(
-        name="name",
+    client.datasources.create(
+        access_config={},
+        engine="mysql",
     )
 except asktable.APIConnectionError as e:
     print("The server could not be reached")
@@ -132,8 +129,9 @@ client = Asktable(
 )
 
 # Or, configure per-request:
-client.with_options(max_retries=5).sys.projects.create(
-    name="name",
+client.with_options(max_retries=5).datasources.create(
+    access_config={},
+    engine="mysql",
 )
 ```
 
@@ -157,8 +155,9 @@ client = Asktable(
 )
 
 # Override per-request:
-client.with_options(timeout=5.0).sys.projects.create(
-    name="name",
+client.with_options(timeout=5.0).datasources.create(
+    access_config={},
+    engine="mysql",
 )
 ```
 
@@ -198,13 +197,14 @@ The "raw" Response object can be accessed by prefixing `.with_raw_response.` to 
 from asktable import Asktable
 
 client = Asktable()
-response = client.sys.projects.with_raw_response.create(
-    name="name",
+response = client.datasources.with_raw_response.create(
+    access_config={},
+    engine="mysql",
 )
 print(response.headers.get('X-My-Header'))
 
-project = response.parse()  # get the object that `sys.projects.create()` would have returned
-print(project.id)
+datasource = response.parse()  # get the object that `datasources.create()` would have returned
+print(datasource.id)
 ```
 
 These methods return an [`APIResponse`](https://github.com/DataMini/asktable-python/tree/main/src/asktable/_response.py) object.
@@ -218,8 +218,9 @@ The above interface eagerly reads the full response body when you make the reque
 To stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
 
 ```python
-with client.sys.projects.with_streaming_response.create(
-    name="name",
+with client.datasources.with_streaming_response.create(
+    access_config={},
+    engine="mysql",
 ) as response:
     print(response.headers.get("X-My-Header"))
 
@@ -321,3 +322,7 @@ print(asktable.__version__)
 ## Requirements
 
 Python 3.7 or higher.
+
+## Contributing
+
+See [the contributing documentation](./CONTRIBUTING.md).

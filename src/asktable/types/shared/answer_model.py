@@ -8,16 +8,10 @@ __all__ = ["AnswerModel", "Attachment", "QueryInsight", "QueryInsightInsight"]
 
 
 class Attachment(BaseModel):
-    category: str
-    """The category of the attachment"""
-
     info: object
 
     type: str
     """The type of the attachment"""
-
-    url: str
-    """The URL of the attachment"""
 
 
 class QueryInsightInsight(BaseModel):
