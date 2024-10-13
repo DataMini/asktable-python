@@ -7,6 +7,14 @@ from typing_extensions import Literal
 
 import httpx
 
+from .file import (
+    FileResource,
+    AsyncFileResource,
+    FileResourceWithRawResponse,
+    AsyncFileResourceWithRawResponse,
+    FileResourceWithStreamingResponse,
+    AsyncFileResourceWithStreamingResponse,
+)
 from .meta import (
     MetaResource,
     AsyncMetaResource,
@@ -45,6 +53,10 @@ __all__ = ["DatasourcesResource", "AsyncDatasourcesResource"]
 
 
 class DatasourcesResource(SyncAPIResource):
+    @cached_property
+    def file(self) -> FileResource:
+        return FileResource(self._client)
+
     @cached_property
     def meta(self) -> MetaResource:
         return MetaResource(self._client)
@@ -321,6 +333,10 @@ class DatasourcesResource(SyncAPIResource):
 
 
 class AsyncDatasourcesResource(AsyncAPIResource):
+    @cached_property
+    def file(self) -> AsyncFileResource:
+        return AsyncFileResource(self._client)
+
     @cached_property
     def meta(self) -> AsyncMetaResource:
         return AsyncMetaResource(self._client)
@@ -617,6 +633,10 @@ class DatasourcesResourceWithRawResponse:
         )
 
     @cached_property
+    def file(self) -> FileResourceWithRawResponse:
+        return FileResourceWithRawResponse(self._datasources.file)
+
+    @cached_property
     def meta(self) -> MetaResourceWithRawResponse:
         return MetaResourceWithRawResponse(self._datasources.meta)
 
@@ -644,6 +664,10 @@ class AsyncDatasourcesResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             datasources.delete,
         )
+
+    @cached_property
+    def file(self) -> AsyncFileResourceWithRawResponse:
+        return AsyncFileResourceWithRawResponse(self._datasources.file)
 
     @cached_property
     def meta(self) -> AsyncMetaResourceWithRawResponse:
@@ -675,6 +699,10 @@ class DatasourcesResourceWithStreamingResponse:
         )
 
     @cached_property
+    def file(self) -> FileResourceWithStreamingResponse:
+        return FileResourceWithStreamingResponse(self._datasources.file)
+
+    @cached_property
     def meta(self) -> MetaResourceWithStreamingResponse:
         return MetaResourceWithStreamingResponse(self._datasources.meta)
 
@@ -702,6 +730,10 @@ class AsyncDatasourcesResourceWithStreamingResponse:
         self.delete = async_to_streamed_response_wrapper(
             datasources.delete,
         )
+
+    @cached_property
+    def file(self) -> AsyncFileResourceWithStreamingResponse:
+        return AsyncFileResourceWithStreamingResponse(self._datasources.file)
 
     @cached_property
     def meta(self) -> AsyncMetaResourceWithStreamingResponse:
