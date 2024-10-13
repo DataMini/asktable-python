@@ -696,12 +696,12 @@ class TestAsktable:
     @mock.patch("asktable._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
-        respx_mock.post("/sys/projects").mock(side_effect=httpx.TimeoutException("Test timeout error"))
+        respx_mock.post("/datasources").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
             self.client.post(
-                "/sys/projects",
-                body=cast(object, dict(name="name")),
+                "/datasources",
+                body=cast(object, dict(access_config={"engine": "mysql"}, engine="mysql")),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -711,12 +711,12 @@ class TestAsktable:
     @mock.patch("asktable._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
-        respx_mock.post("/sys/projects").mock(return_value=httpx.Response(500))
+        respx_mock.post("/datasources").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
             self.client.post(
-                "/sys/projects",
-                body=cast(object, dict(name="name")),
+                "/datasources",
+                body=cast(object, dict(access_config={"engine": "mysql"}, engine="mysql")),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -738,9 +738,9 @@ class TestAsktable:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.post("/sys/projects").mock(side_effect=retry_handler)
+        respx_mock.post("/datasources").mock(side_effect=retry_handler)
 
-        response = client.sys.projects.with_raw_response.create(name="name")
+        response = client.datasources.with_raw_response.create(access_config={"engine": "mysql"}, engine="mysql")
 
         assert response.retries_taken == failures_before_success
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
@@ -762,10 +762,10 @@ class TestAsktable:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.post("/sys/projects").mock(side_effect=retry_handler)
+        respx_mock.post("/datasources").mock(side_effect=retry_handler)
 
-        response = client.sys.projects.with_raw_response.create(
-            name="name", extra_headers={"x-stainless-retry-count": Omit()}
+        response = client.datasources.with_raw_response.create(
+            access_config={"engine": "mysql"}, engine="mysql", extra_headers={"x-stainless-retry-count": Omit()}
         )
 
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
@@ -787,10 +787,10 @@ class TestAsktable:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.post("/sys/projects").mock(side_effect=retry_handler)
+        respx_mock.post("/datasources").mock(side_effect=retry_handler)
 
-        response = client.sys.projects.with_raw_response.create(
-            name="name", extra_headers={"x-stainless-retry-count": "42"}
+        response = client.datasources.with_raw_response.create(
+            access_config={"engine": "mysql"}, engine="mysql", extra_headers={"x-stainless-retry-count": "42"}
         )
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"
@@ -1456,12 +1456,12 @@ class TestAsyncAsktable:
     @mock.patch("asktable._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     async def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
-        respx_mock.post("/sys/projects").mock(side_effect=httpx.TimeoutException("Test timeout error"))
+        respx_mock.post("/datasources").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
             await self.client.post(
-                "/sys/projects",
-                body=cast(object, dict(name="name")),
+                "/datasources",
+                body=cast(object, dict(access_config={"engine": "mysql"}, engine="mysql")),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -1471,12 +1471,12 @@ class TestAsyncAsktable:
     @mock.patch("asktable._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     async def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
-        respx_mock.post("/sys/projects").mock(return_value=httpx.Response(500))
+        respx_mock.post("/datasources").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
             await self.client.post(
-                "/sys/projects",
-                body=cast(object, dict(name="name")),
+                "/datasources",
+                body=cast(object, dict(access_config={"engine": "mysql"}, engine="mysql")),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -1501,9 +1501,9 @@ class TestAsyncAsktable:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.post("/sys/projects").mock(side_effect=retry_handler)
+        respx_mock.post("/datasources").mock(side_effect=retry_handler)
 
-        response = await client.sys.projects.with_raw_response.create(name="name")
+        response = await client.datasources.with_raw_response.create(access_config={"engine": "mysql"}, engine="mysql")
 
         assert response.retries_taken == failures_before_success
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
@@ -1526,10 +1526,10 @@ class TestAsyncAsktable:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.post("/sys/projects").mock(side_effect=retry_handler)
+        respx_mock.post("/datasources").mock(side_effect=retry_handler)
 
-        response = await client.sys.projects.with_raw_response.create(
-            name="name", extra_headers={"x-stainless-retry-count": Omit()}
+        response = await client.datasources.with_raw_response.create(
+            access_config={"engine": "mysql"}, engine="mysql", extra_headers={"x-stainless-retry-count": Omit()}
         )
 
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
@@ -1552,10 +1552,10 @@ class TestAsyncAsktable:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.post("/sys/projects").mock(side_effect=retry_handler)
+        respx_mock.post("/datasources").mock(side_effect=retry_handler)
 
-        response = await client.sys.projects.with_raw_response.create(
-            name="name", extra_headers={"x-stainless-retry-count": "42"}
+        response = await client.datasources.with_raw_response.create(
+            access_config={"engine": "mysql"}, engine="mysql", extra_headers={"x-stainless-retry-count": "42"}
         )
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"
