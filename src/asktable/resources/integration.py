@@ -2,9 +2,11 @@
 
 from __future__ import annotations
 
+from typing import Optional
+
 import httpx
 
-from ..types import integration_excel_ask_params
+from ..types import integration_excel_csv_ask_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
     maybe_transform,
@@ -19,7 +21,7 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
-from ..types.shared.answer_model import AnswerModel
+from ..types.answer_data_source_out import AnswerDataSourceOut
 
 __all__ = ["IntegrationResource", "AsyncIntegrationResource"]
 
@@ -44,25 +46,28 @@ class IntegrationResource(SyncAPIResource):
         """
         return IntegrationResourceWithStreamingResponse(self)
 
-    def excel_ask(
+    def excel_csv_ask(
         self,
         *,
-        excel_file_url: str,
+        file_url: str,
         question: str,
+        with_json: Optional[bool] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AnswerModel:
+    ) -> AnswerDataSourceOut:
         """
-        通过 Excel 文件 URL 添加数据并提问
+        通过 Excel/CSV 文件 URL 添加数据并提问
 
         Args:
-          excel_file_url: Excel 文件 URL
+          file_url: 文件 URL(支持 Excel/CSV)
 
-          question: 查询语句
+          question: 用户问题
+
+          with_json: 是否将数据作为 json 附件返回
 
           extra_headers: Send extra headers
 
@@ -73,18 +78,19 @@ class IntegrationResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/integration/excel_ask",
+            "/integration/excel_csv_ask",
             body=maybe_transform(
                 {
-                    "excel_file_url": excel_file_url,
+                    "file_url": file_url,
                     "question": question,
+                    "with_json": with_json,
                 },
-                integration_excel_ask_params.IntegrationExcelAskParams,
+                integration_excel_csv_ask_params.IntegrationExcelCsvAskParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AnswerModel,
+            cast_to=AnswerDataSourceOut,
         )
 
 
@@ -108,25 +114,28 @@ class AsyncIntegrationResource(AsyncAPIResource):
         """
         return AsyncIntegrationResourceWithStreamingResponse(self)
 
-    async def excel_ask(
+    async def excel_csv_ask(
         self,
         *,
-        excel_file_url: str,
+        file_url: str,
         question: str,
+        with_json: Optional[bool] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AnswerModel:
+    ) -> AnswerDataSourceOut:
         """
-        通过 Excel 文件 URL 添加数据并提问
+        通过 Excel/CSV 文件 URL 添加数据并提问
 
         Args:
-          excel_file_url: Excel 文件 URL
+          file_url: 文件 URL(支持 Excel/CSV)
 
-          question: 查询语句
+          question: 用户问题
+
+          with_json: 是否将数据作为 json 附件返回
 
           extra_headers: Send extra headers
 
@@ -137,18 +146,19 @@ class AsyncIntegrationResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/integration/excel_ask",
+            "/integration/excel_csv_ask",
             body=await async_maybe_transform(
                 {
-                    "excel_file_url": excel_file_url,
+                    "file_url": file_url,
                     "question": question,
+                    "with_json": with_json,
                 },
-                integration_excel_ask_params.IntegrationExcelAskParams,
+                integration_excel_csv_ask_params.IntegrationExcelCsvAskParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AnswerModel,
+            cast_to=AnswerDataSourceOut,
         )
 
 
@@ -156,8 +166,8 @@ class IntegrationResourceWithRawResponse:
     def __init__(self, integration: IntegrationResource) -> None:
         self._integration = integration
 
-        self.excel_ask = to_raw_response_wrapper(
-            integration.excel_ask,
+        self.excel_csv_ask = to_raw_response_wrapper(
+            integration.excel_csv_ask,
         )
 
 
@@ -165,8 +175,8 @@ class AsyncIntegrationResourceWithRawResponse:
     def __init__(self, integration: AsyncIntegrationResource) -> None:
         self._integration = integration
 
-        self.excel_ask = async_to_raw_response_wrapper(
-            integration.excel_ask,
+        self.excel_csv_ask = async_to_raw_response_wrapper(
+            integration.excel_csv_ask,
         )
 
 
@@ -174,8 +184,8 @@ class IntegrationResourceWithStreamingResponse:
     def __init__(self, integration: IntegrationResource) -> None:
         self._integration = integration
 
-        self.excel_ask = to_streamed_response_wrapper(
-            integration.excel_ask,
+        self.excel_csv_ask = to_streamed_response_wrapper(
+            integration.excel_csv_ask,
         )
 
 
@@ -183,6 +193,6 @@ class AsyncIntegrationResourceWithStreamingResponse:
     def __init__(self, integration: AsyncIntegrationResource) -> None:
         self._integration = integration
 
-        self.excel_ask = async_to_streamed_response_wrapper(
-            integration.excel_ask,
+        self.excel_csv_ask = async_to_streamed_response_wrapper(
+            integration.excel_csv_ask,
         )
