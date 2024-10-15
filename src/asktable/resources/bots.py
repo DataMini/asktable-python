@@ -58,7 +58,7 @@ class BotsResource(SyncAPIResource):
         magic_input: Optional[str] | NotGiven = NOT_GIVEN,
         max_rows: int | NotGiven = NOT_GIVEN,
         publish: bool | NotGiven = NOT_GIVEN,
-        sample_questions: Optional[str] | NotGiven = NOT_GIVEN,
+        sample_questions: Optional[List[str]] | NotGiven = NOT_GIVEN,
         welcome_message: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -168,7 +168,7 @@ class BotsResource(SyncAPIResource):
         max_rows: Optional[int] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         publish: Optional[bool] | NotGiven = NOT_GIVEN,
-        sample_questions: Optional[str] | NotGiven = NOT_GIVEN,
+        sample_questions: Optional[List[str]] | NotGiven = NOT_GIVEN,
         welcome_message: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -390,7 +390,7 @@ class AsyncBotsResource(AsyncAPIResource):
         magic_input: Optional[str] | NotGiven = NOT_GIVEN,
         max_rows: int | NotGiven = NOT_GIVEN,
         publish: bool | NotGiven = NOT_GIVEN,
-        sample_questions: Optional[str] | NotGiven = NOT_GIVEN,
+        sample_questions: Optional[List[str]] | NotGiven = NOT_GIVEN,
         welcome_message: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -500,7 +500,7 @@ class AsyncBotsResource(AsyncAPIResource):
         max_rows: Optional[int] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         publish: Optional[bool] | NotGiven = NOT_GIVEN,
-        sample_questions: Optional[str] | NotGiven = NOT_GIVEN,
+        sample_questions: Optional[List[str]] | NotGiven = NOT_GIVEN,
         welcome_message: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
