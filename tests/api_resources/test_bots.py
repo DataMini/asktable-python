@@ -39,7 +39,7 @@ class TestBots:
             magic_input="magic_input",
             max_rows=50,
             publish=True,
-            sample_questions="你好！今天中午有什么适合我的午餐？",
+            sample_questions=["你好！今天中午有什么适合我的午餐？"],
             welcome_message="欢迎使用AskTable",
         )
         assert_matches_type(ChatBot, bot, path=["response"])
@@ -128,7 +128,7 @@ class TestBots:
             max_rows=50,
             name="name",
             publish=True,
-            sample_questions="你好！今天中午有什么适合我的午餐？",
+            sample_questions=["你好！今天中午有什么适合我的午餐？"],
             welcome_message="欢迎使用AskTable",
         )
         assert_matches_type(ChatBot, bot, path=["response"])
@@ -301,7 +301,7 @@ class TestAsyncBots:
             magic_input="magic_input",
             max_rows=50,
             publish=True,
-            sample_questions="你好！今天中午有什么适合我的午餐？",
+            sample_questions=["你好！今天中午有什么适合我的午餐？"],
             welcome_message="欢迎使用AskTable",
         )
         assert_matches_type(ChatBot, bot, path=["response"])
@@ -390,7 +390,7 @@ class TestAsyncBots:
             max_rows=50,
             name="name",
             publish=True,
-            sample_questions="你好！今天中午有什么适合我的午餐？",
+            sample_questions=["你好！今天中午有什么适合我的午餐？"],
             welcome_message="欢迎使用AskTable",
         )
         assert_matches_type(ChatBot, bot, path=["response"])
