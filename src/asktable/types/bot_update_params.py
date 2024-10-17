@@ -36,7 +36,7 @@ class BotUpdateParams(TypedDict, total=False):
     publish: Optional[bool]
     """是否公开"""
 
-    sample_questions: Optional[str]
+    sample_questions: Optional[List[str]]
     """示例问题列表"""
 
     welcome_message: Optional[str]

@@ -44,7 +44,7 @@ class ChatBot(BaseModel):
     publish: Optional[bool] = None
     """是否公开"""
 
-    sample_questions: Optional[str] = None
+    sample_questions: Optional[List[str]] = None
     """示例问题列表"""
 
     welcome_message: Optional[str] = None
