@@ -26,7 +26,6 @@ class TestChats:
     def test_method_create_with_all_params(self, client: Asktable) -> None:
         chat = client.chats.create(
             bot_id="bot_42",
-            datasource_ids=["ds_42"],
             name="name",
             role_id="role_42",
             role_variables={"id": "123123123"},
@@ -180,7 +179,6 @@ class TestAsyncChats:
     async def test_method_create_with_all_params(self, async_client: AsyncAsktable) -> None:
         chat = await async_client.chats.create(
             bot_id="bot_42",
-            datasource_ids=["ds_42"],
             name="name",
             role_id="role_42",
             role_variables={"id": "123123123"},
