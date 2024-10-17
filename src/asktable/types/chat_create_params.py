@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Optional
+from typing import Dict, Union, Optional
 from typing_extensions import TypedDict
 
 __all__ = ["ChatCreateParams"]
@@ -14,9 +14,6 @@ class ChatCreateParams(TypedDict, total=False):
     机器人 ID，如果需要使用高级功能，请使用 bot_id 来创建对话。在机器人中你可以定义
     可以访问的数据、可以执行的任务以及是否开启调试模式等设置。
     """
-
-    datasource_ids: Optional[List[str]]
-    """直接与数据源对话，我们会自动为你创建一个机器人, only support one datasource"""
 
     name: Optional[str]
     """New name for the chat"""
