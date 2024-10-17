@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Optional
+from typing import Dict, Union, Optional
 
 import httpx
 
@@ -64,7 +64,6 @@ class ChatsResource(SyncAPIResource):
         self,
         *,
         bot_id: Optional[str] | NotGiven = NOT_GIVEN,
-        datasource_ids: Optional[List[str]] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         role_id: Optional[str] | NotGiven = NOT_GIVEN,
         role_variables: Optional[Dict[str, Union[str, int, bool]]] | NotGiven = NOT_GIVEN,
@@ -82,8 +81,6 @@ class ChatsResource(SyncAPIResource):
         Args:
           bot_id: 机器人 ID，如果需要使用高级功能，请使用 bot_id 来创建对话。在机器人中你可以定义
               可以访问的数据、可以执行的任务以及是否开启调试模式等设置。
-
-          datasource_ids: 直接与数据源对话，我们会自动为你创建一个机器人, only support one datasource
 
           name: New name for the chat
 
@@ -107,7 +104,6 @@ class ChatsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "bot_id": bot_id,
-                    "datasource_ids": datasource_ids,
                     "name": name,
                     "role_id": role_id,
                     "role_variables": role_variables,
@@ -263,7 +259,6 @@ class AsyncChatsResource(AsyncAPIResource):
         self,
         *,
         bot_id: Optional[str] | NotGiven = NOT_GIVEN,
-        datasource_ids: Optional[List[str]] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         role_id: Optional[str] | NotGiven = NOT_GIVEN,
         role_variables: Optional[Dict[str, Union[str, int, bool]]] | NotGiven = NOT_GIVEN,
@@ -281,8 +276,6 @@ class AsyncChatsResource(AsyncAPIResource):
         Args:
           bot_id: 机器人 ID，如果需要使用高级功能，请使用 bot_id 来创建对话。在机器人中你可以定义
               可以访问的数据、可以执行的任务以及是否开启调试模式等设置。
-
-          datasource_ids: 直接与数据源对话，我们会自动为你创建一个机器人, only support one datasource
 
           name: New name for the chat
 
@@ -306,7 +299,6 @@ class AsyncChatsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "bot_id": bot_id,
-                    "datasource_ids": datasource_ids,
                     "name": name,
                     "role_id": role_id,
                     "role_variables": role_variables,
