@@ -21,8 +21,6 @@ class SecureTunnel(BaseModel):
 
     status: str
 
-    unique_key: str
-
     atst_server_host: Optional[str] = None
 
     atst_server_port: Optional[int] = None
@@ -30,3 +28,5 @@ class SecureTunnel(BaseModel):
     info: Optional[object] = None
 
     links_count: Optional[int] = None
+
+    unique_key: Optional[str] = None
