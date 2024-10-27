@@ -44,7 +44,7 @@ class DataSource(BaseModel):
     engine: Literal["mysql", "tidb", "postgresql", "oceanbase", "clickhouse", "csv", "excel"]
     """数据源引擎"""
 
-    meta_status: Literal["processing", "failed", "success", "unprocessed"]
+    meta_status: Literal["processing", "failed", "warning", "success", "unprocessed"]
     """元数据处理状态"""
 
     project_id: str
