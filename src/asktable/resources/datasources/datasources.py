@@ -182,7 +182,8 @@ class DatasourcesResource(SyncAPIResource):
         access_config: Optional[datasource_update_params.AccessConfig] | NotGiven = NOT_GIVEN,
         field_count: Optional[int] | NotGiven = NOT_GIVEN,
         meta_error: Optional[str] | NotGiven = NOT_GIVEN,
-        meta_status: Optional[Literal["processing", "failed", "success", "unprocessed"]] | NotGiven = NOT_GIVEN,
+        meta_status: Optional[Literal["processing", "failed", "warning", "success", "unprocessed"]]
+        | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         sample_questions: Optional[str] | NotGiven = NOT_GIVEN,
         schema_count: Optional[int] | NotGiven = NOT_GIVEN,
@@ -515,7 +516,8 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         access_config: Optional[datasource_update_params.AccessConfig] | NotGiven = NOT_GIVEN,
         field_count: Optional[int] | NotGiven = NOT_GIVEN,
         meta_error: Optional[str] | NotGiven = NOT_GIVEN,
-        meta_status: Optional[Literal["processing", "failed", "success", "unprocessed"]] | NotGiven = NOT_GIVEN,
+        meta_status: Optional[Literal["processing", "failed", "warning", "success", "unprocessed"]]
+        | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         sample_questions: Optional[str] | NotGiven = NOT_GIVEN,
         schema_count: Optional[int] | NotGiven = NOT_GIVEN,
