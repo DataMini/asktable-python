@@ -9,17 +9,13 @@ __all__ = ["DatasourceCreateParams", "AccessConfig"]
 
 
 class DatasourceCreateParams(TypedDict, total=False):
-    access_config: Required[AccessConfig]
-    """不同引擎有不同的配置"""
-
-    engine: Required[Literal["mysql", "tidb", "postgresql", "oceanbase", "clickhouse", "csv", "excel"]]
+    engine: Required[Literal["mysql", "tidb", "postgresql", "oceanbase", "clickhouse", "csv", "excel", "starrocks"]]
     """数据源引擎"""
 
     async_process_meta: bool
-    """是否异步处理元数据"""
 
-    skip_process_meta: bool
-    """是否跳过元数据处理"""
+    access_config: Optional[AccessConfig]
+    """不同引擎有不同的配置"""
 
     name: Optional[str]
     """数据源的名称"""

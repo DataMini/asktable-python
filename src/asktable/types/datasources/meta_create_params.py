@@ -6,7 +6,7 @@ from typing import Dict, Union, Optional
 from typing_extensions import Required, TypeAlias, TypedDict
 
 __all__ = [
-    "MetaUpdateParams",
+    "MetaCreateParams",
     "MetaBase",
     "MetaBaseSchemas",
     "MetaBaseSchemasTables",
@@ -63,4 +63,4 @@ class Variant1(TypedDict, total=False):
     body: Required[None]
 
 
-MetaUpdateParams: TypeAlias = Union[MetaBase, Variant1]
+MetaCreateParams: TypeAlias = Union[MetaBase, Variant1]

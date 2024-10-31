@@ -3,11 +3,13 @@
 from __future__ import annotations
 
 from typing import Dict
+from typing_extensions import overload
 
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
+    required_args,
     maybe_transform,
     async_maybe_transform,
 )
@@ -20,8 +22,8 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
-from ...types.datasources import meta_update_params, meta_retrieve_params
-from ...types.datasources.meta import Meta
+from ...types.datasources import meta_create_params, meta_update_params
+from ...types.datasources.meta_retrieve_response import MetaRetrieveResponse
 
 __all__ = ["MetaResource", "AsyncMetaResource"]
 
@@ -46,10 +48,13 @@ class MetaResource(SyncAPIResource):
         """
         return MetaResourceWithStreamingResponse(self)
 
+    @overload
     def create(
         self,
         datasource_id: str,
         *,
+        name: str,
+        schemas: Dict[str, meta_create_params.MetaBaseSchemas] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -58,7 +63,44 @@ class MetaResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> object:
         """
-        更新元数据（自动异步）
+        创建数据源的 meta
+
+        如果上传了 meta，则使用用户上传的数据创建。
+
+        否则从数据源中自动获取。
+
+        Args:
+          name: metadata_name
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        datasource_id: str,
+        *,
+        body: None,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        创建数据源的 meta
+
+        如果上传了 meta，则使用用户上传的数据创建。
+
+        否则从数据源中自动获取。
 
         Args:
           extra_headers: Send extra headers
@@ -69,10 +111,35 @@ class MetaResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @required_args(["name"], ["body"])
+    def create(
+        self,
+        datasource_id: str,
+        *,
+        name: str | NotGiven = NOT_GIVEN,
+        schemas: Dict[str, meta_create_params.MetaBaseSchemas] | NotGiven = NOT_GIVEN,
+        body: None | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
         if not datasource_id:
             raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
         return self._post(
             f"/datasources/{datasource_id}/meta",
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "schemas": schemas,
+                    "body": body,
+                },
+                meta_create_params.MetaCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -83,20 +150,17 @@ class MetaResource(SyncAPIResource):
         self,
         datasource_id: str,
         *,
-        from_where: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Meta:
+    ) -> MetaRetrieveResponse:
         """
         从数据源中获取最新的元数据
 
         Args:
-          from_where: 获取元数据的来源
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -110,22 +174,18 @@ class MetaResource(SyncAPIResource):
         return self._get(
             f"/datasources/{datasource_id}/meta",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform({"from_where": from_where}, meta_retrieve_params.MetaRetrieveParams),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Meta,
+            cast_to=MetaRetrieveResponse,
         )
 
+    @overload
     def update(
         self,
+        datasource_id: str,
         *,
-        path_datasource_id: str,
-        body_datasource_id: str,
         name: str,
-        schemas: Dict[str, meta_update_params.Schemas] | NotGiven = NOT_GIVEN,
+        schemas: Dict[str, meta_update_params.MetaBaseSchemas] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -134,11 +194,9 @@ class MetaResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> object:
         """
-        修改元数据（手动上传）
+        Pull Latest Meta And Update
 
         Args:
-          body_datasource_id: datasource_id
-
           name: metadata_name
 
           extra_headers: Send extra headers
@@ -149,15 +207,59 @@ class MetaResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not path_datasource_id:
-            raise ValueError(f"Expected a non-empty value for `path_datasource_id` but received {path_datasource_id!r}")
+        ...
+
+    @overload
+    def update(
+        self,
+        datasource_id: str,
+        *,
+        body: None,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Pull Latest Meta And Update
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["name"], ["body"])
+    def update(
+        self,
+        datasource_id: str,
+        *,
+        name: str | NotGiven = NOT_GIVEN,
+        schemas: Dict[str, meta_update_params.MetaBaseSchemas] | NotGiven = NOT_GIVEN,
+        body: None | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        if not datasource_id:
+            raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
         return self._put(
-            f"/datasources/{path_datasource_id}/meta",
+            f"/datasources/{datasource_id}/meta",
             body=maybe_transform(
                 {
-                    "datasource_id": body_datasource_id,
                     "name": name,
                     "schemas": schemas,
+                    "body": body,
                 },
                 meta_update_params.MetaUpdateParams,
             ),
@@ -188,10 +290,13 @@ class AsyncMetaResource(AsyncAPIResource):
         """
         return AsyncMetaResourceWithStreamingResponse(self)
 
+    @overload
     async def create(
         self,
         datasource_id: str,
         *,
+        name: str,
+        schemas: Dict[str, meta_create_params.MetaBaseSchemas] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -200,7 +305,44 @@ class AsyncMetaResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> object:
         """
-        更新元数据（自动异步）
+        创建数据源的 meta
+
+        如果上传了 meta，则使用用户上传的数据创建。
+
+        否则从数据源中自动获取。
+
+        Args:
+          name: metadata_name
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        datasource_id: str,
+        *,
+        body: None,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        创建数据源的 meta
+
+        如果上传了 meta，则使用用户上传的数据创建。
+
+        否则从数据源中自动获取。
 
         Args:
           extra_headers: Send extra headers
@@ -211,10 +353,35 @@ class AsyncMetaResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @required_args(["name"], ["body"])
+    async def create(
+        self,
+        datasource_id: str,
+        *,
+        name: str | NotGiven = NOT_GIVEN,
+        schemas: Dict[str, meta_create_params.MetaBaseSchemas] | NotGiven = NOT_GIVEN,
+        body: None | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
         if not datasource_id:
             raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
         return await self._post(
             f"/datasources/{datasource_id}/meta",
+            body=await async_maybe_transform(
+                {
+                    "name": name,
+                    "schemas": schemas,
+                    "body": body,
+                },
+                meta_create_params.MetaCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -225,20 +392,17 @@ class AsyncMetaResource(AsyncAPIResource):
         self,
         datasource_id: str,
         *,
-        from_where: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Meta:
+    ) -> MetaRetrieveResponse:
         """
         从数据源中获取最新的元数据
 
         Args:
-          from_where: 获取元数据的来源
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -252,22 +416,18 @@ class AsyncMetaResource(AsyncAPIResource):
         return await self._get(
             f"/datasources/{datasource_id}/meta",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform({"from_where": from_where}, meta_retrieve_params.MetaRetrieveParams),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Meta,
+            cast_to=MetaRetrieveResponse,
         )
 
+    @overload
     async def update(
         self,
+        datasource_id: str,
         *,
-        path_datasource_id: str,
-        body_datasource_id: str,
         name: str,
-        schemas: Dict[str, meta_update_params.Schemas] | NotGiven = NOT_GIVEN,
+        schemas: Dict[str, meta_update_params.MetaBaseSchemas] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -276,11 +436,9 @@ class AsyncMetaResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> object:
         """
-        修改元数据（手动上传）
+        Pull Latest Meta And Update
 
         Args:
-          body_datasource_id: datasource_id
-
           name: metadata_name
 
           extra_headers: Send extra headers
@@ -291,15 +449,59 @@ class AsyncMetaResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not path_datasource_id:
-            raise ValueError(f"Expected a non-empty value for `path_datasource_id` but received {path_datasource_id!r}")
+        ...
+
+    @overload
+    async def update(
+        self,
+        datasource_id: str,
+        *,
+        body: None,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Pull Latest Meta And Update
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["name"], ["body"])
+    async def update(
+        self,
+        datasource_id: str,
+        *,
+        name: str | NotGiven = NOT_GIVEN,
+        schemas: Dict[str, meta_update_params.MetaBaseSchemas] | NotGiven = NOT_GIVEN,
+        body: None | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        if not datasource_id:
+            raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
         return await self._put(
-            f"/datasources/{path_datasource_id}/meta",
+            f"/datasources/{datasource_id}/meta",
             body=await async_maybe_transform(
                 {
-                    "datasource_id": body_datasource_id,
                     "name": name,
                     "schemas": schemas,
+                    "body": body,
                 },
                 meta_update_params.MetaUpdateParams,
             ),
