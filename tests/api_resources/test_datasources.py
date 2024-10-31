@@ -23,7 +23,6 @@ class TestDatasources:
     @parametrize
     def test_method_create(self, client: Asktable) -> None:
         datasource = client.datasources.create(
-            access_config={},
             engine="mysql",
         )
         assert_matches_type(DataSource, datasource, path=["response"])
@@ -31,6 +30,8 @@ class TestDatasources:
     @parametrize
     def test_method_create_with_all_params(self, client: Asktable) -> None:
         datasource = client.datasources.create(
+            engine="mysql",
+            async_process_meta=True,
             access_config={
                 "db": "test",
                 "host": "192.168.0.10",
@@ -41,9 +42,6 @@ class TestDatasources:
                 "securetunnel_id": "atst_123456",
                 "user": "root",
             },
-            engine="mysql",
-            async_process_meta=True,
-            skip_process_meta=True,
             name="用户库",
         )
         assert_matches_type(DataSource, datasource, path=["response"])
@@ -51,7 +49,6 @@ class TestDatasources:
     @parametrize
     def test_raw_response_create(self, client: Asktable) -> None:
         response = client.datasources.with_raw_response.create(
-            access_config={},
             engine="mysql",
         )
 
@@ -63,7 +60,6 @@ class TestDatasources:
     @parametrize
     def test_streaming_response_create(self, client: Asktable) -> None:
         with client.datasources.with_streaming_response.create(
-            access_config={},
             engine="mysql",
         ) as response:
             assert not response.is_closed
@@ -255,16 +251,6 @@ class TestDatasources:
         assert_matches_type(DataSource, datasource, path=["response"])
 
     @parametrize
-    def test_method_create_from_file_with_all_params(self, client: Asktable) -> None:
-        datasource = client.datasources.create_from_file(
-            name="name",
-            file=b"raw file contents",
-            async_process_meta=True,
-            skip_process_meta=True,
-        )
-        assert_matches_type(DataSource, datasource, path=["response"])
-
-    @parametrize
     def test_raw_response_create_from_file(self, client: Asktable) -> None:
         response = client.datasources.with_raw_response.create_from_file(
             name="name",
@@ -297,7 +283,6 @@ class TestAsyncDatasources:
     @parametrize
     async def test_method_create(self, async_client: AsyncAsktable) -> None:
         datasource = await async_client.datasources.create(
-            access_config={},
             engine="mysql",
         )
         assert_matches_type(DataSource, datasource, path=["response"])
@@ -305,6 +290,8 @@ class TestAsyncDatasources:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncAsktable) -> None:
         datasource = await async_client.datasources.create(
+            engine="mysql",
+            async_process_meta=True,
             access_config={
                 "db": "test",
                 "host": "192.168.0.10",
@@ -315,9 +302,6 @@ class TestAsyncDatasources:
                 "securetunnel_id": "atst_123456",
                 "user": "root",
             },
-            engine="mysql",
-            async_process_meta=True,
-            skip_process_meta=True,
             name="用户库",
         )
         assert_matches_type(DataSource, datasource, path=["response"])
@@ -325,7 +309,6 @@ class TestAsyncDatasources:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncAsktable) -> None:
         response = await async_client.datasources.with_raw_response.create(
-            access_config={},
             engine="mysql",
         )
 
@@ -337,7 +320,6 @@ class TestAsyncDatasources:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncAsktable) -> None:
         async with async_client.datasources.with_streaming_response.create(
-            access_config={},
             engine="mysql",
         ) as response:
             assert not response.is_closed
@@ -525,16 +507,6 @@ class TestAsyncDatasources:
         datasource = await async_client.datasources.create_from_file(
             name="name",
             file=b"raw file contents",
-        )
-        assert_matches_type(DataSource, datasource, path=["response"])
-
-    @parametrize
-    async def test_method_create_from_file_with_all_params(self, async_client: AsyncAsktable) -> None:
-        datasource = await async_client.datasources.create_from_file(
-            name="name",
-            file=b"raw file contents",
-            async_process_meta=True,
-            skip_process_meta=True,
         )
         assert_matches_type(DataSource, datasource, path=["response"])
 
