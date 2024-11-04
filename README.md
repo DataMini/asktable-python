@@ -2,7 +2,7 @@
 
 [![PyPI version](https://img.shields.io/pypi/v/asktable.svg)](https://pypi.org/project/asktable/)
 
-The Asktable Python library provides convenient access to the Asktable REST API from any Python 3.7+
+The Asktable Python library provides convenient access to the Asktable REST API from any Python 3.8+
 application. The library includes type definitions for all request params and response fields,
 and offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx).
 
@@ -316,7 +316,7 @@ print(asktable.__version__)
 
 ## Requirements
 
-Python 3.7 or higher.
+Python 3.8 or higher.
 
 ## Contributing
 
