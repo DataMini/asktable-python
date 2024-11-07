@@ -63,7 +63,7 @@ class MetaResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> object:
         """
-        创建数据源的 meta
+        创建或刷新 数据源的 meta
 
         如果上传了 meta，则使用用户上传的数据创建。
 
@@ -96,7 +96,7 @@ class MetaResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> object:
         """
-        创建数据源的 meta
+        创建或刷新 数据源的 meta
 
         如果上传了 meta，则使用用户上传的数据创建。
 
@@ -194,7 +194,7 @@ class MetaResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> object:
         """
-        Pull Latest Meta And Update
+        用于更新 DB 类型的数据源的 Meta（增加新表或者删除老表）
 
         Args:
           name: metadata_name
@@ -223,7 +223,7 @@ class MetaResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> object:
         """
-        Pull Latest Meta And Update
+        用于更新 DB 类型的数据源的 Meta（增加新表或者删除老表）
 
         Args:
           extra_headers: Send extra headers
@@ -305,7 +305,7 @@ class AsyncMetaResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> object:
         """
-        创建数据源的 meta
+        创建或刷新 数据源的 meta
 
         如果上传了 meta，则使用用户上传的数据创建。
 
@@ -338,7 +338,7 @@ class AsyncMetaResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> object:
         """
-        创建数据源的 meta
+        创建或刷新 数据源的 meta
 
         如果上传了 meta，则使用用户上传的数据创建。
 
@@ -436,7 +436,7 @@ class AsyncMetaResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> object:
         """
-        Pull Latest Meta And Update
+        用于更新 DB 类型的数据源的 Meta（增加新表或者删除老表）
 
         Args:
           name: metadata_name
@@ -465,7 +465,7 @@ class AsyncMetaResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> object:
         """
-        Pull Latest Meta And Update
+        用于更新 DB 类型的数据源的 Meta（增加新表或者删除老表）
 
         Args:
           extra_headers: Send extra headers
