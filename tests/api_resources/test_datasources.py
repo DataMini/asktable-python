@@ -251,6 +251,15 @@ class TestDatasources:
         assert_matches_type(DataSource, datasource, path=["response"])
 
     @parametrize
+    def test_method_create_from_file_with_all_params(self, client: Asktable) -> None:
+        datasource = client.datasources.create_from_file(
+            name="name",
+            file=b"raw file contents",
+            async_process_meta=True,
+        )
+        assert_matches_type(DataSource, datasource, path=["response"])
+
+    @parametrize
     def test_raw_response_create_from_file(self, client: Asktable) -> None:
         response = client.datasources.with_raw_response.create_from_file(
             name="name",
@@ -507,6 +516,15 @@ class TestAsyncDatasources:
         datasource = await async_client.datasources.create_from_file(
             name="name",
             file=b"raw file contents",
+        )
+        assert_matches_type(DataSource, datasource, path=["response"])
+
+    @parametrize
+    async def test_method_create_from_file_with_all_params(self, async_client: AsyncAsktable) -> None:
+        datasource = await async_client.datasources.create_from_file(
+            name="name",
+            file=b"raw file contents",
+            async_process_meta=True,
         )
         assert_matches_type(DataSource, datasource, path=["response"])
 
