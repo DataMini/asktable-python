@@ -323,6 +323,7 @@ class DatasourcesResource(SyncAPIResource):
         *,
         name: str,
         file: FileTypes,
+        async_process_meta: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -358,7 +359,11 @@ class DatasourcesResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform(
-                    {"name": name}, datasource_create_from_file_params.DatasourceCreateFromFileParams
+                    {
+                        "name": name,
+                        "async_process_meta": async_process_meta,
+                    },
+                    datasource_create_from_file_params.DatasourceCreateFromFileParams,
                 ),
             ),
             cast_to=DataSource,
@@ -637,6 +642,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         *,
         name: str,
         file: FileTypes,
+        async_process_meta: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -672,7 +678,11 @@ class AsyncDatasourcesResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform(
-                    {"name": name}, datasource_create_from_file_params.DatasourceCreateFromFileParams
+                    {
+                        "name": name,
+                        "async_process_meta": async_process_meta,
+                    },
+                    datasource_create_from_file_params.DatasourceCreateFromFileParams,
                 ),
             ),
             cast_to=DataSource,
