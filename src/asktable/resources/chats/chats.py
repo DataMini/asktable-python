@@ -28,7 +28,6 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...types.chat import Chat
 from ..._base_client import make_request_options
 from ...types.chat_out import ChatOut
 from ...types.chat_list_response import ChatListResponse
@@ -74,7 +73,7 @@ class ChatsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Chat:
+    ) -> ChatOut:
         """
         创建对话
 
@@ -114,7 +113,7 @@ class ChatsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Chat,
+            cast_to=ChatOut,
         )
 
     def retrieve(
@@ -269,7 +268,7 @@ class AsyncChatsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Chat:
+    ) -> ChatOut:
         """
         创建对话
 
@@ -309,7 +308,7 @@ class AsyncChatsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Chat,
+            cast_to=ChatOut,
         )
 
     async def retrieve(
