@@ -12,16 +12,10 @@ class Item(BaseModel):
     id: str
     """对话 ID"""
 
-    ai_msgs: int
-    """机器人消息数"""
-
-    created: datetime
+    created_at: datetime
     """创建时间"""
 
-    human_msgs: int
-    """用户消息数"""
-
-    modified: datetime
+    modified_at: datetime
     """修改时间"""
 
     project_id: str
@@ -31,9 +25,6 @@ class Item(BaseModel):
     机器人 ID，如果需要使用高级功能，请使用 bot_id 来创建对话。在机器人中你可以定义
     可以访问的数据、可以执行的任务以及是否开启调试模式等设置。
     """
-
-    latest_msg: Optional[datetime] = None
-    """最新消息时间"""
 
     name: Optional[str] = None
     """New name for the chat"""
