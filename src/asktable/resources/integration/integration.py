@@ -6,27 +6,39 @@ from typing import Optional
 
 import httpx
 
-from ..types import integration_excel_csv_ask_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .._utils import (
+from ...types import integration_excel_csv_ask_params
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
     maybe_transform,
     async_maybe_transform,
 )
-from .._compat import cached_property
-from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import (
+from ..._compat import cached_property
+from .excel_csv import (
+    ExcelCsvResource,
+    AsyncExcelCsvResource,
+    ExcelCsvResourceWithRawResponse,
+    AsyncExcelCsvResourceWithRawResponse,
+    ExcelCsvResourceWithStreamingResponse,
+    AsyncExcelCsvResourceWithStreamingResponse,
+)
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
-from ..types.answer_data_source_out import AnswerDataSourceOut
+from ..._base_client import make_request_options
+from ...types.answer_data_source_out import AnswerDataSourceOut
 
 __all__ = ["IntegrationResource", "AsyncIntegrationResource"]
 
 
 class IntegrationResource(SyncAPIResource):
+    @cached_property
+    def excel_csv(self) -> ExcelCsvResource:
+        return ExcelCsvResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> IntegrationResourceWithRawResponse:
         """
@@ -95,6 +107,10 @@ class IntegrationResource(SyncAPIResource):
 
 
 class AsyncIntegrationResource(AsyncAPIResource):
+    @cached_property
+    def excel_csv(self) -> AsyncExcelCsvResource:
+        return AsyncExcelCsvResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> AsyncIntegrationResourceWithRawResponse:
         """
@@ -170,6 +186,10 @@ class IntegrationResourceWithRawResponse:
             integration.excel_csv_ask,
         )
 
+    @cached_property
+    def excel_csv(self) -> ExcelCsvResourceWithRawResponse:
+        return ExcelCsvResourceWithRawResponse(self._integration.excel_csv)
+
 
 class AsyncIntegrationResourceWithRawResponse:
     def __init__(self, integration: AsyncIntegrationResource) -> None:
@@ -178,6 +198,10 @@ class AsyncIntegrationResourceWithRawResponse:
         self.excel_csv_ask = async_to_raw_response_wrapper(
             integration.excel_csv_ask,
         )
+
+    @cached_property
+    def excel_csv(self) -> AsyncExcelCsvResourceWithRawResponse:
+        return AsyncExcelCsvResourceWithRawResponse(self._integration.excel_csv)
 
 
 class IntegrationResourceWithStreamingResponse:
@@ -188,6 +212,10 @@ class IntegrationResourceWithStreamingResponse:
             integration.excel_csv_ask,
         )
 
+    @cached_property
+    def excel_csv(self) -> ExcelCsvResourceWithStreamingResponse:
+        return ExcelCsvResourceWithStreamingResponse(self._integration.excel_csv)
+
 
 class AsyncIntegrationResourceWithStreamingResponse:
     def __init__(self, integration: AsyncIntegrationResource) -> None:
@@ -196,3 +224,7 @@ class AsyncIntegrationResourceWithStreamingResponse:
         self.excel_csv_ask = async_to_streamed_response_wrapper(
             integration.excel_csv_ask,
         )
+
+    @cached_property
+    def excel_csv(self) -> AsyncExcelCsvResourceWithStreamingResponse:
+        return AsyncExcelCsvResourceWithStreamingResponse(self._integration.excel_csv)
