@@ -1,5 +1,30 @@
 # Changelog
 
+## 3.2.0 (2024-11-12)
+
+Full Changelog: [v3.1.0...v3.2.0](https://github.com/DataMini/asktable-python/compare/v3.1.0...v3.2.0)
+
+### Features
+
+* **api:** api update ([#15](https://github.com/DataMini/asktable-python/issues/15)) ([0bd4771](https://github.com/DataMini/asktable-python/commit/0bd477131ac8185904589a971e78023c254f88fc))
+* **api:** api update ([#17](https://github.com/DataMini/asktable-python/issues/17)) ([6e24354](https://github.com/DataMini/asktable-python/commit/6e24354e23a176d8afccb60c0cc11bb1ebdf33ab))
+* **api:** api update ([#18](https://github.com/DataMini/asktable-python/issues/18)) ([8492bb7](https://github.com/DataMini/asktable-python/commit/8492bb7e705d0c60343a272ab7fb5e9cf28d5ecb))
+* **api:** api update ([#19](https://github.com/DataMini/asktable-python/issues/19)) ([e9ffbf7](https://github.com/DataMini/asktable-python/commit/e9ffbf7f64390dac45ea2454f06280baab45aa7f))
+* **api:** api update ([#20](https://github.com/DataMini/asktable-python/issues/20)) ([eb8d8c1](https://github.com/DataMini/asktable-python/commit/eb8d8c159ec9f6db0cb3400fd28da376a362054f))
+* **api:** api update ([#23](https://github.com/DataMini/asktable-python/issues/23)) ([6527b96](https://github.com/DataMini/asktable-python/commit/6527b963f43a6b608283dfaa7f9d90d1140f5fe5))
+* **api:** api update ([#24](https://github.com/DataMini/asktable-python/issues/24)) ([83045c6](https://github.com/DataMini/asktable-python/commit/83045c6a90f350182f9c022d74ebb9d3c23f0b59))
+* **api:** api update ([#27](https://github.com/DataMini/asktable-python/issues/27)) ([c16037f](https://github.com/DataMini/asktable-python/commit/c16037f8c580a56c5348c82baf04d3f0e1980dff))
+* **api:** manual updates ([#28](https://github.com/DataMini/asktable-python/issues/28)) ([a75217e](https://github.com/DataMini/asktable-python/commit/a75217ea3d433687573070480ef7381bd3f2d887))
+* **api:** manual updates ([#29](https://github.com/DataMini/asktable-python/issues/29)) ([35884cc](https://github.com/DataMini/asktable-python/commit/35884ccfecaf87c60899ea1a143a8640125d4e8c))
+
+
+### Chores
+
+* rebuild project due to codegen change ([#21](https://github.com/DataMini/asktable-python/issues/21)) ([911dd76](https://github.com/DataMini/asktable-python/commit/911dd760e7d4022725fcd8607d3c7907d3a7fae3))
+* rebuild project due to codegen change ([#22](https://github.com/DataMini/asktable-python/issues/22)) ([9df1755](https://github.com/DataMini/asktable-python/commit/9df175567613a324478980242eee95cacf64a34d))
+* rebuild project due to codegen change ([#25](https://github.com/DataMini/asktable-python/issues/25)) ([c5804aa](https://github.com/DataMini/asktable-python/commit/c5804aa3ad70a4470ca30a75460cd12b145fddc4))
+* rebuild project due to codegen change ([#26](https://github.com/DataMini/asktable-python/issues/26)) ([6db974f](https://github.com/DataMini/asktable-python/commit/6db974fc42b9933b4ba685d50b08657bdd191747))
+
 ## 3.1.0 (2024-10-13)
 
 Full Changelog: [v3.0.0...v3.1.0](https://github.com/DataMini/asktable-python/compare/v3.0.0...v3.1.0)
