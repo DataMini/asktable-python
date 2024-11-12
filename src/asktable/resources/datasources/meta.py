@@ -23,7 +23,7 @@ from ..._response import (
 )
 from ..._base_client import make_request_options
 from ...types.datasources import meta_create_params, meta_update_params
-from ...types.datasources.meta_retrieve_response import MetaRetrieveResponse
+from ...types.datasources.meta import Meta
 
 __all__ = ["MetaResource", "AsyncMetaResource"]
 
@@ -156,7 +156,7 @@ class MetaResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MetaRetrieveResponse:
+    ) -> Meta:
         """
         从数据源中获取最新的元数据
 
@@ -176,7 +176,7 @@ class MetaResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MetaRetrieveResponse,
+            cast_to=Meta,
         )
 
     @overload
@@ -263,6 +263,39 @@ class MetaResource(SyncAPIResource):
                 },
                 meta_update_params.MetaUpdateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
+        )
+
+    def delete(
+        self,
+        datasource_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Delete Datasource Metadata
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not datasource_id:
+            raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
+        return self._delete(
+            f"/datasources/{datasource_id}/meta",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -398,7 +431,7 @@ class AsyncMetaResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MetaRetrieveResponse:
+    ) -> Meta:
         """
         从数据源中获取最新的元数据
 
@@ -418,7 +451,7 @@ class AsyncMetaResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MetaRetrieveResponse,
+            cast_to=Meta,
         )
 
     @overload
@@ -511,6 +544,39 @@ class AsyncMetaResource(AsyncAPIResource):
             cast_to=object,
         )
 
+    async def delete(
+        self,
+        datasource_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Delete Datasource Metadata
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not datasource_id:
+            raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
+        return await self._delete(
+            f"/datasources/{datasource_id}/meta",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
+        )
+
 
 class MetaResourceWithRawResponse:
     def __init__(self, meta: MetaResource) -> None:
@@ -524,6 +590,9 @@ class MetaResourceWithRawResponse:
         )
         self.update = to_raw_response_wrapper(
             meta.update,
+        )
+        self.delete = to_raw_response_wrapper(
+            meta.delete,
         )
 
 
@@ -540,6 +609,9 @@ class AsyncMetaResourceWithRawResponse:
         self.update = async_to_raw_response_wrapper(
             meta.update,
         )
+        self.delete = async_to_raw_response_wrapper(
+            meta.delete,
+        )
 
 
 class MetaResourceWithStreamingResponse:
@@ -555,6 +627,9 @@ class MetaResourceWithStreamingResponse:
         self.update = to_streamed_response_wrapper(
             meta.update,
         )
+        self.delete = to_streamed_response_wrapper(
+            meta.delete,
+        )
 
 
 class AsyncMetaResourceWithStreamingResponse:
@@ -569,4 +644,7 @@ class AsyncMetaResourceWithStreamingResponse:
         )
         self.update = async_to_streamed_response_wrapper(
             meta.update,
+        )
+        self.delete = async_to_streamed_response_wrapper(
+            meta.delete,
         )
