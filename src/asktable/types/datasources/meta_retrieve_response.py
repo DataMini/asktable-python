@@ -8,9 +8,6 @@ __all__ = ["MetaRetrieveResponse", "Schemas", "SchemasTables", "SchemasTablesFie
 
 
 class SchemasTablesFields(BaseModel):
-    curr_desc: str
-    """current field description"""
-
     curr_desc_stat: str
     """current field description status"""
 
@@ -19,6 +16,9 @@ class SchemasTablesFields(BaseModel):
 
     name: str
     """field_name"""
+
+    curr_desc: Optional[str] = None
+    """current field description"""
 
     data_type: Optional[str] = None
     """field data type"""
@@ -31,9 +31,6 @@ class SchemasTablesFields(BaseModel):
 
 
 class SchemasTables(BaseModel):
-    curr_desc: str
-    """current table description"""
-
     curr_desc_stat: str
     """current table description status"""
 
@@ -42,6 +39,9 @@ class SchemasTables(BaseModel):
 
     name: str
     """table_name"""
+
+    curr_desc: Optional[str] = None
+    """current table description"""
 
     fields: Optional[Dict[str, SchemasTablesFields]] = None
 
