@@ -93,13 +93,13 @@ Methods:
 Types:
 
 ```python
-from asktable.types import Chat, ChatOut, ChatListResponse
+from asktable.types import ChatCreateResponse, ChatRetrieveResponse, ChatListResponse
 ```
 
 Methods:
 
-- <code title="post /chats">client.chats.<a href="./src/asktable/resources/chats/chats.py">create</a>(\*\*<a href="src/asktable/types/chat_create_params.py">params</a>) -> <a href="./src/asktable/types/chat.py">Chat</a></code>
-- <code title="get /chats/{chat_id}">client.chats.<a href="./src/asktable/resources/chats/chats.py">retrieve</a>(chat_id) -> <a href="./src/asktable/types/chat_out.py">ChatOut</a></code>
+- <code title="post /chats">client.chats.<a href="./src/asktable/resources/chats/chats.py">create</a>(\*\*<a href="src/asktable/types/chat_create_params.py">params</a>) -> <a href="./src/asktable/types/chat_create_response.py">ChatCreateResponse</a></code>
+- <code title="get /chats/{chat_id}">client.chats.<a href="./src/asktable/resources/chats/chats.py">retrieve</a>(chat_id) -> <a href="./src/asktable/types/chat_retrieve_response.py">ChatRetrieveResponse</a></code>
 - <code title="get /chats">client.chats.<a href="./src/asktable/resources/chats/chats.py">list</a>(\*\*<a href="src/asktable/types/chat_list_params.py">params</a>) -> <a href="./src/asktable/types/chat_list_response.py">ChatListResponse</a></code>
 - <code title="delete /chats/{chat_id}">client.chats.<a href="./src/asktable/resources/chats/chats.py">delete</a>(chat_id) -> None</code>
 
@@ -139,14 +139,20 @@ Methods:
 Types:
 
 ```python
-from asktable.types.datasources import Meta, MetaCreateResponse, MetaUpdateResponse
+from asktable.types.datasources import (
+    Meta,
+    MetaCreateResponse,
+    MetaUpdateResponse,
+    MetaDeleteResponse,
+)
 ```
 
 Methods:
 
-- <code title="post /datasources/{datasource_id}/meta">client.datasources.meta.<a href="./src/asktable/resources/datasources/meta.py">create</a>(datasource_id) -> <a href="./src/asktable/types/datasources/meta_create_response.py">object</a></code>
-- <code title="get /datasources/{datasource_id}/meta">client.datasources.meta.<a href="./src/asktable/resources/datasources/meta.py">retrieve</a>(datasource_id, \*\*<a href="src/asktable/types/datasources/meta_retrieve_params.py">params</a>) -> <a href="./src/asktable/types/datasources/meta.py">Meta</a></code>
-- <code title="put /datasources/{datasource_id}/meta">client.datasources.meta.<a href="./src/asktable/resources/datasources/meta.py">update</a>(\*, path_datasource_id, \*\*<a href="src/asktable/types/datasources/meta_update_params.py">params</a>) -> <a href="./src/asktable/types/datasources/meta_update_response.py">object</a></code>
+- <code title="post /datasources/{datasource_id}/meta">client.datasources.meta.<a href="./src/asktable/resources/datasources/meta.py">create</a>(datasource_id, \*\*<a href="src/asktable/types/datasources/meta_create_params.py">params</a>) -> <a href="./src/asktable/types/datasources/meta_create_response.py">object</a></code>
+- <code title="get /datasources/{datasource_id}/meta">client.datasources.meta.<a href="./src/asktable/resources/datasources/meta.py">retrieve</a>(datasource_id) -> <a href="./src/asktable/types/datasources/meta.py">Meta</a></code>
+- <code title="put /datasources/{datasource_id}/meta">client.datasources.meta.<a href="./src/asktable/resources/datasources/meta.py">update</a>(datasource_id, \*\*<a href="src/asktable/types/datasources/meta_update_params.py">params</a>) -> <a href="./src/asktable/types/datasources/meta_update_response.py">object</a></code>
+- <code title="delete /datasources/{datasource_id}/meta">client.datasources.meta.<a href="./src/asktable/resources/datasources/meta.py">delete</a>(datasource_id) -> <a href="./src/asktable/types/datasources/meta_delete_response.py">object</a></code>
 
 ## UploadParams
 
@@ -279,7 +285,19 @@ from asktable.types import AnswerDataSourceOut
 
 Methods:
 
-- <code title="post /integration/excel_csv_ask">client.integration.<a href="./src/asktable/resources/integration.py">excel_csv_ask</a>(\*\*<a href="src/asktable/types/integration_excel_csv_ask_params.py">params</a>) -> <a href="./src/asktable/types/answer_data_source_out.py">AnswerDataSourceOut</a></code>
+- <code title="post /integration/excel_csv_ask">client.integration.<a href="./src/asktable/resources/integration/integration.py">excel_csv_ask</a>(\*\*<a href="src/asktable/types/integration_excel_csv_ask_params.py">params</a>) -> <a href="./src/asktable/types/answer_data_source_out.py">AnswerDataSourceOut</a></code>
+
+## ExcelCsv
+
+Types:
+
+```python
+from asktable.types.integration import DatasourceOut
+```
+
+Methods:
+
+- <code title="post /integration/create_excel_ds">client.integration.excel_csv.<a href="./src/asktable/resources/integration/excel_csv.py">create</a>(\*\*<a href="src/asktable/types/integration/excel_csv_create_params.py">params</a>) -> <a href="./src/asktable/types/data_source.py">DataSource</a></code>
 
 # Sys
 
@@ -324,3 +342,18 @@ from asktable.types.sys.projects import TokenCreateResponse
 Methods:
 
 - <code title="post /sys/projects/{project_id}/tokens">client.sys.projects.tokens.<a href="./src/asktable/resources/sys/projects/tokens.py">create</a>(project_id, \*\*<a href="src/asktable/types/sys/projects/token_create_params.py">params</a>) -> <a href="./src/asktable/types/sys/projects/token_create_response.py">object</a></code>
+
+# KB
+
+Types:
+
+```python
+from asktable.types import Document, PageDocument, KBCreateResponse, KBDeleteResponse
+```
+
+Methods:
+
+- <code title="post /kb">client.kb.<a href="./src/asktable/resources/kb.py">create</a>(\*\*<a href="src/asktable/types/kb_create_params.py">params</a>) -> <a href="./src/asktable/types/kb_create_response.py">KBCreateResponse</a></code>
+- <code title="get /kb/{doc_id}">client.kb.<a href="./src/asktable/resources/kb.py">retrieve</a>(doc_id) -> <a href="./src/asktable/types/document.py">Document</a></code>
+- <code title="get /kb">client.kb.<a href="./src/asktable/resources/kb.py">list</a>(\*\*<a href="src/asktable/types/kb_list_params.py">params</a>) -> <a href="./src/asktable/types/page_document.py">PageDocument</a></code>
+- <code title="delete /kb/{doc_id}">client.kb.<a href="./src/asktable/resources/kb.py">delete</a>(doc_id) -> <a href="./src/asktable/types/kb_delete_response.py">object</a></code>

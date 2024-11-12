@@ -8,9 +8,6 @@ __all__ = ["Meta", "Schemas", "SchemasTables", "SchemasTablesFields"]
 
 
 class SchemasTablesFields(BaseModel):
-    curr_desc: str
-    """current field description"""
-
     curr_desc_stat: str
     """current field description status"""
 
@@ -19,6 +16,9 @@ class SchemasTablesFields(BaseModel):
 
     name: str
     """field_name"""
+
+    curr_desc: Optional[str] = None
+    """current field description"""
 
     data_type: Optional[str] = None
     """field data type"""
@@ -31,9 +31,6 @@ class SchemasTablesFields(BaseModel):
 
 
 class SchemasTables(BaseModel):
-    curr_desc: str
-    """current table description"""
-
     curr_desc_stat: str
     """current table description status"""
 
@@ -43,6 +40,9 @@ class SchemasTables(BaseModel):
     name: str
     """table_name"""
 
+    curr_desc: Optional[str] = None
+    """current table description"""
+
     fields: Optional[Dict[str, SchemasTablesFields]] = None
 
     origin_desc: Optional[str] = None
@@ -50,14 +50,14 @@ class SchemasTables(BaseModel):
 
 
 class Schemas(BaseModel):
-    curr_desc: str
-    """current schema description"""
-
     curr_desc_stat: str
     """current schema description status"""
 
     name: str
     """schema_name"""
+
+    curr_desc: Optional[str] = None
+    """current schema description"""
 
     custom_configs: Optional[object] = None
     """custom configs"""

@@ -82,10 +82,9 @@ class DatasourcesResource(SyncAPIResource):
     def create(
         self,
         *,
-        access_config: datasource_create_params.AccessConfig,
-        engine: Literal["mysql", "tidb", "postgresql", "oceanbase", "clickhouse", "csv", "excel"],
+        engine: Literal["mysql", "tidb", "postgresql", "oceanbase", "clickhouse", "csv", "excel", "starrocks"],
         async_process_meta: bool | NotGiven = NOT_GIVEN,
-        skip_process_meta: bool | NotGiven = NOT_GIVEN,
+        access_config: Optional[datasource_create_params.AccessConfig] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -95,16 +94,12 @@ class DatasourcesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> DataSource:
         """
-        创建数据源
+        创建一个新的数据源
 
         Args:
-          access_config: 不同引擎有不同的配置
-
           engine: 数据源引擎
 
-          async_process_meta: 是否异步处理元数据
-
-          skip_process_meta: 是否跳过元数据处理
+          access_config: 不同引擎有不同的配置
 
           name: 数据源的名称
 
@@ -120,8 +115,8 @@ class DatasourcesResource(SyncAPIResource):
             "/datasources",
             body=maybe_transform(
                 {
-                    "access_config": access_config,
                     "engine": engine,
+                    "access_config": access_config,
                     "name": name,
                 },
                 datasource_create_params.DatasourceCreateParams,
@@ -132,11 +127,7 @@ class DatasourcesResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform(
-                    {
-                        "async_process_meta": async_process_meta,
-                        "skip_process_meta": skip_process_meta,
-                    },
-                    datasource_create_params.DatasourceCreateParams,
+                    {"async_process_meta": async_process_meta}, datasource_create_params.DatasourceCreateParams
                 ),
             ),
             cast_to=DataSource,
@@ -154,7 +145,7 @@ class DatasourcesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> DataSource:
         """
-        获取某个数据源
+        根据 id 获取指定数据源
 
         Args:
           extra_headers: Send extra headers
@@ -182,7 +173,8 @@ class DatasourcesResource(SyncAPIResource):
         access_config: Optional[datasource_update_params.AccessConfig] | NotGiven = NOT_GIVEN,
         field_count: Optional[int] | NotGiven = NOT_GIVEN,
         meta_error: Optional[str] | NotGiven = NOT_GIVEN,
-        meta_status: Optional[Literal["processing", "failed", "success", "unprocessed"]] | NotGiven = NOT_GIVEN,
+        meta_status: Optional[Literal["processing", "failed", "warning", "success", "unprocessed"]]
+        | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         sample_questions: Optional[str] | NotGiven = NOT_GIVEN,
         schema_count: Optional[int] | NotGiven = NOT_GIVEN,
@@ -195,7 +187,7 @@ class DatasourcesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> DataSource:
         """
-        修改数据源
+        更新指定数据源信息
 
         Args:
           access_config: 不同引擎有不同的配置
@@ -259,7 +251,7 @@ class DatasourcesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> DatasourceListResponse:
         """
-        获取数据源列表
+        获取所有的数据源
 
         Args:
           page: Page number
@@ -305,7 +297,7 @@ class DatasourcesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> object:
         """
-        删除数据源
+        根据 id 删除指定数据源
 
         Args:
           extra_headers: Send extra headers
@@ -332,7 +324,6 @@ class DatasourcesResource(SyncAPIResource):
         name: str,
         file: FileTypes,
         async_process_meta: bool | NotGiven = NOT_GIVEN,
-        skip_process_meta: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -344,10 +335,6 @@ class DatasourcesResource(SyncAPIResource):
         上传文件并创建数据源
 
         Args:
-          async_process_meta: 是否异步处理元数据
-
-          skip_process_meta: 是否跳过元数据处理
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -375,7 +362,6 @@ class DatasourcesResource(SyncAPIResource):
                     {
                         "name": name,
                         "async_process_meta": async_process_meta,
-                        "skip_process_meta": skip_process_meta,
                     },
                     datasource_create_from_file_params.DatasourceCreateFromFileParams,
                 ),
@@ -415,10 +401,9 @@ class AsyncDatasourcesResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        access_config: datasource_create_params.AccessConfig,
-        engine: Literal["mysql", "tidb", "postgresql", "oceanbase", "clickhouse", "csv", "excel"],
+        engine: Literal["mysql", "tidb", "postgresql", "oceanbase", "clickhouse", "csv", "excel", "starrocks"],
         async_process_meta: bool | NotGiven = NOT_GIVEN,
-        skip_process_meta: bool | NotGiven = NOT_GIVEN,
+        access_config: Optional[datasource_create_params.AccessConfig] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -428,16 +413,12 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> DataSource:
         """
-        创建数据源
+        创建一个新的数据源
 
         Args:
-          access_config: 不同引擎有不同的配置
-
           engine: 数据源引擎
 
-          async_process_meta: 是否异步处理元数据
-
-          skip_process_meta: 是否跳过元数据处理
+          access_config: 不同引擎有不同的配置
 
           name: 数据源的名称
 
@@ -453,8 +434,8 @@ class AsyncDatasourcesResource(AsyncAPIResource):
             "/datasources",
             body=await async_maybe_transform(
                 {
-                    "access_config": access_config,
                     "engine": engine,
+                    "access_config": access_config,
                     "name": name,
                 },
                 datasource_create_params.DatasourceCreateParams,
@@ -465,11 +446,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform(
-                    {
-                        "async_process_meta": async_process_meta,
-                        "skip_process_meta": skip_process_meta,
-                    },
-                    datasource_create_params.DatasourceCreateParams,
+                    {"async_process_meta": async_process_meta}, datasource_create_params.DatasourceCreateParams
                 ),
             ),
             cast_to=DataSource,
@@ -487,7 +464,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> DataSource:
         """
-        获取某个数据源
+        根据 id 获取指定数据源
 
         Args:
           extra_headers: Send extra headers
@@ -515,7 +492,8 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         access_config: Optional[datasource_update_params.AccessConfig] | NotGiven = NOT_GIVEN,
         field_count: Optional[int] | NotGiven = NOT_GIVEN,
         meta_error: Optional[str] | NotGiven = NOT_GIVEN,
-        meta_status: Optional[Literal["processing", "failed", "success", "unprocessed"]] | NotGiven = NOT_GIVEN,
+        meta_status: Optional[Literal["processing", "failed", "warning", "success", "unprocessed"]]
+        | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         sample_questions: Optional[str] | NotGiven = NOT_GIVEN,
         schema_count: Optional[int] | NotGiven = NOT_GIVEN,
@@ -528,7 +506,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> DataSource:
         """
-        修改数据源
+        更新指定数据源信息
 
         Args:
           access_config: 不同引擎有不同的配置
@@ -592,7 +570,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> DatasourceListResponse:
         """
-        获取数据源列表
+        获取所有的数据源
 
         Args:
           page: Page number
@@ -638,7 +616,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> object:
         """
-        删除数据源
+        根据 id 删除指定数据源
 
         Args:
           extra_headers: Send extra headers
@@ -665,7 +643,6 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         name: str,
         file: FileTypes,
         async_process_meta: bool | NotGiven = NOT_GIVEN,
-        skip_process_meta: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -677,10 +654,6 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         上传文件并创建数据源
 
         Args:
-          async_process_meta: 是否异步处理元数据
-
-          skip_process_meta: 是否跳过元数据处理
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -708,7 +681,6 @@ class AsyncDatasourcesResource(AsyncAPIResource):
                     {
                         "name": name,
                         "async_process_meta": async_process_meta,
-                        "skip_process_meta": skip_process_meta,
                     },
                     datasource_create_from_file_params.DatasourceCreateFromFileParams,
                 ),

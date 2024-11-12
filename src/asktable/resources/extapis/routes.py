@@ -103,7 +103,7 @@ class RoutesResource(SyncAPIResource):
                 {
                     "id": id,
                     "created_at": created_at,
-                    "extapi_id": body_extapi_id,
+                    "body_extapi_id": body_extapi_id,
                     "method": method,
                     "name": name,
                     "path": path,
@@ -367,7 +367,7 @@ class AsyncRoutesResource(AsyncAPIResource):
                 {
                     "id": id,
                     "created_at": created_at,
-                    "extapi_id": body_extapi_id,
+                    "body_extapi_id": body_extapi_id,
                     "method": method,
                     "name": name,
                     "path": path,

@@ -10,6 +10,7 @@ import inspect
 import tracemalloc
 from typing import Any, Union, cast
 from unittest import mock
+from typing_extensions import Literal
 
 import httpx
 import pytest
@@ -682,6 +683,7 @@ class TestAsktable:
             [3, "", 0.5],
             [2, "", 0.5 * 2.0],
             [1, "", 0.5 * 4.0],
+            [-1100, "", 8],  # test large number potentially overflowing
         ],
     )
     @mock.patch("time.time", mock.MagicMock(return_value=1696004797))
@@ -701,7 +703,7 @@ class TestAsktable:
         with pytest.raises(APITimeoutError):
             self.client.post(
                 "/datasources",
-                body=cast(object, dict(access_config={}, engine="mysql")),
+                body=cast(object, dict(engine="mysql")),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -716,7 +718,7 @@ class TestAsktable:
         with pytest.raises(APIStatusError):
             self.client.post(
                 "/datasources",
-                body=cast(object, dict(access_config={}, engine="mysql")),
+                body=cast(object, dict(engine="mysql")),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -726,7 +728,14 @@ class TestAsktable:
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
     @mock.patch("asktable._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
-    def test_retries_taken(self, client: Asktable, failures_before_success: int, respx_mock: MockRouter) -> None:
+    @pytest.mark.parametrize("failure_mode", ["status", "exception"])
+    def test_retries_taken(
+        self,
+        client: Asktable,
+        failures_before_success: int,
+        failure_mode: Literal["status", "exception"],
+        respx_mock: MockRouter,
+    ) -> None:
         client = client.with_options(max_retries=4)
 
         nb_retries = 0
@@ -735,12 +744,14 @@ class TestAsktable:
             nonlocal nb_retries
             if nb_retries < failures_before_success:
                 nb_retries += 1
+                if failure_mode == "exception":
+                    raise RuntimeError("oops")
                 return httpx.Response(500)
             return httpx.Response(200)
 
         respx_mock.post("/datasources").mock(side_effect=retry_handler)
 
-        response = client.datasources.with_raw_response.create(access_config={}, engine="mysql")
+        response = client.datasources.with_raw_response.create(engine="mysql")
 
         assert response.retries_taken == failures_before_success
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
@@ -765,7 +776,7 @@ class TestAsktable:
         respx_mock.post("/datasources").mock(side_effect=retry_handler)
 
         response = client.datasources.with_raw_response.create(
-            access_config={}, engine="mysql", extra_headers={"x-stainless-retry-count": Omit()}
+            engine="mysql", extra_headers={"x-stainless-retry-count": Omit()}
         )
 
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
@@ -790,7 +801,7 @@ class TestAsktable:
         respx_mock.post("/datasources").mock(side_effect=retry_handler)
 
         response = client.datasources.with_raw_response.create(
-            access_config={}, engine="mysql", extra_headers={"x-stainless-retry-count": "42"}
+            engine="mysql", extra_headers={"x-stainless-retry-count": "42"}
         )
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"
@@ -1441,6 +1452,7 @@ class TestAsyncAsktable:
             [3, "", 0.5],
             [2, "", 0.5 * 2.0],
             [1, "", 0.5 * 4.0],
+            [-1100, "", 8],  # test large number potentially overflowing
         ],
     )
     @mock.patch("time.time", mock.MagicMock(return_value=1696004797))
@@ -1461,7 +1473,7 @@ class TestAsyncAsktable:
         with pytest.raises(APITimeoutError):
             await self.client.post(
                 "/datasources",
-                body=cast(object, dict(access_config={}, engine="mysql")),
+                body=cast(object, dict(engine="mysql")),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -1476,7 +1488,7 @@ class TestAsyncAsktable:
         with pytest.raises(APIStatusError):
             await self.client.post(
                 "/datasources",
-                body=cast(object, dict(access_config={}, engine="mysql")),
+                body=cast(object, dict(engine="mysql")),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -1487,8 +1499,13 @@ class TestAsyncAsktable:
     @mock.patch("asktable._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     @pytest.mark.asyncio
+    @pytest.mark.parametrize("failure_mode", ["status", "exception"])
     async def test_retries_taken(
-        self, async_client: AsyncAsktable, failures_before_success: int, respx_mock: MockRouter
+        self,
+        async_client: AsyncAsktable,
+        failures_before_success: int,
+        failure_mode: Literal["status", "exception"],
+        respx_mock: MockRouter,
     ) -> None:
         client = async_client.with_options(max_retries=4)
 
@@ -1498,12 +1515,14 @@ class TestAsyncAsktable:
             nonlocal nb_retries
             if nb_retries < failures_before_success:
                 nb_retries += 1
+                if failure_mode == "exception":
+                    raise RuntimeError("oops")
                 return httpx.Response(500)
             return httpx.Response(200)
 
         respx_mock.post("/datasources").mock(side_effect=retry_handler)
 
-        response = await client.datasources.with_raw_response.create(access_config={}, engine="mysql")
+        response = await client.datasources.with_raw_response.create(engine="mysql")
 
         assert response.retries_taken == failures_before_success
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
@@ -1529,7 +1548,7 @@ class TestAsyncAsktable:
         respx_mock.post("/datasources").mock(side_effect=retry_handler)
 
         response = await client.datasources.with_raw_response.create(
-            access_config={}, engine="mysql", extra_headers={"x-stainless-retry-count": Omit()}
+            engine="mysql", extra_headers={"x-stainless-retry-count": Omit()}
         )
 
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
@@ -1555,7 +1574,7 @@ class TestAsyncAsktable:
         respx_mock.post("/datasources").mock(side_effect=retry_handler)
 
         response = await client.datasources.with_raw_response.create(
-            access_config={}, engine="mysql", extra_headers={"x-stainless-retry-count": "42"}
+            engine="mysql", extra_headers={"x-stainless-retry-count": "42"}
         )
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"

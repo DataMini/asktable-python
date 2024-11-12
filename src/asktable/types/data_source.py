@@ -36,19 +36,20 @@ class DataSource(BaseModel):
     id: str
     """数据源 ID"""
 
-    access_config: AccessConfig
-
     created_at: datetime
     """创建时间"""
 
-    engine: Literal["mysql", "tidb", "postgresql", "oceanbase", "clickhouse", "csv", "excel"]
+    engine: Literal["mysql", "tidb", "postgresql", "oceanbase", "clickhouse", "csv", "excel", "starrocks"]
     """数据源引擎"""
 
-    meta_status: Literal["processing", "failed", "success", "unprocessed"]
+    meta_status: Literal["processing", "failed", "warning", "success", "unprocessed"]
     """元数据处理状态"""
 
     project_id: str
     """项目 ID"""
+
+    access_config: Optional[AccessConfig] = None
+    """访问数据源的配置信息"""
 
     field_count: Optional[int] = None
     """字段数量"""

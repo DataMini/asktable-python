@@ -4,10 +4,8 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-from ..._types import FileTypes
-
-__all__ = ["UploadFileCreateParams"]
+__all__ = ["ExcelCsvCreateParams"]
 
 
-class UploadFileCreateParams(TypedDict, total=False):
-    file: Required[FileTypes]
+class ExcelCsvCreateParams(TypedDict, total=False):
+    file_url: Required[str]

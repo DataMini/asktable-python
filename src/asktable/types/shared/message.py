@@ -14,7 +14,8 @@ class Message(BaseModel):
 
     content: object
 
-    created: datetime
+    created_at: datetime
+    """创建时间"""
 
     role: Literal["human", "ai"]
 

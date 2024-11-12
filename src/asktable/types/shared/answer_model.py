@@ -48,3 +48,7 @@ class AnswerModel(BaseModel):
     status: str
 
     text: str
+
+    q2a_id: Optional[str] = None
+
+    trace_id: Optional[str] = None

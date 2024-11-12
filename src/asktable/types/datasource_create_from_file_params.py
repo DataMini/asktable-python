@@ -15,7 +15,3 @@ class DatasourceCreateFromFileParams(TypedDict, total=False):
     file: Required[FileTypes]
 
     async_process_meta: bool
-    """是否异步处理元数据"""
-
-    skip_process_meta: bool
-    """是否跳过元数据处理"""
