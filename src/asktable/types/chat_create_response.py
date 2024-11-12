@@ -5,10 +5,10 @@ from datetime import datetime
 
 from .._models import BaseModel
 
-__all__ = ["ChatOut"]
+__all__ = ["ChatCreateResponse"]
 
 
-class ChatOut(BaseModel):
+class ChatCreateResponse(BaseModel):
     id: str
     """对话 ID"""
 
