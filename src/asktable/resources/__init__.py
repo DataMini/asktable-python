@@ -1,5 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from .kb import (
+    KBResource,
+    AsyncKBResource,
+    KBResourceWithRawResponse,
+    AsyncKBResourceWithRawResponse,
+    KBResourceWithStreamingResponse,
+    AsyncKBResourceWithStreamingResponse,
+)
 from .sys import (
     SysResource,
     AsyncSysResource,
@@ -170,4 +178,10 @@ __all__ = [
     "AsyncSysResourceWithRawResponse",
     "SysResourceWithStreamingResponse",
     "AsyncSysResourceWithStreamingResponse",
+    "KBResource",
+    "AsyncKBResource",
+    "KBResourceWithRawResponse",
+    "AsyncKBResourceWithRawResponse",
+    "KBResourceWithStreamingResponse",
+    "AsyncKBResourceWithStreamingResponse",
 ]
