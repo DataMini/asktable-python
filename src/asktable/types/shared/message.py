@@ -20,3 +20,5 @@ class Message(BaseModel):
     role: Literal["human", "ai"]
 
     reply_to_msg_id: Optional[str] = None
+
+    trace_id: Optional[str] = None
