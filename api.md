@@ -342,18 +342,3 @@ from asktable.types.sys.projects import TokenCreateResponse
 Methods:
 
 - <code title="post /sys/projects/{project_id}/tokens">client.sys.projects.tokens.<a href="./src/asktable/resources/sys/projects/tokens.py">create</a>(project_id, \*\*<a href="src/asktable/types/sys/projects/token_create_params.py">params</a>) -> <a href="./src/asktable/types/sys/projects/token_create_response.py">object</a></code>
-
-# KB
-
-Types:
-
-```python
-from asktable.types import Document, PageDocument, KBCreateResponse, KBDeleteResponse
-```
-
-Methods:
-
-- <code title="post /kb">client.kb.<a href="./src/asktable/resources/kb.py">create</a>(\*\*<a href="src/asktable/types/kb_create_params.py">params</a>) -> <a href="./src/asktable/types/kb_create_response.py">KBCreateResponse</a></code>
-- <code title="get /kb/{doc_id}">client.kb.<a href="./src/asktable/resources/kb.py">retrieve</a>(doc_id) -> <a href="./src/asktable/types/document.py">Document</a></code>
-- <code title="get /kb">client.kb.<a href="./src/asktable/resources/kb.py">list</a>(\*\*<a href="src/asktable/types/kb_list_params.py">params</a>) -> <a href="./src/asktable/types/page_document.py">PageDocument</a></code>
-- <code title="delete /kb/{doc_id}">client.kb.<a href="./src/asktable/resources/kb.py">delete</a>(doc_id) -> <a href="./src/asktable/types/kb_delete_response.py">object</a></code>

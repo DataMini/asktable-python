@@ -58,7 +58,6 @@ class Asktable(SyncAPIClient):
     caches: resources.CachesResource
     integration: resources.IntegrationResource
     sys: resources.SysResource
-    kb: resources.KBResource
     with_raw_response: AsktableWithRawResponse
     with_streaming_response: AsktableWithStreamedResponse
 
@@ -128,7 +127,6 @@ class Asktable(SyncAPIClient):
         self.caches = resources.CachesResource(self)
         self.integration = resources.IntegrationResource(self)
         self.sys = resources.SysResource(self)
-        self.kb = resources.KBResource(self)
         self.with_raw_response = AsktableWithRawResponse(self)
         self.with_streaming_response = AsktableWithStreamedResponse(self)
 
@@ -250,7 +248,6 @@ class AsyncAsktable(AsyncAPIClient):
     caches: resources.AsyncCachesResource
     integration: resources.AsyncIntegrationResource
     sys: resources.AsyncSysResource
-    kb: resources.AsyncKBResource
     with_raw_response: AsyncAsktableWithRawResponse
     with_streaming_response: AsyncAsktableWithStreamedResponse
 
@@ -320,7 +317,6 @@ class AsyncAsktable(AsyncAPIClient):
         self.caches = resources.AsyncCachesResource(self)
         self.integration = resources.AsyncIntegrationResource(self)
         self.sys = resources.AsyncSysResource(self)
-        self.kb = resources.AsyncKBResource(self)
         self.with_raw_response = AsyncAsktableWithRawResponse(self)
         self.with_streaming_response = AsyncAsktableWithStreamedResponse(self)
 
@@ -443,7 +439,6 @@ class AsktableWithRawResponse:
         self.caches = resources.CachesResourceWithRawResponse(client.caches)
         self.integration = resources.IntegrationResourceWithRawResponse(client.integration)
         self.sys = resources.SysResourceWithRawResponse(client.sys)
-        self.kb = resources.KBResourceWithRawResponse(client.kb)
 
 
 class AsyncAsktableWithRawResponse:
@@ -460,7 +455,6 @@ class AsyncAsktableWithRawResponse:
         self.caches = resources.AsyncCachesResourceWithRawResponse(client.caches)
         self.integration = resources.AsyncIntegrationResourceWithRawResponse(client.integration)
         self.sys = resources.AsyncSysResourceWithRawResponse(client.sys)
-        self.kb = resources.AsyncKBResourceWithRawResponse(client.kb)
 
 
 class AsktableWithStreamedResponse:
@@ -477,7 +471,6 @@ class AsktableWithStreamedResponse:
         self.caches = resources.CachesResourceWithStreamingResponse(client.caches)
         self.integration = resources.IntegrationResourceWithStreamingResponse(client.integration)
         self.sys = resources.SysResourceWithStreamingResponse(client.sys)
-        self.kb = resources.KBResourceWithStreamingResponse(client.kb)
 
 
 class AsyncAsktableWithStreamedResponse:
@@ -494,7 +487,6 @@ class AsyncAsktableWithStreamedResponse:
         self.caches = resources.AsyncCachesResourceWithStreamingResponse(client.caches)
         self.integration = resources.AsyncIntegrationResourceWithStreamingResponse(client.integration)
         self.sys = resources.AsyncSysResourceWithStreamingResponse(client.sys)
-        self.kb = resources.AsyncKBResourceWithStreamingResponse(client.kb)
 
 
 Client = Asktable
