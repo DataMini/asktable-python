@@ -10,6 +10,9 @@ __all__ = ["DataSource", "AccessConfig"]
 
 
 class AccessConfig(BaseModel):
+    atst_link_id: Optional[str] = None
+    """安全隧道链接 ID"""
+
     db: Optional[str] = None
     """数据库引擎可以管理多个数据库，此参数用于指定数据库名称"""
 
@@ -24,6 +27,12 @@ class AccessConfig(BaseModel):
 
     port: Optional[int] = None
     """数据库端口"""
+
+    proxy_host: Optional[str] = None
+    """数据源代理地址"""
+
+    proxy_port: Optional[int] = None
+    """数据源代理端口"""
 
     securetunnel_id: Optional[str] = None
     """安全隧道 ID"""

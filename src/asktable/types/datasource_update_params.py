@@ -35,6 +35,9 @@ class DatasourceUpdateParams(TypedDict, total=False):
 
 
 class AccessConfig(TypedDict, total=False):
+    atst_link_id: Optional[str]
+    """安全隧道链接 ID"""
+
     db: Optional[str]
     """数据库引擎可以管理多个数据库，此参数用于指定数据库名称"""
 
@@ -52,6 +55,12 @@ class AccessConfig(TypedDict, total=False):
 
     port: Optional[int]
     """数据库端口"""
+
+    proxy_host: Optional[str]
+    """数据源代理地址"""
+
+    proxy_port: Optional[int]
+    """数据源代理端口"""
 
     securetunnel_id: Optional[str]
     """安全隧道 ID"""
