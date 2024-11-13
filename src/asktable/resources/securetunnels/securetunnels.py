@@ -139,7 +139,7 @@ class SecuretunnelsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> SecureTunnel:
         """
         更新某个 ATST
 
@@ -173,7 +173,7 @@ class SecuretunnelsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=SecureTunnel,
         )
 
     def list(
@@ -361,7 +361,7 @@ class AsyncSecuretunnelsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> SecureTunnel:
         """
         更新某个 ATST
 
@@ -395,7 +395,7 @@ class AsyncSecuretunnelsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=SecureTunnel,
         )
 
     async def list(

@@ -9,14 +9,14 @@ from asktable.types import AnswerModel, Message, Policy
 Types:
 
 ```python
-from asktable.types import SecureTunnel, SecuretunnelUpdateResponse, SecuretunnelListResponse
+from asktable.types import SecureTunnel, SecuretunnelListResponse
 ```
 
 Methods:
 
 - <code title="post /securetunnels">client.securetunnels.<a href="./src/asktable/resources/securetunnels/securetunnels.py">create</a>(\*\*<a href="src/asktable/types/securetunnel_create_params.py">params</a>) -> <a href="./src/asktable/types/secure_tunnel.py">SecureTunnel</a></code>
 - <code title="get /securetunnels/{securetunnel_id}">client.securetunnels.<a href="./src/asktable/resources/securetunnels/securetunnels.py">retrieve</a>(securetunnel_id) -> <a href="./src/asktable/types/secure_tunnel.py">SecureTunnel</a></code>
-- <code title="patch /securetunnels/{securetunnel_id}">client.securetunnels.<a href="./src/asktable/resources/securetunnels/securetunnels.py">update</a>(securetunnel_id, \*\*<a href="src/asktable/types/securetunnel_update_params.py">params</a>) -> <a href="./src/asktable/types/securetunnel_update_response.py">object</a></code>
+- <code title="patch /securetunnels/{securetunnel_id}">client.securetunnels.<a href="./src/asktable/resources/securetunnels/securetunnels.py">update</a>(securetunnel_id, \*\*<a href="src/asktable/types/securetunnel_update_params.py">params</a>) -> <a href="./src/asktable/types/secure_tunnel.py">SecureTunnel</a></code>
 - <code title="get /securetunnels">client.securetunnels.<a href="./src/asktable/resources/securetunnels/securetunnels.py">list</a>(\*\*<a href="src/asktable/types/securetunnel_list_params.py">params</a>) -> <a href="./src/asktable/types/securetunnel_list_response.py">SecuretunnelListResponse</a></code>
 - <code title="delete /securetunnels/{securetunnel_id}">client.securetunnels.<a href="./src/asktable/resources/securetunnels/securetunnels.py">delete</a>(securetunnel_id) -> None</code>
 
