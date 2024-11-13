@@ -11,6 +11,8 @@ __all__ = ["SecureTunnelLink", "Item"]
 class Item(BaseModel):
     id: str
 
+    atst_id: str
+
     created_at: datetime
 
     datasource_ids: List[str]
@@ -18,8 +20,6 @@ class Item(BaseModel):
     modified_at: datetime
 
     proxy_port: int
-
-    securetunnel_id: str
 
     status: str
 
