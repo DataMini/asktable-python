@@ -95,7 +95,7 @@ class TestSecuretunnels:
         securetunnel = client.securetunnels.update(
             securetunnel_id="securetunnel_id",
         )
-        assert_matches_type(object, securetunnel, path=["response"])
+        assert_matches_type(SecureTunnel, securetunnel, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Asktable) -> None:
@@ -105,7 +105,7 @@ class TestSecuretunnels:
             name="我的测试机",
             unique_key="unique_key",
         )
-        assert_matches_type(object, securetunnel, path=["response"])
+        assert_matches_type(SecureTunnel, securetunnel, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Asktable) -> None:
@@ -116,7 +116,7 @@ class TestSecuretunnels:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         securetunnel = response.parse()
-        assert_matches_type(object, securetunnel, path=["response"])
+        assert_matches_type(SecureTunnel, securetunnel, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Asktable) -> None:
@@ -127,7 +127,7 @@ class TestSecuretunnels:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             securetunnel = response.parse()
-            assert_matches_type(object, securetunnel, path=["response"])
+            assert_matches_type(SecureTunnel, securetunnel, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -288,7 +288,7 @@ class TestAsyncSecuretunnels:
         securetunnel = await async_client.securetunnels.update(
             securetunnel_id="securetunnel_id",
         )
-        assert_matches_type(object, securetunnel, path=["response"])
+        assert_matches_type(SecureTunnel, securetunnel, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncAsktable) -> None:
@@ -298,7 +298,7 @@ class TestAsyncSecuretunnels:
             name="我的测试机",
             unique_key="unique_key",
         )
-        assert_matches_type(object, securetunnel, path=["response"])
+        assert_matches_type(SecureTunnel, securetunnel, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncAsktable) -> None:
@@ -309,7 +309,7 @@ class TestAsyncSecuretunnels:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         securetunnel = await response.parse()
-        assert_matches_type(object, securetunnel, path=["response"])
+        assert_matches_type(SecureTunnel, securetunnel, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncAsktable) -> None:
@@ -320,7 +320,7 @@ class TestAsyncSecuretunnels:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             securetunnel = await response.parse()
-            assert_matches_type(object, securetunnel, path=["response"])
+            assert_matches_type(SecureTunnel, securetunnel, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
