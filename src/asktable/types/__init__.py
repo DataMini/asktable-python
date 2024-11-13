@@ -5,15 +5,11 @@ from __future__ import annotations
 from .role import Role as Role
 from .shared import Policy as Policy, Message as Message, AnswerModel as AnswerModel
 from .chat_bot import ChatBot as ChatBot
-from .document import Document as Document
 from .data_source import DataSource as DataSource
 from .ext_api_model import ExtAPIModel as ExtAPIModel
-from .page_document import PageDocument as PageDocument
 from .secure_tunnel import SecureTunnel as SecureTunnel
-from .kb_list_params import KBListParams as KBListParams
 from .bot_list_params import BotListParams as BotListParams
 from .chat_list_params import ChatListParams as ChatListParams
-from .kb_create_params import KBCreateParams as KBCreateParams
 from .role_list_params import RoleListParams as RoleListParams
 from .bot_create_params import BotCreateParams as BotCreateParams
 from .bot_invite_params import BotInviteParams as BotInviteParams
@@ -22,7 +18,6 @@ from .bot_update_params import BotUpdateParams as BotUpdateParams
 from .chat_create_params import ChatCreateParams as ChatCreateParams
 from .chat_list_response import ChatListResponse as ChatListResponse
 from .extapi_list_params import ExtapiListParams as ExtapiListParams
-from .kb_create_response import KBCreateResponse as KBCreateResponse
 from .policy_list_params import PolicyListParams as PolicyListParams
 from .role_create_params import RoleCreateParams as RoleCreateParams
 from .role_list_response import RoleListResponse as RoleListResponse
