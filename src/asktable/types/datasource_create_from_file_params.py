@@ -10,8 +10,8 @@ __all__ = ["DatasourceCreateFromFileParams"]
 
 
 class DatasourceCreateFromFileParams(TypedDict, total=False):
-    name: Required[str]
-
     file: Required[FileTypes]
 
     async_process_meta: bool
+
+    name: str
