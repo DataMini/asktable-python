@@ -171,6 +171,7 @@ class DatasourcesResource(SyncAPIResource):
         datasource_id: str,
         *,
         access_config: Optional[datasource_update_params.AccessConfig] | NotGiven = NOT_GIVEN,
+        desc: Optional[str] | NotGiven = NOT_GIVEN,
         field_count: Optional[int] | NotGiven = NOT_GIVEN,
         meta_error: Optional[str] | NotGiven = NOT_GIVEN,
         meta_status: Optional[Literal["processing", "failed", "warning", "success", "unprocessed"]]
@@ -191,6 +192,8 @@ class DatasourcesResource(SyncAPIResource):
 
         Args:
           access_config: 不同引擎有不同的配置
+
+          desc: 数据源描述
 
           field_count: 字段数量
 
@@ -221,6 +224,7 @@ class DatasourcesResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "access_config": access_config,
+                    "desc": desc,
                     "field_count": field_count,
                     "meta_error": meta_error,
                     "meta_status": meta_status,
@@ -321,9 +325,9 @@ class DatasourcesResource(SyncAPIResource):
     def create_from_file(
         self,
         *,
-        name: str,
         file: FileTypes,
         async_process_meta: bool | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -360,8 +364,8 @@ class DatasourcesResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "name": name,
                         "async_process_meta": async_process_meta,
+                        "name": name,
                     },
                     datasource_create_from_file_params.DatasourceCreateFromFileParams,
                 ),
@@ -490,6 +494,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         datasource_id: str,
         *,
         access_config: Optional[datasource_update_params.AccessConfig] | NotGiven = NOT_GIVEN,
+        desc: Optional[str] | NotGiven = NOT_GIVEN,
         field_count: Optional[int] | NotGiven = NOT_GIVEN,
         meta_error: Optional[str] | NotGiven = NOT_GIVEN,
         meta_status: Optional[Literal["processing", "failed", "warning", "success", "unprocessed"]]
@@ -510,6 +515,8 @@ class AsyncDatasourcesResource(AsyncAPIResource):
 
         Args:
           access_config: 不同引擎有不同的配置
+
+          desc: 数据源描述
 
           field_count: 字段数量
 
@@ -540,6 +547,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "access_config": access_config,
+                    "desc": desc,
                     "field_count": field_count,
                     "meta_error": meta_error,
                     "meta_status": meta_status,
@@ -640,9 +648,9 @@ class AsyncDatasourcesResource(AsyncAPIResource):
     async def create_from_file(
         self,
         *,
-        name: str,
         file: FileTypes,
         async_process_meta: bool | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -679,8 +687,8 @@ class AsyncDatasourcesResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "name": name,
                         "async_process_meta": async_process_meta,
+                        "name": name,
                     },
                     datasource_create_from_file_params.DatasourceCreateFromFileParams,
                 ),

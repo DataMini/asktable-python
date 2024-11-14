@@ -60,6 +60,9 @@ class DataSource(BaseModel):
     access_config: Optional[AccessConfig] = None
     """访问数据源的配置信息"""
 
+    desc: Optional[str] = None
+    """数据源描述"""
+
     field_count: Optional[int] = None
     """字段数量"""
 

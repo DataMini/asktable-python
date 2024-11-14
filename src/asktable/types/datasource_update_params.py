@@ -12,6 +12,9 @@ class DatasourceUpdateParams(TypedDict, total=False):
     access_config: Optional[AccessConfig]
     """不同引擎有不同的配置"""
 
+    desc: Optional[str]
+    """数据源描述"""
+
     field_count: Optional[int]
     """字段数量"""
 
