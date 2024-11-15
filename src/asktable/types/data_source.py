@@ -54,6 +54,9 @@ class DataSource(BaseModel):
     meta_status: Literal["processing", "failed", "warning", "success", "unprocessed"]
     """元数据处理状态"""
 
+    modified_at: datetime
+    """修改时间"""
+
     project_id: str
     """项目 ID"""
 
