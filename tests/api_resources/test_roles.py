@@ -151,7 +151,7 @@ class TestRoles:
         role = client.roles.list(
             name="name",
             page=1,
-            role_ids=["string", "string", "string"],
+            role_ids=["string"],
             size=1,
         )
         assert_matches_type(RoleListResponse, role, path=["response"])
@@ -352,7 +352,7 @@ class TestAsyncRoles:
         role = await async_client.roles.list(
             name="name",
             page=1,
-            role_ids=["string", "string", "string"],
+            role_ids=["string"],
             size=1,
         )
         assert_matches_type(RoleListResponse, role, path=["response"])
