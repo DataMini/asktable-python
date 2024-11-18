@@ -28,7 +28,7 @@ class TestVariables:
         variable = client.roles.variables.list(
             role_id="role_id",
             bot_id="bot_id",
-            datasource_ids=["string", "string", "string"],
+            datasource_ids=["string"],
         )
         assert_matches_type(object, variable, path=["response"])
 
@@ -79,7 +79,7 @@ class TestAsyncVariables:
         variable = await async_client.roles.variables.list(
             role_id="role_id",
             bot_id="bot_id",
-            datasource_ids=["string", "string", "string"],
+            datasource_ids=["string"],
         )
         assert_matches_type(object, variable, path=["response"])
 
