@@ -21,7 +21,7 @@ class DatasourceUpdateParams(TypedDict, total=False):
     meta_error: Optional[str]
     """元数据处理错误"""
 
-    meta_status: Optional[Literal["processing", "failed", "warning", "success", "unprocessed"]]
+    meta_status: Optional[Literal["processing", "failed", "success", "unprocessed"]]
     """元数据处理状态"""
 
     name: Optional[str]
