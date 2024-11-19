@@ -20,7 +20,7 @@ class TestIntegration:
     @parametrize
     def test_method_excel_csv_ask(self, client: Asktable) -> None:
         integration = client.integration.excel_csv_ask(
-            file_url="file_url",
+            file_url="https://example.com",
             question="question",
         )
         assert_matches_type(AnswerDataSourceOut, integration, path=["response"])
@@ -28,7 +28,7 @@ class TestIntegration:
     @parametrize
     def test_method_excel_csv_ask_with_all_params(self, client: Asktable) -> None:
         integration = client.integration.excel_csv_ask(
-            file_url="file_url",
+            file_url="https://example.com",
             question="question",
             with_json=True,
         )
@@ -37,7 +37,7 @@ class TestIntegration:
     @parametrize
     def test_raw_response_excel_csv_ask(self, client: Asktable) -> None:
         response = client.integration.with_raw_response.excel_csv_ask(
-            file_url="file_url",
+            file_url="https://example.com",
             question="question",
         )
 
@@ -49,7 +49,7 @@ class TestIntegration:
     @parametrize
     def test_streaming_response_excel_csv_ask(self, client: Asktable) -> None:
         with client.integration.with_streaming_response.excel_csv_ask(
-            file_url="file_url",
+            file_url="https://example.com",
             question="question",
         ) as response:
             assert not response.is_closed
@@ -67,7 +67,7 @@ class TestAsyncIntegration:
     @parametrize
     async def test_method_excel_csv_ask(self, async_client: AsyncAsktable) -> None:
         integration = await async_client.integration.excel_csv_ask(
-            file_url="file_url",
+            file_url="https://example.com",
             question="question",
         )
         assert_matches_type(AnswerDataSourceOut, integration, path=["response"])
@@ -75,7 +75,7 @@ class TestAsyncIntegration:
     @parametrize
     async def test_method_excel_csv_ask_with_all_params(self, async_client: AsyncAsktable) -> None:
         integration = await async_client.integration.excel_csv_ask(
-            file_url="file_url",
+            file_url="https://example.com",
             question="question",
             with_json=True,
         )
@@ -84,7 +84,7 @@ class TestAsyncIntegration:
     @parametrize
     async def test_raw_response_excel_csv_ask(self, async_client: AsyncAsktable) -> None:
         response = await async_client.integration.with_raw_response.excel_csv_ask(
-            file_url="file_url",
+            file_url="https://example.com",
             question="question",
         )
 
@@ -96,7 +96,7 @@ class TestAsyncIntegration:
     @parametrize
     async def test_streaming_response_excel_csv_ask(self, async_client: AsyncAsktable) -> None:
         async with async_client.integration.with_streaming_response.excel_csv_ask(
-            file_url="file_url",
+            file_url="https://example.com",
             question="question",
         ) as response:
             assert not response.is_closed

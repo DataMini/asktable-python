@@ -20,14 +20,14 @@ class TestExcelCsv:
     @parametrize
     def test_method_create(self, client: Asktable) -> None:
         excel_csv = client.integration.excel_csv.create(
-            file_url="file_url",
+            file_url="https://example.com",
         )
         assert_matches_type(DataSource, excel_csv, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Asktable) -> None:
         response = client.integration.excel_csv.with_raw_response.create(
-            file_url="file_url",
+            file_url="https://example.com",
         )
 
         assert response.is_closed is True
@@ -38,7 +38,7 @@ class TestExcelCsv:
     @parametrize
     def test_streaming_response_create(self, client: Asktable) -> None:
         with client.integration.excel_csv.with_streaming_response.create(
-            file_url="file_url",
+            file_url="https://example.com",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -55,14 +55,14 @@ class TestAsyncExcelCsv:
     @parametrize
     async def test_method_create(self, async_client: AsyncAsktable) -> None:
         excel_csv = await async_client.integration.excel_csv.create(
-            file_url="file_url",
+            file_url="https://example.com",
         )
         assert_matches_type(DataSource, excel_csv, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncAsktable) -> None:
         response = await async_client.integration.excel_csv.with_raw_response.create(
-            file_url="file_url",
+            file_url="https://example.com",
         )
 
         assert response.is_closed is True
@@ -73,7 +73,7 @@ class TestAsyncExcelCsv:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncAsktable) -> None:
         async with async_client.integration.excel_csv.with_streaming_response.create(
-            file_url="file_url",
+            file_url="https://example.com",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
