@@ -139,12 +139,7 @@ Methods:
 Types:
 
 ```python
-from asktable.types.datasources import (
-    Meta,
-    MetaCreateResponse,
-    MetaUpdateResponse,
-    MetaDeleteResponse,
-)
+from asktable.types.datasources import Meta, MetaCreateResponse, MetaUpdateResponse
 ```
 
 Methods:
@@ -152,7 +147,6 @@ Methods:
 - <code title="post /datasources/{datasource_id}/meta">client.datasources.meta.<a href="./src/asktable/resources/datasources/meta.py">create</a>(datasource_id, \*\*<a href="src/asktable/types/datasources/meta_create_params.py">params</a>) -> <a href="./src/asktable/types/datasources/meta_create_response.py">object</a></code>
 - <code title="get /datasources/{datasource_id}/meta">client.datasources.meta.<a href="./src/asktable/resources/datasources/meta.py">retrieve</a>(datasource_id) -> <a href="./src/asktable/types/datasources/meta.py">Meta</a></code>
 - <code title="put /datasources/{datasource_id}/meta">client.datasources.meta.<a href="./src/asktable/resources/datasources/meta.py">update</a>(datasource_id, \*\*<a href="src/asktable/types/datasources/meta_update_params.py">params</a>) -> <a href="./src/asktable/types/datasources/meta_update_response.py">object</a></code>
-- <code title="delete /datasources/{datasource_id}/meta">client.datasources.meta.<a href="./src/asktable/resources/datasources/meta.py">delete</a>(datasource_id) -> <a href="./src/asktable/types/datasources/meta_delete_response.py">object</a></code>
 
 ## UploadParams
 

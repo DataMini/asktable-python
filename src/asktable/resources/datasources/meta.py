@@ -63,7 +63,7 @@ class MetaResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> object:
         """
-        创建或刷新 数据源的 meta
+        创建数据源的 meta，如果已经存在，则删除旧的
 
         如果上传了 meta，则使用用户上传的数据创建。
 
@@ -96,7 +96,7 @@ class MetaResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> object:
         """
-        创建或刷新 数据源的 meta
+        创建数据源的 meta，如果已经存在，则删除旧的
 
         如果上传了 meta，则使用用户上传的数据创建。
 
@@ -269,39 +269,6 @@ class MetaResource(SyncAPIResource):
             cast_to=object,
         )
 
-    def delete(
-        self,
-        datasource_id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
-        """
-        Delete Datasource Metadata
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not datasource_id:
-            raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
-        return self._delete(
-            f"/datasources/{datasource_id}/meta",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=object,
-        )
-
 
 class AsyncMetaResource(AsyncAPIResource):
     @cached_property
@@ -338,7 +305,7 @@ class AsyncMetaResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> object:
         """
-        创建或刷新 数据源的 meta
+        创建数据源的 meta，如果已经存在，则删除旧的
 
         如果上传了 meta，则使用用户上传的数据创建。
 
@@ -371,7 +338,7 @@ class AsyncMetaResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> object:
         """
-        创建或刷新 数据源的 meta
+        创建数据源的 meta，如果已经存在，则删除旧的
 
         如果上传了 meta，则使用用户上传的数据创建。
 
@@ -544,39 +511,6 @@ class AsyncMetaResource(AsyncAPIResource):
             cast_to=object,
         )
 
-    async def delete(
-        self,
-        datasource_id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
-        """
-        Delete Datasource Metadata
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not datasource_id:
-            raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
-        return await self._delete(
-            f"/datasources/{datasource_id}/meta",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=object,
-        )
-
 
 class MetaResourceWithRawResponse:
     def __init__(self, meta: MetaResource) -> None:
@@ -590,9 +524,6 @@ class MetaResourceWithRawResponse:
         )
         self.update = to_raw_response_wrapper(
             meta.update,
-        )
-        self.delete = to_raw_response_wrapper(
-            meta.delete,
         )
 
 
@@ -609,9 +540,6 @@ class AsyncMetaResourceWithRawResponse:
         self.update = async_to_raw_response_wrapper(
             meta.update,
         )
-        self.delete = async_to_raw_response_wrapper(
-            meta.delete,
-        )
 
 
 class MetaResourceWithStreamingResponse:
@@ -627,9 +555,6 @@ class MetaResourceWithStreamingResponse:
         self.update = to_streamed_response_wrapper(
             meta.update,
         )
-        self.delete = to_streamed_response_wrapper(
-            meta.delete,
-        )
 
 
 class AsyncMetaResourceWithStreamingResponse:
@@ -644,7 +569,4 @@ class AsyncMetaResourceWithStreamingResponse:
         )
         self.update = async_to_streamed_response_wrapper(
             meta.update,
-        )
-        self.delete = async_to_streamed_response_wrapper(
-            meta.delete,
         )
