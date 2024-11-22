@@ -22,8 +22,10 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
-from ..types.shared.policy import Policy
 from ..types.policy_list_response import PolicyListResponse
+from ..types.policy_create_response import PolicyCreateResponse
+from ..types.policy_update_response import PolicyUpdateResponse
+from ..types.policy_retrieve_response import PolicyRetrieveResponse
 
 __all__ = ["PoliciesResource", "AsyncPoliciesResource"]
 
@@ -60,7 +62,7 @@ class PoliciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Policy:
+    ) -> PolicyCreateResponse:
         """
         定义一个新的策略
 
@@ -92,7 +94,7 @@ class PoliciesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Policy,
+            cast_to=PolicyCreateResponse,
         )
 
     def retrieve(
@@ -105,7 +107,7 @@ class PoliciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Policy:
+    ) -> PolicyRetrieveResponse:
         """
         获取某个策略
 
@@ -125,7 +127,7 @@ class PoliciesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Policy,
+            cast_to=PolicyRetrieveResponse,
         )
 
     def update(
@@ -141,7 +143,7 @@ class PoliciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Policy:
+    ) -> PolicyUpdateResponse:
         """
         更新某个策略
 
@@ -175,7 +177,7 @@ class PoliciesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Policy,
+            cast_to=PolicyUpdateResponse,
         )
 
     def list(
@@ -299,7 +301,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Policy:
+    ) -> PolicyCreateResponse:
         """
         定义一个新的策略
 
@@ -331,7 +333,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Policy,
+            cast_to=PolicyCreateResponse,
         )
 
     async def retrieve(
@@ -344,7 +346,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Policy:
+    ) -> PolicyRetrieveResponse:
         """
         获取某个策略
 
@@ -364,7 +366,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Policy,
+            cast_to=PolicyRetrieveResponse,
         )
 
     async def update(
@@ -380,7 +382,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Policy:
+    ) -> PolicyUpdateResponse:
         """
         更新某个策略
 
@@ -414,7 +416,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Policy,
+            cast_to=PolicyUpdateResponse,
         )
 
     async def list(

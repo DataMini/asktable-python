@@ -4,10 +4,10 @@ from datetime import datetime
 
 from ..._models import BaseModel
 
-__all__ = ["Project"]
+__all__ = ["ProjectUpdateResponse"]
 
 
-class Project(BaseModel):
+class ProjectUpdateResponse(BaseModel):
     id: str
     """项目 ID"""
 

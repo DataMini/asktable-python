@@ -9,7 +9,7 @@ import pytest
 
 from asktable import Asktable, AsyncAsktable
 from tests.utils import assert_matches_type
-from asktable.types import AnswerDataSourceOut
+from asktable.types import IntegrationExcelCsvAskResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -23,7 +23,7 @@ class TestIntegration:
             file_url="https://example.com",
             question="question",
         )
-        assert_matches_type(AnswerDataSourceOut, integration, path=["response"])
+        assert_matches_type(IntegrationExcelCsvAskResponse, integration, path=["response"])
 
     @parametrize
     def test_method_excel_csv_ask_with_all_params(self, client: Asktable) -> None:
@@ -32,7 +32,7 @@ class TestIntegration:
             question="question",
             with_json=True,
         )
-        assert_matches_type(AnswerDataSourceOut, integration, path=["response"])
+        assert_matches_type(IntegrationExcelCsvAskResponse, integration, path=["response"])
 
     @parametrize
     def test_raw_response_excel_csv_ask(self, client: Asktable) -> None:
@@ -44,7 +44,7 @@ class TestIntegration:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         integration = response.parse()
-        assert_matches_type(AnswerDataSourceOut, integration, path=["response"])
+        assert_matches_type(IntegrationExcelCsvAskResponse, integration, path=["response"])
 
     @parametrize
     def test_streaming_response_excel_csv_ask(self, client: Asktable) -> None:
@@ -56,7 +56,7 @@ class TestIntegration:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             integration = response.parse()
-            assert_matches_type(AnswerDataSourceOut, integration, path=["response"])
+            assert_matches_type(IntegrationExcelCsvAskResponse, integration, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -70,7 +70,7 @@ class TestAsyncIntegration:
             file_url="https://example.com",
             question="question",
         )
-        assert_matches_type(AnswerDataSourceOut, integration, path=["response"])
+        assert_matches_type(IntegrationExcelCsvAskResponse, integration, path=["response"])
 
     @parametrize
     async def test_method_excel_csv_ask_with_all_params(self, async_client: AsyncAsktable) -> None:
@@ -79,7 +79,7 @@ class TestAsyncIntegration:
             question="question",
             with_json=True,
         )
-        assert_matches_type(AnswerDataSourceOut, integration, path=["response"])
+        assert_matches_type(IntegrationExcelCsvAskResponse, integration, path=["response"])
 
     @parametrize
     async def test_raw_response_excel_csv_ask(self, async_client: AsyncAsktable) -> None:
@@ -91,7 +91,7 @@ class TestAsyncIntegration:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         integration = await response.parse()
-        assert_matches_type(AnswerDataSourceOut, integration, path=["response"])
+        assert_matches_type(IntegrationExcelCsvAskResponse, integration, path=["response"])
 
     @parametrize
     async def test_streaming_response_excel_csv_ask(self, async_client: AsyncAsktable) -> None:
@@ -103,6 +103,6 @@ class TestAsyncIntegration:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             integration = await response.parse()
-            assert_matches_type(AnswerDataSourceOut, integration, path=["response"])
+            assert_matches_type(IntegrationExcelCsvAskResponse, integration, path=["response"])
 
         assert cast(Any, response.is_closed) is True

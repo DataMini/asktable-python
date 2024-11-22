@@ -5,10 +5,10 @@ from datetime import datetime
 
 from .._models import BaseModel
 
-__all__ = ["SecureTunnel"]
+__all__ = ["SecuretunnelUpdateResponse"]
 
 
-class SecureTunnel(BaseModel):
+class SecuretunnelUpdateResponse(BaseModel):
     id: str
 
     created_at: datetime

@@ -9,7 +9,12 @@ import pytest
 
 from asktable import Asktable, AsyncAsktable
 from tests.utils import assert_matches_type
-from asktable.types import Role, RoleListResponse
+from asktable.types import (
+    RoleListResponse,
+    RoleCreateResponse,
+    RoleUpdateResponse,
+    RoleRetrieveResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -22,7 +27,7 @@ class TestRoles:
         role = client.roles.create(
             name="name",
         )
-        assert_matches_type(Role, role, path=["response"])
+        assert_matches_type(RoleCreateResponse, role, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Asktable) -> None:
@@ -30,7 +35,7 @@ class TestRoles:
             name="name",
             policy_ids=["policy_6uOnay1xDNsxLoHmCGf3", "policy_6uOnay1xDNsxLoHmCGf2"],
         )
-        assert_matches_type(Role, role, path=["response"])
+        assert_matches_type(RoleCreateResponse, role, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Asktable) -> None:
@@ -41,7 +46,7 @@ class TestRoles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         role = response.parse()
-        assert_matches_type(Role, role, path=["response"])
+        assert_matches_type(RoleCreateResponse, role, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Asktable) -> None:
@@ -52,7 +57,7 @@ class TestRoles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             role = response.parse()
-            assert_matches_type(Role, role, path=["response"])
+            assert_matches_type(RoleCreateResponse, role, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -61,7 +66,7 @@ class TestRoles:
         role = client.roles.retrieve(
             "role_id",
         )
-        assert_matches_type(Role, role, path=["response"])
+        assert_matches_type(RoleRetrieveResponse, role, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: Asktable) -> None:
@@ -72,7 +77,7 @@ class TestRoles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         role = response.parse()
-        assert_matches_type(Role, role, path=["response"])
+        assert_matches_type(RoleRetrieveResponse, role, path=["response"])
 
     @parametrize
     def test_streaming_response_retrieve(self, client: Asktable) -> None:
@@ -83,7 +88,7 @@ class TestRoles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             role = response.parse()
-            assert_matches_type(Role, role, path=["response"])
+            assert_matches_type(RoleRetrieveResponse, role, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -99,7 +104,7 @@ class TestRoles:
         role = client.roles.update(
             role_id="role_id",
         )
-        assert_matches_type(Role, role, path=["response"])
+        assert_matches_type(RoleUpdateResponse, role, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Asktable) -> None:
@@ -108,7 +113,7 @@ class TestRoles:
             name="name",
             policy_ids=["policy_6uOnay1xDNsxLoHmCGf3", "policy_6uOnay1xDNsxLoHmCGf2"],
         )
-        assert_matches_type(Role, role, path=["response"])
+        assert_matches_type(RoleUpdateResponse, role, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Asktable) -> None:
@@ -119,7 +124,7 @@ class TestRoles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         role = response.parse()
-        assert_matches_type(Role, role, path=["response"])
+        assert_matches_type(RoleUpdateResponse, role, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Asktable) -> None:
@@ -130,7 +135,7 @@ class TestRoles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             role = response.parse()
-            assert_matches_type(Role, role, path=["response"])
+            assert_matches_type(RoleUpdateResponse, role, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -223,7 +228,7 @@ class TestAsyncRoles:
         role = await async_client.roles.create(
             name="name",
         )
-        assert_matches_type(Role, role, path=["response"])
+        assert_matches_type(RoleCreateResponse, role, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncAsktable) -> None:
@@ -231,7 +236,7 @@ class TestAsyncRoles:
             name="name",
             policy_ids=["policy_6uOnay1xDNsxLoHmCGf3", "policy_6uOnay1xDNsxLoHmCGf2"],
         )
-        assert_matches_type(Role, role, path=["response"])
+        assert_matches_type(RoleCreateResponse, role, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncAsktable) -> None:
@@ -242,7 +247,7 @@ class TestAsyncRoles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         role = await response.parse()
-        assert_matches_type(Role, role, path=["response"])
+        assert_matches_type(RoleCreateResponse, role, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncAsktable) -> None:
@@ -253,7 +258,7 @@ class TestAsyncRoles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             role = await response.parse()
-            assert_matches_type(Role, role, path=["response"])
+            assert_matches_type(RoleCreateResponse, role, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -262,7 +267,7 @@ class TestAsyncRoles:
         role = await async_client.roles.retrieve(
             "role_id",
         )
-        assert_matches_type(Role, role, path=["response"])
+        assert_matches_type(RoleRetrieveResponse, role, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncAsktable) -> None:
@@ -273,7 +278,7 @@ class TestAsyncRoles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         role = await response.parse()
-        assert_matches_type(Role, role, path=["response"])
+        assert_matches_type(RoleRetrieveResponse, role, path=["response"])
 
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncAsktable) -> None:
@@ -284,7 +289,7 @@ class TestAsyncRoles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             role = await response.parse()
-            assert_matches_type(Role, role, path=["response"])
+            assert_matches_type(RoleRetrieveResponse, role, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -300,7 +305,7 @@ class TestAsyncRoles:
         role = await async_client.roles.update(
             role_id="role_id",
         )
-        assert_matches_type(Role, role, path=["response"])
+        assert_matches_type(RoleUpdateResponse, role, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncAsktable) -> None:
@@ -309,7 +314,7 @@ class TestAsyncRoles:
             name="name",
             policy_ids=["policy_6uOnay1xDNsxLoHmCGf3", "policy_6uOnay1xDNsxLoHmCGf2"],
         )
-        assert_matches_type(Role, role, path=["response"])
+        assert_matches_type(RoleUpdateResponse, role, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncAsktable) -> None:
@@ -320,7 +325,7 @@ class TestAsyncRoles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         role = await response.parse()
-        assert_matches_type(Role, role, path=["response"])
+        assert_matches_type(RoleUpdateResponse, role, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncAsktable) -> None:
@@ -331,7 +336,7 @@ class TestAsyncRoles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             role = await response.parse()
-            assert_matches_type(Role, role, path=["response"])
+            assert_matches_type(RoleUpdateResponse, role, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

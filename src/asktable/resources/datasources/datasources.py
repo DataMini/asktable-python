@@ -45,8 +45,11 @@ from .upload_params import (
     AsyncUploadParamsResourceWithStreamingResponse,
 )
 from ..._base_client import make_request_options
-from ...types.data_source import DataSource
 from ...types.datasource_list_response import DatasourceListResponse
+from ...types.datasource_create_response import DatasourceCreateResponse
+from ...types.datasource_update_response import DatasourceUpdateResponse
+from ...types.datasource_retrieve_response import DatasourceRetrieveResponse
+from ...types.datasource_create_from_file_response import DatasourceCreateFromFileResponse
 
 __all__ = ["DatasourcesResource", "AsyncDatasourcesResource"]
 
@@ -92,7 +95,7 @@ class DatasourcesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DataSource:
+    ) -> DatasourceCreateResponse:
         """
         创建一个新的数据源
 
@@ -130,7 +133,7 @@ class DatasourcesResource(SyncAPIResource):
                     {"async_process_meta": async_process_meta}, datasource_create_params.DatasourceCreateParams
                 ),
             ),
-            cast_to=DataSource,
+            cast_to=DatasourceCreateResponse,
         )
 
     def retrieve(
@@ -143,7 +146,7 @@ class DatasourcesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DataSource:
+    ) -> DatasourceRetrieveResponse:
         """
         根据 id 获取指定数据源
 
@@ -163,7 +166,7 @@ class DatasourcesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DataSource,
+            cast_to=DatasourceRetrieveResponse,
         )
 
     def update(
@@ -185,7 +188,7 @@ class DatasourcesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DataSource:
+    ) -> DatasourceUpdateResponse:
         """
         更新指定数据源信息
 
@@ -237,7 +240,7 @@ class DatasourcesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DataSource,
+            cast_to=DatasourceUpdateResponse,
         )
 
     def list(
@@ -333,7 +336,7 @@ class DatasourcesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DataSource:
+    ) -> DatasourceCreateFromFileResponse:
         """
         上传文件并创建数据源
 
@@ -369,7 +372,7 @@ class DatasourcesResource(SyncAPIResource):
                     datasource_create_from_file_params.DatasourceCreateFromFileParams,
                 ),
             ),
-            cast_to=DataSource,
+            cast_to=DatasourceCreateFromFileResponse,
         )
 
 
@@ -414,7 +417,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DataSource:
+    ) -> DatasourceCreateResponse:
         """
         创建一个新的数据源
 
@@ -452,7 +455,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
                     {"async_process_meta": async_process_meta}, datasource_create_params.DatasourceCreateParams
                 ),
             ),
-            cast_to=DataSource,
+            cast_to=DatasourceCreateResponse,
         )
 
     async def retrieve(
@@ -465,7 +468,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DataSource:
+    ) -> DatasourceRetrieveResponse:
         """
         根据 id 获取指定数据源
 
@@ -485,7 +488,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DataSource,
+            cast_to=DatasourceRetrieveResponse,
         )
 
     async def update(
@@ -507,7 +510,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DataSource:
+    ) -> DatasourceUpdateResponse:
         """
         更新指定数据源信息
 
@@ -559,7 +562,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DataSource,
+            cast_to=DatasourceUpdateResponse,
         )
 
     async def list(
@@ -655,7 +658,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DataSource:
+    ) -> DatasourceCreateFromFileResponse:
         """
         上传文件并创建数据源
 
@@ -691,7 +694,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
                     datasource_create_from_file_params.DatasourceCreateFromFileParams,
                 ),
             ),
-            cast_to=DataSource,
+            cast_to=DatasourceCreateFromFileResponse,
         )
 
 

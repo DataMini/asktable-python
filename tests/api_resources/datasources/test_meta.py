@@ -9,7 +9,7 @@ import pytest
 
 from asktable import Asktable, AsyncAsktable
 from tests.utils import assert_matches_type
-from asktable.types.datasources import Meta
+from asktable.types.datasources import MetaRetrieveResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -135,7 +135,7 @@ class TestMeta:
         meta = client.datasources.meta.retrieve(
             "datasource_id",
         )
-        assert_matches_type(Meta, meta, path=["response"])
+        assert_matches_type(MetaRetrieveResponse, meta, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: Asktable) -> None:
@@ -146,7 +146,7 @@ class TestMeta:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         meta = response.parse()
-        assert_matches_type(Meta, meta, path=["response"])
+        assert_matches_type(MetaRetrieveResponse, meta, path=["response"])
 
     @parametrize
     def test_streaming_response_retrieve(self, client: Asktable) -> None:
@@ -157,7 +157,7 @@ class TestMeta:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             meta = response.parse()
-            assert_matches_type(Meta, meta, path=["response"])
+            assert_matches_type(MetaRetrieveResponse, meta, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -403,7 +403,7 @@ class TestAsyncMeta:
         meta = await async_client.datasources.meta.retrieve(
             "datasource_id",
         )
-        assert_matches_type(Meta, meta, path=["response"])
+        assert_matches_type(MetaRetrieveResponse, meta, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncAsktable) -> None:
@@ -414,7 +414,7 @@ class TestAsyncMeta:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         meta = await response.parse()
-        assert_matches_type(Meta, meta, path=["response"])
+        assert_matches_type(MetaRetrieveResponse, meta, path=["response"])
 
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncAsktable) -> None:
@@ -425,7 +425,7 @@ class TestAsyncMeta:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             meta = await response.parse()
-            assert_matches_type(Meta, meta, path=["response"])
+            assert_matches_type(MetaRetrieveResponse, meta, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

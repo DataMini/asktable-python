@@ -9,7 +9,7 @@ import pytest
 
 from asktable import Asktable, AsyncAsktable
 from tests.utils import assert_matches_type
-from asktable.types import DataSource
+from asktable.types.integration import ExcelCsvCreateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -22,7 +22,7 @@ class TestExcelCsv:
         excel_csv = client.integration.excel_csv.create(
             file_url="https://example.com",
         )
-        assert_matches_type(DataSource, excel_csv, path=["response"])
+        assert_matches_type(ExcelCsvCreateResponse, excel_csv, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Asktable) -> None:
@@ -33,7 +33,7 @@ class TestExcelCsv:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         excel_csv = response.parse()
-        assert_matches_type(DataSource, excel_csv, path=["response"])
+        assert_matches_type(ExcelCsvCreateResponse, excel_csv, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Asktable) -> None:
@@ -44,7 +44,7 @@ class TestExcelCsv:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             excel_csv = response.parse()
-            assert_matches_type(DataSource, excel_csv, path=["response"])
+            assert_matches_type(ExcelCsvCreateResponse, excel_csv, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -57,7 +57,7 @@ class TestAsyncExcelCsv:
         excel_csv = await async_client.integration.excel_csv.create(
             file_url="https://example.com",
         )
-        assert_matches_type(DataSource, excel_csv, path=["response"])
+        assert_matches_type(ExcelCsvCreateResponse, excel_csv, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncAsktable) -> None:
@@ -68,7 +68,7 @@ class TestAsyncExcelCsv:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         excel_csv = await response.parse()
-        assert_matches_type(DataSource, excel_csv, path=["response"])
+        assert_matches_type(ExcelCsvCreateResponse, excel_csv, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncAsktable) -> None:
@@ -79,6 +79,6 @@ class TestAsyncExcelCsv:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             excel_csv = await response.parse()
-            assert_matches_type(DataSource, excel_csv, path=["response"])
+            assert_matches_type(ExcelCsvCreateResponse, excel_csv, path=["response"])
 
         assert cast(Any, response.is_closed) is True

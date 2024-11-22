@@ -10,8 +10,11 @@ import pytest
 from asktable import Asktable, AsyncAsktable
 from tests.utils import assert_matches_type
 from asktable.types import (
-    DataSource,
     DatasourceListResponse,
+    DatasourceCreateResponse,
+    DatasourceUpdateResponse,
+    DatasourceRetrieveResponse,
+    DatasourceCreateFromFileResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -25,7 +28,7 @@ class TestDatasources:
         datasource = client.datasources.create(
             engine="mysql",
         )
-        assert_matches_type(DataSource, datasource, path=["response"])
+        assert_matches_type(DatasourceCreateResponse, datasource, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Asktable) -> None:
@@ -47,7 +50,7 @@ class TestDatasources:
             },
             name="用户库",
         )
-        assert_matches_type(DataSource, datasource, path=["response"])
+        assert_matches_type(DatasourceCreateResponse, datasource, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Asktable) -> None:
@@ -58,7 +61,7 @@ class TestDatasources:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         datasource = response.parse()
-        assert_matches_type(DataSource, datasource, path=["response"])
+        assert_matches_type(DatasourceCreateResponse, datasource, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Asktable) -> None:
@@ -69,7 +72,7 @@ class TestDatasources:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             datasource = response.parse()
-            assert_matches_type(DataSource, datasource, path=["response"])
+            assert_matches_type(DatasourceCreateResponse, datasource, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -78,7 +81,7 @@ class TestDatasources:
         datasource = client.datasources.retrieve(
             "datasource_id",
         )
-        assert_matches_type(DataSource, datasource, path=["response"])
+        assert_matches_type(DatasourceRetrieveResponse, datasource, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: Asktable) -> None:
@@ -89,7 +92,7 @@ class TestDatasources:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         datasource = response.parse()
-        assert_matches_type(DataSource, datasource, path=["response"])
+        assert_matches_type(DatasourceRetrieveResponse, datasource, path=["response"])
 
     @parametrize
     def test_streaming_response_retrieve(self, client: Asktable) -> None:
@@ -100,7 +103,7 @@ class TestDatasources:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             datasource = response.parse()
-            assert_matches_type(DataSource, datasource, path=["response"])
+            assert_matches_type(DatasourceRetrieveResponse, datasource, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -116,7 +119,7 @@ class TestDatasources:
         datasource = client.datasources.update(
             datasource_id="datasource_id",
         )
-        assert_matches_type(DataSource, datasource, path=["response"])
+        assert_matches_type(DatasourceUpdateResponse, datasource, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Asktable) -> None:
@@ -144,7 +147,7 @@ class TestDatasources:
             schema_count=1,
             table_count=1,
         )
-        assert_matches_type(DataSource, datasource, path=["response"])
+        assert_matches_type(DatasourceUpdateResponse, datasource, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Asktable) -> None:
@@ -155,7 +158,7 @@ class TestDatasources:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         datasource = response.parse()
-        assert_matches_type(DataSource, datasource, path=["response"])
+        assert_matches_type(DatasourceUpdateResponse, datasource, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Asktable) -> None:
@@ -166,7 +169,7 @@ class TestDatasources:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             datasource = response.parse()
-            assert_matches_type(DataSource, datasource, path=["response"])
+            assert_matches_type(DatasourceUpdateResponse, datasource, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -254,7 +257,7 @@ class TestDatasources:
         datasource = client.datasources.create_from_file(
             file=b"raw file contents",
         )
-        assert_matches_type(DataSource, datasource, path=["response"])
+        assert_matches_type(DatasourceCreateFromFileResponse, datasource, path=["response"])
 
     @parametrize
     def test_method_create_from_file_with_all_params(self, client: Asktable) -> None:
@@ -263,7 +266,7 @@ class TestDatasources:
             async_process_meta=True,
             name="name",
         )
-        assert_matches_type(DataSource, datasource, path=["response"])
+        assert_matches_type(DatasourceCreateFromFileResponse, datasource, path=["response"])
 
     @parametrize
     def test_raw_response_create_from_file(self, client: Asktable) -> None:
@@ -274,7 +277,7 @@ class TestDatasources:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         datasource = response.parse()
-        assert_matches_type(DataSource, datasource, path=["response"])
+        assert_matches_type(DatasourceCreateFromFileResponse, datasource, path=["response"])
 
     @parametrize
     def test_streaming_response_create_from_file(self, client: Asktable) -> None:
@@ -285,7 +288,7 @@ class TestDatasources:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             datasource = response.parse()
-            assert_matches_type(DataSource, datasource, path=["response"])
+            assert_matches_type(DatasourceCreateFromFileResponse, datasource, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -298,7 +301,7 @@ class TestAsyncDatasources:
         datasource = await async_client.datasources.create(
             engine="mysql",
         )
-        assert_matches_type(DataSource, datasource, path=["response"])
+        assert_matches_type(DatasourceCreateResponse, datasource, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncAsktable) -> None:
@@ -320,7 +323,7 @@ class TestAsyncDatasources:
             },
             name="用户库",
         )
-        assert_matches_type(DataSource, datasource, path=["response"])
+        assert_matches_type(DatasourceCreateResponse, datasource, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncAsktable) -> None:
@@ -331,7 +334,7 @@ class TestAsyncDatasources:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         datasource = await response.parse()
-        assert_matches_type(DataSource, datasource, path=["response"])
+        assert_matches_type(DatasourceCreateResponse, datasource, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncAsktable) -> None:
@@ -342,7 +345,7 @@ class TestAsyncDatasources:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             datasource = await response.parse()
-            assert_matches_type(DataSource, datasource, path=["response"])
+            assert_matches_type(DatasourceCreateResponse, datasource, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -351,7 +354,7 @@ class TestAsyncDatasources:
         datasource = await async_client.datasources.retrieve(
             "datasource_id",
         )
-        assert_matches_type(DataSource, datasource, path=["response"])
+        assert_matches_type(DatasourceRetrieveResponse, datasource, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncAsktable) -> None:
@@ -362,7 +365,7 @@ class TestAsyncDatasources:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         datasource = await response.parse()
-        assert_matches_type(DataSource, datasource, path=["response"])
+        assert_matches_type(DatasourceRetrieveResponse, datasource, path=["response"])
 
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncAsktable) -> None:
@@ -373,7 +376,7 @@ class TestAsyncDatasources:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             datasource = await response.parse()
-            assert_matches_type(DataSource, datasource, path=["response"])
+            assert_matches_type(DatasourceRetrieveResponse, datasource, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -389,7 +392,7 @@ class TestAsyncDatasources:
         datasource = await async_client.datasources.update(
             datasource_id="datasource_id",
         )
-        assert_matches_type(DataSource, datasource, path=["response"])
+        assert_matches_type(DatasourceUpdateResponse, datasource, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncAsktable) -> None:
@@ -417,7 +420,7 @@ class TestAsyncDatasources:
             schema_count=1,
             table_count=1,
         )
-        assert_matches_type(DataSource, datasource, path=["response"])
+        assert_matches_type(DatasourceUpdateResponse, datasource, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncAsktable) -> None:
@@ -428,7 +431,7 @@ class TestAsyncDatasources:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         datasource = await response.parse()
-        assert_matches_type(DataSource, datasource, path=["response"])
+        assert_matches_type(DatasourceUpdateResponse, datasource, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncAsktable) -> None:
@@ -439,7 +442,7 @@ class TestAsyncDatasources:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             datasource = await response.parse()
-            assert_matches_type(DataSource, datasource, path=["response"])
+            assert_matches_type(DatasourceUpdateResponse, datasource, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -527,7 +530,7 @@ class TestAsyncDatasources:
         datasource = await async_client.datasources.create_from_file(
             file=b"raw file contents",
         )
-        assert_matches_type(DataSource, datasource, path=["response"])
+        assert_matches_type(DatasourceCreateFromFileResponse, datasource, path=["response"])
 
     @parametrize
     async def test_method_create_from_file_with_all_params(self, async_client: AsyncAsktable) -> None:
@@ -536,7 +539,7 @@ class TestAsyncDatasources:
             async_process_meta=True,
             name="name",
         )
-        assert_matches_type(DataSource, datasource, path=["response"])
+        assert_matches_type(DatasourceCreateFromFileResponse, datasource, path=["response"])
 
     @parametrize
     async def test_raw_response_create_from_file(self, async_client: AsyncAsktable) -> None:
@@ -547,7 +550,7 @@ class TestAsyncDatasources:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         datasource = await response.parse()
-        assert_matches_type(DataSource, datasource, path=["response"])
+        assert_matches_type(DatasourceCreateFromFileResponse, datasource, path=["response"])
 
     @parametrize
     async def test_streaming_response_create_from_file(self, async_client: AsyncAsktable) -> None:
@@ -558,6 +561,6 @@ class TestAsyncDatasources:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             datasource = await response.parse()
-            assert_matches_type(DataSource, datasource, path=["response"])
+            assert_matches_type(DatasourceCreateFromFileResponse, datasource, path=["response"])
 
         assert cast(Any, response.is_closed) is True

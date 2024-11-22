@@ -5,10 +5,10 @@ from datetime import datetime
 
 from .._models import BaseModel
 
-__all__ = ["ChatBot"]
+__all__ = ["BotUpdateResponse"]
 
 
-class ChatBot(BaseModel):
+class BotUpdateResponse(BaseModel):
     id: str
 
     created_at: datetime
