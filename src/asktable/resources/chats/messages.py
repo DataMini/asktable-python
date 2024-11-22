@@ -19,8 +19,9 @@ from ..._response import (
 )
 from ...types.chats import message_list_params, message_create_params
 from ..._base_client import make_request_options
-from ...types.shared.message import Message
 from ...types.chats.message_list_response import MessageListResponse
+from ...types.chats.message_create_response import MessageCreateResponse
+from ...types.chats.message_retrieve_response import MessageRetrieveResponse
 
 __all__ = ["MessagesResource", "AsyncMessagesResource"]
 
@@ -56,7 +57,7 @@ class MessagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Message:
+    ) -> MessageCreateResponse:
         """
         发消息
 
@@ -80,7 +81,7 @@ class MessagesResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"question": question}, message_create_params.MessageCreateParams),
             ),
-            cast_to=Message,
+            cast_to=MessageCreateResponse,
         )
 
     def retrieve(
@@ -94,7 +95,7 @@ class MessagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Message:
+    ) -> MessageRetrieveResponse:
         """
         查询某条消息
 
@@ -116,7 +117,7 @@ class MessagesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Message,
+            cast_to=MessageRetrieveResponse,
         )
 
     def list(
@@ -200,7 +201,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Message:
+    ) -> MessageCreateResponse:
         """
         发消息
 
@@ -224,7 +225,7 @@ class AsyncMessagesResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform({"question": question}, message_create_params.MessageCreateParams),
             ),
-            cast_to=Message,
+            cast_to=MessageCreateResponse,
         )
 
     async def retrieve(
@@ -238,7 +239,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Message:
+    ) -> MessageRetrieveResponse:
         """
         查询某条消息
 
@@ -260,7 +261,7 @@ class AsyncMessagesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Message,
+            cast_to=MessageRetrieveResponse,
         )
 
     async def list(

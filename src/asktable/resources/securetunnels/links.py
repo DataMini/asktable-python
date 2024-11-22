@@ -19,7 +19,7 @@ from ..._response import (
 )
 from ..._base_client import make_request_options
 from ...types.securetunnels import link_list_params
-from ...types.securetunnels.secure_tunnel_link import SecureTunnelLink
+from ...types.securetunnels.link_list_response import LinkListResponse
 
 __all__ = ["LinksResource", "AsyncLinksResource"]
 
@@ -56,7 +56,7 @@ class LinksResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SecureTunnelLink:
+    ) -> LinkListResponse:
         """
         查询安全隧道的所有 Link
 
@@ -90,7 +90,7 @@ class LinksResource(SyncAPIResource):
                     link_list_params.LinkListParams,
                 ),
             ),
-            cast_to=SecureTunnelLink,
+            cast_to=LinkListResponse,
         )
 
 
@@ -126,7 +126,7 @@ class AsyncLinksResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SecureTunnelLink:
+    ) -> LinkListResponse:
         """
         查询安全隧道的所有 Link
 
@@ -160,7 +160,7 @@ class AsyncLinksResource(AsyncAPIResource):
                     link_list_params.LinkListParams,
                 ),
             ),
-            cast_to=SecureTunnelLink,
+            cast_to=LinkListResponse,
         )
 
 

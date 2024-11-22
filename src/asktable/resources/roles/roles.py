@@ -36,9 +36,11 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...types.role import Role
 from ..._base_client import make_request_options
 from ...types.role_list_response import RoleListResponse
+from ...types.role_create_response import RoleCreateResponse
+from ...types.role_update_response import RoleUpdateResponse
+from ...types.role_retrieve_response import RoleRetrieveResponse
 
 __all__ = ["RolesResource", "AsyncRolesResource"]
 
@@ -82,7 +84,7 @@ class RolesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Role:
+    ) -> RoleCreateResponse:
         """
         创建一个新的角色
 
@@ -111,7 +113,7 @@ class RolesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Role,
+            cast_to=RoleCreateResponse,
         )
 
     def retrieve(
@@ -124,7 +126,7 @@ class RolesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Role:
+    ) -> RoleRetrieveResponse:
         """
         获取某个角色
 
@@ -144,7 +146,7 @@ class RolesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Role,
+            cast_to=RoleRetrieveResponse,
         )
 
     def update(
@@ -159,7 +161,7 @@ class RolesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Role:
+    ) -> RoleUpdateResponse:
         """
         更新某个角色
 
@@ -190,7 +192,7 @@ class RolesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Role,
+            cast_to=RoleUpdateResponse,
         )
 
     def list(
@@ -320,7 +322,7 @@ class AsyncRolesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Role:
+    ) -> RoleCreateResponse:
         """
         创建一个新的角色
 
@@ -349,7 +351,7 @@ class AsyncRolesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Role,
+            cast_to=RoleCreateResponse,
         )
 
     async def retrieve(
@@ -362,7 +364,7 @@ class AsyncRolesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Role:
+    ) -> RoleRetrieveResponse:
         """
         获取某个角色
 
@@ -382,7 +384,7 @@ class AsyncRolesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Role,
+            cast_to=RoleRetrieveResponse,
         )
 
     async def update(
@@ -397,7 +399,7 @@ class AsyncRolesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Role:
+    ) -> RoleUpdateResponse:
         """
         更新某个角色
 
@@ -428,7 +430,7 @@ class AsyncRolesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Role,
+            cast_to=RoleUpdateResponse,
         )
 
     async def list(

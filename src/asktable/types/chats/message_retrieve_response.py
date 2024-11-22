@@ -6,10 +6,10 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["Message"]
+__all__ = ["MessageRetrieveResponse"]
 
 
-class Message(BaseModel):
+class MessageRetrieveResponse(BaseModel):
     id: str
 
     content: object

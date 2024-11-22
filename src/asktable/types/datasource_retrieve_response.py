@@ -6,7 +6,7 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["DataSource", "AccessConfig"]
+__all__ = ["DatasourceRetrieveResponse", "AccessConfig"]
 
 
 class AccessConfig(BaseModel):
@@ -41,7 +41,7 @@ class AccessConfig(BaseModel):
     """数据库用户名"""
 
 
-class DataSource(BaseModel):
+class DatasourceRetrieveResponse(BaseModel):
     id: str
     """数据源 ID"""
 

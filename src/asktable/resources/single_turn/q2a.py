@@ -21,8 +21,8 @@ from ..._response import (
 )
 from ..._base_client import make_request_options
 from ...types.single_turn import q2a_list_params, q2a_create_params
-from ...types.shared.answer_model import AnswerModel
 from ...types.single_turn.q2a_list_response import Q2aListResponse
+from ...types.single_turn.q2a_create_response import Q2aCreateResponse
 
 __all__ = ["Q2aResource", "AsyncQ2aResource"]
 
@@ -62,7 +62,7 @@ class Q2aResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AnswerModel:
+    ) -> Q2aCreateResponse:
         """
         发起查询的请求
 
@@ -104,7 +104,7 @@ class Q2aResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AnswerModel,
+            cast_to=Q2aCreateResponse,
         )
 
     def list(
@@ -193,7 +193,7 @@ class AsyncQ2aResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AnswerModel:
+    ) -> Q2aCreateResponse:
         """
         发起查询的请求
 
@@ -235,7 +235,7 @@ class AsyncQ2aResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AnswerModel,
+            cast_to=Q2aCreateResponse,
         )
 
     async def list(

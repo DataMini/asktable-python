@@ -18,8 +18,8 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
-from ...types.data_source import DataSource
 from ...types.integration import excel_csv_create_params
+from ...types.integration.excel_csv_create_response import ExcelCsvCreateResponse
 
 __all__ = ["ExcelCsvResource", "AsyncExcelCsvResource"]
 
@@ -54,7 +54,7 @@ class ExcelCsvResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DataSource:
+    ) -> ExcelCsvCreateResponse:
         """
         通过 Excel/CSV 文件 URL 创建数据源
 
@@ -76,7 +76,7 @@ class ExcelCsvResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"file_url": file_url}, excel_csv_create_params.ExcelCsvCreateParams),
             ),
-            cast_to=DataSource,
+            cast_to=ExcelCsvCreateResponse,
         )
 
 
@@ -110,7 +110,7 @@ class AsyncExcelCsvResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DataSource:
+    ) -> ExcelCsvCreateResponse:
         """
         通过 Excel/CSV 文件 URL 创建数据源
 
@@ -132,7 +132,7 @@ class AsyncExcelCsvResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform({"file_url": file_url}, excel_csv_create_params.ExcelCsvCreateParams),
             ),
-            cast_to=DataSource,
+            cast_to=ExcelCsvCreateResponse,
         )
 
 

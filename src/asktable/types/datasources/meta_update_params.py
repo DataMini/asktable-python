@@ -7,22 +7,22 @@ from typing_extensions import Required, TypeAlias, TypedDict
 
 __all__ = [
     "MetaUpdateParams",
-    "MetaBase",
-    "MetaBaseSchemas",
-    "MetaBaseSchemasTables",
-    "MetaBaseSchemasTablesFields",
+    "MetaCreate",
+    "MetaCreateSchemas",
+    "MetaCreateSchemasTables",
+    "MetaCreateSchemasTablesFields",
     "Variant1",
 ]
 
 
-class MetaBase(TypedDict, total=False):
+class MetaCreate(TypedDict, total=False):
     name: Required[str]
     """metadata_name"""
 
-    schemas: Dict[str, MetaBaseSchemas]
+    schemas: Dict[str, MetaCreateSchemas]
 
 
-class MetaBaseSchemasTablesFields(TypedDict, total=False):
+class MetaCreateSchemasTablesFields(TypedDict, total=False):
     name: Required[str]
     """field_name"""
 
@@ -36,17 +36,17 @@ class MetaBaseSchemasTablesFields(TypedDict, total=False):
     """field sample data"""
 
 
-class MetaBaseSchemasTables(TypedDict, total=False):
+class MetaCreateSchemasTables(TypedDict, total=False):
     name: Required[str]
     """table_name"""
 
-    fields: Dict[str, MetaBaseSchemasTablesFields]
+    fields: Dict[str, MetaCreateSchemasTablesFields]
 
     origin_desc: Optional[str]
     """table description from database"""
 
 
-class MetaBaseSchemas(TypedDict, total=False):
+class MetaCreateSchemas(TypedDict, total=False):
     name: Required[str]
     """schema_name"""
 
@@ -56,11 +56,11 @@ class MetaBaseSchemas(TypedDict, total=False):
     origin_desc: Optional[str]
     """schema description from database"""
 
-    tables: Dict[str, MetaBaseSchemasTables]
+    tables: Dict[str, MetaCreateSchemasTables]
 
 
 class Variant1(TypedDict, total=False):
     body: Required[None]
 
 
-MetaUpdateParams: TypeAlias = Union[MetaBase, Variant1]
+MetaUpdateParams: TypeAlias = Union[MetaCreate, Variant1]

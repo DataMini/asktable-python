@@ -23,7 +23,7 @@ from ..._response import (
 )
 from ..._base_client import make_request_options
 from ...types.datasources import meta_create_params, meta_update_params
-from ...types.datasources.meta import Meta
+from ...types.datasources.meta_retrieve_response import MetaRetrieveResponse
 
 __all__ = ["MetaResource", "AsyncMetaResource"]
 
@@ -54,7 +54,7 @@ class MetaResource(SyncAPIResource):
         datasource_id: str,
         *,
         name: str,
-        schemas: Dict[str, meta_create_params.MetaBaseSchemas] | NotGiven = NOT_GIVEN,
+        schemas: Dict[str, meta_create_params.MetaCreateSchemas] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -119,7 +119,7 @@ class MetaResource(SyncAPIResource):
         datasource_id: str,
         *,
         name: str | NotGiven = NOT_GIVEN,
-        schemas: Dict[str, meta_create_params.MetaBaseSchemas] | NotGiven = NOT_GIVEN,
+        schemas: Dict[str, meta_create_params.MetaCreateSchemas] | NotGiven = NOT_GIVEN,
         body: None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -156,7 +156,7 @@ class MetaResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Meta:
+    ) -> MetaRetrieveResponse:
         """
         从数据源中获取最新的元数据
 
@@ -176,7 +176,7 @@ class MetaResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Meta,
+            cast_to=MetaRetrieveResponse,
         )
 
     @overload
@@ -185,7 +185,7 @@ class MetaResource(SyncAPIResource):
         datasource_id: str,
         *,
         name: str,
-        schemas: Dict[str, meta_update_params.MetaBaseSchemas] | NotGiven = NOT_GIVEN,
+        schemas: Dict[str, meta_update_params.MetaCreateSchemas] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -242,7 +242,7 @@ class MetaResource(SyncAPIResource):
         datasource_id: str,
         *,
         name: str | NotGiven = NOT_GIVEN,
-        schemas: Dict[str, meta_update_params.MetaBaseSchemas] | NotGiven = NOT_GIVEN,
+        schemas: Dict[str, meta_update_params.MetaCreateSchemas] | NotGiven = NOT_GIVEN,
         body: None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -296,7 +296,7 @@ class AsyncMetaResource(AsyncAPIResource):
         datasource_id: str,
         *,
         name: str,
-        schemas: Dict[str, meta_create_params.MetaBaseSchemas] | NotGiven = NOT_GIVEN,
+        schemas: Dict[str, meta_create_params.MetaCreateSchemas] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -361,7 +361,7 @@ class AsyncMetaResource(AsyncAPIResource):
         datasource_id: str,
         *,
         name: str | NotGiven = NOT_GIVEN,
-        schemas: Dict[str, meta_create_params.MetaBaseSchemas] | NotGiven = NOT_GIVEN,
+        schemas: Dict[str, meta_create_params.MetaCreateSchemas] | NotGiven = NOT_GIVEN,
         body: None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -398,7 +398,7 @@ class AsyncMetaResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Meta:
+    ) -> MetaRetrieveResponse:
         """
         从数据源中获取最新的元数据
 
@@ -418,7 +418,7 @@ class AsyncMetaResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Meta,
+            cast_to=MetaRetrieveResponse,
         )
 
     @overload
@@ -427,7 +427,7 @@ class AsyncMetaResource(AsyncAPIResource):
         datasource_id: str,
         *,
         name: str,
-        schemas: Dict[str, meta_update_params.MetaBaseSchemas] | NotGiven = NOT_GIVEN,
+        schemas: Dict[str, meta_update_params.MetaCreateSchemas] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -484,7 +484,7 @@ class AsyncMetaResource(AsyncAPIResource):
         datasource_id: str,
         *,
         name: str | NotGiven = NOT_GIVEN,
-        schemas: Dict[str, meta_update_params.MetaBaseSchemas] | NotGiven = NOT_GIVEN,
+        schemas: Dict[str, meta_update_params.MetaCreateSchemas] | NotGiven = NOT_GIVEN,
         body: None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

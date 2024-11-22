@@ -21,8 +21,10 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
-from ..types.chat_bot import ChatBot
 from ..types.bot_list_response import BotListResponse
+from ..types.bot_create_response import BotCreateResponse
+from ..types.bot_update_response import BotUpdateResponse
+from ..types.bot_retrieve_response import BotRetrieveResponse
 
 __all__ = ["BotsResource", "AsyncBotsResource"]
 
@@ -66,7 +68,7 @@ class BotsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ChatBot:
+    ) -> BotCreateResponse:
         """
         创建一个新的 Bot
 
@@ -119,7 +121,7 @@ class BotsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ChatBot,
+            cast_to=BotCreateResponse,
         )
 
     def retrieve(
@@ -132,7 +134,7 @@ class BotsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ChatBot:
+    ) -> BotRetrieveResponse:
         """
         获取某个 Bot
 
@@ -152,7 +154,7 @@ class BotsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ChatBot,
+            cast_to=BotRetrieveResponse,
         )
 
     def update(
@@ -176,7 +178,7 @@ class BotsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ChatBot:
+    ) -> BotUpdateResponse:
         """
         更新某个 Bot
 
@@ -234,7 +236,7 @@ class BotsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ChatBot,
+            cast_to=BotUpdateResponse,
         )
 
     def list(
@@ -398,7 +400,7 @@ class AsyncBotsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ChatBot:
+    ) -> BotCreateResponse:
         """
         创建一个新的 Bot
 
@@ -451,7 +453,7 @@ class AsyncBotsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ChatBot,
+            cast_to=BotCreateResponse,
         )
 
     async def retrieve(
@@ -464,7 +466,7 @@ class AsyncBotsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ChatBot:
+    ) -> BotRetrieveResponse:
         """
         获取某个 Bot
 
@@ -484,7 +486,7 @@ class AsyncBotsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ChatBot,
+            cast_to=BotRetrieveResponse,
         )
 
     async def update(
@@ -508,7 +510,7 @@ class AsyncBotsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ChatBot:
+    ) -> BotUpdateResponse:
         """
         更新某个 Bot
 
@@ -566,7 +568,7 @@ class AsyncBotsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ChatBot,
+            cast_to=BotUpdateResponse,
         )
 
     async def list(

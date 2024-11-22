@@ -5,10 +5,10 @@ from datetime import datetime
 
 from .._models import BaseModel
 
-__all__ = ["Role"]
+__all__ = ["RoleRetrieveResponse"]
 
 
-class Role(BaseModel):
+class RoleRetrieveResponse(BaseModel):
     id: str
 
     created_at: datetime
