@@ -2,8 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
-from datetime import datetime
+from typing import Dict, Optional
 
 import httpx
 
@@ -30,8 +29,10 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
-from ...types.ext_api_model import ExtAPIModel
 from ...types.extapi_list_response import ExtapiListResponse
+from ...types.extapi_create_response import ExtapiCreateResponse
+from ...types.extapi_update_response import ExtapiUpdateResponse
+from ...types.extapi_retrieve_response import ExtapiRetrieveResponse
 
 __all__ = ["ExtapisResource", "AsyncExtapisResource"]
 
@@ -63,20 +64,16 @@ class ExtapisResource(SyncAPIResource):
     def create(
         self,
         *,
-        id: str,
         base_url: str,
-        created_at: Union[str, datetime],
         name: str,
-        project_id: str,
         headers: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
-        updated_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ExtAPIModel:
+    ) -> ExtapiCreateResponse:
         """
         创建一个新的 ExtAPI
 
@@ -99,20 +96,16 @@ class ExtapisResource(SyncAPIResource):
             "/extapis",
             body=maybe_transform(
                 {
-                    "id": id,
                     "base_url": base_url,
-                    "created_at": created_at,
                     "name": name,
-                    "project_id": project_id,
                     "headers": headers,
-                    "updated_at": updated_at,
                 },
                 extapi_create_params.ExtapiCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ExtAPIModel,
+            cast_to=ExtapiCreateResponse,
         )
 
     def retrieve(
@@ -125,7 +118,7 @@ class ExtapisResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ExtAPIModel:
+    ) -> ExtapiRetrieveResponse:
         """
         获取某个 ExtAPI
 
@@ -145,7 +138,7 @@ class ExtapisResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ExtAPIModel,
+            cast_to=ExtapiRetrieveResponse,
         )
 
     def update(
@@ -161,7 +154,7 @@ class ExtapisResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ExtAPIModel:
+    ) -> ExtapiUpdateResponse:
         """
         更新某个 ExtAPI
 
@@ -195,7 +188,7 @@ class ExtapisResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ExtAPIModel,
+            cast_to=ExtapiUpdateResponse,
         )
 
     def list(
@@ -309,20 +302,16 @@ class AsyncExtapisResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        id: str,
         base_url: str,
-        created_at: Union[str, datetime],
         name: str,
-        project_id: str,
         headers: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
-        updated_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ExtAPIModel:
+    ) -> ExtapiCreateResponse:
         """
         创建一个新的 ExtAPI
 
@@ -345,20 +334,16 @@ class AsyncExtapisResource(AsyncAPIResource):
             "/extapis",
             body=await async_maybe_transform(
                 {
-                    "id": id,
                     "base_url": base_url,
-                    "created_at": created_at,
                     "name": name,
-                    "project_id": project_id,
                     "headers": headers,
-                    "updated_at": updated_at,
                 },
                 extapi_create_params.ExtapiCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ExtAPIModel,
+            cast_to=ExtapiCreateResponse,
         )
 
     async def retrieve(
@@ -371,7 +356,7 @@ class AsyncExtapisResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ExtAPIModel:
+    ) -> ExtapiRetrieveResponse:
         """
         获取某个 ExtAPI
 
@@ -391,7 +376,7 @@ class AsyncExtapisResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ExtAPIModel,
+            cast_to=ExtapiRetrieveResponse,
         )
 
     async def update(
@@ -407,7 +392,7 @@ class AsyncExtapisResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ExtAPIModel:
+    ) -> ExtapiUpdateResponse:
         """
         更新某个 ExtAPI
 
@@ -441,7 +426,7 @@ class AsyncExtapisResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ExtAPIModel,
+            cast_to=ExtapiUpdateResponse,
         )
 
     async def list(

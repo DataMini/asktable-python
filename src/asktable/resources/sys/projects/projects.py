@@ -37,8 +37,10 @@ from ...._response import (
 )
 from ....types.sys import project_list_params, project_create_params, project_update_params
 from ...._base_client import make_request_options
-from ....types.sys.project import Project
 from ....types.sys.project_list_response import ProjectListResponse
+from ....types.sys.project_create_response import ProjectCreateResponse
+from ....types.sys.project_update_response import ProjectUpdateResponse
+from ....types.sys.project_retrieve_response import ProjectRetrieveResponse
 
 __all__ = ["ProjectsResource", "AsyncProjectsResource"]
 
@@ -81,7 +83,7 @@ class ProjectsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Project:
+    ) -> ProjectCreateResponse:
         """
         Create New Project
 
@@ -102,7 +104,7 @@ class ProjectsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Project,
+            cast_to=ProjectCreateResponse,
         )
 
     def retrieve(
@@ -115,7 +117,7 @@ class ProjectsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Project:
+    ) -> ProjectRetrieveResponse:
         """
         Get Project
 
@@ -135,7 +137,7 @@ class ProjectsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Project,
+            cast_to=ProjectRetrieveResponse,
         )
 
     def update(
@@ -150,7 +152,7 @@ class ProjectsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Project:
+    ) -> ProjectUpdateResponse:
         """
         Update Project
 
@@ -181,7 +183,7 @@ class ProjectsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Project,
+            cast_to=ProjectUpdateResponse,
         )
 
     def list(
@@ -306,7 +308,7 @@ class AsyncProjectsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Project:
+    ) -> ProjectCreateResponse:
         """
         Create New Project
 
@@ -327,7 +329,7 @@ class AsyncProjectsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Project,
+            cast_to=ProjectCreateResponse,
         )
 
     async def retrieve(
@@ -340,7 +342,7 @@ class AsyncProjectsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Project:
+    ) -> ProjectRetrieveResponse:
         """
         Get Project
 
@@ -360,7 +362,7 @@ class AsyncProjectsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Project,
+            cast_to=ProjectRetrieveResponse,
         )
 
     async def update(
@@ -375,7 +377,7 @@ class AsyncProjectsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Project:
+    ) -> ProjectUpdateResponse:
         """
         Update Project
 
@@ -406,7 +408,7 @@ class AsyncProjectsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Project,
+            cast_to=ProjectUpdateResponse,
         )
 
     async def list(

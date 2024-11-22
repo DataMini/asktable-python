@@ -3,4 +3,4 @@
 from __future__ import annotations
 
 from .link_list_params import LinkListParams as LinkListParams
-from .secure_tunnel_link import SecureTunnelLink as SecureTunnelLink
+from .link_list_response import LinkListResponse as LinkListResponse

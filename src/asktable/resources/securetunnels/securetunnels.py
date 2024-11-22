@@ -29,8 +29,10 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
-from ...types.secure_tunnel import SecureTunnel
 from ...types.securetunnel_list_response import SecuretunnelListResponse
+from ...types.securetunnel_create_response import SecuretunnelCreateResponse
+from ...types.securetunnel_update_response import SecuretunnelUpdateResponse
+from ...types.securetunnel_retrieve_response import SecuretunnelRetrieveResponse
 
 __all__ = ["SecuretunnelsResource", "AsyncSecuretunnelsResource"]
 
@@ -69,7 +71,7 @@ class SecuretunnelsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SecureTunnel:
+    ) -> SecuretunnelCreateResponse:
         """
         创建安全隧道
 
@@ -90,7 +92,7 @@ class SecuretunnelsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SecureTunnel,
+            cast_to=SecuretunnelCreateResponse,
         )
 
     def retrieve(
@@ -103,7 +105,7 @@ class SecuretunnelsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SecureTunnel:
+    ) -> SecuretunnelRetrieveResponse:
         """
         获取某个 ATST
 
@@ -123,7 +125,7 @@ class SecuretunnelsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SecureTunnel,
+            cast_to=SecuretunnelRetrieveResponse,
         )
 
     def update(
@@ -139,7 +141,7 @@ class SecuretunnelsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SecureTunnel:
+    ) -> SecuretunnelUpdateResponse:
         """
         更新某个 ATST
 
@@ -173,7 +175,7 @@ class SecuretunnelsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SecureTunnel,
+            cast_to=SecuretunnelUpdateResponse,
         )
 
     def list(
@@ -291,7 +293,7 @@ class AsyncSecuretunnelsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SecureTunnel:
+    ) -> SecuretunnelCreateResponse:
         """
         创建安全隧道
 
@@ -312,7 +314,7 @@ class AsyncSecuretunnelsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SecureTunnel,
+            cast_to=SecuretunnelCreateResponse,
         )
 
     async def retrieve(
@@ -325,7 +327,7 @@ class AsyncSecuretunnelsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SecureTunnel:
+    ) -> SecuretunnelRetrieveResponse:
         """
         获取某个 ATST
 
@@ -345,7 +347,7 @@ class AsyncSecuretunnelsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SecureTunnel,
+            cast_to=SecuretunnelRetrieveResponse,
         )
 
     async def update(
@@ -361,7 +363,7 @@ class AsyncSecuretunnelsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SecureTunnel:
+    ) -> SecuretunnelUpdateResponse:
         """
         更新某个 ATST
 
@@ -395,7 +397,7 @@ class AsyncSecuretunnelsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=SecureTunnel,
+            cast_to=SecuretunnelUpdateResponse,
         )
 
     async def list(

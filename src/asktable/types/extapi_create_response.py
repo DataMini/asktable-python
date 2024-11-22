@@ -5,10 +5,10 @@ from datetime import datetime
 
 from .._models import BaseModel
 
-__all__ = ["ExtAPIModel"]
+__all__ = ["ExtapiCreateResponse"]
 
 
-class ExtAPIModel(BaseModel):
+class ExtapiCreateResponse(BaseModel):
     id: str
 
     base_url: str
