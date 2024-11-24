@@ -32,6 +32,7 @@ class TestDatasources:
         datasource = client.datasources.create(
             engine="mysql",
             async_process_meta=True,
+            value_index=True,
             access_config={
                 "atst_link_id": "atst_link_123456",
                 "db": "test",
@@ -262,6 +263,7 @@ class TestDatasources:
             file=b"raw file contents",
             async_process_meta=True,
             name="name",
+            value_index=True,
         )
         assert_matches_type(Datasource, datasource, path=["response"])
 
@@ -305,6 +307,7 @@ class TestAsyncDatasources:
         datasource = await async_client.datasources.create(
             engine="mysql",
             async_process_meta=True,
+            value_index=True,
             access_config={
                 "atst_link_id": "atst_link_123456",
                 "db": "test",
@@ -535,6 +538,7 @@ class TestAsyncDatasources:
             file=b"raw file contents",
             async_process_meta=True,
             name="name",
+            value_index=True,
         )
         assert_matches_type(Datasource, datasource, path=["response"])
 

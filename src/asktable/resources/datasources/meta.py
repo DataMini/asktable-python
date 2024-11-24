@@ -54,6 +54,8 @@ class MetaResource(SyncAPIResource):
         datasource_id: str,
         *,
         name: str,
+        async_process_meta: bool | NotGiven = NOT_GIVEN,
+        value_index: bool | NotGiven = NOT_GIVEN,
         schemas: Dict[str, meta_create_params.MetaCreateSchemas] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -88,6 +90,8 @@ class MetaResource(SyncAPIResource):
         datasource_id: str,
         *,
         body: None,
+        async_process_meta: bool | NotGiven = NOT_GIVEN,
+        value_index: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -119,6 +123,8 @@ class MetaResource(SyncAPIResource):
         datasource_id: str,
         *,
         name: str | NotGiven = NOT_GIVEN,
+        async_process_meta: bool | NotGiven = NOT_GIVEN,
+        value_index: bool | NotGiven = NOT_GIVEN,
         schemas: Dict[str, meta_create_params.MetaCreateSchemas] | NotGiven = NOT_GIVEN,
         body: None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -141,7 +147,17 @@ class MetaResource(SyncAPIResource):
                 meta_create_params.MetaCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "async_process_meta": async_process_meta,
+                        "value_index": value_index,
+                    },
+                    meta_create_params.MetaCreateParams,
+                ),
             ),
             cast_to=object,
         )
@@ -331,6 +347,8 @@ class AsyncMetaResource(AsyncAPIResource):
         datasource_id: str,
         *,
         name: str,
+        async_process_meta: bool | NotGiven = NOT_GIVEN,
+        value_index: bool | NotGiven = NOT_GIVEN,
         schemas: Dict[str, meta_create_params.MetaCreateSchemas] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -365,6 +383,8 @@ class AsyncMetaResource(AsyncAPIResource):
         datasource_id: str,
         *,
         body: None,
+        async_process_meta: bool | NotGiven = NOT_GIVEN,
+        value_index: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -396,6 +416,8 @@ class AsyncMetaResource(AsyncAPIResource):
         datasource_id: str,
         *,
         name: str | NotGiven = NOT_GIVEN,
+        async_process_meta: bool | NotGiven = NOT_GIVEN,
+        value_index: bool | NotGiven = NOT_GIVEN,
         schemas: Dict[str, meta_create_params.MetaCreateSchemas] | NotGiven = NOT_GIVEN,
         body: None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -418,7 +440,17 @@ class AsyncMetaResource(AsyncAPIResource):
                 meta_create_params.MetaCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "async_process_meta": async_process_meta,
+                        "value_index": value_index,
+                    },
+                    meta_create_params.MetaCreateParams,
+                ),
             ),
             cast_to=object,
         )
