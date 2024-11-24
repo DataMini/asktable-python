@@ -130,6 +130,7 @@ class ProjectsResource(SyncAPIResource):
         self,
         project_id: str,
         *,
+        llm_model_group: Optional[str] | NotGiven = NOT_GIVEN,
         locked: Optional[bool] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -143,6 +144,8 @@ class ProjectsResource(SyncAPIResource):
         Update Project
 
         Args:
+          llm_model_group: 模型组
+
           locked: 是否锁定
 
           name: 项目名称
@@ -161,6 +164,7 @@ class ProjectsResource(SyncAPIResource):
             f"/sys/projects/{project_id}",
             body=maybe_transform(
                 {
+                    "llm_model_group": llm_model_group,
                     "locked": locked,
                     "name": name,
                 },
@@ -352,6 +356,7 @@ class AsyncProjectsResource(AsyncAPIResource):
         self,
         project_id: str,
         *,
+        llm_model_group: Optional[str] | NotGiven = NOT_GIVEN,
         locked: Optional[bool] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -365,6 +370,8 @@ class AsyncProjectsResource(AsyncAPIResource):
         Update Project
 
         Args:
+          llm_model_group: 模型组
+
           locked: 是否锁定
 
           name: 项目名称
@@ -383,6 +390,7 @@ class AsyncProjectsResource(AsyncAPIResource):
             f"/sys/projects/{project_id}",
             body=await async_maybe_transform(
                 {
+                    "llm_model_group": llm_model_group,
                     "locked": locked,
                     "name": name,
                 },
