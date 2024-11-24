@@ -15,6 +15,9 @@ class Item(BaseModel):
     created_at: datetime
     """创建时间"""
 
+    llm_model_group: str
+    """模型组"""
+
     locked: int
     """是否锁定"""
 
