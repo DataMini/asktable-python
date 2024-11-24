@@ -3,7 +3,7 @@
 from typing import List
 from typing_extensions import TypeAlias
 
-from .api_key import APIKey
+from ..api_key import APIKey
 
 __all__ = ["APIKeyListResponse"]
 

@@ -21,9 +21,9 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ...types.meta import Meta
 from ..._base_client import make_request_options
-from ...types.datasources import meta_create_params, meta_update_params
-from ...types.datasources.meta import Meta
+from ...types.datasources import meta_create_params, meta_update_params, meta_annotate_params
 
 __all__ = ["MetaResource", "AsyncMetaResource"]
 
@@ -54,7 +54,7 @@ class MetaResource(SyncAPIResource):
         datasource_id: str,
         *,
         name: str,
-        schemas: Dict[str, meta_create_params.MetaBaseSchemas] | NotGiven = NOT_GIVEN,
+        schemas: Dict[str, meta_create_params.MetaCreateSchemas] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -63,7 +63,7 @@ class MetaResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> object:
         """
-        创建或刷新 数据源的 meta
+        创建数据源的 meta，如果已经存在，则删除旧的
 
         如果上传了 meta，则使用用户上传的数据创建。
 
@@ -96,7 +96,7 @@ class MetaResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> object:
         """
-        创建或刷新 数据源的 meta
+        创建数据源的 meta，如果已经存在，则删除旧的
 
         如果上传了 meta，则使用用户上传的数据创建。
 
@@ -119,7 +119,7 @@ class MetaResource(SyncAPIResource):
         datasource_id: str,
         *,
         name: str | NotGiven = NOT_GIVEN,
-        schemas: Dict[str, meta_create_params.MetaBaseSchemas] | NotGiven = NOT_GIVEN,
+        schemas: Dict[str, meta_create_params.MetaCreateSchemas] | NotGiven = NOT_GIVEN,
         body: None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -185,7 +185,7 @@ class MetaResource(SyncAPIResource):
         datasource_id: str,
         *,
         name: str,
-        schemas: Dict[str, meta_update_params.MetaBaseSchemas] | NotGiven = NOT_GIVEN,
+        schemas: Dict[str, meta_update_params.MetaCreateSchemas] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -242,7 +242,7 @@ class MetaResource(SyncAPIResource):
         datasource_id: str,
         *,
         name: str | NotGiven = NOT_GIVEN,
-        schemas: Dict[str, meta_update_params.MetaBaseSchemas] | NotGiven = NOT_GIVEN,
+        schemas: Dict[str, meta_update_params.MetaCreateSchemas] | NotGiven = NOT_GIVEN,
         body: None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -269,10 +269,11 @@ class MetaResource(SyncAPIResource):
             cast_to=object,
         )
 
-    def delete(
+    def annotate(
         self,
         datasource_id: str,
         *,
+        schemas: Dict[str, meta_annotate_params.Schemas],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -281,7 +282,7 @@ class MetaResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> object:
         """
-        Delete Datasource Metadata
+        修改数据 meta 的描述，用来修改表和字段的备注
 
         Args:
           extra_headers: Send extra headers
@@ -294,8 +295,9 @@ class MetaResource(SyncAPIResource):
         """
         if not datasource_id:
             raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
-        return self._delete(
+        return self._patch(
             f"/datasources/{datasource_id}/meta",
+            body=maybe_transform({"schemas": schemas}, meta_annotate_params.MetaAnnotateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -329,7 +331,7 @@ class AsyncMetaResource(AsyncAPIResource):
         datasource_id: str,
         *,
         name: str,
-        schemas: Dict[str, meta_create_params.MetaBaseSchemas] | NotGiven = NOT_GIVEN,
+        schemas: Dict[str, meta_create_params.MetaCreateSchemas] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -338,7 +340,7 @@ class AsyncMetaResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> object:
         """
-        创建或刷新 数据源的 meta
+        创建数据源的 meta，如果已经存在，则删除旧的
 
         如果上传了 meta，则使用用户上传的数据创建。
 
@@ -371,7 +373,7 @@ class AsyncMetaResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> object:
         """
-        创建或刷新 数据源的 meta
+        创建数据源的 meta，如果已经存在，则删除旧的
 
         如果上传了 meta，则使用用户上传的数据创建。
 
@@ -394,7 +396,7 @@ class AsyncMetaResource(AsyncAPIResource):
         datasource_id: str,
         *,
         name: str | NotGiven = NOT_GIVEN,
-        schemas: Dict[str, meta_create_params.MetaBaseSchemas] | NotGiven = NOT_GIVEN,
+        schemas: Dict[str, meta_create_params.MetaCreateSchemas] | NotGiven = NOT_GIVEN,
         body: None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -460,7 +462,7 @@ class AsyncMetaResource(AsyncAPIResource):
         datasource_id: str,
         *,
         name: str,
-        schemas: Dict[str, meta_update_params.MetaBaseSchemas] | NotGiven = NOT_GIVEN,
+        schemas: Dict[str, meta_update_params.MetaCreateSchemas] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -517,7 +519,7 @@ class AsyncMetaResource(AsyncAPIResource):
         datasource_id: str,
         *,
         name: str | NotGiven = NOT_GIVEN,
-        schemas: Dict[str, meta_update_params.MetaBaseSchemas] | NotGiven = NOT_GIVEN,
+        schemas: Dict[str, meta_update_params.MetaCreateSchemas] | NotGiven = NOT_GIVEN,
         body: None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -544,10 +546,11 @@ class AsyncMetaResource(AsyncAPIResource):
             cast_to=object,
         )
 
-    async def delete(
+    async def annotate(
         self,
         datasource_id: str,
         *,
+        schemas: Dict[str, meta_annotate_params.Schemas],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -556,7 +559,7 @@ class AsyncMetaResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> object:
         """
-        Delete Datasource Metadata
+        修改数据 meta 的描述，用来修改表和字段的备注
 
         Args:
           extra_headers: Send extra headers
@@ -569,8 +572,9 @@ class AsyncMetaResource(AsyncAPIResource):
         """
         if not datasource_id:
             raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
-        return await self._delete(
+        return await self._patch(
             f"/datasources/{datasource_id}/meta",
+            body=await async_maybe_transform({"schemas": schemas}, meta_annotate_params.MetaAnnotateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -591,8 +595,8 @@ class MetaResourceWithRawResponse:
         self.update = to_raw_response_wrapper(
             meta.update,
         )
-        self.delete = to_raw_response_wrapper(
-            meta.delete,
+        self.annotate = to_raw_response_wrapper(
+            meta.annotate,
         )
 
 
@@ -609,8 +613,8 @@ class AsyncMetaResourceWithRawResponse:
         self.update = async_to_raw_response_wrapper(
             meta.update,
         )
-        self.delete = async_to_raw_response_wrapper(
-            meta.delete,
+        self.annotate = async_to_raw_response_wrapper(
+            meta.annotate,
         )
 
 
@@ -627,8 +631,8 @@ class MetaResourceWithStreamingResponse:
         self.update = to_streamed_response_wrapper(
             meta.update,
         )
-        self.delete = to_streamed_response_wrapper(
-            meta.delete,
+        self.annotate = to_streamed_response_wrapper(
+            meta.annotate,
         )
 
 
@@ -645,6 +649,6 @@ class AsyncMetaResourceWithStreamingResponse:
         self.update = async_to_streamed_response_wrapper(
             meta.update,
         )
-        self.delete = async_to_streamed_response_wrapper(
-            meta.delete,
+        self.annotate = async_to_streamed_response_wrapper(
+            meta.annotate,
         )

@@ -1,31 +1,42 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Optional
+from datetime import datetime
 
 from ..._models import BaseModel
 
-__all__ = ["Q2sResponse", "Question"]
-
-
-class Question(BaseModel):
-    text: str
-
-    keywords: Optional[List[str]] = None
+__all__ = ["Q2sResponse"]
 
 
 class Q2sResponse(BaseModel):
-    actual_used_table_names: List[str]
+    id: str
 
-    ds_id: str
+    created_at: datetime
 
-    header: object
+    datasource_id: str
+    """数据源 ID"""
 
-    is_row_filtered: bool
+    duration: Optional[int] = None
 
-    params: object
+    modified_at: datetime
 
-    prepared_statement: str
+    project_id: str
 
-    question: Question
+    query: Optional[object] = None
 
-    cache_id: Optional[str] = None
+    question: str
+    """查询语句"""
+
+    status: str
+
+    err_msg: Optional[str] = None
+    """错误信息"""
+
+    role_id: Optional[str] = None
+    """
+    角色 ID，将扮演这个角色来执行对话，用于权限控制。若无，则跳过鉴权，即可查询所有
+    数据
+    """
+
+    role_variables: Optional[object] = None
+    """在扮演这个角色时需要传递的变量值，用 Key-Value 形式传递"""

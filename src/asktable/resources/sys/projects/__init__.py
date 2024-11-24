@@ -1,13 +1,5 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .tokens import (
-    TokensResource,
-    AsyncTokensResource,
-    TokensResourceWithRawResponse,
-    AsyncTokensResourceWithRawResponse,
-    TokensResourceWithStreamingResponse,
-    AsyncTokensResourceWithStreamingResponse,
-)
 from .api_keys import (
     APIKeysResource,
     AsyncAPIKeysResource,
@@ -32,12 +24,6 @@ __all__ = [
     "AsyncAPIKeysResourceWithRawResponse",
     "APIKeysResourceWithStreamingResponse",
     "AsyncAPIKeysResourceWithStreamingResponse",
-    "TokensResource",
-    "AsyncTokensResource",
-    "TokensResourceWithRawResponse",
-    "AsyncTokensResourceWithRawResponse",
-    "TokensResourceWithStreamingResponse",
-    "AsyncTokensResourceWithStreamingResponse",
     "ProjectsResource",
     "AsyncProjectsResource",
     "ProjectsResourceWithRawResponse",

@@ -6,14 +6,6 @@ from typing import List, Optional
 
 import httpx
 
-from .tokens import (
-    TokensResource,
-    AsyncTokensResource,
-    TokensResourceWithRawResponse,
-    AsyncTokensResourceWithRawResponse,
-    TokensResourceWithStreamingResponse,
-    AsyncTokensResourceWithStreamingResponse,
-)
 from .api_keys import (
     APIKeysResource,
     AsyncAPIKeysResource,
@@ -36,9 +28,9 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ....types.sys import project_list_params, project_create_params, project_update_params
-from ...._base_client import make_request_options
+from ....pagination import SyncPage, AsyncPage
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.sys.project import Project
-from ....types.sys.project_list_response import ProjectListResponse
 
 __all__ = ["ProjectsResource", "AsyncProjectsResource"]
 
@@ -47,10 +39,6 @@ class ProjectsResource(SyncAPIResource):
     @cached_property
     def api_keys(self) -> APIKeysResource:
         return APIKeysResource(self._client)
-
-    @cached_property
-    def tokens(self) -> TokensResource:
-        return TokensResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> ProjectsResourceWithRawResponse:
@@ -196,7 +184,7 @@ class ProjectsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ProjectListResponse:
+    ) -> SyncPage[Project]:
         """
         Get Projects
 
@@ -215,8 +203,9 @@ class ProjectsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/sys/projects",
+            page=SyncPage[Project],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -231,7 +220,7 @@ class ProjectsResource(SyncAPIResource):
                     project_list_params.ProjectListParams,
                 ),
             ),
-            cast_to=ProjectListResponse,
+            model=Project,
         )
 
     def delete(
@@ -272,10 +261,6 @@ class AsyncProjectsResource(AsyncAPIResource):
     @cached_property
     def api_keys(self) -> AsyncAPIKeysResource:
         return AsyncAPIKeysResource(self._client)
-
-    @cached_property
-    def tokens(self) -> AsyncTokensResource:
-        return AsyncTokensResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncProjectsResourceWithRawResponse:
@@ -409,7 +394,7 @@ class AsyncProjectsResource(AsyncAPIResource):
             cast_to=Project,
         )
 
-    async def list(
+    def list(
         self,
         *,
         page: int | NotGiven = NOT_GIVEN,
@@ -421,7 +406,7 @@ class AsyncProjectsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ProjectListResponse:
+    ) -> AsyncPaginator[Project, AsyncPage[Project]]:
         """
         Get Projects
 
@@ -440,14 +425,15 @@ class AsyncProjectsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/sys/projects",
+            page=AsyncPage[Project],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "page": page,
                         "project_ids": project_ids,
@@ -456,7 +442,7 @@ class AsyncProjectsResource(AsyncAPIResource):
                     project_list_params.ProjectListParams,
                 ),
             ),
-            cast_to=ProjectListResponse,
+            model=Project,
         )
 
     async def delete(
@@ -517,10 +503,6 @@ class ProjectsResourceWithRawResponse:
     def api_keys(self) -> APIKeysResourceWithRawResponse:
         return APIKeysResourceWithRawResponse(self._projects.api_keys)
 
-    @cached_property
-    def tokens(self) -> TokensResourceWithRawResponse:
-        return TokensResourceWithRawResponse(self._projects.tokens)
-
 
 class AsyncProjectsResourceWithRawResponse:
     def __init__(self, projects: AsyncProjectsResource) -> None:
@@ -545,10 +527,6 @@ class AsyncProjectsResourceWithRawResponse:
     @cached_property
     def api_keys(self) -> AsyncAPIKeysResourceWithRawResponse:
         return AsyncAPIKeysResourceWithRawResponse(self._projects.api_keys)
-
-    @cached_property
-    def tokens(self) -> AsyncTokensResourceWithRawResponse:
-        return AsyncTokensResourceWithRawResponse(self._projects.tokens)
 
 
 class ProjectsResourceWithStreamingResponse:
@@ -575,10 +553,6 @@ class ProjectsResourceWithStreamingResponse:
     def api_keys(self) -> APIKeysResourceWithStreamingResponse:
         return APIKeysResourceWithStreamingResponse(self._projects.api_keys)
 
-    @cached_property
-    def tokens(self) -> TokensResourceWithStreamingResponse:
-        return TokensResourceWithStreamingResponse(self._projects.tokens)
-
 
 class AsyncProjectsResourceWithStreamingResponse:
     def __init__(self, projects: AsyncProjectsResource) -> None:
@@ -603,7 +577,3 @@ class AsyncProjectsResourceWithStreamingResponse:
     @cached_property
     def api_keys(self) -> AsyncAPIKeysResourceWithStreamingResponse:
         return AsyncAPIKeysResourceWithStreamingResponse(self._projects.api_keys)
-
-    @cached_property
-    def tokens(self) -> AsyncTokensResourceWithStreamingResponse:
-        return AsyncTokensResourceWithStreamingResponse(self._projects.tokens)

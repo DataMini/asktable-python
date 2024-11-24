@@ -9,7 +9,7 @@ import pytest
 
 from asktable import Asktable, AsyncAsktable
 from tests.utils import assert_matches_type
-from asktable.types.datasources import Meta
+from asktable.types import Meta
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -282,16 +282,18 @@ class TestMeta:
             )
 
     @parametrize
-    def test_method_delete(self, client: Asktable) -> None:
-        meta = client.datasources.meta.delete(
-            "datasource_id",
+    def test_method_annotate(self, client: Asktable) -> None:
+        meta = client.datasources.meta.annotate(
+            datasource_id="datasource_id",
+            schemas={"foo": {"tables": {"foo": {"fields": {"foo": "string"}}}}},
         )
         assert_matches_type(object, meta, path=["response"])
 
     @parametrize
-    def test_raw_response_delete(self, client: Asktable) -> None:
-        response = client.datasources.meta.with_raw_response.delete(
-            "datasource_id",
+    def test_raw_response_annotate(self, client: Asktable) -> None:
+        response = client.datasources.meta.with_raw_response.annotate(
+            datasource_id="datasource_id",
+            schemas={"foo": {"tables": {"foo": {"fields": {"foo": "string"}}}}},
         )
 
         assert response.is_closed is True
@@ -300,9 +302,10 @@ class TestMeta:
         assert_matches_type(object, meta, path=["response"])
 
     @parametrize
-    def test_streaming_response_delete(self, client: Asktable) -> None:
-        with client.datasources.meta.with_streaming_response.delete(
-            "datasource_id",
+    def test_streaming_response_annotate(self, client: Asktable) -> None:
+        with client.datasources.meta.with_streaming_response.annotate(
+            datasource_id="datasource_id",
+            schemas={"foo": {"tables": {"foo": {"fields": {"foo": "string"}}}}},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -313,10 +316,11 @@ class TestMeta:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_path_params_delete(self, client: Asktable) -> None:
+    def test_path_params_annotate(self, client: Asktable) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `datasource_id` but received ''"):
-            client.datasources.meta.with_raw_response.delete(
-                "",
+            client.datasources.meta.with_raw_response.annotate(
+                datasource_id="",
+                schemas={"foo": {"tables": {"foo": {"fields": {"foo": "string"}}}}},
             )
 
 
@@ -588,16 +592,18 @@ class TestAsyncMeta:
             )
 
     @parametrize
-    async def test_method_delete(self, async_client: AsyncAsktable) -> None:
-        meta = await async_client.datasources.meta.delete(
-            "datasource_id",
+    async def test_method_annotate(self, async_client: AsyncAsktable) -> None:
+        meta = await async_client.datasources.meta.annotate(
+            datasource_id="datasource_id",
+            schemas={"foo": {"tables": {"foo": {"fields": {"foo": "string"}}}}},
         )
         assert_matches_type(object, meta, path=["response"])
 
     @parametrize
-    async def test_raw_response_delete(self, async_client: AsyncAsktable) -> None:
-        response = await async_client.datasources.meta.with_raw_response.delete(
-            "datasource_id",
+    async def test_raw_response_annotate(self, async_client: AsyncAsktable) -> None:
+        response = await async_client.datasources.meta.with_raw_response.annotate(
+            datasource_id="datasource_id",
+            schemas={"foo": {"tables": {"foo": {"fields": {"foo": "string"}}}}},
         )
 
         assert response.is_closed is True
@@ -606,9 +612,10 @@ class TestAsyncMeta:
         assert_matches_type(object, meta, path=["response"])
 
     @parametrize
-    async def test_streaming_response_delete(self, async_client: AsyncAsktable) -> None:
-        async with async_client.datasources.meta.with_streaming_response.delete(
-            "datasource_id",
+    async def test_streaming_response_annotate(self, async_client: AsyncAsktable) -> None:
+        async with async_client.datasources.meta.with_streaming_response.annotate(
+            datasource_id="datasource_id",
+            schemas={"foo": {"tables": {"foo": {"fields": {"foo": "string"}}}}},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -619,8 +626,9 @@ class TestAsyncMeta:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_path_params_delete(self, async_client: AsyncAsktable) -> None:
+    async def test_path_params_annotate(self, async_client: AsyncAsktable) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `datasource_id` but received ''"):
-            await async_client.datasources.meta.with_raw_response.delete(
-                "",
+            await async_client.datasources.meta.with_raw_response.annotate(
+                datasource_id="",
+                schemas={"foo": {"tables": {"foo": {"fields": {"foo": "string"}}}}},
             )

@@ -12,13 +12,16 @@ class DatasourceUpdateParams(TypedDict, total=False):
     access_config: Optional[AccessConfig]
     """不同引擎有不同的配置"""
 
+    desc: Optional[str]
+    """数据源描述"""
+
     field_count: Optional[int]
     """字段数量"""
 
     meta_error: Optional[str]
     """元数据处理错误"""
 
-    meta_status: Optional[Literal["processing", "failed", "warning", "success", "unprocessed"]]
+    meta_status: Optional[Literal["processing", "failed", "success", "unprocessed"]]
     """元数据处理状态"""
 
     name: Optional[str]
@@ -35,6 +38,9 @@ class DatasourceUpdateParams(TypedDict, total=False):
 
 
 class AccessConfig(TypedDict, total=False):
+    atst_link_id: Optional[str]
+    """安全隧道链接 ID"""
+
     db: Optional[str]
     """数据库引擎可以管理多个数据库，此参数用于指定数据库名称"""
 
@@ -52,6 +58,12 @@ class AccessConfig(TypedDict, total=False):
 
     port: Optional[int]
     """数据库端口"""
+
+    proxy_host: Optional[str]
+    """数据源代理地址"""
+
+    proxy_port: Optional[int]
+    """数据源代理端口"""
 
     securetunnel_id: Optional[str]
     """安全隧道 ID"""

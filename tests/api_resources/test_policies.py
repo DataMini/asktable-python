@@ -9,7 +9,7 @@ import pytest
 
 from asktable import Asktable, AsyncAsktable
 from tests.utils import assert_matches_type
-from asktable.types import PolicyListResponse
+from asktable.pagination import SyncPage, AsyncPage
 from asktable.types.shared import Policy
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -21,7 +21,7 @@ class TestPolicies:
     @parametrize
     def test_method_create(self, client: Asktable) -> None:
         policy = client.policies.create(
-            dataset_config={"datasource_ids": ["string", "string", "string"]},
+            dataset_config={"datasource_ids": ["string"]},
             name="name",
             permission="allow",
         )
@@ -31,7 +31,7 @@ class TestPolicies:
     def test_method_create_with_all_params(self, client: Asktable) -> None:
         policy = client.policies.create(
             dataset_config={
-                "datasource_ids": ["string", "string", "string"],
+                "datasource_ids": ["string"],
                 "regex_patterns": {
                     "fields_regex_pattern": ".*password.* | .*pwd.*",
                     "schemas_regex_pattern": "^public.*$",
@@ -55,7 +55,7 @@ class TestPolicies:
     @parametrize
     def test_raw_response_create(self, client: Asktable) -> None:
         response = client.policies.with_raw_response.create(
-            dataset_config={"datasource_ids": ["string", "string", "string"]},
+            dataset_config={"datasource_ids": ["string"]},
             name="name",
             permission="allow",
         )
@@ -68,7 +68,7 @@ class TestPolicies:
     @parametrize
     def test_streaming_response_create(self, client: Asktable) -> None:
         with client.policies.with_streaming_response.create(
-            dataset_config={"datasource_ids": ["string", "string", "string"]},
+            dataset_config={"datasource_ids": ["string"]},
             name="name",
             permission="allow",
         ) as response:
@@ -130,7 +130,7 @@ class TestPolicies:
         policy = client.policies.update(
             policy_id="policy_id",
             dataset_config={
-                "datasource_ids": ["string", "string", "string"],
+                "datasource_ids": ["string"],
                 "regex_patterns": {
                     "fields_regex_pattern": ".*password.* | .*pwd.*",
                     "schemas_regex_pattern": "^public.*$",
@@ -144,7 +144,7 @@ class TestPolicies:
                             "field_regex": "field_regex",
                             "operator_expression": "operator_expression",
                             "table_regex": "table_regex",
-                            "variables": ["string", "string", "string"],
+                            "variables": ["string"],
                         }
                     ],
                     "ds_sJAbnNOUzu3R4DdCCOwe": [
@@ -154,7 +154,7 @@ class TestPolicies:
                             "field_regex": "field_regex",
                             "operator_expression": "operator_expression",
                             "table_regex": "table_regex",
-                            "variables": ["string", "string", "string"],
+                            "variables": ["string"],
                         },
                         {
                             "condition": "condition",
@@ -162,7 +162,7 @@ class TestPolicies:
                             "field_regex": "field_regex",
                             "operator_expression": "operator_expression",
                             "table_regex": "table_regex",
-                            "variables": ["string", "string", "string"],
+                            "variables": ["string"],
                         },
                         {
                             "condition": "condition",
@@ -170,7 +170,7 @@ class TestPolicies:
                             "field_regex": "field_regex",
                             "operator_expression": "operator_expression",
                             "table_regex": "table_regex",
-                            "variables": ["string", "string", "string"],
+                            "variables": ["string"],
                         },
                         {
                             "condition": "condition",
@@ -178,7 +178,7 @@ class TestPolicies:
                             "field_regex": "field_regex",
                             "operator_expression": "operator_expression",
                             "table_regex": "table_regex",
-                            "variables": ["string", "string", "string"],
+                            "variables": ["string"],
                         },
                     ],
                 },
@@ -222,17 +222,17 @@ class TestPolicies:
     @parametrize
     def test_method_list(self, client: Asktable) -> None:
         policy = client.policies.list()
-        assert_matches_type(PolicyListResponse, policy, path=["response"])
+        assert_matches_type(SyncPage[Policy], policy, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Asktable) -> None:
         policy = client.policies.list(
             name="name",
             page=1,
-            policy_ids=["string", "string", "string"],
+            policy_ids=["string"],
             size=1,
         )
-        assert_matches_type(PolicyListResponse, policy, path=["response"])
+        assert_matches_type(SyncPage[Policy], policy, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Asktable) -> None:
@@ -241,7 +241,7 @@ class TestPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = response.parse()
-        assert_matches_type(PolicyListResponse, policy, path=["response"])
+        assert_matches_type(SyncPage[Policy], policy, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Asktable) -> None:
@@ -250,7 +250,7 @@ class TestPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = response.parse()
-            assert_matches_type(PolicyListResponse, policy, path=["response"])
+            assert_matches_type(SyncPage[Policy], policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -299,7 +299,7 @@ class TestAsyncPolicies:
     @parametrize
     async def test_method_create(self, async_client: AsyncAsktable) -> None:
         policy = await async_client.policies.create(
-            dataset_config={"datasource_ids": ["string", "string", "string"]},
+            dataset_config={"datasource_ids": ["string"]},
             name="name",
             permission="allow",
         )
@@ -309,7 +309,7 @@ class TestAsyncPolicies:
     async def test_method_create_with_all_params(self, async_client: AsyncAsktable) -> None:
         policy = await async_client.policies.create(
             dataset_config={
-                "datasource_ids": ["string", "string", "string"],
+                "datasource_ids": ["string"],
                 "regex_patterns": {
                     "fields_regex_pattern": ".*password.* | .*pwd.*",
                     "schemas_regex_pattern": "^public.*$",
@@ -333,7 +333,7 @@ class TestAsyncPolicies:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncAsktable) -> None:
         response = await async_client.policies.with_raw_response.create(
-            dataset_config={"datasource_ids": ["string", "string", "string"]},
+            dataset_config={"datasource_ids": ["string"]},
             name="name",
             permission="allow",
         )
@@ -346,7 +346,7 @@ class TestAsyncPolicies:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncAsktable) -> None:
         async with async_client.policies.with_streaming_response.create(
-            dataset_config={"datasource_ids": ["string", "string", "string"]},
+            dataset_config={"datasource_ids": ["string"]},
             name="name",
             permission="allow",
         ) as response:
@@ -408,7 +408,7 @@ class TestAsyncPolicies:
         policy = await async_client.policies.update(
             policy_id="policy_id",
             dataset_config={
-                "datasource_ids": ["string", "string", "string"],
+                "datasource_ids": ["string"],
                 "regex_patterns": {
                     "fields_regex_pattern": ".*password.* | .*pwd.*",
                     "schemas_regex_pattern": "^public.*$",
@@ -422,7 +422,7 @@ class TestAsyncPolicies:
                             "field_regex": "field_regex",
                             "operator_expression": "operator_expression",
                             "table_regex": "table_regex",
-                            "variables": ["string", "string", "string"],
+                            "variables": ["string"],
                         }
                     ],
                     "ds_sJAbnNOUzu3R4DdCCOwe": [
@@ -432,7 +432,7 @@ class TestAsyncPolicies:
                             "field_regex": "field_regex",
                             "operator_expression": "operator_expression",
                             "table_regex": "table_regex",
-                            "variables": ["string", "string", "string"],
+                            "variables": ["string"],
                         },
                         {
                             "condition": "condition",
@@ -440,7 +440,7 @@ class TestAsyncPolicies:
                             "field_regex": "field_regex",
                             "operator_expression": "operator_expression",
                             "table_regex": "table_regex",
-                            "variables": ["string", "string", "string"],
+                            "variables": ["string"],
                         },
                         {
                             "condition": "condition",
@@ -448,7 +448,7 @@ class TestAsyncPolicies:
                             "field_regex": "field_regex",
                             "operator_expression": "operator_expression",
                             "table_regex": "table_regex",
-                            "variables": ["string", "string", "string"],
+                            "variables": ["string"],
                         },
                         {
                             "condition": "condition",
@@ -456,7 +456,7 @@ class TestAsyncPolicies:
                             "field_regex": "field_regex",
                             "operator_expression": "operator_expression",
                             "table_regex": "table_regex",
-                            "variables": ["string", "string", "string"],
+                            "variables": ["string"],
                         },
                     ],
                 },
@@ -500,17 +500,17 @@ class TestAsyncPolicies:
     @parametrize
     async def test_method_list(self, async_client: AsyncAsktable) -> None:
         policy = await async_client.policies.list()
-        assert_matches_type(PolicyListResponse, policy, path=["response"])
+        assert_matches_type(AsyncPage[Policy], policy, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncAsktable) -> None:
         policy = await async_client.policies.list(
             name="name",
             page=1,
-            policy_ids=["string", "string", "string"],
+            policy_ids=["string"],
             size=1,
         )
-        assert_matches_type(PolicyListResponse, policy, path=["response"])
+        assert_matches_type(AsyncPage[Policy], policy, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncAsktable) -> None:
@@ -519,7 +519,7 @@ class TestAsyncPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = await response.parse()
-        assert_matches_type(PolicyListResponse, policy, path=["response"])
+        assert_matches_type(AsyncPage[Policy], policy, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncAsktable) -> None:
@@ -528,7 +528,7 @@ class TestAsyncPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = await response.parse()
-            assert_matches_type(PolicyListResponse, policy, path=["response"])
+            assert_matches_type(AsyncPage[Policy], policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -28,8 +28,10 @@ from asktable import Asktable
 
 client = Asktable()
 
-datasource = client.datasources.list()
-print(datasource.items)
+datasource = client.datasources.create(
+    engine="mysql",
+)
+print(datasource.id)
 ```
 
 While you can provide an `api_key` keyword argument,
@@ -49,8 +51,10 @@ client = AsyncAsktable()
 
 
 async def main() -> None:
-    datasource = await client.datasources.list()
-    print(datasource.items)
+    datasource = await client.datasources.create(
+        engine="mysql",
+    )
+    print(datasource.id)
 
 
 asyncio.run(main())
@@ -66,6 +70,69 @@ Nested request parameters are [TypedDicts](https://docs.python.org/3/library/typ
 - Converting to a dictionary, `model.to_dict()`
 
 Typed requests and responses provide autocomplete and documentation within your editor. If you would like to see type errors in VS Code to help catch bugs earlier, set `python.analysis.typeCheckingMode` to `basic`.
+
+## Pagination
+
+List methods in the Asktable API are paginated.
+
+This library provides auto-paginating iterators with each list response, so you do not have to request successive pages manually:
+
+```python
+from asktable import Asktable
+
+client = Asktable()
+
+all_datasources = []
+# Automatically fetches more pages as needed.
+for datasource in client.datasources.list():
+    # Do something with datasource here
+    all_datasources.append(datasource)
+print(all_datasources)
+```
+
+Or, asynchronously:
+
+```python
+import asyncio
+from asktable import AsyncAsktable
+
+client = AsyncAsktable()
+
+
+async def main() -> None:
+    all_datasources = []
+    # Iterate through items across all pages, issuing requests as needed.
+    async for datasource in client.datasources.list():
+        all_datasources.append(datasource)
+    print(all_datasources)
+
+
+asyncio.run(main())
+```
+
+Alternatively, you can use the `.has_next_page()`, `.next_page_info()`, or `.get_next_page()` methods for more granular control working with pages:
+
+```python
+first_page = await client.datasources.list()
+if first_page.has_next_page():
+    print(f"will fetch next page using these details: {first_page.next_page_info()}")
+    next_page = await first_page.get_next_page()
+    print(f"number of items we just fetched: {len(next_page.items)}")
+
+# Remove `await` for non-async usage.
+```
+
+Or just work directly with the returned data:
+
+```python
+first_page = await client.datasources.list()
+
+print(f"page number: {first_page.page}")  # => "page number: 1"
+for datasource in first_page.items:
+    print(datasource.id)
+
+# Remove `await` for non-async usage.
+```
 
 ## Handling errors
 

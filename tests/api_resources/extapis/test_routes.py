@@ -10,7 +10,7 @@ import pytest
 from asktable import Asktable, AsyncAsktable
 from tests.utils import assert_matches_type
 from asktable._utils import parse_datetime
-from asktable.types.extapis import ExtAPIRouteModel, RouteListResponse
+from asktable.types.extapis import ExtapiRoute, RouteListResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -30,7 +30,7 @@ class TestRoutes:
             path="/resource",
             project_id="project_id",
         )
-        assert_matches_type(ExtAPIRouteModel, route, path=["response"])
+        assert_matches_type(ExtapiRoute, route, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Asktable) -> None:
@@ -48,7 +48,7 @@ class TestRoutes:
             query_params_desc="query_params_desc",
             updated_at=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
-        assert_matches_type(ExtAPIRouteModel, route, path=["response"])
+        assert_matches_type(ExtapiRoute, route, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Asktable) -> None:
@@ -66,7 +66,7 @@ class TestRoutes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         route = response.parse()
-        assert_matches_type(ExtAPIRouteModel, route, path=["response"])
+        assert_matches_type(ExtapiRoute, route, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Asktable) -> None:
@@ -84,7 +84,7 @@ class TestRoutes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             route = response.parse()
-            assert_matches_type(ExtAPIRouteModel, route, path=["response"])
+            assert_matches_type(ExtapiRoute, route, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -108,7 +108,7 @@ class TestRoutes:
             route_id="route_id",
             extapi_id="extapi_id",
         )
-        assert_matches_type(ExtAPIRouteModel, route, path=["response"])
+        assert_matches_type(ExtapiRoute, route, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: Asktable) -> None:
@@ -120,7 +120,7 @@ class TestRoutes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         route = response.parse()
-        assert_matches_type(ExtAPIRouteModel, route, path=["response"])
+        assert_matches_type(ExtapiRoute, route, path=["response"])
 
     @parametrize
     def test_streaming_response_retrieve(self, client: Asktable) -> None:
@@ -132,7 +132,7 @@ class TestRoutes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             route = response.parse()
-            assert_matches_type(ExtAPIRouteModel, route, path=["response"])
+            assert_matches_type(ExtapiRoute, route, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -156,7 +156,7 @@ class TestRoutes:
             route_id="route_id",
             extapi_id="extapi_id",
         )
-        assert_matches_type(ExtAPIRouteModel, route, path=["response"])
+        assert_matches_type(ExtapiRoute, route, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Asktable) -> None:
@@ -170,7 +170,7 @@ class TestRoutes:
             path_params_desc="path_params_desc",
             query_params_desc="query_params_desc",
         )
-        assert_matches_type(ExtAPIRouteModel, route, path=["response"])
+        assert_matches_type(ExtapiRoute, route, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Asktable) -> None:
@@ -182,7 +182,7 @@ class TestRoutes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         route = response.parse()
-        assert_matches_type(ExtAPIRouteModel, route, path=["response"])
+        assert_matches_type(ExtapiRoute, route, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Asktable) -> None:
@@ -194,7 +194,7 @@ class TestRoutes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             route = response.parse()
-            assert_matches_type(ExtAPIRouteModel, route, path=["response"])
+            assert_matches_type(ExtapiRoute, route, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -314,7 +314,7 @@ class TestAsyncRoutes:
             path="/resource",
             project_id="project_id",
         )
-        assert_matches_type(ExtAPIRouteModel, route, path=["response"])
+        assert_matches_type(ExtapiRoute, route, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncAsktable) -> None:
@@ -332,7 +332,7 @@ class TestAsyncRoutes:
             query_params_desc="query_params_desc",
             updated_at=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
-        assert_matches_type(ExtAPIRouteModel, route, path=["response"])
+        assert_matches_type(ExtapiRoute, route, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncAsktable) -> None:
@@ -350,7 +350,7 @@ class TestAsyncRoutes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         route = await response.parse()
-        assert_matches_type(ExtAPIRouteModel, route, path=["response"])
+        assert_matches_type(ExtapiRoute, route, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncAsktable) -> None:
@@ -368,7 +368,7 @@ class TestAsyncRoutes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             route = await response.parse()
-            assert_matches_type(ExtAPIRouteModel, route, path=["response"])
+            assert_matches_type(ExtapiRoute, route, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -392,7 +392,7 @@ class TestAsyncRoutes:
             route_id="route_id",
             extapi_id="extapi_id",
         )
-        assert_matches_type(ExtAPIRouteModel, route, path=["response"])
+        assert_matches_type(ExtapiRoute, route, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncAsktable) -> None:
@@ -404,7 +404,7 @@ class TestAsyncRoutes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         route = await response.parse()
-        assert_matches_type(ExtAPIRouteModel, route, path=["response"])
+        assert_matches_type(ExtapiRoute, route, path=["response"])
 
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncAsktable) -> None:
@@ -416,7 +416,7 @@ class TestAsyncRoutes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             route = await response.parse()
-            assert_matches_type(ExtAPIRouteModel, route, path=["response"])
+            assert_matches_type(ExtapiRoute, route, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -440,7 +440,7 @@ class TestAsyncRoutes:
             route_id="route_id",
             extapi_id="extapi_id",
         )
-        assert_matches_type(ExtAPIRouteModel, route, path=["response"])
+        assert_matches_type(ExtapiRoute, route, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncAsktable) -> None:
@@ -454,7 +454,7 @@ class TestAsyncRoutes:
             path_params_desc="path_params_desc",
             query_params_desc="query_params_desc",
         )
-        assert_matches_type(ExtAPIRouteModel, route, path=["response"])
+        assert_matches_type(ExtapiRoute, route, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncAsktable) -> None:
@@ -466,7 +466,7 @@ class TestAsyncRoutes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         route = await response.parse()
-        assert_matches_type(ExtAPIRouteModel, route, path=["response"])
+        assert_matches_type(ExtapiRoute, route, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncAsktable) -> None:
@@ -478,7 +478,7 @@ class TestAsyncRoutes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             route = await response.parse()
-            assert_matches_type(ExtAPIRouteModel, route, path=["response"])
+            assert_matches_type(ExtapiRoute, route, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

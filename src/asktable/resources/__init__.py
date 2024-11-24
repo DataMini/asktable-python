@@ -1,13 +1,5 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .kb import (
-    KBResource,
-    AsyncKBResource,
-    KBResourceWithRawResponse,
-    AsyncKBResourceWithRawResponse,
-    KBResourceWithStreamingResponse,
-    AsyncKBResourceWithStreamingResponse,
-)
 from .sys import (
     SysResource,
     AsyncSysResource,
@@ -104,8 +96,22 @@ from .securetunnels import (
     SecuretunnelsResourceWithStreamingResponse,
     AsyncSecuretunnelsResourceWithStreamingResponse,
 )
+from .business_glossary import (
+    BusinessGlossaryResource,
+    AsyncBusinessGlossaryResource,
+    BusinessGlossaryResourceWithRawResponse,
+    AsyncBusinessGlossaryResourceWithRawResponse,
+    BusinessGlossaryResourceWithStreamingResponse,
+    AsyncBusinessGlossaryResourceWithStreamingResponse,
+)
 
 __all__ = [
+    "SysResource",
+    "AsyncSysResource",
+    "SysResourceWithRawResponse",
+    "AsyncSysResourceWithRawResponse",
+    "SysResourceWithStreamingResponse",
+    "AsyncSysResourceWithStreamingResponse",
     "SecuretunnelsResource",
     "AsyncSecuretunnelsResource",
     "SecuretunnelsResourceWithRawResponse",
@@ -172,16 +178,10 @@ __all__ = [
     "AsyncIntegrationResourceWithRawResponse",
     "IntegrationResourceWithStreamingResponse",
     "AsyncIntegrationResourceWithStreamingResponse",
-    "SysResource",
-    "AsyncSysResource",
-    "SysResourceWithRawResponse",
-    "AsyncSysResourceWithRawResponse",
-    "SysResourceWithStreamingResponse",
-    "AsyncSysResourceWithStreamingResponse",
-    "KBResource",
-    "AsyncKBResource",
-    "KBResourceWithRawResponse",
-    "AsyncKBResourceWithRawResponse",
-    "KBResourceWithStreamingResponse",
-    "AsyncKBResourceWithStreamingResponse",
+    "BusinessGlossaryResource",
+    "AsyncBusinessGlossaryResource",
+    "BusinessGlossaryResourceWithRawResponse",
+    "AsyncBusinessGlossaryResourceWithRawResponse",
+    "BusinessGlossaryResourceWithStreamingResponse",
+    "AsyncBusinessGlossaryResourceWithStreamingResponse",
 ]
