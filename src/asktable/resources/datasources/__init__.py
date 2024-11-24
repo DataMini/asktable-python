@@ -8,6 +8,14 @@ from .meta import (
     MetaResourceWithStreamingResponse,
     AsyncMetaResourceWithStreamingResponse,
 )
+from .indexes import (
+    IndexesResource,
+    AsyncIndexesResource,
+    IndexesResourceWithRawResponse,
+    AsyncIndexesResourceWithRawResponse,
+    IndexesResourceWithStreamingResponse,
+    AsyncIndexesResourceWithStreamingResponse,
+)
 from .datasources import (
     DatasourcesResource,
     AsyncDatasourcesResource,
@@ -38,6 +46,12 @@ __all__ = [
     "AsyncUploadParamsResourceWithRawResponse",
     "UploadParamsResourceWithStreamingResponse",
     "AsyncUploadParamsResourceWithStreamingResponse",
+    "IndexesResource",
+    "AsyncIndexesResource",
+    "IndexesResourceWithRawResponse",
+    "AsyncIndexesResourceWithRawResponse",
+    "IndexesResourceWithStreamingResponse",
+    "AsyncIndexesResourceWithStreamingResponse",
     "DatasourcesResource",
     "AsyncDatasourcesResource",
     "DatasourcesResourceWithRawResponse",

@@ -96,8 +96,22 @@ from .securetunnels import (
     SecuretunnelsResourceWithStreamingResponse,
     AsyncSecuretunnelsResourceWithStreamingResponse,
 )
+from .business_glossary import (
+    BusinessGlossaryResource,
+    AsyncBusinessGlossaryResource,
+    BusinessGlossaryResourceWithRawResponse,
+    AsyncBusinessGlossaryResourceWithRawResponse,
+    BusinessGlossaryResourceWithStreamingResponse,
+    AsyncBusinessGlossaryResourceWithStreamingResponse,
+)
 
 __all__ = [
+    "SysResource",
+    "AsyncSysResource",
+    "SysResourceWithRawResponse",
+    "AsyncSysResourceWithRawResponse",
+    "SysResourceWithStreamingResponse",
+    "AsyncSysResourceWithStreamingResponse",
     "SecuretunnelsResource",
     "AsyncSecuretunnelsResource",
     "SecuretunnelsResourceWithRawResponse",
@@ -164,10 +178,10 @@ __all__ = [
     "AsyncIntegrationResourceWithRawResponse",
     "IntegrationResourceWithStreamingResponse",
     "AsyncIntegrationResourceWithStreamingResponse",
-    "SysResource",
-    "AsyncSysResource",
-    "SysResourceWithRawResponse",
-    "AsyncSysResourceWithRawResponse",
-    "SysResourceWithStreamingResponse",
-    "AsyncSysResourceWithStreamingResponse",
+    "BusinessGlossaryResource",
+    "AsyncBusinessGlossaryResource",
+    "BusinessGlossaryResourceWithRawResponse",
+    "AsyncBusinessGlossaryResourceWithRawResponse",
+    "BusinessGlossaryResourceWithStreamingResponse",
+    "AsyncBusinessGlossaryResourceWithStreamingResponse",
 ]

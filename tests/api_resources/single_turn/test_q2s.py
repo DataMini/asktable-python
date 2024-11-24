@@ -9,7 +9,8 @@ import pytest
 
 from asktable import Asktable, AsyncAsktable
 from tests.utils import assert_matches_type
-from asktable.types.single_turn import Q2sResponse, Q2ListResponse
+from asktable.pagination import SyncPage, AsyncPage
+from asktable.types.single_turn import Q2sResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -64,7 +65,7 @@ class TestQ2s:
     @parametrize
     def test_method_list(self, client: Asktable) -> None:
         q2 = client.single_turn.q2s.list()
-        assert_matches_type(Q2ListResponse, q2, path=["response"])
+        assert_matches_type(SyncPage[Q2sResponse], q2, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Asktable) -> None:
@@ -73,7 +74,7 @@ class TestQ2s:
             page=1,
             size=1,
         )
-        assert_matches_type(Q2ListResponse, q2, path=["response"])
+        assert_matches_type(SyncPage[Q2sResponse], q2, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Asktable) -> None:
@@ -82,7 +83,7 @@ class TestQ2s:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         q2 = response.parse()
-        assert_matches_type(Q2ListResponse, q2, path=["response"])
+        assert_matches_type(SyncPage[Q2sResponse], q2, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Asktable) -> None:
@@ -91,7 +92,7 @@ class TestQ2s:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             q2 = response.parse()
-            assert_matches_type(Q2ListResponse, q2, path=["response"])
+            assert_matches_type(SyncPage[Q2sResponse], q2, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -146,7 +147,7 @@ class TestAsyncQ2s:
     @parametrize
     async def test_method_list(self, async_client: AsyncAsktable) -> None:
         q2 = await async_client.single_turn.q2s.list()
-        assert_matches_type(Q2ListResponse, q2, path=["response"])
+        assert_matches_type(AsyncPage[Q2sResponse], q2, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncAsktable) -> None:
@@ -155,7 +156,7 @@ class TestAsyncQ2s:
             page=1,
             size=1,
         )
-        assert_matches_type(Q2ListResponse, q2, path=["response"])
+        assert_matches_type(AsyncPage[Q2sResponse], q2, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncAsktable) -> None:
@@ -164,7 +165,7 @@ class TestAsyncQ2s:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         q2 = await response.parse()
-        assert_matches_type(Q2ListResponse, q2, path=["response"])
+        assert_matches_type(AsyncPage[Q2sResponse], q2, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncAsktable) -> None:
@@ -173,6 +174,6 @@ class TestAsyncQ2s:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             q2 = await response.parse()
-            assert_matches_type(Q2ListResponse, q2, path=["response"])
+            assert_matches_type(AsyncPage[Q2sResponse], q2, path=["response"])
 
         assert cast(Any, response.is_closed) is True

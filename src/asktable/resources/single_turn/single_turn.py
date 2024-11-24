@@ -18,6 +18,14 @@ from .q2s import (
     Q2sResourceWithStreamingResponse,
     AsyncQ2sResourceWithStreamingResponse,
 )
+from .q2w import (
+    Q2wResource,
+    AsyncQ2wResource,
+    Q2wResourceWithRawResponse,
+    AsyncQ2wResourceWithRawResponse,
+    Q2wResourceWithStreamingResponse,
+    AsyncQ2wResourceWithStreamingResponse,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 
@@ -32,6 +40,10 @@ class SingleTurnResource(SyncAPIResource):
     @cached_property
     def q2s(self) -> Q2sResource:
         return Q2sResource(self._client)
+
+    @cached_property
+    def q2w(self) -> Q2wResource:
+        return Q2wResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> SingleTurnResourceWithRawResponse:
@@ -61,6 +73,10 @@ class AsyncSingleTurnResource(AsyncAPIResource):
     @cached_property
     def q2s(self) -> AsyncQ2sResource:
         return AsyncQ2sResource(self._client)
+
+    @cached_property
+    def q2w(self) -> AsyncQ2wResource:
+        return AsyncQ2wResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncSingleTurnResourceWithRawResponse:
@@ -94,6 +110,10 @@ class SingleTurnResourceWithRawResponse:
     def q2s(self) -> Q2sResourceWithRawResponse:
         return Q2sResourceWithRawResponse(self._single_turn.q2s)
 
+    @cached_property
+    def q2w(self) -> Q2wResourceWithRawResponse:
+        return Q2wResourceWithRawResponse(self._single_turn.q2w)
+
 
 class AsyncSingleTurnResourceWithRawResponse:
     def __init__(self, single_turn: AsyncSingleTurnResource) -> None:
@@ -106,6 +126,10 @@ class AsyncSingleTurnResourceWithRawResponse:
     @cached_property
     def q2s(self) -> AsyncQ2sResourceWithRawResponse:
         return AsyncQ2sResourceWithRawResponse(self._single_turn.q2s)
+
+    @cached_property
+    def q2w(self) -> AsyncQ2wResourceWithRawResponse:
+        return AsyncQ2wResourceWithRawResponse(self._single_turn.q2w)
 
 
 class SingleTurnResourceWithStreamingResponse:
@@ -120,6 +144,10 @@ class SingleTurnResourceWithStreamingResponse:
     def q2s(self) -> Q2sResourceWithStreamingResponse:
         return Q2sResourceWithStreamingResponse(self._single_turn.q2s)
 
+    @cached_property
+    def q2w(self) -> Q2wResourceWithStreamingResponse:
+        return Q2wResourceWithStreamingResponse(self._single_turn.q2w)
+
 
 class AsyncSingleTurnResourceWithStreamingResponse:
     def __init__(self, single_turn: AsyncSingleTurnResource) -> None:
@@ -132,3 +160,7 @@ class AsyncSingleTurnResourceWithStreamingResponse:
     @cached_property
     def q2s(self) -> AsyncQ2sResourceWithStreamingResponse:
         return AsyncQ2sResourceWithStreamingResponse(self._single_turn.q2s)
+
+    @cached_property
+    def q2w(self) -> AsyncQ2wResourceWithStreamingResponse:
+        return AsyncQ2wResourceWithStreamingResponse(self._single_turn.q2w)

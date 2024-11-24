@@ -21,9 +21,9 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ...types.meta import Meta
 from ..._base_client import make_request_options
-from ...types.datasources import meta_create_params, meta_update_params
-from ...types.datasources.meta_retrieve_response import MetaRetrieveResponse
+from ...types.datasources import meta_create_params, meta_update_params, meta_annotate_params
 
 __all__ = ["MetaResource", "AsyncMetaResource"]
 
@@ -54,8 +54,6 @@ class MetaResource(SyncAPIResource):
         datasource_id: str,
         *,
         name: str,
-        async_process_meta: bool | NotGiven = NOT_GIVEN,
-        value_index: bool | NotGiven = NOT_GIVEN,
         schemas: Dict[str, meta_create_params.MetaCreateSchemas] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -90,8 +88,6 @@ class MetaResource(SyncAPIResource):
         datasource_id: str,
         *,
         body: None,
-        async_process_meta: bool | NotGiven = NOT_GIVEN,
-        value_index: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -123,8 +119,6 @@ class MetaResource(SyncAPIResource):
         datasource_id: str,
         *,
         name: str | NotGiven = NOT_GIVEN,
-        async_process_meta: bool | NotGiven = NOT_GIVEN,
-        value_index: bool | NotGiven = NOT_GIVEN,
         schemas: Dict[str, meta_create_params.MetaCreateSchemas] | NotGiven = NOT_GIVEN,
         body: None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -147,17 +141,7 @@ class MetaResource(SyncAPIResource):
                 meta_create_params.MetaCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "async_process_meta": async_process_meta,
-                        "value_index": value_index,
-                    },
-                    meta_create_params.MetaCreateParams,
-                ),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=object,
         )
@@ -172,7 +156,7 @@ class MetaResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MetaRetrieveResponse:
+    ) -> Meta:
         """
         从数据源中获取最新的元数据
 
@@ -192,7 +176,7 @@ class MetaResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MetaRetrieveResponse,
+            cast_to=Meta,
         )
 
     @overload
@@ -285,6 +269,41 @@ class MetaResource(SyncAPIResource):
             cast_to=object,
         )
 
+    def annotate(
+        self,
+        datasource_id: str,
+        *,
+        schemas: Dict[str, meta_annotate_params.Schemas],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        修改数据 meta 的描述，用来修改表和字段的备注
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not datasource_id:
+            raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
+        return self._patch(
+            f"/datasources/{datasource_id}/meta",
+            body=maybe_transform({"schemas": schemas}, meta_annotate_params.MetaAnnotateParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
+        )
+
 
 class AsyncMetaResource(AsyncAPIResource):
     @cached_property
@@ -312,8 +331,6 @@ class AsyncMetaResource(AsyncAPIResource):
         datasource_id: str,
         *,
         name: str,
-        async_process_meta: bool | NotGiven = NOT_GIVEN,
-        value_index: bool | NotGiven = NOT_GIVEN,
         schemas: Dict[str, meta_create_params.MetaCreateSchemas] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -348,8 +365,6 @@ class AsyncMetaResource(AsyncAPIResource):
         datasource_id: str,
         *,
         body: None,
-        async_process_meta: bool | NotGiven = NOT_GIVEN,
-        value_index: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -381,8 +396,6 @@ class AsyncMetaResource(AsyncAPIResource):
         datasource_id: str,
         *,
         name: str | NotGiven = NOT_GIVEN,
-        async_process_meta: bool | NotGiven = NOT_GIVEN,
-        value_index: bool | NotGiven = NOT_GIVEN,
         schemas: Dict[str, meta_create_params.MetaCreateSchemas] | NotGiven = NOT_GIVEN,
         body: None | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -405,17 +418,7 @@ class AsyncMetaResource(AsyncAPIResource):
                 meta_create_params.MetaCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "async_process_meta": async_process_meta,
-                        "value_index": value_index,
-                    },
-                    meta_create_params.MetaCreateParams,
-                ),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=object,
         )
@@ -430,7 +433,7 @@ class AsyncMetaResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MetaRetrieveResponse:
+    ) -> Meta:
         """
         从数据源中获取最新的元数据
 
@@ -450,7 +453,7 @@ class AsyncMetaResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MetaRetrieveResponse,
+            cast_to=Meta,
         )
 
     @overload
@@ -543,6 +546,41 @@ class AsyncMetaResource(AsyncAPIResource):
             cast_to=object,
         )
 
+    async def annotate(
+        self,
+        datasource_id: str,
+        *,
+        schemas: Dict[str, meta_annotate_params.Schemas],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        修改数据 meta 的描述，用来修改表和字段的备注
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not datasource_id:
+            raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
+        return await self._patch(
+            f"/datasources/{datasource_id}/meta",
+            body=await async_maybe_transform({"schemas": schemas}, meta_annotate_params.MetaAnnotateParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
+        )
+
 
 class MetaResourceWithRawResponse:
     def __init__(self, meta: MetaResource) -> None:
@@ -556,6 +594,9 @@ class MetaResourceWithRawResponse:
         )
         self.update = to_raw_response_wrapper(
             meta.update,
+        )
+        self.annotate = to_raw_response_wrapper(
+            meta.annotate,
         )
 
 
@@ -572,6 +613,9 @@ class AsyncMetaResourceWithRawResponse:
         self.update = async_to_raw_response_wrapper(
             meta.update,
         )
+        self.annotate = async_to_raw_response_wrapper(
+            meta.annotate,
+        )
 
 
 class MetaResourceWithStreamingResponse:
@@ -587,6 +631,9 @@ class MetaResourceWithStreamingResponse:
         self.update = to_streamed_response_wrapper(
             meta.update,
         )
+        self.annotate = to_streamed_response_wrapper(
+            meta.annotate,
+        )
 
 
 class AsyncMetaResourceWithStreamingResponse:
@@ -601,4 +648,7 @@ class AsyncMetaResourceWithStreamingResponse:
         )
         self.update = async_to_streamed_response_wrapper(
             meta.update,
+        )
+        self.annotate = async_to_streamed_response_wrapper(
+            meta.annotate,
         )

@@ -9,12 +9,8 @@ import pytest
 
 from asktable import Asktable, AsyncAsktable
 from tests.utils import assert_matches_type
-from asktable.types import (
-    PolicyListResponse,
-    PolicyCreateResponse,
-    PolicyUpdateResponse,
-    PolicyRetrieveResponse,
-)
+from asktable.pagination import SyncPage, AsyncPage
+from asktable.types.shared import Policy
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -29,7 +25,7 @@ class TestPolicies:
             name="name",
             permission="allow",
         )
-        assert_matches_type(PolicyCreateResponse, policy, path=["response"])
+        assert_matches_type(Policy, policy, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Asktable) -> None:
@@ -54,7 +50,7 @@ class TestPolicies:
             name="name",
             permission="allow",
         )
-        assert_matches_type(PolicyCreateResponse, policy, path=["response"])
+        assert_matches_type(Policy, policy, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Asktable) -> None:
@@ -67,7 +63,7 @@ class TestPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = response.parse()
-        assert_matches_type(PolicyCreateResponse, policy, path=["response"])
+        assert_matches_type(Policy, policy, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Asktable) -> None:
@@ -80,7 +76,7 @@ class TestPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = response.parse()
-            assert_matches_type(PolicyCreateResponse, policy, path=["response"])
+            assert_matches_type(Policy, policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -89,7 +85,7 @@ class TestPolicies:
         policy = client.policies.retrieve(
             "policy_id",
         )
-        assert_matches_type(PolicyRetrieveResponse, policy, path=["response"])
+        assert_matches_type(Policy, policy, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: Asktable) -> None:
@@ -100,7 +96,7 @@ class TestPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = response.parse()
-        assert_matches_type(PolicyRetrieveResponse, policy, path=["response"])
+        assert_matches_type(Policy, policy, path=["response"])
 
     @parametrize
     def test_streaming_response_retrieve(self, client: Asktable) -> None:
@@ -111,7 +107,7 @@ class TestPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = response.parse()
-            assert_matches_type(PolicyRetrieveResponse, policy, path=["response"])
+            assert_matches_type(Policy, policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -127,7 +123,7 @@ class TestPolicies:
         policy = client.policies.update(
             policy_id="policy_id",
         )
-        assert_matches_type(PolicyUpdateResponse, policy, path=["response"])
+        assert_matches_type(Policy, policy, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Asktable) -> None:
@@ -190,7 +186,7 @@ class TestPolicies:
             name="name",
             permission="allow",
         )
-        assert_matches_type(PolicyUpdateResponse, policy, path=["response"])
+        assert_matches_type(Policy, policy, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Asktable) -> None:
@@ -201,7 +197,7 @@ class TestPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = response.parse()
-        assert_matches_type(PolicyUpdateResponse, policy, path=["response"])
+        assert_matches_type(Policy, policy, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Asktable) -> None:
@@ -212,7 +208,7 @@ class TestPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = response.parse()
-            assert_matches_type(PolicyUpdateResponse, policy, path=["response"])
+            assert_matches_type(Policy, policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -226,7 +222,7 @@ class TestPolicies:
     @parametrize
     def test_method_list(self, client: Asktable) -> None:
         policy = client.policies.list()
-        assert_matches_type(PolicyListResponse, policy, path=["response"])
+        assert_matches_type(SyncPage[Policy], policy, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Asktable) -> None:
@@ -236,7 +232,7 @@ class TestPolicies:
             policy_ids=["string"],
             size=1,
         )
-        assert_matches_type(PolicyListResponse, policy, path=["response"])
+        assert_matches_type(SyncPage[Policy], policy, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Asktable) -> None:
@@ -245,7 +241,7 @@ class TestPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = response.parse()
-        assert_matches_type(PolicyListResponse, policy, path=["response"])
+        assert_matches_type(SyncPage[Policy], policy, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Asktable) -> None:
@@ -254,7 +250,7 @@ class TestPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = response.parse()
-            assert_matches_type(PolicyListResponse, policy, path=["response"])
+            assert_matches_type(SyncPage[Policy], policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -307,7 +303,7 @@ class TestAsyncPolicies:
             name="name",
             permission="allow",
         )
-        assert_matches_type(PolicyCreateResponse, policy, path=["response"])
+        assert_matches_type(Policy, policy, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncAsktable) -> None:
@@ -332,7 +328,7 @@ class TestAsyncPolicies:
             name="name",
             permission="allow",
         )
-        assert_matches_type(PolicyCreateResponse, policy, path=["response"])
+        assert_matches_type(Policy, policy, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncAsktable) -> None:
@@ -345,7 +341,7 @@ class TestAsyncPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = await response.parse()
-        assert_matches_type(PolicyCreateResponse, policy, path=["response"])
+        assert_matches_type(Policy, policy, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncAsktable) -> None:
@@ -358,7 +354,7 @@ class TestAsyncPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = await response.parse()
-            assert_matches_type(PolicyCreateResponse, policy, path=["response"])
+            assert_matches_type(Policy, policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -367,7 +363,7 @@ class TestAsyncPolicies:
         policy = await async_client.policies.retrieve(
             "policy_id",
         )
-        assert_matches_type(PolicyRetrieveResponse, policy, path=["response"])
+        assert_matches_type(Policy, policy, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncAsktable) -> None:
@@ -378,7 +374,7 @@ class TestAsyncPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = await response.parse()
-        assert_matches_type(PolicyRetrieveResponse, policy, path=["response"])
+        assert_matches_type(Policy, policy, path=["response"])
 
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncAsktable) -> None:
@@ -389,7 +385,7 @@ class TestAsyncPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = await response.parse()
-            assert_matches_type(PolicyRetrieveResponse, policy, path=["response"])
+            assert_matches_type(Policy, policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -405,7 +401,7 @@ class TestAsyncPolicies:
         policy = await async_client.policies.update(
             policy_id="policy_id",
         )
-        assert_matches_type(PolicyUpdateResponse, policy, path=["response"])
+        assert_matches_type(Policy, policy, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncAsktable) -> None:
@@ -468,7 +464,7 @@ class TestAsyncPolicies:
             name="name",
             permission="allow",
         )
-        assert_matches_type(PolicyUpdateResponse, policy, path=["response"])
+        assert_matches_type(Policy, policy, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncAsktable) -> None:
@@ -479,7 +475,7 @@ class TestAsyncPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = await response.parse()
-        assert_matches_type(PolicyUpdateResponse, policy, path=["response"])
+        assert_matches_type(Policy, policy, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncAsktable) -> None:
@@ -490,7 +486,7 @@ class TestAsyncPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = await response.parse()
-            assert_matches_type(PolicyUpdateResponse, policy, path=["response"])
+            assert_matches_type(Policy, policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -504,7 +500,7 @@ class TestAsyncPolicies:
     @parametrize
     async def test_method_list(self, async_client: AsyncAsktable) -> None:
         policy = await async_client.policies.list()
-        assert_matches_type(PolicyListResponse, policy, path=["response"])
+        assert_matches_type(AsyncPage[Policy], policy, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncAsktable) -> None:
@@ -514,7 +510,7 @@ class TestAsyncPolicies:
             policy_ids=["string"],
             size=1,
         )
-        assert_matches_type(PolicyListResponse, policy, path=["response"])
+        assert_matches_type(AsyncPage[Policy], policy, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncAsktable) -> None:
@@ -523,7 +519,7 @@ class TestAsyncPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = await response.parse()
-        assert_matches_type(PolicyListResponse, policy, path=["response"])
+        assert_matches_type(AsyncPage[Policy], policy, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncAsktable) -> None:
@@ -532,7 +528,7 @@ class TestAsyncPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = await response.parse()
-            assert_matches_type(PolicyListResponse, policy, path=["response"])
+            assert_matches_type(AsyncPage[Policy], policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

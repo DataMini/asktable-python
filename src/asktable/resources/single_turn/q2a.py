@@ -19,10 +19,10 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
+from ...pagination import SyncPage, AsyncPage
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.single_turn import q2a_list_params, q2a_create_params
-from ...types.single_turn.q2a_list_response import Q2aListResponse
-from ...types.single_turn.q2a_create_response import Q2aCreateResponse
+from ...types.single_turn.q2a_response import Q2aResponse
 
 __all__ = ["Q2aResource", "AsyncQ2aResource"]
 
@@ -62,7 +62,7 @@ class Q2aResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Q2aCreateResponse:
+    ) -> Q2aResponse:
         """
         发起查询的请求
 
@@ -104,7 +104,7 @@ class Q2aResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Q2aCreateResponse,
+            cast_to=Q2aResponse,
         )
 
     def list(
@@ -119,7 +119,7 @@ class Q2aResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Q2aListResponse:
+    ) -> SyncPage[Q2aResponse]:
         """
         获取所有的 Q2A 记录
 
@@ -138,8 +138,9 @@ class Q2aResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/single-turn/q2a",
+            page=SyncPage[Q2aResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -154,7 +155,7 @@ class Q2aResource(SyncAPIResource):
                     q2a_list_params.Q2aListParams,
                 ),
             ),
-            cast_to=Q2aListResponse,
+            model=Q2aResponse,
         )
 
 
@@ -193,7 +194,7 @@ class AsyncQ2aResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Q2aCreateResponse:
+    ) -> Q2aResponse:
         """
         发起查询的请求
 
@@ -235,10 +236,10 @@ class AsyncQ2aResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Q2aCreateResponse,
+            cast_to=Q2aResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         datasource_id: Optional[str] | NotGiven = NOT_GIVEN,
@@ -250,7 +251,7 @@ class AsyncQ2aResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Q2aListResponse:
+    ) -> AsyncPaginator[Q2aResponse, AsyncPage[Q2aResponse]]:
         """
         获取所有的 Q2A 记录
 
@@ -269,14 +270,15 @@ class AsyncQ2aResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/single-turn/q2a",
+            page=AsyncPage[Q2aResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "datasource_id": datasource_id,
                         "page": page,
@@ -285,7 +287,7 @@ class AsyncQ2aResource(AsyncAPIResource):
                     q2a_list_params.Q2aListParams,
                 ),
             ),
-            cast_to=Q2aListResponse,
+            model=Q2aResponse,
         )
 
 

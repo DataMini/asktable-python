@@ -16,6 +16,14 @@ from .q2s import (
     Q2sResourceWithStreamingResponse,
     AsyncQ2sResourceWithStreamingResponse,
 )
+from .q2w import (
+    Q2wResource,
+    AsyncQ2wResource,
+    Q2wResourceWithRawResponse,
+    AsyncQ2wResourceWithRawResponse,
+    Q2wResourceWithStreamingResponse,
+    AsyncQ2wResourceWithStreamingResponse,
+)
 from .single_turn import (
     SingleTurnResource,
     AsyncSingleTurnResource,
@@ -38,6 +46,12 @@ __all__ = [
     "AsyncQ2sResourceWithRawResponse",
     "Q2sResourceWithStreamingResponse",
     "AsyncQ2sResourceWithStreamingResponse",
+    "Q2wResource",
+    "AsyncQ2wResource",
+    "Q2wResourceWithRawResponse",
+    "AsyncQ2wResourceWithRawResponse",
+    "Q2wResourceWithStreamingResponse",
+    "AsyncQ2wResourceWithStreamingResponse",
     "SingleTurnResource",
     "AsyncSingleTurnResource",
     "SingleTurnResourceWithRawResponse",

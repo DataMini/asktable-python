@@ -9,9 +9,6 @@ __all__ = ["ProjectUpdateParams"]
 
 
 class ProjectUpdateParams(TypedDict, total=False):
-    llm_model_group: Optional[str]
-    """模型组"""
-
     locked: Optional[bool]
     """是否锁定"""
 

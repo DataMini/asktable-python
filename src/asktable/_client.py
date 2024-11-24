@@ -46,6 +46,7 @@ __all__ = [
 
 
 class Asktable(SyncAPIClient):
+    sys: resources.SysResource
     securetunnels: resources.SecuretunnelsResource
     roles: resources.RolesResource
     policies: resources.PoliciesResource
@@ -57,7 +58,7 @@ class Asktable(SyncAPIClient):
     single_turn: resources.SingleTurnResource
     caches: resources.CachesResource
     integration: resources.IntegrationResource
-    sys: resources.SysResource
+    business_glossary: resources.BusinessGlossaryResource
     with_raw_response: AsktableWithRawResponse
     with_streaming_response: AsktableWithStreamedResponse
 
@@ -102,7 +103,7 @@ class Asktable(SyncAPIClient):
         if base_url is None:
             base_url = os.environ.get("ASKTABLE_BASE_URL")
         if base_url is None:
-            base_url = f"/v1"
+            base_url = f"https://api.asktable.com/v1"
 
         super().__init__(
             version=__version__,
@@ -115,6 +116,7 @@ class Asktable(SyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
+        self.sys = resources.SysResource(self)
         self.securetunnels = resources.SecuretunnelsResource(self)
         self.roles = resources.RolesResource(self)
         self.policies = resources.PoliciesResource(self)
@@ -126,7 +128,7 @@ class Asktable(SyncAPIClient):
         self.single_turn = resources.SingleTurnResource(self)
         self.caches = resources.CachesResource(self)
         self.integration = resources.IntegrationResource(self)
-        self.sys = resources.SysResource(self)
+        self.business_glossary = resources.BusinessGlossaryResource(self)
         self.with_raw_response = AsktableWithRawResponse(self)
         self.with_streaming_response = AsktableWithStreamedResponse(self)
 
@@ -236,6 +238,7 @@ class Asktable(SyncAPIClient):
 
 
 class AsyncAsktable(AsyncAPIClient):
+    sys: resources.AsyncSysResource
     securetunnels: resources.AsyncSecuretunnelsResource
     roles: resources.AsyncRolesResource
     policies: resources.AsyncPoliciesResource
@@ -247,7 +250,7 @@ class AsyncAsktable(AsyncAPIClient):
     single_turn: resources.AsyncSingleTurnResource
     caches: resources.AsyncCachesResource
     integration: resources.AsyncIntegrationResource
-    sys: resources.AsyncSysResource
+    business_glossary: resources.AsyncBusinessGlossaryResource
     with_raw_response: AsyncAsktableWithRawResponse
     with_streaming_response: AsyncAsktableWithStreamedResponse
 
@@ -292,7 +295,7 @@ class AsyncAsktable(AsyncAPIClient):
         if base_url is None:
             base_url = os.environ.get("ASKTABLE_BASE_URL")
         if base_url is None:
-            base_url = f"/v1"
+            base_url = f"https://api.asktable.com/v1"
 
         super().__init__(
             version=__version__,
@@ -305,6 +308,7 @@ class AsyncAsktable(AsyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
+        self.sys = resources.AsyncSysResource(self)
         self.securetunnels = resources.AsyncSecuretunnelsResource(self)
         self.roles = resources.AsyncRolesResource(self)
         self.policies = resources.AsyncPoliciesResource(self)
@@ -316,7 +320,7 @@ class AsyncAsktable(AsyncAPIClient):
         self.single_turn = resources.AsyncSingleTurnResource(self)
         self.caches = resources.AsyncCachesResource(self)
         self.integration = resources.AsyncIntegrationResource(self)
-        self.sys = resources.AsyncSysResource(self)
+        self.business_glossary = resources.AsyncBusinessGlossaryResource(self)
         self.with_raw_response = AsyncAsktableWithRawResponse(self)
         self.with_streaming_response = AsyncAsktableWithStreamedResponse(self)
 
@@ -427,6 +431,7 @@ class AsyncAsktable(AsyncAPIClient):
 
 class AsktableWithRawResponse:
     def __init__(self, client: Asktable) -> None:
+        self.sys = resources.SysResourceWithRawResponse(client.sys)
         self.securetunnels = resources.SecuretunnelsResourceWithRawResponse(client.securetunnels)
         self.roles = resources.RolesResourceWithRawResponse(client.roles)
         self.policies = resources.PoliciesResourceWithRawResponse(client.policies)
@@ -438,11 +443,12 @@ class AsktableWithRawResponse:
         self.single_turn = resources.SingleTurnResourceWithRawResponse(client.single_turn)
         self.caches = resources.CachesResourceWithRawResponse(client.caches)
         self.integration = resources.IntegrationResourceWithRawResponse(client.integration)
-        self.sys = resources.SysResourceWithRawResponse(client.sys)
+        self.business_glossary = resources.BusinessGlossaryResourceWithRawResponse(client.business_glossary)
 
 
 class AsyncAsktableWithRawResponse:
     def __init__(self, client: AsyncAsktable) -> None:
+        self.sys = resources.AsyncSysResourceWithRawResponse(client.sys)
         self.securetunnels = resources.AsyncSecuretunnelsResourceWithRawResponse(client.securetunnels)
         self.roles = resources.AsyncRolesResourceWithRawResponse(client.roles)
         self.policies = resources.AsyncPoliciesResourceWithRawResponse(client.policies)
@@ -454,11 +460,12 @@ class AsyncAsktableWithRawResponse:
         self.single_turn = resources.AsyncSingleTurnResourceWithRawResponse(client.single_turn)
         self.caches = resources.AsyncCachesResourceWithRawResponse(client.caches)
         self.integration = resources.AsyncIntegrationResourceWithRawResponse(client.integration)
-        self.sys = resources.AsyncSysResourceWithRawResponse(client.sys)
+        self.business_glossary = resources.AsyncBusinessGlossaryResourceWithRawResponse(client.business_glossary)
 
 
 class AsktableWithStreamedResponse:
     def __init__(self, client: Asktable) -> None:
+        self.sys = resources.SysResourceWithStreamingResponse(client.sys)
         self.securetunnels = resources.SecuretunnelsResourceWithStreamingResponse(client.securetunnels)
         self.roles = resources.RolesResourceWithStreamingResponse(client.roles)
         self.policies = resources.PoliciesResourceWithStreamingResponse(client.policies)
@@ -470,11 +477,12 @@ class AsktableWithStreamedResponse:
         self.single_turn = resources.SingleTurnResourceWithStreamingResponse(client.single_turn)
         self.caches = resources.CachesResourceWithStreamingResponse(client.caches)
         self.integration = resources.IntegrationResourceWithStreamingResponse(client.integration)
-        self.sys = resources.SysResourceWithStreamingResponse(client.sys)
+        self.business_glossary = resources.BusinessGlossaryResourceWithStreamingResponse(client.business_glossary)
 
 
 class AsyncAsktableWithStreamedResponse:
     def __init__(self, client: AsyncAsktable) -> None:
+        self.sys = resources.AsyncSysResourceWithStreamingResponse(client.sys)
         self.securetunnels = resources.AsyncSecuretunnelsResourceWithStreamingResponse(client.securetunnels)
         self.roles = resources.AsyncRolesResourceWithStreamingResponse(client.roles)
         self.policies = resources.AsyncPoliciesResourceWithStreamingResponse(client.policies)
@@ -486,7 +494,7 @@ class AsyncAsktableWithStreamedResponse:
         self.single_turn = resources.AsyncSingleTurnResourceWithStreamingResponse(client.single_turn)
         self.caches = resources.AsyncCachesResourceWithStreamingResponse(client.caches)
         self.integration = resources.AsyncIntegrationResourceWithStreamingResponse(client.integration)
-        self.sys = resources.AsyncSysResourceWithStreamingResponse(client.sys)
+        self.business_glossary = resources.AsyncBusinessGlossaryResourceWithStreamingResponse(client.business_glossary)
 
 
 Client = Asktable

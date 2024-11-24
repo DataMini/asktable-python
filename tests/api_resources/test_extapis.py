@@ -9,12 +9,8 @@ import pytest
 
 from asktable import Asktable, AsyncAsktable
 from tests.utils import assert_matches_type
-from asktable.types import (
-    ExtapiListResponse,
-    ExtapiCreateResponse,
-    ExtapiUpdateResponse,
-    ExtapiRetrieveResponse,
-)
+from asktable.types import Extapi
+from asktable.pagination import SyncPage, AsyncPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -28,7 +24,7 @@ class TestExtapis:
             base_url="https://api.example.com/v1",
             name="name",
         )
-        assert_matches_type(ExtapiCreateResponse, extapi, path=["response"])
+        assert_matches_type(Extapi, extapi, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Asktable) -> None:
@@ -37,7 +33,7 @@ class TestExtapis:
             name="name",
             headers={"Authorization": "Bearer <token>"},
         )
-        assert_matches_type(ExtapiCreateResponse, extapi, path=["response"])
+        assert_matches_type(Extapi, extapi, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Asktable) -> None:
@@ -49,7 +45,7 @@ class TestExtapis:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         extapi = response.parse()
-        assert_matches_type(ExtapiCreateResponse, extapi, path=["response"])
+        assert_matches_type(Extapi, extapi, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Asktable) -> None:
@@ -61,7 +57,7 @@ class TestExtapis:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             extapi = response.parse()
-            assert_matches_type(ExtapiCreateResponse, extapi, path=["response"])
+            assert_matches_type(Extapi, extapi, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -70,7 +66,7 @@ class TestExtapis:
         extapi = client.extapis.retrieve(
             "extapi_id",
         )
-        assert_matches_type(ExtapiRetrieveResponse, extapi, path=["response"])
+        assert_matches_type(Extapi, extapi, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: Asktable) -> None:
@@ -81,7 +77,7 @@ class TestExtapis:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         extapi = response.parse()
-        assert_matches_type(ExtapiRetrieveResponse, extapi, path=["response"])
+        assert_matches_type(Extapi, extapi, path=["response"])
 
     @parametrize
     def test_streaming_response_retrieve(self, client: Asktable) -> None:
@@ -92,7 +88,7 @@ class TestExtapis:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             extapi = response.parse()
-            assert_matches_type(ExtapiRetrieveResponse, extapi, path=["response"])
+            assert_matches_type(Extapi, extapi, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -108,7 +104,7 @@ class TestExtapis:
         extapi = client.extapis.update(
             extapi_id="extapi_id",
         )
-        assert_matches_type(ExtapiUpdateResponse, extapi, path=["response"])
+        assert_matches_type(Extapi, extapi, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Asktable) -> None:
@@ -118,7 +114,7 @@ class TestExtapis:
             headers={"Authorization": "Bearer <token>"},
             name="name",
         )
-        assert_matches_type(ExtapiUpdateResponse, extapi, path=["response"])
+        assert_matches_type(Extapi, extapi, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Asktable) -> None:
@@ -129,7 +125,7 @@ class TestExtapis:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         extapi = response.parse()
-        assert_matches_type(ExtapiUpdateResponse, extapi, path=["response"])
+        assert_matches_type(Extapi, extapi, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Asktable) -> None:
@@ -140,7 +136,7 @@ class TestExtapis:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             extapi = response.parse()
-            assert_matches_type(ExtapiUpdateResponse, extapi, path=["response"])
+            assert_matches_type(Extapi, extapi, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -154,7 +150,7 @@ class TestExtapis:
     @parametrize
     def test_method_list(self, client: Asktable) -> None:
         extapi = client.extapis.list()
-        assert_matches_type(ExtapiListResponse, extapi, path=["response"])
+        assert_matches_type(SyncPage[Extapi], extapi, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Asktable) -> None:
@@ -163,7 +159,7 @@ class TestExtapis:
             page=1,
             size=1,
         )
-        assert_matches_type(ExtapiListResponse, extapi, path=["response"])
+        assert_matches_type(SyncPage[Extapi], extapi, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Asktable) -> None:
@@ -172,7 +168,7 @@ class TestExtapis:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         extapi = response.parse()
-        assert_matches_type(ExtapiListResponse, extapi, path=["response"])
+        assert_matches_type(SyncPage[Extapi], extapi, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Asktable) -> None:
@@ -181,7 +177,7 @@ class TestExtapis:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             extapi = response.parse()
-            assert_matches_type(ExtapiListResponse, extapi, path=["response"])
+            assert_matches_type(SyncPage[Extapi], extapi, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -233,7 +229,7 @@ class TestAsyncExtapis:
             base_url="https://api.example.com/v1",
             name="name",
         )
-        assert_matches_type(ExtapiCreateResponse, extapi, path=["response"])
+        assert_matches_type(Extapi, extapi, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncAsktable) -> None:
@@ -242,7 +238,7 @@ class TestAsyncExtapis:
             name="name",
             headers={"Authorization": "Bearer <token>"},
         )
-        assert_matches_type(ExtapiCreateResponse, extapi, path=["response"])
+        assert_matches_type(Extapi, extapi, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncAsktable) -> None:
@@ -254,7 +250,7 @@ class TestAsyncExtapis:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         extapi = await response.parse()
-        assert_matches_type(ExtapiCreateResponse, extapi, path=["response"])
+        assert_matches_type(Extapi, extapi, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncAsktable) -> None:
@@ -266,7 +262,7 @@ class TestAsyncExtapis:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             extapi = await response.parse()
-            assert_matches_type(ExtapiCreateResponse, extapi, path=["response"])
+            assert_matches_type(Extapi, extapi, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -275,7 +271,7 @@ class TestAsyncExtapis:
         extapi = await async_client.extapis.retrieve(
             "extapi_id",
         )
-        assert_matches_type(ExtapiRetrieveResponse, extapi, path=["response"])
+        assert_matches_type(Extapi, extapi, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncAsktable) -> None:
@@ -286,7 +282,7 @@ class TestAsyncExtapis:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         extapi = await response.parse()
-        assert_matches_type(ExtapiRetrieveResponse, extapi, path=["response"])
+        assert_matches_type(Extapi, extapi, path=["response"])
 
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncAsktable) -> None:
@@ -297,7 +293,7 @@ class TestAsyncExtapis:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             extapi = await response.parse()
-            assert_matches_type(ExtapiRetrieveResponse, extapi, path=["response"])
+            assert_matches_type(Extapi, extapi, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -313,7 +309,7 @@ class TestAsyncExtapis:
         extapi = await async_client.extapis.update(
             extapi_id="extapi_id",
         )
-        assert_matches_type(ExtapiUpdateResponse, extapi, path=["response"])
+        assert_matches_type(Extapi, extapi, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncAsktable) -> None:
@@ -323,7 +319,7 @@ class TestAsyncExtapis:
             headers={"Authorization": "Bearer <token>"},
             name="name",
         )
-        assert_matches_type(ExtapiUpdateResponse, extapi, path=["response"])
+        assert_matches_type(Extapi, extapi, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncAsktable) -> None:
@@ -334,7 +330,7 @@ class TestAsyncExtapis:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         extapi = await response.parse()
-        assert_matches_type(ExtapiUpdateResponse, extapi, path=["response"])
+        assert_matches_type(Extapi, extapi, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncAsktable) -> None:
@@ -345,7 +341,7 @@ class TestAsyncExtapis:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             extapi = await response.parse()
-            assert_matches_type(ExtapiUpdateResponse, extapi, path=["response"])
+            assert_matches_type(Extapi, extapi, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -359,7 +355,7 @@ class TestAsyncExtapis:
     @parametrize
     async def test_method_list(self, async_client: AsyncAsktable) -> None:
         extapi = await async_client.extapis.list()
-        assert_matches_type(ExtapiListResponse, extapi, path=["response"])
+        assert_matches_type(AsyncPage[Extapi], extapi, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncAsktable) -> None:
@@ -368,7 +364,7 @@ class TestAsyncExtapis:
             page=1,
             size=1,
         )
-        assert_matches_type(ExtapiListResponse, extapi, path=["response"])
+        assert_matches_type(AsyncPage[Extapi], extapi, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncAsktable) -> None:
@@ -377,7 +373,7 @@ class TestAsyncExtapis:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         extapi = await response.parse()
-        assert_matches_type(ExtapiListResponse, extapi, path=["response"])
+        assert_matches_type(AsyncPage[Extapi], extapi, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncAsktable) -> None:
@@ -386,7 +382,7 @@ class TestAsyncExtapis:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             extapi = await response.parse()
-            assert_matches_type(ExtapiListResponse, extapi, path=["response"])
+            assert_matches_type(AsyncPage[Extapi], extapi, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
