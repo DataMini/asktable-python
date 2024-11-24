@@ -126,6 +126,8 @@ Or just work directly with the returned data:
 
 ```python
 first_page = await client.datasources.list()
+
+print(f"page number: {first_page.page}")  # => "page number: 1"
 for datasource in first_page.items:
     print(datasource.id)
 

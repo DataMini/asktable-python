@@ -25,9 +25,16 @@ class SyncPage(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
 
     @override
     def next_page_info(self) -> Optional[PageInfo]:
-        last_page = cast("int | None", self._options.params.get("page")) or 1
+        current_page = self.page
+        if current_page is None:
+            current_page = 1
 
-        return PageInfo(params={"page": last_page + 1})
+        last_page = cast("int | None", self._options.params.get("page"))
+        if last_page is not None and current_page <= last_page:
+            # The API didn't return a new page in the last request
+            return None
+
+        return PageInfo(params={"page": current_page + 1})
 
 
 class AsyncPage(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
@@ -45,6 +52,13 @@ class AsyncPage(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
 
     @override
     def next_page_info(self) -> Optional[PageInfo]:
-        last_page = cast("int | None", self._options.params.get("page")) or 1
+        current_page = self.page
+        if current_page is None:
+            current_page = 1
 
-        return PageInfo(params={"page": last_page + 1})
+        last_page = cast("int | None", self._options.params.get("page"))
+        if last_page is not None and current_page <= last_page:
+            # The API didn't return a new page in the last request
+            return None
+
+        return PageInfo(params={"page": current_page + 1})
