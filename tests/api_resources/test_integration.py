@@ -28,6 +28,14 @@ class TestIntegration:
         assert_matches_type(Datasource, integration, path=["response"])
 
     @parametrize
+    def test_method_create_excel_ds_with_all_params(self, client: Asktable) -> None:
+        integration = client.integration.create_excel_ds(
+            file_url="https://example.com",
+            value_index=True,
+        )
+        assert_matches_type(Datasource, integration, path=["response"])
+
+    @parametrize
     def test_raw_response_create_excel_ds(self, client: Asktable) -> None:
         response = client.integration.with_raw_response.create_excel_ds(
             file_url="https://example.com",
@@ -64,6 +72,7 @@ class TestIntegration:
         integration = client.integration.excel_csv_ask(
             file_url="https://example.com",
             question="question",
+            value_index=True,
             with_json=True,
         )
         assert_matches_type(FileAskResponse, integration, path=["response"])
@@ -106,6 +115,14 @@ class TestAsyncIntegration:
         assert_matches_type(Datasource, integration, path=["response"])
 
     @parametrize
+    async def test_method_create_excel_ds_with_all_params(self, async_client: AsyncAsktable) -> None:
+        integration = await async_client.integration.create_excel_ds(
+            file_url="https://example.com",
+            value_index=True,
+        )
+        assert_matches_type(Datasource, integration, path=["response"])
+
+    @parametrize
     async def test_raw_response_create_excel_ds(self, async_client: AsyncAsktable) -> None:
         response = await async_client.integration.with_raw_response.create_excel_ds(
             file_url="https://example.com",
@@ -142,6 +159,7 @@ class TestAsyncIntegration:
         integration = await async_client.integration.excel_csv_ask(
             file_url="https://example.com",
             question="question",
+            value_index=True,
             with_json=True,
         )
         assert_matches_type(FileAskResponse, integration, path=["response"])

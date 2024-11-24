@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.4.0 (2024-11-24)
+
+Full Changelog: [v3.3.0...v3.4.0](https://github.com/DataMini/asktable-python/compare/v3.3.0...v3.4.0)
+
+### Features
+
+* **api:** api update ([#46](https://github.com/DataMini/asktable-python/issues/46)) ([328bd3d](https://github.com/DataMini/asktable-python/commit/328bd3d8c4cc07718f3acacb22541eedf97b4a7c))
+
 ## 3.3.0 (2024-11-24)
 
 Full Changelog: [v3.2.0...v3.3.0](https://github.com/DataMini/asktable-python/compare/v3.2.0...v3.3.0)

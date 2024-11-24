@@ -19,6 +19,10 @@ class MetaCreate(TypedDict, total=False):
     name: Required[str]
     """metadata_name"""
 
+    async_process_meta: bool
+
+    value_index: bool
+
     schemas: Dict[str, MetaCreateSchemas]
 
 
@@ -61,6 +65,10 @@ class MetaCreateSchemas(TypedDict, total=False):
 
 class Variant1(TypedDict, total=False):
     body: Required[None]
+
+    async_process_meta: bool
+
+    value_index: bool
 
 
 MetaCreateParams: TypeAlias = Union[MetaCreate, Variant1]
