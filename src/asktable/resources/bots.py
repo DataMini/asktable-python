@@ -20,11 +20,9 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
-from ..types.bot_list_response import BotListResponse
-from ..types.bot_create_response import BotCreateResponse
-from ..types.bot_update_response import BotUpdateResponse
-from ..types.bot_retrieve_response import BotRetrieveResponse
+from ..pagination import SyncPage, AsyncPage
+from .._base_client import AsyncPaginator, make_request_options
+from ..types.chatbot import Chatbot
 
 __all__ = ["BotsResource", "AsyncBotsResource"]
 
@@ -68,7 +66,7 @@ class BotsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BotCreateResponse:
+    ) -> Chatbot:
         """
         创建一个新的 Bot
 
@@ -121,7 +119,7 @@ class BotsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=BotCreateResponse,
+            cast_to=Chatbot,
         )
 
     def retrieve(
@@ -134,7 +132,7 @@ class BotsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BotRetrieveResponse:
+    ) -> Chatbot:
         """
         获取某个 Bot
 
@@ -154,7 +152,7 @@ class BotsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=BotRetrieveResponse,
+            cast_to=Chatbot,
         )
 
     def update(
@@ -178,7 +176,7 @@ class BotsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BotUpdateResponse:
+    ) -> Chatbot:
         """
         更新某个 Bot
 
@@ -236,7 +234,7 @@ class BotsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=BotUpdateResponse,
+            cast_to=Chatbot,
         )
 
     def list(
@@ -251,7 +249,7 @@ class BotsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BotListResponse:
+    ) -> SyncPage[Chatbot]:
         """
         查询所有 Bot
 
@@ -270,8 +268,9 @@ class BotsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/bots",
+            page=SyncPage[Chatbot],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -286,7 +285,7 @@ class BotsResource(SyncAPIResource):
                     bot_list_params.BotListParams,
                 ),
             ),
-            cast_to=BotListResponse,
+            model=Chatbot,
         )
 
     def delete(
@@ -400,7 +399,7 @@ class AsyncBotsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BotCreateResponse:
+    ) -> Chatbot:
         """
         创建一个新的 Bot
 
@@ -453,7 +452,7 @@ class AsyncBotsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=BotCreateResponse,
+            cast_to=Chatbot,
         )
 
     async def retrieve(
@@ -466,7 +465,7 @@ class AsyncBotsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BotRetrieveResponse:
+    ) -> Chatbot:
         """
         获取某个 Bot
 
@@ -486,7 +485,7 @@ class AsyncBotsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=BotRetrieveResponse,
+            cast_to=Chatbot,
         )
 
     async def update(
@@ -510,7 +509,7 @@ class AsyncBotsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BotUpdateResponse:
+    ) -> Chatbot:
         """
         更新某个 Bot
 
@@ -568,10 +567,10 @@ class AsyncBotsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=BotUpdateResponse,
+            cast_to=Chatbot,
         )
 
-    async def list(
+    def list(
         self,
         *,
         name: Optional[str] | NotGiven = NOT_GIVEN,
@@ -583,7 +582,7 @@ class AsyncBotsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BotListResponse:
+    ) -> AsyncPaginator[Chatbot, AsyncPage[Chatbot]]:
         """
         查询所有 Bot
 
@@ -602,14 +601,15 @@ class AsyncBotsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/bots",
+            page=AsyncPage[Chatbot],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "name": name,
                         "page": page,
@@ -618,7 +618,7 @@ class AsyncBotsResource(AsyncAPIResource):
                     bot_list_params.BotListParams,
                 ),
             ),
-            cast_to=BotListResponse,
+            model=Chatbot,
         )
 
     async def delete(

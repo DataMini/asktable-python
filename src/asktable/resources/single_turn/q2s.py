@@ -19,10 +19,10 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
+from ...pagination import SyncPage, AsyncPage
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.single_turn import q2_list_params, q2_create_params
 from ...types.single_turn.q2s_response import Q2sResponse
-from ...types.single_turn.q2_list_response import Q2ListResponse
 
 __all__ = ["Q2sResource", "AsyncQ2sResource"]
 
@@ -111,7 +111,7 @@ class Q2sResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Q2ListResponse:
+    ) -> SyncPage[Q2sResponse]:
         """
         获取所有的 Q2S 记录
 
@@ -130,8 +130,9 @@ class Q2sResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/single-turn/q2s",
+            page=SyncPage[Q2sResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -146,7 +147,7 @@ class Q2sResource(SyncAPIResource):
                     q2_list_params.Q2ListParams,
                 ),
             ),
-            cast_to=Q2ListResponse,
+            model=Q2sResponse,
         )
 
 
@@ -222,7 +223,7 @@ class AsyncQ2sResource(AsyncAPIResource):
             cast_to=Q2sResponse,
         )
 
-    async def list(
+    def list(
         self,
         *,
         datasource_id: Optional[str] | NotGiven = NOT_GIVEN,
@@ -234,7 +235,7 @@ class AsyncQ2sResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Q2ListResponse:
+    ) -> AsyncPaginator[Q2sResponse, AsyncPage[Q2sResponse]]:
         """
         获取所有的 Q2S 记录
 
@@ -253,14 +254,15 @@ class AsyncQ2sResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/single-turn/q2s",
+            page=AsyncPage[Q2sResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "datasource_id": datasource_id,
                         "page": page,
@@ -269,7 +271,7 @@ class AsyncQ2sResource(AsyncAPIResource):
                     q2_list_params.Q2ListParams,
                 ),
             ),
-            cast_to=Q2ListResponse,
+            model=Q2sResponse,
         )
 
 

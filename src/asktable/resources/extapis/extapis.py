@@ -28,11 +28,9 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
-from ...types.extapi_list_response import ExtapiListResponse
-from ...types.extapi_create_response import ExtapiCreateResponse
-from ...types.extapi_update_response import ExtapiUpdateResponse
-from ...types.extapi_retrieve_response import ExtapiRetrieveResponse
+from ...pagination import SyncPage, AsyncPage
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.extapi import Extapi
 
 __all__ = ["ExtapisResource", "AsyncExtapisResource"]
 
@@ -73,7 +71,7 @@ class ExtapisResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ExtapiCreateResponse:
+    ) -> Extapi:
         """
         创建一个新的 ExtAPI
 
@@ -105,7 +103,7 @@ class ExtapisResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ExtapiCreateResponse,
+            cast_to=Extapi,
         )
 
     def retrieve(
@@ -118,7 +116,7 @@ class ExtapisResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ExtapiRetrieveResponse:
+    ) -> Extapi:
         """
         获取某个 ExtAPI
 
@@ -138,7 +136,7 @@ class ExtapisResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ExtapiRetrieveResponse,
+            cast_to=Extapi,
         )
 
     def update(
@@ -154,7 +152,7 @@ class ExtapisResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ExtapiUpdateResponse:
+    ) -> Extapi:
         """
         更新某个 ExtAPI
 
@@ -188,7 +186,7 @@ class ExtapisResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ExtapiUpdateResponse,
+            cast_to=Extapi,
         )
 
     def list(
@@ -203,7 +201,7 @@ class ExtapisResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ExtapiListResponse:
+    ) -> SyncPage[Extapi]:
         """
         查询所有 ExtAPI
 
@@ -222,8 +220,9 @@ class ExtapisResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/extapis",
+            page=SyncPage[Extapi],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -238,7 +237,7 @@ class ExtapisResource(SyncAPIResource):
                     extapi_list_params.ExtapiListParams,
                 ),
             ),
-            cast_to=ExtapiListResponse,
+            model=Extapi,
         )
 
     def delete(
@@ -311,7 +310,7 @@ class AsyncExtapisResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ExtapiCreateResponse:
+    ) -> Extapi:
         """
         创建一个新的 ExtAPI
 
@@ -343,7 +342,7 @@ class AsyncExtapisResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ExtapiCreateResponse,
+            cast_to=Extapi,
         )
 
     async def retrieve(
@@ -356,7 +355,7 @@ class AsyncExtapisResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ExtapiRetrieveResponse:
+    ) -> Extapi:
         """
         获取某个 ExtAPI
 
@@ -376,7 +375,7 @@ class AsyncExtapisResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ExtapiRetrieveResponse,
+            cast_to=Extapi,
         )
 
     async def update(
@@ -392,7 +391,7 @@ class AsyncExtapisResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ExtapiUpdateResponse:
+    ) -> Extapi:
         """
         更新某个 ExtAPI
 
@@ -426,10 +425,10 @@ class AsyncExtapisResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ExtapiUpdateResponse,
+            cast_to=Extapi,
         )
 
-    async def list(
+    def list(
         self,
         *,
         name: Optional[str] | NotGiven = NOT_GIVEN,
@@ -441,7 +440,7 @@ class AsyncExtapisResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ExtapiListResponse:
+    ) -> AsyncPaginator[Extapi, AsyncPage[Extapi]]:
         """
         查询所有 ExtAPI
 
@@ -460,14 +459,15 @@ class AsyncExtapisResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/extapis",
+            page=AsyncPage[Extapi],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "name": name,
                         "page": page,
@@ -476,7 +476,7 @@ class AsyncExtapisResource(AsyncAPIResource):
                     extapi_list_params.ExtapiListParams,
                 ),
             ),
-            cast_to=ExtapiListResponse,
+            model=Extapi,
         )
 
     async def delete(

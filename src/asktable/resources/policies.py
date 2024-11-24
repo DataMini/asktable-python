@@ -21,11 +21,9 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
-from ..types.policy_list_response import PolicyListResponse
-from ..types.policy_create_response import PolicyCreateResponse
-from ..types.policy_update_response import PolicyUpdateResponse
-from ..types.policy_retrieve_response import PolicyRetrieveResponse
+from ..pagination import SyncPage, AsyncPage
+from .._base_client import AsyncPaginator, make_request_options
+from ..types.shared.policy import Policy
 
 __all__ = ["PoliciesResource", "AsyncPoliciesResource"]
 
@@ -62,7 +60,7 @@ class PoliciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PolicyCreateResponse:
+    ) -> Policy:
         """
         定义一个新的策略
 
@@ -94,7 +92,7 @@ class PoliciesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PolicyCreateResponse,
+            cast_to=Policy,
         )
 
     def retrieve(
@@ -107,7 +105,7 @@ class PoliciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PolicyRetrieveResponse:
+    ) -> Policy:
         """
         获取某个策略
 
@@ -127,7 +125,7 @@ class PoliciesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PolicyRetrieveResponse,
+            cast_to=Policy,
         )
 
     def update(
@@ -143,7 +141,7 @@ class PoliciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PolicyUpdateResponse:
+    ) -> Policy:
         """
         更新某个策略
 
@@ -177,7 +175,7 @@ class PoliciesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PolicyUpdateResponse,
+            cast_to=Policy,
         )
 
     def list(
@@ -193,7 +191,7 @@ class PoliciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PolicyListResponse:
+    ) -> SyncPage[Policy]:
         """
         查询所有策略
 
@@ -214,8 +212,9 @@ class PoliciesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/policies",
+            page=SyncPage[Policy],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -231,7 +230,7 @@ class PoliciesResource(SyncAPIResource):
                     policy_list_params.PolicyListParams,
                 ),
             ),
-            cast_to=PolicyListResponse,
+            model=Policy,
         )
 
     def delete(
@@ -301,7 +300,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PolicyCreateResponse:
+    ) -> Policy:
         """
         定义一个新的策略
 
@@ -333,7 +332,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PolicyCreateResponse,
+            cast_to=Policy,
         )
 
     async def retrieve(
@@ -346,7 +345,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PolicyRetrieveResponse:
+    ) -> Policy:
         """
         获取某个策略
 
@@ -366,7 +365,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PolicyRetrieveResponse,
+            cast_to=Policy,
         )
 
     async def update(
@@ -382,7 +381,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PolicyUpdateResponse:
+    ) -> Policy:
         """
         更新某个策略
 
@@ -416,10 +415,10 @@ class AsyncPoliciesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PolicyUpdateResponse,
+            cast_to=Policy,
         )
 
-    async def list(
+    def list(
         self,
         *,
         name: Optional[str] | NotGiven = NOT_GIVEN,
@@ -432,7 +431,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PolicyListResponse:
+    ) -> AsyncPaginator[Policy, AsyncPage[Policy]]:
         """
         查询所有策略
 
@@ -453,14 +452,15 @@ class AsyncPoliciesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/policies",
+            page=AsyncPage[Policy],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "name": name,
                         "page": page,
@@ -470,7 +470,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
                     policy_list_params.PolicyListParams,
                 ),
             ),
-            cast_to=PolicyListResponse,
+            model=Policy,
         )
 
     async def delete(
