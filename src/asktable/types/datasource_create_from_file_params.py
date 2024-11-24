@@ -15,3 +15,5 @@ class DatasourceCreateFromFileParams(TypedDict, total=False):
     async_process_meta: bool
 
     name: str
+
+    value_index: bool

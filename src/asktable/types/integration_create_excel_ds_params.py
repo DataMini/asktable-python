@@ -9,3 +9,5 @@ __all__ = ["IntegrationCreateExcelDsParams"]
 
 class IntegrationCreateExcelDsParams(TypedDict, total=False):
     file_url: Required[str]
+
+    value_index: bool

@@ -96,6 +96,7 @@ class DatasourcesResource(SyncAPIResource):
         *,
         engine: Literal["mysql", "tidb", "postgresql", "oceanbase", "clickhouse", "csv", "excel", "starrocks"],
         async_process_meta: bool | NotGiven = NOT_GIVEN,
+        value_index: bool | NotGiven = NOT_GIVEN,
         access_config: Optional[datasource_create_params.AccessConfig] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -139,7 +140,11 @@ class DatasourcesResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform(
-                    {"async_process_meta": async_process_meta}, datasource_create_params.DatasourceCreateParams
+                    {
+                        "async_process_meta": async_process_meta,
+                        "value_index": value_index,
+                    },
+                    datasource_create_params.DatasourceCreateParams,
                 ),
             ),
             cast_to=Datasource,
@@ -340,6 +345,7 @@ class DatasourcesResource(SyncAPIResource):
         file: FileTypes,
         async_process_meta: bool | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
+        value_index: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -378,6 +384,7 @@ class DatasourcesResource(SyncAPIResource):
                     {
                         "async_process_meta": async_process_meta,
                         "name": name,
+                        "value_index": value_index,
                     },
                     datasource_create_from_file_params.DatasourceCreateFromFileParams,
                 ),
@@ -423,6 +430,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         *,
         engine: Literal["mysql", "tidb", "postgresql", "oceanbase", "clickhouse", "csv", "excel", "starrocks"],
         async_process_meta: bool | NotGiven = NOT_GIVEN,
+        value_index: bool | NotGiven = NOT_GIVEN,
         access_config: Optional[datasource_create_params.AccessConfig] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -466,7 +474,11 @@ class AsyncDatasourcesResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform(
-                    {"async_process_meta": async_process_meta}, datasource_create_params.DatasourceCreateParams
+                    {
+                        "async_process_meta": async_process_meta,
+                        "value_index": value_index,
+                    },
+                    datasource_create_params.DatasourceCreateParams,
                 ),
             ),
             cast_to=Datasource,
@@ -667,6 +679,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         file: FileTypes,
         async_process_meta: bool | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
+        value_index: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -705,6 +718,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
                     {
                         "async_process_meta": async_process_meta,
                         "name": name,
+                        "value_index": value_index,
                     },
                     datasource_create_from_file_params.DatasourceCreateFromFileParams,
                 ),

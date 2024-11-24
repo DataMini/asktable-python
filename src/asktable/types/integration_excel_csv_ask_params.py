@@ -15,5 +15,7 @@ class IntegrationExcelCsvAskParams(TypedDict, total=False):
     question: Required[str]
     """用户问题"""
 
+    value_index: bool
+
     with_json: Optional[bool]
     """是否将数据作为 json 附件返回"""

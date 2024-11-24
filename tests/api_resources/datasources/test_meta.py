@@ -30,6 +30,8 @@ class TestMeta:
         meta = client.datasources.meta.create(
             datasource_id="datasource_id",
             name="name",
+            async_process_meta=True,
+            value_index=True,
             schemas={
                 "foo": {
                     "name": "name",
@@ -93,6 +95,16 @@ class TestMeta:
         meta = client.datasources.meta.create(
             datasource_id="datasource_id",
             body=None,
+        )
+        assert_matches_type(object, meta, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params_overload_2(self, client: Asktable) -> None:
+        meta = client.datasources.meta.create(
+            datasource_id="datasource_id",
+            body=None,
+            async_process_meta=True,
+            value_index=True,
         )
         assert_matches_type(object, meta, path=["response"])
 
@@ -340,6 +352,8 @@ class TestAsyncMeta:
         meta = await async_client.datasources.meta.create(
             datasource_id="datasource_id",
             name="name",
+            async_process_meta=True,
+            value_index=True,
             schemas={
                 "foo": {
                     "name": "name",
@@ -403,6 +417,16 @@ class TestAsyncMeta:
         meta = await async_client.datasources.meta.create(
             datasource_id="datasource_id",
             body=None,
+        )
+        assert_matches_type(object, meta, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params_overload_2(self, async_client: AsyncAsktable) -> None:
+        meta = await async_client.datasources.meta.create(
+            datasource_id="datasource_id",
+            body=None,
+            async_process_meta=True,
+            value_index=True,
         )
         assert_matches_type(object, meta, path=["response"])
 
