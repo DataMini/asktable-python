@@ -9,3 +9,5 @@ __all__ = ["ExcelCsvCreateParams"]
 
 class ExcelCsvCreateParams(TypedDict, total=False):
     file_url: Required[str]
+
+    value_index: bool

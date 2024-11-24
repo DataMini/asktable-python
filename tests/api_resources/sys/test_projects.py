@@ -102,6 +102,7 @@ class TestProjects:
     def test_method_update_with_all_params(self, client: Asktable) -> None:
         project = client.sys.projects.update(
             project_id="project_id",
+            llm_model_group="llm_model_group",
             locked=True,
             name="name",
         )
@@ -294,6 +295,7 @@ class TestAsyncProjects:
     async def test_method_update_with_all_params(self, async_client: AsyncAsktable) -> None:
         project = await async_client.sys.projects.update(
             project_id="project_id",
+            llm_model_group="llm_model_group",
             locked=True,
             name="name",
         )
