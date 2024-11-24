@@ -23,10 +23,8 @@ from ..._response import (
 )
 from ..._base_client import make_request_options
 from ...types.extapis import route_create_params, route_update_params
+from ...types.extapis.extapi_route import ExtapiRoute
 from ...types.extapis.route_list_response import RouteListResponse
-from ...types.extapis.route_create_response import RouteCreateResponse
-from ...types.extapis.route_update_response import RouteUpdateResponse
-from ...types.extapis.route_retrieve_response import RouteRetrieveResponse
 
 __all__ = ["RoutesResource", "AsyncRoutesResource"]
 
@@ -72,7 +70,7 @@ class RoutesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RouteCreateResponse:
+    ) -> ExtapiRoute:
         """
         为某个 ExtAPI 创建新的路径
 
@@ -120,7 +118,7 @@ class RoutesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=RouteCreateResponse,
+            cast_to=ExtapiRoute,
         )
 
     def retrieve(
@@ -134,7 +132,7 @@ class RoutesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RouteRetrieveResponse:
+    ) -> ExtapiRoute:
         """
         获取某个 ExtAPI Route
 
@@ -156,7 +154,7 @@ class RoutesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=RouteRetrieveResponse,
+            cast_to=ExtapiRoute,
         )
 
     def update(
@@ -176,7 +174,7 @@ class RoutesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RouteUpdateResponse:
+    ) -> ExtapiRoute:
         """
         更新某个 ExtAPI Route
 
@@ -221,7 +219,7 @@ class RoutesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=RouteUpdateResponse,
+            cast_to=ExtapiRoute,
         )
 
     def list(
@@ -336,7 +334,7 @@ class AsyncRoutesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RouteCreateResponse:
+    ) -> ExtapiRoute:
         """
         为某个 ExtAPI 创建新的路径
 
@@ -384,7 +382,7 @@ class AsyncRoutesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=RouteCreateResponse,
+            cast_to=ExtapiRoute,
         )
 
     async def retrieve(
@@ -398,7 +396,7 @@ class AsyncRoutesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RouteRetrieveResponse:
+    ) -> ExtapiRoute:
         """
         获取某个 ExtAPI Route
 
@@ -420,7 +418,7 @@ class AsyncRoutesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=RouteRetrieveResponse,
+            cast_to=ExtapiRoute,
         )
 
     async def update(
@@ -440,7 +438,7 @@ class AsyncRoutesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RouteUpdateResponse:
+    ) -> ExtapiRoute:
         """
         更新某个 ExtAPI Route
 
@@ -485,7 +483,7 @@ class AsyncRoutesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=RouteUpdateResponse,
+            cast_to=ExtapiRoute,
         )
 
     async def list(

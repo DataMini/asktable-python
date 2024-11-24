@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Optional
 from typing_extensions import Literal
 
 import httpx
@@ -20,7 +21,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.sys.projects import api_key_create_params
+from ....types.sys.projects import api_key_create_params, api_key_create_token_params
 from ....types.sys.projects.api_key_list_response import APIKeyListResponse
 from ....types.sys.projects.api_key_create_response import APIKeyCreateResponse
 
@@ -154,6 +155,60 @@ class APIKeysResource(SyncAPIResource):
             cast_to=NoneType,
         )
 
+    def create_token(
+        self,
+        project_id: str,
+        *,
+        ak_role: Literal["sys", "admin", "asker", "visitor"] | NotGiven = NOT_GIVEN,
+        chat_role: Optional[api_key_create_token_params.ChatRole] | NotGiven = NOT_GIVEN,
+        token_ttl: int | NotGiven = NOT_GIVEN,
+        user_profile: Optional[object] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Create Token
+
+        Args:
+          ak_role: The role for the API key
+
+          chat_role: The chat role
+
+          token_ttl: The time-to-live for the token in seconds
+
+          user_profile: Optional user profile data
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not project_id:
+            raise ValueError(f"Expected a non-empty value for `project_id` but received {project_id!r}")
+        return self._post(
+            f"/sys/projects/{project_id}/tokens",
+            body=maybe_transform(
+                {
+                    "ak_role": ak_role,
+                    "chat_role": chat_role,
+                    "token_ttl": token_ttl,
+                    "user_profile": user_profile,
+                },
+                api_key_create_token_params.APIKeyCreateTokenParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
+        )
+
 
 class AsyncAPIKeysResource(AsyncAPIResource):
     @cached_property
@@ -282,6 +337,60 @@ class AsyncAPIKeysResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
+    async def create_token(
+        self,
+        project_id: str,
+        *,
+        ak_role: Literal["sys", "admin", "asker", "visitor"] | NotGiven = NOT_GIVEN,
+        chat_role: Optional[api_key_create_token_params.ChatRole] | NotGiven = NOT_GIVEN,
+        token_ttl: int | NotGiven = NOT_GIVEN,
+        user_profile: Optional[object] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Create Token
+
+        Args:
+          ak_role: The role for the API key
+
+          chat_role: The chat role
+
+          token_ttl: The time-to-live for the token in seconds
+
+          user_profile: Optional user profile data
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not project_id:
+            raise ValueError(f"Expected a non-empty value for `project_id` but received {project_id!r}")
+        return await self._post(
+            f"/sys/projects/{project_id}/tokens",
+            body=await async_maybe_transform(
+                {
+                    "ak_role": ak_role,
+                    "chat_role": chat_role,
+                    "token_ttl": token_ttl,
+                    "user_profile": user_profile,
+                },
+                api_key_create_token_params.APIKeyCreateTokenParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
+        )
+
 
 class APIKeysResourceWithRawResponse:
     def __init__(self, api_keys: APIKeysResource) -> None:
@@ -295,6 +404,9 @@ class APIKeysResourceWithRawResponse:
         )
         self.delete = to_raw_response_wrapper(
             api_keys.delete,
+        )
+        self.create_token = to_raw_response_wrapper(
+            api_keys.create_token,
         )
 
 
@@ -311,6 +423,9 @@ class AsyncAPIKeysResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             api_keys.delete,
         )
+        self.create_token = async_to_raw_response_wrapper(
+            api_keys.create_token,
+        )
 
 
 class APIKeysResourceWithStreamingResponse:
@@ -326,6 +441,9 @@ class APIKeysResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             api_keys.delete,
         )
+        self.create_token = to_streamed_response_wrapper(
+            api_keys.create_token,
+        )
 
 
 class AsyncAPIKeysResourceWithStreamingResponse:
@@ -340,4 +458,7 @@ class AsyncAPIKeysResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             api_keys.delete,
+        )
+        self.create_token = async_to_streamed_response_wrapper(
+            api_keys.create_token,
         )
