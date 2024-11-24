@@ -25,6 +25,14 @@ class TestExcelCsv:
         assert_matches_type(ExcelCsvCreateResponse, excel_csv, path=["response"])
 
     @parametrize
+    def test_method_create_with_all_params(self, client: Asktable) -> None:
+        excel_csv = client.integration.excel_csv.create(
+            file_url="https://example.com",
+            value_index=True,
+        )
+        assert_matches_type(ExcelCsvCreateResponse, excel_csv, path=["response"])
+
+    @parametrize
     def test_raw_response_create(self, client: Asktable) -> None:
         response = client.integration.excel_csv.with_raw_response.create(
             file_url="https://example.com",
@@ -56,6 +64,14 @@ class TestAsyncExcelCsv:
     async def test_method_create(self, async_client: AsyncAsktable) -> None:
         excel_csv = await async_client.integration.excel_csv.create(
             file_url="https://example.com",
+        )
+        assert_matches_type(ExcelCsvCreateResponse, excel_csv, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncAsktable) -> None:
+        excel_csv = await async_client.integration.excel_csv.create(
+            file_url="https://example.com",
+            value_index=True,
         )
         assert_matches_type(ExcelCsvCreateResponse, excel_csv, path=["response"])
 
