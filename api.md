@@ -11,7 +11,13 @@ from asktable.types import Policy
 Types:
 
 ```python
-from asktable.types.sys import APIKey, Project, ProjectDeleteResponse
+from asktable.types.sys import (
+    APIKey,
+    ModelGroup,
+    Project,
+    ProjectDeleteResponse,
+    ProjectModelGroupsResponse,
+)
 ```
 
 Methods:
@@ -21,6 +27,7 @@ Methods:
 - <code title="patch /sys/projects/{project_id}">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">update</a>(project_id, \*\*<a href="src/asktable/types/sys/project_update_params.py">params</a>) -> <a href="./src/asktable/types/sys/project.py">Project</a></code>
 - <code title="get /sys/projects">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">list</a>(\*\*<a href="src/asktable/types/sys/project_list_params.py">params</a>) -> <a href="./src/asktable/types/sys/project.py">SyncPage[Project]</a></code>
 - <code title="delete /sys/projects/{project_id}">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">delete</a>(project_id) -> <a href="./src/asktable/types/sys/project_delete_response.py">object</a></code>
+- <code title="get /sys/projects/model-groups">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">model_groups</a>() -> <a href="./src/asktable/types/sys/project_model_groups_response.py">ProjectModelGroupsResponse</a></code>
 
 ### APIKeys
 
