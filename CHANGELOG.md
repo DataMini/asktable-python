@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.5.0 (2024-11-25)
+
+Full Changelog: [v3.4.0...v3.5.0](https://github.com/DataMini/asktable-python/compare/v3.4.0...v3.5.0)
+
+### Features
+
+* **api:** model groups ([#49](https://github.com/DataMini/asktable-python/issues/49)) ([d6695c3](https://github.com/DataMini/asktable-python/commit/d6695c35cb207c7db16eac94ecc2e927a7eebb80))
+
 ## 3.4.0 (2024-11-24)
 
 Full Changelog: [v3.3.0...v3.4.0](https://github.com/DataMini/asktable-python/compare/v3.3.0...v3.4.0)
