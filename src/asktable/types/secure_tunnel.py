@@ -16,6 +16,7 @@ class SecureTunnel(BaseModel):
     modified_at: datetime
 
     name: str
+    """SecureTunnel 名称，不超过 20 个字符"""
 
     project_id: str
 

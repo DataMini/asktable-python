@@ -9,7 +9,9 @@ __all__ = ["DatasourceCreateParams", "AccessConfig"]
 
 
 class DatasourceCreateParams(TypedDict, total=False):
-    engine: Required[Literal["mysql", "tidb", "postgresql", "oceanbase", "clickhouse", "csv", "excel", "starrocks"]]
+    engine: Required[
+        Literal["mysql", "tidb", "postgresql", "oceanbase", "clickhouse", "csv", "excel", "starrocks", "hive"]
+    ]
     """数据源引擎"""
 
     async_process_meta: bool
