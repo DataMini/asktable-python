@@ -16,6 +16,9 @@ class AccessConfig(BaseModel):
     db: Optional[str] = None
     """数据库引擎可以管理多个数据库，此参数用于指定数据库名称"""
 
+    db_version: Optional[str] = None
+    """数据库版本"""
+
     host: Optional[str] = None
     """数据库地址"""
 
@@ -48,9 +51,7 @@ class Datasource(BaseModel):
     created_at: datetime
     """创建时间"""
 
-    engine: Literal[
-        "mysql", "mysql57", "tidb", "postgresql", "oceanbase", "clickhouse", "csv", "excel", "starrocks", "hive"
-    ]
+    engine: Literal["mysql", "tidb", "postgresql", "oceanbase", "clickhouse", "csv", "excel", "starrocks", "hive"]
     """数据源引擎"""
 
     meta_status: Literal["processing", "failed", "success", "unprocessed"]
