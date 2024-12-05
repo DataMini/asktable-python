@@ -94,9 +94,7 @@ class DatasourcesResource(SyncAPIResource):
     def create(
         self,
         *,
-        engine: Literal[
-            "mysql", "mysql57", "tidb", "postgresql", "oceanbase", "clickhouse", "csv", "excel", "starrocks", "hive"
-        ],
+        engine: Literal["mysql", "tidb", "postgresql", "oceanbase", "clickhouse", "csv", "excel", "starrocks", "hive"],
         async_process_meta: bool | NotGiven = NOT_GIVEN,
         value_index: bool | NotGiven = NOT_GIVEN,
         access_config: Optional[datasource_create_params.AccessConfig] | NotGiven = NOT_GIVEN,
@@ -430,9 +428,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        engine: Literal[
-            "mysql", "mysql57", "tidb", "postgresql", "oceanbase", "clickhouse", "csv", "excel", "starrocks", "hive"
-        ],
+        engine: Literal["mysql", "tidb", "postgresql", "oceanbase", "clickhouse", "csv", "excel", "starrocks", "hive"],
         async_process_meta: bool | NotGiven = NOT_GIVEN,
         value_index: bool | NotGiven = NOT_GIVEN,
         access_config: Optional[datasource_create_params.AccessConfig] | NotGiven = NOT_GIVEN,
