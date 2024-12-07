@@ -36,6 +36,7 @@ class TestDatasources:
             access_config={
                 "atst_link_id": "atst_link_123456",
                 "db": "test",
+                "db_version": "5.7",
                 "host": "192.168.0.10",
                 "location_type": "local",
                 "location_url": "http://example.com/data.csv",
@@ -126,6 +127,7 @@ class TestDatasources:
             access_config={
                 "atst_link_id": "atst_link_123456",
                 "db": "test",
+                "db_version": "5.7",
                 "host": "192.168.0.10",
                 "location_type": "local",
                 "location_url": "http://example.com/data.csv",
@@ -311,6 +313,7 @@ class TestAsyncDatasources:
             access_config={
                 "atst_link_id": "atst_link_123456",
                 "db": "test",
+                "db_version": "5.7",
                 "host": "192.168.0.10",
                 "location_type": "local",
                 "location_url": "http://example.com/data.csv",
@@ -401,6 +404,7 @@ class TestAsyncDatasources:
             access_config={
                 "atst_link_id": "atst_link_123456",
                 "db": "test",
+                "db_version": "5.7",
                 "host": "192.168.0.10",
                 "location_type": "local",
                 "location_url": "http://example.com/data.csv",

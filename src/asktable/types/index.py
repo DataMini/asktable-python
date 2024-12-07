@@ -45,5 +45,8 @@ class Index(BaseModel):
     min_length: Optional[int] = None
     """最小长度"""
 
+    status_msg: Optional[str] = None
+    """状态信息"""
+
     value_count: Optional[int] = None
     """值总数"""
