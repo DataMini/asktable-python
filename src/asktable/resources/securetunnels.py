@@ -56,7 +56,7 @@ class SecuretunnelsResource(SyncAPIResource):
     def create(
         self,
         *,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
+        name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -124,8 +124,8 @@ class SecuretunnelsResource(SyncAPIResource):
         self,
         securetunnel_id: str,
         *,
+        name: str,
         client_info: Optional[object] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
         unique_key: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -138,9 +138,9 @@ class SecuretunnelsResource(SyncAPIResource):
         更新某个 ATST
 
         Args:
-          client_info: 客户端信息
-
           name: SecureTunnel 名称，不超过 20 个字符
+
+          client_info: 客户端信息
 
           unique_key: 唯一标识，用于更新客户端信息（容器 ID）
 
@@ -158,8 +158,8 @@ class SecuretunnelsResource(SyncAPIResource):
             f"/securetunnels/{securetunnel_id}",
             body=maybe_transform(
                 {
-                    "client_info": client_info,
                     "name": name,
+                    "client_info": client_info,
                     "unique_key": unique_key,
                 },
                 securetunnel_update_params.SecuretunnelUpdateParams,
@@ -325,7 +325,7 @@ class AsyncSecuretunnelsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
+        name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -393,8 +393,8 @@ class AsyncSecuretunnelsResource(AsyncAPIResource):
         self,
         securetunnel_id: str,
         *,
+        name: str,
         client_info: Optional[object] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
         unique_key: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -407,9 +407,9 @@ class AsyncSecuretunnelsResource(AsyncAPIResource):
         更新某个 ATST
 
         Args:
-          client_info: 客户端信息
-
           name: SecureTunnel 名称，不超过 20 个字符
+
+          client_info: 客户端信息
 
           unique_key: 唯一标识，用于更新客户端信息（容器 ID）
 
@@ -427,8 +427,8 @@ class AsyncSecuretunnelsResource(AsyncAPIResource):
             f"/securetunnels/{securetunnel_id}",
             body=await async_maybe_transform(
                 {
-                    "client_info": client_info,
                     "name": name,
+                    "client_info": client_info,
                     "unique_key": unique_key,
                 },
                 securetunnel_update_params.SecuretunnelUpdateParams,

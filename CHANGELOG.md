@@ -1,5 +1,32 @@
 # Changelog
 
+## 3.6.0 (2024-12-10)
+
+Full Changelog: [v3.5.0...v3.6.0](https://github.com/DataMini/asktable-python/compare/v3.5.0...v3.6.0)
+
+### Features
+
+* **api:** api update ([#56](https://github.com/DataMini/asktable-python/issues/56)) ([85f14bf](https://github.com/DataMini/asktable-python/commit/85f14bf4c1a6ab1847ea70a1f92ab9fc6b84792d))
+* **api:** api update ([#58](https://github.com/DataMini/asktable-python/issues/58)) ([d8e87aa](https://github.com/DataMini/asktable-python/commit/d8e87aa6f7882c7c30c25876c9cd97b975108487))
+* **api:** api update ([#60](https://github.com/DataMini/asktable-python/issues/60)) ([d2fde2c](https://github.com/DataMini/asktable-python/commit/d2fde2c2c9dce66f76a81110ece132d64d7e91df))
+* **api:** api update ([#61](https://github.com/DataMini/asktable-python/issues/61)) ([b2a2931](https://github.com/DataMini/asktable-python/commit/b2a2931c8ff148f7c9289e5f3a26e212f0a00b6a))
+* **api:** api update ([#62](https://github.com/DataMini/asktable-python/issues/62)) ([9a0ade8](https://github.com/DataMini/asktable-python/commit/9a0ade84afdd1533abe882ddff731b7e62dfe949))
+
+
+### Bug Fixes
+
+* **client:** compat with new httpx 0.28.0 release ([#55](https://github.com/DataMini/asktable-python/issues/55)) ([9b90d53](https://github.com/DataMini/asktable-python/commit/9b90d53934ef35395dd9760e0440cf97e6e0c148))
+
+
+### Chores
+
+* **internal:** bump pydantic dependency ([#63](https://github.com/DataMini/asktable-python/issues/63)) ([73e26c6](https://github.com/DataMini/asktable-python/commit/73e26c6a80a0a77afaa0a7592f255a2505ac2dcf))
+* **internal:** bump pyright ([#57](https://github.com/DataMini/asktable-python/issues/57)) ([a4d4a4c](https://github.com/DataMini/asktable-python/commit/a4d4a4c6a4e9c0bc6f84eccd33ffba754f90a6e5))
+* **internal:** codegen related update ([#52](https://github.com/DataMini/asktable-python/issues/52)) ([5ca5165](https://github.com/DataMini/asktable-python/commit/5ca5165218fbe650f9ce1d4dc27cbc2b258c5b62))
+* **internal:** codegen related update ([#64](https://github.com/DataMini/asktable-python/issues/64)) ([aa903ed](https://github.com/DataMini/asktable-python/commit/aa903ede9be8e28ba1c2f05cda4455940627f630))
+* **internal:** exclude mypy from running on tests ([#54](https://github.com/DataMini/asktable-python/issues/54)) ([3e6ef7b](https://github.com/DataMini/asktable-python/commit/3e6ef7bdd00bd2af75f762c5002d754b314fdf99))
+* make the `Omit` type public ([#59](https://github.com/DataMini/asktable-python/issues/59)) ([ebaba2d](https://github.com/DataMini/asktable-python/commit/ebaba2d5e62fad4fa7091436b5713d1096620090))
+
 ## 3.5.0 (2024-11-25)
 
 Full Changelog: [v3.4.0...v3.5.0](https://github.com/DataMini/asktable-python/compare/v3.4.0...v3.5.0)
