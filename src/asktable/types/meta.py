@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Dict, Optional
+from datetime import datetime
 
 from .._models import BaseModel
 
@@ -8,11 +9,17 @@ __all__ = ["Meta", "Schemas", "SchemasTables", "SchemasTablesFields"]
 
 
 class SchemasTablesFields(BaseModel):
+    created_at: datetime
+    """created time"""
+
     curr_desc_stat: str
     """current field description status"""
 
     full_name: str
     """field full name"""
+
+    modified_at: datetime
+    """modified time"""
 
     name: str
     """field_name"""

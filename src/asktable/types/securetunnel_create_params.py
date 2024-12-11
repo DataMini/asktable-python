@@ -2,12 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Optional
-from typing_extensions import TypedDict
+from typing_extensions import Required, TypedDict
 
 __all__ = ["SecuretunnelCreateParams"]
 
 
 class SecuretunnelCreateParams(TypedDict, total=False):
-    name: Optional[str]
+    name: Required[str]
     """SecureTunnel 名称，不超过 20 个字符"""

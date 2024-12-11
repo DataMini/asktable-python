@@ -9,7 +9,9 @@ __all__ = ["DatasourceCreateParams", "AccessConfig"]
 
 
 class DatasourceCreateParams(TypedDict, total=False):
-    engine: Required[Literal["mysql", "tidb", "postgresql", "oceanbase", "clickhouse", "csv", "excel", "starrocks"]]
+    engine: Required[
+        Literal["mysql", "tidb", "postgresql", "oceanbase", "clickhouse", "csv", "excel", "starrocks", "hive"]
+    ]
     """数据源引擎"""
 
     async_process_meta: bool
@@ -29,6 +31,9 @@ class AccessConfig(TypedDict, total=False):
 
     db: Optional[str]
     """数据库引擎可以管理多个数据库，此参数用于指定数据库名称"""
+
+    db_version: Optional[str]
+    """数据库版本"""
 
     host: Optional[str]
     """数据库地址"""
