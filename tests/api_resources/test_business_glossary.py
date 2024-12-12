@@ -158,7 +158,7 @@ class TestBusinessGlossary:
     @parametrize
     def test_method_list(self, client: Asktable) -> None:
         business_glossary = client.business_glossary.list()
-        assert_matches_type(SyncPage[Entry], business_glossary, path=["response"])
+        assert_matches_type(SyncPage[EntryWithDefinition], business_glossary, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Asktable) -> None:
@@ -167,7 +167,7 @@ class TestBusinessGlossary:
             size=1,
             term="term",
         )
-        assert_matches_type(SyncPage[Entry], business_glossary, path=["response"])
+        assert_matches_type(SyncPage[EntryWithDefinition], business_glossary, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Asktable) -> None:
@@ -176,7 +176,7 @@ class TestBusinessGlossary:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         business_glossary = response.parse()
-        assert_matches_type(SyncPage[Entry], business_glossary, path=["response"])
+        assert_matches_type(SyncPage[EntryWithDefinition], business_glossary, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Asktable) -> None:
@@ -185,7 +185,7 @@ class TestBusinessGlossary:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             business_glossary = response.parse()
-            assert_matches_type(SyncPage[Entry], business_glossary, path=["response"])
+            assert_matches_type(SyncPage[EntryWithDefinition], business_glossary, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -367,7 +367,7 @@ class TestAsyncBusinessGlossary:
     @parametrize
     async def test_method_list(self, async_client: AsyncAsktable) -> None:
         business_glossary = await async_client.business_glossary.list()
-        assert_matches_type(AsyncPage[Entry], business_glossary, path=["response"])
+        assert_matches_type(AsyncPage[EntryWithDefinition], business_glossary, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncAsktable) -> None:
@@ -376,7 +376,7 @@ class TestAsyncBusinessGlossary:
             size=1,
             term="term",
         )
-        assert_matches_type(AsyncPage[Entry], business_glossary, path=["response"])
+        assert_matches_type(AsyncPage[EntryWithDefinition], business_glossary, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncAsktable) -> None:
@@ -385,7 +385,7 @@ class TestAsyncBusinessGlossary:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         business_glossary = await response.parse()
-        assert_matches_type(AsyncPage[Entry], business_glossary, path=["response"])
+        assert_matches_type(AsyncPage[EntryWithDefinition], business_glossary, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncAsktable) -> None:
@@ -394,7 +394,7 @@ class TestAsyncBusinessGlossary:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             business_glossary = await response.parse()
-            assert_matches_type(AsyncPage[Entry], business_glossary, path=["response"])
+            assert_matches_type(AsyncPage[EntryWithDefinition], business_glossary, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
