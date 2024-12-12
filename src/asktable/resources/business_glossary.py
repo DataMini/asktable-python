@@ -184,7 +184,7 @@ class BusinessGlossaryResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncPage[Entry]:
+    ) -> SyncPage[EntryWithDefinition]:
         """
         查询所有业务术语
 
@@ -205,7 +205,7 @@ class BusinessGlossaryResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/business-glossary",
-            page=SyncPage[Entry],
+            page=SyncPage[EntryWithDefinition],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -220,7 +220,7 @@ class BusinessGlossaryResource(SyncAPIResource):
                     business_glossary_list_params.BusinessGlossaryListParams,
                 ),
             ),
-            model=Entry,
+            model=EntryWithDefinition,
         )
 
     def delete(
@@ -408,7 +408,7 @@ class AsyncBusinessGlossaryResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Entry, AsyncPage[Entry]]:
+    ) -> AsyncPaginator[EntryWithDefinition, AsyncPage[EntryWithDefinition]]:
         """
         查询所有业务术语
 
@@ -429,7 +429,7 @@ class AsyncBusinessGlossaryResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/business-glossary",
-            page=AsyncPage[Entry],
+            page=AsyncPage[EntryWithDefinition],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -444,7 +444,7 @@ class AsyncBusinessGlossaryResource(AsyncAPIResource):
                     business_glossary_list_params.BusinessGlossaryListParams,
                 ),
             ),
-            model=Entry,
+            model=EntryWithDefinition,
         )
 
     async def delete(
