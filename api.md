@@ -103,7 +103,7 @@ Methods:
 Types:
 
 ```python
-from asktable.types import Chat, Message
+from asktable.types import Chat, ChatSendMessageResponse
 ```
 
 Methods:
@@ -112,15 +112,25 @@ Methods:
 - <code title="get /chats/{chat_id}">client.chats.<a href="./src/asktable/resources/chats/chats.py">retrieve</a>(chat_id) -> <a href="./src/asktable/types/chat.py">Chat</a></code>
 - <code title="get /chats">client.chats.<a href="./src/asktable/resources/chats/chats.py">list</a>(\*\*<a href="src/asktable/types/chat_list_params.py">params</a>) -> <a href="./src/asktable/types/chat.py">SyncPage[Chat]</a></code>
 - <code title="delete /chats/{chat_id}">client.chats.<a href="./src/asktable/resources/chats/chats.py">delete</a>(chat_id) -> None</code>
-- <code title="post /chats/{chat_id}">client.chats.<a href="./src/asktable/resources/chats/chats.py">send_message</a>(chat_id, \*\*<a href="src/asktable/types/chat_send_message_params.py">params</a>) -> <a href="./src/asktable/types/message.py">Message</a></code>
+- <code title="post /chats/{chat_id}">client.chats.<a href="./src/asktable/resources/chats/chats.py">send_message</a>(chat_id, \*\*<a href="src/asktable/types/chat_send_message_params.py">params</a>) -> <a href="./src/asktable/types/chat_send_message_response.py">ChatSendMessageResponse</a></code>
 
 ## Messages
 
+Types:
+
+```python
+from asktable.types.chats import (
+    MessageRetrieveResponse,
+    MessageListResponse,
+    MessageSendMessageResponse,
+)
+```
+
 Methods:
 
-- <code title="get /chats/{chat_id}/messages/{message_id}">client.chats.messages.<a href="./src/asktable/resources/chats/messages.py">retrieve</a>(message_id, \*, chat_id) -> <a href="./src/asktable/types/message.py">Message</a></code>
-- <code title="get /chats/{chat_id}/messages">client.chats.messages.<a href="./src/asktable/resources/chats/messages.py">list</a>(chat_id, \*\*<a href="src/asktable/types/chats/message_list_params.py">params</a>) -> <a href="./src/asktable/types/message.py">SyncPage[Message]</a></code>
-- <code title="post /chats/{chat_id}/messages">client.chats.messages.<a href="./src/asktable/resources/chats/messages.py">send_message</a>(chat_id, \*\*<a href="src/asktable/types/chats/message_send_message_params.py">params</a>) -> <a href="./src/asktable/types/message.py">Message</a></code>
+- <code title="get /chats/{chat_id}/messages/{message_id}">client.chats.messages.<a href="./src/asktable/resources/chats/messages.py">retrieve</a>(message_id, \*, chat_id) -> <a href="./src/asktable/types/chats/message_retrieve_response.py">MessageRetrieveResponse</a></code>
+- <code title="get /chats/{chat_id}/messages">client.chats.messages.<a href="./src/asktable/resources/chats/messages.py">list</a>(chat_id, \*\*<a href="src/asktable/types/chats/message_list_params.py">params</a>) -> <a href="./src/asktable/types/chats/message_list_response.py">SyncPage[MessageListResponse]</a></code>
+- <code title="post /chats/{chat_id}/messages">client.chats.messages.<a href="./src/asktable/resources/chats/messages.py">send_message</a>(chat_id, \*\*<a href="src/asktable/types/chats/message_send_message_params.py">params</a>) -> <a href="./src/asktable/types/chats/message_send_message_response.py">MessageSendMessageResponse</a></code>
 
 # Datasources
 
