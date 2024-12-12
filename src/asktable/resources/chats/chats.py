@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
+from typing import Any, Dict, Union, Optional, cast
 
 import httpx
 
@@ -31,7 +31,7 @@ from ..._response import (
 from ...pagination import SyncPage, AsyncPage
 from ...types.chat import Chat
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.message import Message
+from ...types.chat_send_message_response import ChatSendMessageResponse
 
 __all__ = ["ChatsResource", "AsyncChatsResource"]
 
@@ -242,7 +242,7 @@ class ChatsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Message:
+    ) -> ChatSendMessageResponse:
         """
         发消息
 
@@ -257,16 +257,21 @@ class ChatsResource(SyncAPIResource):
         """
         if not chat_id:
             raise ValueError(f"Expected a non-empty value for `chat_id` but received {chat_id!r}")
-        return self._post(
-            f"/chats/{chat_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform({"question": question}, chat_send_message_params.ChatSendMessageParams),
+        return cast(
+            ChatSendMessageResponse,
+            self._post(
+                f"/chats/{chat_id}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=maybe_transform({"question": question}, chat_send_message_params.ChatSendMessageParams),
+                ),
+                cast_to=cast(
+                    Any, ChatSendMessageResponse
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=Message,
         )
 
 
@@ -476,7 +481,7 @@ class AsyncChatsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Message:
+    ) -> ChatSendMessageResponse:
         """
         发消息
 
@@ -491,18 +496,23 @@ class AsyncChatsResource(AsyncAPIResource):
         """
         if not chat_id:
             raise ValueError(f"Expected a non-empty value for `chat_id` but received {chat_id!r}")
-        return await self._post(
-            f"/chats/{chat_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {"question": question}, chat_send_message_params.ChatSendMessageParams
+        return cast(
+            ChatSendMessageResponse,
+            await self._post(
+                f"/chats/{chat_id}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=await async_maybe_transform(
+                        {"question": question}, chat_send_message_params.ChatSendMessageParams
+                    ),
                 ),
+                cast_to=cast(
+                    Any, ChatSendMessageResponse
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=Message,
         )
 
 

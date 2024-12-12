@@ -10,7 +10,6 @@ from .index import Index as Index
 from .extapi import Extapi as Extapi
 from .shared import Policy as Policy
 from .chatbot import Chatbot as Chatbot
-from .message import Message as Message
 from .datasource import Datasource as Datasource
 from .secure_tunnel import SecureTunnel as SecureTunnel
 from .bot_list_params import BotListParams as BotListParams
@@ -38,6 +37,7 @@ from .datasource_update_params import DatasourceUpdateParams as DatasourceUpdate
 from .securetunnel_list_params import SecuretunnelListParams as SecuretunnelListParams
 from .role_get_polices_response import RoleGetPolicesResponse as RoleGetPolicesResponse
 from .role_get_variables_params import RoleGetVariablesParams as RoleGetVariablesParams
+from .chat_send_message_response import ChatSendMessageResponse as ChatSendMessageResponse
 from .securetunnel_create_params import SecuretunnelCreateParams as SecuretunnelCreateParams
 from .securetunnel_update_params import SecuretunnelUpdateParams as SecuretunnelUpdateParams
 from .business_glossary_list_params import BusinessGlossaryListParams as BusinessGlossaryListParams
