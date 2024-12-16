@@ -1,5 +1,24 @@
 # Changelog
 
+## 3.7.0 (2024-12-16)
+
+Full Changelog: [v3.6.0...v3.7.0](https://github.com/DataMini/asktable-python/compare/v3.6.0...v3.7.0)
+
+### Features
+
+* **api:** api update ([#66](https://github.com/DataMini/asktable-python/issues/66)) ([6594f10](https://github.com/DataMini/asktable-python/commit/6594f1034b276bb3001540d114d02267c1794b6e))
+* **api:** api update ([#68](https://github.com/DataMini/asktable-python/issues/68)) ([5fe3dcb](https://github.com/DataMini/asktable-python/commit/5fe3dcb932fd23f19b086540e9fa9153da05760b))
+* **api:** api update ([#73](https://github.com/DataMini/asktable-python/issues/73)) ([76b3810](https://github.com/DataMini/asktable-python/commit/76b3810c6f74f12314041abff16e09052f2fa515))
+* **api:** manual updates ([#74](https://github.com/DataMini/asktable-python/issues/74)) ([2735ed4](https://github.com/DataMini/asktable-python/commit/2735ed4040e9b0d9adc0b46bc6cd9330269b8787))
+
+
+### Chores
+
+* **internal:** add support for TypeAliasType ([#70](https://github.com/DataMini/asktable-python/issues/70)) ([c0046ed](https://github.com/DataMini/asktable-python/commit/c0046ed398c750087a03659a92a10240e32d0829))
+* **internal:** bump pyright ([#69](https://github.com/DataMini/asktable-python/issues/69)) ([3bd5327](https://github.com/DataMini/asktable-python/commit/3bd5327773c10649284d0e95c55d9ba4a06c0ee4))
+* **internal:** codegen related update ([#71](https://github.com/DataMini/asktable-python/issues/71)) ([ef36085](https://github.com/DataMini/asktable-python/commit/ef3608545a5e58e405226176a907dab1b73fc9fd))
+* **internal:** codegen related update ([#72](https://github.com/DataMini/asktable-python/issues/72)) ([6a363c3](https://github.com/DataMini/asktable-python/commit/6a363c3cf0964cf648422dd06a13fb4fa7d98808))
+
 ## 3.6.0 (2024-12-10)
 
 Full Changelog: [v3.5.0...v3.6.0](https://github.com/DataMini/asktable-python/compare/v3.5.0...v3.6.0)
