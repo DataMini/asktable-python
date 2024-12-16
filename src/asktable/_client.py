@@ -59,6 +59,9 @@ class Asktable(SyncAPIClient):
     caches: resources.CachesResource
     integration: resources.IntegrationResource
     business_glossary: resources.BusinessGlossaryResource
+    preferences: resources.PreferencesResource
+    trainings: resources.TrainingsResource
+    scores: resources.ScoresResource
     with_raw_response: AsktableWithRawResponse
     with_streaming_response: AsktableWithStreamedResponse
 
@@ -129,6 +132,9 @@ class Asktable(SyncAPIClient):
         self.caches = resources.CachesResource(self)
         self.integration = resources.IntegrationResource(self)
         self.business_glossary = resources.BusinessGlossaryResource(self)
+        self.preferences = resources.PreferencesResource(self)
+        self.trainings = resources.TrainingsResource(self)
+        self.scores = resources.ScoresResource(self)
         self.with_raw_response = AsktableWithRawResponse(self)
         self.with_streaming_response = AsktableWithStreamedResponse(self)
 
@@ -251,6 +257,9 @@ class AsyncAsktable(AsyncAPIClient):
     caches: resources.AsyncCachesResource
     integration: resources.AsyncIntegrationResource
     business_glossary: resources.AsyncBusinessGlossaryResource
+    preferences: resources.AsyncPreferencesResource
+    trainings: resources.AsyncTrainingsResource
+    scores: resources.AsyncScoresResource
     with_raw_response: AsyncAsktableWithRawResponse
     with_streaming_response: AsyncAsktableWithStreamedResponse
 
@@ -321,6 +330,9 @@ class AsyncAsktable(AsyncAPIClient):
         self.caches = resources.AsyncCachesResource(self)
         self.integration = resources.AsyncIntegrationResource(self)
         self.business_glossary = resources.AsyncBusinessGlossaryResource(self)
+        self.preferences = resources.AsyncPreferencesResource(self)
+        self.trainings = resources.AsyncTrainingsResource(self)
+        self.scores = resources.AsyncScoresResource(self)
         self.with_raw_response = AsyncAsktableWithRawResponse(self)
         self.with_streaming_response = AsyncAsktableWithStreamedResponse(self)
 
@@ -444,6 +456,9 @@ class AsktableWithRawResponse:
         self.caches = resources.CachesResourceWithRawResponse(client.caches)
         self.integration = resources.IntegrationResourceWithRawResponse(client.integration)
         self.business_glossary = resources.BusinessGlossaryResourceWithRawResponse(client.business_glossary)
+        self.preferences = resources.PreferencesResourceWithRawResponse(client.preferences)
+        self.trainings = resources.TrainingsResourceWithRawResponse(client.trainings)
+        self.scores = resources.ScoresResourceWithRawResponse(client.scores)
 
 
 class AsyncAsktableWithRawResponse:
@@ -461,6 +476,9 @@ class AsyncAsktableWithRawResponse:
         self.caches = resources.AsyncCachesResourceWithRawResponse(client.caches)
         self.integration = resources.AsyncIntegrationResourceWithRawResponse(client.integration)
         self.business_glossary = resources.AsyncBusinessGlossaryResourceWithRawResponse(client.business_glossary)
+        self.preferences = resources.AsyncPreferencesResourceWithRawResponse(client.preferences)
+        self.trainings = resources.AsyncTrainingsResourceWithRawResponse(client.trainings)
+        self.scores = resources.AsyncScoresResourceWithRawResponse(client.scores)
 
 
 class AsktableWithStreamedResponse:
@@ -478,6 +496,9 @@ class AsktableWithStreamedResponse:
         self.caches = resources.CachesResourceWithStreamingResponse(client.caches)
         self.integration = resources.IntegrationResourceWithStreamingResponse(client.integration)
         self.business_glossary = resources.BusinessGlossaryResourceWithStreamingResponse(client.business_glossary)
+        self.preferences = resources.PreferencesResourceWithStreamingResponse(client.preferences)
+        self.trainings = resources.TrainingsResourceWithStreamingResponse(client.trainings)
+        self.scores = resources.ScoresResourceWithStreamingResponse(client.scores)
 
 
 class AsyncAsktableWithStreamedResponse:
@@ -495,6 +516,9 @@ class AsyncAsktableWithStreamedResponse:
         self.caches = resources.AsyncCachesResourceWithStreamingResponse(client.caches)
         self.integration = resources.AsyncIntegrationResourceWithStreamingResponse(client.integration)
         self.business_glossary = resources.AsyncBusinessGlossaryResourceWithStreamingResponse(client.business_glossary)
+        self.preferences = resources.AsyncPreferencesResourceWithStreamingResponse(client.preferences)
+        self.trainings = resources.AsyncTrainingsResourceWithStreamingResponse(client.trainings)
+        self.scores = resources.AsyncScoresResourceWithStreamingResponse(client.scores)
 
 
 Client = Asktable
