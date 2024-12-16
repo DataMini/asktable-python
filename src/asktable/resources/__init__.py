@@ -48,6 +48,14 @@ from .caches import (
     CachesResourceWithStreamingResponse,
     AsyncCachesResourceWithStreamingResponse,
 )
+from .scores import (
+    ScoresResource,
+    AsyncScoresResource,
+    ScoresResourceWithRawResponse,
+    AsyncScoresResourceWithRawResponse,
+    ScoresResourceWithStreamingResponse,
+    AsyncScoresResourceWithStreamingResponse,
+)
 from .extapis import (
     ExtapisResource,
     AsyncExtapisResource,
@@ -64,6 +72,14 @@ from .policies import (
     PoliciesResourceWithStreamingResponse,
     AsyncPoliciesResourceWithStreamingResponse,
 )
+from .trainings import (
+    TrainingsResource,
+    AsyncTrainingsResource,
+    TrainingsResourceWithRawResponse,
+    AsyncTrainingsResourceWithRawResponse,
+    TrainingsResourceWithStreamingResponse,
+    AsyncTrainingsResourceWithStreamingResponse,
+)
 from .datasources import (
     DatasourcesResource,
     AsyncDatasourcesResource,
@@ -79,6 +95,14 @@ from .integration import (
     AsyncIntegrationResourceWithRawResponse,
     IntegrationResourceWithStreamingResponse,
     AsyncIntegrationResourceWithStreamingResponse,
+)
+from .preferences import (
+    PreferencesResource,
+    AsyncPreferencesResource,
+    PreferencesResourceWithRawResponse,
+    AsyncPreferencesResourceWithRawResponse,
+    PreferencesResourceWithStreamingResponse,
+    AsyncPreferencesResourceWithStreamingResponse,
 )
 from .single_turn import (
     SingleTurnResource,
@@ -184,4 +208,22 @@ __all__ = [
     "AsyncBusinessGlossaryResourceWithRawResponse",
     "BusinessGlossaryResourceWithStreamingResponse",
     "AsyncBusinessGlossaryResourceWithStreamingResponse",
+    "PreferencesResource",
+    "AsyncPreferencesResource",
+    "PreferencesResourceWithRawResponse",
+    "AsyncPreferencesResourceWithRawResponse",
+    "PreferencesResourceWithStreamingResponse",
+    "AsyncPreferencesResourceWithStreamingResponse",
+    "TrainingsResource",
+    "AsyncTrainingsResource",
+    "TrainingsResourceWithRawResponse",
+    "AsyncTrainingsResourceWithRawResponse",
+    "TrainingsResourceWithStreamingResponse",
+    "AsyncTrainingsResourceWithStreamingResponse",
+    "ScoresResource",
+    "AsyncScoresResource",
+    "ScoresResourceWithRawResponse",
+    "AsyncScoresResourceWithRawResponse",
+    "ScoresResourceWithStreamingResponse",
+    "AsyncScoresResourceWithStreamingResponse",
 ]

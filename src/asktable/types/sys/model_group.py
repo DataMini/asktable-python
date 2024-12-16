@@ -8,12 +8,6 @@ __all__ = ["ModelGroup"]
 
 
 class ModelGroup(BaseModel):
-    id: str
-    """模型组 ID"""
-
-    agent_model: str
-    """Agent 模型"""
-
     image_models: List[str]
     """图像模型列表"""
 
