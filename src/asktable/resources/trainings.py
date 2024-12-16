@@ -2,69 +2,70 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
+from typing import Iterable
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
+from ..types import training_list_params, training_create_params, training_delete_params
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._utils import (
     maybe_transform,
     async_maybe_transform,
 )
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
+from .._compat import cached_property
+from .._resource import SyncAPIResource, AsyncAPIResource
+from .._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncPage, AsyncPage
-from ...types.chats import message_list_params, message_send_message_params
-from ..._base_client import AsyncPaginator, make_request_options
-from ...types.chats.message_list_response import MessageListResponse
-from ...types.chats.message_retrieve_response import MessageRetrieveResponse
-from ...types.chats.message_send_message_response import MessageSendMessageResponse
+from ..pagination import SyncPage, AsyncPage
+from .._base_client import AsyncPaginator, make_request_options
+from ..types.training_list_response import TrainingListResponse
+from ..types.training_create_response import TrainingCreateResponse
 
-__all__ = ["MessagesResource", "AsyncMessagesResource"]
+__all__ = ["TrainingsResource", "AsyncTrainingsResource"]
 
 
-class MessagesResource(SyncAPIResource):
+class TrainingsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> MessagesResourceWithRawResponse:
+    def with_raw_response(self) -> TrainingsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return the
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/DataMini/asktable-python#accessing-raw-response-data-eg-headers
         """
-        return MessagesResourceWithRawResponse(self)
+        return TrainingsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> MessagesResourceWithStreamingResponse:
+    def with_streaming_response(self) -> TrainingsResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/DataMini/asktable-python#with_streaming_response
         """
-        return MessagesResourceWithStreamingResponse(self)
+        return TrainingsResourceWithStreamingResponse(self)
 
-    def retrieve(
+    def create(
         self,
-        message_id: str,
         *,
-        chat_id: str,
+        datasource_id: str,
+        body: Iterable[training_create_params.Body],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MessageRetrieveResponse:
+    ) -> TrainingCreateResponse:
         """
-        查询某条消息
+        Create Training Pair
 
         Args:
+          datasource_id: 数据源 ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -73,27 +74,23 @@ class MessagesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not chat_id:
-            raise ValueError(f"Expected a non-empty value for `chat_id` but received {chat_id!r}")
-        if not message_id:
-            raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
-        return cast(
-            MessageRetrieveResponse,
-            self._get(
-                f"/chats/{chat_id}/messages/{message_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-                ),
-                cast_to=cast(
-                    Any, MessageRetrieveResponse
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._post(
+            "/training",
+            body=maybe_transform(body, Iterable[training_create_params.Body]),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"datasource_id": datasource_id}, training_create_params.TrainingCreateParams),
             ),
+            cast_to=TrainingCreateResponse,
         )
 
     def list(
         self,
-        chat_id: str,
         *,
+        datasource_id: str,
         page: int | NotGiven = NOT_GIVEN,
         size: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -102,11 +99,13 @@ class MessagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncPage[MessageListResponse]:
+    ) -> SyncPage[TrainingListResponse]:
         """
-        查询所有的消息
+        Get Training Pairs
 
         Args:
+          datasource_id: 数据源 ID
+
           page: Page number
 
           size: Page size
@@ -119,11 +118,9 @@ class MessagesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not chat_id:
-            raise ValueError(f"Expected a non-empty value for `chat_id` but received {chat_id!r}")
         return self._get_api_list(
-            f"/chats/{chat_id}/messages",
-            page=SyncPage[MessageListResponse],
+            "/training",
+            page=SyncPage[TrainingListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -131,31 +128,34 @@ class MessagesResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "datasource_id": datasource_id,
                         "page": page,
                         "size": size,
                     },
-                    message_list_params.MessageListParams,
+                    training_list_params.TrainingListParams,
                 ),
             ),
-            model=cast(Any, MessageListResponse),  # Union types cannot be passed in as arguments in the type system
+            model=TrainingListResponse,
         )
 
-    def send_message(
+    def delete(
         self,
-        chat_id: str,
+        id: str,
         *,
-        question: str,
+        datasource_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MessageSendMessageResponse:
+    ) -> object:
         """
-        发消息
+        Delete Training Pair
 
         Args:
+          datasource_id: 数据源 ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -164,62 +164,59 @@ class MessagesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not chat_id:
-            raise ValueError(f"Expected a non-empty value for `chat_id` but received {chat_id!r}")
-        return cast(
-            MessageSendMessageResponse,
-            self._post(
-                f"/chats/{chat_id}/messages",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    query=maybe_transform({"question": question}, message_send_message_params.MessageSendMessageParams),
-                ),
-                cast_to=cast(
-                    Any, MessageSendMessageResponse
-                ),  # Union types cannot be passed in as arguments in the type system
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._delete(
+            f"/training/{id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"datasource_id": datasource_id}, training_delete_params.TrainingDeleteParams),
             ),
+            cast_to=object,
         )
 
 
-class AsyncMessagesResource(AsyncAPIResource):
+class AsyncTrainingsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncMessagesResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncTrainingsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return the
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/DataMini/asktable-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncMessagesResourceWithRawResponse(self)
+        return AsyncTrainingsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncMessagesResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncTrainingsResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/DataMini/asktable-python#with_streaming_response
         """
-        return AsyncMessagesResourceWithStreamingResponse(self)
+        return AsyncTrainingsResourceWithStreamingResponse(self)
 
-    async def retrieve(
+    async def create(
         self,
-        message_id: str,
         *,
-        chat_id: str,
+        datasource_id: str,
+        body: Iterable[training_create_params.Body],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MessageRetrieveResponse:
+    ) -> TrainingCreateResponse:
         """
-        查询某条消息
+        Create Training Pair
 
         Args:
+          datasource_id: 数据源 ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -228,27 +225,25 @@ class AsyncMessagesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not chat_id:
-            raise ValueError(f"Expected a non-empty value for `chat_id` but received {chat_id!r}")
-        if not message_id:
-            raise ValueError(f"Expected a non-empty value for `message_id` but received {message_id!r}")
-        return cast(
-            MessageRetrieveResponse,
-            await self._get(
-                f"/chats/{chat_id}/messages/{message_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+        return await self._post(
+            "/training",
+            body=await async_maybe_transform(body, Iterable[training_create_params.Body]),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"datasource_id": datasource_id}, training_create_params.TrainingCreateParams
                 ),
-                cast_to=cast(
-                    Any, MessageRetrieveResponse
-                ),  # Union types cannot be passed in as arguments in the type system
             ),
+            cast_to=TrainingCreateResponse,
         )
 
     def list(
         self,
-        chat_id: str,
         *,
+        datasource_id: str,
         page: int | NotGiven = NOT_GIVEN,
         size: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -257,11 +252,13 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[MessageListResponse, AsyncPage[MessageListResponse]]:
+    ) -> AsyncPaginator[TrainingListResponse, AsyncPage[TrainingListResponse]]:
         """
-        查询所有的消息
+        Get Training Pairs
 
         Args:
+          datasource_id: 数据源 ID
+
           page: Page number
 
           size: Page size
@@ -274,11 +271,9 @@ class AsyncMessagesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not chat_id:
-            raise ValueError(f"Expected a non-empty value for `chat_id` but received {chat_id!r}")
         return self._get_api_list(
-            f"/chats/{chat_id}/messages",
-            page=AsyncPage[MessageListResponse],
+            "/training",
+            page=AsyncPage[TrainingListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -286,31 +281,34 @@ class AsyncMessagesResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "datasource_id": datasource_id,
                         "page": page,
                         "size": size,
                     },
-                    message_list_params.MessageListParams,
+                    training_list_params.TrainingListParams,
                 ),
             ),
-            model=cast(Any, MessageListResponse),  # Union types cannot be passed in as arguments in the type system
+            model=TrainingListResponse,
         )
 
-    async def send_message(
+    async def delete(
         self,
-        chat_id: str,
+        id: str,
         *,
-        question: str,
+        datasource_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MessageSendMessageResponse:
+    ) -> object:
         """
-        发消息
+        Delete Training Pair
 
         Args:
+          datasource_id: 数据源 ID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -319,83 +317,78 @@ class AsyncMessagesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not chat_id:
-            raise ValueError(f"Expected a non-empty value for `chat_id` but received {chat_id!r}")
-        return cast(
-            MessageSendMessageResponse,
-            await self._post(
-                f"/chats/{chat_id}/messages",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    query=await async_maybe_transform(
-                        {"question": question}, message_send_message_params.MessageSendMessageParams
-                    ),
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._delete(
+            f"/training/{id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"datasource_id": datasource_id}, training_delete_params.TrainingDeleteParams
                 ),
-                cast_to=cast(
-                    Any, MessageSendMessageResponse
-                ),  # Union types cannot be passed in as arguments in the type system
             ),
+            cast_to=object,
         )
 
 
-class MessagesResourceWithRawResponse:
-    def __init__(self, messages: MessagesResource) -> None:
-        self._messages = messages
+class TrainingsResourceWithRawResponse:
+    def __init__(self, trainings: TrainingsResource) -> None:
+        self._trainings = trainings
 
-        self.retrieve = to_raw_response_wrapper(
-            messages.retrieve,
+        self.create = to_raw_response_wrapper(
+            trainings.create,
         )
         self.list = to_raw_response_wrapper(
-            messages.list,
+            trainings.list,
         )
-        self.send_message = to_raw_response_wrapper(
-            messages.send_message,
+        self.delete = to_raw_response_wrapper(
+            trainings.delete,
         )
 
 
-class AsyncMessagesResourceWithRawResponse:
-    def __init__(self, messages: AsyncMessagesResource) -> None:
-        self._messages = messages
+class AsyncTrainingsResourceWithRawResponse:
+    def __init__(self, trainings: AsyncTrainingsResource) -> None:
+        self._trainings = trainings
 
-        self.retrieve = async_to_raw_response_wrapper(
-            messages.retrieve,
+        self.create = async_to_raw_response_wrapper(
+            trainings.create,
         )
         self.list = async_to_raw_response_wrapper(
-            messages.list,
+            trainings.list,
         )
-        self.send_message = async_to_raw_response_wrapper(
-            messages.send_message,
+        self.delete = async_to_raw_response_wrapper(
+            trainings.delete,
         )
 
 
-class MessagesResourceWithStreamingResponse:
-    def __init__(self, messages: MessagesResource) -> None:
-        self._messages = messages
+class TrainingsResourceWithStreamingResponse:
+    def __init__(self, trainings: TrainingsResource) -> None:
+        self._trainings = trainings
 
-        self.retrieve = to_streamed_response_wrapper(
-            messages.retrieve,
+        self.create = to_streamed_response_wrapper(
+            trainings.create,
         )
         self.list = to_streamed_response_wrapper(
-            messages.list,
+            trainings.list,
         )
-        self.send_message = to_streamed_response_wrapper(
-            messages.send_message,
+        self.delete = to_streamed_response_wrapper(
+            trainings.delete,
         )
 
 
-class AsyncMessagesResourceWithStreamingResponse:
-    def __init__(self, messages: AsyncMessagesResource) -> None:
-        self._messages = messages
+class AsyncTrainingsResourceWithStreamingResponse:
+    def __init__(self, trainings: AsyncTrainingsResource) -> None:
+        self._trainings = trainings
 
-        self.retrieve = async_to_streamed_response_wrapper(
-            messages.retrieve,
+        self.create = async_to_streamed_response_wrapper(
+            trainings.create,
         )
         self.list = async_to_streamed_response_wrapper(
-            messages.list,
+            trainings.list,
         )
-        self.send_message = async_to_streamed_response_wrapper(
-            messages.send_message,
+        self.delete = async_to_streamed_response_wrapper(
+            trainings.delete,
         )

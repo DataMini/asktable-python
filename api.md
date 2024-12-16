@@ -103,7 +103,7 @@ Methods:
 Types:
 
 ```python
-from asktable.types import Chat, Message
+from asktable.types import AIMessage, Chat, ToolMessage, UserMessage, ChatSendMessageResponse
 ```
 
 Methods:
@@ -112,15 +112,25 @@ Methods:
 - <code title="get /chats/{chat_id}">client.chats.<a href="./src/asktable/resources/chats/chats.py">retrieve</a>(chat_id) -> <a href="./src/asktable/types/chat.py">Chat</a></code>
 - <code title="get /chats">client.chats.<a href="./src/asktable/resources/chats/chats.py">list</a>(\*\*<a href="src/asktable/types/chat_list_params.py">params</a>) -> <a href="./src/asktable/types/chat.py">SyncPage[Chat]</a></code>
 - <code title="delete /chats/{chat_id}">client.chats.<a href="./src/asktable/resources/chats/chats.py">delete</a>(chat_id) -> None</code>
-- <code title="post /chats/{chat_id}">client.chats.<a href="./src/asktable/resources/chats/chats.py">send_message</a>(chat_id, \*\*<a href="src/asktable/types/chat_send_message_params.py">params</a>) -> <a href="./src/asktable/types/message.py">Message</a></code>
+- <code title="post /chats/{chat_id}">client.chats.<a href="./src/asktable/resources/chats/chats.py">send_message</a>(chat_id, \*\*<a href="src/asktable/types/chat_send_message_params.py">params</a>) -> <a href="./src/asktable/types/chat_send_message_response.py">ChatSendMessageResponse</a></code>
 
 ## Messages
 
+Types:
+
+```python
+from asktable.types.chats import (
+    MessageRetrieveResponse,
+    MessageListResponse,
+    MessageSendMessageResponse,
+)
+```
+
 Methods:
 
-- <code title="get /chats/{chat_id}/messages/{message_id}">client.chats.messages.<a href="./src/asktable/resources/chats/messages.py">retrieve</a>(message_id, \*, chat_id) -> <a href="./src/asktable/types/message.py">Message</a></code>
-- <code title="get /chats/{chat_id}/messages">client.chats.messages.<a href="./src/asktable/resources/chats/messages.py">list</a>(chat_id, \*\*<a href="src/asktable/types/chats/message_list_params.py">params</a>) -> <a href="./src/asktable/types/message.py">SyncPage[Message]</a></code>
-- <code title="post /chats/{chat_id}/messages">client.chats.messages.<a href="./src/asktable/resources/chats/messages.py">send_message</a>(chat_id, \*\*<a href="src/asktable/types/chats/message_send_message_params.py">params</a>) -> <a href="./src/asktable/types/message.py">Message</a></code>
+- <code title="get /chats/{chat_id}/messages/{message_id}">client.chats.messages.<a href="./src/asktable/resources/chats/messages.py">retrieve</a>(message_id, \*, chat_id) -> <a href="./src/asktable/types/chats/message_retrieve_response.py">MessageRetrieveResponse</a></code>
+- <code title="get /chats/{chat_id}/messages">client.chats.messages.<a href="./src/asktable/resources/chats/messages.py">list</a>(chat_id, \*\*<a href="src/asktable/types/chats/message_list_params.py">params</a>) -> <a href="./src/asktable/types/chats/message_list_response.py">SyncPage[MessageListResponse]</a></code>
+- <code title="post /chats/{chat_id}/messages">client.chats.messages.<a href="./src/asktable/resources/chats/messages.py">send_message</a>(chat_id, \*\*<a href="src/asktable/types/chats/message_send_message_params.py">params</a>) -> <a href="./src/asktable/types/chats/message_send_message_response.py">MessageSendMessageResponse</a></code>
 
 # Datasources
 
@@ -320,5 +330,51 @@ Methods:
 - <code title="post /business-glossary">client.business_glossary.<a href="./src/asktable/resources/business_glossary.py">create</a>(\*\*<a href="src/asktable/types/business_glossary_create_params.py">params</a>) -> <a href="./src/asktable/types/business_glossary_create_response.py">BusinessGlossaryCreateResponse</a></code>
 - <code title="get /business-glossary/{entry_id}">client.business_glossary.<a href="./src/asktable/resources/business_glossary.py">retrieve</a>(entry_id) -> <a href="./src/asktable/types/entry_with_definition.py">EntryWithDefinition</a></code>
 - <code title="patch /business-glossary/{entry_id}">client.business_glossary.<a href="./src/asktable/resources/business_glossary.py">update</a>(entry_id, \*\*<a href="src/asktable/types/business_glossary_update_params.py">params</a>) -> <a href="./src/asktable/types/entry.py">Entry</a></code>
-- <code title="get /business-glossary">client.business_glossary.<a href="./src/asktable/resources/business_glossary.py">list</a>(\*\*<a href="src/asktable/types/business_glossary_list_params.py">params</a>) -> <a href="./src/asktable/types/entry.py">SyncPage[Entry]</a></code>
+- <code title="get /business-glossary">client.business_glossary.<a href="./src/asktable/resources/business_glossary.py">list</a>(\*\*<a href="src/asktable/types/business_glossary_list_params.py">params</a>) -> <a href="./src/asktable/types/entry_with_definition.py">SyncPage[EntryWithDefinition]</a></code>
 - <code title="delete /business-glossary/{entry_id}">client.business_glossary.<a href="./src/asktable/resources/business_glossary.py">delete</a>(entry_id) -> <a href="./src/asktable/types/business_glossary_delete_response.py">object</a></code>
+
+# Preferences
+
+Types:
+
+```python
+from asktable.types import (
+    PreferenceCreateResponse,
+    PreferenceRetrieveResponse,
+    PreferenceUpdateResponse,
+    PreferenceDeleteResponse,
+)
+```
+
+Methods:
+
+- <code title="post /preference">client.preferences.<a href="./src/asktable/resources/preferences.py">create</a>(\*\*<a href="src/asktable/types/preference_create_params.py">params</a>) -> <a href="./src/asktable/types/preference_create_response.py">PreferenceCreateResponse</a></code>
+- <code title="get /preference">client.preferences.<a href="./src/asktable/resources/preferences.py">retrieve</a>() -> <a href="./src/asktable/types/preference_retrieve_response.py">PreferenceRetrieveResponse</a></code>
+- <code title="patch /preference">client.preferences.<a href="./src/asktable/resources/preferences.py">update</a>(\*\*<a href="src/asktable/types/preference_update_params.py">params</a>) -> <a href="./src/asktable/types/preference_update_response.py">PreferenceUpdateResponse</a></code>
+- <code title="delete /preference">client.preferences.<a href="./src/asktable/resources/preferences.py">delete</a>() -> <a href="./src/asktable/types/preference_delete_response.py">object</a></code>
+
+# Trainings
+
+Types:
+
+```python
+from asktable.types import TrainingCreateResponse, TrainingListResponse, TrainingDeleteResponse
+```
+
+Methods:
+
+- <code title="post /training">client.trainings.<a href="./src/asktable/resources/trainings.py">create</a>(\*\*<a href="src/asktable/types/training_create_params.py">params</a>) -> <a href="./src/asktable/types/training_create_response.py">TrainingCreateResponse</a></code>
+- <code title="get /training">client.trainings.<a href="./src/asktable/resources/trainings.py">list</a>(\*\*<a href="src/asktable/types/training_list_params.py">params</a>) -> <a href="./src/asktable/types/training_list_response.py">SyncPage[TrainingListResponse]</a></code>
+- <code title="delete /training/{id}">client.trainings.<a href="./src/asktable/resources/trainings.py">delete</a>(id, \*\*<a href="src/asktable/types/training_delete_params.py">params</a>) -> <a href="./src/asktable/types/training_delete_response.py">object</a></code>
+
+# Scores
+
+Types:
+
+```python
+from asktable.types import ScoreCreateResponse
+```
+
+Methods:
+
+- <code title="post /score">client.scores.<a href="./src/asktable/resources/scores.py">create</a>(\*\*<a href="src/asktable/types/score_create_params.py">params</a>) -> <a href="./src/asktable/types/score_create_response.py">ScoreCreateResponse</a></code>
