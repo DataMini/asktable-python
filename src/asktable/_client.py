@@ -8,7 +8,7 @@ from typing_extensions import Self, override
 
 import httpx
 
-from . import resources, _exceptions
+from . import _exceptions
 from ._qs import Querystring
 from ._types import (
     NOT_GIVEN,
@@ -24,6 +24,19 @@ from ._utils import (
     get_async_library,
 )
 from ._version import __version__
+from .resources import (
+    auth,
+    bots,
+    roles,
+    caches,
+    scores,
+    policies,
+    trainings,
+    integration,
+    preferences,
+    securetunnels,
+    business_glossary,
+)
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import AsktableError, APIStatusError
 from ._base_client import (
@@ -31,13 +44,17 @@ from ._base_client import (
     SyncAPIClient,
     AsyncAPIClient,
 )
+from .resources.sys import sys
+from .resources.chats import chats
+from .resources.extapis import extapis
+from .resources.datasources import datasources
+from .resources.single_turn import single_turn
 
 __all__ = [
     "Timeout",
     "Transport",
     "ProxiesTypes",
     "RequestOptions",
-    "resources",
     "Asktable",
     "AsyncAsktable",
     "Client",
@@ -46,22 +63,22 @@ __all__ = [
 
 
 class Asktable(SyncAPIClient):
-    sys: resources.SysResource
-    securetunnels: resources.SecuretunnelsResource
-    roles: resources.RolesResource
-    policies: resources.PoliciesResource
-    chats: resources.ChatsResource
-    datasources: resources.DatasourcesResource
-    bots: resources.BotsResource
-    extapis: resources.ExtapisResource
-    auth: resources.AuthResource
-    single_turn: resources.SingleTurnResource
-    caches: resources.CachesResource
-    integration: resources.IntegrationResource
-    business_glossary: resources.BusinessGlossaryResource
-    preferences: resources.PreferencesResource
-    trainings: resources.TrainingsResource
-    scores: resources.ScoresResource
+    sys: sys.SysResource
+    securetunnels: securetunnels.SecuretunnelsResource
+    roles: roles.RolesResource
+    policies: policies.PoliciesResource
+    chats: chats.ChatsResource
+    datasources: datasources.DatasourcesResource
+    bots: bots.BotsResource
+    extapis: extapis.ExtapisResource
+    auth: auth.AuthResource
+    single_turn: single_turn.SingleTurnResource
+    caches: caches.CachesResource
+    integration: integration.IntegrationResource
+    business_glossary: business_glossary.BusinessGlossaryResource
+    preferences: preferences.PreferencesResource
+    trainings: trainings.TrainingsResource
+    scores: scores.ScoresResource
     with_raw_response: AsktableWithRawResponse
     with_streaming_response: AsktableWithStreamedResponse
 
@@ -119,22 +136,22 @@ class Asktable(SyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.sys = resources.SysResource(self)
-        self.securetunnels = resources.SecuretunnelsResource(self)
-        self.roles = resources.RolesResource(self)
-        self.policies = resources.PoliciesResource(self)
-        self.chats = resources.ChatsResource(self)
-        self.datasources = resources.DatasourcesResource(self)
-        self.bots = resources.BotsResource(self)
-        self.extapis = resources.ExtapisResource(self)
-        self.auth = resources.AuthResource(self)
-        self.single_turn = resources.SingleTurnResource(self)
-        self.caches = resources.CachesResource(self)
-        self.integration = resources.IntegrationResource(self)
-        self.business_glossary = resources.BusinessGlossaryResource(self)
-        self.preferences = resources.PreferencesResource(self)
-        self.trainings = resources.TrainingsResource(self)
-        self.scores = resources.ScoresResource(self)
+        self.sys = sys.SysResource(self)
+        self.securetunnels = securetunnels.SecuretunnelsResource(self)
+        self.roles = roles.RolesResource(self)
+        self.policies = policies.PoliciesResource(self)
+        self.chats = chats.ChatsResource(self)
+        self.datasources = datasources.DatasourcesResource(self)
+        self.bots = bots.BotsResource(self)
+        self.extapis = extapis.ExtapisResource(self)
+        self.auth = auth.AuthResource(self)
+        self.single_turn = single_turn.SingleTurnResource(self)
+        self.caches = caches.CachesResource(self)
+        self.integration = integration.IntegrationResource(self)
+        self.business_glossary = business_glossary.BusinessGlossaryResource(self)
+        self.preferences = preferences.PreferencesResource(self)
+        self.trainings = trainings.TrainingsResource(self)
+        self.scores = scores.ScoresResource(self)
         self.with_raw_response = AsktableWithRawResponse(self)
         self.with_streaming_response = AsktableWithStreamedResponse(self)
 
@@ -244,22 +261,22 @@ class Asktable(SyncAPIClient):
 
 
 class AsyncAsktable(AsyncAPIClient):
-    sys: resources.AsyncSysResource
-    securetunnels: resources.AsyncSecuretunnelsResource
-    roles: resources.AsyncRolesResource
-    policies: resources.AsyncPoliciesResource
-    chats: resources.AsyncChatsResource
-    datasources: resources.AsyncDatasourcesResource
-    bots: resources.AsyncBotsResource
-    extapis: resources.AsyncExtapisResource
-    auth: resources.AsyncAuthResource
-    single_turn: resources.AsyncSingleTurnResource
-    caches: resources.AsyncCachesResource
-    integration: resources.AsyncIntegrationResource
-    business_glossary: resources.AsyncBusinessGlossaryResource
-    preferences: resources.AsyncPreferencesResource
-    trainings: resources.AsyncTrainingsResource
-    scores: resources.AsyncScoresResource
+    sys: sys.AsyncSysResource
+    securetunnels: securetunnels.AsyncSecuretunnelsResource
+    roles: roles.AsyncRolesResource
+    policies: policies.AsyncPoliciesResource
+    chats: chats.AsyncChatsResource
+    datasources: datasources.AsyncDatasourcesResource
+    bots: bots.AsyncBotsResource
+    extapis: extapis.AsyncExtapisResource
+    auth: auth.AsyncAuthResource
+    single_turn: single_turn.AsyncSingleTurnResource
+    caches: caches.AsyncCachesResource
+    integration: integration.AsyncIntegrationResource
+    business_glossary: business_glossary.AsyncBusinessGlossaryResource
+    preferences: preferences.AsyncPreferencesResource
+    trainings: trainings.AsyncTrainingsResource
+    scores: scores.AsyncScoresResource
     with_raw_response: AsyncAsktableWithRawResponse
     with_streaming_response: AsyncAsktableWithStreamedResponse
 
@@ -317,22 +334,22 @@ class AsyncAsktable(AsyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.sys = resources.AsyncSysResource(self)
-        self.securetunnels = resources.AsyncSecuretunnelsResource(self)
-        self.roles = resources.AsyncRolesResource(self)
-        self.policies = resources.AsyncPoliciesResource(self)
-        self.chats = resources.AsyncChatsResource(self)
-        self.datasources = resources.AsyncDatasourcesResource(self)
-        self.bots = resources.AsyncBotsResource(self)
-        self.extapis = resources.AsyncExtapisResource(self)
-        self.auth = resources.AsyncAuthResource(self)
-        self.single_turn = resources.AsyncSingleTurnResource(self)
-        self.caches = resources.AsyncCachesResource(self)
-        self.integration = resources.AsyncIntegrationResource(self)
-        self.business_glossary = resources.AsyncBusinessGlossaryResource(self)
-        self.preferences = resources.AsyncPreferencesResource(self)
-        self.trainings = resources.AsyncTrainingsResource(self)
-        self.scores = resources.AsyncScoresResource(self)
+        self.sys = sys.AsyncSysResource(self)
+        self.securetunnels = securetunnels.AsyncSecuretunnelsResource(self)
+        self.roles = roles.AsyncRolesResource(self)
+        self.policies = policies.AsyncPoliciesResource(self)
+        self.chats = chats.AsyncChatsResource(self)
+        self.datasources = datasources.AsyncDatasourcesResource(self)
+        self.bots = bots.AsyncBotsResource(self)
+        self.extapis = extapis.AsyncExtapisResource(self)
+        self.auth = auth.AsyncAuthResource(self)
+        self.single_turn = single_turn.AsyncSingleTurnResource(self)
+        self.caches = caches.AsyncCachesResource(self)
+        self.integration = integration.AsyncIntegrationResource(self)
+        self.business_glossary = business_glossary.AsyncBusinessGlossaryResource(self)
+        self.preferences = preferences.AsyncPreferencesResource(self)
+        self.trainings = trainings.AsyncTrainingsResource(self)
+        self.scores = scores.AsyncScoresResource(self)
         self.with_raw_response = AsyncAsktableWithRawResponse(self)
         self.with_streaming_response = AsyncAsktableWithStreamedResponse(self)
 
@@ -443,82 +460,88 @@ class AsyncAsktable(AsyncAPIClient):
 
 class AsktableWithRawResponse:
     def __init__(self, client: Asktable) -> None:
-        self.sys = resources.SysResourceWithRawResponse(client.sys)
-        self.securetunnels = resources.SecuretunnelsResourceWithRawResponse(client.securetunnels)
-        self.roles = resources.RolesResourceWithRawResponse(client.roles)
-        self.policies = resources.PoliciesResourceWithRawResponse(client.policies)
-        self.chats = resources.ChatsResourceWithRawResponse(client.chats)
-        self.datasources = resources.DatasourcesResourceWithRawResponse(client.datasources)
-        self.bots = resources.BotsResourceWithRawResponse(client.bots)
-        self.extapis = resources.ExtapisResourceWithRawResponse(client.extapis)
-        self.auth = resources.AuthResourceWithRawResponse(client.auth)
-        self.single_turn = resources.SingleTurnResourceWithRawResponse(client.single_turn)
-        self.caches = resources.CachesResourceWithRawResponse(client.caches)
-        self.integration = resources.IntegrationResourceWithRawResponse(client.integration)
-        self.business_glossary = resources.BusinessGlossaryResourceWithRawResponse(client.business_glossary)
-        self.preferences = resources.PreferencesResourceWithRawResponse(client.preferences)
-        self.trainings = resources.TrainingsResourceWithRawResponse(client.trainings)
-        self.scores = resources.ScoresResourceWithRawResponse(client.scores)
+        self.sys = sys.SysResourceWithRawResponse(client.sys)
+        self.securetunnels = securetunnels.SecuretunnelsResourceWithRawResponse(client.securetunnels)
+        self.roles = roles.RolesResourceWithRawResponse(client.roles)
+        self.policies = policies.PoliciesResourceWithRawResponse(client.policies)
+        self.chats = chats.ChatsResourceWithRawResponse(client.chats)
+        self.datasources = datasources.DatasourcesResourceWithRawResponse(client.datasources)
+        self.bots = bots.BotsResourceWithRawResponse(client.bots)
+        self.extapis = extapis.ExtapisResourceWithRawResponse(client.extapis)
+        self.auth = auth.AuthResourceWithRawResponse(client.auth)
+        self.single_turn = single_turn.SingleTurnResourceWithRawResponse(client.single_turn)
+        self.caches = caches.CachesResourceWithRawResponse(client.caches)
+        self.integration = integration.IntegrationResourceWithRawResponse(client.integration)
+        self.business_glossary = business_glossary.BusinessGlossaryResourceWithRawResponse(client.business_glossary)
+        self.preferences = preferences.PreferencesResourceWithRawResponse(client.preferences)
+        self.trainings = trainings.TrainingsResourceWithRawResponse(client.trainings)
+        self.scores = scores.ScoresResourceWithRawResponse(client.scores)
 
 
 class AsyncAsktableWithRawResponse:
     def __init__(self, client: AsyncAsktable) -> None:
-        self.sys = resources.AsyncSysResourceWithRawResponse(client.sys)
-        self.securetunnels = resources.AsyncSecuretunnelsResourceWithRawResponse(client.securetunnels)
-        self.roles = resources.AsyncRolesResourceWithRawResponse(client.roles)
-        self.policies = resources.AsyncPoliciesResourceWithRawResponse(client.policies)
-        self.chats = resources.AsyncChatsResourceWithRawResponse(client.chats)
-        self.datasources = resources.AsyncDatasourcesResourceWithRawResponse(client.datasources)
-        self.bots = resources.AsyncBotsResourceWithRawResponse(client.bots)
-        self.extapis = resources.AsyncExtapisResourceWithRawResponse(client.extapis)
-        self.auth = resources.AsyncAuthResourceWithRawResponse(client.auth)
-        self.single_turn = resources.AsyncSingleTurnResourceWithRawResponse(client.single_turn)
-        self.caches = resources.AsyncCachesResourceWithRawResponse(client.caches)
-        self.integration = resources.AsyncIntegrationResourceWithRawResponse(client.integration)
-        self.business_glossary = resources.AsyncBusinessGlossaryResourceWithRawResponse(client.business_glossary)
-        self.preferences = resources.AsyncPreferencesResourceWithRawResponse(client.preferences)
-        self.trainings = resources.AsyncTrainingsResourceWithRawResponse(client.trainings)
-        self.scores = resources.AsyncScoresResourceWithRawResponse(client.scores)
+        self.sys = sys.AsyncSysResourceWithRawResponse(client.sys)
+        self.securetunnels = securetunnels.AsyncSecuretunnelsResourceWithRawResponse(client.securetunnels)
+        self.roles = roles.AsyncRolesResourceWithRawResponse(client.roles)
+        self.policies = policies.AsyncPoliciesResourceWithRawResponse(client.policies)
+        self.chats = chats.AsyncChatsResourceWithRawResponse(client.chats)
+        self.datasources = datasources.AsyncDatasourcesResourceWithRawResponse(client.datasources)
+        self.bots = bots.AsyncBotsResourceWithRawResponse(client.bots)
+        self.extapis = extapis.AsyncExtapisResourceWithRawResponse(client.extapis)
+        self.auth = auth.AsyncAuthResourceWithRawResponse(client.auth)
+        self.single_turn = single_turn.AsyncSingleTurnResourceWithRawResponse(client.single_turn)
+        self.caches = caches.AsyncCachesResourceWithRawResponse(client.caches)
+        self.integration = integration.AsyncIntegrationResourceWithRawResponse(client.integration)
+        self.business_glossary = business_glossary.AsyncBusinessGlossaryResourceWithRawResponse(
+            client.business_glossary
+        )
+        self.preferences = preferences.AsyncPreferencesResourceWithRawResponse(client.preferences)
+        self.trainings = trainings.AsyncTrainingsResourceWithRawResponse(client.trainings)
+        self.scores = scores.AsyncScoresResourceWithRawResponse(client.scores)
 
 
 class AsktableWithStreamedResponse:
     def __init__(self, client: Asktable) -> None:
-        self.sys = resources.SysResourceWithStreamingResponse(client.sys)
-        self.securetunnels = resources.SecuretunnelsResourceWithStreamingResponse(client.securetunnels)
-        self.roles = resources.RolesResourceWithStreamingResponse(client.roles)
-        self.policies = resources.PoliciesResourceWithStreamingResponse(client.policies)
-        self.chats = resources.ChatsResourceWithStreamingResponse(client.chats)
-        self.datasources = resources.DatasourcesResourceWithStreamingResponse(client.datasources)
-        self.bots = resources.BotsResourceWithStreamingResponse(client.bots)
-        self.extapis = resources.ExtapisResourceWithStreamingResponse(client.extapis)
-        self.auth = resources.AuthResourceWithStreamingResponse(client.auth)
-        self.single_turn = resources.SingleTurnResourceWithStreamingResponse(client.single_turn)
-        self.caches = resources.CachesResourceWithStreamingResponse(client.caches)
-        self.integration = resources.IntegrationResourceWithStreamingResponse(client.integration)
-        self.business_glossary = resources.BusinessGlossaryResourceWithStreamingResponse(client.business_glossary)
-        self.preferences = resources.PreferencesResourceWithStreamingResponse(client.preferences)
-        self.trainings = resources.TrainingsResourceWithStreamingResponse(client.trainings)
-        self.scores = resources.ScoresResourceWithStreamingResponse(client.scores)
+        self.sys = sys.SysResourceWithStreamingResponse(client.sys)
+        self.securetunnels = securetunnels.SecuretunnelsResourceWithStreamingResponse(client.securetunnels)
+        self.roles = roles.RolesResourceWithStreamingResponse(client.roles)
+        self.policies = policies.PoliciesResourceWithStreamingResponse(client.policies)
+        self.chats = chats.ChatsResourceWithStreamingResponse(client.chats)
+        self.datasources = datasources.DatasourcesResourceWithStreamingResponse(client.datasources)
+        self.bots = bots.BotsResourceWithStreamingResponse(client.bots)
+        self.extapis = extapis.ExtapisResourceWithStreamingResponse(client.extapis)
+        self.auth = auth.AuthResourceWithStreamingResponse(client.auth)
+        self.single_turn = single_turn.SingleTurnResourceWithStreamingResponse(client.single_turn)
+        self.caches = caches.CachesResourceWithStreamingResponse(client.caches)
+        self.integration = integration.IntegrationResourceWithStreamingResponse(client.integration)
+        self.business_glossary = business_glossary.BusinessGlossaryResourceWithStreamingResponse(
+            client.business_glossary
+        )
+        self.preferences = preferences.PreferencesResourceWithStreamingResponse(client.preferences)
+        self.trainings = trainings.TrainingsResourceWithStreamingResponse(client.trainings)
+        self.scores = scores.ScoresResourceWithStreamingResponse(client.scores)
 
 
 class AsyncAsktableWithStreamedResponse:
     def __init__(self, client: AsyncAsktable) -> None:
-        self.sys = resources.AsyncSysResourceWithStreamingResponse(client.sys)
-        self.securetunnels = resources.AsyncSecuretunnelsResourceWithStreamingResponse(client.securetunnels)
-        self.roles = resources.AsyncRolesResourceWithStreamingResponse(client.roles)
-        self.policies = resources.AsyncPoliciesResourceWithStreamingResponse(client.policies)
-        self.chats = resources.AsyncChatsResourceWithStreamingResponse(client.chats)
-        self.datasources = resources.AsyncDatasourcesResourceWithStreamingResponse(client.datasources)
-        self.bots = resources.AsyncBotsResourceWithStreamingResponse(client.bots)
-        self.extapis = resources.AsyncExtapisResourceWithStreamingResponse(client.extapis)
-        self.auth = resources.AsyncAuthResourceWithStreamingResponse(client.auth)
-        self.single_turn = resources.AsyncSingleTurnResourceWithStreamingResponse(client.single_turn)
-        self.caches = resources.AsyncCachesResourceWithStreamingResponse(client.caches)
-        self.integration = resources.AsyncIntegrationResourceWithStreamingResponse(client.integration)
-        self.business_glossary = resources.AsyncBusinessGlossaryResourceWithStreamingResponse(client.business_glossary)
-        self.preferences = resources.AsyncPreferencesResourceWithStreamingResponse(client.preferences)
-        self.trainings = resources.AsyncTrainingsResourceWithStreamingResponse(client.trainings)
-        self.scores = resources.AsyncScoresResourceWithStreamingResponse(client.scores)
+        self.sys = sys.AsyncSysResourceWithStreamingResponse(client.sys)
+        self.securetunnels = securetunnels.AsyncSecuretunnelsResourceWithStreamingResponse(client.securetunnels)
+        self.roles = roles.AsyncRolesResourceWithStreamingResponse(client.roles)
+        self.policies = policies.AsyncPoliciesResourceWithStreamingResponse(client.policies)
+        self.chats = chats.AsyncChatsResourceWithStreamingResponse(client.chats)
+        self.datasources = datasources.AsyncDatasourcesResourceWithStreamingResponse(client.datasources)
+        self.bots = bots.AsyncBotsResourceWithStreamingResponse(client.bots)
+        self.extapis = extapis.AsyncExtapisResourceWithStreamingResponse(client.extapis)
+        self.auth = auth.AsyncAuthResourceWithStreamingResponse(client.auth)
+        self.single_turn = single_turn.AsyncSingleTurnResourceWithStreamingResponse(client.single_turn)
+        self.caches = caches.AsyncCachesResourceWithStreamingResponse(client.caches)
+        self.integration = integration.AsyncIntegrationResourceWithStreamingResponse(client.integration)
+        self.business_glossary = business_glossary.AsyncBusinessGlossaryResourceWithStreamingResponse(
+            client.business_glossary
+        )
+        self.preferences = preferences.AsyncPreferencesResourceWithStreamingResponse(client.preferences)
+        self.trainings = trainings.AsyncTrainingsResourceWithStreamingResponse(client.trainings)
+        self.scores = scores.AsyncScoresResourceWithStreamingResponse(client.scores)
 
 
 Client = Asktable

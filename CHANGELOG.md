@@ -1,5 +1,23 @@
 # Changelog
 
+## 3.8.0 (2024-12-17)
+
+Full Changelog: [v3.7.0...v3.8.0](https://github.com/DataMini/asktable-python/compare/v3.7.0...v3.8.0)
+
+### Features
+
+* **api:** api update ([#76](https://github.com/DataMini/asktable-python/issues/76)) ([22320de](https://github.com/DataMini/asktable-python/commit/22320de5b9feb14f210b75457bbcf5027d64ce0d))
+
+
+### Chores
+
+* **internal:** codegen related update ([#78](https://github.com/DataMini/asktable-python/issues/78)) ([95a6640](https://github.com/DataMini/asktable-python/commit/95a66408ffbb0df6fc9a02ac9df930e85a70d39c))
+
+
+### Documentation
+
+* **readme:** example snippet for client context manager ([#79](https://github.com/DataMini/asktable-python/issues/79)) ([88f2c1f](https://github.com/DataMini/asktable-python/commit/88f2c1ff1f5cd8773cbbdc5ca473d78c84b73f35))
+
 ## 3.7.0 (2024-12-16)
 
 Full Changelog: [v3.6.0...v3.7.0](https://github.com/DataMini/asktable-python/compare/v3.6.0...v3.7.0)
