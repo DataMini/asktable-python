@@ -72,7 +72,6 @@ class TestIntegration:
         integration = client.integration.excel_csv_ask(
             file_url="https://example.com",
             question="question",
-            value_index=True,
             with_json=True,
         )
         assert_matches_type(FileAskResponse, integration, path=["response"])
@@ -159,7 +158,6 @@ class TestAsyncIntegration:
         integration = await async_client.integration.excel_csv_ask(
             file_url="https://example.com",
             question="question",
-            value_index=True,
             with_json=True,
         )
         assert_matches_type(FileAskResponse, integration, path=["response"])
