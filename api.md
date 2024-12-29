@@ -103,13 +103,20 @@ Methods:
 Types:
 
 ```python
-from asktable.types import AIMessage, Chat, ToolMessage, UserMessage, ChatSendMessageResponse
+from asktable.types import (
+    AIMessage,
+    Chat,
+    ToolMessage,
+    UserMessage,
+    ChatRetrieveResponse,
+    ChatSendMessageResponse,
+)
 ```
 
 Methods:
 
 - <code title="post /chats">client.chats.<a href="./src/asktable/resources/chats/chats.py">create</a>(\*\*<a href="src/asktable/types/chat_create_params.py">params</a>) -> <a href="./src/asktable/types/chat.py">Chat</a></code>
-- <code title="get /chats/{chat_id}">client.chats.<a href="./src/asktable/resources/chats/chats.py">retrieve</a>(chat_id) -> <a href="./src/asktable/types/chat.py">Chat</a></code>
+- <code title="get /chats/{chat_id}">client.chats.<a href="./src/asktable/resources/chats/chats.py">retrieve</a>(chat_id) -> <a href="./src/asktable/types/chat_retrieve_response.py">ChatRetrieveResponse</a></code>
 - <code title="get /chats">client.chats.<a href="./src/asktable/resources/chats/chats.py">list</a>(\*\*<a href="src/asktable/types/chat_list_params.py">params</a>) -> <a href="./src/asktable/types/chat.py">SyncPage[Chat]</a></code>
 - <code title="delete /chats/{chat_id}">client.chats.<a href="./src/asktable/resources/chats/chats.py">delete</a>(chat_id) -> None</code>
 - <code title="post /chats/{chat_id}">client.chats.<a href="./src/asktable/resources/chats/chats.py">send_message</a>(chat_id, \*\*<a href="src/asktable/types/chat_send_message_params.py">params</a>) -> <a href="./src/asktable/types/chat_send_message_response.py">ChatSendMessageResponse</a></code>
