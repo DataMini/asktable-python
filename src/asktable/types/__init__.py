@@ -35,6 +35,7 @@ from .policy_update_params import PolicyUpdateParams as PolicyUpdateParams
 from .training_list_params import TrainingListParams as TrainingListParams
 from .entry_with_definition import EntryWithDefinition as EntryWithDefinition
 from .score_create_response import ScoreCreateResponse as ScoreCreateResponse
+from .chat_retrieve_response import ChatRetrieveResponse as ChatRetrieveResponse
 from .datasource_list_params import DatasourceListParams as DatasourceListParams
 from .training_create_params import TrainingCreateParams as TrainingCreateParams
 from .training_delete_params import TrainingDeleteParams as TrainingDeleteParams
