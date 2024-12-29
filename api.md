@@ -374,6 +374,19 @@ Methods:
 - <code title="get /training">client.trainings.<a href="./src/asktable/resources/trainings.py">list</a>(\*\*<a href="src/asktable/types/training_list_params.py">params</a>) -> <a href="./src/asktable/types/training_list_response.py">SyncPage[TrainingListResponse]</a></code>
 - <code title="delete /training/{id}">client.trainings.<a href="./src/asktable/resources/trainings.py">delete</a>(id, \*\*<a href="src/asktable/types/training_delete_params.py">params</a>) -> <a href="./src/asktable/types/training_delete_response.py">object</a></code>
 
+# Project
+
+Types:
+
+```python
+from asktable.types import ProjectListModelGroupsResponse
+```
+
+Methods:
+
+- <code title="patch /project">client.project.<a href="./src/asktable/resources/project.py">update</a>(\*\*<a href="src/asktable/types/project_update_params.py">params</a>) -> <a href="./src/asktable/types/sys/project.py">Project</a></code>
+- <code title="get /project/model-groups">client.project.<a href="./src/asktable/resources/project.py">list_model_groups</a>() -> <a href="./src/asktable/types/project_list_model_groups_response.py">ProjectListModelGroupsResponse</a></code>
+
 # Scores
 
 Types:

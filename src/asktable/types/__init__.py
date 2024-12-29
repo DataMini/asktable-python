@@ -34,6 +34,7 @@ from .policy_create_params import PolicyCreateParams as PolicyCreateParams
 from .policy_update_params import PolicyUpdateParams as PolicyUpdateParams
 from .training_list_params import TrainingListParams as TrainingListParams
 from .entry_with_definition import EntryWithDefinition as EntryWithDefinition
+from .project_update_params import ProjectUpdateParams as ProjectUpdateParams
 from .score_create_response import ScoreCreateResponse as ScoreCreateResponse
 from .chat_retrieve_response import ChatRetrieveResponse as ChatRetrieveResponse
 from .datasource_list_params import DatasourceListParams as DatasourceListParams
@@ -65,3 +66,4 @@ from .securetunnel_list_links_response import SecuretunnelListLinksResponse as S
 from .business_glossary_create_response import BusinessGlossaryCreateResponse as BusinessGlossaryCreateResponse
 from .datasource_create_from_file_params import DatasourceCreateFromFileParams as DatasourceCreateFromFileParams
 from .integration_create_excel_ds_params import IntegrationCreateExcelDsParams as IntegrationCreateExcelDsParams
+from .project_list_model_groups_response import ProjectListModelGroupsResponse as ProjectListModelGroupsResponse
