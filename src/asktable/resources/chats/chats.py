@@ -31,6 +31,7 @@ from ..._response import (
 from ...pagination import SyncPage, AsyncPage
 from ...types.chat import Chat
 from ..._base_client import AsyncPaginator, make_request_options
+from ...types.chat_retrieve_response import ChatRetrieveResponse
 from ...types.chat_send_message_response import ChatSendMessageResponse
 
 __all__ = ["ChatsResource", "AsyncChatsResource"]
@@ -127,7 +128,7 @@ class ChatsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Chat:
+    ) -> ChatRetrieveResponse:
         """
         获取某个对话
 
@@ -147,7 +148,7 @@ class ChatsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Chat,
+            cast_to=ChatRetrieveResponse,
         )
 
     def list(
@@ -366,7 +367,7 @@ class AsyncChatsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Chat:
+    ) -> ChatRetrieveResponse:
         """
         获取某个对话
 
@@ -386,7 +387,7 @@ class AsyncChatsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Chat,
+            cast_to=ChatRetrieveResponse,
         )
 
     def list(
