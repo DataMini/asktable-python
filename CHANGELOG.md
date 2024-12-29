@@ -1,5 +1,22 @@
 # Changelog
 
+## 3.9.0 (2024-12-29)
+
+Full Changelog: [v3.8.0...v3.9.0](https://github.com/DataMini/asktable-python/compare/v3.8.0...v3.9.0)
+
+### Features
+
+* **api:** add model groups ([#87](https://github.com/DataMini/asktable-python/issues/87)) ([c3aee20](https://github.com/DataMini/asktable-python/commit/c3aee2011aec41dee09a00184844315638ad6b9d))
+* **api:** api update ([#81](https://github.com/DataMini/asktable-python/issues/81)) ([60bc504](https://github.com/DataMini/asktable-python/commit/60bc504c4e9ed57580b789306ebf27dc338084ff))
+* **api:** api update ([#86](https://github.com/DataMini/asktable-python/issues/86)) ([07ca394](https://github.com/DataMini/asktable-python/commit/07ca394da227e2b3bab90d97e4133db56c4b1675))
+
+
+### Chores
+
+* **internal:** codegen related update ([#83](https://github.com/DataMini/asktable-python/issues/83)) ([b0e0f6f](https://github.com/DataMini/asktable-python/commit/b0e0f6f3c3bb393985b59735423ae57fa6c986b0))
+* **internal:** codegen related update ([#84](https://github.com/DataMini/asktable-python/issues/84)) ([1734cd8](https://github.com/DataMini/asktable-python/commit/1734cd83b34b8e33af03d463425ff06be1333955))
+* **internal:** fix some typos ([#85](https://github.com/DataMini/asktable-python/issues/85)) ([f6b99d8](https://github.com/DataMini/asktable-python/commit/f6b99d8e501b5bc5e91b4ece711ab5fc17a82b4d))
+
 ## 3.8.0 (2024-12-17)
 
 Full Changelog: [v3.7.0...v3.8.0](https://github.com/DataMini/asktable-python/compare/v3.7.0...v3.8.0)

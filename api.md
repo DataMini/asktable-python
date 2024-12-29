@@ -103,13 +103,20 @@ Methods:
 Types:
 
 ```python
-from asktable.types import AIMessage, Chat, ToolMessage, UserMessage, ChatSendMessageResponse
+from asktable.types import (
+    AIMessage,
+    Chat,
+    ToolMessage,
+    UserMessage,
+    ChatRetrieveResponse,
+    ChatSendMessageResponse,
+)
 ```
 
 Methods:
 
 - <code title="post /chats">client.chats.<a href="./src/asktable/resources/chats/chats.py">create</a>(\*\*<a href="src/asktable/types/chat_create_params.py">params</a>) -> <a href="./src/asktable/types/chat.py">Chat</a></code>
-- <code title="get /chats/{chat_id}">client.chats.<a href="./src/asktable/resources/chats/chats.py">retrieve</a>(chat_id) -> <a href="./src/asktable/types/chat.py">Chat</a></code>
+- <code title="get /chats/{chat_id}">client.chats.<a href="./src/asktable/resources/chats/chats.py">retrieve</a>(chat_id) -> <a href="./src/asktable/types/chat_retrieve_response.py">ChatRetrieveResponse</a></code>
 - <code title="get /chats">client.chats.<a href="./src/asktable/resources/chats/chats.py">list</a>(\*\*<a href="src/asktable/types/chat_list_params.py">params</a>) -> <a href="./src/asktable/types/chat.py">SyncPage[Chat]</a></code>
 - <code title="delete /chats/{chat_id}">client.chats.<a href="./src/asktable/resources/chats/chats.py">delete</a>(chat_id) -> None</code>
 - <code title="post /chats/{chat_id}">client.chats.<a href="./src/asktable/resources/chats/chats.py">send_message</a>(chat_id, \*\*<a href="src/asktable/types/chat_send_message_params.py">params</a>) -> <a href="./src/asktable/types/chat_send_message_response.py">ChatSendMessageResponse</a></code>
@@ -366,6 +373,19 @@ Methods:
 - <code title="post /training">client.trainings.<a href="./src/asktable/resources/trainings.py">create</a>(\*\*<a href="src/asktable/types/training_create_params.py">params</a>) -> <a href="./src/asktable/types/training_create_response.py">TrainingCreateResponse</a></code>
 - <code title="get /training">client.trainings.<a href="./src/asktable/resources/trainings.py">list</a>(\*\*<a href="src/asktable/types/training_list_params.py">params</a>) -> <a href="./src/asktable/types/training_list_response.py">SyncPage[TrainingListResponse]</a></code>
 - <code title="delete /training/{id}">client.trainings.<a href="./src/asktable/resources/trainings.py">delete</a>(id, \*\*<a href="src/asktable/types/training_delete_params.py">params</a>) -> <a href="./src/asktable/types/training_delete_response.py">object</a></code>
+
+# Project
+
+Types:
+
+```python
+from asktable.types import ProjectListModelGroupsResponse
+```
+
+Methods:
+
+- <code title="patch /project">client.project.<a href="./src/asktable/resources/project.py">update</a>(\*\*<a href="src/asktable/types/project_update_params.py">params</a>) -> <a href="./src/asktable/types/sys/project.py">Project</a></code>
+- <code title="get /project/model-groups">client.project.<a href="./src/asktable/resources/project.py">list_model_groups</a>() -> <a href="./src/asktable/types/project_list_model_groups_response.py">ProjectListModelGroupsResponse</a></code>
 
 # Scores
 

@@ -30,6 +30,7 @@ from .resources import (
     roles,
     caches,
     scores,
+    project,
     policies,
     trainings,
     integration,
@@ -78,6 +79,7 @@ class Asktable(SyncAPIClient):
     business_glossary: business_glossary.BusinessGlossaryResource
     preferences: preferences.PreferencesResource
     trainings: trainings.TrainingsResource
+    project: project.ProjectResource
     scores: scores.ScoresResource
     with_raw_response: AsktableWithRawResponse
     with_streaming_response: AsktableWithStreamedResponse
@@ -151,6 +153,7 @@ class Asktable(SyncAPIClient):
         self.business_glossary = business_glossary.BusinessGlossaryResource(self)
         self.preferences = preferences.PreferencesResource(self)
         self.trainings = trainings.TrainingsResource(self)
+        self.project = project.ProjectResource(self)
         self.scores = scores.ScoresResource(self)
         self.with_raw_response = AsktableWithRawResponse(self)
         self.with_streaming_response = AsktableWithStreamedResponse(self)
@@ -276,6 +279,7 @@ class AsyncAsktable(AsyncAPIClient):
     business_glossary: business_glossary.AsyncBusinessGlossaryResource
     preferences: preferences.AsyncPreferencesResource
     trainings: trainings.AsyncTrainingsResource
+    project: project.AsyncProjectResource
     scores: scores.AsyncScoresResource
     with_raw_response: AsyncAsktableWithRawResponse
     with_streaming_response: AsyncAsktableWithStreamedResponse
@@ -349,6 +353,7 @@ class AsyncAsktable(AsyncAPIClient):
         self.business_glossary = business_glossary.AsyncBusinessGlossaryResource(self)
         self.preferences = preferences.AsyncPreferencesResource(self)
         self.trainings = trainings.AsyncTrainingsResource(self)
+        self.project = project.AsyncProjectResource(self)
         self.scores = scores.AsyncScoresResource(self)
         self.with_raw_response = AsyncAsktableWithRawResponse(self)
         self.with_streaming_response = AsyncAsktableWithStreamedResponse(self)
@@ -475,6 +480,7 @@ class AsktableWithRawResponse:
         self.business_glossary = business_glossary.BusinessGlossaryResourceWithRawResponse(client.business_glossary)
         self.preferences = preferences.PreferencesResourceWithRawResponse(client.preferences)
         self.trainings = trainings.TrainingsResourceWithRawResponse(client.trainings)
+        self.project = project.ProjectResourceWithRawResponse(client.project)
         self.scores = scores.ScoresResourceWithRawResponse(client.scores)
 
 
@@ -497,6 +503,7 @@ class AsyncAsktableWithRawResponse:
         )
         self.preferences = preferences.AsyncPreferencesResourceWithRawResponse(client.preferences)
         self.trainings = trainings.AsyncTrainingsResourceWithRawResponse(client.trainings)
+        self.project = project.AsyncProjectResourceWithRawResponse(client.project)
         self.scores = scores.AsyncScoresResourceWithRawResponse(client.scores)
 
 
@@ -519,6 +526,7 @@ class AsktableWithStreamedResponse:
         )
         self.preferences = preferences.PreferencesResourceWithStreamingResponse(client.preferences)
         self.trainings = trainings.TrainingsResourceWithStreamingResponse(client.trainings)
+        self.project = project.ProjectResourceWithStreamingResponse(client.project)
         self.scores = scores.ScoresResourceWithStreamingResponse(client.scores)
 
 
@@ -541,6 +549,7 @@ class AsyncAsktableWithStreamedResponse:
         )
         self.preferences = preferences.AsyncPreferencesResourceWithStreamingResponse(client.preferences)
         self.trainings = trainings.AsyncTrainingsResourceWithStreamingResponse(client.trainings)
+        self.project = project.AsyncProjectResourceWithStreamingResponse(client.project)
         self.scores = scores.AsyncScoresResourceWithStreamingResponse(client.scores)
 
 

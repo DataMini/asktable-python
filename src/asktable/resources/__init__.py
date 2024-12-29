@@ -64,6 +64,14 @@ from .extapis import (
     ExtapisResourceWithStreamingResponse,
     AsyncExtapisResourceWithStreamingResponse,
 )
+from .project import (
+    ProjectResource,
+    AsyncProjectResource,
+    ProjectResourceWithRawResponse,
+    AsyncProjectResourceWithRawResponse,
+    ProjectResourceWithStreamingResponse,
+    AsyncProjectResourceWithStreamingResponse,
+)
 from .policies import (
     PoliciesResource,
     AsyncPoliciesResource,
@@ -220,6 +228,12 @@ __all__ = [
     "AsyncTrainingsResourceWithRawResponse",
     "TrainingsResourceWithStreamingResponse",
     "AsyncTrainingsResourceWithStreamingResponse",
+    "ProjectResource",
+    "AsyncProjectResource",
+    "ProjectResourceWithRawResponse",
+    "AsyncProjectResourceWithRawResponse",
+    "ProjectResourceWithStreamingResponse",
+    "AsyncProjectResourceWithStreamingResponse",
     "ScoresResource",
     "AsyncScoresResource",
     "ScoresResourceWithRawResponse",
