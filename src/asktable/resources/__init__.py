@@ -24,6 +24,14 @@ from .bots import (
     BotsResourceWithStreamingResponse,
     AsyncBotsResourceWithStreamingResponse,
 )
+from .sqls import (
+    SqlsResource,
+    AsyncSqlsResource,
+    SqlsResourceWithRawResponse,
+    AsyncSqlsResourceWithRawResponse,
+    SqlsResourceWithStreamingResponse,
+    AsyncSqlsResourceWithStreamingResponse,
+)
 from .chats import (
     ChatsResource,
     AsyncChatsResource,
@@ -55,6 +63,14 @@ from .scores import (
     AsyncScoresResourceWithRawResponse,
     ScoresResourceWithStreamingResponse,
     AsyncScoresResourceWithStreamingResponse,
+)
+from .answers import (
+    AnswersResource,
+    AsyncAnswersResource,
+    AnswersResourceWithRawResponse,
+    AsyncAnswersResourceWithRawResponse,
+    AnswersResourceWithStreamingResponse,
+    AsyncAnswersResourceWithStreamingResponse,
 )
 from .extapis import (
     ExtapisResource,
@@ -111,14 +127,6 @@ from .preferences import (
     AsyncPreferencesResourceWithRawResponse,
     PreferencesResourceWithStreamingResponse,
     AsyncPreferencesResourceWithStreamingResponse,
-)
-from .single_turn import (
-    SingleTurnResource,
-    AsyncSingleTurnResource,
-    SingleTurnResourceWithRawResponse,
-    AsyncSingleTurnResourceWithRawResponse,
-    SingleTurnResourceWithStreamingResponse,
-    AsyncSingleTurnResourceWithStreamingResponse,
 )
 from .securetunnels import (
     SecuretunnelsResource,
@@ -192,12 +200,18 @@ __all__ = [
     "AsyncAuthResourceWithRawResponse",
     "AuthResourceWithStreamingResponse",
     "AsyncAuthResourceWithStreamingResponse",
-    "SingleTurnResource",
-    "AsyncSingleTurnResource",
-    "SingleTurnResourceWithRawResponse",
-    "AsyncSingleTurnResourceWithRawResponse",
-    "SingleTurnResourceWithStreamingResponse",
-    "AsyncSingleTurnResourceWithStreamingResponse",
+    "AnswersResource",
+    "AsyncAnswersResource",
+    "AnswersResourceWithRawResponse",
+    "AsyncAnswersResourceWithRawResponse",
+    "AnswersResourceWithStreamingResponse",
+    "AsyncAnswersResourceWithStreamingResponse",
+    "SqlsResource",
+    "AsyncSqlsResource",
+    "SqlsResourceWithRawResponse",
+    "AsyncSqlsResourceWithRawResponse",
+    "SqlsResourceWithStreamingResponse",
+    "AsyncSqlsResourceWithStreamingResponse",
     "CachesResource",
     "AsyncCachesResource",
     "CachesResourceWithRawResponse",

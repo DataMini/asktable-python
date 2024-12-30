@@ -3,12 +3,12 @@
 
 from .._models import BaseModel
 from .datasource import Datasource
-from .single_turn.q2a_response import Q2aResponse
+from .answer_response import AnswerResponse
 
 __all__ = ["FileAskResponse"]
 
 
 class FileAskResponse(BaseModel):
-    answer: Q2aResponse
+    answer: AnswerResponse
 
     datasource: Datasource
