@@ -47,6 +47,25 @@ class ProjectResource(SyncAPIResource):
         """
         return ProjectResourceWithStreamingResponse(self)
 
+    def retrieve(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Project:
+        """Get My Project"""
+        return self._get(
+            "/project",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Project,
+        )
+
     def update(
         self,
         *,
@@ -60,7 +79,7 @@ class ProjectResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Project:
         """
-        Update Project Name And Model Group
+        Update My Project
 
         Args:
           llm_model_group: 模型组
@@ -130,6 +149,25 @@ class AsyncProjectResource(AsyncAPIResource):
         """
         return AsyncProjectResourceWithStreamingResponse(self)
 
+    async def retrieve(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Project:
+        """Get My Project"""
+        return await self._get(
+            "/project",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Project,
+        )
+
     async def update(
         self,
         *,
@@ -143,7 +181,7 @@ class AsyncProjectResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Project:
         """
-        Update Project Name And Model Group
+        Update My Project
 
         Args:
           llm_model_group: 模型组
@@ -197,6 +235,9 @@ class ProjectResourceWithRawResponse:
     def __init__(self, project: ProjectResource) -> None:
         self._project = project
 
+        self.retrieve = to_raw_response_wrapper(
+            project.retrieve,
+        )
         self.update = to_raw_response_wrapper(
             project.update,
         )
@@ -209,6 +250,9 @@ class AsyncProjectResourceWithRawResponse:
     def __init__(self, project: AsyncProjectResource) -> None:
         self._project = project
 
+        self.retrieve = async_to_raw_response_wrapper(
+            project.retrieve,
+        )
         self.update = async_to_raw_response_wrapper(
             project.update,
         )
@@ -221,6 +265,9 @@ class ProjectResourceWithStreamingResponse:
     def __init__(self, project: ProjectResource) -> None:
         self._project = project
 
+        self.retrieve = to_streamed_response_wrapper(
+            project.retrieve,
+        )
         self.update = to_streamed_response_wrapper(
             project.update,
         )
@@ -233,6 +280,9 @@ class AsyncProjectResourceWithStreamingResponse:
     def __init__(self, project: AsyncProjectResource) -> None:
         self._project = project
 
+        self.retrieve = async_to_streamed_response_wrapper(
+            project.retrieve,
+        )
         self.update = async_to_streamed_response_wrapper(
             project.update,
         )
