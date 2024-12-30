@@ -6,79 +6,73 @@ from typing import Optional
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
+from ..types import sql_list_params, sql_create_params
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._utils import (
     maybe_transform,
     async_maybe_transform,
 )
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
+from .._compat import cached_property
+from .._resource import SyncAPIResource, AsyncAPIResource
+from .._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...pagination import SyncPage, AsyncPage
-from ..._base_client import AsyncPaginator, make_request_options
-from ...types.single_turn import q2a_list_params, q2a_create_params
-from ...types.single_turn.q2a_response import Q2aResponse
+from ..pagination import SyncPage, AsyncPage
+from .._base_client import AsyncPaginator, make_request_options
+from ..types.query_response import QueryResponse
 
-__all__ = ["Q2aResource", "AsyncQ2aResource"]
+__all__ = ["SqlsResource", "AsyncSqlsResource"]
 
 
-class Q2aResource(SyncAPIResource):
+class SqlsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> Q2aResourceWithRawResponse:
+    def with_raw_response(self) -> SqlsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return the
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/DataMini/asktable-python#accessing-raw-response-data-eg-headers
         """
-        return Q2aResourceWithRawResponse(self)
+        return SqlsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> Q2aResourceWithStreamingResponse:
+    def with_streaming_response(self) -> SqlsResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/DataMini/asktable-python#with_streaming_response
         """
-        return Q2aResourceWithStreamingResponse(self)
+        return SqlsResourceWithStreamingResponse(self)
 
     def create(
         self,
         *,
         datasource_id: str,
         question: str,
-        max_rows: Optional[int] | NotGiven = NOT_GIVEN,
         role_id: Optional[str] | NotGiven = NOT_GIVEN,
         role_variables: Optional[object] | NotGiven = NOT_GIVEN,
-        with_json: Optional[bool] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Q2aResponse:
+    ) -> QueryResponse:
         """
-        发起查询的请求
+        发起生成 sql 的请求
 
         Args:
           datasource_id: 数据源 ID
 
           question: 查询语句
 
-          max_rows: 最大返回行数，默认为 0，即不限制返回行数
-
           role_id: 角色 ID，将扮演这个角色来执行对话，用于权限控制。若无，则跳过鉴权，即可查询所有
               数据
 
           role_variables: 在扮演这个角色时需要传递的变量值，用 Key-Value 形式传递
-
-          with_json: 是否同时将数据，作为 json 格式的附件一起返回
 
           extra_headers: Send extra headers
 
@@ -89,22 +83,20 @@ class Q2aResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/single-turn/q2a",
+            "/single-turn/q2s",
             body=maybe_transform(
                 {
                     "datasource_id": datasource_id,
                     "question": question,
-                    "max_rows": max_rows,
                     "role_id": role_id,
                     "role_variables": role_variables,
-                    "with_json": with_json,
                 },
-                q2a_create_params.Q2aCreateParams,
+                sql_create_params.SqlCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Q2aResponse,
+            cast_to=QueryResponse,
         )
 
     def list(
@@ -119,9 +111,9 @@ class Q2aResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncPage[Q2aResponse]:
+    ) -> SyncPage[QueryResponse]:
         """
-        获取所有的 Q2A 记录
+        获取所有的 Q2S 记录
 
         Args:
           datasource_id: 数据源 ID
@@ -139,8 +131,8 @@ class Q2aResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/single-turn/q2a",
-            page=SyncPage[Q2aResponse],
+            "/single-turn/q2s",
+            page=SyncPage[QueryResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -152,65 +144,59 @@ class Q2aResource(SyncAPIResource):
                         "page": page,
                         "size": size,
                     },
-                    q2a_list_params.Q2aListParams,
+                    sql_list_params.SqlListParams,
                 ),
             ),
-            model=Q2aResponse,
+            model=QueryResponse,
         )
 
 
-class AsyncQ2aResource(AsyncAPIResource):
+class AsyncSqlsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncQ2aResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncSqlsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return the
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/DataMini/asktable-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncQ2aResourceWithRawResponse(self)
+        return AsyncSqlsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncQ2aResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncSqlsResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/DataMini/asktable-python#with_streaming_response
         """
-        return AsyncQ2aResourceWithStreamingResponse(self)
+        return AsyncSqlsResourceWithStreamingResponse(self)
 
     async def create(
         self,
         *,
         datasource_id: str,
         question: str,
-        max_rows: Optional[int] | NotGiven = NOT_GIVEN,
         role_id: Optional[str] | NotGiven = NOT_GIVEN,
         role_variables: Optional[object] | NotGiven = NOT_GIVEN,
-        with_json: Optional[bool] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Q2aResponse:
+    ) -> QueryResponse:
         """
-        发起查询的请求
+        发起生成 sql 的请求
 
         Args:
           datasource_id: 数据源 ID
 
           question: 查询语句
 
-          max_rows: 最大返回行数，默认为 0，即不限制返回行数
-
           role_id: 角色 ID，将扮演这个角色来执行对话，用于权限控制。若无，则跳过鉴权，即可查询所有
               数据
 
           role_variables: 在扮演这个角色时需要传递的变量值，用 Key-Value 形式传递
-
-          with_json: 是否同时将数据，作为 json 格式的附件一起返回
 
           extra_headers: Send extra headers
 
@@ -221,22 +207,20 @@ class AsyncQ2aResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/single-turn/q2a",
+            "/single-turn/q2s",
             body=await async_maybe_transform(
                 {
                     "datasource_id": datasource_id,
                     "question": question,
-                    "max_rows": max_rows,
                     "role_id": role_id,
                     "role_variables": role_variables,
-                    "with_json": with_json,
                 },
-                q2a_create_params.Q2aCreateParams,
+                sql_create_params.SqlCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Q2aResponse,
+            cast_to=QueryResponse,
         )
 
     def list(
@@ -251,9 +235,9 @@ class AsyncQ2aResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Q2aResponse, AsyncPage[Q2aResponse]]:
+    ) -> AsyncPaginator[QueryResponse, AsyncPage[QueryResponse]]:
         """
-        获取所有的 Q2A 记录
+        获取所有的 Q2S 记录
 
         Args:
           datasource_id: 数据源 ID
@@ -271,8 +255,8 @@ class AsyncQ2aResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/single-turn/q2a",
-            page=AsyncPage[Q2aResponse],
+            "/single-turn/q2s",
+            page=AsyncPage[QueryResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -284,56 +268,56 @@ class AsyncQ2aResource(AsyncAPIResource):
                         "page": page,
                         "size": size,
                     },
-                    q2a_list_params.Q2aListParams,
+                    sql_list_params.SqlListParams,
                 ),
             ),
-            model=Q2aResponse,
+            model=QueryResponse,
         )
 
 
-class Q2aResourceWithRawResponse:
-    def __init__(self, q2a: Q2aResource) -> None:
-        self._q2a = q2a
+class SqlsResourceWithRawResponse:
+    def __init__(self, sqls: SqlsResource) -> None:
+        self._sqls = sqls
 
         self.create = to_raw_response_wrapper(
-            q2a.create,
+            sqls.create,
         )
         self.list = to_raw_response_wrapper(
-            q2a.list,
+            sqls.list,
         )
 
 
-class AsyncQ2aResourceWithRawResponse:
-    def __init__(self, q2a: AsyncQ2aResource) -> None:
-        self._q2a = q2a
+class AsyncSqlsResourceWithRawResponse:
+    def __init__(self, sqls: AsyncSqlsResource) -> None:
+        self._sqls = sqls
 
         self.create = async_to_raw_response_wrapper(
-            q2a.create,
+            sqls.create,
         )
         self.list = async_to_raw_response_wrapper(
-            q2a.list,
+            sqls.list,
         )
 
 
-class Q2aResourceWithStreamingResponse:
-    def __init__(self, q2a: Q2aResource) -> None:
-        self._q2a = q2a
+class SqlsResourceWithStreamingResponse:
+    def __init__(self, sqls: SqlsResource) -> None:
+        self._sqls = sqls
 
         self.create = to_streamed_response_wrapper(
-            q2a.create,
+            sqls.create,
         )
         self.list = to_streamed_response_wrapper(
-            q2a.list,
+            sqls.list,
         )
 
 
-class AsyncQ2aResourceWithStreamingResponse:
-    def __init__(self, q2a: AsyncQ2aResource) -> None:
-        self._q2a = q2a
+class AsyncSqlsResourceWithStreamingResponse:
+    def __init__(self, sqls: AsyncSqlsResource) -> None:
+        self._sqls = sqls
 
         self.create = async_to_streamed_response_wrapper(
-            q2a.create,
+            sqls.create,
         )
         self.list = async_to_streamed_response_wrapper(
-            q2a.list,
+            sqls.list,
         )

@@ -259,46 +259,31 @@ Methods:
 - <code title="post /auth/tokens">client.auth.<a href="./src/asktable/resources/auth.py">create_token</a>(\*\*<a href="src/asktable/types/auth_create_token_params.py">params</a>) -> <a href="./src/asktable/types/auth_create_token_response.py">object</a></code>
 - <code title="get /auth/me">client.auth.<a href="./src/asktable/resources/auth.py">me</a>() -> <a href="./src/asktable/types/auth_me_response.py">object</a></code>
 
-# SingleTurn
-
-## Q2a
+# Answers
 
 Types:
 
 ```python
-from asktable.types.single_turn import Q2aResponse
+from asktable.types import AnswerResponse
 ```
 
 Methods:
 
-- <code title="post /single-turn/q2a">client.single_turn.q2a.<a href="./src/asktable/resources/single_turn/q2a.py">create</a>(\*\*<a href="src/asktable/types/single_turn/q2a_create_params.py">params</a>) -> <a href="./src/asktable/types/single_turn/q2a_response.py">Q2aResponse</a></code>
-- <code title="get /single-turn/q2a">client.single_turn.q2a.<a href="./src/asktable/resources/single_turn/q2a.py">list</a>(\*\*<a href="src/asktable/types/single_turn/q2a_list_params.py">params</a>) -> <a href="./src/asktable/types/single_turn/q2a_response.py">SyncPage[Q2aResponse]</a></code>
+- <code title="post /single-turn/q2a">client.answers.<a href="./src/asktable/resources/answers.py">create</a>(\*\*<a href="src/asktable/types/answer_create_params.py">params</a>) -> <a href="./src/asktable/types/answer_response.py">AnswerResponse</a></code>
+- <code title="get /single-turn/q2a">client.answers.<a href="./src/asktable/resources/answers.py">list</a>(\*\*<a href="src/asktable/types/answer_list_params.py">params</a>) -> <a href="./src/asktable/types/answer_response.py">SyncPage[AnswerResponse]</a></code>
 
-## Q2s
+# Sqls
 
 Types:
 
 ```python
-from asktable.types.single_turn import Q2sResponse
+from asktable.types import QueryResponse
 ```
 
 Methods:
 
-- <code title="post /single-turn/q2s">client.single_turn.q2s.<a href="./src/asktable/resources/single_turn/q2s.py">create</a>(\*\*<a href="src/asktable/types/single_turn/q2_create_params.py">params</a>) -> <a href="./src/asktable/types/single_turn/q2s_response.py">Q2sResponse</a></code>
-- <code title="get /single-turn/q2s">client.single_turn.q2s.<a href="./src/asktable/resources/single_turn/q2s.py">list</a>(\*\*<a href="src/asktable/types/single_turn/q2_list_params.py">params</a>) -> <a href="./src/asktable/types/single_turn/q2s_response.py">SyncPage[Q2sResponse]</a></code>
-
-## Q2w
-
-Types:
-
-```python
-from asktable.types.single_turn import Q2wCreateResponse, Q2wListResponse
-```
-
-Methods:
-
-- <code title="post /single-turn/q2w">client.single_turn.q2w.<a href="./src/asktable/resources/single_turn/q2w.py">create</a>(\*\*<a href="src/asktable/types/single_turn/q2w_create_params.py">params</a>) -> <a href="./src/asktable/types/single_turn/q2w_create_response.py">object</a></code>
-- <code title="get /single-turn/q2w">client.single_turn.q2w.<a href="./src/asktable/resources/single_turn/q2w.py">list</a>() -> <a href="./src/asktable/types/single_turn/q2w_list_response.py">object</a></code>
+- <code title="post /single-turn/q2s">client.sqls.<a href="./src/asktable/resources/sqls.py">create</a>(\*\*<a href="src/asktable/types/sql_create_params.py">params</a>) -> <a href="./src/asktable/types/query_response.py">QueryResponse</a></code>
+- <code title="get /single-turn/q2s">client.sqls.<a href="./src/asktable/resources/sqls.py">list</a>(\*\*<a href="src/asktable/types/sql_list_params.py">params</a>) -> <a href="./src/asktable/types/query_response.py">SyncPage[QueryResponse]</a></code>
 
 # Caches
 
