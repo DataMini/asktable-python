@@ -384,6 +384,7 @@ from asktable.types import ProjectListModelGroupsResponse
 
 Methods:
 
+- <code title="get /project">client.project.<a href="./src/asktable/resources/project.py">retrieve</a>() -> <a href="./src/asktable/types/sys/project.py">Project</a></code>
 - <code title="patch /project">client.project.<a href="./src/asktable/resources/project.py">update</a>(\*\*<a href="src/asktable/types/project_update_params.py">params</a>) -> <a href="./src/asktable/types/sys/project.py">Project</a></code>
 - <code title="get /project/model-groups">client.project.<a href="./src/asktable/resources/project.py">list_model_groups</a>() -> <a href="./src/asktable/types/project_list_model_groups_response.py">ProjectListModelGroupsResponse</a></code>
 

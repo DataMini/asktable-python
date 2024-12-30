@@ -19,6 +19,31 @@ class TestProject:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
+    def test_method_retrieve(self, client: Asktable) -> None:
+        project = client.project.retrieve()
+        assert_matches_type(Project, project, path=["response"])
+
+    @parametrize
+    def test_raw_response_retrieve(self, client: Asktable) -> None:
+        response = client.project.with_raw_response.retrieve()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        project = response.parse()
+        assert_matches_type(Project, project, path=["response"])
+
+    @parametrize
+    def test_streaming_response_retrieve(self, client: Asktable) -> None:
+        with client.project.with_streaming_response.retrieve() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            project = response.parse()
+            assert_matches_type(Project, project, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
     def test_method_update(self, client: Asktable) -> None:
         project = client.project.update()
         assert_matches_type(Project, project, path=["response"])
@@ -79,6 +104,31 @@ class TestProject:
 
 class TestAsyncProject:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+
+    @parametrize
+    async def test_method_retrieve(self, async_client: AsyncAsktable) -> None:
+        project = await async_client.project.retrieve()
+        assert_matches_type(Project, project, path=["response"])
+
+    @parametrize
+    async def test_raw_response_retrieve(self, async_client: AsyncAsktable) -> None:
+        response = await async_client.project.with_raw_response.retrieve()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        project = await response.parse()
+        assert_matches_type(Project, project, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_retrieve(self, async_client: AsyncAsktable) -> None:
+        async with async_client.project.with_streaming_response.retrieve() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            project = await response.parse()
+            assert_matches_type(Project, project, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_update(self, async_client: AsyncAsktable) -> None:
