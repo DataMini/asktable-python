@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import Optional
 from typing_extensions import TypedDict
 
-__all__ = ["Q2ListParams"]
+__all__ = ["AnswerListParams"]
 
 
-class Q2ListParams(TypedDict, total=False):
+class AnswerListParams(TypedDict, total=False):
     datasource_id: Optional[str]
     """数据源 ID"""
 
