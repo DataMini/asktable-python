@@ -60,7 +60,7 @@ class ProjectResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Project:
         """
-        Update Project Name And Model Group
+        Update My Project
 
         Args:
           llm_model_group: 模型组
@@ -143,7 +143,7 @@ class AsyncProjectResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Project:
         """
-        Update Project Name And Model Group
+        Update My Project
 
         Args:
           llm_model_group: 模型组
