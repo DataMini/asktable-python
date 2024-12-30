@@ -27,9 +27,11 @@ from ._version import __version__
 from .resources import (
     auth,
     bots,
+    sqls,
     roles,
     caches,
     scores,
+    answers,
     project,
     policies,
     trainings,
@@ -49,7 +51,6 @@ from .resources.sys import sys
 from .resources.chats import chats
 from .resources.extapis import extapis
 from .resources.datasources import datasources
-from .resources.single_turn import single_turn
 
 __all__ = [
     "Timeout",
@@ -73,7 +74,8 @@ class Asktable(SyncAPIClient):
     bots: bots.BotsResource
     extapis: extapis.ExtapisResource
     auth: auth.AuthResource
-    single_turn: single_turn.SingleTurnResource
+    answers: answers.AnswersResource
+    sqls: sqls.SqlsResource
     caches: caches.CachesResource
     integration: integration.IntegrationResource
     business_glossary: business_glossary.BusinessGlossaryResource
@@ -147,7 +149,8 @@ class Asktable(SyncAPIClient):
         self.bots = bots.BotsResource(self)
         self.extapis = extapis.ExtapisResource(self)
         self.auth = auth.AuthResource(self)
-        self.single_turn = single_turn.SingleTurnResource(self)
+        self.answers = answers.AnswersResource(self)
+        self.sqls = sqls.SqlsResource(self)
         self.caches = caches.CachesResource(self)
         self.integration = integration.IntegrationResource(self)
         self.business_glossary = business_glossary.BusinessGlossaryResource(self)
@@ -273,7 +276,8 @@ class AsyncAsktable(AsyncAPIClient):
     bots: bots.AsyncBotsResource
     extapis: extapis.AsyncExtapisResource
     auth: auth.AsyncAuthResource
-    single_turn: single_turn.AsyncSingleTurnResource
+    answers: answers.AsyncAnswersResource
+    sqls: sqls.AsyncSqlsResource
     caches: caches.AsyncCachesResource
     integration: integration.AsyncIntegrationResource
     business_glossary: business_glossary.AsyncBusinessGlossaryResource
@@ -347,7 +351,8 @@ class AsyncAsktable(AsyncAPIClient):
         self.bots = bots.AsyncBotsResource(self)
         self.extapis = extapis.AsyncExtapisResource(self)
         self.auth = auth.AsyncAuthResource(self)
-        self.single_turn = single_turn.AsyncSingleTurnResource(self)
+        self.answers = answers.AsyncAnswersResource(self)
+        self.sqls = sqls.AsyncSqlsResource(self)
         self.caches = caches.AsyncCachesResource(self)
         self.integration = integration.AsyncIntegrationResource(self)
         self.business_glossary = business_glossary.AsyncBusinessGlossaryResource(self)
@@ -474,7 +479,8 @@ class AsktableWithRawResponse:
         self.bots = bots.BotsResourceWithRawResponse(client.bots)
         self.extapis = extapis.ExtapisResourceWithRawResponse(client.extapis)
         self.auth = auth.AuthResourceWithRawResponse(client.auth)
-        self.single_turn = single_turn.SingleTurnResourceWithRawResponse(client.single_turn)
+        self.answers = answers.AnswersResourceWithRawResponse(client.answers)
+        self.sqls = sqls.SqlsResourceWithRawResponse(client.sqls)
         self.caches = caches.CachesResourceWithRawResponse(client.caches)
         self.integration = integration.IntegrationResourceWithRawResponse(client.integration)
         self.business_glossary = business_glossary.BusinessGlossaryResourceWithRawResponse(client.business_glossary)
@@ -495,7 +501,8 @@ class AsyncAsktableWithRawResponse:
         self.bots = bots.AsyncBotsResourceWithRawResponse(client.bots)
         self.extapis = extapis.AsyncExtapisResourceWithRawResponse(client.extapis)
         self.auth = auth.AsyncAuthResourceWithRawResponse(client.auth)
-        self.single_turn = single_turn.AsyncSingleTurnResourceWithRawResponse(client.single_turn)
+        self.answers = answers.AsyncAnswersResourceWithRawResponse(client.answers)
+        self.sqls = sqls.AsyncSqlsResourceWithRawResponse(client.sqls)
         self.caches = caches.AsyncCachesResourceWithRawResponse(client.caches)
         self.integration = integration.AsyncIntegrationResourceWithRawResponse(client.integration)
         self.business_glossary = business_glossary.AsyncBusinessGlossaryResourceWithRawResponse(
@@ -518,7 +525,8 @@ class AsktableWithStreamedResponse:
         self.bots = bots.BotsResourceWithStreamingResponse(client.bots)
         self.extapis = extapis.ExtapisResourceWithStreamingResponse(client.extapis)
         self.auth = auth.AuthResourceWithStreamingResponse(client.auth)
-        self.single_turn = single_turn.SingleTurnResourceWithStreamingResponse(client.single_turn)
+        self.answers = answers.AnswersResourceWithStreamingResponse(client.answers)
+        self.sqls = sqls.SqlsResourceWithStreamingResponse(client.sqls)
         self.caches = caches.CachesResourceWithStreamingResponse(client.caches)
         self.integration = integration.IntegrationResourceWithStreamingResponse(client.integration)
         self.business_glossary = business_glossary.BusinessGlossaryResourceWithStreamingResponse(
@@ -541,7 +549,8 @@ class AsyncAsktableWithStreamedResponse:
         self.bots = bots.AsyncBotsResourceWithStreamingResponse(client.bots)
         self.extapis = extapis.AsyncExtapisResourceWithStreamingResponse(client.extapis)
         self.auth = auth.AsyncAuthResourceWithStreamingResponse(client.auth)
-        self.single_turn = single_turn.AsyncSingleTurnResourceWithStreamingResponse(client.single_turn)
+        self.answers = answers.AsyncAnswersResourceWithStreamingResponse(client.answers)
+        self.sqls = sqls.AsyncSqlsResourceWithStreamingResponse(client.sqls)
         self.caches = caches.AsyncCachesResourceWithStreamingResponse(client.caches)
         self.integration = integration.AsyncIntegrationResourceWithStreamingResponse(client.integration)
         self.business_glossary = business_glossary.AsyncBusinessGlossaryResourceWithStreamingResponse(

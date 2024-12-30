@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.11.0 (2024-12-30)
+
+Full Changelog: [v3.10.0...v3.11.0](https://github.com/DataMini/asktable-python/compare/v3.10.0...v3.11.0)
+
+### Features
+
+* **api:** add answers/sqls ([#93](https://github.com/DataMini/asktable-python/issues/93)) ([3748b52](https://github.com/DataMini/asktable-python/commit/3748b526f902c65a59a6f8f15b57f960737fda79))
+
 ## 3.10.0 (2024-12-30)
 
 Full Changelog: [v3.9.0...v3.10.0](https://github.com/DataMini/asktable-python/compare/v3.9.0...v3.10.0)
