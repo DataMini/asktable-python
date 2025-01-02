@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Union, Optional
+from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -23,7 +23,7 @@ class Content(BaseModel):
 
 
 class ToolCallFunction(BaseModel):
-    arguments: Dict[str, Union[str, float, bool, None]]
+    arguments: str
 
     name: str
 
