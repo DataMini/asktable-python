@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Mapping, Optional, cast
+from typing import Optional
 from typing_extensions import Literal
 
 import httpx
@@ -15,12 +15,7 @@ from .meta import (
     MetaResourceWithStreamingResponse,
     AsyncMetaResourceWithStreamingResponse,
 )
-from ...types import (
-    datasource_list_params,
-    datasource_create_params,
-    datasource_update_params,
-    datasource_create_from_file_params,
-)
+from ...types import datasource_list_params, datasource_create_params, datasource_update_params
 from .indexes import (
     IndexesResource,
     AsyncIndexesResource,
@@ -29,11 +24,9 @@ from .indexes import (
     IndexesResourceWithStreamingResponse,
     AsyncIndexesResourceWithStreamingResponse,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
-    extract_files,
     maybe_transform,
-    deepcopy_minimal,
     async_maybe_transform,
 )
 from ..._compat import cached_property
@@ -55,6 +48,7 @@ from .upload_params import (
 )
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.datasource import Datasource
+from ...types.datasource_retrieve_response import DatasourceRetrieveResponse
 
 __all__ = ["DatasourcesResource", "AsyncDatasourcesResource"]
 
@@ -160,7 +154,7 @@ class DatasourcesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Datasource:
+    ) -> DatasourceRetrieveResponse:
         """
         根据 id 获取指定数据源
 
@@ -180,7 +174,7 @@ class DatasourcesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Datasource,
+            cast_to=DatasourceRetrieveResponse,
         )
 
     def update(
@@ -189,6 +183,10 @@ class DatasourcesResource(SyncAPIResource):
         *,
         access_config: Optional[datasource_update_params.AccessConfig] | NotGiven = NOT_GIVEN,
         desc: Optional[str] | NotGiven = NOT_GIVEN,
+        engine: Optional[
+            Literal["mysql", "tidb", "postgresql", "oceanbase", "clickhouse", "csv", "excel", "starrocks", "hive"]
+        ]
+        | NotGiven = NOT_GIVEN,
         field_count: Optional[int] | NotGiven = NOT_GIVEN,
         meta_error: Optional[str] | NotGiven = NOT_GIVEN,
         meta_status: Optional[Literal["processing", "failed", "success", "unprocessed"]] | NotGiven = NOT_GIVEN,
@@ -210,6 +208,8 @@ class DatasourcesResource(SyncAPIResource):
           access_config: 不同引擎有不同的配置
 
           desc: 数据源描述
+
+          engine: 数据源引擎
 
           field_count: 字段数量
 
@@ -241,6 +241,7 @@ class DatasourcesResource(SyncAPIResource):
                 {
                     "access_config": access_config,
                     "desc": desc,
+                    "engine": engine,
                     "field_count": field_count,
                     "meta_error": meta_error,
                     "meta_status": meta_status,
@@ -337,59 +338,6 @@ class DatasourcesResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=object,
-        )
-
-    def create_from_file(
-        self,
-        *,
-        file: FileTypes,
-        async_process_meta: bool | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        value_index: bool | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Datasource:
-        """
-        上传文件并创建数据源
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        body = deepcopy_minimal({"file": file})
-        files = extract_files(cast(Mapping[str, object], body), paths=[["file"]])
-        # It should be noted that the actual Content-Type header that will be
-        # sent to the server will contain a `boundary` parameter, e.g.
-        # multipart/form-data; boundary=---abc--
-        extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
-        return self._post(
-            "/datasources/file",
-            body=maybe_transform(body, datasource_create_from_file_params.DatasourceCreateFromFileParams),
-            files=files,
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "async_process_meta": async_process_meta,
-                        "name": name,
-                        "value_index": value_index,
-                    },
-                    datasource_create_from_file_params.DatasourceCreateFromFileParams,
-                ),
-            ),
-            cast_to=Datasource,
         )
 
 
@@ -494,7 +442,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Datasource:
+    ) -> DatasourceRetrieveResponse:
         """
         根据 id 获取指定数据源
 
@@ -514,7 +462,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Datasource,
+            cast_to=DatasourceRetrieveResponse,
         )
 
     async def update(
@@ -523,6 +471,10 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         *,
         access_config: Optional[datasource_update_params.AccessConfig] | NotGiven = NOT_GIVEN,
         desc: Optional[str] | NotGiven = NOT_GIVEN,
+        engine: Optional[
+            Literal["mysql", "tidb", "postgresql", "oceanbase", "clickhouse", "csv", "excel", "starrocks", "hive"]
+        ]
+        | NotGiven = NOT_GIVEN,
         field_count: Optional[int] | NotGiven = NOT_GIVEN,
         meta_error: Optional[str] | NotGiven = NOT_GIVEN,
         meta_status: Optional[Literal["processing", "failed", "success", "unprocessed"]] | NotGiven = NOT_GIVEN,
@@ -544,6 +496,8 @@ class AsyncDatasourcesResource(AsyncAPIResource):
           access_config: 不同引擎有不同的配置
 
           desc: 数据源描述
+
+          engine: 数据源引擎
 
           field_count: 字段数量
 
@@ -575,6 +529,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
                 {
                     "access_config": access_config,
                     "desc": desc,
+                    "engine": engine,
                     "field_count": field_count,
                     "meta_error": meta_error,
                     "meta_status": meta_status,
@@ -673,59 +628,6 @@ class AsyncDatasourcesResource(AsyncAPIResource):
             cast_to=object,
         )
 
-    async def create_from_file(
-        self,
-        *,
-        file: FileTypes,
-        async_process_meta: bool | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        value_index: bool | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Datasource:
-        """
-        上传文件并创建数据源
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        body = deepcopy_minimal({"file": file})
-        files = extract_files(cast(Mapping[str, object], body), paths=[["file"]])
-        # It should be noted that the actual Content-Type header that will be
-        # sent to the server will contain a `boundary` parameter, e.g.
-        # multipart/form-data; boundary=---abc--
-        extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
-        return await self._post(
-            "/datasources/file",
-            body=await async_maybe_transform(body, datasource_create_from_file_params.DatasourceCreateFromFileParams),
-            files=files,
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "async_process_meta": async_process_meta,
-                        "name": name,
-                        "value_index": value_index,
-                    },
-                    datasource_create_from_file_params.DatasourceCreateFromFileParams,
-                ),
-            ),
-            cast_to=Datasource,
-        )
-
 
 class DatasourcesResourceWithRawResponse:
     def __init__(self, datasources: DatasourcesResource) -> None:
@@ -745,9 +647,6 @@ class DatasourcesResourceWithRawResponse:
         )
         self.delete = to_raw_response_wrapper(
             datasources.delete,
-        )
-        self.create_from_file = to_raw_response_wrapper(
-            datasources.create_from_file,
         )
 
     @cached_property
@@ -782,9 +681,6 @@ class AsyncDatasourcesResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             datasources.delete,
         )
-        self.create_from_file = async_to_raw_response_wrapper(
-            datasources.create_from_file,
-        )
 
     @cached_property
     def meta(self) -> AsyncMetaResourceWithRawResponse:
@@ -818,9 +714,6 @@ class DatasourcesResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             datasources.delete,
         )
-        self.create_from_file = to_streamed_response_wrapper(
-            datasources.create_from_file,
-        )
 
     @cached_property
     def meta(self) -> MetaResourceWithStreamingResponse:
@@ -853,9 +746,6 @@ class AsyncDatasourcesResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             datasources.delete,
-        )
-        self.create_from_file = async_to_streamed_response_wrapper(
-            datasources.create_from_file,
         )
 
     @cached_property

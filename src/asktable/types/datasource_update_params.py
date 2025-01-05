@@ -2,10 +2,15 @@
 
 from __future__ import annotations
 
-from typing import Optional
-from typing_extensions import Literal, TypedDict
+from typing import List, Union, Optional
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
-__all__ = ["DatasourceUpdateParams", "AccessConfig"]
+__all__ = [
+    "DatasourceUpdateParams",
+    "AccessConfig",
+    "AccessConfigAccessConfigConnectionUpdate",
+    "AccessConfigAccessConfigFileUpdate",
+]
 
 
 class DatasourceUpdateParams(TypedDict, total=False):
@@ -14,6 +19,11 @@ class DatasourceUpdateParams(TypedDict, total=False):
 
     desc: Optional[str]
     """数据源描述"""
+
+    engine: Optional[
+        Literal["mysql", "tidb", "postgresql", "oceanbase", "clickhouse", "csv", "excel", "starrocks", "hive"]
+    ]
+    """数据源引擎"""
 
     field_count: Optional[int]
     """字段数量"""
@@ -37,12 +47,9 @@ class DatasourceUpdateParams(TypedDict, total=False):
     """表数量"""
 
 
-class AccessConfig(TypedDict, total=False):
-    atst_link_id: Optional[str]
-    """安全隧道链接 ID"""
-
+class AccessConfigAccessConfigConnectionUpdate(TypedDict, total=False):
     db: Optional[str]
-    """数据库引擎可以管理多个数据库，此参数用于指定数据库名称"""
+    """数据库名称"""
 
     db_version: Optional[str]
     """数据库版本"""
@@ -50,26 +57,22 @@ class AccessConfig(TypedDict, total=False):
     host: Optional[str]
     """数据库地址"""
 
-    location_type: Optional[str]
-    """Excel/CSV 文件位置"""
-
-    location_url: Optional[str]
-    """Excel/CSV 文件下载地址"""
-
     password: Optional[str]
     """数据库密码"""
 
     port: Optional[int]
     """数据库端口"""
 
-    proxy_host: Optional[str]
-    """数据源代理地址"""
-
-    proxy_port: Optional[int]
-    """数据源代理端口"""
-
     securetunnel_id: Optional[str]
     """安全隧道 ID"""
 
     user: Optional[str]
     """数据库用户名"""
+
+
+class AccessConfigAccessConfigFileUpdate(TypedDict, total=False):
+    files: Required[List[str]]
+    """数据源文件列表"""
+
+
+AccessConfig: TypeAlias = Union[AccessConfigAccessConfigConnectionUpdate, AccessConfigAccessConfigFileUpdate]

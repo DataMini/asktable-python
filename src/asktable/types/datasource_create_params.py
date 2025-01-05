@@ -2,10 +2,15 @@
 
 from __future__ import annotations
 
-from typing import Optional
-from typing_extensions import Literal, Required, TypedDict
+from typing import List, Union, Optional
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
-__all__ = ["DatasourceCreateParams", "AccessConfig"]
+__all__ = [
+    "DatasourceCreateParams",
+    "AccessConfig",
+    "AccessConfigAccessConfigConnectionCreate",
+    "AccessConfigAccessConfigFileCreate",
+]
 
 
 class DatasourceCreateParams(TypedDict, total=False):
@@ -25,39 +30,32 @@ class DatasourceCreateParams(TypedDict, total=False):
     """数据源的名称"""
 
 
-class AccessConfig(TypedDict, total=False):
-    atst_link_id: Optional[str]
-    """安全隧道链接 ID"""
+class AccessConfigAccessConfigConnectionCreate(TypedDict, total=False):
+    host: Required[str]
+    """数据库地址"""
 
     db: Optional[str]
-    """数据库引擎可以管理多个数据库，此参数用于指定数据库名称"""
+    """数据库名称"""
 
     db_version: Optional[str]
     """数据库版本"""
 
-    host: Optional[str]
-    """数据库地址"""
-
-    location_type: Optional[str]
-    """Excel/CSV 文件位置"""
-
-    location_url: Optional[str]
-    """Excel/CSV 文件下载地址"""
-
     password: Optional[str]
     """数据库密码"""
 
-    port: Optional[int]
+    port: int
     """数据库端口"""
-
-    proxy_host: Optional[str]
-    """数据源代理地址"""
-
-    proxy_port: Optional[int]
-    """数据源代理端口"""
 
     securetunnel_id: Optional[str]
     """安全隧道 ID"""
 
     user: Optional[str]
     """数据库用户名"""
+
+
+class AccessConfigAccessConfigFileCreate(TypedDict, total=False):
+    files: Required[List[str]]
+    """数据源文件列表"""
+
+
+AccessConfig: TypeAlias = Union[AccessConfigAccessConfigConnectionCreate, AccessConfigAccessConfigFileCreate]

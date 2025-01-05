@@ -11,6 +11,7 @@ from asktable import Asktable, AsyncAsktable
 from tests.utils import assert_matches_type
 from asktable.types import (
     Datasource,
+    DatasourceRetrieveResponse,
 )
 from asktable.pagination import SyncPage, AsyncPage
 
@@ -34,16 +35,11 @@ class TestDatasources:
             async_process_meta=True,
             value_index=True,
             access_config={
-                "atst_link_id": "atst_link_123456",
-                "db": "test",
-                "db_version": "5.7",
                 "host": "192.168.0.10",
-                "location_type": "local",
-                "location_url": "http://example.com/data.csv",
+                "db": "at_test",
+                "db_version": "5.7",
                 "password": "root",
                 "port": 3306,
-                "proxy_host": "192.168.0.10",
-                "proxy_port": 3306,
                 "securetunnel_id": "atst_123456",
                 "user": "root",
             },
@@ -80,7 +76,7 @@ class TestDatasources:
         datasource = client.datasources.retrieve(
             "datasource_id",
         )
-        assert_matches_type(Datasource, datasource, path=["response"])
+        assert_matches_type(DatasourceRetrieveResponse, datasource, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: Asktable) -> None:
@@ -91,7 +87,7 @@ class TestDatasources:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         datasource = response.parse()
-        assert_matches_type(Datasource, datasource, path=["response"])
+        assert_matches_type(DatasourceRetrieveResponse, datasource, path=["response"])
 
     @parametrize
     def test_streaming_response_retrieve(self, client: Asktable) -> None:
@@ -102,7 +98,7 @@ class TestDatasources:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             datasource = response.parse()
-            assert_matches_type(Datasource, datasource, path=["response"])
+            assert_matches_type(DatasourceRetrieveResponse, datasource, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -125,20 +121,16 @@ class TestDatasources:
         datasource = client.datasources.update(
             datasource_id="datasource_id",
             access_config={
-                "atst_link_id": "atst_link_123456",
-                "db": "test",
+                "db": "at_test",
                 "db_version": "5.7",
                 "host": "192.168.0.10",
-                "location_type": "local",
-                "location_url": "http://example.com/data.csv",
                 "password": "root",
                 "port": 3306,
-                "proxy_host": "192.168.0.10",
-                "proxy_port": 3306,
                 "securetunnel_id": "atst_123456",
                 "user": "root",
             },
             desc="数据源描述",
+            engine="mysql",
             field_count=1,
             meta_error="error message",
             meta_status="processing",
@@ -252,47 +244,6 @@ class TestDatasources:
                 "",
             )
 
-    @parametrize
-    def test_method_create_from_file(self, client: Asktable) -> None:
-        datasource = client.datasources.create_from_file(
-            file=b"raw file contents",
-        )
-        assert_matches_type(Datasource, datasource, path=["response"])
-
-    @parametrize
-    def test_method_create_from_file_with_all_params(self, client: Asktable) -> None:
-        datasource = client.datasources.create_from_file(
-            file=b"raw file contents",
-            async_process_meta=True,
-            name="name",
-            value_index=True,
-        )
-        assert_matches_type(Datasource, datasource, path=["response"])
-
-    @parametrize
-    def test_raw_response_create_from_file(self, client: Asktable) -> None:
-        response = client.datasources.with_raw_response.create_from_file(
-            file=b"raw file contents",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        datasource = response.parse()
-        assert_matches_type(Datasource, datasource, path=["response"])
-
-    @parametrize
-    def test_streaming_response_create_from_file(self, client: Asktable) -> None:
-        with client.datasources.with_streaming_response.create_from_file(
-            file=b"raw file contents",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            datasource = response.parse()
-            assert_matches_type(Datasource, datasource, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
 
 class TestAsyncDatasources:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
@@ -311,16 +262,11 @@ class TestAsyncDatasources:
             async_process_meta=True,
             value_index=True,
             access_config={
-                "atst_link_id": "atst_link_123456",
-                "db": "test",
-                "db_version": "5.7",
                 "host": "192.168.0.10",
-                "location_type": "local",
-                "location_url": "http://example.com/data.csv",
+                "db": "at_test",
+                "db_version": "5.7",
                 "password": "root",
                 "port": 3306,
-                "proxy_host": "192.168.0.10",
-                "proxy_port": 3306,
                 "securetunnel_id": "atst_123456",
                 "user": "root",
             },
@@ -357,7 +303,7 @@ class TestAsyncDatasources:
         datasource = await async_client.datasources.retrieve(
             "datasource_id",
         )
-        assert_matches_type(Datasource, datasource, path=["response"])
+        assert_matches_type(DatasourceRetrieveResponse, datasource, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncAsktable) -> None:
@@ -368,7 +314,7 @@ class TestAsyncDatasources:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         datasource = await response.parse()
-        assert_matches_type(Datasource, datasource, path=["response"])
+        assert_matches_type(DatasourceRetrieveResponse, datasource, path=["response"])
 
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncAsktable) -> None:
@@ -379,7 +325,7 @@ class TestAsyncDatasources:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             datasource = await response.parse()
-            assert_matches_type(Datasource, datasource, path=["response"])
+            assert_matches_type(DatasourceRetrieveResponse, datasource, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -402,20 +348,16 @@ class TestAsyncDatasources:
         datasource = await async_client.datasources.update(
             datasource_id="datasource_id",
             access_config={
-                "atst_link_id": "atst_link_123456",
-                "db": "test",
+                "db": "at_test",
                 "db_version": "5.7",
                 "host": "192.168.0.10",
-                "location_type": "local",
-                "location_url": "http://example.com/data.csv",
                 "password": "root",
                 "port": 3306,
-                "proxy_host": "192.168.0.10",
-                "proxy_port": 3306,
                 "securetunnel_id": "atst_123456",
                 "user": "root",
             },
             desc="数据源描述",
+            engine="mysql",
             field_count=1,
             meta_error="error message",
             meta_status="processing",
@@ -528,44 +470,3 @@ class TestAsyncDatasources:
             await async_client.datasources.with_raw_response.delete(
                 "",
             )
-
-    @parametrize
-    async def test_method_create_from_file(self, async_client: AsyncAsktable) -> None:
-        datasource = await async_client.datasources.create_from_file(
-            file=b"raw file contents",
-        )
-        assert_matches_type(Datasource, datasource, path=["response"])
-
-    @parametrize
-    async def test_method_create_from_file_with_all_params(self, async_client: AsyncAsktable) -> None:
-        datasource = await async_client.datasources.create_from_file(
-            file=b"raw file contents",
-            async_process_meta=True,
-            name="name",
-            value_index=True,
-        )
-        assert_matches_type(Datasource, datasource, path=["response"])
-
-    @parametrize
-    async def test_raw_response_create_from_file(self, async_client: AsyncAsktable) -> None:
-        response = await async_client.datasources.with_raw_response.create_from_file(
-            file=b"raw file contents",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        datasource = await response.parse()
-        assert_matches_type(Datasource, datasource, path=["response"])
-
-    @parametrize
-    async def test_streaming_response_create_from_file(self, async_client: AsyncAsktable) -> None:
-        async with async_client.datasources.with_streaming_response.create_from_file(
-            file=b"raw file contents",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            datasource = await response.parse()
-            assert_matches_type(Datasource, datasource, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
