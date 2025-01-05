@@ -6,42 +6,7 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["Datasource", "AccessConfig"]
-
-
-class AccessConfig(BaseModel):
-    atst_link_id: Optional[str] = None
-    """安全隧道链接 ID"""
-
-    db: Optional[str] = None
-    """数据库引擎可以管理多个数据库，此参数用于指定数据库名称"""
-
-    db_version: Optional[str] = None
-    """数据库版本"""
-
-    host: Optional[str] = None
-    """数据库地址"""
-
-    location_type: Optional[str] = None
-    """Excel/CSV 文件位置"""
-
-    location_url: Optional[str] = None
-    """Excel/CSV 文件下载地址"""
-
-    port: Optional[int] = None
-    """数据库端口"""
-
-    proxy_host: Optional[str] = None
-    """数据源代理地址"""
-
-    proxy_port: Optional[int] = None
-    """数据源代理端口"""
-
-    securetunnel_id: Optional[str] = None
-    """安全隧道 ID"""
-
-    user: Optional[str] = None
-    """数据库用户名"""
+__all__ = ["Datasource"]
 
 
 class Datasource(BaseModel):
@@ -62,9 +27,6 @@ class Datasource(BaseModel):
 
     project_id: str
     """项目 ID"""
-
-    access_config: Optional[AccessConfig] = None
-    """访问数据源的配置信息"""
 
     desc: Optional[str] = None
     """数据源描述"""
