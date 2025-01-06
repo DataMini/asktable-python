@@ -1,5 +1,22 @@
 # Changelog
 
+## 3.12.0 (2025-01-06)
+
+Full Changelog: [v3.11.0...v3.12.0](https://github.com/DataMini/asktable-python/compare/v3.11.0...v3.12.0)
+
+### Features
+
+* **api:** api update ([#100](https://github.com/DataMini/asktable-python/issues/100)) ([5a7a7bf](https://github.com/DataMini/asktable-python/commit/5a7a7bff6285237055e2670247e3f0321c032ab3))
+* **api:** api update ([#101](https://github.com/DataMini/asktable-python/issues/101)) ([cdea94b](https://github.com/DataMini/asktable-python/commit/cdea94b1bf7ad442748dd20248d63a2b8bb22c69))
+* **api:** api update ([#98](https://github.com/DataMini/asktable-python/issues/98)) ([a79bc2e](https://github.com/DataMini/asktable-python/commit/a79bc2e704aa56329424db53dec64c9a6d72c9b2))
+* **api:** api update ([#99](https://github.com/DataMini/asktable-python/issues/99)) ([f26d038](https://github.com/DataMini/asktable-python/commit/f26d038fd85281cb46b92cb31fecabe10dda82b8))
+* **api:** support file management, prolong timeout ([#102](https://github.com/DataMini/asktable-python/issues/102)) ([c38851f](https://github.com/DataMini/asktable-python/commit/c38851fa9587157c56769a52cf4899e16eb2a3db))
+
+
+### Chores
+
+* **internal:** codegen related update ([#96](https://github.com/DataMini/asktable-python/issues/96)) ([701403f](https://github.com/DataMini/asktable-python/commit/701403feecbfeccb6a3d507322b9dff89d398ec7))
+
 ## 3.11.0 (2024-12-30)
 
 Full Changelog: [v3.10.0...v3.11.0](https://github.com/DataMini/asktable-python/compare/v3.10.0...v3.11.0)

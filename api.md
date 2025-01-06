@@ -144,17 +144,26 @@ Methods:
 Types:
 
 ```python
-from asktable.types import Datasource, Index, Meta, DatasourceDeleteResponse
+from asktable.types import (
+    Datasource,
+    Index,
+    Meta,
+    DatasourceRetrieveResponse,
+    DatasourceDeleteResponse,
+    DatasourceAddFileResponse,
+    DatasourceDeleteFileResponse,
+)
 ```
 
 Methods:
 
 - <code title="post /datasources">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">create</a>(\*\*<a href="src/asktable/types/datasource_create_params.py">params</a>) -> <a href="./src/asktable/types/datasource.py">Datasource</a></code>
-- <code title="get /datasources/{datasource_id}">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">retrieve</a>(datasource_id) -> <a href="./src/asktable/types/datasource.py">Datasource</a></code>
+- <code title="get /datasources/{datasource_id}">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">retrieve</a>(datasource_id) -> <a href="./src/asktable/types/datasource_retrieve_response.py">DatasourceRetrieveResponse</a></code>
 - <code title="patch /datasources/{datasource_id}">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">update</a>(datasource_id, \*\*<a href="src/asktable/types/datasource_update_params.py">params</a>) -> <a href="./src/asktable/types/datasource.py">Datasource</a></code>
 - <code title="get /datasources">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">list</a>(\*\*<a href="src/asktable/types/datasource_list_params.py">params</a>) -> <a href="./src/asktable/types/datasource.py">SyncPage[Datasource]</a></code>
 - <code title="delete /datasources/{datasource_id}">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">delete</a>(datasource_id) -> <a href="./src/asktable/types/datasource_delete_response.py">object</a></code>
-- <code title="post /datasources/file">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">create_from_file</a>(\*\*<a href="src/asktable/types/datasource_create_from_file_params.py">params</a>) -> <a href="./src/asktable/types/datasource.py">Datasource</a></code>
+- <code title="post /datasources/{datasource_id}/files">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">add_file</a>(datasource_id, \*\*<a href="src/asktable/types/datasource_add_file_params.py">params</a>) -> <a href="./src/asktable/types/datasource_add_file_response.py">object</a></code>
+- <code title="delete /datasources/{datasource_id}/files/{file_id}">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">delete_file</a>(file_id, \*, datasource_id) -> <a href="./src/asktable/types/datasource_delete_file_response.py">object</a></code>
 
 ## Meta
 
