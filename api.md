@@ -150,6 +150,8 @@ from asktable.types import (
     Meta,
     DatasourceRetrieveResponse,
     DatasourceDeleteResponse,
+    DatasourceAddFileResponse,
+    DatasourceDeleteFileResponse,
 )
 ```
 
@@ -160,6 +162,8 @@ Methods:
 - <code title="patch /datasources/{datasource_id}">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">update</a>(datasource_id, \*\*<a href="src/asktable/types/datasource_update_params.py">params</a>) -> <a href="./src/asktable/types/datasource.py">Datasource</a></code>
 - <code title="get /datasources">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">list</a>(\*\*<a href="src/asktable/types/datasource_list_params.py">params</a>) -> <a href="./src/asktable/types/datasource.py">SyncPage[Datasource]</a></code>
 - <code title="delete /datasources/{datasource_id}">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">delete</a>(datasource_id) -> <a href="./src/asktable/types/datasource_delete_response.py">object</a></code>
+- <code title="post /datasources/{datasource_id}/files">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">add_file</a>(datasource_id, \*\*<a href="src/asktable/types/datasource_add_file_params.py">params</a>) -> <a href="./src/asktable/types/datasource_add_file_response.py">object</a></code>
+- <code title="delete /datasources/{datasource_id}/files/{file_id}">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">delete_file</a>(file_id, \*, datasource_id) -> <a href="./src/asktable/types/datasource_delete_file_response.py">object</a></code>
 
 ## Meta
 
