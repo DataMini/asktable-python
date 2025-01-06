@@ -58,6 +58,7 @@ from .training_create_response import TrainingCreateResponse as TrainingCreateRe
 from .role_get_polices_response import RoleGetPolicesResponse as RoleGetPolicesResponse
 from .role_get_variables_params import RoleGetVariablesParams as RoleGetVariablesParams
 from .chat_send_message_response import ChatSendMessageResponse as ChatSendMessageResponse
+from .datasource_add_file_params import DatasourceAddFileParams as DatasourceAddFileParams
 from .preference_create_response import PreferenceCreateResponse as PreferenceCreateResponse
 from .preference_update_response import PreferenceUpdateResponse as PreferenceUpdateResponse
 from .securetunnel_create_params import SecuretunnelCreateParams as SecuretunnelCreateParams
