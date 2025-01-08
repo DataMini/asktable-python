@@ -7,8 +7,8 @@ from typing_extensions import Required, TypedDict
 
 from .._types import FileTypes
 
-__all__ = ["DatasourceAddFileParams"]
+__all__ = ["DatasourceAddFilesParams"]
 
 
-class DatasourceAddFileParams(TypedDict, total=False):
+class DatasourceAddFilesParams(TypedDict, total=False):
     files: Required[List[FileTypes]]
