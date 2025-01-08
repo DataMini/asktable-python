@@ -424,6 +424,7 @@ class DatasourcesResource(SyncAPIResource):
             ),
             cast_to=object,
         )
+
     def add_file_and_update_meta(
         self,
         datasource_id: str,
@@ -489,6 +490,7 @@ class DatasourcesResource(SyncAPIResource):
             extra_body=extra_body,
             timeout=timeout,
         )
+
 
 class AsyncDatasourcesResource(AsyncAPIResource):
     @cached_property
