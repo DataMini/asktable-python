@@ -424,7 +424,71 @@ class DatasourcesResource(SyncAPIResource):
             ),
             cast_to=object,
         )
+    def add_file_and_update_meta(
+        self,
+        datasource_id: str,
+        file: FileTypes,
+        *,
+        async_process_meta: bool | NotGiven = NOT_GIVEN,
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ):
+        self.add_files(
+            datasource_id,
+            files=[file],
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        self.meta.create(
+            datasource_id=datasource_id,
+            body=None,
+            async_process_meta=async_process_meta,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
 
+    def create_from_file(
+        self,
+        engine: Literal["excel", "csv"],
+        file: FileTypes,
+        *,
+        async_process_meta: bool | NotGiven = NOT_GIVEN,
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ):
+        datasource = self.create(
+            engine=engine,
+            async_process_meta=False,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        self.add_files(
+            datasource.id,
+            files=[file],
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        self.meta.create(
+            datasource.id,
+            body=None,
+            async_process_meta=async_process_meta,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
 
 class AsyncDatasourcesResource(AsyncAPIResource):
     @cached_property
