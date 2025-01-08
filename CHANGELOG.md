@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.14.0 (2025-01-08)
+
+Full Changelog: [v3.13.0...v3.14.0](https://github.com/DataMini/asktable-python/compare/v3.13.0...v3.14.0)
+
+### Features
+
+* patch create_from_file and add_file_and_update_meta ([92ed0da](https://github.com/DataMini/asktable-python/commit/92ed0da376f897885185fb1075f3d9b2f05e8591))
+
 ## 3.13.0 (2025-01-08)
 
 Full Changelog: [v3.12.0...v3.13.0](https://github.com/DataMini/asktable-python/compare/v3.12.0...v3.13.0)
