@@ -424,6 +424,7 @@ class DatasourcesResource(SyncAPIResource):
             ),
             cast_to=object,
         )
+
     def add_file_and_update_meta(
         self,
         datasource_id: str,
