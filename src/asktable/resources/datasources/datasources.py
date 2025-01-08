@@ -19,7 +19,7 @@ from ...types import (
     datasource_list_params,
     datasource_create_params,
     datasource_update_params,
-    datasource_add_file_params,
+    datasource_add_files_params,
 )
 from .indexes import (
     IndexesResource,
@@ -347,7 +347,7 @@ class DatasourcesResource(SyncAPIResource):
             cast_to=object,
         )
 
-    def add_file(
+    def add_files(
         self,
         datasource_id: str,
         *,
@@ -381,7 +381,7 @@ class DatasourcesResource(SyncAPIResource):
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._post(
             f"/datasources/{datasource_id}/files",
-            body=maybe_transform(body, datasource_add_file_params.DatasourceAddFileParams),
+            body=maybe_transform(body, datasource_add_files_params.DatasourceAddFilesParams),
             files=extracted_files,
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -713,7 +713,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
             cast_to=object,
         )
 
-    async def add_file(
+    async def add_files(
         self,
         datasource_id: str,
         *,
@@ -747,7 +747,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._post(
             f"/datasources/{datasource_id}/files",
-            body=await async_maybe_transform(body, datasource_add_file_params.DatasourceAddFileParams),
+            body=await async_maybe_transform(body, datasource_add_files_params.DatasourceAddFilesParams),
             files=extracted_files,
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -811,8 +811,8 @@ class DatasourcesResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             datasources.delete,
         )
-        self.add_file = to_raw_response_wrapper(
-            datasources.add_file,
+        self.add_files = to_raw_response_wrapper(
+            datasources.add_files,
         )
         self.delete_file = to_raw_response_wrapper(
             datasources.delete_file,
@@ -850,8 +850,8 @@ class AsyncDatasourcesResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             datasources.delete,
         )
-        self.add_file = async_to_raw_response_wrapper(
-            datasources.add_file,
+        self.add_files = async_to_raw_response_wrapper(
+            datasources.add_files,
         )
         self.delete_file = async_to_raw_response_wrapper(
             datasources.delete_file,
@@ -889,8 +889,8 @@ class DatasourcesResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             datasources.delete,
         )
-        self.add_file = to_streamed_response_wrapper(
-            datasources.add_file,
+        self.add_files = to_streamed_response_wrapper(
+            datasources.add_files,
         )
         self.delete_file = to_streamed_response_wrapper(
             datasources.delete_file,
@@ -928,8 +928,8 @@ class AsyncDatasourcesResourceWithStreamingResponse:
         self.delete = async_to_streamed_response_wrapper(
             datasources.delete,
         )
-        self.add_file = async_to_streamed_response_wrapper(
-            datasources.add_file,
+        self.add_files = async_to_streamed_response_wrapper(
+            datasources.add_files,
         )
         self.delete_file = async_to_streamed_response_wrapper(
             datasources.delete_file,

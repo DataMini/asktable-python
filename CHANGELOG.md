@@ -1,5 +1,19 @@
 # Changelog
 
+## 3.13.0 (2025-01-08)
+
+Full Changelog: [v3.12.0...v3.13.0](https://github.com/DataMini/asktable-python/compare/v3.12.0...v3.13.0)
+
+### Features
+
+* **api:** Config update for frei-l/dev ([#106](https://github.com/DataMini/asktable-python/issues/106)) ([65d8b08](https://github.com/DataMini/asktable-python/commit/65d8b08db1483acb19cb7863092dc78a3cceee09))
+
+
+### Chores
+
+* add missing isclass check ([#104](https://github.com/DataMini/asktable-python/issues/104)) ([10aa4e2](https://github.com/DataMini/asktable-python/commit/10aa4e2574524a5e5efc9b6f77bef9067dae2778))
+* **internal:** codegen related update ([#107](https://github.com/DataMini/asktable-python/issues/107)) ([6fc5d90](https://github.com/DataMini/asktable-python/commit/6fc5d9056079a39db002893db247d88942a5da70))
+
 ## 3.12.0 (2025-01-06)
 
 Full Changelog: [v3.11.0...v3.12.0](https://github.com/DataMini/asktable-python/compare/v3.11.0...v3.12.0)
