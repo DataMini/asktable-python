@@ -248,7 +248,7 @@ class TestDatasources:
     def test_method_add_files(self, client: Asktable) -> None:
         datasource = client.datasources.add_files(
             datasource_id="datasource_id",
-            files=[b"raw file contents"],
+            file=b"raw file contents",
         )
         assert_matches_type(object, datasource, path=["response"])
 
@@ -256,7 +256,7 @@ class TestDatasources:
     def test_raw_response_add_files(self, client: Asktable) -> None:
         response = client.datasources.with_raw_response.add_files(
             datasource_id="datasource_id",
-            files=[b"raw file contents"],
+            file=b"raw file contents",
         )
 
         assert response.is_closed is True
@@ -268,7 +268,7 @@ class TestDatasources:
     def test_streaming_response_add_files(self, client: Asktable) -> None:
         with client.datasources.with_streaming_response.add_files(
             datasource_id="datasource_id",
-            files=[b"raw file contents"],
+            file=b"raw file contents",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -283,7 +283,7 @@ class TestDatasources:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `datasource_id` but received ''"):
             client.datasources.with_raw_response.add_files(
                 datasource_id="",
-                files=[b"raw file contents"],
+                file=b"raw file contents",
             )
 
     @parametrize
@@ -565,7 +565,7 @@ class TestAsyncDatasources:
     async def test_method_add_files(self, async_client: AsyncAsktable) -> None:
         datasource = await async_client.datasources.add_files(
             datasource_id="datasource_id",
-            files=[b"raw file contents"],
+            file=b"raw file contents",
         )
         assert_matches_type(object, datasource, path=["response"])
 
@@ -573,7 +573,7 @@ class TestAsyncDatasources:
     async def test_raw_response_add_files(self, async_client: AsyncAsktable) -> None:
         response = await async_client.datasources.with_raw_response.add_files(
             datasource_id="datasource_id",
-            files=[b"raw file contents"],
+            file=b"raw file contents",
         )
 
         assert response.is_closed is True
@@ -585,7 +585,7 @@ class TestAsyncDatasources:
     async def test_streaming_response_add_files(self, async_client: AsyncAsktable) -> None:
         async with async_client.datasources.with_streaming_response.add_files(
             datasource_id="datasource_id",
-            files=[b"raw file contents"],
+            file=b"raw file contents",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -600,7 +600,7 @@ class TestAsyncDatasources:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `datasource_id` but received ''"):
             await async_client.datasources.with_raw_response.add_files(
                 datasource_id="",
-                files=[b"raw file contents"],
+                file=b"raw file contents",
             )
 
     @parametrize
