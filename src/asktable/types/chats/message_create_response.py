@@ -7,6 +7,6 @@ from ..ai_message import AIMessage
 from ..tool_message import ToolMessage
 from ..user_message import UserMessage
 
-__all__ = ["MessageSendMessageResponse"]
+__all__ = ["MessageCreateResponse"]
 
-MessageSendMessageResponse: TypeAlias = Union[UserMessage, AIMessage, ToolMessage]
+MessageCreateResponse: TypeAlias = Union[UserMessage, AIMessage, ToolMessage]
