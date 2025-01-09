@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Mapping, Optional, cast
+from typing import Mapping, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -19,7 +19,7 @@ from ...types import (
     datasource_list_params,
     datasource_create_params,
     datasource_update_params,
-    datasource_add_files_params,
+    datasource_add_file_params,
 )
 from .indexes import (
     IndexesResource,
@@ -347,11 +347,11 @@ class DatasourcesResource(SyncAPIResource):
             cast_to=object,
         )
 
-    def add_files(
+    def add_file(
         self,
         datasource_id: str,
         *,
-        files: List[FileTypes],
+        file: FileTypes,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -373,16 +373,16 @@ class DatasourcesResource(SyncAPIResource):
         """
         if not datasource_id:
             raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
-        body = deepcopy_minimal({"files": files})
-        extracted_files = extract_files(cast(Mapping[str, object], body), paths=[["files", "<array>"]])
+        body = deepcopy_minimal({"file": file})
+        files = extract_files(cast(Mapping[str, object], body), paths=[["file"]])
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._post(
             f"/datasources/{datasource_id}/files",
-            body=maybe_transform(body, datasource_add_files_params.DatasourceAddFilesParams),
-            files=extracted_files,
+            body=maybe_transform(body, datasource_add_file_params.DatasourceAddFileParams),
+            files=files,
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -778,11 +778,11 @@ class AsyncDatasourcesResource(AsyncAPIResource):
             cast_to=object,
         )
 
-    async def add_files(
+    async def add_file(
         self,
         datasource_id: str,
         *,
-        files: List[FileTypes],
+        file: FileTypes,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -804,16 +804,16 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         """
         if not datasource_id:
             raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
-        body = deepcopy_minimal({"files": files})
-        extracted_files = extract_files(cast(Mapping[str, object], body), paths=[["files", "<array>"]])
+        body = deepcopy_minimal({"file": file})
+        files = extract_files(cast(Mapping[str, object], body), paths=[["file"]])
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._post(
             f"/datasources/{datasource_id}/files",
-            body=await async_maybe_transform(body, datasource_add_files_params.DatasourceAddFilesParams),
-            files=extracted_files,
+            body=await async_maybe_transform(body, datasource_add_file_params.DatasourceAddFileParams),
+            files=files,
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -876,8 +876,8 @@ class DatasourcesResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             datasources.delete,
         )
-        self.add_files = to_raw_response_wrapper(
-            datasources.add_files,
+        self.add_file = to_raw_response_wrapper(
+            datasources.add_file,
         )
         self.delete_file = to_raw_response_wrapper(
             datasources.delete_file,
@@ -915,8 +915,8 @@ class AsyncDatasourcesResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             datasources.delete,
         )
-        self.add_files = async_to_raw_response_wrapper(
-            datasources.add_files,
+        self.add_file = async_to_raw_response_wrapper(
+            datasources.add_file,
         )
         self.delete_file = async_to_raw_response_wrapper(
             datasources.delete_file,
@@ -954,8 +954,8 @@ class DatasourcesResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             datasources.delete,
         )
-        self.add_files = to_streamed_response_wrapper(
-            datasources.add_files,
+        self.add_file = to_streamed_response_wrapper(
+            datasources.add_file,
         )
         self.delete_file = to_streamed_response_wrapper(
             datasources.delete_file,
@@ -993,8 +993,8 @@ class AsyncDatasourcesResourceWithStreamingResponse:
         self.delete = async_to_streamed_response_wrapper(
             datasources.delete,
         )
-        self.add_files = async_to_streamed_response_wrapper(
-            datasources.add_files,
+        self.add_file = async_to_streamed_response_wrapper(
+            datasources.add_file,
         )
         self.delete_file = async_to_streamed_response_wrapper(
             datasources.delete_file,

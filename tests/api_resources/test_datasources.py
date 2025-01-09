@@ -245,18 +245,18 @@ class TestDatasources:
             )
 
     @parametrize
-    def test_method_add_files(self, client: Asktable) -> None:
-        datasource = client.datasources.add_files(
+    def test_method_add_file(self, client: Asktable) -> None:
+        datasource = client.datasources.add_file(
             datasource_id="datasource_id",
-            files=[b"raw file contents"],
+            file=b"raw file contents",
         )
         assert_matches_type(object, datasource, path=["response"])
 
     @parametrize
-    def test_raw_response_add_files(self, client: Asktable) -> None:
-        response = client.datasources.with_raw_response.add_files(
+    def test_raw_response_add_file(self, client: Asktable) -> None:
+        response = client.datasources.with_raw_response.add_file(
             datasource_id="datasource_id",
-            files=[b"raw file contents"],
+            file=b"raw file contents",
         )
 
         assert response.is_closed is True
@@ -265,10 +265,10 @@ class TestDatasources:
         assert_matches_type(object, datasource, path=["response"])
 
     @parametrize
-    def test_streaming_response_add_files(self, client: Asktable) -> None:
-        with client.datasources.with_streaming_response.add_files(
+    def test_streaming_response_add_file(self, client: Asktable) -> None:
+        with client.datasources.with_streaming_response.add_file(
             datasource_id="datasource_id",
-            files=[b"raw file contents"],
+            file=b"raw file contents",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -279,11 +279,11 @@ class TestDatasources:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_path_params_add_files(self, client: Asktable) -> None:
+    def test_path_params_add_file(self, client: Asktable) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `datasource_id` but received ''"):
-            client.datasources.with_raw_response.add_files(
+            client.datasources.with_raw_response.add_file(
                 datasource_id="",
-                files=[b"raw file contents"],
+                file=b"raw file contents",
             )
 
     @parametrize
@@ -562,18 +562,18 @@ class TestAsyncDatasources:
             )
 
     @parametrize
-    async def test_method_add_files(self, async_client: AsyncAsktable) -> None:
-        datasource = await async_client.datasources.add_files(
+    async def test_method_add_file(self, async_client: AsyncAsktable) -> None:
+        datasource = await async_client.datasources.add_file(
             datasource_id="datasource_id",
-            files=[b"raw file contents"],
+            file=b"raw file contents",
         )
         assert_matches_type(object, datasource, path=["response"])
 
     @parametrize
-    async def test_raw_response_add_files(self, async_client: AsyncAsktable) -> None:
-        response = await async_client.datasources.with_raw_response.add_files(
+    async def test_raw_response_add_file(self, async_client: AsyncAsktable) -> None:
+        response = await async_client.datasources.with_raw_response.add_file(
             datasource_id="datasource_id",
-            files=[b"raw file contents"],
+            file=b"raw file contents",
         )
 
         assert response.is_closed is True
@@ -582,10 +582,10 @@ class TestAsyncDatasources:
         assert_matches_type(object, datasource, path=["response"])
 
     @parametrize
-    async def test_streaming_response_add_files(self, async_client: AsyncAsktable) -> None:
-        async with async_client.datasources.with_streaming_response.add_files(
+    async def test_streaming_response_add_file(self, async_client: AsyncAsktable) -> None:
+        async with async_client.datasources.with_streaming_response.add_file(
             datasource_id="datasource_id",
-            files=[b"raw file contents"],
+            file=b"raw file contents",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -596,11 +596,11 @@ class TestAsyncDatasources:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_path_params_add_files(self, async_client: AsyncAsktable) -> None:
+    async def test_path_params_add_file(self, async_client: AsyncAsktable) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `datasource_id` but received ''"):
-            await async_client.datasources.with_raw_response.add_files(
+            await async_client.datasources.with_raw_response.add_file(
                 datasource_id="",
-                files=[b"raw file contents"],
+                file=b"raw file contents",
             )
 
     @parametrize

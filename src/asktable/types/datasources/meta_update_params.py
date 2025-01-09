@@ -2,27 +2,20 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
-from typing_extensions import Required, TypeAlias, TypedDict
+from typing import Dict, Optional
+from typing_extensions import Required, TypedDict
 
-__all__ = [
-    "MetaUpdateParams",
-    "MetaCreate",
-    "MetaCreateSchemas",
-    "MetaCreateSchemasTables",
-    "MetaCreateSchemasTablesFields",
-    "Variant1",
-]
+__all__ = ["MetaUpdateParams", "Schemas", "SchemasTables", "SchemasTablesFields"]
 
 
-class MetaCreate(TypedDict, total=False):
+class MetaUpdateParams(TypedDict, total=False):
     name: Required[str]
     """metadata_name"""
 
-    schemas: Dict[str, MetaCreateSchemas]
+    schemas: Dict[str, Schemas]
 
 
-class MetaCreateSchemasTablesFields(TypedDict, total=False):
+class SchemasTablesFields(TypedDict, total=False):
     name: Required[str]
     """field_name"""
 
@@ -36,17 +29,17 @@ class MetaCreateSchemasTablesFields(TypedDict, total=False):
     """field sample data"""
 
 
-class MetaCreateSchemasTables(TypedDict, total=False):
+class SchemasTables(TypedDict, total=False):
     name: Required[str]
     """table_name"""
 
-    fields: Dict[str, MetaCreateSchemasTablesFields]
+    fields: Dict[str, SchemasTablesFields]
 
     origin_desc: Optional[str]
     """table description from database"""
 
 
-class MetaCreateSchemas(TypedDict, total=False):
+class Schemas(TypedDict, total=False):
     name: Required[str]
     """schema_name"""
 
@@ -56,11 +49,4 @@ class MetaCreateSchemas(TypedDict, total=False):
     origin_desc: Optional[str]
     """schema description from database"""
 
-    tables: Dict[str, MetaCreateSchemasTables]
-
-
-class Variant1(TypedDict, total=False):
-    body: Required[None]
-
-
-MetaUpdateParams: TypeAlias = Union[MetaCreate, Variant1]
+    tables: Dict[str, SchemasTables]

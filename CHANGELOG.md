@@ -1,5 +1,33 @@
 # Changelog
 
+## 4.0.0 (2025-01-09)
+
+Full Changelog: [v3.14.0...v4.0.0](https://github.com/DataMini/asktable-python/compare/v3.14.0...v4.0.0)
+
+### ⚠ BREAKING CHANGES
+
+* **api:** better support union schemas with common properties ([#116](https://github.com/DataMini/asktable-python/issues/116))
+
+### Features
+
+* **api:** api update ([#117](https://github.com/DataMini/asktable-python/issues/117)) ([08bb9e3](https://github.com/DataMini/asktable-python/commit/08bb9e3eab139c7bdb5b19d0a068080e21dade45))
+* **api:** manual updates ([#118](https://github.com/DataMini/asktable-python/issues/118)) ([717bcd7](https://github.com/DataMini/asktable-python/commit/717bcd7ae11017dda379a4f9617f9be0c12f55d1))
+
+
+### Bug Fixes
+
+* **api:** better support union schemas with common properties ([#116](https://github.com/DataMini/asktable-python/issues/116)) ([dced8d4](https://github.com/DataMini/asktable-python/commit/dced8d4627b4ab2264b1d6786d25ea27abc41f66))
+
+
+### Chores
+
+* **internal:** codegen related update ([#115](https://github.com/DataMini/asktable-python/issues/115)) ([fbf67b0](https://github.com/DataMini/asktable-python/commit/fbf67b023055838adee929909c610df65027848b))
+
+
+### Documentation
+
+* fix typos ([#113](https://github.com/DataMini/asktable-python/issues/113)) ([8306d10](https://github.com/DataMini/asktable-python/commit/8306d102df314903bd18f2d8b77c36a7c39f23ec))
+
 ## 3.14.0 (2025-01-08)
 
 Full Changelog: [v3.13.0...v3.14.0](https://github.com/DataMini/asktable-python/compare/v3.13.0...v3.14.0)
