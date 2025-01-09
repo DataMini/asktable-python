@@ -4,8 +4,8 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["MessageSendMessageParams"]
+__all__ = ["MessageCreateParams"]
 
 
-class MessageSendMessageParams(TypedDict, total=False):
+class MessageCreateParams(TypedDict, total=False):
     question: Required[str]
