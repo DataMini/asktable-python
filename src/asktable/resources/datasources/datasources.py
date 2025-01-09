@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Mapping, Optional, cast
+from typing import Mapping, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -351,7 +351,7 @@ class DatasourcesResource(SyncAPIResource):
         self,
         datasource_id: str,
         *,
-        files: List[FileTypes],
+        file: FileTypes,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -373,8 +373,8 @@ class DatasourcesResource(SyncAPIResource):
         """
         if not datasource_id:
             raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
-        body = deepcopy_minimal({"files": files})
-        extracted_files = extract_files(cast(Mapping[str, object], body), paths=[["files", "<array>"]])
+        body = deepcopy_minimal({"file": file})
+        files = extract_files(cast(Mapping[str, object], body), paths=[["file"]])
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
         # multipart/form-data; boundary=---abc--
@@ -382,7 +382,7 @@ class DatasourcesResource(SyncAPIResource):
         return self._post(
             f"/datasources/{datasource_id}/files",
             body=maybe_transform(body, datasource_add_files_params.DatasourceAddFilesParams),
-            files=extracted_files,
+            files=files,
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -782,7 +782,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         self,
         datasource_id: str,
         *,
-        files: List[FileTypes],
+        file: FileTypes,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -804,8 +804,8 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         """
         if not datasource_id:
             raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
-        body = deepcopy_minimal({"files": files})
-        extracted_files = extract_files(cast(Mapping[str, object], body), paths=[["files", "<array>"]])
+        body = deepcopy_minimal({"file": file})
+        files = extract_files(cast(Mapping[str, object], body), paths=[["file"]])
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
         # multipart/form-data; boundary=---abc--
@@ -813,7 +813,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         return await self._post(
             f"/datasources/{datasource_id}/files",
             body=await async_maybe_transform(body, datasource_add_files_params.DatasourceAddFilesParams),
-            files=extracted_files,
+            files=files,
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
