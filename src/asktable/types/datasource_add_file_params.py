@@ -6,8 +6,8 @@ from typing_extensions import Required, TypedDict
 
 from .._types import FileTypes
 
-__all__ = ["DatasourceAddFilesParams"]
+__all__ = ["DatasourceAddFileParams"]
 
 
-class DatasourceAddFilesParams(TypedDict, total=False):
+class DatasourceAddFileParams(TypedDict, total=False):
     file: Required[FileTypes]
