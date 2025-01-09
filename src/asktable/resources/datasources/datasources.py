@@ -430,15 +430,16 @@ class DatasourcesResource(SyncAPIResource):
         datasource_id: str,
         file: FileTypes,
         *,
+        name: str = "auto_generated_meta",
         async_process_meta: bool | NotGiven = NOT_GIVEN,
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ):
-        self.add_files(
+        self.add_file(
             datasource_id,
-            files=[file],
+            file=file,
             extra_headers=extra_headers,
             extra_query=extra_query,
             extra_body=extra_body,
@@ -446,7 +447,7 @@ class DatasourcesResource(SyncAPIResource):
         )
         self.meta.create(
             datasource_id=datasource_id,
-            body=None,
+            name=name,
             async_process_meta=async_process_meta,
             extra_headers=extra_headers,
             extra_query=extra_query,
@@ -459,6 +460,7 @@ class DatasourcesResource(SyncAPIResource):
         engine: Literal["excel", "csv"],
         file: FileTypes,
         *,
+        name: str = "auto_generated",
         async_process_meta: bool | NotGiven = NOT_GIVEN,
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
@@ -467,15 +469,16 @@ class DatasourcesResource(SyncAPIResource):
     ):
         datasource = self.create(
             engine=engine,
+            name=name,
             async_process_meta=False,
             extra_headers=extra_headers,
             extra_query=extra_query,
             extra_body=extra_body,
             timeout=timeout,
         )
-        self.add_files(
+        self.add_file(
             datasource.id,
-            files=[file],
+            file=file,
             extra_headers=extra_headers,
             extra_query=extra_query,
             extra_body=extra_body,
@@ -483,7 +486,7 @@ class DatasourcesResource(SyncAPIResource):
         )
         self.meta.create(
             datasource.id,
-            body=None,
+            name=name,
             async_process_meta=async_process_meta,
             extra_headers=extra_headers,
             extra_query=extra_query,
