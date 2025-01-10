@@ -15,7 +15,20 @@ __all__ = [
 
 class DatasourceCreateParams(TypedDict, total=False):
     engine: Required[
-        Literal["mysql", "tidb", "postgresql", "oceanbase", "clickhouse", "csv", "excel", "starrocks", "hive"]
+        Literal[
+            "mysql",
+            "tidb",
+            "postgresql",
+            "oceanbase",
+            "clickhouse",
+            "csv",
+            "excel",
+            "starrocks",
+            "hive",
+            "oracle",
+            "polardbmysql",
+            "polardbpg",
+        ]
     ]
     """数据源引擎"""
 
@@ -39,6 +52,9 @@ class AccessConfigAccessConfigConnectionCreate(TypedDict, total=False):
 
     db_version: Optional[str]
     """数据库版本"""
+
+    extra_config: Optional[object]
+    """额外配置"""
 
     password: Optional[str]
     """数据库密码"""

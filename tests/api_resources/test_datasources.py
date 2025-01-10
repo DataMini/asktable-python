@@ -38,6 +38,7 @@ class TestDatasources:
                 "host": "192.168.0.10",
                 "db": "at_test",
                 "db_version": "5.7",
+                "extra_config": {"ssl_mode": "require"},
                 "password": "root",
                 "port": 3306,
                 "securetunnel_id": "atst_123456",
@@ -123,6 +124,7 @@ class TestDatasources:
             access_config={
                 "db": "at_test",
                 "db_version": "5.7",
+                "extra_config": {"ssl_mode": "require"},
                 "host": "192.168.0.10",
                 "password": "root",
                 "port": 3306,
@@ -355,6 +357,7 @@ class TestAsyncDatasources:
                 "host": "192.168.0.10",
                 "db": "at_test",
                 "db_version": "5.7",
+                "extra_config": {"ssl_mode": "require"},
                 "password": "root",
                 "port": 3306,
                 "securetunnel_id": "atst_123456",
@@ -440,6 +443,7 @@ class TestAsyncDatasources:
             access_config={
                 "db": "at_test",
                 "db_version": "5.7",
+                "extra_config": {"ssl_mode": "require"},
                 "host": "192.168.0.10",
                 "password": "root",
                 "port": 3306,

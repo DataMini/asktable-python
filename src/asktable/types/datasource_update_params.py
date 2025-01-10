@@ -21,7 +21,20 @@ class DatasourceUpdateParams(TypedDict, total=False):
     """数据源描述"""
 
     engine: Optional[
-        Literal["mysql", "tidb", "postgresql", "oceanbase", "clickhouse", "csv", "excel", "starrocks", "hive"]
+        Literal[
+            "mysql",
+            "tidb",
+            "postgresql",
+            "oceanbase",
+            "clickhouse",
+            "csv",
+            "excel",
+            "starrocks",
+            "hive",
+            "oracle",
+            "polardbmysql",
+            "polardbpg",
+        ]
     ]
     """数据源引擎"""
 
@@ -53,6 +66,9 @@ class AccessConfigAccessConfigConnectionUpdate(TypedDict, total=False):
 
     db_version: Optional[str]
     """数据库版本"""
+
+    extra_config: Optional[object]
+    """额外配置"""
 
     host: Optional[str]
     """数据库地址"""

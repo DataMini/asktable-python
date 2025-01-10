@@ -95,7 +95,20 @@ class DatasourcesResource(SyncAPIResource):
     def create(
         self,
         *,
-        engine: Literal["mysql", "tidb", "postgresql", "oceanbase", "clickhouse", "csv", "excel", "starrocks", "hive"],
+        engine: Literal[
+            "mysql",
+            "tidb",
+            "postgresql",
+            "oceanbase",
+            "clickhouse",
+            "csv",
+            "excel",
+            "starrocks",
+            "hive",
+            "oracle",
+            "polardbmysql",
+            "polardbpg",
+        ],
         async_process_meta: bool | NotGiven = NOT_GIVEN,
         value_index: bool | NotGiven = NOT_GIVEN,
         access_config: Optional[datasource_create_params.AccessConfig] | NotGiven = NOT_GIVEN,
@@ -191,7 +204,20 @@ class DatasourcesResource(SyncAPIResource):
         access_config: Optional[datasource_update_params.AccessConfig] | NotGiven = NOT_GIVEN,
         desc: Optional[str] | NotGiven = NOT_GIVEN,
         engine: Optional[
-            Literal["mysql", "tidb", "postgresql", "oceanbase", "clickhouse", "csv", "excel", "starrocks", "hive"]
+            Literal[
+                "mysql",
+                "tidb",
+                "postgresql",
+                "oceanbase",
+                "clickhouse",
+                "csv",
+                "excel",
+                "starrocks",
+                "hive",
+                "oracle",
+                "polardbmysql",
+                "polardbpg",
+            ]
         ]
         | NotGiven = NOT_GIVEN,
         field_count: Optional[int] | NotGiven = NOT_GIVEN,
@@ -461,7 +487,20 @@ class AsyncDatasourcesResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        engine: Literal["mysql", "tidb", "postgresql", "oceanbase", "clickhouse", "csv", "excel", "starrocks", "hive"],
+        engine: Literal[
+            "mysql",
+            "tidb",
+            "postgresql",
+            "oceanbase",
+            "clickhouse",
+            "csv",
+            "excel",
+            "starrocks",
+            "hive",
+            "oracle",
+            "polardbmysql",
+            "polardbpg",
+        ],
         async_process_meta: bool | NotGiven = NOT_GIVEN,
         value_index: bool | NotGiven = NOT_GIVEN,
         access_config: Optional[datasource_create_params.AccessConfig] | NotGiven = NOT_GIVEN,
@@ -557,7 +596,20 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         access_config: Optional[datasource_update_params.AccessConfig] | NotGiven = NOT_GIVEN,
         desc: Optional[str] | NotGiven = NOT_GIVEN,
         engine: Optional[
-            Literal["mysql", "tidb", "postgresql", "oceanbase", "clickhouse", "csv", "excel", "starrocks", "hive"]
+            Literal[
+                "mysql",
+                "tidb",
+                "postgresql",
+                "oceanbase",
+                "clickhouse",
+                "csv",
+                "excel",
+                "starrocks",
+                "hive",
+                "oracle",
+                "polardbmysql",
+                "polardbpg",
+            ]
         ]
         | NotGiven = NOT_GIVEN,
         field_count: Optional[int] | NotGiven = NOT_GIVEN,
