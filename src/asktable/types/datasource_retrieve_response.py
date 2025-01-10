@@ -27,6 +27,9 @@ class AccessConfigAccessConfigConnectionResponse(BaseModel):
     db_version: Optional[str] = None
     """数据库版本"""
 
+    extra_config: Optional[object] = None
+    """额外配置"""
+
     port: Optional[int] = None
     """数据库端口"""
 
@@ -58,7 +61,20 @@ class DatasourceRetrieveResponse(BaseModel):
     created_at: datetime
     """创建时间"""
 
-    engine: Literal["mysql", "tidb", "postgresql", "oceanbase", "clickhouse", "csv", "excel", "starrocks", "hive"]
+    engine: Literal[
+        "mysql",
+        "tidb",
+        "postgresql",
+        "oceanbase",
+        "clickhouse",
+        "csv",
+        "excel",
+        "starrocks",
+        "hive",
+        "oracle",
+        "polardbmysql",
+        "polardbpg",
+    ]
     """数据源引擎"""
 
     meta_status: Literal["processing", "failed", "success", "unprocessed"]
