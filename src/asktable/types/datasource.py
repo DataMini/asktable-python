@@ -16,7 +16,20 @@ class Datasource(BaseModel):
     created_at: datetime
     """创建时间"""
 
-    engine: Literal["mysql", "tidb", "postgresql", "oceanbase", "clickhouse", "csv", "excel", "starrocks", "hive"]
+    engine: Literal[
+        "mysql",
+        "tidb",
+        "postgresql",
+        "oceanbase",
+        "clickhouse",
+        "csv",
+        "excel",
+        "starrocks",
+        "hive",
+        "oracle",
+        "polardbmysql",
+        "polardbpg",
+    ]
     """数据源引擎"""
 
     meta_status: Literal["processing", "failed", "success", "unprocessed"]
