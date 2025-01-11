@@ -519,6 +519,7 @@ class DatasourcesResource(SyncAPIResource):
             extra_body=extra_body,
             timeout=timeout,
         )
+        return datasource
 
 class AsyncDatasourcesResource(AsyncAPIResource):
     @cached_property
