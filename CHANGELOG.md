@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.3.0 (2025-01-11)
+
+Full Changelog: [v4.2.0...v4.3.0](https://github.com/DataMini/asktable-python/compare/v4.2.0...v4.3.0)
+
+### Features
+
+* Update datasources.py ([d4618e4](https://github.com/DataMini/asktable-python/commit/d4618e49495ace7a6781b06b84b2800407a1e58b))
+
 ## 4.2.0 (2025-01-10)
 
 Full Changelog: [v4.1.0...v4.2.0](https://github.com/DataMini/asktable-python/compare/v4.1.0...v4.2.0)
