@@ -48,7 +48,6 @@ from .training_create_params import TrainingCreateParams as TrainingCreateParams
 from .training_delete_params import TrainingDeleteParams as TrainingDeleteParams
 from .training_list_response import TrainingListResponse as TrainingListResponse
 from .auth_create_token_params import AuthCreateTokenParams as AuthCreateTokenParams
-from .chat_send_message_params import ChatSendMessageParams as ChatSendMessageParams
 from .datasource_create_params import DatasourceCreateParams as DatasourceCreateParams
 from .datasource_update_params import DatasourceUpdateParams as DatasourceUpdateParams
 from .preference_create_params import PreferenceCreateParams as PreferenceCreateParams
@@ -57,7 +56,6 @@ from .securetunnel_list_params import SecuretunnelListParams as SecuretunnelList
 from .training_create_response import TrainingCreateResponse as TrainingCreateResponse
 from .role_get_polices_response import RoleGetPolicesResponse as RoleGetPolicesResponse
 from .role_get_variables_params import RoleGetVariablesParams as RoleGetVariablesParams
-from .chat_send_message_response import ChatSendMessageResponse as ChatSendMessageResponse
 from .datasource_add_file_params import DatasourceAddFileParams as DatasourceAddFileParams
 from .preference_create_response import PreferenceCreateResponse as PreferenceCreateResponse
 from .preference_update_response import PreferenceUpdateResponse as PreferenceUpdateResponse
