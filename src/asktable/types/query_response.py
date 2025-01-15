@@ -5,32 +5,20 @@ from datetime import datetime
 
 from .._models import BaseModel
 
-__all__ = ["QueryResponse"]
+__all__ = ["QueryResponse", "Query", "Request"]
 
 
-class QueryResponse(BaseModel):
-    id: str
+class Query(BaseModel):
+    sql: str
+    """SQL 语句"""
 
-    created_at: datetime
 
+class Request(BaseModel):
     datasource_id: str
     """数据源 ID"""
 
-    duration: Optional[int] = None
-
-    modified_at: datetime
-
-    project_id: str
-
-    query: Optional[object] = None
-
     question: str
     """查询语句"""
-
-    status: str
-
-    err_msg: Optional[str] = None
-    """错误信息"""
 
     role_id: Optional[str] = None
     """
@@ -40,3 +28,25 @@ class QueryResponse(BaseModel):
 
     role_variables: Optional[object] = None
     """在扮演这个角色时需要传递的变量值，用 Key-Value 形式传递"""
+
+
+class QueryResponse(BaseModel):
+    id: str
+
+    created_at: datetime
+
+    duration: int
+
+    modified_at: datetime
+
+    project_id: str
+
+    query: Optional[Query] = None
+
+    request: Request
+
+    status: str
+
+    err_msg: Optional[str] = None
+
+    trace_id: Optional[str] = None
