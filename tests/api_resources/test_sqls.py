@@ -22,7 +22,7 @@ class TestSqls:
     def test_method_create(self, client: Asktable) -> None:
         sql = client.sqls.create(
             datasource_id="datasource_id",
-            question="xxx",
+            question="question",
         )
         assert_matches_type(QueryResponse, sql, path=["response"])
 
@@ -30,7 +30,7 @@ class TestSqls:
     def test_method_create_with_all_params(self, client: Asktable) -> None:
         sql = client.sqls.create(
             datasource_id="datasource_id",
-            question="xxx",
+            question="question",
             role_id="role_id",
             role_variables={},
         )
@@ -40,7 +40,7 @@ class TestSqls:
     def test_raw_response_create(self, client: Asktable) -> None:
         response = client.sqls.with_raw_response.create(
             datasource_id="datasource_id",
-            question="xxx",
+            question="question",
         )
 
         assert response.is_closed is True
@@ -52,7 +52,7 @@ class TestSqls:
     def test_streaming_response_create(self, client: Asktable) -> None:
         with client.sqls.with_streaming_response.create(
             datasource_id="datasource_id",
-            question="xxx",
+            question="question",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -104,7 +104,7 @@ class TestAsyncSqls:
     async def test_method_create(self, async_client: AsyncAsktable) -> None:
         sql = await async_client.sqls.create(
             datasource_id="datasource_id",
-            question="xxx",
+            question="question",
         )
         assert_matches_type(QueryResponse, sql, path=["response"])
 
@@ -112,7 +112,7 @@ class TestAsyncSqls:
     async def test_method_create_with_all_params(self, async_client: AsyncAsktable) -> None:
         sql = await async_client.sqls.create(
             datasource_id="datasource_id",
-            question="xxx",
+            question="question",
             role_id="role_id",
             role_variables={},
         )
@@ -122,7 +122,7 @@ class TestAsyncSqls:
     async def test_raw_response_create(self, async_client: AsyncAsktable) -> None:
         response = await async_client.sqls.with_raw_response.create(
             datasource_id="datasource_id",
-            question="xxx",
+            question="question",
         )
 
         assert response.is_closed is True
@@ -134,7 +134,7 @@ class TestAsyncSqls:
     async def test_streaming_response_create(self, async_client: AsyncAsktable) -> None:
         async with async_client.sqls.with_streaming_response.create(
             datasource_id="datasource_id",
-            question="xxx",
+            question="question",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
