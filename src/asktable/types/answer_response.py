@@ -1,35 +1,32 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import List, Optional
 from datetime import datetime
 
 from .._models import BaseModel
 
-__all__ = ["AnswerResponse"]
+__all__ = ["AnswerResponse", "Answer", "AnswerAttachment", "Request"]
 
 
-class AnswerResponse(BaseModel):
-    id: str
+class AnswerAttachment(BaseModel):
+    info: object
 
-    answer: Optional[object] = None
+    type: str
+    """The type of the attachment"""
 
-    created_at: datetime
 
+class Answer(BaseModel):
+    text: str
+
+    attachments: Optional[List[AnswerAttachment]] = None
+
+
+class Request(BaseModel):
     datasource_id: str
     """数据源 ID"""
 
-    duration: int
-
-    modified_at: datetime
-
-    project_id: str
-
     question: str
-
-    status: str
-
-    err_msg: Optional[str] = None
-    """错误信息"""
+    """查询语句"""
 
     max_rows: Optional[int] = None
     """最大返回行数，默认为 0，即不限制返回行数"""
@@ -45,3 +42,25 @@ class AnswerResponse(BaseModel):
 
     with_json: Optional[bool] = None
     """是否同时将数据，作为 json 格式的附件一起返回"""
+
+
+class AnswerResponse(BaseModel):
+    id: str
+
+    answer: Optional[Answer] = None
+
+    created_at: datetime
+
+    duration: int
+
+    modified_at: datetime
+
+    project_id: str
+
+    request: Request
+
+    status: str
+
+    err_msg: Optional[str] = None
+
+    trace_id: Optional[str] = None
