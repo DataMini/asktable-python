@@ -44,6 +44,8 @@ class AIMessage(BaseModel):
     created_at: Optional[datetime] = None
     """创建时间"""
 
+    dataframe_ids: Optional[List[str]] = None
+
     end_turn: Optional[bool] = None
 
     metadata: Optional[object] = None
