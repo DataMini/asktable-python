@@ -5,7 +5,7 @@ description = "The official Python library for the asktable API"
 dynamic = ["readme"]
 license = "Apache-2.0"
 authors = [
-{ name = "Asktable", email = "dev-feedback@asktable.com" },
+{ name = "Asktable", email = "hi@datamini.ai" },
 ]
 dependencies = [
     "httpx>=0.23.0, <1",
