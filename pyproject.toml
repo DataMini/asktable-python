@@ -1,11 +1,11 @@
 [project]
 name = "asktable"
 version = "4.4.0"
-description = "The official Python library for the asktable API"
+description = "The official Python library for the Asktable API"
 dynamic = ["readme"]
 license = "Apache-2.0"
 authors = [
-{ name = "Asktable", email = "dev-feedback@asktable.com" },
+{ name = "Asktable", email = "hi@datamini.ai" },
 ]
 dependencies = [
     "httpx>=0.23.0, <1",
