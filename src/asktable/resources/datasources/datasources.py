@@ -462,7 +462,7 @@ class DatasourcesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ):
+    ) -> None:
         self.add_file(
             datasource_id,
             file=file,
@@ -492,7 +492,7 @@ class DatasourcesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ):
+    ) -> Datasource:
         datasource = self.create(
             engine=engine,
             name=name,
