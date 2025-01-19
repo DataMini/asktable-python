@@ -20,7 +20,7 @@ or products provided by Asktable please follow the respective company's security
 
 ### Asktable Terms and Policies
 
-Please contact dev-feedback@asktable.com for any questions or concerns regarding security of our services.
+Please contact hi@datamini.ai for any questions or concerns regarding security of our services.
 
 ---
 
