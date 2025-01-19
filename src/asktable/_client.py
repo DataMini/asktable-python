@@ -112,7 +112,7 @@ class Asktable(SyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
     ) -> None:
-        """Construct a new synchronous asktable client instance.
+        """Construct a new synchronous Asktable client instance.
 
         This automatically infers the `api_key` argument from the `ASKTABLE_API_KEY` environment variable if it is not provided.
         """
@@ -314,7 +314,7 @@ class AsyncAsktable(AsyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
     ) -> None:
-        """Construct a new async asktable client instance.
+        """Construct a new async Asktable client instance.
 
         This automatically infers the `api_key` argument from the `ASKTABLE_API_KEY` environment variable if it is not provided.
         """
