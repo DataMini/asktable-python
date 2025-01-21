@@ -12,13 +12,11 @@ __all__ = ["RouteCreateParams"]
 
 
 class RouteCreateParams(TypedDict, total=False):
-    path_extapi_id: Required[Annotated[str, PropertyInfo(alias="extapi_id")]]
-
     id: Required[str]
 
     created_at: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
 
-    body_extapi_id: Required[Annotated[str, PropertyInfo(alias="extapi_id")]]
+    extapi_id_2: Required[Annotated[str, PropertyInfo(alias="extapi_id")]]
 
     method: Required[Literal["GET", "POST", "PUT", "DELETE"]]
     """HTTP 方法"""

@@ -33,7 +33,7 @@ class RoutesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> RoutesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/DataMini/asktable-python#accessing-raw-response-data-eg-headers
@@ -51,11 +51,11 @@ class RoutesResource(SyncAPIResource):
 
     def create(
         self,
+        extapi_id_1: str,
         *,
-        path_extapi_id: str,
         id: str,
         created_at: Union[str, datetime],
-        body_extapi_id: str,
+        extapi_id_2: str,
         method: Literal["GET", "POST", "PUT", "DELETE"],
         name: str,
         path: str,
@@ -95,15 +95,15 @@ class RoutesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not path_extapi_id:
-            raise ValueError(f"Expected a non-empty value for `path_extapi_id` but received {path_extapi_id!r}")
+        if not extapi_id_1:
+            raise ValueError(f"Expected a non-empty value for `extapi_id_1` but received {extapi_id_1!r}")
         return self._post(
-            f"/extapis/{path_extapi_id}/routes",
+            f"/extapis/{extapi_id_1}/routes",
             body=maybe_transform(
                 {
                     "id": id,
                     "created_at": created_at,
-                    "body_extapi_id": body_extapi_id,
+                    "extapi_id_2": extapi_id_2,
                     "method": method,
                     "name": name,
                     "path": path,
@@ -297,7 +297,7 @@ class AsyncRoutesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncRoutesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/DataMini/asktable-python#accessing-raw-response-data-eg-headers
@@ -315,11 +315,11 @@ class AsyncRoutesResource(AsyncAPIResource):
 
     async def create(
         self,
+        extapi_id_1: str,
         *,
-        path_extapi_id: str,
         id: str,
         created_at: Union[str, datetime],
-        body_extapi_id: str,
+        extapi_id_2: str,
         method: Literal["GET", "POST", "PUT", "DELETE"],
         name: str,
         path: str,
@@ -359,15 +359,15 @@ class AsyncRoutesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not path_extapi_id:
-            raise ValueError(f"Expected a non-empty value for `path_extapi_id` but received {path_extapi_id!r}")
+        if not extapi_id_1:
+            raise ValueError(f"Expected a non-empty value for `extapi_id_1` but received {extapi_id_1!r}")
         return await self._post(
-            f"/extapis/{path_extapi_id}/routes",
+            f"/extapis/{extapi_id_1}/routes",
             body=await async_maybe_transform(
                 {
                     "id": id,
                     "created_at": created_at,
-                    "body_extapi_id": body_extapi_id,
+                    "extapi_id_2": extapi_id_2,
                     "method": method,
                     "name": name,
                     "path": path,
