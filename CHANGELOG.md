@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.5.1 (2025-01-21)
+
+Full Changelog: [v4.5.0...v4.5.1](https://github.com/DataMini/asktable-python/compare/v4.5.0...v4.5.1)
+
+### Chores
+
+* **internal:** codegen related update ([#138](https://github.com/DataMini/asktable-python/issues/138)) ([e70fbf4](https://github.com/DataMini/asktable-python/commit/e70fbf41048ca082ffd9f4888ccfa7bd9f97c57f))
+
+
+### Documentation
+
+* **raw responses:** fix duplicate `the` ([#140](https://github.com/DataMini/asktable-python/issues/140)) ([5580989](https://github.com/DataMini/asktable-python/commit/55809895dc745aa046c93493ad7f658ed652c869))
+
 ## 4.5.0 (2025-01-19)
 
 Full Changelog: [v4.4.0...v4.5.0](https://github.com/DataMini/asktable-python/compare/v4.4.0...v4.5.0)
