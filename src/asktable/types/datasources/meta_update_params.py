@@ -9,9 +9,6 @@ __all__ = ["MetaUpdateParams", "Schemas", "SchemasTables", "SchemasTablesFields"
 
 
 class MetaUpdateParams(TypedDict, total=False):
-    name: Required[str]
-    """metadata_name"""
-
     schemas: Dict[str, Schemas]
 
 
