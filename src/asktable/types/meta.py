@@ -79,7 +79,4 @@ class Meta(BaseModel):
     datasource_id: str
     """datasource_id"""
 
-    name: str
-    """metadata_name"""
-
     schemas: Optional[Dict[str, Schemas]] = None

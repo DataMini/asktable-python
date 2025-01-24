@@ -9,9 +9,6 @@ __all__ = ["MetaCreateParams", "Schemas", "SchemasTables", "SchemasTablesFields"
 
 
 class MetaCreateParams(TypedDict, total=False):
-    name: Required[str]
-    """metadata_name"""
-
     async_process_meta: bool
 
     value_index: bool
