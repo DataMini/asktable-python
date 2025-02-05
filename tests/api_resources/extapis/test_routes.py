@@ -21,10 +21,10 @@ class TestRoutes:
     @parametrize
     def test_method_create(self, client: Asktable) -> None:
         route = client.extapis.routes.create(
-            extapi_id_1="extapi_id",
+            path_extapi_id="extapi_id",
             id="id",
             created_at=parse_datetime("2019-12-27T18:11:19.117Z"),
-            extapi_id_2="extapi_id",
+            body_extapi_id="extapi_id",
             method="GET",
             name="name",
             path="/resource",
@@ -35,10 +35,10 @@ class TestRoutes:
     @parametrize
     def test_method_create_with_all_params(self, client: Asktable) -> None:
         route = client.extapis.routes.create(
-            extapi_id_1="extapi_id",
+            path_extapi_id="extapi_id",
             id="id",
             created_at=parse_datetime("2019-12-27T18:11:19.117Z"),
-            extapi_id_2="extapi_id",
+            body_extapi_id="extapi_id",
             method="GET",
             name="name",
             path="/resource",
@@ -53,10 +53,10 @@ class TestRoutes:
     @parametrize
     def test_raw_response_create(self, client: Asktable) -> None:
         response = client.extapis.routes.with_raw_response.create(
-            extapi_id_1="extapi_id",
+            path_extapi_id="extapi_id",
             id="id",
             created_at=parse_datetime("2019-12-27T18:11:19.117Z"),
-            extapi_id_2="extapi_id",
+            body_extapi_id="extapi_id",
             method="GET",
             name="name",
             path="/resource",
@@ -71,10 +71,10 @@ class TestRoutes:
     @parametrize
     def test_streaming_response_create(self, client: Asktable) -> None:
         with client.extapis.routes.with_streaming_response.create(
-            extapi_id_1="extapi_id",
+            path_extapi_id="extapi_id",
             id="id",
             created_at=parse_datetime("2019-12-27T18:11:19.117Z"),
-            extapi_id_2="extapi_id",
+            body_extapi_id="extapi_id",
             method="GET",
             name="name",
             path="/resource",
@@ -90,12 +90,12 @@ class TestRoutes:
 
     @parametrize
     def test_path_params_create(self, client: Asktable) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `extapi_id_1` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_extapi_id` but received ''"):
             client.extapis.routes.with_raw_response.create(
-                extapi_id_1="",
+                path_extapi_id="",
                 id="id",
                 created_at=parse_datetime("2019-12-27T18:11:19.117Z"),
-                extapi_id_2="",
+                body_extapi_id="",
                 method="GET",
                 name="name",
                 path="/resource",
@@ -305,10 +305,10 @@ class TestAsyncRoutes:
     @parametrize
     async def test_method_create(self, async_client: AsyncAsktable) -> None:
         route = await async_client.extapis.routes.create(
-            extapi_id_1="extapi_id",
+            path_extapi_id="extapi_id",
             id="id",
             created_at=parse_datetime("2019-12-27T18:11:19.117Z"),
-            extapi_id_2="extapi_id",
+            body_extapi_id="extapi_id",
             method="GET",
             name="name",
             path="/resource",
@@ -319,10 +319,10 @@ class TestAsyncRoutes:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncAsktable) -> None:
         route = await async_client.extapis.routes.create(
-            extapi_id_1="extapi_id",
+            path_extapi_id="extapi_id",
             id="id",
             created_at=parse_datetime("2019-12-27T18:11:19.117Z"),
-            extapi_id_2="extapi_id",
+            body_extapi_id="extapi_id",
             method="GET",
             name="name",
             path="/resource",
@@ -337,10 +337,10 @@ class TestAsyncRoutes:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncAsktable) -> None:
         response = await async_client.extapis.routes.with_raw_response.create(
-            extapi_id_1="extapi_id",
+            path_extapi_id="extapi_id",
             id="id",
             created_at=parse_datetime("2019-12-27T18:11:19.117Z"),
-            extapi_id_2="extapi_id",
+            body_extapi_id="extapi_id",
             method="GET",
             name="name",
             path="/resource",
@@ -355,10 +355,10 @@ class TestAsyncRoutes:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncAsktable) -> None:
         async with async_client.extapis.routes.with_streaming_response.create(
-            extapi_id_1="extapi_id",
+            path_extapi_id="extapi_id",
             id="id",
             created_at=parse_datetime("2019-12-27T18:11:19.117Z"),
-            extapi_id_2="extapi_id",
+            body_extapi_id="extapi_id",
             method="GET",
             name="name",
             path="/resource",
@@ -374,12 +374,12 @@ class TestAsyncRoutes:
 
     @parametrize
     async def test_path_params_create(self, async_client: AsyncAsktable) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `extapi_id_1` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_extapi_id` but received ''"):
             await async_client.extapis.routes.with_raw_response.create(
-                extapi_id_1="",
+                path_extapi_id="",
                 id="id",
                 created_at=parse_datetime("2019-12-27T18:11:19.117Z"),
-                extapi_id_2="",
+                body_extapi_id="",
                 method="GET",
                 name="name",
                 path="/resource",
