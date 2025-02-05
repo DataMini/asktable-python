@@ -16,7 +16,7 @@ class RouteCreateParams(TypedDict, total=False):
 
     created_at: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
 
-    extapi_id_2: Required[Annotated[str, PropertyInfo(alias="extapi_id")]]
+    body_extapi_id: Required[Annotated[str, PropertyInfo(alias="extapi_id")]]
 
     method: Required[Literal["GET", "POST", "PUT", "DELETE"]]
     """HTTP 方法"""

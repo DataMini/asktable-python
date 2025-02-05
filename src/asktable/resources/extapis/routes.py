@@ -51,11 +51,11 @@ class RoutesResource(SyncAPIResource):
 
     def create(
         self,
-        extapi_id_1: str,
+        path_extapi_id: str,
         *,
         id: str,
         created_at: Union[str, datetime],
-        extapi_id_2: str,
+        body_extapi_id: str,
         method: Literal["GET", "POST", "PUT", "DELETE"],
         name: str,
         path: str,
@@ -95,15 +95,15 @@ class RoutesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not extapi_id_1:
-            raise ValueError(f"Expected a non-empty value for `extapi_id_1` but received {extapi_id_1!r}")
+        if not path_extapi_id:
+            raise ValueError(f"Expected a non-empty value for `path_extapi_id` but received {path_extapi_id!r}")
         return self._post(
-            f"/extapis/{extapi_id_1}/routes",
+            f"/extapis/{path_extapi_id}/routes",
             body=maybe_transform(
                 {
                     "id": id,
                     "created_at": created_at,
-                    "extapi_id_2": extapi_id_2,
+                    "body_extapi_id": body_extapi_id,
                     "method": method,
                     "name": name,
                     "path": path,
@@ -315,11 +315,11 @@ class AsyncRoutesResource(AsyncAPIResource):
 
     async def create(
         self,
-        extapi_id_1: str,
+        path_extapi_id: str,
         *,
         id: str,
         created_at: Union[str, datetime],
-        extapi_id_2: str,
+        body_extapi_id: str,
         method: Literal["GET", "POST", "PUT", "DELETE"],
         name: str,
         path: str,
@@ -359,15 +359,15 @@ class AsyncRoutesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not extapi_id_1:
-            raise ValueError(f"Expected a non-empty value for `extapi_id_1` but received {extapi_id_1!r}")
+        if not path_extapi_id:
+            raise ValueError(f"Expected a non-empty value for `path_extapi_id` but received {path_extapi_id!r}")
         return await self._post(
-            f"/extapis/{extapi_id_1}/routes",
+            f"/extapis/{path_extapi_id}/routes",
             body=await async_maybe_transform(
                 {
                     "id": id,
                     "created_at": created_at,
-                    "extapi_id_2": extapi_id_2,
+                    "body_extapi_id": body_extapi_id,
                     "method": method,
                     "name": name,
                     "path": path,
