@@ -23,6 +23,7 @@ from pydantic import ValidationError
 
 from asktable import Asktable, AsyncAsktable, APIResponseValidationError
 from asktable._types import Omit
+from asktable._utils import maybe_transform
 from asktable._models import BaseModel, FinalRequestOptions
 from asktable._constants import RAW_RESPONSE_HEADER
 from asktable._exceptions import APIStatusError, APITimeoutError, APIResponseValidationError
@@ -32,6 +33,7 @@ from asktable._base_client import (
     BaseClient,
     make_request_options,
 )
+from asktable.types.datasource_create_params import DatasourceCreateParams
 
 from .utils import update_env
 
@@ -707,7 +709,7 @@ class TestAsktable:
         with pytest.raises(APITimeoutError):
             self.client.post(
                 "/datasources",
-                body=cast(object, dict(engine="mysql")),
+                body=cast(object, maybe_transform(dict(engine="mysql"), DatasourceCreateParams)),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -722,7 +724,7 @@ class TestAsktable:
         with pytest.raises(APIStatusError):
             self.client.post(
                 "/datasources",
-                body=cast(object, dict(engine="mysql")),
+                body=cast(object, maybe_transform(dict(engine="mysql"), DatasourceCreateParams)),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -1477,7 +1479,7 @@ class TestAsyncAsktable:
         with pytest.raises(APITimeoutError):
             await self.client.post(
                 "/datasources",
-                body=cast(object, dict(engine="mysql")),
+                body=cast(object, maybe_transform(dict(engine="mysql"), DatasourceCreateParams)),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -1492,7 +1494,7 @@ class TestAsyncAsktable:
         with pytest.raises(APIStatusError):
             await self.client.post(
                 "/datasources",
-                body=cast(object, dict(engine="mysql")),
+                body=cast(object, maybe_transform(dict(engine="mysql"), DatasourceCreateParams)),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
