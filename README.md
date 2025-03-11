@@ -134,6 +134,25 @@ for datasource in first_page.items:
 # Remove `await` for non-async usage.
 ```
 
+## Nested params
+
+Nested parameters are dictionaries, typed using `TypedDict`, for example:
+
+```python
+from asktable import Asktable
+
+client = Asktable()
+
+response = client.sys.projects.api_keys.create_token(
+    project_id="project_id",
+    chat_role={
+        "role_id": "1",
+        "role_variables": {"id": "42"},
+    },
+)
+print(response.chat_role)
+```
+
 ## File uploads
 
 Request parameters that correspond to file uploads can be passed as `bytes`, a [`PathLike`](https://docs.python.org/3/library/os.html#os.PathLike) instance or a tuple of `(filename, contents, media type)`.
