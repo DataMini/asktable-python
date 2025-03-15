@@ -20,6 +20,7 @@ from ...types import (
     datasource_create_params,
     datasource_update_params,
     datasource_add_file_params,
+    datasource_update_field_params,
 )
 from .indexes import (
     IndexesResource,
@@ -56,6 +57,7 @@ from .upload_params import (
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.datasource import Datasource
 from ...types.datasource_retrieve_response import DatasourceRetrieveResponse
+from ...types.datasource_retrieve_runtime_meta_response import DatasourceRetrieveRuntimeMetaResponse
 
 __all__ = ["DatasourcesResource", "AsyncDatasourcesResource"]
 
@@ -437,6 +439,92 @@ class DatasourcesResource(SyncAPIResource):
             f"/v1/datasources/{datasource_id}/files/{file_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
+        )
+
+    def retrieve_runtime_meta(
+        self,
+        datasource_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DatasourceRetrieveRuntimeMetaResponse:
+        """
+        获取指定数据源的运行时元数据
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not datasource_id:
+            raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
+        return self._get(
+            f"/v1/datasources/{datasource_id}/runtime-meta",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=DatasourceRetrieveRuntimeMetaResponse,
+        )
+
+    def update_field(
+        self,
+        datasource_id: str,
+        *,
+        field_name: str,
+        schema_name: str,
+        table_name: str,
+        visibility: Optional[bool] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        更新数据源的某个字段的描述
+
+        Args:
+          visibility: field visibility
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not datasource_id:
+            raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
+        return self._patch(
+            f"/v1/datasources/{datasource_id}/field",
+            body=maybe_transform(
+                {"visibility": visibility}, datasource_update_field_params.DatasourceUpdateFieldParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "field_name": field_name,
+                        "schema_name": schema_name,
+                        "table_name": table_name,
+                    },
+                    datasource_update_field_params.DatasourceUpdateFieldParams,
+                ),
             ),
             cast_to=object,
         )
@@ -823,6 +911,92 @@ class AsyncDatasourcesResource(AsyncAPIResource):
             cast_to=object,
         )
 
+    async def retrieve_runtime_meta(
+        self,
+        datasource_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DatasourceRetrieveRuntimeMetaResponse:
+        """
+        获取指定数据源的运行时元数据
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not datasource_id:
+            raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
+        return await self._get(
+            f"/v1/datasources/{datasource_id}/runtime-meta",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=DatasourceRetrieveRuntimeMetaResponse,
+        )
+
+    async def update_field(
+        self,
+        datasource_id: str,
+        *,
+        field_name: str,
+        schema_name: str,
+        table_name: str,
+        visibility: Optional[bool] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        更新数据源的某个字段的描述
+
+        Args:
+          visibility: field visibility
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not datasource_id:
+            raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
+        return await self._patch(
+            f"/v1/datasources/{datasource_id}/field",
+            body=await async_maybe_transform(
+                {"visibility": visibility}, datasource_update_field_params.DatasourceUpdateFieldParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "field_name": field_name,
+                        "schema_name": schema_name,
+                        "table_name": table_name,
+                    },
+                    datasource_update_field_params.DatasourceUpdateFieldParams,
+                ),
+            ),
+            cast_to=object,
+        )
+
 
 class DatasourcesResourceWithRawResponse:
     def __init__(self, datasources: DatasourcesResource) -> None:
@@ -848,6 +1022,12 @@ class DatasourcesResourceWithRawResponse:
         )
         self.delete_file = to_raw_response_wrapper(
             datasources.delete_file,
+        )
+        self.retrieve_runtime_meta = to_raw_response_wrapper(
+            datasources.retrieve_runtime_meta,
+        )
+        self.update_field = to_raw_response_wrapper(
+            datasources.update_field,
         )
 
     @cached_property
@@ -888,6 +1068,12 @@ class AsyncDatasourcesResourceWithRawResponse:
         self.delete_file = async_to_raw_response_wrapper(
             datasources.delete_file,
         )
+        self.retrieve_runtime_meta = async_to_raw_response_wrapper(
+            datasources.retrieve_runtime_meta,
+        )
+        self.update_field = async_to_raw_response_wrapper(
+            datasources.update_field,
+        )
 
     @cached_property
     def meta(self) -> AsyncMetaResourceWithRawResponse:
@@ -927,6 +1113,12 @@ class DatasourcesResourceWithStreamingResponse:
         self.delete_file = to_streamed_response_wrapper(
             datasources.delete_file,
         )
+        self.retrieve_runtime_meta = to_streamed_response_wrapper(
+            datasources.retrieve_runtime_meta,
+        )
+        self.update_field = to_streamed_response_wrapper(
+            datasources.update_field,
+        )
 
     @cached_property
     def meta(self) -> MetaResourceWithStreamingResponse:
@@ -965,6 +1157,12 @@ class AsyncDatasourcesResourceWithStreamingResponse:
         )
         self.delete_file = async_to_streamed_response_wrapper(
             datasources.delete_file,
+        )
+        self.retrieve_runtime_meta = async_to_streamed_response_wrapper(
+            datasources.retrieve_runtime_meta,
+        )
+        self.update_field = async_to_streamed_response_wrapper(
+            datasources.update_field,
         )
 
     @cached_property
