@@ -31,6 +31,7 @@ from .resources import (
     files,
     roles,
     caches,
+    polish,
     scores,
     answers,
     project,
@@ -87,6 +88,7 @@ class Asktable(SyncAPIClient):
     scores: scores.ScoresResource
     files: files.FilesResource
     dataframes: dataframes.DataframesResource
+    polish: polish.PolishResource
     with_raw_response: AsktableWithRawResponse
     with_streaming_response: AsktableWithStreamedResponse
 
@@ -131,7 +133,7 @@ class Asktable(SyncAPIClient):
         if base_url is None:
             base_url = os.environ.get("ASKTABLE_BASE_URL")
         if base_url is None:
-            base_url = f"https://api.asktable.com"
+            base_url = f"https://api.asktable.com/v1"
 
         super().__init__(
             version=__version__,
@@ -164,6 +166,7 @@ class Asktable(SyncAPIClient):
         self.scores = scores.ScoresResource(self)
         self.files = files.FilesResource(self)
         self.dataframes = dataframes.DataframesResource(self)
+        self.polish = polish.PolishResource(self)
         self.with_raw_response = AsktableWithRawResponse(self)
         self.with_streaming_response = AsktableWithStreamedResponse(self)
 
@@ -293,6 +296,7 @@ class AsyncAsktable(AsyncAPIClient):
     scores: scores.AsyncScoresResource
     files: files.AsyncFilesResource
     dataframes: dataframes.AsyncDataframesResource
+    polish: polish.AsyncPolishResource
     with_raw_response: AsyncAsktableWithRawResponse
     with_streaming_response: AsyncAsktableWithStreamedResponse
 
@@ -337,7 +341,7 @@ class AsyncAsktable(AsyncAPIClient):
         if base_url is None:
             base_url = os.environ.get("ASKTABLE_BASE_URL")
         if base_url is None:
-            base_url = f"https://api.asktable.com"
+            base_url = f"https://api.asktable.com/v1"
 
         super().__init__(
             version=__version__,
@@ -370,6 +374,7 @@ class AsyncAsktable(AsyncAPIClient):
         self.scores = scores.AsyncScoresResource(self)
         self.files = files.AsyncFilesResource(self)
         self.dataframes = dataframes.AsyncDataframesResource(self)
+        self.polish = polish.AsyncPolishResource(self)
         self.with_raw_response = AsyncAsktableWithRawResponse(self)
         self.with_streaming_response = AsyncAsktableWithStreamedResponse(self)
 
@@ -500,6 +505,7 @@ class AsktableWithRawResponse:
         self.scores = scores.ScoresResourceWithRawResponse(client.scores)
         self.files = files.FilesResourceWithRawResponse(client.files)
         self.dataframes = dataframes.DataframesResourceWithRawResponse(client.dataframes)
+        self.polish = polish.PolishResourceWithRawResponse(client.polish)
 
 
 class AsyncAsktableWithRawResponse:
@@ -526,6 +532,7 @@ class AsyncAsktableWithRawResponse:
         self.scores = scores.AsyncScoresResourceWithRawResponse(client.scores)
         self.files = files.AsyncFilesResourceWithRawResponse(client.files)
         self.dataframes = dataframes.AsyncDataframesResourceWithRawResponse(client.dataframes)
+        self.polish = polish.AsyncPolishResourceWithRawResponse(client.polish)
 
 
 class AsktableWithStreamedResponse:
@@ -552,6 +559,7 @@ class AsktableWithStreamedResponse:
         self.scores = scores.ScoresResourceWithStreamingResponse(client.scores)
         self.files = files.FilesResourceWithStreamingResponse(client.files)
         self.dataframes = dataframes.DataframesResourceWithStreamingResponse(client.dataframes)
+        self.polish = polish.PolishResourceWithStreamingResponse(client.polish)
 
 
 class AsyncAsktableWithStreamedResponse:
@@ -578,6 +586,7 @@ class AsyncAsktableWithStreamedResponse:
         self.scores = scores.AsyncScoresResourceWithStreamingResponse(client.scores)
         self.files = files.AsyncFilesResourceWithStreamingResponse(client.files)
         self.dataframes = dataframes.AsyncDataframesResourceWithStreamingResponse(client.dataframes)
+        self.polish = polish.AsyncPolishResourceWithStreamingResponse(client.polish)
 
 
 Client = Asktable

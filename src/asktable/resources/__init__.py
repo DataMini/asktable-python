@@ -64,6 +64,14 @@ from .caches import (
     CachesResourceWithStreamingResponse,
     AsyncCachesResourceWithStreamingResponse,
 )
+from .polish import (
+    PolishResource,
+    AsyncPolishResource,
+    PolishResourceWithRawResponse,
+    AsyncPolishResourceWithRawResponse,
+    PolishResourceWithStreamingResponse,
+    AsyncPolishResourceWithStreamingResponse,
+)
 from .scores import (
     ScoresResource,
     AsyncScoresResource,
@@ -282,4 +290,10 @@ __all__ = [
     "AsyncDataframesResourceWithRawResponse",
     "DataframesResourceWithStreamingResponse",
     "AsyncDataframesResourceWithStreamingResponse",
+    "PolishResource",
+    "AsyncPolishResource",
+    "PolishResourceWithRawResponse",
+    "AsyncPolishResourceWithRawResponse",
+    "PolishResourceWithStreamingResponse",
+    "AsyncPolishResourceWithStreamingResponse",
 ]

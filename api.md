@@ -140,6 +140,8 @@ from asktable.types import (
     DatasourceDeleteResponse,
     DatasourceAddFileResponse,
     DatasourceDeleteFileResponse,
+    DatasourceRetrieveRuntimeMetaResponse,
+    DatasourceUpdateFieldResponse,
 )
 ```
 
@@ -152,6 +154,8 @@ Methods:
 - <code title="delete /v1/datasources/{datasource_id}">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">delete</a>(datasource_id) -> <a href="./src/asktable/types/datasource_delete_response.py">object</a></code>
 - <code title="post /v1/datasources/{datasource_id}/files">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">add_file</a>(datasource_id, \*\*<a href="src/asktable/types/datasource_add_file_params.py">params</a>) -> <a href="./src/asktable/types/datasource_add_file_response.py">object</a></code>
 - <code title="delete /v1/datasources/{datasource_id}/files/{file_id}">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">delete_file</a>(file_id, \*, datasource_id) -> <a href="./src/asktable/types/datasource_delete_file_response.py">object</a></code>
+- <code title="get /v1/datasources/{datasource_id}/runtime-meta">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">retrieve_runtime_meta</a>(datasource_id) -> <a href="./src/asktable/types/datasource_retrieve_runtime_meta_response.py">DatasourceRetrieveRuntimeMetaResponse</a></code>
+- <code title="patch /v1/datasources/{datasource_id}/field">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">update_field</a>(datasource_id, \*\*<a href="src/asktable/types/datasource_update_field_params.py">params</a>) -> <a href="./src/asktable/types/datasource_update_field_response.py">object</a></code>
 
 ## Meta
 
@@ -405,3 +409,15 @@ from asktable.types import DataframeRetrieveResponse
 Methods:
 
 - <code title="get /v1/dataframes/{dataframe_id}">client.dataframes.<a href="./src/asktable/resources/dataframes.py">retrieve</a>(dataframe_id) -> <a href="./src/asktable/types/dataframe_retrieve_response.py">DataframeRetrieveResponse</a></code>
+
+# Polish
+
+Types:
+
+```python
+from asktable.types import PolishCreateResponse
+```
+
+Methods:
+
+- <code title="post /v1/polish">client.polish.<a href="./src/asktable/resources/polish.py">create</a>(\*\*<a href="src/asktable/types/polish_create_params.py">params</a>) -> <a href="./src/asktable/types/polish_create_response.py">PolishCreateResponse</a></code>
