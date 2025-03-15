@@ -152,14 +152,6 @@ from .preferences import (
     PreferencesResourceWithStreamingResponse,
     AsyncPreferencesResourceWithStreamingResponse,
 )
-from .single_turn import (
-    SingleTurnResource,
-    AsyncSingleTurnResource,
-    SingleTurnResourceWithRawResponse,
-    AsyncSingleTurnResourceWithRawResponse,
-    SingleTurnResourceWithStreamingResponse,
-    AsyncSingleTurnResourceWithStreamingResponse,
-)
 from .securetunnels import (
     SecuretunnelsResource,
     AsyncSecuretunnelsResource,
@@ -298,12 +290,6 @@ __all__ = [
     "AsyncDataframesResourceWithRawResponse",
     "DataframesResourceWithStreamingResponse",
     "AsyncDataframesResourceWithStreamingResponse",
-    "SingleTurnResource",
-    "AsyncSingleTurnResource",
-    "SingleTurnResourceWithRawResponse",
-    "AsyncSingleTurnResourceWithRawResponse",
-    "SingleTurnResourceWithStreamingResponse",
-    "AsyncSingleTurnResourceWithStreamingResponse",
     "PolishResource",
     "AsyncPolishResource",
     "PolishResourceWithRawResponse",

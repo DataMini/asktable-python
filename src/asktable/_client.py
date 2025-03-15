@@ -54,7 +54,6 @@ from .resources.sys import sys
 from .resources.chats import chats
 from .resources.extapis import extapis
 from .resources.datasources import datasources
-from .resources.single_turn import single_turn
 
 __all__ = [
     "Timeout",
@@ -89,7 +88,6 @@ class Asktable(SyncAPIClient):
     scores: scores.ScoresResource
     files: files.FilesResource
     dataframes: dataframes.DataframesResource
-    single_turn: single_turn.SingleTurnResource
     polish: polish.PolishResource
     with_raw_response: AsktableWithRawResponse
     with_streaming_response: AsktableWithStreamedResponse
@@ -168,7 +166,6 @@ class Asktable(SyncAPIClient):
         self.scores = scores.ScoresResource(self)
         self.files = files.FilesResource(self)
         self.dataframes = dataframes.DataframesResource(self)
-        self.single_turn = single_turn.SingleTurnResource(self)
         self.polish = polish.PolishResource(self)
         self.with_raw_response = AsktableWithRawResponse(self)
         self.with_streaming_response = AsktableWithStreamedResponse(self)
@@ -299,7 +296,6 @@ class AsyncAsktable(AsyncAPIClient):
     scores: scores.AsyncScoresResource
     files: files.AsyncFilesResource
     dataframes: dataframes.AsyncDataframesResource
-    single_turn: single_turn.AsyncSingleTurnResource
     polish: polish.AsyncPolishResource
     with_raw_response: AsyncAsktableWithRawResponse
     with_streaming_response: AsyncAsktableWithStreamedResponse
@@ -378,7 +374,6 @@ class AsyncAsktable(AsyncAPIClient):
         self.scores = scores.AsyncScoresResource(self)
         self.files = files.AsyncFilesResource(self)
         self.dataframes = dataframes.AsyncDataframesResource(self)
-        self.single_turn = single_turn.AsyncSingleTurnResource(self)
         self.polish = polish.AsyncPolishResource(self)
         self.with_raw_response = AsyncAsktableWithRawResponse(self)
         self.with_streaming_response = AsyncAsktableWithStreamedResponse(self)
@@ -510,7 +505,6 @@ class AsktableWithRawResponse:
         self.scores = scores.ScoresResourceWithRawResponse(client.scores)
         self.files = files.FilesResourceWithRawResponse(client.files)
         self.dataframes = dataframes.DataframesResourceWithRawResponse(client.dataframes)
-        self.single_turn = single_turn.SingleTurnResourceWithRawResponse(client.single_turn)
         self.polish = polish.PolishResourceWithRawResponse(client.polish)
 
 
@@ -538,7 +532,6 @@ class AsyncAsktableWithRawResponse:
         self.scores = scores.AsyncScoresResourceWithRawResponse(client.scores)
         self.files = files.AsyncFilesResourceWithRawResponse(client.files)
         self.dataframes = dataframes.AsyncDataframesResourceWithRawResponse(client.dataframes)
-        self.single_turn = single_turn.AsyncSingleTurnResourceWithRawResponse(client.single_turn)
         self.polish = polish.AsyncPolishResourceWithRawResponse(client.polish)
 
 
@@ -566,7 +559,6 @@ class AsktableWithStreamedResponse:
         self.scores = scores.ScoresResourceWithStreamingResponse(client.scores)
         self.files = files.FilesResourceWithStreamingResponse(client.files)
         self.dataframes = dataframes.DataframesResourceWithStreamingResponse(client.dataframes)
-        self.single_turn = single_turn.SingleTurnResourceWithStreamingResponse(client.single_turn)
         self.polish = polish.PolishResourceWithStreamingResponse(client.polish)
 
 
@@ -594,7 +586,6 @@ class AsyncAsktableWithStreamedResponse:
         self.scores = scores.AsyncScoresResourceWithStreamingResponse(client.scores)
         self.files = files.AsyncFilesResourceWithStreamingResponse(client.files)
         self.dataframes = dataframes.AsyncDataframesResourceWithStreamingResponse(client.dataframes)
-        self.single_turn = single_turn.AsyncSingleTurnResourceWithStreamingResponse(client.single_turn)
         self.polish = polish.AsyncPolishResourceWithStreamingResponse(client.polish)
 
 

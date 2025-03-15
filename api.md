@@ -410,21 +410,6 @@ Methods:
 
 - <code title="get /v1/dataframes/{dataframe_id}">client.dataframes.<a href="./src/asktable/resources/dataframes.py">retrieve</a>(dataframe_id) -> <a href="./src/asktable/types/dataframe_retrieve_response.py">DataframeRetrieveResponse</a></code>
 
-# SingleTurn
-
-## Q2w
-
-Types:
-
-```python
-from asktable.types.single_turn import Q2wCreateResponse, Q2wListResponse
-```
-
-Methods:
-
-- <code title="post /v1/single-turn/q2w">client.single_turn.q2w.<a href="./src/asktable/resources/single_turn/q2w.py">create</a>(\*\*<a href="src/asktable/types/single_turn/q2w_create_params.py">params</a>) -> <a href="./src/asktable/types/single_turn/q2w_create_response.py">object</a></code>
-- <code title="get /v1/single-turn/q2w">client.single_turn.q2w.<a href="./src/asktable/resources/single_turn/q2w.py">list</a>() -> <a href="./src/asktable/types/single_turn/q2w_list_response.py">object</a></code>
-
 # Polish
 
 Types:
