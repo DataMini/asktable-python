@@ -20,6 +20,7 @@ jobs:
         run: |
           curl -sSf https://rye.astral.sh/get | bash
           echo "$HOME/.rye/shims" >> $GITHUB_PATH
+          /home/runner/.rye/self/bin/python3 -m ensurepip --default-pip
         env:
           RYE_VERSION: '0.44.0'
           RYE_INSTALL_OPTION: '--yes'
