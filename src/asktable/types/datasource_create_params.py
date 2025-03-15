@@ -28,13 +28,10 @@ class DatasourceCreateParams(TypedDict, total=False):
             "oracle",
             "polardbmysql",
             "polardbpg",
+            "dameng",
         ]
     ]
     """数据源引擎"""
-
-    async_process_meta: bool
-
-    value_index: bool
 
     access_config: Optional[AccessConfig]
     """不同引擎有不同的配置"""

@@ -21,7 +21,6 @@ class TestMeta:
     def test_method_create(self, client: Asktable) -> None:
         meta = client.datasources.meta.create(
             datasource_id="datasource_id",
-            name="name",
         )
         assert_matches_type(object, meta, path=["response"])
 
@@ -29,30 +28,33 @@ class TestMeta:
     def test_method_create_with_all_params(self, client: Asktable) -> None:
         meta = client.datasources.meta.create(
             datasource_id="datasource_id",
-            name="name",
             async_process_meta=True,
             value_index=True,
-            schemas={
-                "foo": {
-                    "name": "name",
-                    "custom_configs": {},
-                    "origin_desc": "origin_desc",
-                    "tables": {
-                        "foo": {
-                            "name": "name",
-                            "fields": {
-                                "foo": {
-                                    "name": "name",
-                                    "data_type": "data_type",
-                                    "origin_desc": "origin_desc",
-                                    "sample_data": "sample_data",
-                                }
-                            },
-                            "origin_desc": "origin_desc",
-                        }
-                    },
+            meta={
+                "schemas": {
+                    "foo": {
+                        "name": "name",
+                        "origin_desc": "origin_desc",
+                        "custom_configs": {},
+                        "tables": {
+                            "foo": {
+                                "name": "name",
+                                "origin_desc": "origin_desc",
+                                "fields": {
+                                    "foo": {
+                                        "name": "name",
+                                        "origin_desc": "origin_desc",
+                                        "data_type": "data_type",
+                                        "sample_data": "sample_data",
+                                        "visibility": True,
+                                    }
+                                },
+                            }
+                        },
+                    }
                 }
             },
+            selected_tables={"foo": ["string"]},
         )
         assert_matches_type(object, meta, path=["response"])
 
@@ -60,7 +62,6 @@ class TestMeta:
     def test_raw_response_create(self, client: Asktable) -> None:
         response = client.datasources.meta.with_raw_response.create(
             datasource_id="datasource_id",
-            name="name",
         )
 
         assert response.is_closed is True
@@ -72,7 +73,6 @@ class TestMeta:
     def test_streaming_response_create(self, client: Asktable) -> None:
         with client.datasources.meta.with_streaming_response.create(
             datasource_id="datasource_id",
-            name="name",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -87,7 +87,6 @@ class TestMeta:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `datasource_id` but received ''"):
             client.datasources.meta.with_raw_response.create(
                 datasource_id="",
-                name="name",
             )
 
     @parametrize
@@ -132,7 +131,6 @@ class TestMeta:
     def test_method_update(self, client: Asktable) -> None:
         meta = client.datasources.meta.update(
             datasource_id="datasource_id",
-            name="name",
         )
         assert_matches_type(object, meta, path=["response"])
 
@@ -140,28 +138,32 @@ class TestMeta:
     def test_method_update_with_all_params(self, client: Asktable) -> None:
         meta = client.datasources.meta.update(
             datasource_id="datasource_id",
-            name="name",
-            schemas={
-                "foo": {
-                    "name": "name",
-                    "custom_configs": {},
-                    "origin_desc": "origin_desc",
-                    "tables": {
-                        "foo": {
-                            "name": "name",
-                            "fields": {
-                                "foo": {
-                                    "name": "name",
-                                    "data_type": "data_type",
-                                    "origin_desc": "origin_desc",
-                                    "sample_data": "sample_data",
-                                }
-                            },
-                            "origin_desc": "origin_desc",
-                        }
-                    },
+            async_process_meta=True,
+            meta={
+                "schemas": {
+                    "foo": {
+                        "name": "name",
+                        "origin_desc": "origin_desc",
+                        "custom_configs": {},
+                        "tables": {
+                            "foo": {
+                                "name": "name",
+                                "origin_desc": "origin_desc",
+                                "fields": {
+                                    "foo": {
+                                        "name": "name",
+                                        "origin_desc": "origin_desc",
+                                        "data_type": "data_type",
+                                        "sample_data": "sample_data",
+                                        "visibility": True,
+                                    }
+                                },
+                            }
+                        },
+                    }
                 }
             },
+            selected_tables={"foo": ["string"]},
         )
         assert_matches_type(object, meta, path=["response"])
 
@@ -169,7 +171,6 @@ class TestMeta:
     def test_raw_response_update(self, client: Asktable) -> None:
         response = client.datasources.meta.with_raw_response.update(
             datasource_id="datasource_id",
-            name="name",
         )
 
         assert response.is_closed is True
@@ -181,7 +182,6 @@ class TestMeta:
     def test_streaming_response_update(self, client: Asktable) -> None:
         with client.datasources.meta.with_streaming_response.update(
             datasource_id="datasource_id",
-            name="name",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -196,7 +196,6 @@ class TestMeta:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `datasource_id` but received ''"):
             client.datasources.meta.with_raw_response.update(
                 datasource_id="",
-                name="name",
             )
 
     @parametrize
@@ -249,7 +248,6 @@ class TestAsyncMeta:
     async def test_method_create(self, async_client: AsyncAsktable) -> None:
         meta = await async_client.datasources.meta.create(
             datasource_id="datasource_id",
-            name="name",
         )
         assert_matches_type(object, meta, path=["response"])
 
@@ -257,30 +255,33 @@ class TestAsyncMeta:
     async def test_method_create_with_all_params(self, async_client: AsyncAsktable) -> None:
         meta = await async_client.datasources.meta.create(
             datasource_id="datasource_id",
-            name="name",
             async_process_meta=True,
             value_index=True,
-            schemas={
-                "foo": {
-                    "name": "name",
-                    "custom_configs": {},
-                    "origin_desc": "origin_desc",
-                    "tables": {
-                        "foo": {
-                            "name": "name",
-                            "fields": {
-                                "foo": {
-                                    "name": "name",
-                                    "data_type": "data_type",
-                                    "origin_desc": "origin_desc",
-                                    "sample_data": "sample_data",
-                                }
-                            },
-                            "origin_desc": "origin_desc",
-                        }
-                    },
+            meta={
+                "schemas": {
+                    "foo": {
+                        "name": "name",
+                        "origin_desc": "origin_desc",
+                        "custom_configs": {},
+                        "tables": {
+                            "foo": {
+                                "name": "name",
+                                "origin_desc": "origin_desc",
+                                "fields": {
+                                    "foo": {
+                                        "name": "name",
+                                        "origin_desc": "origin_desc",
+                                        "data_type": "data_type",
+                                        "sample_data": "sample_data",
+                                        "visibility": True,
+                                    }
+                                },
+                            }
+                        },
+                    }
                 }
             },
+            selected_tables={"foo": ["string"]},
         )
         assert_matches_type(object, meta, path=["response"])
 
@@ -288,7 +289,6 @@ class TestAsyncMeta:
     async def test_raw_response_create(self, async_client: AsyncAsktable) -> None:
         response = await async_client.datasources.meta.with_raw_response.create(
             datasource_id="datasource_id",
-            name="name",
         )
 
         assert response.is_closed is True
@@ -300,7 +300,6 @@ class TestAsyncMeta:
     async def test_streaming_response_create(self, async_client: AsyncAsktable) -> None:
         async with async_client.datasources.meta.with_streaming_response.create(
             datasource_id="datasource_id",
-            name="name",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -315,7 +314,6 @@ class TestAsyncMeta:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `datasource_id` but received ''"):
             await async_client.datasources.meta.with_raw_response.create(
                 datasource_id="",
-                name="name",
             )
 
     @parametrize
@@ -360,7 +358,6 @@ class TestAsyncMeta:
     async def test_method_update(self, async_client: AsyncAsktable) -> None:
         meta = await async_client.datasources.meta.update(
             datasource_id="datasource_id",
-            name="name",
         )
         assert_matches_type(object, meta, path=["response"])
 
@@ -368,28 +365,32 @@ class TestAsyncMeta:
     async def test_method_update_with_all_params(self, async_client: AsyncAsktable) -> None:
         meta = await async_client.datasources.meta.update(
             datasource_id="datasource_id",
-            name="name",
-            schemas={
-                "foo": {
-                    "name": "name",
-                    "custom_configs": {},
-                    "origin_desc": "origin_desc",
-                    "tables": {
-                        "foo": {
-                            "name": "name",
-                            "fields": {
-                                "foo": {
-                                    "name": "name",
-                                    "data_type": "data_type",
-                                    "origin_desc": "origin_desc",
-                                    "sample_data": "sample_data",
-                                }
-                            },
-                            "origin_desc": "origin_desc",
-                        }
-                    },
+            async_process_meta=True,
+            meta={
+                "schemas": {
+                    "foo": {
+                        "name": "name",
+                        "origin_desc": "origin_desc",
+                        "custom_configs": {},
+                        "tables": {
+                            "foo": {
+                                "name": "name",
+                                "origin_desc": "origin_desc",
+                                "fields": {
+                                    "foo": {
+                                        "name": "name",
+                                        "origin_desc": "origin_desc",
+                                        "data_type": "data_type",
+                                        "sample_data": "sample_data",
+                                        "visibility": True,
+                                    }
+                                },
+                            }
+                        },
+                    }
                 }
             },
+            selected_tables={"foo": ["string"]},
         )
         assert_matches_type(object, meta, path=["response"])
 
@@ -397,7 +398,6 @@ class TestAsyncMeta:
     async def test_raw_response_update(self, async_client: AsyncAsktable) -> None:
         response = await async_client.datasources.meta.with_raw_response.update(
             datasource_id="datasource_id",
-            name="name",
         )
 
         assert response.is_closed is True
@@ -409,7 +409,6 @@ class TestAsyncMeta:
     async def test_streaming_response_update(self, async_client: AsyncAsktable) -> None:
         async with async_client.datasources.meta.with_streaming_response.update(
             datasource_id="datasource_id",
-            name="name",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -424,7 +423,6 @@ class TestAsyncMeta:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `datasource_id` but received ''"):
             await async_client.datasources.meta.with_raw_response.update(
                 datasource_id="",
-                name="name",
             )
 
     @parametrize

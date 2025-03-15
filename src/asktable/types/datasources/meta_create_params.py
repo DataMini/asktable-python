@@ -2,55 +2,61 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Dict, List, Optional
 from typing_extensions import Required, TypedDict
 
-__all__ = ["MetaCreateParams", "Schemas", "SchemasTables", "SchemasTablesFields"]
+__all__ = ["MetaCreateParams", "Meta", "MetaSchemas", "MetaSchemasTables", "MetaSchemasTablesFields"]
 
 
 class MetaCreateParams(TypedDict, total=False):
-    name: Required[str]
-    """metadata_name"""
-
     async_process_meta: bool
 
     value_index: bool
 
-    schemas: Dict[str, Schemas]
+    meta: Optional[Meta]
+
+    selected_tables: Optional[Dict[str, List[str]]]
 
 
-class SchemasTablesFields(TypedDict, total=False):
+class MetaSchemasTablesFields(TypedDict, total=False):
     name: Required[str]
     """field_name"""
+
+    origin_desc: Required[str]
+    """field description from database"""
 
     data_type: Optional[str]
     """field data type"""
 
-    origin_desc: Optional[str]
-    """field description from database"""
-
     sample_data: Optional[str]
     """field sample data"""
 
+    visibility: bool
+    """field visibility"""
 
-class SchemasTables(TypedDict, total=False):
+
+class MetaSchemasTables(TypedDict, total=False):
     name: Required[str]
     """table_name"""
 
-    fields: Dict[str, SchemasTablesFields]
-
-    origin_desc: Optional[str]
+    origin_desc: Required[str]
     """table description from database"""
 
+    fields: Dict[str, MetaSchemasTablesFields]
 
-class Schemas(TypedDict, total=False):
+
+class MetaSchemas(TypedDict, total=False):
     name: Required[str]
     """schema_name"""
+
+    origin_desc: Required[str]
+    """schema description from database"""
 
     custom_configs: Optional[object]
     """custom configs"""
 
-    origin_desc: Optional[str]
-    """schema description from database"""
+    tables: Dict[str, MetaSchemasTables]
 
-    tables: Dict[str, SchemasTables]
+
+class Meta(TypedDict, total=False):
+    schemas: Required[Dict[str, MetaSchemas]]

@@ -31,7 +31,7 @@ class SqlsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> SqlsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/DataMini/asktable-python#accessing-raw-response-data-eg-headers
@@ -83,7 +83,7 @@ class SqlsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/single-turn/q2s",
+            "/v1/single-turn/q2s",
             body=maybe_transform(
                 {
                     "datasource_id": datasource_id,
@@ -131,7 +131,7 @@ class SqlsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/single-turn/q2s",
+            "/v1/single-turn/q2s",
             page=SyncPage[QueryResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -155,7 +155,7 @@ class AsyncSqlsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncSqlsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/DataMini/asktable-python#accessing-raw-response-data-eg-headers
@@ -207,7 +207,7 @@ class AsyncSqlsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/single-turn/q2s",
+            "/v1/single-turn/q2s",
             body=await async_maybe_transform(
                 {
                     "datasource_id": datasource_id,
@@ -255,7 +255,7 @@ class AsyncSqlsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/single-turn/q2s",
+            "/v1/single-turn/q2s",
             page=AsyncPage[QueryResponse],
             options=make_request_options(
                 extra_headers=extra_headers,

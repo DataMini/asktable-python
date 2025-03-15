@@ -19,6 +19,7 @@ from .query_response import QueryResponse as QueryResponse
 from .answer_response import AnswerResponse as AnswerResponse
 from .bot_list_params import BotListParams as BotListParams
 from .sql_list_params import SqlListParams as SqlListParams
+from .auth_me_response import AuthMeResponse as AuthMeResponse
 from .chat_list_params import ChatListParams as ChatListParams
 from .role_list_params import RoleListParams as RoleListParams
 from .bot_create_params import BotCreateParams as BotCreateParams
@@ -61,6 +62,7 @@ from .preference_create_response import PreferenceCreateResponse as PreferenceCr
 from .preference_update_response import PreferenceUpdateResponse as PreferenceUpdateResponse
 from .securetunnel_create_params import SecuretunnelCreateParams as SecuretunnelCreateParams
 from .securetunnel_update_params import SecuretunnelUpdateParams as SecuretunnelUpdateParams
+from .dataframe_retrieve_response import DataframeRetrieveResponse as DataframeRetrieveResponse
 from .datasource_retrieve_response import DatasourceRetrieveResponse as DatasourceRetrieveResponse
 from .preference_retrieve_response import PreferenceRetrieveResponse as PreferenceRetrieveResponse
 from .business_glossary_list_params import BusinessGlossaryListParams as BusinessGlossaryListParams

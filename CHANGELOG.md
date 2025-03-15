@@ -1,5 +1,53 @@
 # Changelog
 
+## 4.6.0 (2025-03-15)
+
+Full Changelog: [v4.5.0...v4.6.0](https://github.com/DataMini/asktable-python/compare/v4.5.0...v4.6.0)
+
+### Features
+
+* **api:** api update ([#144](https://github.com/DataMini/asktable-python/issues/144)) ([668a25d](https://github.com/DataMini/asktable-python/commit/668a25dd349090c2f095d068a0ada72587aac38f))
+* **api:** manual updates ([#167](https://github.com/DataMini/asktable-python/issues/167)) ([06c63d2](https://github.com/DataMini/asktable-python/commit/06c63d292a5278295e93c4d7a65cf25b02234e2b))
+* **api:** manual updates ([#168](https://github.com/DataMini/asktable-python/issues/168)) ([8990ba9](https://github.com/DataMini/asktable-python/commit/8990ba9c162f2224e23e8db58646f2c485f77e1c))
+* **client:** allow passing `NotGiven` for body ([#155](https://github.com/DataMini/asktable-python/issues/155)) ([153f86b](https://github.com/DataMini/asktable-python/commit/153f86b5c5c0099edc9b0622ebe36553b653e8ca))
+* **client:** send `X-Stainless-Read-Timeout` header ([#149](https://github.com/DataMini/asktable-python/issues/149)) ([2bbef8d](https://github.com/DataMini/asktable-python/commit/2bbef8d335a87602e14fbea387f3b7fe136424f0))
+
+
+### Bug Fixes
+
+* asyncify on non-asyncio runtimes ([#153](https://github.com/DataMini/asktable-python/issues/153)) ([92577a2](https://github.com/DataMini/asktable-python/commit/92577a2765975e59273e218ba20c93cbed7a05c1))
+* **client:** mark some request bodies as optional ([153f86b](https://github.com/DataMini/asktable-python/commit/153f86b5c5c0099edc9b0622ebe36553b653e8ca))
+* improve names for conflicting params ([#148](https://github.com/DataMini/asktable-python/issues/148)) ([3f9650f](https://github.com/DataMini/asktable-python/commit/3f9650f5519444a1517dcf85bf313780e5dd6cce))
+* **types:** handle more discriminated union shapes ([#166](https://github.com/DataMini/asktable-python/issues/166)) ([850d425](https://github.com/DataMini/asktable-python/commit/850d425cf365d48cc9f7a41d09d295e8547befdf))
+
+
+### Chores
+
+* **docs:** update client docstring ([#159](https://github.com/DataMini/asktable-python/issues/159)) ([5a0da4d](https://github.com/DataMini/asktable-python/commit/5a0da4dd6288d7d55b7b2d4585b12e876d384423))
+* **internal:** bummp ruff dependency ([#147](https://github.com/DataMini/asktable-python/issues/147)) ([9638e50](https://github.com/DataMini/asktable-python/commit/9638e50e2a5325ba4cb66e8cd987d96da80f37d5))
+* **internal:** bump rye to 0.44.0 ([#165](https://github.com/DataMini/asktable-python/issues/165)) ([5ead610](https://github.com/DataMini/asktable-python/commit/5ead610c43bcde3e61ec6e2e6e4fd892be1f4e59))
+* **internal:** change default timeout to an int ([#146](https://github.com/DataMini/asktable-python/issues/146)) ([f418605](https://github.com/DataMini/asktable-python/commit/f41860576a0d6e8ce78352de1e997c3e8149a52f))
+* **internal:** codegen related update ([#138](https://github.com/DataMini/asktable-python/issues/138)) ([e70fbf4](https://github.com/DataMini/asktable-python/commit/e70fbf41048ca082ffd9f4888ccfa7bd9f97c57f))
+* **internal:** codegen related update ([#141](https://github.com/DataMini/asktable-python/issues/141)) ([56d0462](https://github.com/DataMini/asktable-python/commit/56d0462efef6c92a6727fd91c638a19750195d4e))
+* **internal:** codegen related update ([#154](https://github.com/DataMini/asktable-python/issues/154)) ([2242fad](https://github.com/DataMini/asktable-python/commit/2242fad33cc31d4bf434bc6161ca444c7cf3bf36))
+* **internal:** codegen related update ([#164](https://github.com/DataMini/asktable-python/issues/164)) ([1cb3903](https://github.com/DataMini/asktable-python/commit/1cb390324e6894374519e8062b446873d138cde0))
+* **internal:** fix devcontainers setup ([#156](https://github.com/DataMini/asktable-python/issues/156)) ([944423e](https://github.com/DataMini/asktable-python/commit/944423e7d0c69dcf0a54141ce69127db2369b247))
+* **internal:** fix type traversing dictionary params ([#150](https://github.com/DataMini/asktable-python/issues/150)) ([0caeb28](https://github.com/DataMini/asktable-python/commit/0caeb28b8647a9753b16bbc8a2963f900e4dd9d2))
+* **internal:** minor formatting changes ([#143](https://github.com/DataMini/asktable-python/issues/143)) ([a4ac34f](https://github.com/DataMini/asktable-python/commit/a4ac34fcf7a8350bdd03b5c51917ca5896183c63))
+* **internal:** minor style changes ([#142](https://github.com/DataMini/asktable-python/issues/142)) ([cb5834c](https://github.com/DataMini/asktable-python/commit/cb5834c4e4819f6c9a99dcd9a9d8296b413d0317))
+* **internal:** minor type handling changes ([#151](https://github.com/DataMini/asktable-python/issues/151)) ([67e6469](https://github.com/DataMini/asktable-python/commit/67e6469d84d6fc761ae2e7fc55d47ffb07c49309))
+* **internal:** properly set __pydantic_private__ ([#157](https://github.com/DataMini/asktable-python/issues/157)) ([30a260f](https://github.com/DataMini/asktable-python/commit/30a260f78f2b32e82467afe05703e2f8aa88fc68))
+* **internal:** remove extra empty newlines ([#163](https://github.com/DataMini/asktable-python/issues/163)) ([d8b30ce](https://github.com/DataMini/asktable-python/commit/d8b30cec54b715e20a90de84a4a3393a0b556c33))
+* **internal:** remove unused http client options forwarding ([#160](https://github.com/DataMini/asktable-python/issues/160)) ([298eb9c](https://github.com/DataMini/asktable-python/commit/298eb9ca830efd80ca27e868a0081ff4822dc2db))
+* **internal:** update client tests ([#152](https://github.com/DataMini/asktable-python/issues/152)) ([02af016](https://github.com/DataMini/asktable-python/commit/02af016ec2d3f945765bbc76a24a0a102757b966))
+
+
+### Documentation
+
+* **raw responses:** fix duplicate `the` ([#140](https://github.com/DataMini/asktable-python/issues/140)) ([5580989](https://github.com/DataMini/asktable-python/commit/55809895dc745aa046c93493ad7f658ed652c869))
+* revise readme docs about nested params ([#161](https://github.com/DataMini/asktable-python/issues/161)) ([c4a4e34](https://github.com/DataMini/asktable-python/commit/c4a4e34b3ddc3a19aac34cd4f167af53e2665933))
+* update URLs from stainlessapi.com to stainless.com ([#158](https://github.com/DataMini/asktable-python/issues/158)) ([a8ee0e2](https://github.com/DataMini/asktable-python/commit/a8ee0e203076b01180be2c164174a469c2f444ef))
+
 ## 4.5.0 (2025-01-19)
 
 Full Changelog: [v4.4.0...v4.5.0](https://github.com/DataMini/asktable-python/compare/v4.4.0...v4.5.0)

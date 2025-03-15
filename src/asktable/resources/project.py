@@ -31,7 +31,7 @@ class ProjectResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ProjectResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/DataMini/asktable-python#accessing-raw-response-data-eg-headers
@@ -59,7 +59,7 @@ class ProjectResource(SyncAPIResource):
     ) -> Project:
         """Get My Project"""
         return self._get(
-            "/project",
+            "/v1/project",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -95,7 +95,7 @@ class ProjectResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._patch(
-            "/project",
+            "/v1/project",
             body=maybe_transform(
                 {
                     "llm_model_group": llm_model_group,
@@ -121,7 +121,7 @@ class ProjectResource(SyncAPIResource):
     ) -> ProjectListModelGroupsResponse:
         """Get Llm Model Groups"""
         return self._get(
-            "/project/model-groups",
+            "/v1/project/model-groups",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -133,7 +133,7 @@ class AsyncProjectResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncProjectResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/DataMini/asktable-python#accessing-raw-response-data-eg-headers
@@ -161,7 +161,7 @@ class AsyncProjectResource(AsyncAPIResource):
     ) -> Project:
         """Get My Project"""
         return await self._get(
-            "/project",
+            "/v1/project",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -197,7 +197,7 @@ class AsyncProjectResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._patch(
-            "/project",
+            "/v1/project",
             body=await async_maybe_transform(
                 {
                     "llm_model_group": llm_model_group,
@@ -223,7 +223,7 @@ class AsyncProjectResource(AsyncAPIResource):
     ) -> ProjectListModelGroupsResponse:
         """Get Llm Model Groups"""
         return await self._get(
-            "/project/model-groups",
+            "/v1/project/model-groups",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

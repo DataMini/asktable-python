@@ -6,7 +6,7 @@ The Asktable Python library provides convenient access to the Asktable REST API 
 application. The library includes type definitions for all request params and response fields,
 and offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx).
 
-It is generated with [Stainless](https://www.stainlessapi.com/).
+It is generated with [Stainless](https://www.stainless.com/).
 
 ## Documentation
 
@@ -133,6 +133,43 @@ for datasource in first_page.items:
 
 # Remove `await` for non-async usage.
 ```
+
+## Nested params
+
+Nested parameters are dictionaries, typed using `TypedDict`, for example:
+
+```python
+from asktable import Asktable
+
+client = Asktable()
+
+response = client.sys.projects.api_keys.create_token(
+    project_id="project_id",
+    chat_role={
+        "role_id": "1",
+        "role_variables": {"id": "42"},
+    },
+)
+print(response.chat_role)
+```
+
+## File uploads
+
+Request parameters that correspond to file uploads can be passed as `bytes`, a [`PathLike`](https://docs.python.org/3/library/os.html#os.PathLike) instance or a tuple of `(filename, contents, media type)`.
+
+```python
+from pathlib import Path
+from asktable import Asktable
+
+client = Asktable()
+
+client.datasources.add_file(
+    datasource_id="datasource_id",
+    file=Path("/path/to/file"),
+)
+```
+
+The async client uses the exact same interface. If you pass a [`PathLike`](https://docs.python.org/3/library/os.html#os.PathLike) instance, the file contents will be read asynchronously automatically.
 
 ## Handling errors
 

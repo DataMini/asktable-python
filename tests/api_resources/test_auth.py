@@ -9,6 +9,7 @@ import pytest
 
 from asktable import Asktable, AsyncAsktable
 from tests.utils import assert_matches_type
+from asktable.types import AuthMeResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -57,7 +58,7 @@ class TestAuth:
     @parametrize
     def test_method_me(self, client: Asktable) -> None:
         auth = client.auth.me()
-        assert_matches_type(object, auth, path=["response"])
+        assert_matches_type(AuthMeResponse, auth, path=["response"])
 
     @parametrize
     def test_raw_response_me(self, client: Asktable) -> None:
@@ -66,7 +67,7 @@ class TestAuth:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         auth = response.parse()
-        assert_matches_type(object, auth, path=["response"])
+        assert_matches_type(AuthMeResponse, auth, path=["response"])
 
     @parametrize
     def test_streaming_response_me(self, client: Asktable) -> None:
@@ -75,7 +76,7 @@ class TestAuth:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             auth = response.parse()
-            assert_matches_type(object, auth, path=["response"])
+            assert_matches_type(AuthMeResponse, auth, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -124,7 +125,7 @@ class TestAsyncAuth:
     @parametrize
     async def test_method_me(self, async_client: AsyncAsktable) -> None:
         auth = await async_client.auth.me()
-        assert_matches_type(object, auth, path=["response"])
+        assert_matches_type(AuthMeResponse, auth, path=["response"])
 
     @parametrize
     async def test_raw_response_me(self, async_client: AsyncAsktable) -> None:
@@ -133,7 +134,7 @@ class TestAsyncAuth:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         auth = await response.parse()
-        assert_matches_type(object, auth, path=["response"])
+        assert_matches_type(AuthMeResponse, auth, path=["response"])
 
     @parametrize
     async def test_streaming_response_me(self, async_client: AsyncAsktable) -> None:
@@ -142,6 +143,6 @@ class TestAsyncAuth:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             auth = await response.parse()
-            assert_matches_type(object, auth, path=["response"])
+            assert_matches_type(AuthMeResponse, auth, path=["response"])
 
         assert cast(Any, response.is_closed) is True

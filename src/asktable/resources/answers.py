@@ -31,7 +31,7 @@ class AnswersResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AnswersResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/DataMini/asktable-python#accessing-raw-response-data-eg-headers
@@ -89,7 +89,7 @@ class AnswersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/single-turn/q2a",
+            "/v1/single-turn/q2a",
             body=maybe_transform(
                 {
                     "datasource_id": datasource_id,
@@ -139,7 +139,7 @@ class AnswersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/single-turn/q2a",
+            "/v1/single-turn/q2a",
             page=SyncPage[AnswerResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -163,7 +163,7 @@ class AsyncAnswersResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncAnswersResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/DataMini/asktable-python#accessing-raw-response-data-eg-headers
@@ -221,7 +221,7 @@ class AsyncAnswersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/single-turn/q2a",
+            "/v1/single-turn/q2a",
             body=await async_maybe_transform(
                 {
                     "datasource_id": datasource_id,
@@ -271,7 +271,7 @@ class AsyncAnswersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/single-turn/q2a",
+            "/v1/single-turn/q2a",
             page=AsyncPage[AnswerResponse],
             options=make_request_options(
                 extra_headers=extra_headers,

@@ -32,7 +32,7 @@ class TrainingsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> TrainingsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/DataMini/asktable-python#accessing-raw-response-data-eg-headers
@@ -75,7 +75,7 @@ class TrainingsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/training",
+            "/v1/training",
             body=maybe_transform(body, Iterable[training_create_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -119,7 +119,7 @@ class TrainingsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/training",
+            "/v1/training",
             page=SyncPage[TrainingListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -167,7 +167,7 @@ class TrainingsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._delete(
-            f"/training/{id}",
+            f"/v1/training/{id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -183,7 +183,7 @@ class AsyncTrainingsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncTrainingsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/DataMini/asktable-python#accessing-raw-response-data-eg-headers
@@ -226,7 +226,7 @@ class AsyncTrainingsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/training",
+            "/v1/training",
             body=await async_maybe_transform(body, Iterable[training_create_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -272,7 +272,7 @@ class AsyncTrainingsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/training",
+            "/v1/training",
             page=AsyncPage[TrainingListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -320,7 +320,7 @@ class AsyncTrainingsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._delete(
-            f"/training/{id}",
+            f"/v1/training/{id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

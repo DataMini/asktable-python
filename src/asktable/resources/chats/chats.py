@@ -44,7 +44,7 @@ class ChatsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ChatsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/DataMini/asktable-python#accessing-raw-response-data-eg-headers
@@ -100,7 +100,7 @@ class ChatsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/chats",
+            "/v1/chats",
             body=maybe_transform(
                 {
                     "bot_id": bot_id,
@@ -143,7 +143,7 @@ class ChatsResource(SyncAPIResource):
         if not chat_id:
             raise ValueError(f"Expected a non-empty value for `chat_id` but received {chat_id!r}")
         return self._get(
-            f"/chats/{chat_id}",
+            f"/v1/chats/{chat_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -179,7 +179,7 @@ class ChatsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/chats",
+            "/v1/chats",
             page=SyncPage[Chat],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -224,7 +224,7 @@ class ChatsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `chat_id` but received {chat_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/chats/{chat_id}",
+            f"/v1/chats/{chat_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -240,7 +240,7 @@ class AsyncChatsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncChatsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/DataMini/asktable-python#accessing-raw-response-data-eg-headers
@@ -296,7 +296,7 @@ class AsyncChatsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/chats",
+            "/v1/chats",
             body=await async_maybe_transform(
                 {
                     "bot_id": bot_id,
@@ -339,7 +339,7 @@ class AsyncChatsResource(AsyncAPIResource):
         if not chat_id:
             raise ValueError(f"Expected a non-empty value for `chat_id` but received {chat_id!r}")
         return await self._get(
-            f"/chats/{chat_id}",
+            f"/v1/chats/{chat_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -375,7 +375,7 @@ class AsyncChatsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/chats",
+            "/v1/chats",
             page=AsyncPage[Chat],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -420,7 +420,7 @@ class AsyncChatsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `chat_id` but received {chat_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/chats/{chat_id}",
+            f"/v1/chats/{chat_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

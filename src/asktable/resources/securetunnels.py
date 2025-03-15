@@ -37,7 +37,7 @@ class SecuretunnelsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> SecuretunnelsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/DataMini/asktable-python#accessing-raw-response-data-eg-headers
@@ -79,7 +79,7 @@ class SecuretunnelsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/securetunnels",
+            "/v1/securetunnels",
             body=maybe_transform({"name": name}, securetunnel_create_params.SecuretunnelCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -113,7 +113,7 @@ class SecuretunnelsResource(SyncAPIResource):
         if not securetunnel_id:
             raise ValueError(f"Expected a non-empty value for `securetunnel_id` but received {securetunnel_id!r}")
         return self._get(
-            f"/securetunnels/{securetunnel_id}",
+            f"/v1/securetunnels/{securetunnel_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -124,8 +124,8 @@ class SecuretunnelsResource(SyncAPIResource):
         self,
         securetunnel_id: str,
         *,
-        name: str,
         client_info: Optional[object] | NotGiven = NOT_GIVEN,
+        name: Optional[str] | NotGiven = NOT_GIVEN,
         unique_key: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -138,9 +138,9 @@ class SecuretunnelsResource(SyncAPIResource):
         更新某个 ATST
 
         Args:
-          name: SecureTunnel 名称，不超过 20 个字符
-
           client_info: 客户端信息
+
+          name: SecureTunnel 名称，不超过 20 个字符
 
           unique_key: 唯一标识，用于更新客户端信息（容器 ID）
 
@@ -155,11 +155,11 @@ class SecuretunnelsResource(SyncAPIResource):
         if not securetunnel_id:
             raise ValueError(f"Expected a non-empty value for `securetunnel_id` but received {securetunnel_id!r}")
         return self._patch(
-            f"/securetunnels/{securetunnel_id}",
+            f"/v1/securetunnels/{securetunnel_id}",
             body=maybe_transform(
                 {
-                    "name": name,
                     "client_info": client_info,
+                    "name": name,
                     "unique_key": unique_key,
                 },
                 securetunnel_update_params.SecuretunnelUpdateParams,
@@ -199,7 +199,7 @@ class SecuretunnelsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/securetunnels",
+            "/v1/securetunnels",
             page=SyncPage[SecureTunnel],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -244,7 +244,7 @@ class SecuretunnelsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `securetunnel_id` but received {securetunnel_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/securetunnels/{securetunnel_id}",
+            f"/v1/securetunnels/{securetunnel_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -283,7 +283,7 @@ class SecuretunnelsResource(SyncAPIResource):
         if not securetunnel_id:
             raise ValueError(f"Expected a non-empty value for `securetunnel_id` but received {securetunnel_id!r}")
         return self._get_api_list(
-            f"/securetunnels/{securetunnel_id}/links",
+            f"/v1/securetunnels/{securetunnel_id}/links",
             page=SyncPage[SecuretunnelListLinksResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -306,7 +306,7 @@ class AsyncSecuretunnelsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncSecuretunnelsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/DataMini/asktable-python#accessing-raw-response-data-eg-headers
@@ -348,7 +348,7 @@ class AsyncSecuretunnelsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/securetunnels",
+            "/v1/securetunnels",
             body=await async_maybe_transform({"name": name}, securetunnel_create_params.SecuretunnelCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -382,7 +382,7 @@ class AsyncSecuretunnelsResource(AsyncAPIResource):
         if not securetunnel_id:
             raise ValueError(f"Expected a non-empty value for `securetunnel_id` but received {securetunnel_id!r}")
         return await self._get(
-            f"/securetunnels/{securetunnel_id}",
+            f"/v1/securetunnels/{securetunnel_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -393,8 +393,8 @@ class AsyncSecuretunnelsResource(AsyncAPIResource):
         self,
         securetunnel_id: str,
         *,
-        name: str,
         client_info: Optional[object] | NotGiven = NOT_GIVEN,
+        name: Optional[str] | NotGiven = NOT_GIVEN,
         unique_key: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -407,9 +407,9 @@ class AsyncSecuretunnelsResource(AsyncAPIResource):
         更新某个 ATST
 
         Args:
-          name: SecureTunnel 名称，不超过 20 个字符
-
           client_info: 客户端信息
+
+          name: SecureTunnel 名称，不超过 20 个字符
 
           unique_key: 唯一标识，用于更新客户端信息（容器 ID）
 
@@ -424,11 +424,11 @@ class AsyncSecuretunnelsResource(AsyncAPIResource):
         if not securetunnel_id:
             raise ValueError(f"Expected a non-empty value for `securetunnel_id` but received {securetunnel_id!r}")
         return await self._patch(
-            f"/securetunnels/{securetunnel_id}",
+            f"/v1/securetunnels/{securetunnel_id}",
             body=await async_maybe_transform(
                 {
-                    "name": name,
                     "client_info": client_info,
+                    "name": name,
                     "unique_key": unique_key,
                 },
                 securetunnel_update_params.SecuretunnelUpdateParams,
@@ -468,7 +468,7 @@ class AsyncSecuretunnelsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/securetunnels",
+            "/v1/securetunnels",
             page=AsyncPage[SecureTunnel],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -513,7 +513,7 @@ class AsyncSecuretunnelsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `securetunnel_id` but received {securetunnel_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/securetunnels/{securetunnel_id}",
+            f"/v1/securetunnels/{securetunnel_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -552,7 +552,7 @@ class AsyncSecuretunnelsResource(AsyncAPIResource):
         if not securetunnel_id:
             raise ValueError(f"Expected a non-empty value for `securetunnel_id` but received {securetunnel_id!r}")
         return self._get_api_list(
-            f"/securetunnels/{securetunnel_id}/links",
+            f"/v1/securetunnels/{securetunnel_id}/links",
             page=AsyncPage[SecuretunnelListLinksResponse],
             options=make_request_options(
                 extra_headers=extra_headers,

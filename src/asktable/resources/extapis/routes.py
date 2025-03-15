@@ -33,7 +33,7 @@ class RoutesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> RoutesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/DataMini/asktable-python#accessing-raw-response-data-eg-headers
@@ -51,8 +51,8 @@ class RoutesResource(SyncAPIResource):
 
     def create(
         self,
-        *,
         path_extapi_id: str,
+        *,
         id: str,
         created_at: Union[str, datetime],
         body_extapi_id: str,
@@ -60,10 +60,10 @@ class RoutesResource(SyncAPIResource):
         name: str,
         path: str,
         project_id: str,
+        updated_at: Union[str, datetime],
         body_params_desc: Optional[str] | NotGiven = NOT_GIVEN,
         path_params_desc: Optional[str] | NotGiven = NOT_GIVEN,
         query_params_desc: Optional[str] | NotGiven = NOT_GIVEN,
-        updated_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -98,7 +98,7 @@ class RoutesResource(SyncAPIResource):
         if not path_extapi_id:
             raise ValueError(f"Expected a non-empty value for `path_extapi_id` but received {path_extapi_id!r}")
         return self._post(
-            f"/extapis/{path_extapi_id}/routes",
+            f"/v1/extapis/{path_extapi_id}/routes",
             body=maybe_transform(
                 {
                     "id": id,
@@ -108,10 +108,10 @@ class RoutesResource(SyncAPIResource):
                     "name": name,
                     "path": path,
                     "project_id": project_id,
+                    "updated_at": updated_at,
                     "body_params_desc": body_params_desc,
                     "path_params_desc": path_params_desc,
                     "query_params_desc": query_params_desc,
-                    "updated_at": updated_at,
                 },
                 route_create_params.RouteCreateParams,
             ),
@@ -150,7 +150,7 @@ class RoutesResource(SyncAPIResource):
         if not route_id:
             raise ValueError(f"Expected a non-empty value for `route_id` but received {route_id!r}")
         return self._get(
-            f"/extapis/{extapi_id}/routes/{route_id}",
+            f"/v1/extapis/{extapi_id}/routes/{route_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -204,7 +204,7 @@ class RoutesResource(SyncAPIResource):
         if not route_id:
             raise ValueError(f"Expected a non-empty value for `route_id` but received {route_id!r}")
         return self._post(
-            f"/extapis/{extapi_id}/routes/{route_id}",
+            f"/v1/extapis/{extapi_id}/routes/{route_id}",
             body=maybe_transform(
                 {
                     "body_params_desc": body_params_desc,
@@ -248,7 +248,7 @@ class RoutesResource(SyncAPIResource):
         if not extapi_id:
             raise ValueError(f"Expected a non-empty value for `extapi_id` but received {extapi_id!r}")
         return self._get(
-            f"/extapis/{extapi_id}/routes",
+            f"/v1/extapis/{extapi_id}/routes",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -285,7 +285,7 @@ class RoutesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `route_id` but received {route_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/extapis/{extapi_id}/routes/{route_id}",
+            f"/v1/extapis/{extapi_id}/routes/{route_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -297,7 +297,7 @@ class AsyncRoutesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncRoutesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/DataMini/asktable-python#accessing-raw-response-data-eg-headers
@@ -315,8 +315,8 @@ class AsyncRoutesResource(AsyncAPIResource):
 
     async def create(
         self,
-        *,
         path_extapi_id: str,
+        *,
         id: str,
         created_at: Union[str, datetime],
         body_extapi_id: str,
@@ -324,10 +324,10 @@ class AsyncRoutesResource(AsyncAPIResource):
         name: str,
         path: str,
         project_id: str,
+        updated_at: Union[str, datetime],
         body_params_desc: Optional[str] | NotGiven = NOT_GIVEN,
         path_params_desc: Optional[str] | NotGiven = NOT_GIVEN,
         query_params_desc: Optional[str] | NotGiven = NOT_GIVEN,
-        updated_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -362,7 +362,7 @@ class AsyncRoutesResource(AsyncAPIResource):
         if not path_extapi_id:
             raise ValueError(f"Expected a non-empty value for `path_extapi_id` but received {path_extapi_id!r}")
         return await self._post(
-            f"/extapis/{path_extapi_id}/routes",
+            f"/v1/extapis/{path_extapi_id}/routes",
             body=await async_maybe_transform(
                 {
                     "id": id,
@@ -372,10 +372,10 @@ class AsyncRoutesResource(AsyncAPIResource):
                     "name": name,
                     "path": path,
                     "project_id": project_id,
+                    "updated_at": updated_at,
                     "body_params_desc": body_params_desc,
                     "path_params_desc": path_params_desc,
                     "query_params_desc": query_params_desc,
-                    "updated_at": updated_at,
                 },
                 route_create_params.RouteCreateParams,
             ),
@@ -414,7 +414,7 @@ class AsyncRoutesResource(AsyncAPIResource):
         if not route_id:
             raise ValueError(f"Expected a non-empty value for `route_id` but received {route_id!r}")
         return await self._get(
-            f"/extapis/{extapi_id}/routes/{route_id}",
+            f"/v1/extapis/{extapi_id}/routes/{route_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -468,7 +468,7 @@ class AsyncRoutesResource(AsyncAPIResource):
         if not route_id:
             raise ValueError(f"Expected a non-empty value for `route_id` but received {route_id!r}")
         return await self._post(
-            f"/extapis/{extapi_id}/routes/{route_id}",
+            f"/v1/extapis/{extapi_id}/routes/{route_id}",
             body=await async_maybe_transform(
                 {
                     "body_params_desc": body_params_desc,
@@ -512,7 +512,7 @@ class AsyncRoutesResource(AsyncAPIResource):
         if not extapi_id:
             raise ValueError(f"Expected a non-empty value for `extapi_id` but received {extapi_id!r}")
         return await self._get(
-            f"/extapis/{extapi_id}/routes",
+            f"/v1/extapis/{extapi_id}/routes",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -549,7 +549,7 @@ class AsyncRoutesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `route_id` but received {route_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/extapis/{extapi_id}/routes/{route_id}",
+            f"/v1/extapis/{extapi_id}/routes/{route_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

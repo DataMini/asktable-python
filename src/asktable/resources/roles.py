@@ -32,7 +32,7 @@ class RolesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> RolesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/DataMini/asktable-python#accessing-raw-response-data-eg-headers
@@ -77,7 +77,7 @@ class RolesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/roles",
+            "/v1/roles",
             body=maybe_transform(
                 {
                     "name": name,
@@ -117,7 +117,7 @@ class RolesResource(SyncAPIResource):
         if not role_id:
             raise ValueError(f"Expected a non-empty value for `role_id` but received {role_id!r}")
         return self._get(
-            f"/roles/{role_id}",
+            f"/v1/roles/{role_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -156,7 +156,7 @@ class RolesResource(SyncAPIResource):
         if not role_id:
             raise ValueError(f"Expected a non-empty value for `role_id` but received {role_id!r}")
         return self._patch(
-            f"/roles/{role_id}",
+            f"/v1/roles/{role_id}",
             body=maybe_transform(
                 {
                     "name": name,
@@ -205,7 +205,7 @@ class RolesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/roles",
+            "/v1/roles",
             page=SyncPage[Role],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -251,7 +251,7 @@ class RolesResource(SyncAPIResource):
         if not role_id:
             raise ValueError(f"Expected a non-empty value for `role_id` but received {role_id!r}")
         return self._delete(
-            f"/roles/{role_id}",
+            f"/v1/roles/{role_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -284,7 +284,7 @@ class RolesResource(SyncAPIResource):
         if not role_id:
             raise ValueError(f"Expected a non-empty value for `role_id` but received {role_id!r}")
         return self._get(
-            f"/roles/{role_id}/policies",
+            f"/v1/roles/{role_id}/policies",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -323,7 +323,7 @@ class RolesResource(SyncAPIResource):
         if not role_id:
             raise ValueError(f"Expected a non-empty value for `role_id` but received {role_id!r}")
         return self._get(
-            f"/roles/{role_id}/variables",
+            f"/v1/roles/{role_id}/variables",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -345,7 +345,7 @@ class AsyncRolesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncRolesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/DataMini/asktable-python#accessing-raw-response-data-eg-headers
@@ -390,7 +390,7 @@ class AsyncRolesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/roles",
+            "/v1/roles",
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -430,7 +430,7 @@ class AsyncRolesResource(AsyncAPIResource):
         if not role_id:
             raise ValueError(f"Expected a non-empty value for `role_id` but received {role_id!r}")
         return await self._get(
-            f"/roles/{role_id}",
+            f"/v1/roles/{role_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -469,7 +469,7 @@ class AsyncRolesResource(AsyncAPIResource):
         if not role_id:
             raise ValueError(f"Expected a non-empty value for `role_id` but received {role_id!r}")
         return await self._patch(
-            f"/roles/{role_id}",
+            f"/v1/roles/{role_id}",
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -518,7 +518,7 @@ class AsyncRolesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/roles",
+            "/v1/roles",
             page=AsyncPage[Role],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -564,7 +564,7 @@ class AsyncRolesResource(AsyncAPIResource):
         if not role_id:
             raise ValueError(f"Expected a non-empty value for `role_id` but received {role_id!r}")
         return await self._delete(
-            f"/roles/{role_id}",
+            f"/v1/roles/{role_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -597,7 +597,7 @@ class AsyncRolesResource(AsyncAPIResource):
         if not role_id:
             raise ValueError(f"Expected a non-empty value for `role_id` but received {role_id!r}")
         return await self._get(
-            f"/roles/{role_id}/policies",
+            f"/v1/roles/{role_id}/policies",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -636,7 +636,7 @@ class AsyncRolesResource(AsyncAPIResource):
         if not role_id:
             raise ValueError(f"Expected a non-empty value for `role_id` but received {role_id!r}")
         return await self._get(
-            f"/roles/{role_id}/variables",
+            f"/v1/roles/{role_id}/variables",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

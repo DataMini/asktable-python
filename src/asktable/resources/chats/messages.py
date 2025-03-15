@@ -33,7 +33,7 @@ class MessagesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> MessagesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/DataMini/asktable-python#accessing-raw-response-data-eg-headers
@@ -62,7 +62,7 @@ class MessagesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> MessageCreateResponse:
         """
-        发消息
+        Send a message to the chat
 
         Args:
           extra_headers: Send extra headers
@@ -78,7 +78,7 @@ class MessagesResource(SyncAPIResource):
         return cast(
             MessageCreateResponse,
             self._post(
-                f"/chats/{chat_id}/messages",
+                f"/v1/chats/{chat_id}/messages",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -123,7 +123,7 @@ class MessagesResource(SyncAPIResource):
         return cast(
             MessageRetrieveResponse,
             self._get(
-                f"/chats/{chat_id}/messages/{message_id}",
+                f"/v1/chats/{chat_id}/messages/{message_id}",
                 options=make_request_options(
                     extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
                 ),
@@ -165,7 +165,7 @@ class MessagesResource(SyncAPIResource):
         if not chat_id:
             raise ValueError(f"Expected a non-empty value for `chat_id` but received {chat_id!r}")
         return self._get_api_list(
-            f"/chats/{chat_id}/messages",
+            f"/v1/chats/{chat_id}/messages",
             page=SyncPage[MessageListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -188,7 +188,7 @@ class AsyncMessagesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncMessagesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/DataMini/asktable-python#accessing-raw-response-data-eg-headers
@@ -217,7 +217,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> MessageCreateResponse:
         """
-        发消息
+        Send a message to the chat
 
         Args:
           extra_headers: Send extra headers
@@ -233,7 +233,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         return cast(
             MessageCreateResponse,
             await self._post(
-                f"/chats/{chat_id}/messages",
+                f"/v1/chats/{chat_id}/messages",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -280,7 +280,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         return cast(
             MessageRetrieveResponse,
             await self._get(
-                f"/chats/{chat_id}/messages/{message_id}",
+                f"/v1/chats/{chat_id}/messages/{message_id}",
                 options=make_request_options(
                     extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
                 ),
@@ -322,7 +322,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         if not chat_id:
             raise ValueError(f"Expected a non-empty value for `chat_id` but received {chat_id!r}")
         return self._get_api_list(
-            f"/chats/{chat_id}/messages",
+            f"/v1/chats/{chat_id}/messages",
             page=AsyncPage[MessageListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,

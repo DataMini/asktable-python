@@ -2,54 +2,46 @@
 
 from __future__ import annotations
 
-from typing import Optional
-
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._compat import cached_property
+from .._resource import SyncAPIResource, AsyncAPIResource
+from .._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
-from ...types.datasources import upload_param_create_params
+from .._base_client import make_request_options
 
-__all__ = ["UploadParamsResource", "AsyncUploadParamsResource"]
+__all__ = ["FilesResource", "AsyncFilesResource"]
 
 
-class UploadParamsResource(SyncAPIResource):
+class FilesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> UploadParamsResourceWithRawResponse:
+    def with_raw_response(self) -> FilesResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/DataMini/asktable-python#accessing-raw-response-data-eg-headers
         """
-        return UploadParamsResourceWithRawResponse(self)
+        return FilesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> UploadParamsResourceWithStreamingResponse:
+    def with_streaming_response(self) -> FilesResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/DataMini/asktable-python#with_streaming_response
         """
-        return UploadParamsResourceWithStreamingResponse(self)
+        return FilesResourceWithStreamingResponse(self)
 
-    def create(
+    def retrieve(
         self,
+        file_id: str,
         *,
-        expiration: Optional[int] | NotGiven = NOT_GIVEN,
-        file_max_size: Optional[int] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -58,13 +50,9 @@ class UploadParamsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> object:
         """
-        获取 OSS 签名参数
+        获取文件
 
         Args:
-          expiration: URL 有效期，单位为分钟
-
-          file_max_size: 文件大小限制，单位为 MB
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -73,15 +61,10 @@ class UploadParamsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._post(
-            "/v1/datasources/upload_params",
-            body=maybe_transform(
-                {
-                    "expiration": expiration,
-                    "file_max_size": file_max_size,
-                },
-                upload_param_create_params.UploadParamCreateParams,
-            ),
+        if not file_id:
+            raise ValueError(f"Expected a non-empty value for `file_id` but received {file_id!r}")
+        return self._get(
+            f"/v1/files/{file_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -89,31 +72,30 @@ class UploadParamsResource(SyncAPIResource):
         )
 
 
-class AsyncUploadParamsResource(AsyncAPIResource):
+class AsyncFilesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncUploadParamsResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncFilesResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/DataMini/asktable-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncUploadParamsResourceWithRawResponse(self)
+        return AsyncFilesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncUploadParamsResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncFilesResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/DataMini/asktable-python#with_streaming_response
         """
-        return AsyncUploadParamsResourceWithStreamingResponse(self)
+        return AsyncFilesResourceWithStreamingResponse(self)
 
-    async def create(
+    async def retrieve(
         self,
+        file_id: str,
         *,
-        expiration: Optional[int] | NotGiven = NOT_GIVEN,
-        file_max_size: Optional[int] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -122,13 +104,9 @@ class AsyncUploadParamsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> object:
         """
-        获取 OSS 签名参数
+        获取文件
 
         Args:
-          expiration: URL 有效期，单位为分钟
-
-          file_max_size: 文件大小限制，单位为 MB
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -137,15 +115,10 @@ class AsyncUploadParamsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._post(
-            "/v1/datasources/upload_params",
-            body=await async_maybe_transform(
-                {
-                    "expiration": expiration,
-                    "file_max_size": file_max_size,
-                },
-                upload_param_create_params.UploadParamCreateParams,
-            ),
+        if not file_id:
+            raise ValueError(f"Expected a non-empty value for `file_id` but received {file_id!r}")
+        return await self._get(
+            f"/v1/files/{file_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -153,37 +126,37 @@ class AsyncUploadParamsResource(AsyncAPIResource):
         )
 
 
-class UploadParamsResourceWithRawResponse:
-    def __init__(self, upload_params: UploadParamsResource) -> None:
-        self._upload_params = upload_params
+class FilesResourceWithRawResponse:
+    def __init__(self, files: FilesResource) -> None:
+        self._files = files
 
-        self.create = to_raw_response_wrapper(
-            upload_params.create,
+        self.retrieve = to_raw_response_wrapper(
+            files.retrieve,
         )
 
 
-class AsyncUploadParamsResourceWithRawResponse:
-    def __init__(self, upload_params: AsyncUploadParamsResource) -> None:
-        self._upload_params = upload_params
+class AsyncFilesResourceWithRawResponse:
+    def __init__(self, files: AsyncFilesResource) -> None:
+        self._files = files
 
-        self.create = async_to_raw_response_wrapper(
-            upload_params.create,
+        self.retrieve = async_to_raw_response_wrapper(
+            files.retrieve,
         )
 
 
-class UploadParamsResourceWithStreamingResponse:
-    def __init__(self, upload_params: UploadParamsResource) -> None:
-        self._upload_params = upload_params
+class FilesResourceWithStreamingResponse:
+    def __init__(self, files: FilesResource) -> None:
+        self._files = files
 
-        self.create = to_streamed_response_wrapper(
-            upload_params.create,
+        self.retrieve = to_streamed_response_wrapper(
+            files.retrieve,
         )
 
 
-class AsyncUploadParamsResourceWithStreamingResponse:
-    def __init__(self, upload_params: AsyncUploadParamsResource) -> None:
-        self._upload_params = upload_params
+class AsyncFilesResourceWithStreamingResponse:
+    def __init__(self, files: AsyncFilesResource) -> None:
+        self._files = files
 
-        self.create = async_to_streamed_response_wrapper(
-            upload_params.create,
+        self.retrieve = async_to_streamed_response_wrapper(
+            files.retrieve,
         )

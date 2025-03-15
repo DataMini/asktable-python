@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -14,33 +14,34 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
+from ..types.dataframe_retrieve_response import DataframeRetrieveResponse
 
-__all__ = ["CachesResource", "AsyncCachesResource"]
+__all__ = ["DataframesResource", "AsyncDataframesResource"]
 
 
-class CachesResource(SyncAPIResource):
+class DataframesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> CachesResourceWithRawResponse:
+    def with_raw_response(self) -> DataframesResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/DataMini/asktable-python#accessing-raw-response-data-eg-headers
         """
-        return CachesResourceWithRawResponse(self)
+        return DataframesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> CachesResourceWithStreamingResponse:
+    def with_streaming_response(self) -> DataframesResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/DataMini/asktable-python#with_streaming_response
         """
-        return CachesResourceWithStreamingResponse(self)
+        return DataframesResourceWithStreamingResponse(self)
 
-    def delete(
+    def retrieve(
         self,
-        cache_id: str,
+        dataframe_id: str,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -48,9 +49,9 @@ class CachesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> None:
+    ) -> DataframeRetrieveResponse:
         """
-        清除缓存
+        Get Dataframe
 
         Args:
           extra_headers: Send extra headers
@@ -61,41 +62,40 @@ class CachesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not cache_id:
-            raise ValueError(f"Expected a non-empty value for `cache_id` but received {cache_id!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
-        return self._delete(
-            f"/v1/caches/{cache_id}",
+        if not dataframe_id:
+            raise ValueError(f"Expected a non-empty value for `dataframe_id` but received {dataframe_id!r}")
+        return self._get(
+            f"/v1/dataframes/{dataframe_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=DataframeRetrieveResponse,
         )
 
 
-class AsyncCachesResource(AsyncAPIResource):
+class AsyncDataframesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncCachesResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncDataframesResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/DataMini/asktable-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncCachesResourceWithRawResponse(self)
+        return AsyncDataframesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncCachesResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncDataframesResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/DataMini/asktable-python#with_streaming_response
         """
-        return AsyncCachesResourceWithStreamingResponse(self)
+        return AsyncDataframesResourceWithStreamingResponse(self)
 
-    async def delete(
+    async def retrieve(
         self,
-        cache_id: str,
+        dataframe_id: str,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -103,9 +103,9 @@ class AsyncCachesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> None:
+    ) -> DataframeRetrieveResponse:
         """
-        清除缓存
+        Get Dataframe
 
         Args:
           extra_headers: Send extra headers
@@ -116,49 +116,48 @@ class AsyncCachesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not cache_id:
-            raise ValueError(f"Expected a non-empty value for `cache_id` but received {cache_id!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
-        return await self._delete(
-            f"/v1/caches/{cache_id}",
+        if not dataframe_id:
+            raise ValueError(f"Expected a non-empty value for `dataframe_id` but received {dataframe_id!r}")
+        return await self._get(
+            f"/v1/dataframes/{dataframe_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=DataframeRetrieveResponse,
         )
 
 
-class CachesResourceWithRawResponse:
-    def __init__(self, caches: CachesResource) -> None:
-        self._caches = caches
+class DataframesResourceWithRawResponse:
+    def __init__(self, dataframes: DataframesResource) -> None:
+        self._dataframes = dataframes
 
-        self.delete = to_raw_response_wrapper(
-            caches.delete,
+        self.retrieve = to_raw_response_wrapper(
+            dataframes.retrieve,
         )
 
 
-class AsyncCachesResourceWithRawResponse:
-    def __init__(self, caches: AsyncCachesResource) -> None:
-        self._caches = caches
+class AsyncDataframesResourceWithRawResponse:
+    def __init__(self, dataframes: AsyncDataframesResource) -> None:
+        self._dataframes = dataframes
 
-        self.delete = async_to_raw_response_wrapper(
-            caches.delete,
+        self.retrieve = async_to_raw_response_wrapper(
+            dataframes.retrieve,
         )
 
 
-class CachesResourceWithStreamingResponse:
-    def __init__(self, caches: CachesResource) -> None:
-        self._caches = caches
+class DataframesResourceWithStreamingResponse:
+    def __init__(self, dataframes: DataframesResource) -> None:
+        self._dataframes = dataframes
 
-        self.delete = to_streamed_response_wrapper(
-            caches.delete,
+        self.retrieve = to_streamed_response_wrapper(
+            dataframes.retrieve,
         )
 
 
-class AsyncCachesResourceWithStreamingResponse:
-    def __init__(self, caches: AsyncCachesResource) -> None:
-        self._caches = caches
+class AsyncDataframesResourceWithStreamingResponse:
+    def __init__(self, dataframes: AsyncDataframesResource) -> None:
+        self._dataframes = dataframes
 
-        self.delete = async_to_streamed_response_wrapper(
-            caches.delete,
+        self.retrieve = async_to_streamed_response_wrapper(
+            dataframes.retrieve,
         )

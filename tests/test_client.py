@@ -6,6 +6,7 @@ import gc
 import os
 import sys
 import json
+import time
 import asyncio
 import inspect
 import subprocess
@@ -22,6 +23,7 @@ from pydantic import ValidationError
 
 from asktable import Asktable, AsyncAsktable, APIResponseValidationError
 from asktable._types import Omit
+from asktable._utils import maybe_transform
 from asktable._models import BaseModel, FinalRequestOptions
 from asktable._constants import RAW_RESPONSE_HEADER
 from asktable._exceptions import APIStatusError, APITimeoutError, APIResponseValidationError
@@ -31,6 +33,7 @@ from asktable._base_client import (
     BaseClient,
     make_request_options,
 )
+from asktable.types.datasource_create_params import DatasourceCreateParams
 
 from .utils import update_env
 
@@ -701,12 +704,12 @@ class TestAsktable:
     @mock.patch("asktable._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
-        respx_mock.post("/datasources").mock(side_effect=httpx.TimeoutException("Test timeout error"))
+        respx_mock.post("/v1/datasources").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
             self.client.post(
-                "/datasources",
-                body=cast(object, dict(engine="mysql")),
+                "/v1/datasources",
+                body=cast(object, maybe_transform(dict(engine="mysql"), DatasourceCreateParams)),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -716,12 +719,12 @@ class TestAsktable:
     @mock.patch("asktable._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
-        respx_mock.post("/datasources").mock(return_value=httpx.Response(500))
+        respx_mock.post("/v1/datasources").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
             self.client.post(
-                "/datasources",
-                body=cast(object, dict(engine="mysql")),
+                "/v1/datasources",
+                body=cast(object, maybe_transform(dict(engine="mysql"), DatasourceCreateParams)),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -752,7 +755,7 @@ class TestAsktable:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.post("/datasources").mock(side_effect=retry_handler)
+        respx_mock.post("/v1/datasources").mock(side_effect=retry_handler)
 
         response = client.datasources.with_raw_response.create(engine="mysql")
 
@@ -776,7 +779,7 @@ class TestAsktable:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.post("/datasources").mock(side_effect=retry_handler)
+        respx_mock.post("/v1/datasources").mock(side_effect=retry_handler)
 
         response = client.datasources.with_raw_response.create(
             engine="mysql", extra_headers={"x-stainless-retry-count": Omit()}
@@ -801,7 +804,7 @@ class TestAsktable:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.post("/datasources").mock(side_effect=retry_handler)
+        respx_mock.post("/v1/datasources").mock(side_effect=retry_handler)
 
         response = client.datasources.with_raw_response.create(
             engine="mysql", extra_headers={"x-stainless-retry-count": "42"}
@@ -1471,12 +1474,12 @@ class TestAsyncAsktable:
     @mock.patch("asktable._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     async def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
-        respx_mock.post("/datasources").mock(side_effect=httpx.TimeoutException("Test timeout error"))
+        respx_mock.post("/v1/datasources").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
             await self.client.post(
-                "/datasources",
-                body=cast(object, dict(engine="mysql")),
+                "/v1/datasources",
+                body=cast(object, maybe_transform(dict(engine="mysql"), DatasourceCreateParams)),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -1486,12 +1489,12 @@ class TestAsyncAsktable:
     @mock.patch("asktable._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     async def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
-        respx_mock.post("/datasources").mock(return_value=httpx.Response(500))
+        respx_mock.post("/v1/datasources").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
             await self.client.post(
-                "/datasources",
-                body=cast(object, dict(engine="mysql")),
+                "/v1/datasources",
+                body=cast(object, maybe_transform(dict(engine="mysql"), DatasourceCreateParams)),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -1523,7 +1526,7 @@ class TestAsyncAsktable:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.post("/datasources").mock(side_effect=retry_handler)
+        respx_mock.post("/v1/datasources").mock(side_effect=retry_handler)
 
         response = await client.datasources.with_raw_response.create(engine="mysql")
 
@@ -1548,7 +1551,7 @@ class TestAsyncAsktable:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.post("/datasources").mock(side_effect=retry_handler)
+        respx_mock.post("/v1/datasources").mock(side_effect=retry_handler)
 
         response = await client.datasources.with_raw_response.create(
             engine="mysql", extra_headers={"x-stainless-retry-count": Omit()}
@@ -1574,7 +1577,7 @@ class TestAsyncAsktable:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.post("/datasources").mock(side_effect=retry_handler)
+        respx_mock.post("/v1/datasources").mock(side_effect=retry_handler)
 
         response = await client.datasources.with_raw_response.create(
             engine="mysql", extra_headers={"x-stainless-retry-count": "42"}
@@ -1609,10 +1612,20 @@ class TestAsyncAsktable:
             [sys.executable, "-c", test_code],
             text=True,
         ) as process:
-            try:
-                process.wait(2)
-                if process.returncode:
-                    raise AssertionError("calling get_platform using asyncify resulted in a non-zero exit code")
-            except subprocess.TimeoutExpired as e:
-                process.kill()
-                raise AssertionError("calling get_platform using asyncify resulted in a hung process") from e
+            timeout = 10  # seconds
+
+            start_time = time.monotonic()
+            while True:
+                return_code = process.poll()
+                if return_code is not None:
+                    if return_code != 0:
+                        raise AssertionError("calling get_platform using asyncify resulted in a non-zero exit code")
+
+                    # success
+                    break
+
+                if time.monotonic() - start_time > timeout:
+                    process.kill()
+                    raise AssertionError("calling get_platform using asyncify resulted in a hung process")
+
+                time.sleep(0.1)

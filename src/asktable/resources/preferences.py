@@ -32,7 +32,7 @@ class PreferencesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> PreferencesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/DataMini/asktable-python#accessing-raw-response-data-eg-headers
@@ -77,7 +77,7 @@ class PreferencesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/preference",
+            "/v1/preference",
             body=maybe_transform(
                 {
                     "general_preference": general_preference,
@@ -103,7 +103,7 @@ class PreferencesResource(SyncAPIResource):
     ) -> PreferenceRetrieveResponse:
         """获取偏好设置"""
         return self._get(
-            "/preference",
+            "/v1/preference",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -139,7 +139,7 @@ class PreferencesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._patch(
-            "/preference",
+            "/v1/preference",
             body=maybe_transform(
                 {
                     "general_preference": general_preference,
@@ -165,7 +165,7 @@ class PreferencesResource(SyncAPIResource):
     ) -> object:
         """删除偏好设置"""
         return self._delete(
-            "/preference",
+            "/v1/preference",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -177,7 +177,7 @@ class AsyncPreferencesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncPreferencesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/DataMini/asktable-python#accessing-raw-response-data-eg-headers
@@ -222,7 +222,7 @@ class AsyncPreferencesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/preference",
+            "/v1/preference",
             body=await async_maybe_transform(
                 {
                     "general_preference": general_preference,
@@ -248,7 +248,7 @@ class AsyncPreferencesResource(AsyncAPIResource):
     ) -> PreferenceRetrieveResponse:
         """获取偏好设置"""
         return await self._get(
-            "/preference",
+            "/v1/preference",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -284,7 +284,7 @@ class AsyncPreferencesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._patch(
-            "/preference",
+            "/v1/preference",
             body=await async_maybe_transform(
                 {
                     "general_preference": general_preference,
@@ -310,7 +310,7 @@ class AsyncPreferencesResource(AsyncAPIResource):
     ) -> object:
         """删除偏好设置"""
         return await self._delete(
-            "/preference",
+            "/v1/preference",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

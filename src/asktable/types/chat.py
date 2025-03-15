@@ -2,6 +2,7 @@
 
 from typing import Dict, Union, Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from .._models import BaseModel
 
@@ -19,6 +20,10 @@ class Chat(BaseModel):
     """修改时间"""
 
     project_id: str
+
+    status: Literal["active", "pending", "error", "fatal"]
+
+    status_message: Optional[str] = None
 
     bot_id: Optional[str] = None
     """

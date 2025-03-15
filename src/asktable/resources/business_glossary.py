@@ -37,7 +37,7 @@ class BusinessGlossaryResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> BusinessGlossaryResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/DataMini/asktable-python#accessing-raw-response-data-eg-headers
@@ -77,7 +77,7 @@ class BusinessGlossaryResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/business-glossary",
+            "/v1/business-glossary",
             body=maybe_transform(body, Iterable[business_glossary_create_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -111,7 +111,7 @@ class BusinessGlossaryResource(SyncAPIResource):
         if not entry_id:
             raise ValueError(f"Expected a non-empty value for `entry_id` but received {entry_id!r}")
         return self._get(
-            f"/business-glossary/{entry_id}",
+            f"/v1/business-glossary/{entry_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -156,7 +156,7 @@ class BusinessGlossaryResource(SyncAPIResource):
         if not entry_id:
             raise ValueError(f"Expected a non-empty value for `entry_id` but received {entry_id!r}")
         return self._patch(
-            f"/business-glossary/{entry_id}",
+            f"/v1/business-glossary/{entry_id}",
             body=maybe_transform(
                 {
                     "aliases": aliases,
@@ -204,7 +204,7 @@ class BusinessGlossaryResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/business-glossary",
+            "/v1/business-glossary",
             page=SyncPage[EntryWithDefinition],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -249,7 +249,7 @@ class BusinessGlossaryResource(SyncAPIResource):
         if not entry_id:
             raise ValueError(f"Expected a non-empty value for `entry_id` but received {entry_id!r}")
         return self._delete(
-            f"/business-glossary/{entry_id}",
+            f"/v1/business-glossary/{entry_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -261,7 +261,7 @@ class AsyncBusinessGlossaryResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncBusinessGlossaryResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/DataMini/asktable-python#accessing-raw-response-data-eg-headers
@@ -301,7 +301,7 @@ class AsyncBusinessGlossaryResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/business-glossary",
+            "/v1/business-glossary",
             body=await async_maybe_transform(body, Iterable[business_glossary_create_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -335,7 +335,7 @@ class AsyncBusinessGlossaryResource(AsyncAPIResource):
         if not entry_id:
             raise ValueError(f"Expected a non-empty value for `entry_id` but received {entry_id!r}")
         return await self._get(
-            f"/business-glossary/{entry_id}",
+            f"/v1/business-glossary/{entry_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -380,7 +380,7 @@ class AsyncBusinessGlossaryResource(AsyncAPIResource):
         if not entry_id:
             raise ValueError(f"Expected a non-empty value for `entry_id` but received {entry_id!r}")
         return await self._patch(
-            f"/business-glossary/{entry_id}",
+            f"/v1/business-glossary/{entry_id}",
             body=await async_maybe_transform(
                 {
                     "aliases": aliases,
@@ -428,7 +428,7 @@ class AsyncBusinessGlossaryResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/business-glossary",
+            "/v1/business-glossary",
             page=AsyncPage[EntryWithDefinition],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -473,7 +473,7 @@ class AsyncBusinessGlossaryResource(AsyncAPIResource):
         if not entry_id:
             raise ValueError(f"Expected a non-empty value for `entry_id` but received {entry_id!r}")
         return await self._delete(
-            f"/business-glossary/{entry_id}",
+            f"/v1/business-glossary/{entry_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

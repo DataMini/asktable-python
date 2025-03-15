@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict
+from typing import Dict, List, Optional
 
 import httpx
 
@@ -30,7 +30,7 @@ class MetaResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> MetaResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/DataMini/asktable-python#accessing-raw-response-data-eg-headers
@@ -50,10 +50,10 @@ class MetaResource(SyncAPIResource):
         self,
         datasource_id: str,
         *,
-        name: str,
         async_process_meta: bool | NotGiven = NOT_GIVEN,
         value_index: bool | NotGiven = NOT_GIVEN,
-        schemas: Dict[str, meta_create_params.Schemas] | NotGiven = NOT_GIVEN,
+        meta: Optional[meta_create_params.Meta] | NotGiven = NOT_GIVEN,
+        selected_tables: Optional[Dict[str, List[str]]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -69,8 +69,6 @@ class MetaResource(SyncAPIResource):
         否则从数据源中自动获取。
 
         Args:
-          name: metadata_name
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -82,11 +80,11 @@ class MetaResource(SyncAPIResource):
         if not datasource_id:
             raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
         return self._post(
-            f"/datasources/{datasource_id}/meta",
+            f"/v1/datasources/{datasource_id}/meta",
             body=maybe_transform(
                 {
-                    "name": name,
-                    "schemas": schemas,
+                    "meta": meta,
+                    "selected_tables": selected_tables,
                 },
                 meta_create_params.MetaCreateParams,
             ),
@@ -132,7 +130,7 @@ class MetaResource(SyncAPIResource):
         if not datasource_id:
             raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
         return self._get(
-            f"/datasources/{datasource_id}/meta",
+            f"/v1/datasources/{datasource_id}/meta",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -143,8 +141,9 @@ class MetaResource(SyncAPIResource):
         self,
         datasource_id: str,
         *,
-        name: str,
-        schemas: Dict[str, meta_update_params.Schemas] | NotGiven = NOT_GIVEN,
+        async_process_meta: bool | NotGiven = NOT_GIVEN,
+        meta: Optional[meta_update_params.Meta] | NotGiven = NOT_GIVEN,
+        selected_tables: Optional[Dict[str, List[str]]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -156,8 +155,6 @@ class MetaResource(SyncAPIResource):
         用于更新 DB 类型的数据源的 Meta（增加新表或者删除老表）
 
         Args:
-          name: metadata_name
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -169,16 +166,20 @@ class MetaResource(SyncAPIResource):
         if not datasource_id:
             raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
         return self._put(
-            f"/datasources/{datasource_id}/meta",
+            f"/v1/datasources/{datasource_id}/meta",
             body=maybe_transform(
                 {
-                    "name": name,
-                    "schemas": schemas,
+                    "meta": meta,
+                    "selected_tables": selected_tables,
                 },
                 meta_update_params.MetaUpdateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"async_process_meta": async_process_meta}, meta_update_params.MetaUpdateParams),
             ),
             cast_to=object,
         )
@@ -210,7 +211,7 @@ class MetaResource(SyncAPIResource):
         if not datasource_id:
             raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
         return self._patch(
-            f"/datasources/{datasource_id}/meta",
+            f"/v1/datasources/{datasource_id}/meta",
             body=maybe_transform({"schemas": schemas}, meta_annotate_params.MetaAnnotateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -223,7 +224,7 @@ class AsyncMetaResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncMetaResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/DataMini/asktable-python#accessing-raw-response-data-eg-headers
@@ -243,10 +244,10 @@ class AsyncMetaResource(AsyncAPIResource):
         self,
         datasource_id: str,
         *,
-        name: str,
         async_process_meta: bool | NotGiven = NOT_GIVEN,
         value_index: bool | NotGiven = NOT_GIVEN,
-        schemas: Dict[str, meta_create_params.Schemas] | NotGiven = NOT_GIVEN,
+        meta: Optional[meta_create_params.Meta] | NotGiven = NOT_GIVEN,
+        selected_tables: Optional[Dict[str, List[str]]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -262,8 +263,6 @@ class AsyncMetaResource(AsyncAPIResource):
         否则从数据源中自动获取。
 
         Args:
-          name: metadata_name
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -275,11 +274,11 @@ class AsyncMetaResource(AsyncAPIResource):
         if not datasource_id:
             raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
         return await self._post(
-            f"/datasources/{datasource_id}/meta",
+            f"/v1/datasources/{datasource_id}/meta",
             body=await async_maybe_transform(
                 {
-                    "name": name,
-                    "schemas": schemas,
+                    "meta": meta,
+                    "selected_tables": selected_tables,
                 },
                 meta_create_params.MetaCreateParams,
             ),
@@ -325,7 +324,7 @@ class AsyncMetaResource(AsyncAPIResource):
         if not datasource_id:
             raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
         return await self._get(
-            f"/datasources/{datasource_id}/meta",
+            f"/v1/datasources/{datasource_id}/meta",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -336,8 +335,9 @@ class AsyncMetaResource(AsyncAPIResource):
         self,
         datasource_id: str,
         *,
-        name: str,
-        schemas: Dict[str, meta_update_params.Schemas] | NotGiven = NOT_GIVEN,
+        async_process_meta: bool | NotGiven = NOT_GIVEN,
+        meta: Optional[meta_update_params.Meta] | NotGiven = NOT_GIVEN,
+        selected_tables: Optional[Dict[str, List[str]]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -349,8 +349,6 @@ class AsyncMetaResource(AsyncAPIResource):
         用于更新 DB 类型的数据源的 Meta（增加新表或者删除老表）
 
         Args:
-          name: metadata_name
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -362,16 +360,22 @@ class AsyncMetaResource(AsyncAPIResource):
         if not datasource_id:
             raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
         return await self._put(
-            f"/datasources/{datasource_id}/meta",
+            f"/v1/datasources/{datasource_id}/meta",
             body=await async_maybe_transform(
                 {
-                    "name": name,
-                    "schemas": schemas,
+                    "meta": meta,
+                    "selected_tables": selected_tables,
                 },
                 meta_update_params.MetaUpdateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"async_process_meta": async_process_meta}, meta_update_params.MetaUpdateParams
+                ),
             ),
             cast_to=object,
         )
@@ -403,7 +407,7 @@ class AsyncMetaResource(AsyncAPIResource):
         if not datasource_id:
             raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
         return await self._patch(
-            f"/datasources/{datasource_id}/meta",
+            f"/v1/datasources/{datasource_id}/meta",
             body=await async_maybe_transform({"schemas": schemas}, meta_annotate_params.MetaAnnotateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
