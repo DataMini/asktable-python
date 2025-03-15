@@ -91,7 +91,7 @@ class ExtapisResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/extapis",
+            "/v1/extapis",
             body=maybe_transform(
                 {
                     "base_url": base_url,
@@ -132,7 +132,7 @@ class ExtapisResource(SyncAPIResource):
         if not extapi_id:
             raise ValueError(f"Expected a non-empty value for `extapi_id` but received {extapi_id!r}")
         return self._get(
-            f"/extapis/{extapi_id}",
+            f"/v1/extapis/{extapi_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -174,7 +174,7 @@ class ExtapisResource(SyncAPIResource):
         if not extapi_id:
             raise ValueError(f"Expected a non-empty value for `extapi_id` but received {extapi_id!r}")
         return self._post(
-            f"/extapis/{extapi_id}",
+            f"/v1/extapis/{extapi_id}",
             body=maybe_transform(
                 {
                     "base_url": base_url,
@@ -221,7 +221,7 @@ class ExtapisResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/extapis",
+            "/v1/extapis",
             page=SyncPage[Extapi],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -266,7 +266,7 @@ class ExtapisResource(SyncAPIResource):
         if not extapi_id:
             raise ValueError(f"Expected a non-empty value for `extapi_id` but received {extapi_id!r}")
         return self._delete(
-            f"/extapis/{extapi_id}",
+            f"/v1/extapis/{extapi_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -330,7 +330,7 @@ class AsyncExtapisResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/extapis",
+            "/v1/extapis",
             body=await async_maybe_transform(
                 {
                     "base_url": base_url,
@@ -371,7 +371,7 @@ class AsyncExtapisResource(AsyncAPIResource):
         if not extapi_id:
             raise ValueError(f"Expected a non-empty value for `extapi_id` but received {extapi_id!r}")
         return await self._get(
-            f"/extapis/{extapi_id}",
+            f"/v1/extapis/{extapi_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -413,7 +413,7 @@ class AsyncExtapisResource(AsyncAPIResource):
         if not extapi_id:
             raise ValueError(f"Expected a non-empty value for `extapi_id` but received {extapi_id!r}")
         return await self._post(
-            f"/extapis/{extapi_id}",
+            f"/v1/extapis/{extapi_id}",
             body=await async_maybe_transform(
                 {
                     "base_url": base_url,
@@ -460,7 +460,7 @@ class AsyncExtapisResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/extapis",
+            "/v1/extapis",
             page=AsyncPage[Extapi],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -505,7 +505,7 @@ class AsyncExtapisResource(AsyncAPIResource):
         if not extapi_id:
             raise ValueError(f"Expected a non-empty value for `extapi_id` but received {extapi_id!r}")
         return await self._delete(
-            f"/extapis/{extapi_id}",
+            f"/v1/extapis/{extapi_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

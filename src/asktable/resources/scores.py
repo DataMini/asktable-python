@@ -76,7 +76,7 @@ class ScoresResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/score",
+            "/v1/score",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -147,7 +147,7 @@ class AsyncScoresResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/score",
+            "/v1/score",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

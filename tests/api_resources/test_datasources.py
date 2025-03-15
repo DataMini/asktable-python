@@ -32,8 +32,6 @@ class TestDatasources:
     def test_method_create_with_all_params(self, client: Asktable) -> None:
         datasource = client.datasources.create(
             engine="mysql",
-            async_process_meta=True,
-            value_index=True,
             access_config={
                 "host": "192.168.0.10",
                 "db": "at_test",
@@ -351,8 +349,6 @@ class TestAsyncDatasources:
     async def test_method_create_with_all_params(self, async_client: AsyncAsktable) -> None:
         datasource = await async_client.datasources.create(
             engine="mysql",
-            async_process_meta=True,
-            value_index=True,
             access_config={
                 "host": "192.168.0.10",
                 "db": "at_test",

@@ -21,7 +21,7 @@ class Extapi(BaseModel):
 
     project_id: str
 
+    updated_at: datetime
+
     headers: Optional[Dict[str, str]] = None
     """HTTP Headers，JSON 格式"""
-
-    updated_at: Optional[datetime] = None

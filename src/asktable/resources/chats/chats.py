@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Any, Dict, Union, Optional, cast
+from typing import Dict, Union, Optional
 
 import httpx
 
-from ...types import chat_list_params, chat_create_params, chat_post_message_params
+from ...types import chat_list_params, chat_create_params
 from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -32,7 +32,6 @@ from ...pagination import SyncPage, AsyncPage
 from ...types.chat import Chat
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.chat_retrieve_response import ChatRetrieveResponse
-from ...types.chat_post_message_response import ChatPostMessageResponse
 
 __all__ = ["ChatsResource", "AsyncChatsResource"]
 
@@ -101,7 +100,7 @@ class ChatsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/chats",
+            "/v1/chats",
             body=maybe_transform(
                 {
                     "bot_id": bot_id,
@@ -144,7 +143,7 @@ class ChatsResource(SyncAPIResource):
         if not chat_id:
             raise ValueError(f"Expected a non-empty value for `chat_id` but received {chat_id!r}")
         return self._get(
-            f"/chats/{chat_id}",
+            f"/v1/chats/{chat_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -180,7 +179,7 @@ class ChatsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/chats",
+            "/v1/chats",
             page=SyncPage[Chat],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -225,54 +224,11 @@ class ChatsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `chat_id` but received {chat_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/chats/{chat_id}",
+            f"/v1/chats/{chat_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=NoneType,
-        )
-
-    def post_message(
-        self,
-        chat_id: str,
-        *,
-        question: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ChatPostMessageResponse:
-        """
-        发消息
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not chat_id:
-            raise ValueError(f"Expected a non-empty value for `chat_id` but received {chat_id!r}")
-        return cast(
-            ChatPostMessageResponse,
-            self._post(
-                f"/chats/{chat_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    query=maybe_transform({"question": question}, chat_post_message_params.ChatPostMessageParams),
-                ),
-                cast_to=cast(
-                    Any, ChatPostMessageResponse
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
         )
 
 
@@ -340,7 +296,7 @@ class AsyncChatsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/chats",
+            "/v1/chats",
             body=await async_maybe_transform(
                 {
                     "bot_id": bot_id,
@@ -383,7 +339,7 @@ class AsyncChatsResource(AsyncAPIResource):
         if not chat_id:
             raise ValueError(f"Expected a non-empty value for `chat_id` but received {chat_id!r}")
         return await self._get(
-            f"/chats/{chat_id}",
+            f"/v1/chats/{chat_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -419,7 +375,7 @@ class AsyncChatsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/chats",
+            "/v1/chats",
             page=AsyncPage[Chat],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -464,56 +420,11 @@ class AsyncChatsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `chat_id` but received {chat_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/chats/{chat_id}",
+            f"/v1/chats/{chat_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=NoneType,
-        )
-
-    async def post_message(
-        self,
-        chat_id: str,
-        *,
-        question: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ChatPostMessageResponse:
-        """
-        发消息
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not chat_id:
-            raise ValueError(f"Expected a non-empty value for `chat_id` but received {chat_id!r}")
-        return cast(
-            ChatPostMessageResponse,
-            await self._post(
-                f"/chats/{chat_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    query=await async_maybe_transform(
-                        {"question": question}, chat_post_message_params.ChatPostMessageParams
-                    ),
-                ),
-                cast_to=cast(
-                    Any, ChatPostMessageResponse
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
         )
 
 
@@ -532,9 +443,6 @@ class ChatsResourceWithRawResponse:
         )
         self.delete = to_raw_response_wrapper(
             chats.delete,
-        )
-        self.post_message = to_raw_response_wrapper(
-            chats.post_message,
         )
 
     @cached_property
@@ -558,9 +466,6 @@ class AsyncChatsResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             chats.delete,
         )
-        self.post_message = async_to_raw_response_wrapper(
-            chats.post_message,
-        )
 
     @cached_property
     def messages(self) -> AsyncMessagesResourceWithRawResponse:
@@ -583,9 +488,6 @@ class ChatsResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             chats.delete,
         )
-        self.post_message = to_streamed_response_wrapper(
-            chats.post_message,
-        )
 
     @cached_property
     def messages(self) -> MessagesResourceWithStreamingResponse:
@@ -607,9 +509,6 @@ class AsyncChatsResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             chats.delete,
-        )
-        self.post_message = async_to_streamed_response_wrapper(
-            chats.post_message,
         )
 
     @cached_property

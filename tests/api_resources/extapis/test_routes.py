@@ -29,6 +29,7 @@ class TestRoutes:
             name="name",
             path="/resource",
             project_id="project_id",
+            updated_at=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
         assert_matches_type(ExtapiRoute, route, path=["response"])
 
@@ -43,10 +44,10 @@ class TestRoutes:
             name="name",
             path="/resource",
             project_id="project_id",
+            updated_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             body_params_desc="body_params_desc",
             path_params_desc="path_params_desc",
             query_params_desc="query_params_desc",
-            updated_at=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
         assert_matches_type(ExtapiRoute, route, path=["response"])
 
@@ -61,6 +62,7 @@ class TestRoutes:
             name="name",
             path="/resource",
             project_id="project_id",
+            updated_at=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
 
         assert response.is_closed is True
@@ -79,6 +81,7 @@ class TestRoutes:
             name="name",
             path="/resource",
             project_id="project_id",
+            updated_at=parse_datetime("2019-12-27T18:11:19.117Z"),
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -100,6 +103,7 @@ class TestRoutes:
                 name="name",
                 path="/resource",
                 project_id="project_id",
+                updated_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             )
 
     @parametrize
@@ -313,6 +317,7 @@ class TestAsyncRoutes:
             name="name",
             path="/resource",
             project_id="project_id",
+            updated_at=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
         assert_matches_type(ExtapiRoute, route, path=["response"])
 
@@ -327,10 +332,10 @@ class TestAsyncRoutes:
             name="name",
             path="/resource",
             project_id="project_id",
+            updated_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             body_params_desc="body_params_desc",
             path_params_desc="path_params_desc",
             query_params_desc="query_params_desc",
-            updated_at=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
         assert_matches_type(ExtapiRoute, route, path=["response"])
 
@@ -345,6 +350,7 @@ class TestAsyncRoutes:
             name="name",
             path="/resource",
             project_id="project_id",
+            updated_at=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
 
         assert response.is_closed is True
@@ -363,6 +369,7 @@ class TestAsyncRoutes:
             name="name",
             path="/resource",
             project_id="project_id",
+            updated_at=parse_datetime("2019-12-27T18:11:19.117Z"),
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -384,6 +391,7 @@ class TestAsyncRoutes:
                 name="name",
                 path="/resource",
                 project_id="project_id",
+                updated_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             )
 
     @parametrize

@@ -65,7 +65,7 @@ class DataframesResource(SyncAPIResource):
         if not dataframe_id:
             raise ValueError(f"Expected a non-empty value for `dataframe_id` but received {dataframe_id!r}")
         return self._get(
-            f"/dataframes/{dataframe_id}",
+            f"/v1/dataframes/{dataframe_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -119,7 +119,7 @@ class AsyncDataframesResource(AsyncAPIResource):
         if not dataframe_id:
             raise ValueError(f"Expected a non-empty value for `dataframe_id` but received {dataframe_id!r}")
         return await self._get(
-            f"/dataframes/{dataframe_id}",
+            f"/v1/dataframes/{dataframe_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

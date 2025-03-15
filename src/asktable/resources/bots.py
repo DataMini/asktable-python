@@ -100,7 +100,7 @@ class BotsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/bots",
+            "/v1/bots",
             body=maybe_transform(
                 {
                     "datasource_ids": datasource_ids,
@@ -148,7 +148,7 @@ class BotsResource(SyncAPIResource):
         if not bot_id:
             raise ValueError(f"Expected a non-empty value for `bot_id` but received {bot_id!r}")
         return self._get(
-            f"/bots/{bot_id}",
+            f"/v1/bots/{bot_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -214,7 +214,7 @@ class BotsResource(SyncAPIResource):
         if not bot_id:
             raise ValueError(f"Expected a non-empty value for `bot_id` but received {bot_id!r}")
         return self._patch(
-            f"/bots/{bot_id}",
+            f"/v1/bots/{bot_id}",
             body=maybe_transform(
                 {
                     "avatar_url": avatar_url,
@@ -269,7 +269,7 @@ class BotsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/bots",
+            "/v1/bots",
             page=SyncPage[Chatbot],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -314,7 +314,7 @@ class BotsResource(SyncAPIResource):
         if not bot_id:
             raise ValueError(f"Expected a non-empty value for `bot_id` but received {bot_id!r}")
         return self._delete(
-            f"/bots/{bot_id}",
+            f"/v1/bots/{bot_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -348,7 +348,7 @@ class BotsResource(SyncAPIResource):
         if not bot_id:
             raise ValueError(f"Expected a non-empty value for `bot_id` but received {bot_id!r}")
         return self._post(
-            f"/bots/{bot_id}/invite",
+            f"/v1/bots/{bot_id}/invite",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -433,7 +433,7 @@ class AsyncBotsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/bots",
+            "/v1/bots",
             body=await async_maybe_transform(
                 {
                     "datasource_ids": datasource_ids,
@@ -481,7 +481,7 @@ class AsyncBotsResource(AsyncAPIResource):
         if not bot_id:
             raise ValueError(f"Expected a non-empty value for `bot_id` but received {bot_id!r}")
         return await self._get(
-            f"/bots/{bot_id}",
+            f"/v1/bots/{bot_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -547,7 +547,7 @@ class AsyncBotsResource(AsyncAPIResource):
         if not bot_id:
             raise ValueError(f"Expected a non-empty value for `bot_id` but received {bot_id!r}")
         return await self._patch(
-            f"/bots/{bot_id}",
+            f"/v1/bots/{bot_id}",
             body=await async_maybe_transform(
                 {
                     "avatar_url": avatar_url,
@@ -602,7 +602,7 @@ class AsyncBotsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/bots",
+            "/v1/bots",
             page=AsyncPage[Chatbot],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -647,7 +647,7 @@ class AsyncBotsResource(AsyncAPIResource):
         if not bot_id:
             raise ValueError(f"Expected a non-empty value for `bot_id` but received {bot_id!r}")
         return await self._delete(
-            f"/bots/{bot_id}",
+            f"/v1/bots/{bot_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -681,7 +681,7 @@ class AsyncBotsResource(AsyncAPIResource):
         if not bot_id:
             raise ValueError(f"Expected a non-empty value for `bot_id` but received {bot_id!r}")
         return await self._post(
-            f"/bots/{bot_id}/invite",
+            f"/v1/bots/{bot_id}/invite",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
