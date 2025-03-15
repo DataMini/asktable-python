@@ -103,7 +103,14 @@ Methods:
 Types:
 
 ```python
-from asktable.types import AIMessage, Chat, ToolMessage, UserMessage, ChatRetrieveResponse
+from asktable.types import (
+    AIMessage,
+    Chat,
+    ToolMessage,
+    UserMessage,
+    ChatRetrieveResponse,
+    ChatPostMessageResponse,
+)
 ```
 
 Methods:
@@ -112,6 +119,7 @@ Methods:
 - <code title="get /chats/{chat_id}">client.chats.<a href="./src/asktable/resources/chats/chats.py">retrieve</a>(chat_id) -> <a href="./src/asktable/types/chat_retrieve_response.py">ChatRetrieveResponse</a></code>
 - <code title="get /chats">client.chats.<a href="./src/asktable/resources/chats/chats.py">list</a>(\*\*<a href="src/asktable/types/chat_list_params.py">params</a>) -> <a href="./src/asktable/types/chat.py">SyncPage[Chat]</a></code>
 - <code title="delete /chats/{chat_id}">client.chats.<a href="./src/asktable/resources/chats/chats.py">delete</a>(chat_id) -> None</code>
+- <code title="post /chats/{chat_id}">client.chats.<a href="./src/asktable/resources/chats/chats.py">post_message</a>(chat_id, \*\*<a href="src/asktable/types/chat_post_message_params.py">params</a>) -> <a href="./src/asktable/types/chat_post_message_response.py">ChatPostMessageResponse</a></code>
 
 ## Messages
 
@@ -381,3 +389,27 @@ from asktable.types import ScoreCreateResponse
 Methods:
 
 - <code title="post /score">client.scores.<a href="./src/asktable/resources/scores.py">create</a>(\*\*<a href="src/asktable/types/score_create_params.py">params</a>) -> <a href="./src/asktable/types/score_create_response.py">ScoreCreateResponse</a></code>
+
+# Files
+
+Types:
+
+```python
+from asktable.types import FileRetrieveResponse
+```
+
+Methods:
+
+- <code title="get /files/{file_id}">client.files.<a href="./src/asktable/resources/files.py">retrieve</a>(file_id) -> <a href="./src/asktable/types/file_retrieve_response.py">object</a></code>
+
+# Dataframes
+
+Types:
+
+```python
+from asktable.types import DataframeRetrieveResponse
+```
+
+Methods:
+
+- <code title="get /dataframes/{dataframe_id}">client.dataframes.<a href="./src/asktable/resources/dataframes.py">retrieve</a>(dataframe_id) -> <a href="./src/asktable/types/dataframe_retrieve_response.py">DataframeRetrieveResponse</a></code>
