@@ -94,7 +94,6 @@ class TestSecuretunnels:
     def test_method_update(self, client: Asktable) -> None:
         securetunnel = client.securetunnels.update(
             securetunnel_id="securetunnel_id",
-            name="我的测试机",
         )
         assert_matches_type(SecureTunnel, securetunnel, path=["response"])
 
@@ -102,8 +101,8 @@ class TestSecuretunnels:
     def test_method_update_with_all_params(self, client: Asktable) -> None:
         securetunnel = client.securetunnels.update(
             securetunnel_id="securetunnel_id",
-            name="我的测试机",
             client_info={},
+            name="我的测试机",
             unique_key="unique_key",
         )
         assert_matches_type(SecureTunnel, securetunnel, path=["response"])
@@ -112,7 +111,6 @@ class TestSecuretunnels:
     def test_raw_response_update(self, client: Asktable) -> None:
         response = client.securetunnels.with_raw_response.update(
             securetunnel_id="securetunnel_id",
-            name="我的测试机",
         )
 
         assert response.is_closed is True
@@ -124,7 +122,6 @@ class TestSecuretunnels:
     def test_streaming_response_update(self, client: Asktable) -> None:
         with client.securetunnels.with_streaming_response.update(
             securetunnel_id="securetunnel_id",
-            name="我的测试机",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -139,7 +136,6 @@ class TestSecuretunnels:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `securetunnel_id` but received ''"):
             client.securetunnels.with_raw_response.update(
                 securetunnel_id="",
-                name="我的测试机",
             )
 
     @parametrize
@@ -337,7 +333,6 @@ class TestAsyncSecuretunnels:
     async def test_method_update(self, async_client: AsyncAsktable) -> None:
         securetunnel = await async_client.securetunnels.update(
             securetunnel_id="securetunnel_id",
-            name="我的测试机",
         )
         assert_matches_type(SecureTunnel, securetunnel, path=["response"])
 
@@ -345,8 +340,8 @@ class TestAsyncSecuretunnels:
     async def test_method_update_with_all_params(self, async_client: AsyncAsktable) -> None:
         securetunnel = await async_client.securetunnels.update(
             securetunnel_id="securetunnel_id",
-            name="我的测试机",
             client_info={},
+            name="我的测试机",
             unique_key="unique_key",
         )
         assert_matches_type(SecureTunnel, securetunnel, path=["response"])
@@ -355,7 +350,6 @@ class TestAsyncSecuretunnels:
     async def test_raw_response_update(self, async_client: AsyncAsktable) -> None:
         response = await async_client.securetunnels.with_raw_response.update(
             securetunnel_id="securetunnel_id",
-            name="我的测试机",
         )
 
         assert response.is_closed is True
@@ -367,7 +361,6 @@ class TestAsyncSecuretunnels:
     async def test_streaming_response_update(self, async_client: AsyncAsktable) -> None:
         async with async_client.securetunnels.with_streaming_response.update(
             securetunnel_id="securetunnel_id",
-            name="我的测试机",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -382,7 +375,6 @@ class TestAsyncSecuretunnels:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `securetunnel_id` but received ''"):
             await async_client.securetunnels.with_raw_response.update(
                 securetunnel_id="",
-                name="我的测试机",
             )
 
     @parametrize

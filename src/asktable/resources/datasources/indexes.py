@@ -82,7 +82,7 @@ class IndexesResource(SyncAPIResource):
         if not ds_id:
             raise ValueError(f"Expected a non-empty value for `ds_id` but received {ds_id!r}")
         return self._post(
-            f"/datasources/{ds_id}/indexes",
+            f"/v1/datasources/{ds_id}/indexes",
             body=maybe_transform(
                 {
                     "field_name": field_name,
@@ -134,7 +134,7 @@ class IndexesResource(SyncAPIResource):
         if not ds_id:
             raise ValueError(f"Expected a non-empty value for `ds_id` but received {ds_id!r}")
         return self._get_api_list(
-            f"/datasources/{ds_id}/indexes",
+            f"/v1/datasources/{ds_id}/indexes",
             page=SyncPage[Index],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -181,7 +181,7 @@ class IndexesResource(SyncAPIResource):
         if not index_id:
             raise ValueError(f"Expected a non-empty value for `index_id` but received {index_id!r}")
         return self._delete(
-            f"/datasources/{ds_id}/indexes/{index_id}",
+            f"/v1/datasources/{ds_id}/indexes/{index_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -246,7 +246,7 @@ class AsyncIndexesResource(AsyncAPIResource):
         if not ds_id:
             raise ValueError(f"Expected a non-empty value for `ds_id` but received {ds_id!r}")
         return await self._post(
-            f"/datasources/{ds_id}/indexes",
+            f"/v1/datasources/{ds_id}/indexes",
             body=await async_maybe_transform(
                 {
                     "field_name": field_name,
@@ -300,7 +300,7 @@ class AsyncIndexesResource(AsyncAPIResource):
         if not ds_id:
             raise ValueError(f"Expected a non-empty value for `ds_id` but received {ds_id!r}")
         return self._get_api_list(
-            f"/datasources/{ds_id}/indexes",
+            f"/v1/datasources/{ds_id}/indexes",
             page=AsyncPage[Index],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -347,7 +347,7 @@ class AsyncIndexesResource(AsyncAPIResource):
         if not index_id:
             raise ValueError(f"Expected a non-empty value for `index_id` but received {index_id!r}")
         return await self._delete(
-            f"/datasources/{ds_id}/indexes/{index_id}",
+            f"/v1/datasources/{ds_id}/indexes/{index_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

@@ -77,7 +77,7 @@ class APIKeysResource(SyncAPIResource):
         if not project_id:
             raise ValueError(f"Expected a non-empty value for `project_id` but received {project_id!r}")
         return self._post(
-            f"/sys/projects/{project_id}/api-keys",
+            f"/v1/sys/projects/{project_id}/api-keys",
             body=maybe_transform({"ak_role": ak_role}, api_key_create_params.APIKeyCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -111,7 +111,7 @@ class APIKeysResource(SyncAPIResource):
         if not project_id:
             raise ValueError(f"Expected a non-empty value for `project_id` but received {project_id!r}")
         return self._get(
-            f"/sys/projects/{project_id}/api-keys",
+            f"/v1/sys/projects/{project_id}/api-keys",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -148,7 +148,7 @@ class APIKeysResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `key_id` but received {key_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/sys/projects/{project_id}/api-keys/{key_id}",
+            f"/v1/sys/projects/{project_id}/api-keys/{key_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -193,7 +193,7 @@ class APIKeysResource(SyncAPIResource):
         if not project_id:
             raise ValueError(f"Expected a non-empty value for `project_id` but received {project_id!r}")
         return self._post(
-            f"/sys/projects/{project_id}/tokens",
+            f"/v1/sys/projects/{project_id}/tokens",
             body=maybe_transform(
                 {
                     "ak_role": ak_role,
@@ -259,7 +259,7 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         if not project_id:
             raise ValueError(f"Expected a non-empty value for `project_id` but received {project_id!r}")
         return await self._post(
-            f"/sys/projects/{project_id}/api-keys",
+            f"/v1/sys/projects/{project_id}/api-keys",
             body=await async_maybe_transform({"ak_role": ak_role}, api_key_create_params.APIKeyCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -293,7 +293,7 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         if not project_id:
             raise ValueError(f"Expected a non-empty value for `project_id` but received {project_id!r}")
         return await self._get(
-            f"/sys/projects/{project_id}/api-keys",
+            f"/v1/sys/projects/{project_id}/api-keys",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -330,7 +330,7 @@ class AsyncAPIKeysResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `key_id` but received {key_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/sys/projects/{project_id}/api-keys/{key_id}",
+            f"/v1/sys/projects/{project_id}/api-keys/{key_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -375,7 +375,7 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         if not project_id:
             raise ValueError(f"Expected a non-empty value for `project_id` but received {project_id!r}")
         return await self._post(
-            f"/sys/projects/{project_id}/tokens",
+            f"/v1/sys/projects/{project_id}/tokens",
             body=await async_maybe_transform(
                 {
                     "ak_role": ak_role,

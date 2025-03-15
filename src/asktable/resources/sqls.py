@@ -83,7 +83,7 @@ class SqlsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/single-turn/q2s",
+            "/v1/single-turn/q2s",
             body=maybe_transform(
                 {
                     "datasource_id": datasource_id,
@@ -131,7 +131,7 @@ class SqlsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/single-turn/q2s",
+            "/v1/single-turn/q2s",
             page=SyncPage[QueryResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -207,7 +207,7 @@ class AsyncSqlsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/single-turn/q2s",
+            "/v1/single-turn/q2s",
             body=await async_maybe_transform(
                 {
                     "datasource_id": datasource_id,
@@ -255,7 +255,7 @@ class AsyncSqlsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/single-turn/q2s",
+            "/v1/single-turn/q2s",
             page=AsyncPage[QueryResponse],
             options=make_request_options(
                 extra_headers=extra_headers,

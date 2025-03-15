@@ -74,7 +74,7 @@ class UploadParamsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/datasources/upload_params",
+            "/v1/datasources/upload_params",
             body=maybe_transform(
                 {
                     "expiration": expiration,
@@ -138,7 +138,7 @@ class AsyncUploadParamsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/datasources/upload_params",
+            "/v1/datasources/upload_params",
             body=await async_maybe_transform(
                 {
                     "expiration": expiration,

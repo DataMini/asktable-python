@@ -27,6 +27,8 @@ class ExtapiRoute(BaseModel):
 
     project_id: str
 
+    updated_at: datetime
+
     body_params_desc: Optional[str] = None
     """请求体参数描述"""
 
@@ -35,5 +37,3 @@ class ExtapiRoute(BaseModel):
 
     query_params_desc: Optional[str] = None
     """查询参数描述"""
-
-    updated_at: Optional[datetime] = None
