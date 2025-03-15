@@ -28,6 +28,7 @@ from .resources import (
     auth,
     bots,
     sqls,
+    files,
     roles,
     caches,
     scores,
@@ -35,6 +36,7 @@ from .resources import (
     project,
     policies,
     trainings,
+    dataframes,
     integration,
     preferences,
     securetunnels,
@@ -83,6 +85,8 @@ class Asktable(SyncAPIClient):
     trainings: trainings.TrainingsResource
     project: project.ProjectResource
     scores: scores.ScoresResource
+    files: files.FilesResource
+    dataframes: dataframes.DataframesResource
     with_raw_response: AsktableWithRawResponse
     with_streaming_response: AsktableWithStreamedResponse
 
@@ -158,6 +162,8 @@ class Asktable(SyncAPIClient):
         self.trainings = trainings.TrainingsResource(self)
         self.project = project.ProjectResource(self)
         self.scores = scores.ScoresResource(self)
+        self.files = files.FilesResource(self)
+        self.dataframes = dataframes.DataframesResource(self)
         self.with_raw_response = AsktableWithRawResponse(self)
         self.with_streaming_response = AsktableWithStreamedResponse(self)
 
@@ -285,6 +291,8 @@ class AsyncAsktable(AsyncAPIClient):
     trainings: trainings.AsyncTrainingsResource
     project: project.AsyncProjectResource
     scores: scores.AsyncScoresResource
+    files: files.AsyncFilesResource
+    dataframes: dataframes.AsyncDataframesResource
     with_raw_response: AsyncAsktableWithRawResponse
     with_streaming_response: AsyncAsktableWithStreamedResponse
 
@@ -360,6 +368,8 @@ class AsyncAsktable(AsyncAPIClient):
         self.trainings = trainings.AsyncTrainingsResource(self)
         self.project = project.AsyncProjectResource(self)
         self.scores = scores.AsyncScoresResource(self)
+        self.files = files.AsyncFilesResource(self)
+        self.dataframes = dataframes.AsyncDataframesResource(self)
         self.with_raw_response = AsyncAsktableWithRawResponse(self)
         self.with_streaming_response = AsyncAsktableWithStreamedResponse(self)
 
@@ -488,6 +498,8 @@ class AsktableWithRawResponse:
         self.trainings = trainings.TrainingsResourceWithRawResponse(client.trainings)
         self.project = project.ProjectResourceWithRawResponse(client.project)
         self.scores = scores.ScoresResourceWithRawResponse(client.scores)
+        self.files = files.FilesResourceWithRawResponse(client.files)
+        self.dataframes = dataframes.DataframesResourceWithRawResponse(client.dataframes)
 
 
 class AsyncAsktableWithRawResponse:
@@ -512,6 +524,8 @@ class AsyncAsktableWithRawResponse:
         self.trainings = trainings.AsyncTrainingsResourceWithRawResponse(client.trainings)
         self.project = project.AsyncProjectResourceWithRawResponse(client.project)
         self.scores = scores.AsyncScoresResourceWithRawResponse(client.scores)
+        self.files = files.AsyncFilesResourceWithRawResponse(client.files)
+        self.dataframes = dataframes.AsyncDataframesResourceWithRawResponse(client.dataframes)
 
 
 class AsktableWithStreamedResponse:
@@ -536,6 +550,8 @@ class AsktableWithStreamedResponse:
         self.trainings = trainings.TrainingsResourceWithStreamingResponse(client.trainings)
         self.project = project.ProjectResourceWithStreamingResponse(client.project)
         self.scores = scores.ScoresResourceWithStreamingResponse(client.scores)
+        self.files = files.FilesResourceWithStreamingResponse(client.files)
+        self.dataframes = dataframes.DataframesResourceWithStreamingResponse(client.dataframes)
 
 
 class AsyncAsktableWithStreamedResponse:
@@ -560,6 +576,8 @@ class AsyncAsktableWithStreamedResponse:
         self.trainings = trainings.AsyncTrainingsResourceWithStreamingResponse(client.trainings)
         self.project = project.AsyncProjectResourceWithStreamingResponse(client.project)
         self.scores = scores.AsyncScoresResourceWithStreamingResponse(client.scores)
+        self.files = files.AsyncFilesResourceWithStreamingResponse(client.files)
+        self.dataframes = dataframes.AsyncDataframesResourceWithStreamingResponse(client.dataframes)
 
 
 Client = Asktable
