@@ -12,6 +12,7 @@ from tests.utils import assert_matches_type
 from asktable.types import (
     Datasource,
     DatasourceRetrieveResponse,
+    DatasourceRetrieveRuntimeMetaResponse,
 )
 from asktable.pagination import SyncPage, AsyncPage
 
@@ -334,6 +335,105 @@ class TestDatasources:
                 datasource_id="datasource_id",
             )
 
+    @parametrize
+    def test_method_retrieve_runtime_meta(self, client: Asktable) -> None:
+        datasource = client.datasources.retrieve_runtime_meta(
+            "datasource_id",
+        )
+        assert_matches_type(DatasourceRetrieveRuntimeMetaResponse, datasource, path=["response"])
+
+    @parametrize
+    def test_raw_response_retrieve_runtime_meta(self, client: Asktable) -> None:
+        response = client.datasources.with_raw_response.retrieve_runtime_meta(
+            "datasource_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        datasource = response.parse()
+        assert_matches_type(DatasourceRetrieveRuntimeMetaResponse, datasource, path=["response"])
+
+    @parametrize
+    def test_streaming_response_retrieve_runtime_meta(self, client: Asktable) -> None:
+        with client.datasources.with_streaming_response.retrieve_runtime_meta(
+            "datasource_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            datasource = response.parse()
+            assert_matches_type(DatasourceRetrieveRuntimeMetaResponse, datasource, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_retrieve_runtime_meta(self, client: Asktable) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `datasource_id` but received ''"):
+            client.datasources.with_raw_response.retrieve_runtime_meta(
+                "",
+            )
+
+    @parametrize
+    def test_method_update_field(self, client: Asktable) -> None:
+        datasource = client.datasources.update_field(
+            datasource_id="datasource_id",
+            field_name="field_name",
+            schema_name="schema_name",
+            table_name="table_name",
+        )
+        assert_matches_type(object, datasource, path=["response"])
+
+    @parametrize
+    def test_method_update_field_with_all_params(self, client: Asktable) -> None:
+        datasource = client.datasources.update_field(
+            datasource_id="datasource_id",
+            field_name="field_name",
+            schema_name="schema_name",
+            table_name="table_name",
+            visibility=True,
+        )
+        assert_matches_type(object, datasource, path=["response"])
+
+    @parametrize
+    def test_raw_response_update_field(self, client: Asktable) -> None:
+        response = client.datasources.with_raw_response.update_field(
+            datasource_id="datasource_id",
+            field_name="field_name",
+            schema_name="schema_name",
+            table_name="table_name",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        datasource = response.parse()
+        assert_matches_type(object, datasource, path=["response"])
+
+    @parametrize
+    def test_streaming_response_update_field(self, client: Asktable) -> None:
+        with client.datasources.with_streaming_response.update_field(
+            datasource_id="datasource_id",
+            field_name="field_name",
+            schema_name="schema_name",
+            table_name="table_name",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            datasource = response.parse()
+            assert_matches_type(object, datasource, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_update_field(self, client: Asktable) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `datasource_id` but received ''"):
+            client.datasources.with_raw_response.update_field(
+                datasource_id="",
+                field_name="field_name",
+                schema_name="schema_name",
+                table_name="table_name",
+            )
+
 
 class TestAsyncDatasources:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
@@ -649,4 +749,103 @@ class TestAsyncDatasources:
             await async_client.datasources.with_raw_response.delete_file(
                 file_id="",
                 datasource_id="datasource_id",
+            )
+
+    @parametrize
+    async def test_method_retrieve_runtime_meta(self, async_client: AsyncAsktable) -> None:
+        datasource = await async_client.datasources.retrieve_runtime_meta(
+            "datasource_id",
+        )
+        assert_matches_type(DatasourceRetrieveRuntimeMetaResponse, datasource, path=["response"])
+
+    @parametrize
+    async def test_raw_response_retrieve_runtime_meta(self, async_client: AsyncAsktable) -> None:
+        response = await async_client.datasources.with_raw_response.retrieve_runtime_meta(
+            "datasource_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        datasource = await response.parse()
+        assert_matches_type(DatasourceRetrieveRuntimeMetaResponse, datasource, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_retrieve_runtime_meta(self, async_client: AsyncAsktable) -> None:
+        async with async_client.datasources.with_streaming_response.retrieve_runtime_meta(
+            "datasource_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            datasource = await response.parse()
+            assert_matches_type(DatasourceRetrieveRuntimeMetaResponse, datasource, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_retrieve_runtime_meta(self, async_client: AsyncAsktable) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `datasource_id` but received ''"):
+            await async_client.datasources.with_raw_response.retrieve_runtime_meta(
+                "",
+            )
+
+    @parametrize
+    async def test_method_update_field(self, async_client: AsyncAsktable) -> None:
+        datasource = await async_client.datasources.update_field(
+            datasource_id="datasource_id",
+            field_name="field_name",
+            schema_name="schema_name",
+            table_name="table_name",
+        )
+        assert_matches_type(object, datasource, path=["response"])
+
+    @parametrize
+    async def test_method_update_field_with_all_params(self, async_client: AsyncAsktable) -> None:
+        datasource = await async_client.datasources.update_field(
+            datasource_id="datasource_id",
+            field_name="field_name",
+            schema_name="schema_name",
+            table_name="table_name",
+            visibility=True,
+        )
+        assert_matches_type(object, datasource, path=["response"])
+
+    @parametrize
+    async def test_raw_response_update_field(self, async_client: AsyncAsktable) -> None:
+        response = await async_client.datasources.with_raw_response.update_field(
+            datasource_id="datasource_id",
+            field_name="field_name",
+            schema_name="schema_name",
+            table_name="table_name",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        datasource = await response.parse()
+        assert_matches_type(object, datasource, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_update_field(self, async_client: AsyncAsktable) -> None:
+        async with async_client.datasources.with_streaming_response.update_field(
+            datasource_id="datasource_id",
+            field_name="field_name",
+            schema_name="schema_name",
+            table_name="table_name",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            datasource = await response.parse()
+            assert_matches_type(object, datasource, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_update_field(self, async_client: AsyncAsktable) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `datasource_id` but received ''"):
+            await async_client.datasources.with_raw_response.update_field(
+                datasource_id="",
+                field_name="field_name",
+                schema_name="schema_name",
+                table_name="table_name",
             )
