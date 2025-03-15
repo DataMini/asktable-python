@@ -1,5 +1,19 @@
 # Changelog
 
+## 5.0.0 (2025-03-15)
+
+Full Changelog: [v4.7.0...v5.0.0](https://github.com/DataMini/asktable-python/compare/v4.7.0...v5.0.0)
+
+### Features
+
+* **api:** manual updates ([#173](https://github.com/DataMini/asktable-python/issues/173)) ([dba48e1](https://github.com/DataMini/asktable-python/commit/dba48e1aebe2abab983f6fe802d8605abdab82ac))
+* **api:** manual updates ([#175](https://github.com/DataMini/asktable-python/issues/175)) ([64bd21f](https://github.com/DataMini/asktable-python/commit/64bd21ff24dbc8a8495a48c73207fbeab1ac5082))
+
+
+### Chores
+
+* remove custom code ([c1a8142](https://github.com/DataMini/asktable-python/commit/c1a81420aeb2a7eb8c6f0b32c8f84134a50e0a37))
+
 ## 4.7.0 (2025-03-15)
 
 Full Changelog: [v4.6.0...v4.7.0](https://github.com/DataMini/asktable-python/compare/v4.6.0...v4.7.0)
