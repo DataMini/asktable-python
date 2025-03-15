@@ -1,5 +1,13 @@
 # Changelog
 
+## 5.1.0 (2025-03-15)
+
+Full Changelog: [v5.0.0...v5.1.0](https://github.com/DataMini/asktable-python/compare/v5.0.0...v5.1.0)
+
+### Features
+
+* Update publish-pypi.yml ([dd3bc4d](https://github.com/DataMini/asktable-python/commit/dd3bc4d77fdb5f8d2ff6fcedf80d6070c775c800))
+
 ## 5.0.0 (2025-03-15)
 
 Full Changelog: [v4.7.0...v5.0.0](https://github.com/DataMini/asktable-python/compare/v4.7.0...v5.0.0)
