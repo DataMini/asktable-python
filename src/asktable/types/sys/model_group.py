@@ -1,6 +1,5 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
 
 from ..._models import BaseModel
 
@@ -11,14 +10,20 @@ class ModelGroup(BaseModel):
     id: str
     """模型组 ID"""
 
-    agent_model: str
+    agent: str
     """Agent 模型"""
 
-    image_models: List[str]
-    """图像模型列表"""
+    fast: str
+    """快速模型"""
+
+    image: str
+    """图片模型"""
 
     name: str
     """模型组名称"""
 
-    text_models: List[str]
-    """文本模型列表"""
+    omni: str
+    """通用模型"""
+
+    sql: str
+    """SQL 模型"""

@@ -12,6 +12,9 @@ class SchemasTablesFields(BaseModel):
     created_at: datetime
     """created time"""
 
+    curr_desc: str
+    """current field description"""
+
     curr_desc_stat: str
     """current field description status"""
 
@@ -24,22 +27,27 @@ class SchemasTablesFields(BaseModel):
     name: str
     """field_name"""
 
-    curr_desc: Optional[str] = None
-    """current field description"""
+    origin_desc: str
+    """field description from database"""
 
     data_type: Optional[str] = None
     """field data type"""
 
-    origin_desc: Optional[str] = None
-    """field description from database"""
-
     sample_data: Optional[str] = None
     """field sample data"""
 
+    visibility: Optional[bool] = None
+    """field visibility"""
+
 
 class SchemasTables(BaseModel):
+    curr_desc: str
+    """current table description"""
+
     curr_desc_stat: str
     """current table description status"""
+
+    fields: Dict[str, SchemasTablesFields]
 
     full_name: str
     """field full name"""
@@ -47,36 +55,31 @@ class SchemasTables(BaseModel):
     name: str
     """table_name"""
 
-    curr_desc: Optional[str] = None
-    """current table description"""
-
-    fields: Optional[Dict[str, SchemasTablesFields]] = None
-
-    origin_desc: Optional[str] = None
+    origin_desc: str
     """table description from database"""
 
 
 class Schemas(BaseModel):
+    curr_desc: str
+    """current schema description"""
+
     curr_desc_stat: str
     """current schema description status"""
 
     name: str
     """schema_name"""
 
-    curr_desc: Optional[str] = None
-    """current schema description"""
+    origin_desc: str
+    """schema description from database"""
+
+    tables: Dict[str, SchemasTables]
 
     custom_configs: Optional[object] = None
     """custom configs"""
-
-    origin_desc: Optional[str] = None
-    """schema description from database"""
-
-    tables: Optional[Dict[str, SchemasTables]] = None
 
 
 class Meta(BaseModel):
     datasource_id: str
     """datasource_id"""
 
-    schemas: Optional[Dict[str, Schemas]] = None
+    schemas: Dict[str, Schemas]

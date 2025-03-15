@@ -72,7 +72,7 @@ class IntegrationResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/integration/create_excel_ds",
+            "/v1/integration/create_excel_ds",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -121,7 +121,7 @@ class IntegrationResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/integration/excel_csv_ask",
+            "/v1/integration/excel_csv_ask",
             body=maybe_transform(
                 {
                     "file_url": file_url,
@@ -182,7 +182,7 @@ class AsyncIntegrationResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/integration/create_excel_ds",
+            "/v1/integration/create_excel_ds",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -231,7 +231,7 @@ class AsyncIntegrationResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/integration/excel_csv_ask",
+            "/v1/integration/excel_csv_ask",
             body=await async_maybe_transform(
                 {
                     "file_url": file_url,

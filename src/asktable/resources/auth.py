@@ -22,6 +22,7 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
+from ..types.auth_me_response import AuthMeResponse
 
 __all__ = ["AuthResource", "AsyncAuthResource"]
 
@@ -81,7 +82,7 @@ class AuthResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/auth/tokens",
+            "/v1/auth/tokens",
             body=maybe_transform(
                 {
                     "ak_role": ak_role,
@@ -106,14 +107,14 @@ class AuthResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> AuthMeResponse:
         """获取当前登录的 TokenID"""
         return self._get(
-            "/auth/me",
+            "/v1/auth/me",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=AuthMeResponse,
         )
 
 
@@ -172,7 +173,7 @@ class AsyncAuthResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/auth/tokens",
+            "/v1/auth/tokens",
             body=await async_maybe_transform(
                 {
                     "ak_role": ak_role,
@@ -197,14 +198,14 @@ class AsyncAuthResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> AuthMeResponse:
         """获取当前登录的 TokenID"""
         return await self._get(
-            "/auth/me",
+            "/v1/auth/me",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=AuthMeResponse,
         )
 
 

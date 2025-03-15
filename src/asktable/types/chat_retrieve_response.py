@@ -2,6 +2,7 @@
 
 from typing import Dict, List, Union, Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from .._models import BaseModel
 
@@ -15,18 +16,22 @@ class ChatRetrieveResponse(BaseModel):
     created_at: datetime
     """创建时间"""
 
-    datasource_ids: List[str]
-
     modified_at: datetime
     """修改时间"""
 
     project_id: str
+
+    status: Literal["active", "pending", "error", "fatal"]
+
+    status_message: Optional[str] = None
 
     bot_id: Optional[str] = None
     """
     机器人 ID，如果需要使用高级功能，请使用 bot_id 来创建对话。在机器人中你可以定义
     可以访问的数据、可以执行的任务以及是否开启调试模式等设置。
     """
+
+    datasource_ids: Optional[List[str]] = None
 
     name: Optional[str] = None
     """New name for the chat"""
@@ -42,3 +47,5 @@ class ChatRetrieveResponse(BaseModel):
 
     user_profile: Optional[Dict[str, str]] = None
     """用户信息，用于在对话中传递用户的信息，用 Key-Value 形式传递"""
+
+    welcome_message: Optional[str] = None

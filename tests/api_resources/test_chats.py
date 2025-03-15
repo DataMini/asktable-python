@@ -9,11 +9,7 @@ import pytest
 
 from asktable import Asktable, AsyncAsktable
 from tests.utils import assert_matches_type
-from asktable.types import (
-    Chat,
-    ChatRetrieveResponse,
-    ChatPostMessageResponse,
-)
+from asktable.types import Chat, ChatRetrieveResponse
 from asktable.pagination import SyncPage, AsyncPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -171,48 +167,6 @@ class TestChats:
                 "",
             )
 
-    @parametrize
-    def test_method_post_message(self, client: Asktable) -> None:
-        chat = client.chats.post_message(
-            chat_id="chat_id",
-            question="question",
-        )
-        assert_matches_type(ChatPostMessageResponse, chat, path=["response"])
-
-    @parametrize
-    def test_raw_response_post_message(self, client: Asktable) -> None:
-        response = client.chats.with_raw_response.post_message(
-            chat_id="chat_id",
-            question="question",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        chat = response.parse()
-        assert_matches_type(ChatPostMessageResponse, chat, path=["response"])
-
-    @parametrize
-    def test_streaming_response_post_message(self, client: Asktable) -> None:
-        with client.chats.with_streaming_response.post_message(
-            chat_id="chat_id",
-            question="question",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            chat = response.parse()
-            assert_matches_type(ChatPostMessageResponse, chat, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    def test_path_params_post_message(self, client: Asktable) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `chat_id` but received ''"):
-            client.chats.with_raw_response.post_message(
-                chat_id="",
-                question="question",
-            )
-
 
 class TestAsyncChats:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
@@ -364,46 +318,4 @@ class TestAsyncChats:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `chat_id` but received ''"):
             await async_client.chats.with_raw_response.delete(
                 "",
-            )
-
-    @parametrize
-    async def test_method_post_message(self, async_client: AsyncAsktable) -> None:
-        chat = await async_client.chats.post_message(
-            chat_id="chat_id",
-            question="question",
-        )
-        assert_matches_type(ChatPostMessageResponse, chat, path=["response"])
-
-    @parametrize
-    async def test_raw_response_post_message(self, async_client: AsyncAsktable) -> None:
-        response = await async_client.chats.with_raw_response.post_message(
-            chat_id="chat_id",
-            question="question",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        chat = await response.parse()
-        assert_matches_type(ChatPostMessageResponse, chat, path=["response"])
-
-    @parametrize
-    async def test_streaming_response_post_message(self, async_client: AsyncAsktable) -> None:
-        async with async_client.chats.with_streaming_response.post_message(
-            chat_id="chat_id",
-            question="question",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            chat = await response.parse()
-            assert_matches_type(ChatPostMessageResponse, chat, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    async def test_path_params_post_message(self, async_client: AsyncAsktable) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `chat_id` but received ''"):
-            await async_client.chats.with_raw_response.post_message(
-                chat_id="",
-                question="question",
             )

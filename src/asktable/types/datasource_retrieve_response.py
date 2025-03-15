@@ -74,6 +74,7 @@ class DatasourceRetrieveResponse(BaseModel):
         "oracle",
         "polardbmysql",
         "polardbpg",
+        "dameng",
     ]
     """数据源引擎"""
 

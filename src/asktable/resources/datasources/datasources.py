@@ -108,9 +108,8 @@ class DatasourcesResource(SyncAPIResource):
             "oracle",
             "polardbmysql",
             "polardbpg",
+            "dameng",
         ],
-        async_process_meta: bool | NotGiven = NOT_GIVEN,
-        value_index: bool | NotGiven = NOT_GIVEN,
         access_config: Optional[datasource_create_params.AccessConfig] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -139,7 +138,7 @@ class DatasourcesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/datasources",
+            "/v1/datasources",
             body=maybe_transform(
                 {
                     "engine": engine,
@@ -149,17 +148,7 @@ class DatasourcesResource(SyncAPIResource):
                 datasource_create_params.DatasourceCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "async_process_meta": async_process_meta,
-                        "value_index": value_index,
-                    },
-                    datasource_create_params.DatasourceCreateParams,
-                ),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=Datasource,
         )
@@ -190,7 +179,7 @@ class DatasourcesResource(SyncAPIResource):
         if not datasource_id:
             raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
         return self._get(
-            f"/datasources/{datasource_id}",
+            f"/v1/datasources/{datasource_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -217,6 +206,7 @@ class DatasourcesResource(SyncAPIResource):
                 "oracle",
                 "polardbmysql",
                 "polardbpg",
+                "dameng",
             ]
         ]
         | NotGiven = NOT_GIVEN,
@@ -269,7 +259,7 @@ class DatasourcesResource(SyncAPIResource):
         if not datasource_id:
             raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
         return self._patch(
-            f"/datasources/{datasource_id}",
+            f"/v1/datasources/{datasource_id}",
             body=maybe_transform(
                 {
                     "access_config": access_config,
@@ -321,7 +311,7 @@ class DatasourcesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/datasources",
+            "/v1/datasources",
             page=SyncPage[Datasource],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -366,7 +356,7 @@ class DatasourcesResource(SyncAPIResource):
         if not datasource_id:
             raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
         return self._delete(
-            f"/datasources/{datasource_id}",
+            f"/v1/datasources/{datasource_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -406,7 +396,7 @@ class DatasourcesResource(SyncAPIResource):
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._post(
-            f"/datasources/{datasource_id}/files",
+            f"/v1/datasources/{datasource_id}/files",
             body=maybe_transform(body, datasource_add_file_params.DatasourceAddFileParams),
             files=files,
             options=make_request_options(
@@ -444,7 +434,7 @@ class DatasourcesResource(SyncAPIResource):
         if not file_id:
             raise ValueError(f"Expected a non-empty value for `file_id` but received {file_id!r}")
         return self._delete(
-            f"/datasources/{datasource_id}/files/{file_id}",
+            f"/v1/datasources/{datasource_id}/files/{file_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -569,9 +559,8 @@ class AsyncDatasourcesResource(AsyncAPIResource):
             "oracle",
             "polardbmysql",
             "polardbpg",
+            "dameng",
         ],
-        async_process_meta: bool | NotGiven = NOT_GIVEN,
-        value_index: bool | NotGiven = NOT_GIVEN,
         access_config: Optional[datasource_create_params.AccessConfig] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -600,7 +589,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/datasources",
+            "/v1/datasources",
             body=await async_maybe_transform(
                 {
                     "engine": engine,
@@ -610,17 +599,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
                 datasource_create_params.DatasourceCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "async_process_meta": async_process_meta,
-                        "value_index": value_index,
-                    },
-                    datasource_create_params.DatasourceCreateParams,
-                ),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=Datasource,
         )
@@ -651,7 +630,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         if not datasource_id:
             raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
         return await self._get(
-            f"/datasources/{datasource_id}",
+            f"/v1/datasources/{datasource_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -678,6 +657,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
                 "oracle",
                 "polardbmysql",
                 "polardbpg",
+                "dameng",
             ]
         ]
         | NotGiven = NOT_GIVEN,
@@ -730,7 +710,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         if not datasource_id:
             raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
         return await self._patch(
-            f"/datasources/{datasource_id}",
+            f"/v1/datasources/{datasource_id}",
             body=await async_maybe_transform(
                 {
                     "access_config": access_config,
@@ -782,7 +762,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/datasources",
+            "/v1/datasources",
             page=AsyncPage[Datasource],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -827,7 +807,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         if not datasource_id:
             raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
         return await self._delete(
-            f"/datasources/{datasource_id}",
+            f"/v1/datasources/{datasource_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -867,7 +847,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._post(
-            f"/datasources/{datasource_id}/files",
+            f"/v1/datasources/{datasource_id}/files",
             body=await async_maybe_transform(body, datasource_add_file_params.DatasourceAddFileParams),
             files=files,
             options=make_request_options(
@@ -905,7 +885,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         if not file_id:
             raise ValueError(f"Expected a non-empty value for `file_id` but received {file_id!r}")
         return await self._delete(
-            f"/datasources/{datasource_id}/files/{file_id}",
+            f"/v1/datasources/{datasource_id}/files/{file_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

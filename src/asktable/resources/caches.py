@@ -65,7 +65,7 @@ class CachesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `cache_id` but received {cache_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/caches/{cache_id}",
+            f"/v1/caches/{cache_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -120,7 +120,7 @@ class AsyncCachesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `cache_id` but received {cache_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/caches/{cache_id}",
+            f"/v1/caches/{cache_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

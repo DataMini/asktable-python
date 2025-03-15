@@ -30,27 +30,31 @@ class TestMeta:
             datasource_id="datasource_id",
             async_process_meta=True,
             value_index=True,
-            schemas={
-                "foo": {
-                    "name": "name",
-                    "custom_configs": {},
-                    "origin_desc": "origin_desc",
-                    "tables": {
-                        "foo": {
-                            "name": "name",
-                            "fields": {
-                                "foo": {
-                                    "name": "name",
-                                    "data_type": "data_type",
-                                    "origin_desc": "origin_desc",
-                                    "sample_data": "sample_data",
-                                }
-                            },
-                            "origin_desc": "origin_desc",
-                        }
-                    },
+            meta={
+                "schemas": {
+                    "foo": {
+                        "name": "name",
+                        "origin_desc": "origin_desc",
+                        "custom_configs": {},
+                        "tables": {
+                            "foo": {
+                                "name": "name",
+                                "origin_desc": "origin_desc",
+                                "fields": {
+                                    "foo": {
+                                        "name": "name",
+                                        "origin_desc": "origin_desc",
+                                        "data_type": "data_type",
+                                        "sample_data": "sample_data",
+                                        "visibility": True,
+                                    }
+                                },
+                            }
+                        },
+                    }
                 }
             },
+            selected_tables={"foo": ["string"]},
         )
         assert_matches_type(object, meta, path=["response"])
 
@@ -134,27 +138,32 @@ class TestMeta:
     def test_method_update_with_all_params(self, client: Asktable) -> None:
         meta = client.datasources.meta.update(
             datasource_id="datasource_id",
-            schemas={
-                "foo": {
-                    "name": "name",
-                    "custom_configs": {},
-                    "origin_desc": "origin_desc",
-                    "tables": {
-                        "foo": {
-                            "name": "name",
-                            "fields": {
-                                "foo": {
-                                    "name": "name",
-                                    "data_type": "data_type",
-                                    "origin_desc": "origin_desc",
-                                    "sample_data": "sample_data",
-                                }
-                            },
-                            "origin_desc": "origin_desc",
-                        }
-                    },
+            async_process_meta=True,
+            meta={
+                "schemas": {
+                    "foo": {
+                        "name": "name",
+                        "origin_desc": "origin_desc",
+                        "custom_configs": {},
+                        "tables": {
+                            "foo": {
+                                "name": "name",
+                                "origin_desc": "origin_desc",
+                                "fields": {
+                                    "foo": {
+                                        "name": "name",
+                                        "origin_desc": "origin_desc",
+                                        "data_type": "data_type",
+                                        "sample_data": "sample_data",
+                                        "visibility": True,
+                                    }
+                                },
+                            }
+                        },
+                    }
                 }
             },
+            selected_tables={"foo": ["string"]},
         )
         assert_matches_type(object, meta, path=["response"])
 
@@ -248,27 +257,31 @@ class TestAsyncMeta:
             datasource_id="datasource_id",
             async_process_meta=True,
             value_index=True,
-            schemas={
-                "foo": {
-                    "name": "name",
-                    "custom_configs": {},
-                    "origin_desc": "origin_desc",
-                    "tables": {
-                        "foo": {
-                            "name": "name",
-                            "fields": {
-                                "foo": {
-                                    "name": "name",
-                                    "data_type": "data_type",
-                                    "origin_desc": "origin_desc",
-                                    "sample_data": "sample_data",
-                                }
-                            },
-                            "origin_desc": "origin_desc",
-                        }
-                    },
+            meta={
+                "schemas": {
+                    "foo": {
+                        "name": "name",
+                        "origin_desc": "origin_desc",
+                        "custom_configs": {},
+                        "tables": {
+                            "foo": {
+                                "name": "name",
+                                "origin_desc": "origin_desc",
+                                "fields": {
+                                    "foo": {
+                                        "name": "name",
+                                        "origin_desc": "origin_desc",
+                                        "data_type": "data_type",
+                                        "sample_data": "sample_data",
+                                        "visibility": True,
+                                    }
+                                },
+                            }
+                        },
+                    }
                 }
             },
+            selected_tables={"foo": ["string"]},
         )
         assert_matches_type(object, meta, path=["response"])
 
@@ -352,27 +365,32 @@ class TestAsyncMeta:
     async def test_method_update_with_all_params(self, async_client: AsyncAsktable) -> None:
         meta = await async_client.datasources.meta.update(
             datasource_id="datasource_id",
-            schemas={
-                "foo": {
-                    "name": "name",
-                    "custom_configs": {},
-                    "origin_desc": "origin_desc",
-                    "tables": {
-                        "foo": {
-                            "name": "name",
-                            "fields": {
-                                "foo": {
-                                    "name": "name",
-                                    "data_type": "data_type",
-                                    "origin_desc": "origin_desc",
-                                    "sample_data": "sample_data",
-                                }
-                            },
-                            "origin_desc": "origin_desc",
-                        }
-                    },
+            async_process_meta=True,
+            meta={
+                "schemas": {
+                    "foo": {
+                        "name": "name",
+                        "origin_desc": "origin_desc",
+                        "custom_configs": {},
+                        "tables": {
+                            "foo": {
+                                "name": "name",
+                                "origin_desc": "origin_desc",
+                                "fields": {
+                                    "foo": {
+                                        "name": "name",
+                                        "origin_desc": "origin_desc",
+                                        "data_type": "data_type",
+                                        "sample_data": "sample_data",
+                                        "visibility": True,
+                                    }
+                                },
+                            }
+                        },
+                    }
                 }
             },
+            selected_tables={"foo": ["string"]},
         )
         assert_matches_type(object, meta, path=["response"])
 

@@ -86,7 +86,7 @@ class ProjectsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/sys/projects",
+            "/v1/sys/projects",
             body=maybe_transform({"name": name}, project_create_params.ProjectCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -120,7 +120,7 @@ class ProjectsResource(SyncAPIResource):
         if not project_id:
             raise ValueError(f"Expected a non-empty value for `project_id` but received {project_id!r}")
         return self._get(
-            f"/sys/projects/{project_id}",
+            f"/v1/sys/projects/{project_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -162,7 +162,7 @@ class ProjectsResource(SyncAPIResource):
         if not project_id:
             raise ValueError(f"Expected a non-empty value for `project_id` but received {project_id!r}")
         return self._patch(
-            f"/sys/projects/{project_id}",
+            f"/v1/sys/projects/{project_id}",
             body=maybe_transform(
                 {
                     "llm_model_group": llm_model_group,
@@ -209,7 +209,7 @@ class ProjectsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/sys/projects",
+            "/v1/sys/projects",
             page=SyncPage[Project],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -254,7 +254,7 @@ class ProjectsResource(SyncAPIResource):
         if not project_id:
             raise ValueError(f"Expected a non-empty value for `project_id` but received {project_id!r}")
         return self._delete(
-            f"/sys/projects/{project_id}",
+            f"/v1/sys/projects/{project_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -273,7 +273,7 @@ class ProjectsResource(SyncAPIResource):
     ) -> ProjectModelGroupsResponse:
         """Get Llm Model Groups"""
         return self._get(
-            "/sys/projects/model-groups",
+            "/v1/sys/projects/model-groups",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -331,7 +331,7 @@ class AsyncProjectsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/sys/projects",
+            "/v1/sys/projects",
             body=await async_maybe_transform({"name": name}, project_create_params.ProjectCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -365,7 +365,7 @@ class AsyncProjectsResource(AsyncAPIResource):
         if not project_id:
             raise ValueError(f"Expected a non-empty value for `project_id` but received {project_id!r}")
         return await self._get(
-            f"/sys/projects/{project_id}",
+            f"/v1/sys/projects/{project_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -407,7 +407,7 @@ class AsyncProjectsResource(AsyncAPIResource):
         if not project_id:
             raise ValueError(f"Expected a non-empty value for `project_id` but received {project_id!r}")
         return await self._patch(
-            f"/sys/projects/{project_id}",
+            f"/v1/sys/projects/{project_id}",
             body=await async_maybe_transform(
                 {
                     "llm_model_group": llm_model_group,
@@ -454,7 +454,7 @@ class AsyncProjectsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/sys/projects",
+            "/v1/sys/projects",
             page=AsyncPage[Project],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -499,7 +499,7 @@ class AsyncProjectsResource(AsyncAPIResource):
         if not project_id:
             raise ValueError(f"Expected a non-empty value for `project_id` but received {project_id!r}")
         return await self._delete(
-            f"/sys/projects/{project_id}",
+            f"/v1/sys/projects/{project_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -518,7 +518,7 @@ class AsyncProjectsResource(AsyncAPIResource):
     ) -> ProjectModelGroupsResponse:
         """Get Llm Model Groups"""
         return await self._get(
-            "/sys/projects/model-groups",
+            "/v1/sys/projects/model-groups",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

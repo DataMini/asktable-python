@@ -80,7 +80,7 @@ class PoliciesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/policies",
+            "/v1/policies",
             body=maybe_transform(
                 {
                     "dataset_config": dataset_config,
@@ -121,7 +121,7 @@ class PoliciesResource(SyncAPIResource):
         if not policy_id:
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return self._get(
-            f"/policies/{policy_id}",
+            f"/v1/policies/{policy_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -163,7 +163,7 @@ class PoliciesResource(SyncAPIResource):
         if not policy_id:
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return self._patch(
-            f"/policies/{policy_id}",
+            f"/v1/policies/{policy_id}",
             body=maybe_transform(
                 {
                     "dataset_config": dataset_config,
@@ -213,7 +213,7 @@ class PoliciesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/policies",
+            "/v1/policies",
             page=SyncPage[Policy],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -260,7 +260,7 @@ class PoliciesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/policies/{policy_id}",
+            f"/v1/policies/{policy_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -320,7 +320,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/policies",
+            "/v1/policies",
             body=await async_maybe_transform(
                 {
                     "dataset_config": dataset_config,
@@ -361,7 +361,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         if not policy_id:
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return await self._get(
-            f"/policies/{policy_id}",
+            f"/v1/policies/{policy_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -403,7 +403,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         if not policy_id:
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return await self._patch(
-            f"/policies/{policy_id}",
+            f"/v1/policies/{policy_id}",
             body=await async_maybe_transform(
                 {
                     "dataset_config": dataset_config,
@@ -453,7 +453,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/policies",
+            "/v1/policies",
             page=AsyncPage[Policy],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -500,7 +500,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/policies/{policy_id}",
+            f"/v1/policies/{policy_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

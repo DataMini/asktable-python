@@ -29,6 +29,8 @@ class RouteCreateParams(TypedDict, total=False):
 
     project_id: Required[str]
 
+    updated_at: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
+
     body_params_desc: Optional[str]
     """请求体参数描述"""
 
@@ -37,5 +39,3 @@ class RouteCreateParams(TypedDict, total=False):
 
     query_params_desc: Optional[str]
     """查询参数描述"""
-
-    updated_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
