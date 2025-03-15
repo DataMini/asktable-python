@@ -441,6 +441,75 @@ class DatasourcesResource(SyncAPIResource):
             cast_to=object,
         )
 
+    def add_file_and_update_meta(
+        self,
+        datasource_id: str,
+        file: FileTypes,
+        *,
+        name: str = "auto_generated_meta",
+        async_process_meta: bool | NotGiven = NOT_GIVEN,
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> None:
+        self.add_file(
+            datasource_id,
+            file=file,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        self.meta.create(
+            datasource_id=datasource_id,
+            name=name,
+            async_process_meta=async_process_meta,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+
+    def create_from_file(
+        self,
+        engine: Literal["excel", "csv"],
+        file: FileTypes,
+        *,
+        name: str = "auto_generated",
+        async_process_meta: bool | NotGiven = NOT_GIVEN,
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Datasource:
+        datasource = self.create(
+            engine=engine,
+            name=name,
+            async_process_meta=False,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        self.add_file(
+            datasource.id,
+            file=file,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        self.meta.create(
+            datasource.id,
+            name=name,
+            async_process_meta=async_process_meta,
+            extra_headers=extra_headers,
+            extra_query=extra_query,
+            extra_body=extra_body,
+            timeout=timeout,
+        )
+        return datasource
 
 class AsyncDatasourcesResource(AsyncAPIResource):
     @cached_property
