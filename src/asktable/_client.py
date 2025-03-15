@@ -131,7 +131,7 @@ class Asktable(SyncAPIClient):
         if base_url is None:
             base_url = os.environ.get("ASKTABLE_BASE_URL")
         if base_url is None:
-            base_url = f"https://api.asktable.com/v1"
+            base_url = f"https://api.asktable.com"
 
         super().__init__(
             version=__version__,
@@ -337,7 +337,7 @@ class AsyncAsktable(AsyncAPIClient):
         if base_url is None:
             base_url = os.environ.get("ASKTABLE_BASE_URL")
         if base_url is None:
-            base_url = f"https://api.asktable.com/v1"
+            base_url = f"https://api.asktable.com"
 
         super().__init__(
             version=__version__,
