@@ -40,6 +40,14 @@ from .chats import (
     ChatsResourceWithStreamingResponse,
     AsyncChatsResourceWithStreamingResponse,
 )
+from .files import (
+    FilesResource,
+    AsyncFilesResource,
+    FilesResourceWithRawResponse,
+    AsyncFilesResourceWithRawResponse,
+    FilesResourceWithStreamingResponse,
+    AsyncFilesResourceWithStreamingResponse,
+)
 from .roles import (
     RolesResource,
     AsyncRolesResource,
@@ -103,6 +111,14 @@ from .trainings import (
     AsyncTrainingsResourceWithRawResponse,
     TrainingsResourceWithStreamingResponse,
     AsyncTrainingsResourceWithStreamingResponse,
+)
+from .dataframes import (
+    DataframesResource,
+    AsyncDataframesResource,
+    DataframesResourceWithRawResponse,
+    AsyncDataframesResourceWithRawResponse,
+    DataframesResourceWithStreamingResponse,
+    AsyncDataframesResourceWithStreamingResponse,
 )
 from .datasources import (
     DatasourcesResource,
@@ -254,4 +270,16 @@ __all__ = [
     "AsyncScoresResourceWithRawResponse",
     "ScoresResourceWithStreamingResponse",
     "AsyncScoresResourceWithStreamingResponse",
+    "FilesResource",
+    "AsyncFilesResource",
+    "FilesResourceWithRawResponse",
+    "AsyncFilesResourceWithRawResponse",
+    "FilesResourceWithStreamingResponse",
+    "AsyncFilesResourceWithStreamingResponse",
+    "DataframesResource",
+    "AsyncDataframesResource",
+    "DataframesResourceWithRawResponse",
+    "AsyncDataframesResourceWithRawResponse",
+    "DataframesResourceWithStreamingResponse",
+    "AsyncDataframesResourceWithStreamingResponse",
 ]
