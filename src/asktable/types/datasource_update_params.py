@@ -27,7 +27,6 @@ class DatasourceUpdateParams(TypedDict, total=False):
             "postgresql",
             "oceanbase",
             "clickhouse",
-            "csv",
             "excel",
             "starrocks",
             "hive",
