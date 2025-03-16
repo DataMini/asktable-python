@@ -22,7 +22,6 @@ class Datasource(BaseModel):
         "postgresql",
         "oceanbase",
         "clickhouse",
-        "csv",
         "excel",
         "starrocks",
         "hive",
