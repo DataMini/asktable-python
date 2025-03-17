@@ -21,7 +21,6 @@ class DatasourceCreateParams(TypedDict, total=False):
             "postgresql",
             "oceanbase",
             "clickhouse",
-            "csv",
             "excel",
             "starrocks",
             "hive",
@@ -29,6 +28,8 @@ class DatasourceCreateParams(TypedDict, total=False):
             "polardbmysql",
             "polardbpg",
             "dameng",
+            "adbmysql",
+            "adbpostgres",
         ]
     ]
     """数据源引擎"""

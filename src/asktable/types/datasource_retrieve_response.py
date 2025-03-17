@@ -67,7 +67,6 @@ class DatasourceRetrieveResponse(BaseModel):
         "postgresql",
         "oceanbase",
         "clickhouse",
-        "csv",
         "excel",
         "starrocks",
         "hive",
@@ -75,6 +74,8 @@ class DatasourceRetrieveResponse(BaseModel):
         "polardbmysql",
         "polardbpg",
         "dameng",
+        "adbmysql",
+        "adbpostgres",
     ]
     """数据源引擎"""
 
