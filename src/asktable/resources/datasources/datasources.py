@@ -110,6 +110,8 @@ class DatasourcesResource(SyncAPIResource):
             "polardbmysql",
             "polardbpg",
             "dameng",
+            "adbmysql",
+            "adbpostgres",
         ],
         access_config: Optional[datasource_create_params.AccessConfig] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
@@ -207,6 +209,8 @@ class DatasourcesResource(SyncAPIResource):
                 "polardbmysql",
                 "polardbpg",
                 "dameng",
+                "adbmysql",
+                "adbpostgres",
             ]
         ]
         | NotGiven = NOT_GIVEN,
@@ -576,6 +580,8 @@ class AsyncDatasourcesResource(AsyncAPIResource):
             "polardbmysql",
             "polardbpg",
             "dameng",
+            "adbmysql",
+            "adbpostgres",
         ],
         access_config: Optional[datasource_create_params.AccessConfig] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
@@ -673,6 +679,8 @@ class AsyncDatasourcesResource(AsyncAPIResource):
                 "polardbmysql",
                 "polardbpg",
                 "dameng",
+                "adbmysql",
+                "adbpostgres",
             ]
         ]
         | NotGiven = NOT_GIVEN,
