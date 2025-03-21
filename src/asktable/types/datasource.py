@@ -31,6 +31,7 @@ class Datasource(BaseModel):
         "dameng",
         "adbmysql",
         "adbpostgres",
+        "xugu",
     ]
     """数据源引擎"""
 
