@@ -112,6 +112,7 @@ class DatasourcesResource(SyncAPIResource):
             "dameng",
             "adbmysql",
             "adbpostgres",
+            "xugu",
         ],
         access_config: Optional[datasource_create_params.AccessConfig] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
@@ -211,6 +212,7 @@ class DatasourcesResource(SyncAPIResource):
                 "dameng",
                 "adbmysql",
                 "adbpostgres",
+                "xugu",
             ]
         ]
         | NotGiven = NOT_GIVEN,
@@ -582,6 +584,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
             "dameng",
             "adbmysql",
             "adbpostgres",
+            "xugu",
         ],
         access_config: Optional[datasource_create_params.AccessConfig] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
@@ -681,6 +684,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
                 "dameng",
                 "adbmysql",
                 "adbpostgres",
+                "xugu",
             ]
         ]
         | NotGiven = NOT_GIVEN,
