@@ -1,5 +1,24 @@
 # Changelog
 
+## 5.3.0 (2025-03-21)
+
+Full Changelog: [v5.2.0...v5.3.0](https://github.com/DataMini/asktable-python/compare/v5.2.0...v5.3.0)
+
+### Features
+
+* **api:** api update ([#187](https://github.com/DataMini/asktable-python/issues/187)) ([645b80a](https://github.com/DataMini/asktable-python/commit/645b80a780d0409c0368ab2ec7d4c811b4bb74ac))
+
+
+### Bug Fixes
+
+* **ci:** ensure pip is always available ([#185](https://github.com/DataMini/asktable-python/issues/185)) ([1bf7016](https://github.com/DataMini/asktable-python/commit/1bf701617a81109d6071e06f09910349544cbf6f))
+* **ci:** remove publishing patch ([#186](https://github.com/DataMini/asktable-python/issues/186)) ([077f917](https://github.com/DataMini/asktable-python/commit/077f9172189fb51d058fdaf48671d1c74d1c73cf))
+
+
+### Chores
+
+* remove custom code ([746f693](https://github.com/DataMini/asktable-python/commit/746f6936a501d656086f6342abed4a54ab07be96))
+
 ## 5.2.0 (2025-03-17)
 
 Full Changelog: [v5.1.0...v5.2.0](https://github.com/DataMini/asktable-python/compare/v5.1.0...v5.2.0)
