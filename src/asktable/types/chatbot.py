@@ -47,5 +47,8 @@ class Chatbot(BaseModel):
     sample_questions: Optional[List[str]] = None
     """示例问题列表"""
 
+    webhooks: Optional[List[str]] = None
+    """Webhook URL 列表"""
+
     welcome_message: Optional[str] = None
     """欢迎消息"""
