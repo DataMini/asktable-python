@@ -59,6 +59,7 @@ class BotsResource(SyncAPIResource):
         max_rows: int | NotGiven = NOT_GIVEN,
         publish: bool | NotGiven = NOT_GIVEN,
         sample_questions: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        webhooks: List[str] | NotGiven = NOT_GIVEN,
         welcome_message: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -89,6 +90,8 @@ class BotsResource(SyncAPIResource):
 
           sample_questions: 示例问题列表
 
+          webhooks: Webhook URL 列表
+
           welcome_message: 欢迎消息
 
           extra_headers: Send extra headers
@@ -112,6 +115,7 @@ class BotsResource(SyncAPIResource):
                     "max_rows": max_rows,
                     "publish": publish,
                     "sample_questions": sample_questions,
+                    "webhooks": webhooks,
                     "welcome_message": welcome_message,
                 },
                 bot_create_params.BotCreateParams,
@@ -169,6 +173,7 @@ class BotsResource(SyncAPIResource):
         name: Optional[str] | NotGiven = NOT_GIVEN,
         publish: Optional[bool] | NotGiven = NOT_GIVEN,
         sample_questions: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        webhooks: Optional[List[str]] | NotGiven = NOT_GIVEN,
         welcome_message: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -201,6 +206,8 @@ class BotsResource(SyncAPIResource):
 
           sample_questions: 示例问题列表
 
+          webhooks: Webhook URL 列表
+
           welcome_message: 欢迎消息
 
           extra_headers: Send extra headers
@@ -227,6 +234,7 @@ class BotsResource(SyncAPIResource):
                     "name": name,
                     "publish": publish,
                     "sample_questions": sample_questions,
+                    "webhooks": webhooks,
                     "welcome_message": welcome_message,
                 },
                 bot_update_params.BotUpdateParams,
@@ -392,6 +400,7 @@ class AsyncBotsResource(AsyncAPIResource):
         max_rows: int | NotGiven = NOT_GIVEN,
         publish: bool | NotGiven = NOT_GIVEN,
         sample_questions: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        webhooks: List[str] | NotGiven = NOT_GIVEN,
         welcome_message: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -422,6 +431,8 @@ class AsyncBotsResource(AsyncAPIResource):
 
           sample_questions: 示例问题列表
 
+          webhooks: Webhook URL 列表
+
           welcome_message: 欢迎消息
 
           extra_headers: Send extra headers
@@ -445,6 +456,7 @@ class AsyncBotsResource(AsyncAPIResource):
                     "max_rows": max_rows,
                     "publish": publish,
                     "sample_questions": sample_questions,
+                    "webhooks": webhooks,
                     "welcome_message": welcome_message,
                 },
                 bot_create_params.BotCreateParams,
@@ -502,6 +514,7 @@ class AsyncBotsResource(AsyncAPIResource):
         name: Optional[str] | NotGiven = NOT_GIVEN,
         publish: Optional[bool] | NotGiven = NOT_GIVEN,
         sample_questions: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        webhooks: Optional[List[str]] | NotGiven = NOT_GIVEN,
         welcome_message: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -534,6 +547,8 @@ class AsyncBotsResource(AsyncAPIResource):
 
           sample_questions: 示例问题列表
 
+          webhooks: Webhook URL 列表
+
           welcome_message: 欢迎消息
 
           extra_headers: Send extra headers
@@ -560,6 +575,7 @@ class AsyncBotsResource(AsyncAPIResource):
                     "name": name,
                     "publish": publish,
                     "sample_questions": sample_questions,
+                    "webhooks": webhooks,
                     "welcome_message": welcome_message,
                 },
                 bot_update_params.BotUpdateParams,
