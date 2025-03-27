@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Dict, List, Optional
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["MetaCreateParams", "Meta", "MetaSchemas", "MetaSchemasTables", "MetaSchemasTablesFields"]
 
@@ -43,6 +43,9 @@ class MetaSchemasTables(TypedDict, total=False):
     """table description from database"""
 
     fields: Dict[str, MetaSchemasTablesFields]
+
+    table_type: Literal["table", "view"]
+    """table type"""
 
 
 class MetaSchemas(TypedDict, total=False):

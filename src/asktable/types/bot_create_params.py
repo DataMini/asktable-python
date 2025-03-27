@@ -36,5 +36,8 @@ class BotCreateParams(TypedDict, total=False):
     sample_questions: Optional[List[str]]
     """示例问题列表"""
 
+    webhooks: List[str]
+    """Webhook URL 列表"""
+
     welcome_message: Optional[str]
     """欢迎消息"""

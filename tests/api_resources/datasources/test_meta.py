@@ -49,6 +49,7 @@ class TestMeta:
                                         "visibility": True,
                                     }
                                 },
+                                "table_type": "table",
                             }
                         },
                     }
@@ -158,6 +159,7 @@ class TestMeta:
                                         "visibility": True,
                                     }
                                 },
+                                "table_type": "table",
                             }
                         },
                     }
@@ -276,6 +278,7 @@ class TestAsyncMeta:
                                         "visibility": True,
                                     }
                                 },
+                                "table_type": "table",
                             }
                         },
                     }
@@ -385,6 +388,7 @@ class TestAsyncMeta:
                                         "visibility": True,
                                     }
                                 },
+                                "table_type": "table",
                             }
                         },
                     }

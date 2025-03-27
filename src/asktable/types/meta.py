@@ -2,6 +2,7 @@
 
 from typing import Dict, Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from .._models import BaseModel
 
@@ -57,6 +58,9 @@ class SchemasTables(BaseModel):
 
     origin_desc: str
     """table description from database"""
+
+    table_type: Optional[Literal["table", "view"]] = None
+    """table type"""
 
 
 class Schemas(BaseModel):

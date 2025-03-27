@@ -36,6 +36,7 @@ class DatasourceUpdateParams(TypedDict, total=False):
             "dameng",
             "adbmysql",
             "adbpostgres",
+            "xugu",
         ]
     ]
     """数据源引擎"""

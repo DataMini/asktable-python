@@ -38,6 +38,7 @@ class TestBots:
             max_rows=50,
             publish=True,
             sample_questions=["你好！今天中午有什么适合我的午餐？"],
+            webhooks=["string"],
             welcome_message="欢迎使用AskTable",
         )
         assert_matches_type(Chatbot, bot, path=["response"])
@@ -127,6 +128,7 @@ class TestBots:
             name="name",
             publish=True,
             sample_questions=["你好！今天中午有什么适合我的午餐？"],
+            webhooks=["string"],
             welcome_message="欢迎使用AskTable",
         )
         assert_matches_type(Chatbot, bot, path=["response"])
@@ -300,6 +302,7 @@ class TestAsyncBots:
             max_rows=50,
             publish=True,
             sample_questions=["你好！今天中午有什么适合我的午餐？"],
+            webhooks=["string"],
             welcome_message="欢迎使用AskTable",
         )
         assert_matches_type(Chatbot, bot, path=["response"])
@@ -389,6 +392,7 @@ class TestAsyncBots:
             name="name",
             publish=True,
             sample_questions=["你好！今天中午有什么适合我的午餐？"],
+            webhooks=["string"],
             welcome_message="欢迎使用AskTable",
         )
         assert_matches_type(Chatbot, bot, path=["response"])
