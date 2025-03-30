@@ -28,6 +28,9 @@ class MetaSchemasTablesFields(TypedDict, total=False):
     data_type: Optional[str]
     """field data type"""
 
+    identifiable_type: Literal["plain", "person_name", "email", "ssn", "id", "phone", "address", "company"]
+    """identifiable type"""
+
     sample_data: Optional[str]
     """field sample data"""
 

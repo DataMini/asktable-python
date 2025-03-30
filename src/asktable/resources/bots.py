@@ -248,6 +248,7 @@ class BotsResource(SyncAPIResource):
     def list(
         self,
         *,
+        bot_ids: Optional[List[str]] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         size: int | NotGiven = NOT_GIVEN,
@@ -262,6 +263,8 @@ class BotsResource(SyncAPIResource):
         查询所有 Bot
 
         Args:
+          bot_ids: Bot ID
+
           name: 名称
 
           page: Page number
@@ -286,6 +289,7 @@ class BotsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "bot_ids": bot_ids,
                         "name": name,
                         "page": page,
                         "size": size,
@@ -589,6 +593,7 @@ class AsyncBotsResource(AsyncAPIResource):
     def list(
         self,
         *,
+        bot_ids: Optional[List[str]] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         size: int | NotGiven = NOT_GIVEN,
@@ -603,6 +608,8 @@ class AsyncBotsResource(AsyncAPIResource):
         查询所有 Bot
 
         Args:
+          bot_ids: Bot ID
+
           name: 名称
 
           page: Page number
@@ -627,6 +634,7 @@ class AsyncBotsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "bot_ids": bot_ids,
                         "name": name,
                         "page": page,
                         "size": size,

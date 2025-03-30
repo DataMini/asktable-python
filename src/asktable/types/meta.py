@@ -34,6 +34,11 @@ class SchemasTablesFields(BaseModel):
     data_type: Optional[str] = None
     """field data type"""
 
+    identifiable_type: Optional[
+        Literal["plain", "person_name", "email", "ssn", "id", "phone", "address", "company"]
+    ] = None
+    """identifiable type"""
+
     sample_data: Optional[str] = None
     """field sample data"""
 
