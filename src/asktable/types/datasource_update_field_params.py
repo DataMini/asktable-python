@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Optional
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["DatasourceUpdateFieldParams"]
 
@@ -14,6 +14,9 @@ class DatasourceUpdateFieldParams(TypedDict, total=False):
     schema_name: Required[str]
 
     table_name: Required[str]
+
+    identifiable_type: Optional[Literal["plain", "person_name", "email", "ssn", "id", "phone", "address", "company"]]
+    """identifiable type"""
 
     visibility: Optional[bool]
     """field visibility"""

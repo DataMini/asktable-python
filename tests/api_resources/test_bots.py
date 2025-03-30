@@ -172,6 +172,7 @@ class TestBots:
     @parametrize
     def test_method_list_with_all_params(self, client: Asktable) -> None:
         bot = client.bots.list(
+            bot_ids=["string"],
             name="name",
             page=1,
             size=1,
@@ -436,6 +437,7 @@ class TestAsyncBots:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncAsktable) -> None:
         bot = await async_client.bots.list(
+            bot_ids=["string"],
             name="name",
             page=1,
             size=1,

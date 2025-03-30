@@ -390,6 +390,7 @@ class TestDatasources:
             field_name="field_name",
             schema_name="schema_name",
             table_name="table_name",
+            identifiable_type="plain",
             visibility=True,
         )
         assert_matches_type(object, datasource, path=["response"])
@@ -806,6 +807,7 @@ class TestAsyncDatasources:
             field_name="field_name",
             schema_name="schema_name",
             table_name="table_name",
+            identifiable_type="plain",
             visibility=True,
         )
         assert_matches_type(object, datasource, path=["response"])
