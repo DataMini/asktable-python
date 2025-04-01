@@ -43,5 +43,5 @@ class Chat(BaseModel):
     role_variables: Optional[Dict[str, Union[str, int, bool]]] = None
     """在扮演这个角色时需要传递的变量值，用 Key-Value 形式传递"""
 
-    user_profile: Optional[Dict[str, str]] = None
+    user_profile: Optional[Dict[str, Union[str, int, bool]]] = None
     """用户信息，用于在对话中传递用户的信息，用 Key-Value 形式传递"""

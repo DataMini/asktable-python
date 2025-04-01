@@ -67,7 +67,7 @@ class ChatsResource(SyncAPIResource):
         name: Optional[str] | NotGiven = NOT_GIVEN,
         role_id: Optional[str] | NotGiven = NOT_GIVEN,
         role_variables: Optional[Dict[str, Union[str, int, bool]]] | NotGiven = NOT_GIVEN,
-        user_profile: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
+        user_profile: Optional[Dict[str, Union[str, int, bool]]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -263,7 +263,7 @@ class AsyncChatsResource(AsyncAPIResource):
         name: Optional[str] | NotGiven = NOT_GIVEN,
         role_id: Optional[str] | NotGiven = NOT_GIVEN,
         role_variables: Optional[Dict[str, Union[str, int, bool]]] | NotGiven = NOT_GIVEN,
-        user_profile: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
+        user_profile: Optional[Dict[str, Union[str, int, bool]]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

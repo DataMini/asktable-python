@@ -31,8 +31,8 @@ class TestChats:
             role_id="role_42",
             role_variables={"id": "123123123"},
             user_profile={
-                "age": "string",
-                "is_male": "string",
+                "age": 18,
+                "is_male": True,
                 "name": "张三",
             },
         )
@@ -184,8 +184,8 @@ class TestAsyncChats:
             role_id="role_42",
             role_variables={"id": "123123123"},
             user_profile={
-                "age": "string",
-                "is_male": "string",
+                "age": 18,
+                "is_male": True,
                 "name": "张三",
             },
         )
