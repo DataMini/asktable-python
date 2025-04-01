@@ -47,7 +47,7 @@ class ChatRetrieveResponse(BaseModel):
 
     sample_questions: Optional[List[str]] = None
 
-    user_profile: Optional[Dict[str, str]] = None
+    user_profile: Optional[Dict[str, Union[str, int, bool]]] = None
     """用户信息，用于在对话中传递用户的信息，用 Key-Value 形式传递"""
 
     welcome_message: Optional[str] = None

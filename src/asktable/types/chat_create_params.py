@@ -27,5 +27,5 @@ class ChatCreateParams(TypedDict, total=False):
     role_variables: Optional[Dict[str, Union[str, int, bool]]]
     """在扮演这个角色时需要传递的变量值，用 Key-Value 形式传递"""
 
-    user_profile: Optional[Dict[str, str]]
+    user_profile: Optional[Dict[str, Union[str, int, bool]]]
     """用户信息，用于在对话中传递用户的信息，用 Key-Value 形式传递"""
