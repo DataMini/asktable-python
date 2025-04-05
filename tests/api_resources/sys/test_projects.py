@@ -147,7 +147,7 @@ class TestProjects:
     def test_method_list_with_all_params(self, client: Asktable) -> None:
         project = client.sys.projects.list(
             page=1,
-            project_ids=["string"],
+            project_ids=["string", "string"],
             size=1,
         )
         assert_matches_type(SyncPage[Project], project, path=["response"])
@@ -365,7 +365,7 @@ class TestAsyncProjects:
     async def test_method_list_with_all_params(self, async_client: AsyncAsktable) -> None:
         project = await async_client.sys.projects.list(
             page=1,
-            project_ids=["string"],
+            project_ids=["string", "string"],
             size=1,
         )
         assert_matches_type(AsyncPage[Project], project, path=["response"])
