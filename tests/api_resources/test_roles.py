@@ -155,7 +155,7 @@ class TestRoles:
         role = client.roles.list(
             name="name",
             page=1,
-            role_ids=["string"],
+            role_ids=["string", "string"],
             size=1,
         )
         assert_matches_type(SyncPage[Role], role, path=["response"])
@@ -268,7 +268,7 @@ class TestRoles:
         role = client.roles.get_variables(
             role_id="role_id",
             bot_id="bot_id",
-            datasource_ids=["string"],
+            datasource_ids=["string", "string"],
         )
         assert_matches_type(object, role, path=["response"])
 
@@ -441,7 +441,7 @@ class TestAsyncRoles:
         role = await async_client.roles.list(
             name="name",
             page=1,
-            role_ids=["string"],
+            role_ids=["string", "string"],
             size=1,
         )
         assert_matches_type(AsyncPage[Role], role, path=["response"])
@@ -554,7 +554,7 @@ class TestAsyncRoles:
         role = await async_client.roles.get_variables(
             role_id="role_id",
             bot_id="bot_id",
-            datasource_ids=["string"],
+            datasource_ids=["string", "string"],
         )
         assert_matches_type(object, role, path=["response"])
 
