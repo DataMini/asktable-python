@@ -58,6 +58,7 @@ class BotsResource(SyncAPIResource):
         magic_input: Optional[str] | NotGiven = NOT_GIVEN,
         max_rows: int | NotGiven = NOT_GIVEN,
         publish: bool | NotGiven = NOT_GIVEN,
+        query_balance: Optional[int] | NotGiven = NOT_GIVEN,
         sample_questions: Optional[List[str]] | NotGiven = NOT_GIVEN,
         webhooks: List[str] | NotGiven = NOT_GIVEN,
         welcome_message: Optional[str] | NotGiven = NOT_GIVEN,
@@ -88,6 +89,8 @@ class BotsResource(SyncAPIResource):
 
           publish: 是否公开
 
+          query_balance: bot 的查询次数，默认是 None，表示无限次查询，入参为大于等于 0 的整数
+
           sample_questions: 示例问题列表
 
           webhooks: Webhook URL 列表
@@ -114,6 +117,7 @@ class BotsResource(SyncAPIResource):
                     "magic_input": magic_input,
                     "max_rows": max_rows,
                     "publish": publish,
+                    "query_balance": query_balance,
                     "sample_questions": sample_questions,
                     "webhooks": webhooks,
                     "welcome_message": welcome_message,
@@ -172,6 +176,7 @@ class BotsResource(SyncAPIResource):
         max_rows: Optional[int] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         publish: Optional[bool] | NotGiven = NOT_GIVEN,
+        query_balance: Optional[int] | NotGiven = NOT_GIVEN,
         sample_questions: Optional[List[str]] | NotGiven = NOT_GIVEN,
         webhooks: Optional[List[str]] | NotGiven = NOT_GIVEN,
         welcome_message: Optional[str] | NotGiven = NOT_GIVEN,
@@ -204,6 +209,8 @@ class BotsResource(SyncAPIResource):
 
           publish: 是否公开
 
+          query_balance: bot 的查询次数，默认是 None，表示无限次查询，入参为大于等于 0 的整数
+
           sample_questions: 示例问题列表
 
           webhooks: Webhook URL 列表
@@ -233,6 +240,7 @@ class BotsResource(SyncAPIResource):
                     "max_rows": max_rows,
                     "name": name,
                     "publish": publish,
+                    "query_balance": query_balance,
                     "sample_questions": sample_questions,
                     "webhooks": webhooks,
                     "welcome_message": welcome_message,
@@ -403,6 +411,7 @@ class AsyncBotsResource(AsyncAPIResource):
         magic_input: Optional[str] | NotGiven = NOT_GIVEN,
         max_rows: int | NotGiven = NOT_GIVEN,
         publish: bool | NotGiven = NOT_GIVEN,
+        query_balance: Optional[int] | NotGiven = NOT_GIVEN,
         sample_questions: Optional[List[str]] | NotGiven = NOT_GIVEN,
         webhooks: List[str] | NotGiven = NOT_GIVEN,
         welcome_message: Optional[str] | NotGiven = NOT_GIVEN,
@@ -433,6 +442,8 @@ class AsyncBotsResource(AsyncAPIResource):
 
           publish: 是否公开
 
+          query_balance: bot 的查询次数，默认是 None，表示无限次查询，入参为大于等于 0 的整数
+
           sample_questions: 示例问题列表
 
           webhooks: Webhook URL 列表
@@ -459,6 +470,7 @@ class AsyncBotsResource(AsyncAPIResource):
                     "magic_input": magic_input,
                     "max_rows": max_rows,
                     "publish": publish,
+                    "query_balance": query_balance,
                     "sample_questions": sample_questions,
                     "webhooks": webhooks,
                     "welcome_message": welcome_message,
@@ -517,6 +529,7 @@ class AsyncBotsResource(AsyncAPIResource):
         max_rows: Optional[int] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         publish: Optional[bool] | NotGiven = NOT_GIVEN,
+        query_balance: Optional[int] | NotGiven = NOT_GIVEN,
         sample_questions: Optional[List[str]] | NotGiven = NOT_GIVEN,
         webhooks: Optional[List[str]] | NotGiven = NOT_GIVEN,
         welcome_message: Optional[str] | NotGiven = NOT_GIVEN,
@@ -549,6 +562,8 @@ class AsyncBotsResource(AsyncAPIResource):
 
           publish: 是否公开
 
+          query_balance: bot 的查询次数，默认是 None，表示无限次查询，入参为大于等于 0 的整数
+
           sample_questions: 示例问题列表
 
           webhooks: Webhook URL 列表
@@ -578,6 +593,7 @@ class AsyncBotsResource(AsyncAPIResource):
                     "max_rows": max_rows,
                     "name": name,
                     "publish": publish,
+                    "query_balance": query_balance,
                     "sample_questions": sample_questions,
                     "webhooks": webhooks,
                     "welcome_message": welcome_message,

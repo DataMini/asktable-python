@@ -36,6 +36,9 @@ class BotUpdateParams(TypedDict, total=False):
     publish: Optional[bool]
     """是否公开"""
 
+    query_balance: Optional[int]
+    """bot 的查询次数，默认是 None，表示无限次查询，入参为大于等于 0 的整数"""
+
     sample_questions: Optional[List[str]]
     """示例问题列表"""
 
