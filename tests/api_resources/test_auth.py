@@ -25,7 +25,7 @@ class TestAuth:
     @parametrize
     def test_method_create_token_with_all_params(self, client: Asktable) -> None:
         auth = client.auth.create_token(
-            ak_role="sys",
+            ak_role="asker",
             chat_role={
                 "role_id": "1",
                 "role_variables": {"id": "42"},
@@ -92,7 +92,7 @@ class TestAsyncAuth:
     @parametrize
     async def test_method_create_token_with_all_params(self, async_client: AsyncAsktable) -> None:
         auth = await async_client.auth.create_token(
-            ak_role="sys",
+            ak_role="asker",
             chat_role={
                 "role_id": "1",
                 "role_variables": {"id": "42"},
