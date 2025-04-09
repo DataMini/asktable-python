@@ -45,10 +45,12 @@ class TestMeta:
                                         "name": "name",
                                         "origin_desc": "origin_desc",
                                         "data_type": "data_type",
+                                        "identifiable_type": "plain",
                                         "sample_data": "sample_data",
                                         "visibility": True,
                                     }
                                 },
+                                "table_type": "table",
                             }
                         },
                     }
@@ -154,10 +156,12 @@ class TestMeta:
                                         "name": "name",
                                         "origin_desc": "origin_desc",
                                         "data_type": "data_type",
+                                        "identifiable_type": "plain",
                                         "sample_data": "sample_data",
                                         "visibility": True,
                                     }
                                 },
+                                "table_type": "table",
                             }
                         },
                     }
@@ -272,10 +276,12 @@ class TestAsyncMeta:
                                         "name": "name",
                                         "origin_desc": "origin_desc",
                                         "data_type": "data_type",
+                                        "identifiable_type": "plain",
                                         "sample_data": "sample_data",
                                         "visibility": True,
                                     }
                                 },
+                                "table_type": "table",
                             }
                         },
                     }
@@ -381,10 +387,12 @@ class TestAsyncMeta:
                                         "name": "name",
                                         "origin_desc": "origin_desc",
                                         "data_type": "data_type",
+                                        "identifiable_type": "plain",
                                         "sample_data": "sample_data",
                                         "visibility": True,
                                     }
                                 },
+                                "table_type": "table",
                             }
                         },
                     }

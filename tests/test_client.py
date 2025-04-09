@@ -1597,7 +1597,7 @@ class TestAsyncAsktable:
         import threading
 
         from asktable._utils import asyncify
-        from asktable._base_client import get_platform 
+        from asktable._base_client import get_platform
 
         async def test_main() -> None:
             result = await asyncify(get_platform)()

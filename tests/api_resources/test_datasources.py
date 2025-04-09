@@ -134,7 +134,7 @@ class TestDatasources:
             engine="mysql",
             field_count=1,
             meta_error="error message",
-            meta_status="processing",
+            meta_status="success",
             name="用户库",
             sample_questions="示例问题",
             schema_count=1,
@@ -390,6 +390,7 @@ class TestDatasources:
             field_name="field_name",
             schema_name="schema_name",
             table_name="table_name",
+            identifiable_type="plain",
             visibility=True,
         )
         assert_matches_type(object, datasource, path=["response"])
@@ -550,7 +551,7 @@ class TestAsyncDatasources:
             engine="mysql",
             field_count=1,
             meta_error="error message",
-            meta_status="processing",
+            meta_status="success",
             name="用户库",
             sample_questions="示例问题",
             schema_count=1,
@@ -806,6 +807,7 @@ class TestAsyncDatasources:
             field_name="field_name",
             schema_name="schema_name",
             table_name="table_name",
+            identifiable_type="plain",
             visibility=True,
         )
         assert_matches_type(object, datasource, path=["response"])

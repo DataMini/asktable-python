@@ -2,6 +2,7 @@
 
 from typing import Dict, Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from .._models import BaseModel
 
@@ -33,6 +34,11 @@ class SchemasTablesFields(BaseModel):
     data_type: Optional[str] = None
     """field data type"""
 
+    identifiable_type: Optional[
+        Literal["plain", "person_name", "email", "ssn", "id", "phone", "address", "company"]
+    ] = None
+    """identifiable type"""
+
     sample_data: Optional[str] = None
     """field sample data"""
 
@@ -57,6 +63,9 @@ class SchemasTables(BaseModel):
 
     origin_desc: str
     """table description from database"""
+
+    table_type: Optional[Literal["table", "view"]] = None
+    """table type"""
 
 
 class Schemas(BaseModel):

@@ -58,7 +58,9 @@ class BotsResource(SyncAPIResource):
         magic_input: Optional[str] | NotGiven = NOT_GIVEN,
         max_rows: int | NotGiven = NOT_GIVEN,
         publish: bool | NotGiven = NOT_GIVEN,
+        query_balance: Optional[int] | NotGiven = NOT_GIVEN,
         sample_questions: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        webhooks: List[str] | NotGiven = NOT_GIVEN,
         welcome_message: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -87,7 +89,11 @@ class BotsResource(SyncAPIResource):
 
           publish: 是否公开
 
+          query_balance: bot 的查询次数，默认是 None，表示无限次查询，入参为大于等于 0 的整数
+
           sample_questions: 示例问题列表
+
+          webhooks: Webhook URL 列表
 
           welcome_message: 欢迎消息
 
@@ -111,7 +117,9 @@ class BotsResource(SyncAPIResource):
                     "magic_input": magic_input,
                     "max_rows": max_rows,
                     "publish": publish,
+                    "query_balance": query_balance,
                     "sample_questions": sample_questions,
+                    "webhooks": webhooks,
                     "welcome_message": welcome_message,
                 },
                 bot_create_params.BotCreateParams,
@@ -168,7 +176,9 @@ class BotsResource(SyncAPIResource):
         max_rows: Optional[int] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         publish: Optional[bool] | NotGiven = NOT_GIVEN,
+        query_balance: Optional[int] | NotGiven = NOT_GIVEN,
         sample_questions: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        webhooks: Optional[List[str]] | NotGiven = NOT_GIVEN,
         welcome_message: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -199,7 +209,11 @@ class BotsResource(SyncAPIResource):
 
           publish: 是否公开
 
+          query_balance: bot 的查询次数，默认是 None，表示无限次查询，入参为大于等于 0 的整数
+
           sample_questions: 示例问题列表
+
+          webhooks: Webhook URL 列表
 
           welcome_message: 欢迎消息
 
@@ -226,7 +240,9 @@ class BotsResource(SyncAPIResource):
                     "max_rows": max_rows,
                     "name": name,
                     "publish": publish,
+                    "query_balance": query_balance,
                     "sample_questions": sample_questions,
+                    "webhooks": webhooks,
                     "welcome_message": welcome_message,
                 },
                 bot_update_params.BotUpdateParams,
@@ -240,6 +256,7 @@ class BotsResource(SyncAPIResource):
     def list(
         self,
         *,
+        bot_ids: Optional[List[str]] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         size: int | NotGiven = NOT_GIVEN,
@@ -254,6 +271,8 @@ class BotsResource(SyncAPIResource):
         查询所有 Bot
 
         Args:
+          bot_ids: Bot ID
+
           name: 名称
 
           page: Page number
@@ -278,6 +297,7 @@ class BotsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "bot_ids": bot_ids,
                         "name": name,
                         "page": page,
                         "size": size,
@@ -391,7 +411,9 @@ class AsyncBotsResource(AsyncAPIResource):
         magic_input: Optional[str] | NotGiven = NOT_GIVEN,
         max_rows: int | NotGiven = NOT_GIVEN,
         publish: bool | NotGiven = NOT_GIVEN,
+        query_balance: Optional[int] | NotGiven = NOT_GIVEN,
         sample_questions: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        webhooks: List[str] | NotGiven = NOT_GIVEN,
         welcome_message: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -420,7 +442,11 @@ class AsyncBotsResource(AsyncAPIResource):
 
           publish: 是否公开
 
+          query_balance: bot 的查询次数，默认是 None，表示无限次查询，入参为大于等于 0 的整数
+
           sample_questions: 示例问题列表
+
+          webhooks: Webhook URL 列表
 
           welcome_message: 欢迎消息
 
@@ -444,7 +470,9 @@ class AsyncBotsResource(AsyncAPIResource):
                     "magic_input": magic_input,
                     "max_rows": max_rows,
                     "publish": publish,
+                    "query_balance": query_balance,
                     "sample_questions": sample_questions,
+                    "webhooks": webhooks,
                     "welcome_message": welcome_message,
                 },
                 bot_create_params.BotCreateParams,
@@ -501,7 +529,9 @@ class AsyncBotsResource(AsyncAPIResource):
         max_rows: Optional[int] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         publish: Optional[bool] | NotGiven = NOT_GIVEN,
+        query_balance: Optional[int] | NotGiven = NOT_GIVEN,
         sample_questions: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        webhooks: Optional[List[str]] | NotGiven = NOT_GIVEN,
         welcome_message: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -532,7 +562,11 @@ class AsyncBotsResource(AsyncAPIResource):
 
           publish: 是否公开
 
+          query_balance: bot 的查询次数，默认是 None，表示无限次查询，入参为大于等于 0 的整数
+
           sample_questions: 示例问题列表
+
+          webhooks: Webhook URL 列表
 
           welcome_message: 欢迎消息
 
@@ -559,7 +593,9 @@ class AsyncBotsResource(AsyncAPIResource):
                     "max_rows": max_rows,
                     "name": name,
                     "publish": publish,
+                    "query_balance": query_balance,
                     "sample_questions": sample_questions,
+                    "webhooks": webhooks,
                     "welcome_message": welcome_message,
                 },
                 bot_update_params.BotUpdateParams,
@@ -573,6 +609,7 @@ class AsyncBotsResource(AsyncAPIResource):
     def list(
         self,
         *,
+        bot_ids: Optional[List[str]] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         size: int | NotGiven = NOT_GIVEN,
@@ -587,6 +624,8 @@ class AsyncBotsResource(AsyncAPIResource):
         查询所有 Bot
 
         Args:
+          bot_ids: Bot ID
+
           name: 名称
 
           page: Page number
@@ -611,6 +650,7 @@ class AsyncBotsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "bot_ids": bot_ids,
                         "name": name,
                         "page": page,
                         "size": size,

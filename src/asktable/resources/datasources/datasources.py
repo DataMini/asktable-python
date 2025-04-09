@@ -112,6 +112,7 @@ class DatasourcesResource(SyncAPIResource):
             "dameng",
             "adbmysql",
             "adbpostgres",
+            "xugu",
         ],
         access_config: Optional[datasource_create_params.AccessConfig] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
@@ -211,6 +212,7 @@ class DatasourcesResource(SyncAPIResource):
                 "dameng",
                 "adbmysql",
                 "adbpostgres",
+                "xugu",
             ]
         ]
         | NotGiven = NOT_GIVEN,
@@ -485,6 +487,10 @@ class DatasourcesResource(SyncAPIResource):
         field_name: str,
         schema_name: str,
         table_name: str,
+        identifiable_type: Optional[
+            Literal["plain", "person_name", "email", "ssn", "id", "phone", "address", "company"]
+        ]
+        | NotGiven = NOT_GIVEN,
         visibility: Optional[bool] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -497,6 +503,8 @@ class DatasourcesResource(SyncAPIResource):
         更新数据源的某个字段的描述
 
         Args:
+          identifiable_type: identifiable type
+
           visibility: field visibility
 
           extra_headers: Send extra headers
@@ -512,7 +520,11 @@ class DatasourcesResource(SyncAPIResource):
         return self._patch(
             f"/v1/datasources/{datasource_id}/field",
             body=maybe_transform(
-                {"visibility": visibility}, datasource_update_field_params.DatasourceUpdateFieldParams
+                {
+                    "identifiable_type": identifiable_type,
+                    "visibility": visibility,
+                },
+                datasource_update_field_params.DatasourceUpdateFieldParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -582,6 +594,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
             "dameng",
             "adbmysql",
             "adbpostgres",
+            "xugu",
         ],
         access_config: Optional[datasource_create_params.AccessConfig] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
@@ -681,6 +694,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
                 "dameng",
                 "adbmysql",
                 "adbpostgres",
+                "xugu",
             ]
         ]
         | NotGiven = NOT_GIVEN,
@@ -955,6 +969,10 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         field_name: str,
         schema_name: str,
         table_name: str,
+        identifiable_type: Optional[
+            Literal["plain", "person_name", "email", "ssn", "id", "phone", "address", "company"]
+        ]
+        | NotGiven = NOT_GIVEN,
         visibility: Optional[bool] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -967,6 +985,8 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         更新数据源的某个字段的描述
 
         Args:
+          identifiable_type: identifiable type
+
           visibility: field visibility
 
           extra_headers: Send extra headers
@@ -982,7 +1002,11 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         return await self._patch(
             f"/v1/datasources/{datasource_id}/field",
             body=await async_maybe_transform(
-                {"visibility": visibility}, datasource_update_field_params.DatasourceUpdateFieldParams
+                {
+                    "identifiable_type": identifiable_type,
+                    "visibility": visibility,
+                },
+                datasource_update_field_params.DatasourceUpdateFieldParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,

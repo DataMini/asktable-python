@@ -37,7 +37,9 @@ class TestBots:
             magic_input="magic_input",
             max_rows=50,
             publish=True,
+            query_balance=100,
             sample_questions=["你好！今天中午有什么适合我的午餐？"],
+            webhooks=["string"],
             welcome_message="欢迎使用AskTable",
         )
         assert_matches_type(Chatbot, bot, path=["response"])
@@ -126,7 +128,9 @@ class TestBots:
             max_rows=50,
             name="name",
             publish=True,
+            query_balance=100,
             sample_questions=["你好！今天中午有什么适合我的午餐？"],
+            webhooks=["string"],
             welcome_message="欢迎使用AskTable",
         )
         assert_matches_type(Chatbot, bot, path=["response"])
@@ -170,6 +174,7 @@ class TestBots:
     @parametrize
     def test_method_list_with_all_params(self, client: Asktable) -> None:
         bot = client.bots.list(
+            bot_ids=["string", "string"],
             name="name",
             page=1,
             size=1,
@@ -299,7 +304,9 @@ class TestAsyncBots:
             magic_input="magic_input",
             max_rows=50,
             publish=True,
+            query_balance=100,
             sample_questions=["你好！今天中午有什么适合我的午餐？"],
+            webhooks=["string"],
             welcome_message="欢迎使用AskTable",
         )
         assert_matches_type(Chatbot, bot, path=["response"])
@@ -388,7 +395,9 @@ class TestAsyncBots:
             max_rows=50,
             name="name",
             publish=True,
+            query_balance=100,
             sample_questions=["你好！今天中午有什么适合我的午餐？"],
+            webhooks=["string"],
             welcome_message="欢迎使用AskTable",
         )
         assert_matches_type(Chatbot, bot, path=["response"])
@@ -432,6 +441,7 @@ class TestAsyncBots:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncAsktable) -> None:
         bot = await async_client.bots.list(
+            bot_ids=["string", "string"],
             name="name",
             page=1,
             size=1,
