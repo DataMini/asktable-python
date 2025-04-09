@@ -24,7 +24,7 @@ class TestAPIKeys:
     def test_method_create(self, client: Asktable) -> None:
         api_key = client.sys.projects.api_keys.create(
             project_id="project_id",
-            ak_role="sys",
+            ak_role="admin",
         )
         assert_matches_type(APIKeyCreateResponse, api_key, path=["response"])
 
@@ -32,7 +32,7 @@ class TestAPIKeys:
     def test_raw_response_create(self, client: Asktable) -> None:
         response = client.sys.projects.api_keys.with_raw_response.create(
             project_id="project_id",
-            ak_role="sys",
+            ak_role="admin",
         )
 
         assert response.is_closed is True
@@ -44,7 +44,7 @@ class TestAPIKeys:
     def test_streaming_response_create(self, client: Asktable) -> None:
         with client.sys.projects.api_keys.with_streaming_response.create(
             project_id="project_id",
-            ak_role="sys",
+            ak_role="admin",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -59,7 +59,7 @@ class TestAPIKeys:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_id` but received ''"):
             client.sys.projects.api_keys.with_raw_response.create(
                 project_id="",
-                ak_role="sys",
+                ak_role="admin",
             )
 
     @parametrize
@@ -159,7 +159,7 @@ class TestAPIKeys:
     def test_method_create_token_with_all_params(self, client: Asktable) -> None:
         api_key = client.sys.projects.api_keys.create_token(
             project_id="project_id",
-            ak_role="sys",
+            ak_role="asker",
             chat_role={
                 "role_id": "1",
                 "role_variables": {"id": "42"},
@@ -208,7 +208,7 @@ class TestAsyncAPIKeys:
     async def test_method_create(self, async_client: AsyncAsktable) -> None:
         api_key = await async_client.sys.projects.api_keys.create(
             project_id="project_id",
-            ak_role="sys",
+            ak_role="admin",
         )
         assert_matches_type(APIKeyCreateResponse, api_key, path=["response"])
 
@@ -216,7 +216,7 @@ class TestAsyncAPIKeys:
     async def test_raw_response_create(self, async_client: AsyncAsktable) -> None:
         response = await async_client.sys.projects.api_keys.with_raw_response.create(
             project_id="project_id",
-            ak_role="sys",
+            ak_role="admin",
         )
 
         assert response.is_closed is True
@@ -228,7 +228,7 @@ class TestAsyncAPIKeys:
     async def test_streaming_response_create(self, async_client: AsyncAsktable) -> None:
         async with async_client.sys.projects.api_keys.with_streaming_response.create(
             project_id="project_id",
-            ak_role="sys",
+            ak_role="admin",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -243,7 +243,7 @@ class TestAsyncAPIKeys:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_id` but received ''"):
             await async_client.sys.projects.api_keys.with_raw_response.create(
                 project_id="",
-                ak_role="sys",
+                ak_role="admin",
             )
 
     @parametrize
@@ -343,7 +343,7 @@ class TestAsyncAPIKeys:
     async def test_method_create_token_with_all_params(self, async_client: AsyncAsktable) -> None:
         api_key = await async_client.sys.projects.api_keys.create_token(
             project_id="project_id",
-            ak_role="sys",
+            ak_role="asker",
             chat_role={
                 "role_id": "1",
                 "role_variables": {"id": "42"},
