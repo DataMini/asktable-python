@@ -1,5 +1,19 @@
 # Changelog
 
+## 5.3.1 (2025-04-10)
+
+Full Changelog: [v5.3.0...v5.3.1](https://github.com/DataMini/asktable-python/compare/v5.3.0...v5.3.1)
+
+### Bug Fixes
+
+* **api:** update default base_url ([85ff425](https://github.com/DataMini/asktable-python/commit/85ff4250da2b704eaae667d2020e0b842214861d))
+
+
+### Chores
+
+* **internal:** expand CI branch coverage ([7117507](https://github.com/DataMini/asktable-python/commit/7117507899b9a4e10417d3e8588827ca48706b07))
+* **internal:** reduce CI branch coverage ([842b93d](https://github.com/DataMini/asktable-python/commit/842b93d52f827e7b1f6ee3f080b3de3f9965fbdf))
+
 ## 5.3.0 (2025-04-09)
 
 Full Changelog: [v5.2.0...v5.3.0](https://github.com/DataMini/asktable-python/compare/v5.2.0...v5.3.0)
