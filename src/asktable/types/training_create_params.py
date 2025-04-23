@@ -22,6 +22,9 @@ class Body(TypedDict, total=False):
     sql: Required[str]
     """用户问题对应的 SQL"""
 
+    active: bool
+    """是否启用"""
+
     chat_id: Optional[str]
     """聊天 ID"""
 

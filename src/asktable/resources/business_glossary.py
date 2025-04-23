@@ -115,6 +115,7 @@ class BusinessGlossaryResource(SyncAPIResource):
         self,
         entry_id: str,
         *,
+        active: Optional[bool] | NotGiven = NOT_GIVEN,
         aliases: Optional[List[str]] | NotGiven = NOT_GIVEN,
         definition: Optional[str] | NotGiven = NOT_GIVEN,
         payload: Optional[object] | NotGiven = NOT_GIVEN,
@@ -130,6 +131,8 @@ class BusinessGlossaryResource(SyncAPIResource):
         更新业务术语
 
         Args:
+          active: 业务术语是否生效
+
           aliases: 业务术语同义词
 
           definition: 业务术语定义
@@ -152,6 +155,7 @@ class BusinessGlossaryResource(SyncAPIResource):
             f"/v1/business-glossary/{entry_id}",
             body=maybe_transform(
                 {
+                    "active": active,
                     "aliases": aliases,
                     "definition": definition,
                     "payload": payload,
@@ -339,6 +343,7 @@ class AsyncBusinessGlossaryResource(AsyncAPIResource):
         self,
         entry_id: str,
         *,
+        active: Optional[bool] | NotGiven = NOT_GIVEN,
         aliases: Optional[List[str]] | NotGiven = NOT_GIVEN,
         definition: Optional[str] | NotGiven = NOT_GIVEN,
         payload: Optional[object] | NotGiven = NOT_GIVEN,
@@ -354,6 +359,8 @@ class AsyncBusinessGlossaryResource(AsyncAPIResource):
         更新业务术语
 
         Args:
+          active: 业务术语是否生效
+
           aliases: 业务术语同义词
 
           definition: 业务术语定义
@@ -376,6 +383,7 @@ class AsyncBusinessGlossaryResource(AsyncAPIResource):
             f"/v1/business-glossary/{entry_id}",
             body=await async_maybe_transform(
                 {
+                    "active": active,
                     "aliases": aliases,
                     "definition": definition,
                     "payload": payload,

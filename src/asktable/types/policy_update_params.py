@@ -13,7 +13,7 @@ class PolicyUpdateParams(TypedDict, total=False):
     """数据集配置"""
 
     name: Optional[str]
-    """名称，小写英文字母，数字和下划线组合，不超过 64 个字符"""
+    """名称"""
 
     permission: Optional[Literal["allow", "deny"]]
     """权限"""
