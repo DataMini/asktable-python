@@ -64,7 +64,7 @@ class PoliciesResource(SyncAPIResource):
         Args:
           dataset_config: 数据集配置
 
-          name: 名称，小写英文字母，数字和下划线组合，不超过 64 个字符
+          name: 名称
 
           permission: 权限
 
@@ -145,7 +145,7 @@ class PoliciesResource(SyncAPIResource):
         Args:
           dataset_config: 数据集配置
 
-          name: 名称，小写英文字母，数字和下划线组合，不超过 64 个字符
+          name: 名称
 
           permission: 权限
 
@@ -304,7 +304,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         Args:
           dataset_config: 数据集配置
 
-          name: 名称，小写英文字母，数字和下划线组合，不超过 64 个字符
+          name: 名称
 
           permission: 权限
 
@@ -385,7 +385,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         Args:
           dataset_config: 数据集配置
 
-          name: 名称，小写英文字母，数字和下划线组合，不超过 64 个字符
+          name: 名称
 
           permission: 权限
 

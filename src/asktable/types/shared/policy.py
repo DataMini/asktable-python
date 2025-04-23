@@ -50,7 +50,6 @@ class Policy(BaseModel):
     modified_at: datetime
 
     name: str
-    """名称，小写英文字母，数字和下划线组合，不超过 64 个字符"""
 
     permission: Literal["allow", "deny"]
     """权限"""

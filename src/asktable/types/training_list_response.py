@@ -30,6 +30,9 @@ class TrainingListResponse(BaseModel):
     sql: str
     """用户问题对应的 SQL"""
 
+    active: Optional[bool] = None
+    """是否启用"""
+
     chat_id: Optional[str] = None
     """聊天 ID"""
 
