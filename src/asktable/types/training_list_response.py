@@ -14,9 +14,13 @@ class TrainingListResponse(BaseModel):
     """训练数据 ID"""
 
     created_at: datetime
+    """创建时间"""
 
     datasource_id: str
     """数据源 ID"""
+
+    modified_at: datetime
+    """更新时间"""
 
     project_id: str
     """项目 ID"""

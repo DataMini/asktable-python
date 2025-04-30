@@ -19,6 +19,9 @@ class Body(TypedDict, total=False):
     term: Required[str]
     """业务术语"""
 
+    active: bool
+    """业务术语是否生效"""
+
     aliases: Optional[List[str]]
     """业务术语同义词"""
 
