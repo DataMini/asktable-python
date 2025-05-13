@@ -37,6 +37,11 @@ class DatasourceUpdateParams(TypedDict, total=False):
             "adbmysql",
             "adbpostgres",
             "xugu",
+            "doris",
+            "greenplum",
+            "selectdb",
+            "databend",
+            "sqlserver",
         ]
     ]
     """数据源引擎"""
