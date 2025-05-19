@@ -75,7 +75,7 @@ class AccessConfigAccessConfigConnectionCreate(TypedDict, total=False):
 
 class AccessConfigAccessConfigFileCreate(TypedDict, total=False):
     files: Required[List[str]]
-    """数据源文件列表"""
+    """数据源文件 URL 列表, 创建时可以传入 URL"""
 
 
 AccessConfig: TypeAlias = Union[AccessConfigAccessConfigConnectionCreate, AccessConfigAccessConfigFileCreate]
