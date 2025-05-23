@@ -23,3 +23,6 @@ class SqlCreateParams(TypedDict, total=False):
 
     role_variables: Optional[object]
     """在扮演这个角色时需要传递的变量值，用 Key-Value 形式传递"""
+
+    separate_params: bool
+    """是否将参数分开传递"""
