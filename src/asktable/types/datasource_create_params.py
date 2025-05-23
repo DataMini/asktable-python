@@ -36,6 +36,7 @@ class DatasourceCreateParams(TypedDict, total=False):
             "selectdb",
             "databend",
             "sqlserver",
+            "mogdb",
         ]
     ]
     """数据源引擎"""

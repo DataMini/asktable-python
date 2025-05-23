@@ -51,6 +51,7 @@ class SqlsResource(SyncAPIResource):
         question: str,
         role_id: Optional[str] | NotGiven = NOT_GIVEN,
         role_variables: Optional[object] | NotGiven = NOT_GIVEN,
+        separate_params: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -71,6 +72,8 @@ class SqlsResource(SyncAPIResource):
 
           role_variables: 在扮演这个角色时需要传递的变量值，用 Key-Value 形式传递
 
+          separate_params: 是否将参数分开传递
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -87,6 +90,7 @@ class SqlsResource(SyncAPIResource):
                     "question": question,
                     "role_id": role_id,
                     "role_variables": role_variables,
+                    "separate_params": separate_params,
                 },
                 sql_create_params.SqlCreateParams,
             ),
@@ -175,6 +179,7 @@ class AsyncSqlsResource(AsyncAPIResource):
         question: str,
         role_id: Optional[str] | NotGiven = NOT_GIVEN,
         role_variables: Optional[object] | NotGiven = NOT_GIVEN,
+        separate_params: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -195,6 +200,8 @@ class AsyncSqlsResource(AsyncAPIResource):
 
           role_variables: 在扮演这个角色时需要传递的变量值，用 Key-Value 形式传递
 
+          separate_params: 是否将参数分开传递
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -211,6 +218,7 @@ class AsyncSqlsResource(AsyncAPIResource):
                     "question": question,
                     "role_id": role_id,
                     "role_variables": role_variables,
+                    "separate_params": separate_params,
                 },
                 sql_create_params.SqlCreateParams,
             ),

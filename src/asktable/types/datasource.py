@@ -37,6 +37,7 @@ class Datasource(BaseModel):
         "selectdb",
         "databend",
         "sqlserver",
+        "mogdb",
     ]
     """数据源引擎"""
 

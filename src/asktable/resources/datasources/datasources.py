@@ -113,6 +113,7 @@ class DatasourcesResource(SyncAPIResource):
             "selectdb",
             "databend",
             "sqlserver",
+            "mogdb",
         ],
         access_config: Optional[datasource_create_params.AccessConfig] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
@@ -218,6 +219,7 @@ class DatasourcesResource(SyncAPIResource):
                 "selectdb",
                 "databend",
                 "sqlserver",
+                "mogdb",
             ]
         ]
         | NotGiven = NOT_GIVEN,
@@ -605,6 +607,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
             "selectdb",
             "databend",
             "sqlserver",
+            "mogdb",
         ],
         access_config: Optional[datasource_create_params.AccessConfig] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
@@ -710,6 +713,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
                 "selectdb",
                 "databend",
                 "sqlserver",
+                "mogdb",
             ]
         ]
         | NotGiven = NOT_GIVEN,
