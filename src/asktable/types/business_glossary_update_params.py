@@ -9,6 +9,9 @@ __all__ = ["BusinessGlossaryUpdateParams"]
 
 
 class BusinessGlossaryUpdateParams(TypedDict, total=False):
+    active: Optional[bool]
+    """业务术语是否生效"""
+
     aliases: Optional[List[str]]
     """业务术语同义词"""
 

@@ -14,9 +14,13 @@ class TrainingCreateResponseItem(BaseModel):
     """训练数据 ID"""
 
     created_at: datetime
+    """创建时间"""
 
     datasource_id: str
     """数据源 ID"""
+
+    modified_at: datetime
+    """更新时间"""
 
     project_id: str
     """项目 ID"""
@@ -29,6 +33,9 @@ class TrainingCreateResponseItem(BaseModel):
 
     sql: str
     """用户问题对应的 SQL"""
+
+    active: Optional[bool] = None
+    """是否启用"""
 
     chat_id: Optional[str] = None
     """聊天 ID"""

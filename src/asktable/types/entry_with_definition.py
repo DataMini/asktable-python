@@ -27,6 +27,9 @@ class EntryWithDefinition(BaseModel):
     term: str
     """业务术语"""
 
+    active: Optional[bool] = None
+    """业务术语是否生效"""
+
     aliases: Optional[List[str]] = None
     """业务术语同义词"""
 

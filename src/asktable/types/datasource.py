@@ -32,6 +32,12 @@ class Datasource(BaseModel):
         "adbmysql",
         "adbpostgres",
         "xugu",
+        "doris",
+        "greenplum",
+        "selectdb",
+        "databend",
+        "sqlserver",
+        "mogdb",
     ]
     """数据源引擎"""
 

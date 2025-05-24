@@ -9,10 +9,7 @@ import httpx
 
 from ..types import policy_list_params, policy_create_params, policy_update_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
-from .._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -67,7 +64,7 @@ class PoliciesResource(SyncAPIResource):
         Args:
           dataset_config: 数据集配置
 
-          name: 名称，小写英文字母，数字和下划线组合，不超过 64 个字符
+          name: 名称
 
           permission: 权限
 
@@ -148,7 +145,7 @@ class PoliciesResource(SyncAPIResource):
         Args:
           dataset_config: 数据集配置
 
-          name: 名称，小写英文字母，数字和下划线组合，不超过 64 个字符
+          name: 名称
 
           permission: 权限
 
@@ -307,7 +304,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         Args:
           dataset_config: 数据集配置
 
-          name: 名称，小写英文字母，数字和下划线组合，不超过 64 个字符
+          name: 名称
 
           permission: 权限
 
@@ -388,7 +385,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         Args:
           dataset_config: 数据集配置
 
-          name: 名称，小写英文字母，数字和下划线组合，不超过 64 个字符
+          name: 名称
 
           permission: 权限
 

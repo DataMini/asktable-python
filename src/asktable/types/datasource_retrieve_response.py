@@ -11,6 +11,7 @@ __all__ = [
     "AccessConfig",
     "AccessConfigAccessConfigConnectionResponse",
     "AccessConfigAccessConfigFileResponse",
+    "AccessConfigAccessConfigFileResponseFile",
 ]
 
 
@@ -46,9 +47,18 @@ class AccessConfigAccessConfigConnectionResponse(BaseModel):
     """数据库用户名"""
 
 
+class AccessConfigAccessConfigFileResponseFile(BaseModel):
+    id: str
+
+    filename: str
+
+    custom_config: Optional[object] = None
+    """文件自定义配置"""
+
+
 class AccessConfigAccessConfigFileResponse(BaseModel):
-    files: List[str]
-    """数据源文件列表"""
+    files: List[AccessConfigAccessConfigFileResponseFile]
+    """数据源文件 ID 列表"""
 
 
 AccessConfig: TypeAlias = Union[AccessConfigAccessConfigConnectionResponse, AccessConfigAccessConfigFileResponse, None]
@@ -77,6 +87,12 @@ class DatasourceRetrieveResponse(BaseModel):
         "adbmysql",
         "adbpostgres",
         "xugu",
+        "doris",
+        "greenplum",
+        "selectdb",
+        "databend",
+        "sqlserver",
+        "mogdb",
     ]
     """数据源引擎"""
 

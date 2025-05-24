@@ -12,6 +12,9 @@ class Query(BaseModel):
     sql: str
     """SQL 语句"""
 
+    params: Optional[object] = None
+    """参数"""
+
 
 class Request(BaseModel):
     datasource_id: str
@@ -28,6 +31,9 @@ class Request(BaseModel):
 
     role_variables: Optional[object] = None
     """在扮演这个角色时需要传递的变量值，用 Key-Value 形式传递"""
+
+    separate_params: Optional[bool] = None
+    """是否将参数分开传递"""
 
 
 class QueryResponse(BaseModel):

@@ -13,7 +13,7 @@ class PolicyUpdateParams(TypedDict, total=False):
     """数据集配置"""
 
     name: Optional[str]
-    """名称，小写英文字母，数字和下划线组合，不超过 64 个字符"""
+    """名称"""
 
     permission: Optional[Literal["allow", "deny"]]
     """权限"""
@@ -107,4 +107,7 @@ class DatasetConfig(TypedDict, total=False):
       - 暂不支持对字段使用函数计算，比如不支持 "YEAR(public.user.created_at) = 2023"
       - 暂不支持多个过滤条件的组合，，比如不支持 "uid = {{user_id}} AND city_id =
         {{city_id}}"
+      - 支持中文 Unicode 编码范围：4E00-9FFF（查询是否支持参考
+        ：https://www.unicode.org/cgi-bin/GetUnihanData.pl, 编码范围参考
+        ：https://www.unicode.org/charts/PDF/U4E00.pdf）
     """

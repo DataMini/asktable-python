@@ -117,6 +117,7 @@ class TestBusinessGlossary:
     def test_method_update_with_all_params(self, client: Asktable) -> None:
         business_glossary = client.business_glossary.update(
             entry_id="entry_id",
+            active=True,
             aliases=["string"],
             definition="definition",
             payload={},
@@ -326,6 +327,7 @@ class TestAsyncBusinessGlossary:
     async def test_method_update_with_all_params(self, async_client: AsyncAsktable) -> None:
         business_glossary = await async_client.business_glossary.update(
             entry_id="entry_id",
+            active=True,
             aliases=["string"],
             definition="definition",
             payload={},

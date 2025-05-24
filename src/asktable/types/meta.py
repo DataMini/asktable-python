@@ -35,7 +35,7 @@ class SchemasTablesFields(BaseModel):
     """field data type"""
 
     identifiable_type: Optional[
-        Literal["plain", "person_name", "email", "ssn", "id", "phone", "address", "company"]
+        Literal["plain", "person_name", "email", "ssn", "id", "phone", "address", "company", "bank_card"]
     ] = None
     """identifiable type"""
 
