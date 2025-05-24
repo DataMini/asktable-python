@@ -495,7 +495,7 @@ class DatasourcesResource(SyncAPIResource):
         schema_name: str,
         table_name: str,
         identifiable_type: Optional[
-            Literal["plain", "person_name", "email", "ssn", "id", "phone", "address", "company"]
+            Literal["plain", "person_name", "email", "ssn", "id", "phone", "address", "company", "bank_card"]
         ]
         | NotGiven = NOT_GIVEN,
         visibility: Optional[bool] | NotGiven = NOT_GIVEN,
@@ -989,7 +989,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         schema_name: str,
         table_name: str,
         identifiable_type: Optional[
-            Literal["plain", "person_name", "email", "ssn", "id", "phone", "address", "company"]
+            Literal["plain", "person_name", "email", "ssn", "id", "phone", "address", "company", "bank_card"]
         ]
         | NotGiven = NOT_GIVEN,
         visibility: Optional[bool] | NotGiven = NOT_GIVEN,
