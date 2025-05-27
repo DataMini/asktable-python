@@ -5,7 +5,7 @@ from datetime import datetime
 
 from .._models import BaseModel
 
-__all__ = ["QueryResponse", "Query", "Request"]
+__all__ = ["QueryResponse", "Query", "Request", "Timing"]
 
 
 class Query(BaseModel):
@@ -39,6 +39,12 @@ class Request(BaseModel):
     """在扮演这个角色时需要传递的变量值，用 Key-Value 形式传递"""
 
 
+class Timing(BaseModel):
+    llm_duration: Optional[float] = None
+
+    total_duration: Optional[float] = None
+
+
 class QueryResponse(BaseModel):
     id: str
 
@@ -57,5 +63,7 @@ class QueryResponse(BaseModel):
     status: str
 
     err_msg: Optional[str] = None
+
+    timing: Optional[Timing] = None
 
     trace_id: Optional[str] = None
