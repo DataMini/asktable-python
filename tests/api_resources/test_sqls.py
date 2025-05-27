@@ -31,9 +31,9 @@ class TestSqls:
         sql = client.sqls.create(
             datasource_id="datasource_id",
             question="question",
+            parameterize=True,
             role_id="role_id",
             role_variables={},
-            separate_params=True,
         )
         assert_matches_type(QueryResponse, sql, path=["response"])
 
@@ -114,9 +114,9 @@ class TestAsyncSqls:
         sql = await async_client.sqls.create(
             datasource_id="datasource_id",
             question="question",
+            parameterize=True,
             role_id="role_id",
             role_variables={},
-            separate_params=True,
         )
         assert_matches_type(QueryResponse, sql, path=["response"])
 
