@@ -49,9 +49,9 @@ class SqlsResource(SyncAPIResource):
         *,
         datasource_id: str,
         question: str,
+        parameterize: bool | NotGiven = NOT_GIVEN,
         role_id: Optional[str] | NotGiven = NOT_GIVEN,
         role_variables: Optional[object] | NotGiven = NOT_GIVEN,
-        separate_params: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -67,12 +67,12 @@ class SqlsResource(SyncAPIResource):
 
           question: 查询语句
 
+          parameterize: 是否将参数分开传递
+
           role_id: 角色 ID，将扮演这个角色来执行对话，用于权限控制。若无，则跳过鉴权，即可查询所有
               数据
 
           role_variables: 在扮演这个角色时需要传递的变量值，用 Key-Value 形式传递
-
-          separate_params: 是否将参数分开传递
 
           extra_headers: Send extra headers
 
@@ -88,9 +88,9 @@ class SqlsResource(SyncAPIResource):
                 {
                     "datasource_id": datasource_id,
                     "question": question,
+                    "parameterize": parameterize,
                     "role_id": role_id,
                     "role_variables": role_variables,
-                    "separate_params": separate_params,
                 },
                 sql_create_params.SqlCreateParams,
             ),
@@ -177,9 +177,9 @@ class AsyncSqlsResource(AsyncAPIResource):
         *,
         datasource_id: str,
         question: str,
+        parameterize: bool | NotGiven = NOT_GIVEN,
         role_id: Optional[str] | NotGiven = NOT_GIVEN,
         role_variables: Optional[object] | NotGiven = NOT_GIVEN,
-        separate_params: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -195,12 +195,12 @@ class AsyncSqlsResource(AsyncAPIResource):
 
           question: 查询语句
 
+          parameterize: 是否将参数分开传递
+
           role_id: 角色 ID，将扮演这个角色来执行对话，用于权限控制。若无，则跳过鉴权，即可查询所有
               数据
 
           role_variables: 在扮演这个角色时需要传递的变量值，用 Key-Value 形式传递
-
-          separate_params: 是否将参数分开传递
 
           extra_headers: Send extra headers
 
@@ -216,9 +216,9 @@ class AsyncSqlsResource(AsyncAPIResource):
                 {
                     "datasource_id": datasource_id,
                     "question": question,
+                    "parameterize": parameterize,
                     "role_id": role_id,
                     "role_variables": role_variables,
-                    "separate_params": separate_params,
                 },
                 sql_create_params.SqlCreateParams,
             ),

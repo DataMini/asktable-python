@@ -15,6 +15,9 @@ class SqlCreateParams(TypedDict, total=False):
     question: Required[str]
     """查询语句"""
 
+    parameterize: bool
+    """是否将参数分开传递"""
+
     role_id: Optional[str]
     """
     角色 ID，将扮演这个角色来执行对话，用于权限控制。若无，则跳过鉴权，即可查询所有
@@ -23,6 +26,3 @@ class SqlCreateParams(TypedDict, total=False):
 
     role_variables: Optional[object]
     """在扮演这个角色时需要传递的变量值，用 Key-Value 形式传递"""
-
-    separate_params: bool
-    """是否将参数分开传递"""
