@@ -5,7 +5,7 @@ from datetime import datetime
 
 from .._models import BaseModel
 
-__all__ = ["AnswerResponse", "Answer", "AnswerAttachment", "Request"]
+__all__ = ["AnswerResponse", "Answer", "AnswerAttachment", "Request", "Timing"]
 
 
 class AnswerAttachment(BaseModel):
@@ -44,6 +44,14 @@ class Request(BaseModel):
     """是否同时将数据，作为 json 格式的附件一起返回"""
 
 
+class Timing(BaseModel):
+    accessor_duration: Optional[float] = None
+
+    llm_duration: Optional[float] = None
+
+    total_duration: Optional[float] = None
+
+
 class AnswerResponse(BaseModel):
     id: str
 
@@ -62,5 +70,7 @@ class AnswerResponse(BaseModel):
     status: str
 
     err_msg: Optional[str] = None
+
+    timing: Optional[Timing] = None
 
     trace_id: Optional[str] = None
