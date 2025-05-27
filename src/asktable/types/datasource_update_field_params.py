@@ -15,7 +15,9 @@ class DatasourceUpdateFieldParams(TypedDict, total=False):
 
     table_name: Required[str]
 
-    identifiable_type: Optional[Literal["plain", "person_name", "email", "ssn", "id", "phone", "address", "company"]]
+    identifiable_type: Optional[
+        Literal["plain", "person_name", "email", "ssn", "id", "phone", "address", "company", "bank_card"]
+    ]
     """identifiable type"""
 
     visibility: Optional[bool]

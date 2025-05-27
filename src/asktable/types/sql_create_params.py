@@ -15,6 +15,9 @@ class SqlCreateParams(TypedDict, total=False):
     question: Required[str]
     """查询语句"""
 
+    parameterize: bool
+    """是否将参数分开传递"""
+
     role_id: Optional[str]
     """
     角色 ID，将扮演这个角色来执行对话，用于权限控制。若无，则跳过鉴权，即可查询所有

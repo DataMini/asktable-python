@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Optional
+from typing import Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 __all__ = [
@@ -10,6 +10,7 @@ __all__ = [
     "AccessConfig",
     "AccessConfigAccessConfigConnectionUpdate",
     "AccessConfigAccessConfigFileUpdate",
+    "AccessConfigAccessConfigFileUpdateFile",
 ]
 
 
@@ -37,6 +38,12 @@ class DatasourceUpdateParams(TypedDict, total=False):
             "adbmysql",
             "adbpostgres",
             "xugu",
+            "doris",
+            "greenplum",
+            "selectdb",
+            "databend",
+            "sqlserver",
+            "mogdb",
         ]
     ]
     """数据源引擎"""
@@ -89,9 +96,18 @@ class AccessConfigAccessConfigConnectionUpdate(TypedDict, total=False):
     """数据库用户名"""
 
 
+class AccessConfigAccessConfigFileUpdateFile(TypedDict, total=False):
+    id: Required[str]
+
+    filename: Required[str]
+
+    custom_config: Optional[object]
+    """文件自定义配置"""
+
+
 class AccessConfigAccessConfigFileUpdate(TypedDict, total=False):
-    files: Required[List[str]]
-    """数据源文件列表"""
+    files: Required[Iterable[AccessConfigAccessConfigFileUpdateFile]]
+    """数据源文件 ID 列表"""
 
 
 AccessConfig: TypeAlias = Union[AccessConfigAccessConfigConnectionUpdate, AccessConfigAccessConfigFileUpdate]

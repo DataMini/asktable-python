@@ -31,6 +31,7 @@ class TestSqls:
         sql = client.sqls.create(
             datasource_id="datasource_id",
             question="question",
+            parameterize=True,
             role_id="role_id",
             role_variables={},
         )
@@ -113,6 +114,7 @@ class TestAsyncSqls:
         sql = await async_client.sqls.create(
             datasource_id="datasource_id",
             question="question",
+            parameterize=True,
             role_id="role_id",
             role_variables={},
         )

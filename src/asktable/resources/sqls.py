@@ -8,10 +8,7 @@ import httpx
 
 from ..types import sql_list_params, sql_create_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -52,6 +49,7 @@ class SqlsResource(SyncAPIResource):
         *,
         datasource_id: str,
         question: str,
+        parameterize: bool | NotGiven = NOT_GIVEN,
         role_id: Optional[str] | NotGiven = NOT_GIVEN,
         role_variables: Optional[object] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -68,6 +66,8 @@ class SqlsResource(SyncAPIResource):
           datasource_id: 数据源 ID
 
           question: 查询语句
+
+          parameterize: 是否将参数分开传递
 
           role_id: 角色 ID，将扮演这个角色来执行对话，用于权限控制。若无，则跳过鉴权，即可查询所有
               数据
@@ -88,6 +88,7 @@ class SqlsResource(SyncAPIResource):
                 {
                     "datasource_id": datasource_id,
                     "question": question,
+                    "parameterize": parameterize,
                     "role_id": role_id,
                     "role_variables": role_variables,
                 },
@@ -176,6 +177,7 @@ class AsyncSqlsResource(AsyncAPIResource):
         *,
         datasource_id: str,
         question: str,
+        parameterize: bool | NotGiven = NOT_GIVEN,
         role_id: Optional[str] | NotGiven = NOT_GIVEN,
         role_variables: Optional[object] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -192,6 +194,8 @@ class AsyncSqlsResource(AsyncAPIResource):
           datasource_id: 数据源 ID
 
           question: 查询语句
+
+          parameterize: 是否将参数分开传递
 
           role_id: 角色 ID，将扮演这个角色来执行对话，用于权限控制。若无，则跳过鉴权，即可查询所有
               数据
@@ -212,6 +216,7 @@ class AsyncSqlsResource(AsyncAPIResource):
                 {
                     "datasource_id": datasource_id,
                     "question": question,
+                    "parameterize": parameterize,
                     "role_id": role_id,
                     "role_variables": role_variables,
                 },

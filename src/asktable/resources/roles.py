@@ -8,10 +8,7 @@ import httpx
 
 from ..types import role_list_params, role_create_params, role_update_params, role_get_variables_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -64,7 +61,7 @@ class RolesResource(SyncAPIResource):
         创建一个新的角色
 
         Args:
-          name: 名称，小写英文字母，数字和下划线组合，不超过 64 个字符
+          name: 名称
 
           policy_ids: 策略列表。注意：如果为空或者不传则不绑定策略
 
@@ -141,7 +138,7 @@ class RolesResource(SyncAPIResource):
         更新某个角色
 
         Args:
-          name: 名称，小写英文字母，数字和下划线组合，不超过 64 个字符
+          name: 名称
 
           policy_ids: 策略列表。注意：如果为空或者不传则不绑定策略
 
@@ -377,7 +374,7 @@ class AsyncRolesResource(AsyncAPIResource):
         创建一个新的角色
 
         Args:
-          name: 名称，小写英文字母，数字和下划线组合，不超过 64 个字符
+          name: 名称
 
           policy_ids: 策略列表。注意：如果为空或者不传则不绑定策略
 
@@ -454,7 +451,7 @@ class AsyncRolesResource(AsyncAPIResource):
         更新某个角色
 
         Args:
-          name: 名称，小写英文字母，数字和下划线组合，不超过 64 个字符
+          name: 名称
 
           policy_ids: 策略列表。注意：如果为空或者不传则不绑定策略
 

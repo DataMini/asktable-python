@@ -1,5 +1,49 @@
 # Changelog
 
+## 5.4.0 (2025-05-27)
+
+Full Changelog: [v5.3.1...v5.4.0](https://github.com/DataMini/asktable-python/compare/v5.3.1...v5.4.0)
+
+### Features
+
+* **api:** api update ([84767d7](https://github.com/DataMini/asktable-python/commit/84767d7648a7df94f1caf85628576ea948d94475))
+* **api:** api update ([558ab83](https://github.com/DataMini/asktable-python/commit/558ab837046be3f9e902a2e073096217bda1438e))
+* **api:** api update ([07d802a](https://github.com/DataMini/asktable-python/commit/07d802a94360a7e66e0594b5ba39b9fc4916a56d))
+* **api:** api update ([18a5eaf](https://github.com/DataMini/asktable-python/commit/18a5eafaf07afc7c59141e957104728fe2d413b5))
+* **api:** api update ([dc90fe3](https://github.com/DataMini/asktable-python/commit/dc90fe3f3b0829913fde1a288eb8f3ff6fbf7e6d))
+* **api:** api update ([8fda6da](https://github.com/DataMini/asktable-python/commit/8fda6da68f5c439b69572ad06df119915475acd4))
+* **api:** api update ([8cfc989](https://github.com/DataMini/asktable-python/commit/8cfc98987196f71dc9b1ac788a66e7fb7a6b62c9))
+* **api:** api update ([317b682](https://github.com/DataMini/asktable-python/commit/317b682b9de2a8803f8d2be7be7a9ed8ad1e961c))
+
+
+### Bug Fixes
+
+* **package:** support direct resource imports ([e082d60](https://github.com/DataMini/asktable-python/commit/e082d60e17dacc06f1a3091454db8d522bf8e7a2))
+* **perf:** optimize some hot paths ([4ce95f7](https://github.com/DataMini/asktable-python/commit/4ce95f7c3a5f0b7568ad63d0bb6fe8dade3d20ff))
+* **perf:** skip traversing types for NotGiven values ([00250bb](https://github.com/DataMini/asktable-python/commit/00250bbfc900cb7003e3e77239ced58934b6d826))
+* **pydantic v1:** more robust ModelField.annotation check ([c16373d](https://github.com/DataMini/asktable-python/commit/c16373dba54d24f705650aa38d3b4c1a772f23ff))
+
+
+### Chores
+
+* broadly detect json family of content-type headers ([3bff15d](https://github.com/DataMini/asktable-python/commit/3bff15dcccae660478bd3e6a30aa609e4bcc186f))
+* **ci:** add timeout thresholds for CI jobs ([f51cedc](https://github.com/DataMini/asktable-python/commit/f51cedc6e85b7300ae989972c02c2f4303c7838a))
+* **ci:** fix installation instructions ([02f7bb0](https://github.com/DataMini/asktable-python/commit/02f7bb02172f9ac58153e92c2acc063c876fd63b))
+* **ci:** only use depot for staging repos ([6c155eb](https://github.com/DataMini/asktable-python/commit/6c155eb595e7227c769e953a5040b577f85f494c))
+* **ci:** upload sdks to package manager ([ed6c603](https://github.com/DataMini/asktable-python/commit/ed6c603a22bc79cf74791566cef81b536dc0d0b3))
+* **client:** minor internal fixes ([b4af709](https://github.com/DataMini/asktable-python/commit/b4af709160aa14f36bef3a624c069b21290ded66))
+* **docs:** grammar improvements ([8f09ac8](https://github.com/DataMini/asktable-python/commit/8f09ac84dd9df377925ec5ed214037c1c5b23d48))
+* **internal:** avoid errors for isinstance checks on proxies ([79c1774](https://github.com/DataMini/asktable-python/commit/79c1774d4d811f45d947711c509911d5b0880e72))
+* **internal:** base client updates ([7e7f8c5](https://github.com/DataMini/asktable-python/commit/7e7f8c56783a125505f587d6f206da00da98f438))
+* **internal:** bump pyright version ([b56ec6c](https://github.com/DataMini/asktable-python/commit/b56ec6cc156694361cbd43a2d8590813f30a47c0))
+* **internal:** codegen related update ([3719d1b](https://github.com/DataMini/asktable-python/commit/3719d1bf1db482d5f08368b6162d67c878e48369))
+* **internal:** fix list file params ([12bba1b](https://github.com/DataMini/asktable-python/commit/12bba1b329d0149f1b8065c983efbddda6a1a1d1))
+* **internal:** import reformatting ([bb1b5a8](https://github.com/DataMini/asktable-python/commit/bb1b5a84fbea13e655f968639f3e5edf584914ad))
+* **internal:** minor formatting changes ([1f83169](https://github.com/DataMini/asktable-python/commit/1f83169570f13ba1ede9c92a23e610018d39f8e0))
+* **internal:** refactor retries to not use recursion ([af64ff0](https://github.com/DataMini/asktable-python/commit/af64ff050f75fae9c6368c6c0d105197f227397c))
+* **internal:** update models test ([4e84f01](https://github.com/DataMini/asktable-python/commit/4e84f01f5b52e119f73cab72e4ea3ceaa1889e42))
+* **internal:** update pyright settings ([c1a4b25](https://github.com/DataMini/asktable-python/commit/c1a4b25eda6192bfb974f1aa6b21ae35f4ea762e))
+
 ## 5.3.1 (2025-04-10)
 
 Full Changelog: [v5.3.0...v5.3.1](https://github.com/DataMini/asktable-python/compare/v5.3.0...v5.3.1)

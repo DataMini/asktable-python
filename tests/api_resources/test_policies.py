@@ -22,7 +22,7 @@ class TestPolicies:
     def test_method_create(self, client: Asktable) -> None:
         policy = client.policies.create(
             dataset_config={"datasource_ids": ["string"]},
-            name="name",
+            name="policy_name",
             permission="allow",
         )
         assert_matches_type(Policy, policy, path=["response"])
@@ -47,7 +47,7 @@ class TestPolicies:
                     ],
                 },
             },
-            name="name",
+            name="policy_name",
             permission="allow",
         )
         assert_matches_type(Policy, policy, path=["response"])
@@ -56,7 +56,7 @@ class TestPolicies:
     def test_raw_response_create(self, client: Asktable) -> None:
         response = client.policies.with_raw_response.create(
             dataset_config={"datasource_ids": ["string"]},
-            name="name",
+            name="policy_name",
             permission="allow",
         )
 
@@ -69,7 +69,7 @@ class TestPolicies:
     def test_streaming_response_create(self, client: Asktable) -> None:
         with client.policies.with_streaming_response.create(
             dataset_config={"datasource_ids": ["string"]},
-            name="name",
+            name="policy_name",
             permission="allow",
         ) as response:
             assert not response.is_closed
@@ -183,7 +183,7 @@ class TestPolicies:
                     ],
                 },
             },
-            name="name",
+            name="policy_name",
             permission="allow",
         )
         assert_matches_type(Policy, policy, path=["response"])
@@ -300,7 +300,7 @@ class TestAsyncPolicies:
     async def test_method_create(self, async_client: AsyncAsktable) -> None:
         policy = await async_client.policies.create(
             dataset_config={"datasource_ids": ["string"]},
-            name="name",
+            name="policy_name",
             permission="allow",
         )
         assert_matches_type(Policy, policy, path=["response"])
@@ -325,7 +325,7 @@ class TestAsyncPolicies:
                     ],
                 },
             },
-            name="name",
+            name="policy_name",
             permission="allow",
         )
         assert_matches_type(Policy, policy, path=["response"])
@@ -334,7 +334,7 @@ class TestAsyncPolicies:
     async def test_raw_response_create(self, async_client: AsyncAsktable) -> None:
         response = await async_client.policies.with_raw_response.create(
             dataset_config={"datasource_ids": ["string"]},
-            name="name",
+            name="policy_name",
             permission="allow",
         )
 
@@ -347,7 +347,7 @@ class TestAsyncPolicies:
     async def test_streaming_response_create(self, async_client: AsyncAsktable) -> None:
         async with async_client.policies.with_streaming_response.create(
             dataset_config={"datasource_ids": ["string"]},
-            name="name",
+            name="policy_name",
             permission="allow",
         ) as response:
             assert not response.is_closed
@@ -461,7 +461,7 @@ class TestAsyncPolicies:
                     ],
                 },
             },
-            name="name",
+            name="policy_name",
             permission="allow",
         )
         assert_matches_type(Policy, policy, path=["response"])

@@ -31,6 +31,12 @@ class DatasourceCreateParams(TypedDict, total=False):
             "adbmysql",
             "adbpostgres",
             "xugu",
+            "doris",
+            "greenplum",
+            "selectdb",
+            "databend",
+            "sqlserver",
+            "mogdb",
         ]
     ]
     """数据源引擎"""
@@ -70,7 +76,7 @@ class AccessConfigAccessConfigConnectionCreate(TypedDict, total=False):
 
 class AccessConfigAccessConfigFileCreate(TypedDict, total=False):
     files: Required[List[str]]
-    """数据源文件列表"""
+    """数据源文件 URL 列表, 创建时可以传入 URL"""
 
 
 AccessConfig: TypeAlias = Union[AccessConfigAccessConfigConnectionCreate, AccessConfigAccessConfigFileCreate]
