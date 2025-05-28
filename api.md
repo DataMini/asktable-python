@@ -11,13 +11,7 @@ from asktable.types import Policy
 Types:
 
 ```python
-from asktable.types.sys import (
-    APIKey,
-    ModelGroup,
-    Project,
-    ProjectDeleteResponse,
-    ProjectModelGroupsResponse,
-)
+from asktable.types.sys import APIKey, ModelGroup, Project, ProjectModelGroupsResponse
 ```
 
 Methods:
@@ -26,7 +20,7 @@ Methods:
 - <code title="get /v1/sys/projects/{project_id}">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">retrieve</a>(project_id) -> <a href="./src/asktable/types/sys/project.py">Project</a></code>
 - <code title="patch /v1/sys/projects/{project_id}">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">update</a>(project_id, \*\*<a href="src/asktable/types/sys/project_update_params.py">params</a>) -> <a href="./src/asktable/types/sys/project.py">Project</a></code>
 - <code title="get /v1/sys/projects">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">list</a>(\*\*<a href="src/asktable/types/sys/project_list_params.py">params</a>) -> <a href="./src/asktable/types/sys/project.py">SyncPage[Project]</a></code>
-- <code title="delete /v1/sys/projects/{project_id}">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">delete</a>(project_id) -> <a href="./src/asktable/types/sys/project_delete_response.py">object</a></code>
+- <code title="delete /v1/sys/projects/{project_id}">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">delete</a>(project_id) -> object</code>
 - <code title="get /v1/sys/projects/model-groups">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">model_groups</a>() -> <a href="./src/asktable/types/sys/project_model_groups_response.py">ProjectModelGroupsResponse</a></code>
 
 ### APIKeys
@@ -34,11 +28,7 @@ Methods:
 Types:
 
 ```python
-from asktable.types.sys.projects import (
-    APIKeyCreateResponse,
-    APIKeyListResponse,
-    APIKeyCreateTokenResponse,
-)
+from asktable.types.sys.projects import APIKeyCreateResponse, APIKeyListResponse
 ```
 
 Methods:
@@ -46,7 +36,7 @@ Methods:
 - <code title="post /v1/sys/projects/{project_id}/api-keys">client.sys.projects.api_keys.<a href="./src/asktable/resources/sys/projects/api_keys.py">create</a>(project_id, \*\*<a href="src/asktable/types/sys/projects/api_key_create_params.py">params</a>) -> <a href="./src/asktable/types/sys/projects/api_key_create_response.py">APIKeyCreateResponse</a></code>
 - <code title="get /v1/sys/projects/{project_id}/api-keys">client.sys.projects.api_keys.<a href="./src/asktable/resources/sys/projects/api_keys.py">list</a>(project_id) -> <a href="./src/asktable/types/sys/projects/api_key_list_response.py">APIKeyListResponse</a></code>
 - <code title="delete /v1/sys/projects/{project_id}/api-keys/{key_id}">client.sys.projects.api_keys.<a href="./src/asktable/resources/sys/projects/api_keys.py">delete</a>(key_id, \*, project_id) -> None</code>
-- <code title="post /v1/sys/projects/{project_id}/tokens">client.sys.projects.api_keys.<a href="./src/asktable/resources/sys/projects/api_keys.py">create_token</a>(project_id, \*\*<a href="src/asktable/types/sys/projects/api_key_create_token_params.py">params</a>) -> <a href="./src/asktable/types/sys/projects/api_key_create_token_response.py">object</a></code>
+- <code title="post /v1/sys/projects/{project_id}/tokens">client.sys.projects.api_keys.<a href="./src/asktable/resources/sys/projects/api_keys.py">create_token</a>(project_id, \*\*<a href="src/asktable/types/sys/projects/api_key_create_token_params.py">params</a>) -> object</code>
 
 # Securetunnels
 
@@ -70,12 +60,7 @@ Methods:
 Types:
 
 ```python
-from asktable.types import (
-    Role,
-    RoleDeleteResponse,
-    RoleGetPolicesResponse,
-    RoleGetVariablesResponse,
-)
+from asktable.types import Role, RoleGetPolicesResponse
 ```
 
 Methods:
@@ -84,9 +69,9 @@ Methods:
 - <code title="get /v1/roles/{role_id}">client.roles.<a href="./src/asktable/resources/roles.py">retrieve</a>(role_id) -> <a href="./src/asktable/types/role.py">Role</a></code>
 - <code title="patch /v1/roles/{role_id}">client.roles.<a href="./src/asktable/resources/roles.py">update</a>(role_id, \*\*<a href="src/asktable/types/role_update_params.py">params</a>) -> <a href="./src/asktable/types/role.py">Role</a></code>
 - <code title="get /v1/roles">client.roles.<a href="./src/asktable/resources/roles.py">list</a>(\*\*<a href="src/asktable/types/role_list_params.py">params</a>) -> <a href="./src/asktable/types/role.py">SyncPage[Role]</a></code>
-- <code title="delete /v1/roles/{role_id}">client.roles.<a href="./src/asktable/resources/roles.py">delete</a>(role_id) -> <a href="./src/asktable/types/role_delete_response.py">object</a></code>
+- <code title="delete /v1/roles/{role_id}">client.roles.<a href="./src/asktable/resources/roles.py">delete</a>(role_id) -> object</code>
 - <code title="get /v1/roles/{role_id}/policies">client.roles.<a href="./src/asktable/resources/roles.py">get_polices</a>(role_id) -> <a href="./src/asktable/types/role_get_polices_response.py">RoleGetPolicesResponse</a></code>
-- <code title="get /v1/roles/{role_id}/variables">client.roles.<a href="./src/asktable/resources/roles.py">get_variables</a>(role_id, \*\*<a href="src/asktable/types/role_get_variables_params.py">params</a>) -> <a href="./src/asktable/types/role_get_variables_response.py">object</a></code>
+- <code title="get /v1/roles/{role_id}/variables">client.roles.<a href="./src/asktable/resources/roles.py">get_variables</a>(role_id, \*\*<a href="src/asktable/types/role_get_variables_params.py">params</a>) -> object</code>
 
 # Policies
 
@@ -137,11 +122,7 @@ from asktable.types import (
     Index,
     Meta,
     DatasourceRetrieveResponse,
-    DatasourceDeleteResponse,
-    DatasourceAddFileResponse,
-    DatasourceDeleteFileResponse,
     DatasourceRetrieveRuntimeMetaResponse,
-    DatasourceUpdateFieldResponse,
 )
 ```
 
@@ -151,59 +132,41 @@ Methods:
 - <code title="get /v1/datasources/{datasource_id}">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">retrieve</a>(datasource_id) -> <a href="./src/asktable/types/datasource_retrieve_response.py">DatasourceRetrieveResponse</a></code>
 - <code title="patch /v1/datasources/{datasource_id}">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">update</a>(datasource_id, \*\*<a href="src/asktable/types/datasource_update_params.py">params</a>) -> <a href="./src/asktable/types/datasource.py">Datasource</a></code>
 - <code title="get /v1/datasources">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">list</a>(\*\*<a href="src/asktable/types/datasource_list_params.py">params</a>) -> <a href="./src/asktable/types/datasource.py">SyncPage[Datasource]</a></code>
-- <code title="delete /v1/datasources/{datasource_id}">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">delete</a>(datasource_id) -> <a href="./src/asktable/types/datasource_delete_response.py">object</a></code>
-- <code title="post /v1/datasources/{datasource_id}/files">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">add_file</a>(datasource_id, \*\*<a href="src/asktable/types/datasource_add_file_params.py">params</a>) -> <a href="./src/asktable/types/datasource_add_file_response.py">object</a></code>
-- <code title="delete /v1/datasources/{datasource_id}/files/{file_id}">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">delete_file</a>(file_id, \*, datasource_id) -> <a href="./src/asktable/types/datasource_delete_file_response.py">object</a></code>
+- <code title="delete /v1/datasources/{datasource_id}">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">delete</a>(datasource_id) -> object</code>
+- <code title="post /v1/datasources/{datasource_id}/files">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">add_file</a>(datasource_id, \*\*<a href="src/asktable/types/datasource_add_file_params.py">params</a>) -> object</code>
+- <code title="delete /v1/datasources/{datasource_id}/files/{file_id}">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">delete_file</a>(file_id, \*, datasource_id) -> object</code>
 - <code title="get /v1/datasources/{datasource_id}/runtime-meta">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">retrieve_runtime_meta</a>(datasource_id) -> <a href="./src/asktable/types/datasource_retrieve_runtime_meta_response.py">DatasourceRetrieveRuntimeMetaResponse</a></code>
-- <code title="patch /v1/datasources/{datasource_id}/field">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">update_field</a>(datasource_id, \*\*<a href="src/asktable/types/datasource_update_field_params.py">params</a>) -> <a href="./src/asktable/types/datasource_update_field_response.py">object</a></code>
+- <code title="patch /v1/datasources/{datasource_id}/field">client.datasources.<a href="./src/asktable/resources/datasources/datasources.py">update_field</a>(datasource_id, \*\*<a href="src/asktable/types/datasource_update_field_params.py">params</a>) -> object</code>
 
 ## Meta
 
-Types:
-
-```python
-from asktable.types.datasources import MetaCreateResponse, MetaUpdateResponse, MetaAnnotateResponse
-```
-
 Methods:
 
-- <code title="post /v1/datasources/{datasource_id}/meta">client.datasources.meta.<a href="./src/asktable/resources/datasources/meta.py">create</a>(datasource_id, \*\*<a href="src/asktable/types/datasources/meta_create_params.py">params</a>) -> <a href="./src/asktable/types/datasources/meta_create_response.py">object</a></code>
+- <code title="post /v1/datasources/{datasource_id}/meta">client.datasources.meta.<a href="./src/asktable/resources/datasources/meta.py">create</a>(datasource_id, \*\*<a href="src/asktable/types/datasources/meta_create_params.py">params</a>) -> object</code>
 - <code title="get /v1/datasources/{datasource_id}/meta">client.datasources.meta.<a href="./src/asktable/resources/datasources/meta.py">retrieve</a>(datasource_id) -> <a href="./src/asktable/types/meta.py">Meta</a></code>
-- <code title="put /v1/datasources/{datasource_id}/meta">client.datasources.meta.<a href="./src/asktable/resources/datasources/meta.py">update</a>(datasource_id, \*\*<a href="src/asktable/types/datasources/meta_update_params.py">params</a>) -> <a href="./src/asktable/types/datasources/meta_update_response.py">object</a></code>
-- <code title="patch /v1/datasources/{datasource_id}/meta">client.datasources.meta.<a href="./src/asktable/resources/datasources/meta.py">annotate</a>(datasource_id, \*\*<a href="src/asktable/types/datasources/meta_annotate_params.py">params</a>) -> <a href="./src/asktable/types/datasources/meta_annotate_response.py">object</a></code>
+- <code title="put /v1/datasources/{datasource_id}/meta">client.datasources.meta.<a href="./src/asktable/resources/datasources/meta.py">update</a>(datasource_id, \*\*<a href="src/asktable/types/datasources/meta_update_params.py">params</a>) -> object</code>
+- <code title="patch /v1/datasources/{datasource_id}/meta">client.datasources.meta.<a href="./src/asktable/resources/datasources/meta.py">annotate</a>(datasource_id, \*\*<a href="src/asktable/types/datasources/meta_annotate_params.py">params</a>) -> object</code>
 
 ## UploadParams
 
-Types:
-
-```python
-from asktable.types.datasources import UploadParamCreateResponse
-```
-
 Methods:
 
-- <code title="post /v1/datasources/upload_params">client.datasources.upload_params.<a href="./src/asktable/resources/datasources/upload_params.py">create</a>(\*\*<a href="src/asktable/types/datasources/upload_param_create_params.py">params</a>) -> <a href="./src/asktable/types/datasources/upload_param_create_response.py">object</a></code>
+- <code title="post /v1/datasources/upload_params">client.datasources.upload_params.<a href="./src/asktable/resources/datasources/upload_params.py">create</a>(\*\*<a href="src/asktable/types/datasources/upload_param_create_params.py">params</a>) -> object</code>
 
 ## Indexes
 
-Types:
-
-```python
-from asktable.types.datasources import IndexCreateResponse, IndexDeleteResponse
-```
-
 Methods:
 
-- <code title="post /v1/datasources/{ds_id}/indexes">client.datasources.indexes.<a href="./src/asktable/resources/datasources/indexes.py">create</a>(ds_id, \*\*<a href="src/asktable/types/datasources/index_create_params.py">params</a>) -> <a href="./src/asktable/types/datasources/index_create_response.py">object</a></code>
+- <code title="post /v1/datasources/{ds_id}/indexes">client.datasources.indexes.<a href="./src/asktable/resources/datasources/indexes.py">create</a>(ds_id, \*\*<a href="src/asktable/types/datasources/index_create_params.py">params</a>) -> object</code>
 - <code title="get /v1/datasources/{ds_id}/indexes">client.datasources.indexes.<a href="./src/asktable/resources/datasources/indexes.py">list</a>(ds_id, \*\*<a href="src/asktable/types/datasources/index_list_params.py">params</a>) -> <a href="./src/asktable/types/index.py">SyncPage[Index]</a></code>
-- <code title="delete /v1/datasources/{ds_id}/indexes/{index_id}">client.datasources.indexes.<a href="./src/asktable/resources/datasources/indexes.py">delete</a>(index_id, \*, ds_id) -> <a href="./src/asktable/types/datasources/index_delete_response.py">object</a></code>
+- <code title="delete /v1/datasources/{ds_id}/indexes/{index_id}">client.datasources.indexes.<a href="./src/asktable/resources/datasources/indexes.py">delete</a>(index_id, \*, ds_id) -> object</code>
 
 # Bots
 
 Types:
 
 ```python
-from asktable.types import Chatbot, BotDeleteResponse, BotInviteResponse
+from asktable.types import Chatbot
 ```
 
 Methods:
@@ -212,15 +175,15 @@ Methods:
 - <code title="get /v1/bots/{bot_id}">client.bots.<a href="./src/asktable/resources/bots.py">retrieve</a>(bot_id) -> <a href="./src/asktable/types/chatbot.py">Chatbot</a></code>
 - <code title="patch /v1/bots/{bot_id}">client.bots.<a href="./src/asktable/resources/bots.py">update</a>(bot_id, \*\*<a href="src/asktable/types/bot_update_params.py">params</a>) -> <a href="./src/asktable/types/chatbot.py">Chatbot</a></code>
 - <code title="get /v1/bots">client.bots.<a href="./src/asktable/resources/bots.py">list</a>(\*\*<a href="src/asktable/types/bot_list_params.py">params</a>) -> <a href="./src/asktable/types/chatbot.py">SyncPage[Chatbot]</a></code>
-- <code title="delete /v1/bots/{bot_id}">client.bots.<a href="./src/asktable/resources/bots.py">delete</a>(bot_id) -> <a href="./src/asktable/types/bot_delete_response.py">object</a></code>
-- <code title="post /v1/bots/{bot_id}/invite">client.bots.<a href="./src/asktable/resources/bots.py">invite</a>(bot_id, \*\*<a href="src/asktable/types/bot_invite_params.py">params</a>) -> <a href="./src/asktable/types/bot_invite_response.py">object</a></code>
+- <code title="delete /v1/bots/{bot_id}">client.bots.<a href="./src/asktable/resources/bots.py">delete</a>(bot_id) -> object</code>
+- <code title="post /v1/bots/{bot_id}/invite">client.bots.<a href="./src/asktable/resources/bots.py">invite</a>(bot_id, \*\*<a href="src/asktable/types/bot_invite_params.py">params</a>) -> object</code>
 
 # Extapis
 
 Types:
 
 ```python
-from asktable.types import Extapi, ExtapiDeleteResponse
+from asktable.types import Extapi
 ```
 
 Methods:
@@ -229,7 +192,7 @@ Methods:
 - <code title="get /v1/extapis/{extapi_id}">client.extapis.<a href="./src/asktable/resources/extapis/extapis.py">retrieve</a>(extapi_id) -> <a href="./src/asktable/types/extapi.py">Extapi</a></code>
 - <code title="post /v1/extapis/{extapi_id}">client.extapis.<a href="./src/asktable/resources/extapis/extapis.py">update</a>(extapi_id, \*\*<a href="src/asktable/types/extapi_update_params.py">params</a>) -> <a href="./src/asktable/types/extapi.py">Extapi</a></code>
 - <code title="get /v1/extapis">client.extapis.<a href="./src/asktable/resources/extapis/extapis.py">list</a>(\*\*<a href="src/asktable/types/extapi_list_params.py">params</a>) -> <a href="./src/asktable/types/extapi.py">SyncPage[Extapi]</a></code>
-- <code title="delete /v1/extapis/{extapi_id}">client.extapis.<a href="./src/asktable/resources/extapis/extapis.py">delete</a>(extapi_id) -> <a href="./src/asktable/types/extapi_delete_response.py">object</a></code>
+- <code title="delete /v1/extapis/{extapi_id}">client.extapis.<a href="./src/asktable/resources/extapis/extapis.py">delete</a>(extapi_id) -> object</code>
 
 ## Routes
 
@@ -252,12 +215,12 @@ Methods:
 Types:
 
 ```python
-from asktable.types import AuthCreateTokenResponse, AuthMeResponse
+from asktable.types import AuthMeResponse
 ```
 
 Methods:
 
-- <code title="post /v1/auth/tokens">client.auth.<a href="./src/asktable/resources/auth.py">create_token</a>(\*\*<a href="src/asktable/types/auth_create_token_params.py">params</a>) -> <a href="./src/asktable/types/auth_create_token_response.py">object</a></code>
+- <code title="post /v1/auth/tokens">client.auth.<a href="./src/asktable/resources/auth.py">create_token</a>(\*\*<a href="src/asktable/types/auth_create_token_params.py">params</a>) -> object</code>
 - <code title="get /v1/auth/me">client.auth.<a href="./src/asktable/resources/auth.py">me</a>() -> <a href="./src/asktable/types/auth_me_response.py">AuthMeResponse</a></code>
 
 # Answers
@@ -310,12 +273,7 @@ Methods:
 Types:
 
 ```python
-from asktable.types import (
-    Entry,
-    EntryWithDefinition,
-    BusinessGlossaryCreateResponse,
-    BusinessGlossaryDeleteResponse,
-)
+from asktable.types import Entry, EntryWithDefinition, BusinessGlossaryCreateResponse
 ```
 
 Methods:
@@ -324,7 +282,7 @@ Methods:
 - <code title="get /v1/business-glossary/{entry_id}">client.business_glossary.<a href="./src/asktable/resources/business_glossary.py">retrieve</a>(entry_id) -> <a href="./src/asktable/types/entry_with_definition.py">EntryWithDefinition</a></code>
 - <code title="patch /v1/business-glossary/{entry_id}">client.business_glossary.<a href="./src/asktable/resources/business_glossary.py">update</a>(entry_id, \*\*<a href="src/asktable/types/business_glossary_update_params.py">params</a>) -> <a href="./src/asktable/types/entry.py">Entry</a></code>
 - <code title="get /v1/business-glossary">client.business_glossary.<a href="./src/asktable/resources/business_glossary.py">list</a>(\*\*<a href="src/asktable/types/business_glossary_list_params.py">params</a>) -> <a href="./src/asktable/types/entry_with_definition.py">SyncPage[EntryWithDefinition]</a></code>
-- <code title="delete /v1/business-glossary/{entry_id}">client.business_glossary.<a href="./src/asktable/resources/business_glossary.py">delete</a>(entry_id) -> <a href="./src/asktable/types/business_glossary_delete_response.py">object</a></code>
+- <code title="delete /v1/business-glossary/{entry_id}">client.business_glossary.<a href="./src/asktable/resources/business_glossary.py">delete</a>(entry_id) -> object</code>
 
 # Preferences
 
@@ -335,7 +293,6 @@ from asktable.types import (
     PreferenceCreateResponse,
     PreferenceRetrieveResponse,
     PreferenceUpdateResponse,
-    PreferenceDeleteResponse,
 )
 ```
 
@@ -344,21 +301,21 @@ Methods:
 - <code title="post /v1/preference">client.preferences.<a href="./src/asktable/resources/preferences.py">create</a>(\*\*<a href="src/asktable/types/preference_create_params.py">params</a>) -> <a href="./src/asktable/types/preference_create_response.py">PreferenceCreateResponse</a></code>
 - <code title="get /v1/preference">client.preferences.<a href="./src/asktable/resources/preferences.py">retrieve</a>() -> <a href="./src/asktable/types/preference_retrieve_response.py">PreferenceRetrieveResponse</a></code>
 - <code title="patch /v1/preference">client.preferences.<a href="./src/asktable/resources/preferences.py">update</a>(\*\*<a href="src/asktable/types/preference_update_params.py">params</a>) -> <a href="./src/asktable/types/preference_update_response.py">PreferenceUpdateResponse</a></code>
-- <code title="delete /v1/preference">client.preferences.<a href="./src/asktable/resources/preferences.py">delete</a>() -> <a href="./src/asktable/types/preference_delete_response.py">object</a></code>
+- <code title="delete /v1/preference">client.preferences.<a href="./src/asktable/resources/preferences.py">delete</a>() -> object</code>
 
 # Trainings
 
 Types:
 
 ```python
-from asktable.types import TrainingCreateResponse, TrainingListResponse, TrainingDeleteResponse
+from asktable.types import TrainingCreateResponse, TrainingListResponse
 ```
 
 Methods:
 
 - <code title="post /v1/training">client.trainings.<a href="./src/asktable/resources/trainings.py">create</a>(\*\*<a href="src/asktable/types/training_create_params.py">params</a>) -> <a href="./src/asktable/types/training_create_response.py">TrainingCreateResponse</a></code>
 - <code title="get /v1/training">client.trainings.<a href="./src/asktable/resources/trainings.py">list</a>(\*\*<a href="src/asktable/types/training_list_params.py">params</a>) -> <a href="./src/asktable/types/training_list_response.py">SyncPage[TrainingListResponse]</a></code>
-- <code title="delete /v1/training/{id}">client.trainings.<a href="./src/asktable/resources/trainings.py">delete</a>(id, \*\*<a href="src/asktable/types/training_delete_params.py">params</a>) -> <a href="./src/asktable/types/training_delete_response.py">object</a></code>
+- <code title="delete /v1/training/{id}">client.trainings.<a href="./src/asktable/resources/trainings.py">delete</a>(id, \*\*<a href="src/asktable/types/training_delete_params.py">params</a>) -> object</code>
 
 # Project
 
@@ -388,15 +345,9 @@ Methods:
 
 # Files
 
-Types:
-
-```python
-from asktable.types import FileRetrieveResponse
-```
-
 Methods:
 
-- <code title="get /v1/files/{file_id}">client.files.<a href="./src/asktable/resources/files.py">retrieve</a>(file_id) -> <a href="./src/asktable/types/file_retrieve_response.py">object</a></code>
+- <code title="get /v1/files/{file_id}">client.files.<a href="./src/asktable/resources/files.py">retrieve</a>(file_id) -> object</code>
 
 # Dataframes
 
