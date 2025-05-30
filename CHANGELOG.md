@@ -1,5 +1,18 @@
 # Changelog
 
+## 5.4.1 (2025-05-30)
+
+Full Changelog: [v5.4.0...v5.4.1](https://github.com/DataMini/asktable-python/compare/v5.4.0...v5.4.1)
+
+### Bug Fixes
+
+* **docs/api:** remove references to nonexistent types ([7d673d4](https://github.com/DataMini/asktable-python/commit/7d673d44b295a507ca08ff0982cc5e033893e3d3))
+
+
+### Chores
+
+* **internal:** codegen related update ([65ea7c5](https://github.com/DataMini/asktable-python/commit/65ea7c536f5fe17dfb13666bf7e37f25bf470bd9))
+
 ## 5.4.0 (2025-05-27)
 
 Full Changelog: [v5.3.1...v5.4.0](https://github.com/DataMini/asktable-python/compare/v5.3.1...v5.4.0)
