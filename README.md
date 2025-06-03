@@ -151,10 +151,7 @@ client = Asktable()
 
 response = client.sys.projects.api_keys.create_token(
     project_id="project_id",
-    chat_role={
-        "role_id": "1",
-        "role_variables": {"id": "42"},
-    },
+    chat_role={},
 )
 print(response.chat_role)
 ```
