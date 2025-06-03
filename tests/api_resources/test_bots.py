@@ -34,6 +34,15 @@ class TestBots:
             color_theme="default",
             debug=True,
             extapi_ids=["string"],
+            interaction_rules=[
+                {
+                    "enabled": True,
+                    "message": "抱歉，您的消息包含不当内容",
+                    "name": "blocked_words_rule",
+                    "version": "1.0.0",
+                    "words": ["敏感词1", "敏感词2"],
+                }
+            ],
             magic_input="magic_input",
             max_rows=50,
             publish=True,
@@ -124,6 +133,15 @@ class TestBots:
             datasource_ids=["ds_sJAbnNOUzu3R4DdCCOwe"],
             debug=True,
             extapi_ids=["string"],
+            interaction_rules=[
+                {
+                    "enabled": True,
+                    "message": "抱歉，您的消息包含不当内容",
+                    "name": "blocked_words_rule",
+                    "version": "1.0.0",
+                    "words": ["敏感词1", "敏感词2"],
+                }
+            ],
             magic_input="magic_input",
             max_rows=50,
             name="name",
@@ -301,6 +319,15 @@ class TestAsyncBots:
             color_theme="default",
             debug=True,
             extapi_ids=["string"],
+            interaction_rules=[
+                {
+                    "enabled": True,
+                    "message": "抱歉，您的消息包含不当内容",
+                    "name": "blocked_words_rule",
+                    "version": "1.0.0",
+                    "words": ["敏感词1", "敏感词2"],
+                }
+            ],
             magic_input="magic_input",
             max_rows=50,
             publish=True,
@@ -391,6 +418,15 @@ class TestAsyncBots:
             datasource_ids=["ds_sJAbnNOUzu3R4DdCCOwe"],
             debug=True,
             extapi_ids=["string"],
+            interaction_rules=[
+                {
+                    "enabled": True,
+                    "message": "抱歉，您的消息包含不当内容",
+                    "name": "blocked_words_rule",
+                    "version": "1.0.0",
+                    "words": ["敏感词1", "敏感词2"],
+                }
+            ],
             magic_input="magic_input",
             max_rows=50,
             name="name",
