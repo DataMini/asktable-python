@@ -24,9 +24,12 @@ pip install asktable
 The full API of this library can be found in [api.md](api.md).
 
 ```python
+import os
 from asktable import Asktable
 
-client = Asktable()
+client = Asktable(
+    api_key=os.environ.get("ASKTABLE_API_KEY"),  # This is the default and can be omitted
+)
 
 datasource = client.datasources.create(
     engine="mysql",
@@ -44,10 +47,13 @@ so that your API Key is not stored in source control.
 Simply import `AsyncAsktable` instead of `Asktable` and use `await` with each API call:
 
 ```python
+import os
 import asyncio
 from asktable import AsyncAsktable
 
-client = AsyncAsktable()
+client = AsyncAsktable(
+    api_key=os.environ.get("ASKTABLE_API_KEY"),  # This is the default and can be omitted
+)
 
 
 async def main() -> None:
@@ -145,10 +151,7 @@ client = Asktable()
 
 response = client.sys.projects.api_keys.create_token(
     project_id="project_id",
-    chat_role={
-        "role_id": "1",
-        "role_variables": {"id": "42"},
-    },
+    chat_role={},
 )
 print(response.chat_role)
 ```
