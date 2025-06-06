@@ -1,5 +1,26 @@
 # Changelog
 
+## 5.5.0 (2025-06-06)
+
+Full Changelog: [v5.4.0...v5.5.0](https://github.com/DataMini/asktable-python/compare/v5.4.0...v5.5.0)
+
+### Features
+
+* **api:** api update ([d7a73bc](https://github.com/DataMini/asktable-python/commit/d7a73bceb38896da2565dd7e1ae8a3e39529a685))
+* **client:** add follow_redirects request option ([b22320b](https://github.com/DataMini/asktable-python/commit/b22320bad43f0de89af6d252c36902b2cd08ec97))
+
+
+### Bug Fixes
+
+* **docs/api:** remove references to nonexistent types ([7d673d4](https://github.com/DataMini/asktable-python/commit/7d673d44b295a507ca08ff0982cc5e033893e3d3))
+
+
+### Chores
+
+* **docs:** remove reference to rye shell ([9fc4749](https://github.com/DataMini/asktable-python/commit/9fc4749e8965d398f281078e14f0249d12571ace))
+* **docs:** remove unnecessary param examples ([d2875f3](https://github.com/DataMini/asktable-python/commit/d2875f3438404557c839e0d158a2e573c3607f1f))
+* **internal:** codegen related update ([65ea7c5](https://github.com/DataMini/asktable-python/commit/65ea7c536f5fe17dfb13666bf7e37f25bf470bd9))
+
 ## 5.4.0 (2025-05-27)
 
 Full Changelog: [v5.3.1...v5.4.0](https://github.com/DataMini/asktable-python/compare/v5.3.1...v5.4.0)
