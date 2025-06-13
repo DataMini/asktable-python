@@ -2,10 +2,23 @@
 
 from typing import List, Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["Chatbot"]
+__all__ = ["Chatbot", "InteractionRule"]
+
+
+class InteractionRule(BaseModel):
+    enabled: bool
+
+    message: str
+
+    name: str
+
+    version: Literal["1.0.0"]
+
+    words: List[str]
 
 
 class Chatbot(BaseModel):
@@ -34,6 +47,9 @@ class Chatbot(BaseModel):
 
     extapi_ids: Optional[List[str]] = None
     """扩展 API ID 列表，扩展 API ID 的逗号分隔列表。"""
+
+    interaction_rules: Optional[List[InteractionRule]] = None
+    """交互规则列表，用于定义 bot 的行为规则"""
 
     magic_input: Optional[str] = None
     """魔法提示词"""

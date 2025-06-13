@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import List, Iterable, Optional
 
 import httpx
 
@@ -52,6 +52,7 @@ class BotsResource(SyncAPIResource):
         color_theme: Optional[str] | NotGiven = NOT_GIVEN,
         debug: bool | NotGiven = NOT_GIVEN,
         extapi_ids: List[str] | NotGiven = NOT_GIVEN,
+        interaction_rules: Iterable[bot_create_params.InteractionRule] | NotGiven = NOT_GIVEN,
         magic_input: Optional[str] | NotGiven = NOT_GIVEN,
         max_rows: int | NotGiven = NOT_GIVEN,
         publish: bool | NotGiven = NOT_GIVEN,
@@ -79,6 +80,8 @@ class BotsResource(SyncAPIResource):
           debug: 调试模式
 
           extapi_ids: 扩展 API ID 列表，扩展 API ID 的逗号分隔列表。
+
+          interaction_rules: 交互规则列表，用于定义 bot 的行为规则
 
           magic_input: 魔法提示词
 
@@ -111,6 +114,7 @@ class BotsResource(SyncAPIResource):
                     "color_theme": color_theme,
                     "debug": debug,
                     "extapi_ids": extapi_ids,
+                    "interaction_rules": interaction_rules,
                     "magic_input": magic_input,
                     "max_rows": max_rows,
                     "publish": publish,
@@ -169,6 +173,7 @@ class BotsResource(SyncAPIResource):
         datasource_ids: Optional[List[str]] | NotGiven = NOT_GIVEN,
         debug: Optional[bool] | NotGiven = NOT_GIVEN,
         extapi_ids: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        interaction_rules: Optional[Iterable[bot_update_params.InteractionRule]] | NotGiven = NOT_GIVEN,
         magic_input: Optional[str] | NotGiven = NOT_GIVEN,
         max_rows: Optional[int] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
@@ -197,6 +202,8 @@ class BotsResource(SyncAPIResource):
           debug: 调试模式
 
           extapi_ids: 扩展 API ID 列表，扩展 API ID 的逗号分隔列表。
+
+          interaction_rules: 交互规则列表，用于定义 bot 的行为规则
 
           magic_input: 魔法提示词
 
@@ -233,6 +240,7 @@ class BotsResource(SyncAPIResource):
                     "datasource_ids": datasource_ids,
                     "debug": debug,
                     "extapi_ids": extapi_ids,
+                    "interaction_rules": interaction_rules,
                     "magic_input": magic_input,
                     "max_rows": max_rows,
                     "name": name,
@@ -405,6 +413,7 @@ class AsyncBotsResource(AsyncAPIResource):
         color_theme: Optional[str] | NotGiven = NOT_GIVEN,
         debug: bool | NotGiven = NOT_GIVEN,
         extapi_ids: List[str] | NotGiven = NOT_GIVEN,
+        interaction_rules: Iterable[bot_create_params.InteractionRule] | NotGiven = NOT_GIVEN,
         magic_input: Optional[str] | NotGiven = NOT_GIVEN,
         max_rows: int | NotGiven = NOT_GIVEN,
         publish: bool | NotGiven = NOT_GIVEN,
@@ -432,6 +441,8 @@ class AsyncBotsResource(AsyncAPIResource):
           debug: 调试模式
 
           extapi_ids: 扩展 API ID 列表，扩展 API ID 的逗号分隔列表。
+
+          interaction_rules: 交互规则列表，用于定义 bot 的行为规则
 
           magic_input: 魔法提示词
 
@@ -464,6 +475,7 @@ class AsyncBotsResource(AsyncAPIResource):
                     "color_theme": color_theme,
                     "debug": debug,
                     "extapi_ids": extapi_ids,
+                    "interaction_rules": interaction_rules,
                     "magic_input": magic_input,
                     "max_rows": max_rows,
                     "publish": publish,
@@ -522,6 +534,7 @@ class AsyncBotsResource(AsyncAPIResource):
         datasource_ids: Optional[List[str]] | NotGiven = NOT_GIVEN,
         debug: Optional[bool] | NotGiven = NOT_GIVEN,
         extapi_ids: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        interaction_rules: Optional[Iterable[bot_update_params.InteractionRule]] | NotGiven = NOT_GIVEN,
         magic_input: Optional[str] | NotGiven = NOT_GIVEN,
         max_rows: Optional[int] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
@@ -550,6 +563,8 @@ class AsyncBotsResource(AsyncAPIResource):
           debug: 调试模式
 
           extapi_ids: 扩展 API ID 列表，扩展 API ID 的逗号分隔列表。
+
+          interaction_rules: 交互规则列表，用于定义 bot 的行为规则
 
           magic_input: 魔法提示词
 
@@ -586,6 +601,7 @@ class AsyncBotsResource(AsyncAPIResource):
                     "datasource_ids": datasource_ids,
                     "debug": debug,
                     "extapi_ids": extapi_ids,
+                    "interaction_rules": interaction_rules,
                     "magic_input": magic_input,
                     "max_rows": max_rows,
                     "name": name,
