@@ -83,7 +83,6 @@ pip install asktable[aiohttp]
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
 
 ```python
-import os
 import asyncio
 from asktable import DefaultAioHttpClient
 from asktable import AsyncAsktable
@@ -91,7 +90,7 @@ from asktable import AsyncAsktable
 
 async def main() -> None:
     async with AsyncAsktable(
-        api_key=os.environ.get("ASKTABLE_API_KEY"),  # This is the default and can be omitted
+        api_key="My API Key",
         http_client=DefaultAioHttpClient(),
     ) as client:
         datasource = await client.datasources.create(
