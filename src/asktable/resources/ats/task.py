@@ -2,67 +2,107 @@
 
 from __future__ import annotations
 
-from typing import Iterable, Optional
+from typing import List
 
 import httpx
 
-from ..types import training_list_params, training_create_params, training_delete_params, training_update_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .._utils import maybe_transform, async_maybe_transform
-from .._compat import cached_property
-from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import (
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform, async_maybe_transform
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncPage, AsyncPage
-from .._base_client import AsyncPaginator, make_request_options
-from ..types.training_list_response import TrainingListResponse
-from ..types.training_create_response import TrainingCreateResponse
-from ..types.training_update_response import TrainingUpdateResponse
+from ...types.ats import task_run_params, task_list_params, task_get_case_tasks_params
+from ...pagination import SyncPage, AsyncPage
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.ats.task_run_response import TaskRunResponse
+from ...types.ats.task_list_response import TaskListResponse
+from ...types.ats.task_retrieve_response import TaskRetrieveResponse
+from ...types.ats.task_get_case_tasks_response import TaskGetCaseTasksResponse
 
-__all__ = ["TrainingsResource", "AsyncTrainingsResource"]
+__all__ = ["TaskResource", "AsyncTaskResource"]
 
 
-class TrainingsResource(SyncAPIResource):
+class TaskResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> TrainingsResourceWithRawResponse:
+    def with_raw_response(self) -> TaskResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/DataMini/asktable-python#accessing-raw-response-data-eg-headers
         """
-        return TrainingsResourceWithRawResponse(self)
+        return TaskResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> TrainingsResourceWithStreamingResponse:
+    def with_streaming_response(self) -> TaskResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/DataMini/asktable-python#with_streaming_response
         """
-        return TrainingsResourceWithStreamingResponse(self)
+        return TaskResourceWithStreamingResponse(self)
 
-    def create(
+    def retrieve(
         self,
+        ats_task_id: str,
         *,
-        datasource_id: str,
-        body: Iterable[training_create_params.Body],
+        ats_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TrainingCreateResponse:
+    ) -> TaskRetrieveResponse:
         """
-        Create Training Pair
+        Get Test Task Endpoint
 
         Args:
-          datasource_id: 数据源 ID
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not ats_id:
+            raise ValueError(f"Expected a non-empty value for `ats_id` but received {ats_id!r}")
+        if not ats_task_id:
+            raise ValueError(f"Expected a non-empty value for `ats_task_id` but received {ats_task_id!r}")
+        return self._get(
+            f"/v1/ats/{ats_id}/task/{ats_task_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TaskRetrieveResponse,
+        )
+
+    def list(
+        self,
+        ats_id: str,
+        *,
+        page: int | NotGiven = NOT_GIVEN,
+        size: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SyncPage[TaskListResponse]:
+        """
+        Get Test Tasks Endpoint
+
+        Args:
+          page: Page number
+
+          size: Page size
 
           extra_headers: Send extra headers
 
@@ -72,48 +112,48 @@ class TrainingsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._post(
-            "/v1/training",
-            body=maybe_transform(body, Iterable[training_create_params.Body]),
+        if not ats_id:
+            raise ValueError(f"Expected a non-empty value for `ats_id` but received {ats_id!r}")
+        return self._get_api_list(
+            f"/v1/ats/{ats_id}/task",
+            page=SyncPage[TaskListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"datasource_id": datasource_id}, training_create_params.TrainingCreateParams),
+                query=maybe_transform(
+                    {
+                        "page": page,
+                        "size": size,
+                    },
+                    task_list_params.TaskListParams,
+                ),
             ),
-            cast_to=TrainingCreateResponse,
+            model=TaskListResponse,
         )
 
-    def update(
+    def get_case_tasks(
         self,
-        id: str,
+        ats_task_id: str,
         *,
-        datasource_id: str,
-        active: Optional[bool] | NotGiven = NOT_GIVEN,
-        question: Optional[str] | NotGiven = NOT_GIVEN,
-        role_id: Optional[str] | NotGiven = NOT_GIVEN,
-        sql: Optional[str] | NotGiven = NOT_GIVEN,
+        ats_id: str,
+        page: int | NotGiven = NOT_GIVEN,
+        size: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TrainingUpdateResponse:
+    ) -> TaskGetCaseTasksResponse:
         """
-        Update Training Pair
+        Get Test Case Tasks Endpoint
 
         Args:
-          datasource_id: 数据源 ID
+          page: Page number
 
-          active: 是否启用
-
-          question: 用户问题
-
-          role_id: 角色 ID
-
-          sql: 用户问题对应的 SQL
+          size: Page size
 
           extra_headers: Send extra headers
 
@@ -123,159 +163,111 @@ class TrainingsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return self._patch(
-            f"/v1/training/{id}",
+        if not ats_id:
+            raise ValueError(f"Expected a non-empty value for `ats_id` but received {ats_id!r}")
+        if not ats_task_id:
+            raise ValueError(f"Expected a non-empty value for `ats_task_id` but received {ats_task_id!r}")
+        return self._get(
+            f"/v1/ats/{ats_id}/task/{ats_task_id}/case",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page": page,
+                        "size": size,
+                    },
+                    task_get_case_tasks_params.TaskGetCaseTasksParams,
+                ),
+            ),
+            cast_to=TaskGetCaseTasksResponse,
+        )
+
+    def run(
+        self,
+        ats_id: str,
+        *,
+        datasource_id: str,
+        specific_case_ids: List[str],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TaskRunResponse:
+        """
+        Run Task Endpoint
+
+        Args:
+          datasource_id: 数据源 ID
+
+          specific_case_ids: 测试用例 ID 列表
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not ats_id:
+            raise ValueError(f"Expected a non-empty value for `ats_id` but received {ats_id!r}")
+        return self._post(
+            f"/v1/ats/{ats_id}/task",
             body=maybe_transform(
                 {
-                    "active": active,
-                    "question": question,
-                    "role_id": role_id,
-                    "sql": sql,
+                    "datasource_id": datasource_id,
+                    "specific_case_ids": specific_case_ids,
                 },
-                training_update_params.TrainingUpdateParams,
+                task_run_params.TaskRunParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform({"datasource_id": datasource_id}, training_update_params.TrainingUpdateParams),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=TrainingUpdateResponse,
-        )
-
-    def list(
-        self,
-        *,
-        datasource_id: str,
-        page: int | NotGiven = NOT_GIVEN,
-        size: int | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncPage[TrainingListResponse]:
-        """
-        Get Training Pairs
-
-        Args:
-          datasource_id: 数据源 ID
-
-          page: Page number
-
-          size: Page size
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._get_api_list(
-            "/v1/training",
-            page=SyncPage[TrainingListResponse],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "datasource_id": datasource_id,
-                        "page": page,
-                        "size": size,
-                    },
-                    training_list_params.TrainingListParams,
-                ),
-            ),
-            model=TrainingListResponse,
-        )
-
-    def delete(
-        self,
-        id: str,
-        *,
-        datasource_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
-        """
-        Delete Training Pair
-
-        Args:
-          datasource_id: 数据源 ID
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return self._delete(
-            f"/v1/training/{id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform({"datasource_id": datasource_id}, training_delete_params.TrainingDeleteParams),
-            ),
-            cast_to=object,
+            cast_to=TaskRunResponse,
         )
 
 
-class AsyncTrainingsResource(AsyncAPIResource):
+class AsyncTaskResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncTrainingsResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncTaskResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/DataMini/asktable-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncTrainingsResourceWithRawResponse(self)
+        return AsyncTaskResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncTrainingsResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncTaskResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/DataMini/asktable-python#with_streaming_response
         """
-        return AsyncTrainingsResourceWithStreamingResponse(self)
+        return AsyncTaskResourceWithStreamingResponse(self)
 
-    async def create(
+    async def retrieve(
         self,
+        ats_task_id: str,
         *,
-        datasource_id: str,
-        body: Iterable[training_create_params.Body],
+        ats_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TrainingCreateResponse:
+    ) -> TaskRetrieveResponse:
         """
-        Create Training Pair
+        Get Test Task Endpoint
 
         Args:
-          datasource_id: 数据源 ID
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -284,88 +276,22 @@ class AsyncTrainingsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._post(
-            "/v1/training",
-            body=await async_maybe_transform(body, Iterable[training_create_params.Body]),
+        if not ats_id:
+            raise ValueError(f"Expected a non-empty value for `ats_id` but received {ats_id!r}")
+        if not ats_task_id:
+            raise ValueError(f"Expected a non-empty value for `ats_task_id` but received {ats_task_id!r}")
+        return await self._get(
+            f"/v1/ats/{ats_id}/task/{ats_task_id}",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {"datasource_id": datasource_id}, training_create_params.TrainingCreateParams
-                ),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=TrainingCreateResponse,
-        )
-
-    async def update(
-        self,
-        id: str,
-        *,
-        datasource_id: str,
-        active: Optional[bool] | NotGiven = NOT_GIVEN,
-        question: Optional[str] | NotGiven = NOT_GIVEN,
-        role_id: Optional[str] | NotGiven = NOT_GIVEN,
-        sql: Optional[str] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TrainingUpdateResponse:
-        """
-        Update Training Pair
-
-        Args:
-          datasource_id: 数据源 ID
-
-          active: 是否启用
-
-          question: 用户问题
-
-          role_id: 角色 ID
-
-          sql: 用户问题对应的 SQL
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return await self._patch(
-            f"/v1/training/{id}",
-            body=await async_maybe_transform(
-                {
-                    "active": active,
-                    "question": question,
-                    "role_id": role_id,
-                    "sql": sql,
-                },
-                training_update_params.TrainingUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {"datasource_id": datasource_id}, training_update_params.TrainingUpdateParams
-                ),
-            ),
-            cast_to=TrainingUpdateResponse,
+            cast_to=TaskRetrieveResponse,
         )
 
     def list(
         self,
+        ats_id: str,
         *,
-        datasource_id: str,
         page: int | NotGiven = NOT_GIVEN,
         size: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -374,13 +300,11 @@ class AsyncTrainingsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[TrainingListResponse, AsyncPage[TrainingListResponse]]:
+    ) -> AsyncPaginator[TaskListResponse, AsyncPage[TaskListResponse]]:
         """
-        Get Training Pairs
+        Get Test Tasks Endpoint
 
         Args:
-          datasource_id: 数据源 ID
-
           page: Page number
 
           size: Page size
@@ -393,9 +317,11 @@ class AsyncTrainingsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not ats_id:
+            raise ValueError(f"Expected a non-empty value for `ats_id` but received {ats_id!r}")
         return self._get_api_list(
-            "/v1/training",
-            page=AsyncPage[TrainingListResponse],
+            f"/v1/ats/{ats_id}/task",
+            page=AsyncPage[TaskListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -403,33 +329,36 @@ class AsyncTrainingsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "datasource_id": datasource_id,
                         "page": page,
                         "size": size,
                     },
-                    training_list_params.TrainingListParams,
+                    task_list_params.TaskListParams,
                 ),
             ),
-            model=TrainingListResponse,
+            model=TaskListResponse,
         )
 
-    async def delete(
+    async def get_case_tasks(
         self,
-        id: str,
+        ats_task_id: str,
         *,
-        datasource_id: str,
+        ats_id: str,
+        page: int | NotGiven = NOT_GIVEN,
+        size: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> TaskGetCaseTasksResponse:
         """
-        Delete Training Pair
+        Get Test Case Tasks Endpoint
 
         Args:
-          datasource_id: 数据源 ID
+          page: Page number
+
+          size: Page size
 
           extra_headers: Send extra headers
 
@@ -439,90 +368,142 @@ class AsyncTrainingsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return await self._delete(
-            f"/v1/training/{id}",
+        if not ats_id:
+            raise ValueError(f"Expected a non-empty value for `ats_id` but received {ats_id!r}")
+        if not ats_task_id:
+            raise ValueError(f"Expected a non-empty value for `ats_task_id` but received {ats_task_id!r}")
+        return await self._get(
+            f"/v1/ats/{ats_id}/task/{ats_task_id}/case",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform(
-                    {"datasource_id": datasource_id}, training_delete_params.TrainingDeleteParams
+                    {
+                        "page": page,
+                        "size": size,
+                    },
+                    task_get_case_tasks_params.TaskGetCaseTasksParams,
                 ),
             ),
-            cast_to=object,
+            cast_to=TaskGetCaseTasksResponse,
+        )
+
+    async def run(
+        self,
+        ats_id: str,
+        *,
+        datasource_id: str,
+        specific_case_ids: List[str],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TaskRunResponse:
+        """
+        Run Task Endpoint
+
+        Args:
+          datasource_id: 数据源 ID
+
+          specific_case_ids: 测试用例 ID 列表
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not ats_id:
+            raise ValueError(f"Expected a non-empty value for `ats_id` but received {ats_id!r}")
+        return await self._post(
+            f"/v1/ats/{ats_id}/task",
+            body=await async_maybe_transform(
+                {
+                    "datasource_id": datasource_id,
+                    "specific_case_ids": specific_case_ids,
+                },
+                task_run_params.TaskRunParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=TaskRunResponse,
         )
 
 
-class TrainingsResourceWithRawResponse:
-    def __init__(self, trainings: TrainingsResource) -> None:
-        self._trainings = trainings
+class TaskResourceWithRawResponse:
+    def __init__(self, task: TaskResource) -> None:
+        self._task = task
 
-        self.create = to_raw_response_wrapper(
-            trainings.create,
-        )
-        self.update = to_raw_response_wrapper(
-            trainings.update,
+        self.retrieve = to_raw_response_wrapper(
+            task.retrieve,
         )
         self.list = to_raw_response_wrapper(
-            trainings.list,
+            task.list,
         )
-        self.delete = to_raw_response_wrapper(
-            trainings.delete,
+        self.get_case_tasks = to_raw_response_wrapper(
+            task.get_case_tasks,
+        )
+        self.run = to_raw_response_wrapper(
+            task.run,
         )
 
 
-class AsyncTrainingsResourceWithRawResponse:
-    def __init__(self, trainings: AsyncTrainingsResource) -> None:
-        self._trainings = trainings
+class AsyncTaskResourceWithRawResponse:
+    def __init__(self, task: AsyncTaskResource) -> None:
+        self._task = task
 
-        self.create = async_to_raw_response_wrapper(
-            trainings.create,
-        )
-        self.update = async_to_raw_response_wrapper(
-            trainings.update,
+        self.retrieve = async_to_raw_response_wrapper(
+            task.retrieve,
         )
         self.list = async_to_raw_response_wrapper(
-            trainings.list,
+            task.list,
         )
-        self.delete = async_to_raw_response_wrapper(
-            trainings.delete,
+        self.get_case_tasks = async_to_raw_response_wrapper(
+            task.get_case_tasks,
+        )
+        self.run = async_to_raw_response_wrapper(
+            task.run,
         )
 
 
-class TrainingsResourceWithStreamingResponse:
-    def __init__(self, trainings: TrainingsResource) -> None:
-        self._trainings = trainings
+class TaskResourceWithStreamingResponse:
+    def __init__(self, task: TaskResource) -> None:
+        self._task = task
 
-        self.create = to_streamed_response_wrapper(
-            trainings.create,
-        )
-        self.update = to_streamed_response_wrapper(
-            trainings.update,
+        self.retrieve = to_streamed_response_wrapper(
+            task.retrieve,
         )
         self.list = to_streamed_response_wrapper(
-            trainings.list,
+            task.list,
         )
-        self.delete = to_streamed_response_wrapper(
-            trainings.delete,
+        self.get_case_tasks = to_streamed_response_wrapper(
+            task.get_case_tasks,
+        )
+        self.run = to_streamed_response_wrapper(
+            task.run,
         )
 
 
-class AsyncTrainingsResourceWithStreamingResponse:
-    def __init__(self, trainings: AsyncTrainingsResource) -> None:
-        self._trainings = trainings
+class AsyncTaskResourceWithStreamingResponse:
+    def __init__(self, task: AsyncTaskResource) -> None:
+        self._task = task
 
-        self.create = async_to_streamed_response_wrapper(
-            trainings.create,
-        )
-        self.update = async_to_streamed_response_wrapper(
-            trainings.update,
+        self.retrieve = async_to_streamed_response_wrapper(
+            task.retrieve,
         )
         self.list = async_to_streamed_response_wrapper(
-            trainings.list,
+            task.list,
         )
-        self.delete = async_to_streamed_response_wrapper(
-            trainings.delete,
+        self.get_case_tasks = async_to_streamed_response_wrapper(
+            task.get_case_tasks,
+        )
+        self.run = async_to_streamed_response_wrapper(
+            task.run,
         )
