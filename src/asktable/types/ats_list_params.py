@@ -2,15 +2,14 @@
 
 from __future__ import annotations
 
-from typing import Optional
-from typing_extensions import TypedDict
+from typing_extensions import Required, TypedDict
 
-__all__ = ["ExtapiListParams"]
+__all__ = ["ATSListParams"]
 
 
-class ExtapiListParams(TypedDict, total=False):
-    name: Optional[str]
-    """名称"""
+class ATSListParams(TypedDict, total=False):
+    datasource_id: Required[str]
+    """数据源 ID"""
 
     page: int
     """Page number"""

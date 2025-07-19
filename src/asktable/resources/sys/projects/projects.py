@@ -24,7 +24,7 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....types.sys import project_list_params, project_create_params, project_update_params
+from ....types.sys import project_list_params, project_create_params, project_import_params, project_update_params
 from ....pagination import SyncPage, AsyncPage
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.sys.project import Project
@@ -252,6 +252,71 @@ class ProjectsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `project_id` but received {project_id!r}")
         return self._delete(
             f"/v1/sys/projects/{project_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
+        )
+
+    def export(
+        self,
+        project_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Export Project
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not project_id:
+            raise ValueError(f"Expected a non-empty value for `project_id` but received {project_id!r}")
+        return self._post(
+            f"/v1/sys/projects/{project_id}/export",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
+        )
+
+    def import_(
+        self,
+        *,
+        body: object,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Import Project
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            "/v1/sys/projects/import",
+            body=maybe_transform(body, project_import_params.ProjectImportParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -503,6 +568,71 @@ class AsyncProjectsResource(AsyncAPIResource):
             cast_to=object,
         )
 
+    async def export(
+        self,
+        project_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Export Project
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not project_id:
+            raise ValueError(f"Expected a non-empty value for `project_id` but received {project_id!r}")
+        return await self._post(
+            f"/v1/sys/projects/{project_id}/export",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
+        )
+
+    async def import_(
+        self,
+        *,
+        body: object,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Import Project
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            "/v1/sys/projects/import",
+            body=await async_maybe_transform(body, project_import_params.ProjectImportParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
+        )
+
     async def model_groups(
         self,
         *,
@@ -542,6 +672,12 @@ class ProjectsResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             projects.delete,
         )
+        self.export = to_raw_response_wrapper(
+            projects.export,
+        )
+        self.import_ = to_raw_response_wrapper(
+            projects.import_,
+        )
         self.model_groups = to_raw_response_wrapper(
             projects.model_groups,
         )
@@ -569,6 +705,12 @@ class AsyncProjectsResourceWithRawResponse:
         )
         self.delete = async_to_raw_response_wrapper(
             projects.delete,
+        )
+        self.export = async_to_raw_response_wrapper(
+            projects.export,
+        )
+        self.import_ = async_to_raw_response_wrapper(
+            projects.import_,
         )
         self.model_groups = async_to_raw_response_wrapper(
             projects.model_groups,
@@ -598,6 +740,12 @@ class ProjectsResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             projects.delete,
         )
+        self.export = to_streamed_response_wrapper(
+            projects.export,
+        )
+        self.import_ = to_streamed_response_wrapper(
+            projects.import_,
+        )
         self.model_groups = to_streamed_response_wrapper(
             projects.model_groups,
         )
@@ -625,6 +773,12 @@ class AsyncProjectsResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             projects.delete,
+        )
+        self.export = async_to_streamed_response_wrapper(
+            projects.export,
+        )
+        self.import_ = async_to_streamed_response_wrapper(
+            projects.import_,
         )
         self.model_groups = async_to_streamed_response_wrapper(
             projects.model_groups,

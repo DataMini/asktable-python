@@ -47,9 +47,10 @@ from ._base_client import (
     SyncAPIClient,
     AsyncAPIClient,
 )
+from .resources.ats import ats
 from .resources.sys import sys
+from .resources.user import user
 from .resources.chats import chats
-from .resources.extapis import extapis
 from .resources.datasources import datasources
 
 __all__ = [
@@ -72,7 +73,6 @@ class Asktable(SyncAPIClient):
     chats: chats.ChatsResource
     datasources: datasources.DatasourcesResource
     bots: bots.BotsResource
-    extapis: extapis.ExtapisResource
     auth: auth.AuthResource
     answers: answers.AnswersResource
     sqls: sqls.SqlsResource
@@ -86,6 +86,8 @@ class Asktable(SyncAPIClient):
     files: files.FilesResource
     dataframes: dataframes.DataframesResource
     polish: polish.PolishResource
+    user: user.UserResource
+    ats: ats.ATSResource
     with_raw_response: AsktableWithRawResponse
     with_streaming_response: AsktableWithStreamedResponse
 
@@ -150,7 +152,6 @@ class Asktable(SyncAPIClient):
         self.chats = chats.ChatsResource(self)
         self.datasources = datasources.DatasourcesResource(self)
         self.bots = bots.BotsResource(self)
-        self.extapis = extapis.ExtapisResource(self)
         self.auth = auth.AuthResource(self)
         self.answers = answers.AnswersResource(self)
         self.sqls = sqls.SqlsResource(self)
@@ -164,6 +165,8 @@ class Asktable(SyncAPIClient):
         self.files = files.FilesResource(self)
         self.dataframes = dataframes.DataframesResource(self)
         self.polish = polish.PolishResource(self)
+        self.user = user.UserResource(self)
+        self.ats = ats.ATSResource(self)
         self.with_raw_response = AsktableWithRawResponse(self)
         self.with_streaming_response = AsktableWithStreamedResponse(self)
 
@@ -280,7 +283,6 @@ class AsyncAsktable(AsyncAPIClient):
     chats: chats.AsyncChatsResource
     datasources: datasources.AsyncDatasourcesResource
     bots: bots.AsyncBotsResource
-    extapis: extapis.AsyncExtapisResource
     auth: auth.AsyncAuthResource
     answers: answers.AsyncAnswersResource
     sqls: sqls.AsyncSqlsResource
@@ -294,6 +296,8 @@ class AsyncAsktable(AsyncAPIClient):
     files: files.AsyncFilesResource
     dataframes: dataframes.AsyncDataframesResource
     polish: polish.AsyncPolishResource
+    user: user.AsyncUserResource
+    ats: ats.AsyncATSResource
     with_raw_response: AsyncAsktableWithRawResponse
     with_streaming_response: AsyncAsktableWithStreamedResponse
 
@@ -358,7 +362,6 @@ class AsyncAsktable(AsyncAPIClient):
         self.chats = chats.AsyncChatsResource(self)
         self.datasources = datasources.AsyncDatasourcesResource(self)
         self.bots = bots.AsyncBotsResource(self)
-        self.extapis = extapis.AsyncExtapisResource(self)
         self.auth = auth.AsyncAuthResource(self)
         self.answers = answers.AsyncAnswersResource(self)
         self.sqls = sqls.AsyncSqlsResource(self)
@@ -372,6 +375,8 @@ class AsyncAsktable(AsyncAPIClient):
         self.files = files.AsyncFilesResource(self)
         self.dataframes = dataframes.AsyncDataframesResource(self)
         self.polish = polish.AsyncPolishResource(self)
+        self.user = user.AsyncUserResource(self)
+        self.ats = ats.AsyncATSResource(self)
         self.with_raw_response = AsyncAsktableWithRawResponse(self)
         self.with_streaming_response = AsyncAsktableWithStreamedResponse(self)
 
@@ -489,7 +494,6 @@ class AsktableWithRawResponse:
         self.chats = chats.ChatsResourceWithRawResponse(client.chats)
         self.datasources = datasources.DatasourcesResourceWithRawResponse(client.datasources)
         self.bots = bots.BotsResourceWithRawResponse(client.bots)
-        self.extapis = extapis.ExtapisResourceWithRawResponse(client.extapis)
         self.auth = auth.AuthResourceWithRawResponse(client.auth)
         self.answers = answers.AnswersResourceWithRawResponse(client.answers)
         self.sqls = sqls.SqlsResourceWithRawResponse(client.sqls)
@@ -503,6 +507,8 @@ class AsktableWithRawResponse:
         self.files = files.FilesResourceWithRawResponse(client.files)
         self.dataframes = dataframes.DataframesResourceWithRawResponse(client.dataframes)
         self.polish = polish.PolishResourceWithRawResponse(client.polish)
+        self.user = user.UserResourceWithRawResponse(client.user)
+        self.ats = ats.ATSResourceWithRawResponse(client.ats)
 
 
 class AsyncAsktableWithRawResponse:
@@ -514,7 +520,6 @@ class AsyncAsktableWithRawResponse:
         self.chats = chats.AsyncChatsResourceWithRawResponse(client.chats)
         self.datasources = datasources.AsyncDatasourcesResourceWithRawResponse(client.datasources)
         self.bots = bots.AsyncBotsResourceWithRawResponse(client.bots)
-        self.extapis = extapis.AsyncExtapisResourceWithRawResponse(client.extapis)
         self.auth = auth.AsyncAuthResourceWithRawResponse(client.auth)
         self.answers = answers.AsyncAnswersResourceWithRawResponse(client.answers)
         self.sqls = sqls.AsyncSqlsResourceWithRawResponse(client.sqls)
@@ -530,6 +535,8 @@ class AsyncAsktableWithRawResponse:
         self.files = files.AsyncFilesResourceWithRawResponse(client.files)
         self.dataframes = dataframes.AsyncDataframesResourceWithRawResponse(client.dataframes)
         self.polish = polish.AsyncPolishResourceWithRawResponse(client.polish)
+        self.user = user.AsyncUserResourceWithRawResponse(client.user)
+        self.ats = ats.AsyncATSResourceWithRawResponse(client.ats)
 
 
 class AsktableWithStreamedResponse:
@@ -541,7 +548,6 @@ class AsktableWithStreamedResponse:
         self.chats = chats.ChatsResourceWithStreamingResponse(client.chats)
         self.datasources = datasources.DatasourcesResourceWithStreamingResponse(client.datasources)
         self.bots = bots.BotsResourceWithStreamingResponse(client.bots)
-        self.extapis = extapis.ExtapisResourceWithStreamingResponse(client.extapis)
         self.auth = auth.AuthResourceWithStreamingResponse(client.auth)
         self.answers = answers.AnswersResourceWithStreamingResponse(client.answers)
         self.sqls = sqls.SqlsResourceWithStreamingResponse(client.sqls)
@@ -557,6 +563,8 @@ class AsktableWithStreamedResponse:
         self.files = files.FilesResourceWithStreamingResponse(client.files)
         self.dataframes = dataframes.DataframesResourceWithStreamingResponse(client.dataframes)
         self.polish = polish.PolishResourceWithStreamingResponse(client.polish)
+        self.user = user.UserResourceWithStreamingResponse(client.user)
+        self.ats = ats.ATSResourceWithStreamingResponse(client.ats)
 
 
 class AsyncAsktableWithStreamedResponse:
@@ -568,7 +576,6 @@ class AsyncAsktableWithStreamedResponse:
         self.chats = chats.AsyncChatsResourceWithStreamingResponse(client.chats)
         self.datasources = datasources.AsyncDatasourcesResourceWithStreamingResponse(client.datasources)
         self.bots = bots.AsyncBotsResourceWithStreamingResponse(client.bots)
-        self.extapis = extapis.AsyncExtapisResourceWithStreamingResponse(client.extapis)
         self.auth = auth.AsyncAuthResourceWithStreamingResponse(client.auth)
         self.answers = answers.AsyncAnswersResourceWithStreamingResponse(client.answers)
         self.sqls = sqls.AsyncSqlsResourceWithStreamingResponse(client.sqls)
@@ -584,6 +591,8 @@ class AsyncAsktableWithStreamedResponse:
         self.files = files.AsyncFilesResourceWithStreamingResponse(client.files)
         self.dataframes = dataframes.AsyncDataframesResourceWithStreamingResponse(client.dataframes)
         self.polish = polish.AsyncPolishResourceWithStreamingResponse(client.polish)
+        self.user = user.AsyncUserResourceWithStreamingResponse(client.user)
+        self.ats = ats.AsyncATSResourceWithStreamingResponse(client.ats)
 
 
 Client = Asktable

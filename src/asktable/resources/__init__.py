@@ -1,5 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from .ats import (
+    ATSResource,
+    AsyncATSResource,
+    ATSResourceWithRawResponse,
+    AsyncATSResourceWithRawResponse,
+    ATSResourceWithStreamingResponse,
+    AsyncATSResourceWithStreamingResponse,
+)
 from .sys import (
     SysResource,
     AsyncSysResource,
@@ -31,6 +39,14 @@ from .sqls import (
     AsyncSqlsResourceWithRawResponse,
     SqlsResourceWithStreamingResponse,
     AsyncSqlsResourceWithStreamingResponse,
+)
+from .user import (
+    UserResource,
+    AsyncUserResource,
+    UserResourceWithRawResponse,
+    AsyncUserResourceWithRawResponse,
+    UserResourceWithStreamingResponse,
+    AsyncUserResourceWithStreamingResponse,
 )
 from .chats import (
     ChatsResource,
@@ -87,14 +103,6 @@ from .answers import (
     AsyncAnswersResourceWithRawResponse,
     AnswersResourceWithStreamingResponse,
     AsyncAnswersResourceWithStreamingResponse,
-)
-from .extapis import (
-    ExtapisResource,
-    AsyncExtapisResource,
-    ExtapisResourceWithRawResponse,
-    AsyncExtapisResourceWithRawResponse,
-    ExtapisResourceWithStreamingResponse,
-    AsyncExtapisResourceWithStreamingResponse,
 )
 from .project import (
     ProjectResource,
@@ -212,12 +220,6 @@ __all__ = [
     "AsyncBotsResourceWithRawResponse",
     "BotsResourceWithStreamingResponse",
     "AsyncBotsResourceWithStreamingResponse",
-    "ExtapisResource",
-    "AsyncExtapisResource",
-    "ExtapisResourceWithRawResponse",
-    "AsyncExtapisResourceWithRawResponse",
-    "ExtapisResourceWithStreamingResponse",
-    "AsyncExtapisResourceWithStreamingResponse",
     "AuthResource",
     "AsyncAuthResource",
     "AuthResourceWithRawResponse",
@@ -296,4 +298,16 @@ __all__ = [
     "AsyncPolishResourceWithRawResponse",
     "PolishResourceWithStreamingResponse",
     "AsyncPolishResourceWithStreamingResponse",
+    "UserResource",
+    "AsyncUserResource",
+    "UserResourceWithRawResponse",
+    "AsyncUserResourceWithRawResponse",
+    "UserResourceWithStreamingResponse",
+    "AsyncUserResourceWithStreamingResponse",
+    "ATSResource",
+    "AsyncATSResource",
+    "ATSResourceWithRawResponse",
+    "AsyncATSResourceWithRawResponse",
+    "ATSResourceWithStreamingResponse",
+    "AsyncATSResourceWithStreamingResponse",
 ]
