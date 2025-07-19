@@ -2,10 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
-from typing_extensions import TypedDict
+from typing import List, Iterable, Optional
+from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["BotUpdateParams"]
+__all__ = ["BotUpdateParams", "InteractionRule"]
 
 
 class BotUpdateParams(TypedDict, total=False):
@@ -23,6 +23,9 @@ class BotUpdateParams(TypedDict, total=False):
 
     extapi_ids: Optional[List[str]]
     """扩展 API ID 列表，扩展 API ID 的逗号分隔列表。"""
+
+    interaction_rules: Optional[Iterable[InteractionRule]]
+    """交互规则列表，用于定义 bot 的行为规则"""
 
     magic_input: Optional[str]
     """魔法提示词"""
@@ -47,3 +50,15 @@ class BotUpdateParams(TypedDict, total=False):
 
     welcome_message: Optional[str]
     """欢迎消息"""
+
+
+class InteractionRule(TypedDict, total=False):
+    enabled: Required[bool]
+
+    message: Required[str]
+
+    name: Required[str]
+
+    version: Required[Literal["1.0.0"]]
+
+    words: Required[List[str]]

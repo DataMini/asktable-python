@@ -1,6 +1,7 @@
 # Asktable Python API library
 
-[![PyPI version](https://img.shields.io/pypi/v/asktable.svg)](https://pypi.org/project/asktable/)
+<!-- prettier-ignore -->
+[![PyPI version](https://img.shields.io/pypi/v/asktable.svg?label=pypi%20(stable))](https://pypi.org/project/asktable/)
 
 The Asktable Python library provides convenient access to the Asktable REST API from any Python 3.8+
 application. The library includes type definitions for all request params and response fields,
@@ -24,9 +25,12 @@ pip install asktable
 The full API of this library can be found in [api.md](api.md).
 
 ```python
+import os
 from asktable import Asktable
 
-client = Asktable()
+client = Asktable(
+    api_key=os.environ.get("ASKTABLE_API_KEY"),  # This is the default and can be omitted
+)
 
 datasource = client.datasources.create(
     engine="mysql",
@@ -44,10 +48,13 @@ so that your API Key is not stored in source control.
 Simply import `AsyncAsktable` instead of `Asktable` and use `await` with each API call:
 
 ```python
+import os
 import asyncio
 from asktable import AsyncAsktable
 
-client = AsyncAsktable()
+client = AsyncAsktable(
+    api_key=os.environ.get("ASKTABLE_API_KEY"),  # This is the default and can be omitted
+)
 
 
 async def main() -> None:
@@ -61,6 +68,39 @@ asyncio.run(main())
 ```
 
 Functionality between the synchronous and asynchronous clients is otherwise identical.
+
+### With aiohttp
+
+By default, the async client uses `httpx` for HTTP requests. However, for improved concurrency performance you may also use `aiohttp` as the HTTP backend.
+
+You can enable this by installing `aiohttp`:
+
+```sh
+# install from PyPI
+pip install asktable[aiohttp]
+```
+
+Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
+
+```python
+import asyncio
+from asktable import DefaultAioHttpClient
+from asktable import AsyncAsktable
+
+
+async def main() -> None:
+    async with AsyncAsktable(
+        api_key="My API Key",
+        http_client=DefaultAioHttpClient(),
+    ) as client:
+        datasource = await client.datasources.create(
+            engine="mysql",
+        )
+        print(datasource.id)
+
+
+asyncio.run(main())
+```
 
 ## Using types
 
@@ -145,10 +185,7 @@ client = Asktable()
 
 response = client.sys.projects.api_keys.create_token(
     project_id="project_id",
-    chat_role={
-        "role_id": "1",
-        "role_variables": {"id": "42"},
-    },
+    chat_role={},
 )
 print(response.chat_role)
 ```
@@ -240,7 +277,7 @@ client.with_options(max_retries=5).datasources.create(
 ### Timeouts
 
 By default requests time out after 5 minutes. You can configure this with a `timeout` option,
-which accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/#fine-tuning-the-configuration) object:
+which accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/timeouts/#fine-tuning-the-configuration) object:
 
 ```python
 from asktable import Asktable

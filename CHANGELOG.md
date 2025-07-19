@@ -1,5 +1,53 @@
 # Changelog
 
+## 5.5.0 (2025-07-19)
+
+Full Changelog: [v5.4.0...v5.5.0](https://github.com/DataMini/asktable-python/compare/v5.4.0...v5.5.0)
+
+### Features
+
+* **api:** add test set api ([cf653ef](https://github.com/DataMini/asktable-python/commit/cf653ef0d527894151c209f7eb79b120e8d7109c))
+* **api:** api update ([d7a73bc](https://github.com/DataMini/asktable-python/commit/d7a73bceb38896da2565dd7e1ae8a3e39529a685))
+* clean up environment call outs ([6002d27](https://github.com/DataMini/asktable-python/commit/6002d277b7004e7fdd69f8b23572cf84a6cf10da))
+* **client:** add follow_redirects request option ([b22320b](https://github.com/DataMini/asktable-python/commit/b22320bad43f0de89af6d252c36902b2cd08ec97))
+* **client:** add support for aiohttp ([292b89e](https://github.com/DataMini/asktable-python/commit/292b89e54d3215237251f84ebbae97d4cbf65310))
+
+
+### Bug Fixes
+
+* **ci:** correct conditional ([b23a053](https://github.com/DataMini/asktable-python/commit/b23a0530daffe5b27939e7ab9516790f6fb36a7b))
+* **ci:** release-doctor — report correct token name ([71f15b7](https://github.com/DataMini/asktable-python/commit/71f15b7d055dafd7aabb993d5ca0f6ca33707620))
+* **client:** correctly parse binary response | stream ([5568773](https://github.com/DataMini/asktable-python/commit/5568773fc1b6ee7a5183cd5e6789ce6eafe119e8))
+* **client:** don't send Content-Type header on GET requests ([41feabc](https://github.com/DataMini/asktable-python/commit/41feabcb23fb5c257d18ba7f96f0ddb9304d53d5))
+* **docs/api:** remove references to nonexistent types ([7d673d4](https://github.com/DataMini/asktable-python/commit/7d673d44b295a507ca08ff0982cc5e033893e3d3))
+* **pagination:** correct next page check ([03552e7](https://github.com/DataMini/asktable-python/commit/03552e74ca1fa48289b48381777b1243398777bc))
+* **parsing:** correctly handle nested discriminated unions ([5fcaeb7](https://github.com/DataMini/asktable-python/commit/5fcaeb76ff37258c12becb7e459a3cfa56988fc0))
+* **tests:** fix: tests which call HTTP endpoints directly with the example parameters ([3036c4b](https://github.com/DataMini/asktable-python/commit/3036c4bdbe59cd13bdfacdd113478e3e6ddd8ca0))
+
+
+### Chores
+
+* **ci:** change upload type ([267f707](https://github.com/DataMini/asktable-python/commit/267f707806319c9b4499046f286f891a985d22de))
+* **ci:** enable for pull requests ([a6636e7](https://github.com/DataMini/asktable-python/commit/a6636e7b8409f7750b52c4850f05be437e4ed31d))
+* **ci:** only run for pushes and fork pull requests ([f5756ca](https://github.com/DataMini/asktable-python/commit/f5756ca55464cba7219498f0fcf0786d299fdc7d))
+* **docs:** remove reference to rye shell ([9fc4749](https://github.com/DataMini/asktable-python/commit/9fc4749e8965d398f281078e14f0249d12571ace))
+* **docs:** remove unnecessary param examples ([d2875f3](https://github.com/DataMini/asktable-python/commit/d2875f3438404557c839e0d158a2e573c3607f1f))
+* **internal:** bump pinned h11 dep ([cb54577](https://github.com/DataMini/asktable-python/commit/cb545771166f525600c876d70e6ca9af74aada7f))
+* **internal:** codegen related update ([c281941](https://github.com/DataMini/asktable-python/commit/c28194157b0e93b082fc5c441528a4bdc0640c00))
+* **internal:** codegen related update ([65ea7c5](https://github.com/DataMini/asktable-python/commit/65ea7c536f5fe17dfb13666bf7e37f25bf470bd9))
+* **internal:** update conftest.py ([f06435d](https://github.com/DataMini/asktable-python/commit/f06435ded63522ac7f30d47b560183b86e95ef27))
+* **package:** mark python 3.13 as supported ([e1a20f7](https://github.com/DataMini/asktable-python/commit/e1a20f7a5f7ce9dee0d182c2addc5fcf8b4342ae))
+* **readme:** fix version rendering on pypi ([e05e6e5](https://github.com/DataMini/asktable-python/commit/e05e6e562cfddd5ef7b3ee27a2a155e0e8305e6c))
+* **readme:** update badges ([bc28102](https://github.com/DataMini/asktable-python/commit/bc281028397ea60d93f86ea563e3e9cba303b0c6))
+* **tests:** add tests for httpx client instantiation & proxies ([c620e09](https://github.com/DataMini/asktable-python/commit/c620e09f4be03fabc31167839018e69b8d7f5d7b))
+* **tests:** run tests in parallel ([9d9d65e](https://github.com/DataMini/asktable-python/commit/9d9d65e5be80faba732cd2d29854186ff565b4c7))
+* **tests:** skip some failing tests on the latest python versions ([188abef](https://github.com/DataMini/asktable-python/commit/188abef74adcaf1c5b8b4ee8b39315aba98c7f95))
+
+
+### Documentation
+
+* **client:** fix httpx.Timeout documentation reference ([482e328](https://github.com/DataMini/asktable-python/commit/482e328e4938b04c3eca656984857d2ffc302fa3))
+
 ## 5.4.0 (2025-05-27)
 
 Full Changelog: [v5.3.1...v5.4.0](https://github.com/DataMini/asktable-python/compare/v5.3.1...v5.4.0)
