@@ -1,5 +1,24 @@
 # Changelog
 
+## 5.6.0 (2025-08-02)
+
+Full Changelog: [v5.5.0...v5.6.0](https://github.com/DataMini/asktable-python/compare/v5.5.0...v5.6.0)
+
+### Features
+
+* **client:** support file upload requests ([e9bac63](https://github.com/DataMini/asktable-python/commit/e9bac63f9b86123f21df0343e44bd9423e053bbe))
+
+
+### Bug Fixes
+
+* **parsing:** ignore empty metadata ([8c48f1b](https://github.com/DataMini/asktable-python/commit/8c48f1b05dbebb99a432ab9fd7b57f8aed109d60))
+* **parsing:** parse extra field types ([40c9351](https://github.com/DataMini/asktable-python/commit/40c9351059a44df1f640f5791a126e175ebadad6))
+
+
+### Chores
+
+* **project:** add settings file for vscode ([1641a3d](https://github.com/DataMini/asktable-python/commit/1641a3d8c4a5647a81b6292b3fd8805ab3132bb8))
+
 ## 5.5.0 (2025-07-19)
 
 Full Changelog: [v5.4.0...v5.5.0](https://github.com/DataMini/asktable-python/compare/v5.4.0...v5.5.0)
