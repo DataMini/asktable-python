@@ -2,10 +2,19 @@
 
 from typing import List, Union, Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["TaskGetCaseTasksResponse", "Item"]
+__all__ = ["TaskGetCaseTasksResponse", "Item", "ItemCompareLog"]
+
+
+class ItemCompareLog(BaseModel):
+    check: str
+
+    level: Literal["ERROR", "WARNING", "INFO"]
+
+    message: str
 
 
 class Item(BaseModel):
@@ -32,6 +41,9 @@ class Item(BaseModel):
 
     atc_id: Optional[str] = None
     """对应的测试用例 ID"""
+
+    compare_logs: Optional[List[ItemCompareLog]] = None
+    """测试样本生成 sql 和预期 sql 的对比日志"""
 
     duration: Optional[float] = None
     """测试用例执行时间,单位为秒"""
