@@ -72,6 +72,9 @@ class Item(BaseModel):
     task_id: Optional[str] = None
     """测试调用接口对应任务的 id"""
 
+    trace_id: Optional[str] = None
+    """测试样本运行时对应的 trace_id"""
+
 
 class TaskGetCaseTasksResponse(BaseModel):
     items: List[Item]
