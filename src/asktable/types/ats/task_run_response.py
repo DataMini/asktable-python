@@ -3,9 +3,25 @@
 from typing import Optional
 from datetime import datetime
 
+from pydantic import Field as FieldInfo
+
 from ..._models import BaseModel
 
-__all__ = ["TaskRunResponse"]
+__all__ = ["TaskRunResponse", "ModelGroup"]
+
+
+class ModelGroup(BaseModel):
+    agent: str
+
+    fast: str
+
+    image: str
+
+    name: str
+
+    omni: str
+
+    sql: str
 
 
 class TaskRunResponse(BaseModel):
@@ -44,6 +60,9 @@ class TaskRunResponse(BaseModel):
 
     last_run: Optional[datetime] = None
     """上次测试运行时间"""
+
+    api_model_group: Optional[ModelGroup] = FieldInfo(alias="model_group", default=None)
+    """运行使用的模型组"""
 
     status_message: Optional[str] = None
     """测试日志"""
