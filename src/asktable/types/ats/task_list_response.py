@@ -15,8 +15,6 @@ class ModelGroup(BaseModel):
 
     fast: str
 
-    image: str
-
     name: str
 
     omni: str
