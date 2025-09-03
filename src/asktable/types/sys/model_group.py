@@ -15,9 +15,6 @@ class ModelGroup(BaseModel):
     fast: str
     """快速模型"""
 
-    image: str
-    """图片模型"""
-
     name: str
     """模型组名称"""
 
