@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable, Optional
+from typing import Iterable, Optional
 
 import httpx
 
 from ..types import bot_list_params, bot_create_params, bot_invite_params, bot_update_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -47,18 +47,18 @@ class BotsResource(SyncAPIResource):
     def create(
         self,
         *,
-        datasource_ids: List[str],
+        datasource_ids: SequenceNotStr[str],
         name: str,
         color_theme: Optional[str] | NotGiven = NOT_GIVEN,
         debug: bool | NotGiven = NOT_GIVEN,
-        extapi_ids: List[str] | NotGiven = NOT_GIVEN,
+        extapi_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         interaction_rules: Iterable[bot_create_params.InteractionRule] | NotGiven = NOT_GIVEN,
         magic_input: Optional[str] | NotGiven = NOT_GIVEN,
         max_rows: int | NotGiven = NOT_GIVEN,
         publish: bool | NotGiven = NOT_GIVEN,
         query_balance: Optional[int] | NotGiven = NOT_GIVEN,
-        sample_questions: Optional[List[str]] | NotGiven = NOT_GIVEN,
-        webhooks: List[str] | NotGiven = NOT_GIVEN,
+        sample_questions: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
+        webhooks: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         welcome_message: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -170,17 +170,17 @@ class BotsResource(SyncAPIResource):
         *,
         avatar_url: Optional[str] | NotGiven = NOT_GIVEN,
         color_theme: Optional[str] | NotGiven = NOT_GIVEN,
-        datasource_ids: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        datasource_ids: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         debug: Optional[bool] | NotGiven = NOT_GIVEN,
-        extapi_ids: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        extapi_ids: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         interaction_rules: Optional[Iterable[bot_update_params.InteractionRule]] | NotGiven = NOT_GIVEN,
         magic_input: Optional[str] | NotGiven = NOT_GIVEN,
         max_rows: Optional[int] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         publish: Optional[bool] | NotGiven = NOT_GIVEN,
         query_balance: Optional[int] | NotGiven = NOT_GIVEN,
-        sample_questions: Optional[List[str]] | NotGiven = NOT_GIVEN,
-        webhooks: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        sample_questions: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
+        webhooks: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         welcome_message: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -261,7 +261,7 @@ class BotsResource(SyncAPIResource):
     def list(
         self,
         *,
-        bot_ids: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        bot_ids: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         size: int | NotGiven = NOT_GIVEN,
@@ -408,18 +408,18 @@ class AsyncBotsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        datasource_ids: List[str],
+        datasource_ids: SequenceNotStr[str],
         name: str,
         color_theme: Optional[str] | NotGiven = NOT_GIVEN,
         debug: bool | NotGiven = NOT_GIVEN,
-        extapi_ids: List[str] | NotGiven = NOT_GIVEN,
+        extapi_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         interaction_rules: Iterable[bot_create_params.InteractionRule] | NotGiven = NOT_GIVEN,
         magic_input: Optional[str] | NotGiven = NOT_GIVEN,
         max_rows: int | NotGiven = NOT_GIVEN,
         publish: bool | NotGiven = NOT_GIVEN,
         query_balance: Optional[int] | NotGiven = NOT_GIVEN,
-        sample_questions: Optional[List[str]] | NotGiven = NOT_GIVEN,
-        webhooks: List[str] | NotGiven = NOT_GIVEN,
+        sample_questions: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
+        webhooks: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         welcome_message: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -531,17 +531,17 @@ class AsyncBotsResource(AsyncAPIResource):
         *,
         avatar_url: Optional[str] | NotGiven = NOT_GIVEN,
         color_theme: Optional[str] | NotGiven = NOT_GIVEN,
-        datasource_ids: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        datasource_ids: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         debug: Optional[bool] | NotGiven = NOT_GIVEN,
-        extapi_ids: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        extapi_ids: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         interaction_rules: Optional[Iterable[bot_update_params.InteractionRule]] | NotGiven = NOT_GIVEN,
         magic_input: Optional[str] | NotGiven = NOT_GIVEN,
         max_rows: Optional[int] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         publish: Optional[bool] | NotGiven = NOT_GIVEN,
         query_balance: Optional[int] | NotGiven = NOT_GIVEN,
-        sample_questions: Optional[List[str]] | NotGiven = NOT_GIVEN,
-        webhooks: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        sample_questions: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
+        webhooks: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         welcome_message: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -622,7 +622,7 @@ class AsyncBotsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        bot_ids: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        bot_ids: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         size: int | NotGiven = NOT_GIVEN,

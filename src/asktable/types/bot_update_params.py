@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable, Optional
+from typing import Iterable, Optional
 from typing_extensions import Literal, Required, TypedDict
+
+from .._types import SequenceNotStr
 
 __all__ = ["BotUpdateParams", "InteractionRule"]
 
@@ -15,13 +17,13 @@ class BotUpdateParams(TypedDict, total=False):
     color_theme: Optional[str]
     """颜色主题"""
 
-    datasource_ids: Optional[List[str]]
+    datasource_ids: Optional[SequenceNotStr[str]]
     """数据源 ID，目前只支持 1 个数据源。"""
 
     debug: Optional[bool]
     """调试模式"""
 
-    extapi_ids: Optional[List[str]]
+    extapi_ids: Optional[SequenceNotStr[str]]
     """扩展 API ID 列表，扩展 API ID 的逗号分隔列表。"""
 
     interaction_rules: Optional[Iterable[InteractionRule]]
@@ -42,10 +44,10 @@ class BotUpdateParams(TypedDict, total=False):
     query_balance: Optional[int]
     """bot 的查询次数，默认是 None，表示无限次查询，入参为大于等于 0 的整数"""
 
-    sample_questions: Optional[List[str]]
+    sample_questions: Optional[SequenceNotStr[str]]
     """示例问题列表"""
 
-    webhooks: Optional[List[str]]
+    webhooks: Optional[SequenceNotStr[str]]
     """Webhook URL 列表"""
 
     welcome_message: Optional[str]
@@ -61,4 +63,4 @@ class InteractionRule(TypedDict, total=False):
 
     version: Required[Literal["1.0.0"]]
 
-    words: Required[List[str]]
+    words: Required[SequenceNotStr[str]]

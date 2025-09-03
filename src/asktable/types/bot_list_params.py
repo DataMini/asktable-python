@@ -2,14 +2,16 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Optional
 from typing_extensions import TypedDict
+
+from .._types import SequenceNotStr
 
 __all__ = ["BotListParams"]
 
 
 class BotListParams(TypedDict, total=False):
-    bot_ids: Optional[List[str]]
+    bot_ids: Optional[SequenceNotStr[str]]
     """Bot ID"""
 
     name: Optional[str]

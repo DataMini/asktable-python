@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Optional
+from typing import Union, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
+
+from .._types import SequenceNotStr
 
 __all__ = [
     "DatasourceCreateParams",
@@ -75,7 +77,7 @@ class AccessConfigAccessConfigConnectionCreate(TypedDict, total=False):
 
 
 class AccessConfigAccessConfigFileCreate(TypedDict, total=False):
-    files: Required[List[str]]
+    files: Required[SequenceNotStr[str]]
     """数据源文件 URL 列表, 创建时可以传入 URL"""
 
 
