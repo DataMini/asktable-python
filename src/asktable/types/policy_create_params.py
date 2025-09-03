@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
+from typing import Dict, Optional
 from typing_extensions import Literal, Required, TypedDict
+
+from .._types import SequenceNotStr
 
 __all__ = ["PolicyCreateParams", "DatasetConfig", "DatasetConfigRegexPatterns"]
 
@@ -31,7 +33,7 @@ class DatasetConfigRegexPatterns(TypedDict, total=False):
 
 
 class DatasetConfig(TypedDict, total=False):
-    datasource_ids: Required[List[str]]
+    datasource_ids: Required[SequenceNotStr[str]]
     """
     数据源 ID 列表，必填。 - 描述：用于指定策略适用的数据源。可以使用通配符 _ 表示所
     有数据源。 - 示例：["ds_id_1","ds_id_2"]，["_"]。
@@ -44,7 +46,7 @@ class DatasetConfig(TypedDict, total=False):
     注意：此字段为可选项。如果未提供，则默认包含指定数据源的所有数据。
     """
 
-    rows_filters: Optional[Dict[str, List[str]]]
+    rows_filters: Optional[Dict[str, SequenceNotStr[str]]]
     """行级别过滤器。
 
     - 描述：指定行级别的过滤器，满足条件的行才可访问。 用户在查询数据的时候会自动对

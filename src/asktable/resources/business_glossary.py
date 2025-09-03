@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable, Optional
+from typing import Iterable, Optional
 
 import httpx
 
 from ..types import business_glossary_list_params, business_glossary_create_params, business_glossary_update_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -116,7 +116,7 @@ class BusinessGlossaryResource(SyncAPIResource):
         entry_id: str,
         *,
         active: Optional[bool] | NotGiven = NOT_GIVEN,
-        aliases: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        aliases: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         definition: Optional[str] | NotGiven = NOT_GIVEN,
         payload: Optional[object] | NotGiven = NOT_GIVEN,
         term: Optional[str] | NotGiven = NOT_GIVEN,
@@ -344,7 +344,7 @@ class AsyncBusinessGlossaryResource(AsyncAPIResource):
         entry_id: str,
         *,
         active: Optional[bool] | NotGiven = NOT_GIVEN,
-        aliases: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        aliases: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         definition: Optional[str] | NotGiven = NOT_GIVEN,
         payload: Optional[object] | NotGiven = NOT_GIVEN,
         term: Optional[str] | NotGiven = NOT_GIVEN,

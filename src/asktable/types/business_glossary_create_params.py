@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable, Optional
+from typing import Iterable, Optional
 from typing_extensions import Required, TypedDict
+
+from .._types import SequenceNotStr
 
 __all__ = ["BusinessGlossaryCreateParams", "Body"]
 
@@ -22,7 +24,7 @@ class Body(TypedDict, total=False):
     active: bool
     """业务术语是否生效"""
 
-    aliases: Optional[List[str]]
+    aliases: Optional[SequenceNotStr[str]]
     """业务术语同义词"""
 
     payload: Optional[object]

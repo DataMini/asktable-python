@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
+from typing import Dict, Optional
 from typing_extensions import Literal, Required, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["MetaCreateParams", "Meta", "MetaSchemas", "MetaSchemasTables", "MetaSchemasTablesFields"]
 
@@ -15,7 +17,7 @@ class MetaCreateParams(TypedDict, total=False):
 
     meta: Optional[Meta]
 
-    selected_tables: Optional[Dict[str, List[str]]]
+    selected_tables: Optional[Dict[str, SequenceNotStr[str]]]
 
 
 class MetaSchemasTablesFields(TypedDict, total=False):

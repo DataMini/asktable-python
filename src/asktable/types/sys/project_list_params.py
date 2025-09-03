@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Optional
 from typing_extensions import TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["ProjectListParams"]
 
@@ -12,7 +14,7 @@ class ProjectListParams(TypedDict, total=False):
     page: int
     """Page number"""
 
-    project_ids: Optional[List[str]]
+    project_ids: Optional[SequenceNotStr[str]]
     """项目 ID 列表"""
 
     size: int

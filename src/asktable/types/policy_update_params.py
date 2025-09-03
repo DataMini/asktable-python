@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Iterable, Optional
+from typing import Dict, Iterable, Optional
 from typing_extensions import Literal, Required, TypedDict
+
+from .._types import SequenceNotStr
 
 __all__ = ["PolicyUpdateParams", "DatasetConfig", "DatasetConfigRegexPatterns", "DatasetConfigRowsFilter"]
 
@@ -46,12 +48,12 @@ class DatasetConfigRowsFilter(TypedDict, total=False):
     table_regex: Required[str]
     """Table regex pattern"""
 
-    variables: List[str]
+    variables: SequenceNotStr[str]
     """Jinja2 variables in the condition"""
 
 
 class DatasetConfig(TypedDict, total=False):
-    datasource_ids: Required[List[str]]
+    datasource_ids: Required[SequenceNotStr[str]]
     """
     数据源 ID 列表，必填。 - 描述：用于指定策略适用的数据源。可以使用通配符 _ 表示所
     有数据源。 - 示例：["ds_id_1","ds_id_2"]，["_"]。
