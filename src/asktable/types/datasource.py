@@ -38,6 +38,8 @@ class Datasource(BaseModel):
         "databend",
         "sqlserver",
         "mogdb",
+        "hologres",
+        "maxcompute",
     ]
     """数据源引擎"""
 
