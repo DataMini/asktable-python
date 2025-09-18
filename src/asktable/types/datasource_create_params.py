@@ -39,6 +39,8 @@ class DatasourceCreateParams(TypedDict, total=False):
             "databend",
             "sqlserver",
             "mogdb",
+            "hologres",
+            "maxcompute",
         ]
     ]
     """数据源引擎"""

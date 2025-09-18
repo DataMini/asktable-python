@@ -114,6 +114,8 @@ class DatasourcesResource(SyncAPIResource):
             "databend",
             "sqlserver",
             "mogdb",
+            "hologres",
+            "maxcompute",
         ],
         access_config: Optional[datasource_create_params.AccessConfig] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
@@ -220,6 +222,8 @@ class DatasourcesResource(SyncAPIResource):
                 "databend",
                 "sqlserver",
                 "mogdb",
+                "hologres",
+                "maxcompute",
             ]
         ]
         | NotGiven = NOT_GIVEN,
@@ -608,6 +612,8 @@ class AsyncDatasourcesResource(AsyncAPIResource):
             "databend",
             "sqlserver",
             "mogdb",
+            "hologres",
+            "maxcompute",
         ],
         access_config: Optional[datasource_create_params.AccessConfig] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
@@ -714,6 +720,8 @@ class AsyncDatasourcesResource(AsyncAPIResource):
                 "databend",
                 "sqlserver",
                 "mogdb",
+                "hologres",
+                "maxcompute",
             ]
         ]
         | NotGiven = NOT_GIVEN,
