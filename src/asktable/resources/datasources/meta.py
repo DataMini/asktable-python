@@ -6,7 +6,7 @@ from typing import Dict, Optional
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -47,16 +47,16 @@ class MetaResource(SyncAPIResource):
         self,
         datasource_id: str,
         *,
-        async_process_meta: bool | NotGiven = NOT_GIVEN,
-        value_index: bool | NotGiven = NOT_GIVEN,
-        meta: Optional[meta_create_params.Meta] | NotGiven = NOT_GIVEN,
-        selected_tables: Optional[Dict[str, SequenceNotStr[str]]] | NotGiven = NOT_GIVEN,
+        async_process_meta: bool | Omit = omit,
+        value_index: bool | Omit = omit,
+        meta: Optional[meta_create_params.Meta] | Omit = omit,
+        selected_tables: Optional[Dict[str, SequenceNotStr[str]]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         创建数据源的 meta，如果已经存在，则删除旧的
@@ -110,7 +110,7 @@ class MetaResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Meta:
         """
         从数据源中获取最新的元数据
@@ -138,15 +138,15 @@ class MetaResource(SyncAPIResource):
         self,
         datasource_id: str,
         *,
-        async_process_meta: bool | NotGiven = NOT_GIVEN,
-        meta: Optional[meta_update_params.Meta] | NotGiven = NOT_GIVEN,
-        selected_tables: Optional[Dict[str, SequenceNotStr[str]]] | NotGiven = NOT_GIVEN,
+        async_process_meta: bool | Omit = omit,
+        meta: Optional[meta_update_params.Meta] | Omit = omit,
+        selected_tables: Optional[Dict[str, SequenceNotStr[str]]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         用于更新 DB 类型的数据源的 Meta（增加新表或者删除老表）
@@ -191,7 +191,7 @@ class MetaResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         修改数据 meta 的描述，用来修改表和字段的备注
@@ -241,16 +241,16 @@ class AsyncMetaResource(AsyncAPIResource):
         self,
         datasource_id: str,
         *,
-        async_process_meta: bool | NotGiven = NOT_GIVEN,
-        value_index: bool | NotGiven = NOT_GIVEN,
-        meta: Optional[meta_create_params.Meta] | NotGiven = NOT_GIVEN,
-        selected_tables: Optional[Dict[str, SequenceNotStr[str]]] | NotGiven = NOT_GIVEN,
+        async_process_meta: bool | Omit = omit,
+        value_index: bool | Omit = omit,
+        meta: Optional[meta_create_params.Meta] | Omit = omit,
+        selected_tables: Optional[Dict[str, SequenceNotStr[str]]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         创建数据源的 meta，如果已经存在，则删除旧的
@@ -304,7 +304,7 @@ class AsyncMetaResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Meta:
         """
         从数据源中获取最新的元数据
@@ -332,15 +332,15 @@ class AsyncMetaResource(AsyncAPIResource):
         self,
         datasource_id: str,
         *,
-        async_process_meta: bool | NotGiven = NOT_GIVEN,
-        meta: Optional[meta_update_params.Meta] | NotGiven = NOT_GIVEN,
-        selected_tables: Optional[Dict[str, SequenceNotStr[str]]] | NotGiven = NOT_GIVEN,
+        async_process_meta: bool | Omit = omit,
+        meta: Optional[meta_update_params.Meta] | Omit = omit,
+        selected_tables: Optional[Dict[str, SequenceNotStr[str]]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         用于更新 DB 类型的数据源的 Meta（增加新表或者删除老表）
@@ -387,7 +387,7 @@ class AsyncMetaResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         修改数据 meta 的描述，用来修改表和字段的备注

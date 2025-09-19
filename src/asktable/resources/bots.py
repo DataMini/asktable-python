@@ -7,7 +7,7 @@ from typing import Iterable, Optional
 import httpx
 
 from ..types import bot_list_params, bot_create_params, bot_invite_params, bot_update_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -49,23 +49,23 @@ class BotsResource(SyncAPIResource):
         *,
         datasource_ids: SequenceNotStr[str],
         name: str,
-        color_theme: Optional[str] | NotGiven = NOT_GIVEN,
-        debug: bool | NotGiven = NOT_GIVEN,
-        extapi_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        interaction_rules: Iterable[bot_create_params.InteractionRule] | NotGiven = NOT_GIVEN,
-        magic_input: Optional[str] | NotGiven = NOT_GIVEN,
-        max_rows: int | NotGiven = NOT_GIVEN,
-        publish: bool | NotGiven = NOT_GIVEN,
-        query_balance: Optional[int] | NotGiven = NOT_GIVEN,
-        sample_questions: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        webhooks: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        welcome_message: Optional[str] | NotGiven = NOT_GIVEN,
+        color_theme: Optional[str] | Omit = omit,
+        debug: bool | Omit = omit,
+        extapi_ids: SequenceNotStr[str] | Omit = omit,
+        interaction_rules: Iterable[bot_create_params.InteractionRule] | Omit = omit,
+        magic_input: Optional[str] | Omit = omit,
+        max_rows: int | Omit = omit,
+        publish: bool | Omit = omit,
+        query_balance: Optional[int] | Omit = omit,
+        sample_questions: Optional[SequenceNotStr[str]] | Omit = omit,
+        webhooks: SequenceNotStr[str] | Omit = omit,
+        welcome_message: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Chatbot:
         """
         创建一个新的 Bot
@@ -140,7 +140,7 @@ class BotsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Chatbot:
         """
         获取某个 Bot
@@ -168,26 +168,26 @@ class BotsResource(SyncAPIResource):
         self,
         bot_id: str,
         *,
-        avatar_url: Optional[str] | NotGiven = NOT_GIVEN,
-        color_theme: Optional[str] | NotGiven = NOT_GIVEN,
-        datasource_ids: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        debug: Optional[bool] | NotGiven = NOT_GIVEN,
-        extapi_ids: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        interaction_rules: Optional[Iterable[bot_update_params.InteractionRule]] | NotGiven = NOT_GIVEN,
-        magic_input: Optional[str] | NotGiven = NOT_GIVEN,
-        max_rows: Optional[int] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        publish: Optional[bool] | NotGiven = NOT_GIVEN,
-        query_balance: Optional[int] | NotGiven = NOT_GIVEN,
-        sample_questions: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        webhooks: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        welcome_message: Optional[str] | NotGiven = NOT_GIVEN,
+        avatar_url: Optional[str] | Omit = omit,
+        color_theme: Optional[str] | Omit = omit,
+        datasource_ids: Optional[SequenceNotStr[str]] | Omit = omit,
+        debug: Optional[bool] | Omit = omit,
+        extapi_ids: Optional[SequenceNotStr[str]] | Omit = omit,
+        interaction_rules: Optional[Iterable[bot_update_params.InteractionRule]] | Omit = omit,
+        magic_input: Optional[str] | Omit = omit,
+        max_rows: Optional[int] | Omit = omit,
+        name: Optional[str] | Omit = omit,
+        publish: Optional[bool] | Omit = omit,
+        query_balance: Optional[int] | Omit = omit,
+        sample_questions: Optional[SequenceNotStr[str]] | Omit = omit,
+        webhooks: Optional[SequenceNotStr[str]] | Omit = omit,
+        welcome_message: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Chatbot:
         """
         更新某个 Bot
@@ -261,16 +261,16 @@ class BotsResource(SyncAPIResource):
     def list(
         self,
         *,
-        bot_ids: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        size: int | NotGiven = NOT_GIVEN,
+        bot_ids: Optional[SequenceNotStr[str]] | Omit = omit,
+        name: Optional[str] | Omit = omit,
+        page: int | Omit = omit,
+        size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPage[Chatbot]:
         """
         查询所有 Bot
@@ -322,7 +322,7 @@ class BotsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         删除某个 Bot
@@ -356,7 +356,7 @@ class BotsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         邀请用户加入对话
@@ -410,23 +410,23 @@ class AsyncBotsResource(AsyncAPIResource):
         *,
         datasource_ids: SequenceNotStr[str],
         name: str,
-        color_theme: Optional[str] | NotGiven = NOT_GIVEN,
-        debug: bool | NotGiven = NOT_GIVEN,
-        extapi_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        interaction_rules: Iterable[bot_create_params.InteractionRule] | NotGiven = NOT_GIVEN,
-        magic_input: Optional[str] | NotGiven = NOT_GIVEN,
-        max_rows: int | NotGiven = NOT_GIVEN,
-        publish: bool | NotGiven = NOT_GIVEN,
-        query_balance: Optional[int] | NotGiven = NOT_GIVEN,
-        sample_questions: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        webhooks: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        welcome_message: Optional[str] | NotGiven = NOT_GIVEN,
+        color_theme: Optional[str] | Omit = omit,
+        debug: bool | Omit = omit,
+        extapi_ids: SequenceNotStr[str] | Omit = omit,
+        interaction_rules: Iterable[bot_create_params.InteractionRule] | Omit = omit,
+        magic_input: Optional[str] | Omit = omit,
+        max_rows: int | Omit = omit,
+        publish: bool | Omit = omit,
+        query_balance: Optional[int] | Omit = omit,
+        sample_questions: Optional[SequenceNotStr[str]] | Omit = omit,
+        webhooks: SequenceNotStr[str] | Omit = omit,
+        welcome_message: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Chatbot:
         """
         创建一个新的 Bot
@@ -501,7 +501,7 @@ class AsyncBotsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Chatbot:
         """
         获取某个 Bot
@@ -529,26 +529,26 @@ class AsyncBotsResource(AsyncAPIResource):
         self,
         bot_id: str,
         *,
-        avatar_url: Optional[str] | NotGiven = NOT_GIVEN,
-        color_theme: Optional[str] | NotGiven = NOT_GIVEN,
-        datasource_ids: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        debug: Optional[bool] | NotGiven = NOT_GIVEN,
-        extapi_ids: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        interaction_rules: Optional[Iterable[bot_update_params.InteractionRule]] | NotGiven = NOT_GIVEN,
-        magic_input: Optional[str] | NotGiven = NOT_GIVEN,
-        max_rows: Optional[int] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        publish: Optional[bool] | NotGiven = NOT_GIVEN,
-        query_balance: Optional[int] | NotGiven = NOT_GIVEN,
-        sample_questions: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        webhooks: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        welcome_message: Optional[str] | NotGiven = NOT_GIVEN,
+        avatar_url: Optional[str] | Omit = omit,
+        color_theme: Optional[str] | Omit = omit,
+        datasource_ids: Optional[SequenceNotStr[str]] | Omit = omit,
+        debug: Optional[bool] | Omit = omit,
+        extapi_ids: Optional[SequenceNotStr[str]] | Omit = omit,
+        interaction_rules: Optional[Iterable[bot_update_params.InteractionRule]] | Omit = omit,
+        magic_input: Optional[str] | Omit = omit,
+        max_rows: Optional[int] | Omit = omit,
+        name: Optional[str] | Omit = omit,
+        publish: Optional[bool] | Omit = omit,
+        query_balance: Optional[int] | Omit = omit,
+        sample_questions: Optional[SequenceNotStr[str]] | Omit = omit,
+        webhooks: Optional[SequenceNotStr[str]] | Omit = omit,
+        welcome_message: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Chatbot:
         """
         更新某个 Bot
@@ -622,16 +622,16 @@ class AsyncBotsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        bot_ids: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        size: int | NotGiven = NOT_GIVEN,
+        bot_ids: Optional[SequenceNotStr[str]] | Omit = omit,
+        name: Optional[str] | Omit = omit,
+        page: int | Omit = omit,
+        size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Chatbot, AsyncPage[Chatbot]]:
         """
         查询所有 Bot
@@ -683,7 +683,7 @@ class AsyncBotsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         删除某个 Bot
@@ -717,7 +717,7 @@ class AsyncBotsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         邀请用户加入对话

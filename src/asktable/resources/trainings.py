@@ -7,7 +7,7 @@ from typing import Iterable, Optional
 import httpx
 
 from ..types import training_list_params, training_create_params, training_delete_params, training_update_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -56,7 +56,7 @@ class TrainingsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TrainingCreateResponse:
         """
         Create Training Pair
@@ -90,16 +90,16 @@ class TrainingsResource(SyncAPIResource):
         id: str,
         *,
         datasource_id: str,
-        active: Optional[bool] | NotGiven = NOT_GIVEN,
-        question: Optional[str] | NotGiven = NOT_GIVEN,
-        role_id: Optional[str] | NotGiven = NOT_GIVEN,
-        sql: Optional[str] | NotGiven = NOT_GIVEN,
+        active: Optional[bool] | Omit = omit,
+        question: Optional[str] | Omit = omit,
+        role_id: Optional[str] | Omit = omit,
+        sql: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TrainingUpdateResponse:
         """
         Update Training Pair
@@ -150,14 +150,14 @@ class TrainingsResource(SyncAPIResource):
         self,
         *,
         datasource_id: str,
-        page: int | NotGiven = NOT_GIVEN,
-        size: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPage[TrainingListResponse]:
         """
         Get Training Pairs
@@ -207,7 +207,7 @@ class TrainingsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Delete Training Pair
@@ -268,7 +268,7 @@ class AsyncTrainingsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TrainingCreateResponse:
         """
         Create Training Pair
@@ -304,16 +304,16 @@ class AsyncTrainingsResource(AsyncAPIResource):
         id: str,
         *,
         datasource_id: str,
-        active: Optional[bool] | NotGiven = NOT_GIVEN,
-        question: Optional[str] | NotGiven = NOT_GIVEN,
-        role_id: Optional[str] | NotGiven = NOT_GIVEN,
-        sql: Optional[str] | NotGiven = NOT_GIVEN,
+        active: Optional[bool] | Omit = omit,
+        question: Optional[str] | Omit = omit,
+        role_id: Optional[str] | Omit = omit,
+        sql: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TrainingUpdateResponse:
         """
         Update Training Pair
@@ -366,14 +366,14 @@ class AsyncTrainingsResource(AsyncAPIResource):
         self,
         *,
         datasource_id: str,
-        page: int | NotGiven = NOT_GIVEN,
-        size: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[TrainingListResponse, AsyncPage[TrainingListResponse]]:
         """
         Get Training Pairs
@@ -423,7 +423,7 @@ class AsyncTrainingsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Delete Training Pair

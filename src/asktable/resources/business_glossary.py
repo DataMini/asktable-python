@@ -7,7 +7,7 @@ from typing import Iterable, Optional
 import httpx
 
 from ..types import business_glossary_list_params, business_glossary_create_params, business_glossary_update_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -55,7 +55,7 @@ class BusinessGlossaryResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BusinessGlossaryCreateResponse:
         """
         创建业务术语
@@ -87,7 +87,7 @@ class BusinessGlossaryResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EntryWithDefinition:
         """
         获取某个业务术语
@@ -115,17 +115,17 @@ class BusinessGlossaryResource(SyncAPIResource):
         self,
         entry_id: str,
         *,
-        active: Optional[bool] | NotGiven = NOT_GIVEN,
-        aliases: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        definition: Optional[str] | NotGiven = NOT_GIVEN,
-        payload: Optional[object] | NotGiven = NOT_GIVEN,
-        term: Optional[str] | NotGiven = NOT_GIVEN,
+        active: Optional[bool] | Omit = omit,
+        aliases: Optional[SequenceNotStr[str]] | Omit = omit,
+        definition: Optional[str] | Omit = omit,
+        payload: Optional[object] | Omit = omit,
+        term: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Entry:
         """
         更新业务术语
@@ -172,15 +172,15 @@ class BusinessGlossaryResource(SyncAPIResource):
     def list(
         self,
         *,
-        page: int | NotGiven = NOT_GIVEN,
-        size: int | NotGiven = NOT_GIVEN,
-        term: str | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        size: int | Omit = omit,
+        term: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPage[EntryWithDefinition]:
         """
         查询所有业务术语
@@ -229,7 +229,7 @@ class BusinessGlossaryResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         删除某个业务术语
@@ -283,7 +283,7 @@ class AsyncBusinessGlossaryResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BusinessGlossaryCreateResponse:
         """
         创建业务术语
@@ -315,7 +315,7 @@ class AsyncBusinessGlossaryResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EntryWithDefinition:
         """
         获取某个业务术语
@@ -343,17 +343,17 @@ class AsyncBusinessGlossaryResource(AsyncAPIResource):
         self,
         entry_id: str,
         *,
-        active: Optional[bool] | NotGiven = NOT_GIVEN,
-        aliases: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        definition: Optional[str] | NotGiven = NOT_GIVEN,
-        payload: Optional[object] | NotGiven = NOT_GIVEN,
-        term: Optional[str] | NotGiven = NOT_GIVEN,
+        active: Optional[bool] | Omit = omit,
+        aliases: Optional[SequenceNotStr[str]] | Omit = omit,
+        definition: Optional[str] | Omit = omit,
+        payload: Optional[object] | Omit = omit,
+        term: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Entry:
         """
         更新业务术语
@@ -400,15 +400,15 @@ class AsyncBusinessGlossaryResource(AsyncAPIResource):
     def list(
         self,
         *,
-        page: int | NotGiven = NOT_GIVEN,
-        size: int | NotGiven = NOT_GIVEN,
-        term: str | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        size: int | Omit = omit,
+        term: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[EntryWithDefinition, AsyncPage[EntryWithDefinition]]:
         """
         查询所有业务术语
@@ -457,7 +457,7 @@ class AsyncBusinessGlossaryResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         删除某个业务术语

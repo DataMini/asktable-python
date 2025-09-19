@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..types import policy_list_params, policy_create_params, policy_update_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, SequenceNotStr
+from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -56,7 +56,7 @@ class PoliciesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Policy:
         """
         定义一个新的策略
@@ -101,7 +101,7 @@ class PoliciesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Policy:
         """
         获取某个策略
@@ -129,15 +129,15 @@ class PoliciesResource(SyncAPIResource):
         self,
         policy_id: str,
         *,
-        dataset_config: Optional[policy_update_params.DatasetConfig] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        permission: Optional[Literal["allow", "deny"]] | NotGiven = NOT_GIVEN,
+        dataset_config: Optional[policy_update_params.DatasetConfig] | Omit = omit,
+        name: Optional[str] | Omit = omit,
+        permission: Optional[Literal["allow", "deny"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Policy:
         """
         更新某个策略
@@ -178,16 +178,16 @@ class PoliciesResource(SyncAPIResource):
     def list(
         self,
         *,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        policy_ids: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        size: int | NotGiven = NOT_GIVEN,
+        name: Optional[str] | Omit = omit,
+        page: int | Omit = omit,
+        policy_ids: Optional[SequenceNotStr[str]] | Omit = omit,
+        size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPage[Policy]:
         """
         查询所有策略
@@ -239,7 +239,7 @@ class PoliciesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         删除某个策略
@@ -296,7 +296,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Policy:
         """
         定义一个新的策略
@@ -341,7 +341,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Policy:
         """
         获取某个策略
@@ -369,15 +369,15 @@ class AsyncPoliciesResource(AsyncAPIResource):
         self,
         policy_id: str,
         *,
-        dataset_config: Optional[policy_update_params.DatasetConfig] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        permission: Optional[Literal["allow", "deny"]] | NotGiven = NOT_GIVEN,
+        dataset_config: Optional[policy_update_params.DatasetConfig] | Omit = omit,
+        name: Optional[str] | Omit = omit,
+        permission: Optional[Literal["allow", "deny"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Policy:
         """
         更新某个策略
@@ -418,16 +418,16 @@ class AsyncPoliciesResource(AsyncAPIResource):
     def list(
         self,
         *,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        policy_ids: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        size: int | NotGiven = NOT_GIVEN,
+        name: Optional[str] | Omit = omit,
+        page: int | Omit = omit,
+        policy_ids: Optional[SequenceNotStr[str]] | Omit = omit,
+        size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Policy, AsyncPage[Policy]]:
         """
         查询所有策略
@@ -479,7 +479,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         删除某个策略

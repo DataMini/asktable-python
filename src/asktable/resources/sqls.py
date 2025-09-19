@@ -7,7 +7,7 @@ from typing import Optional
 import httpx
 
 from ..types import sql_list_params, sql_create_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -49,15 +49,15 @@ class SqlsResource(SyncAPIResource):
         *,
         datasource_id: str,
         question: str,
-        parameterize: bool | NotGiven = NOT_GIVEN,
-        role_id: Optional[str] | NotGiven = NOT_GIVEN,
-        role_variables: Optional[object] | NotGiven = NOT_GIVEN,
+        parameterize: bool | Omit = omit,
+        role_id: Optional[str] | Omit = omit,
+        role_variables: Optional[object] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> QueryResponse:
         """
         发起生成 sql 的请求
@@ -103,15 +103,15 @@ class SqlsResource(SyncAPIResource):
     def list(
         self,
         *,
-        datasource_id: Optional[str] | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        size: int | NotGiven = NOT_GIVEN,
+        datasource_id: Optional[str] | Omit = omit,
+        page: int | Omit = omit,
+        size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPage[QueryResponse]:
         """
         获取所有的 Q2S 记录
@@ -177,15 +177,15 @@ class AsyncSqlsResource(AsyncAPIResource):
         *,
         datasource_id: str,
         question: str,
-        parameterize: bool | NotGiven = NOT_GIVEN,
-        role_id: Optional[str] | NotGiven = NOT_GIVEN,
-        role_variables: Optional[object] | NotGiven = NOT_GIVEN,
+        parameterize: bool | Omit = omit,
+        role_id: Optional[str] | Omit = omit,
+        role_variables: Optional[object] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> QueryResponse:
         """
         发起生成 sql 的请求
@@ -231,15 +231,15 @@ class AsyncSqlsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        datasource_id: Optional[str] | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        size: int | NotGiven = NOT_GIVEN,
+        datasource_id: Optional[str] | Omit = omit,
+        page: int | Omit = omit,
+        size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[QueryResponse, AsyncPage[QueryResponse]]:
         """
         获取所有的 Q2S 记录

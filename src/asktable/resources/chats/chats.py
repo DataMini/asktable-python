@@ -7,7 +7,7 @@ from typing import Dict, Union, Optional
 import httpx
 
 from ...types import chat_list_params, chat_create_params
-from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from .messages import (
     MessagesResource,
@@ -60,17 +60,17 @@ class ChatsResource(SyncAPIResource):
     def create(
         self,
         *,
-        bot_id: Optional[str] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        role_id: Optional[str] | NotGiven = NOT_GIVEN,
-        role_variables: Optional[Dict[str, Union[str, int, bool]]] | NotGiven = NOT_GIVEN,
-        user_profile: Optional[Dict[str, Union[str, int, bool]]] | NotGiven = NOT_GIVEN,
+        bot_id: Optional[str] | Omit = omit,
+        name: Optional[str] | Omit = omit,
+        role_id: Optional[str] | Omit = omit,
+        role_variables: Optional[Dict[str, Union[str, int, bool]]] | Omit = omit,
+        user_profile: Optional[Dict[str, Union[str, int, bool]]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Chat:
         """
         创建对话
@@ -123,7 +123,7 @@ class ChatsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ChatRetrieveResponse:
         """
         获取某个对话
@@ -150,14 +150,14 @@ class ChatsResource(SyncAPIResource):
     def list(
         self,
         *,
-        page: int | NotGiven = NOT_GIVEN,
-        size: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPage[Chat]:
         """
         查询对话列表
@@ -203,7 +203,7 @@ class ChatsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         删除某个对话（包含消息）
@@ -256,17 +256,17 @@ class AsyncChatsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        bot_id: Optional[str] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        role_id: Optional[str] | NotGiven = NOT_GIVEN,
-        role_variables: Optional[Dict[str, Union[str, int, bool]]] | NotGiven = NOT_GIVEN,
-        user_profile: Optional[Dict[str, Union[str, int, bool]]] | NotGiven = NOT_GIVEN,
+        bot_id: Optional[str] | Omit = omit,
+        name: Optional[str] | Omit = omit,
+        role_id: Optional[str] | Omit = omit,
+        role_variables: Optional[Dict[str, Union[str, int, bool]]] | Omit = omit,
+        user_profile: Optional[Dict[str, Union[str, int, bool]]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Chat:
         """
         创建对话
@@ -319,7 +319,7 @@ class AsyncChatsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ChatRetrieveResponse:
         """
         获取某个对话
@@ -346,14 +346,14 @@ class AsyncChatsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        page: int | NotGiven = NOT_GIVEN,
-        size: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Chat, AsyncPage[Chat]]:
         """
         查询对话列表
@@ -399,7 +399,7 @@ class AsyncChatsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         删除某个对话（包含消息）
