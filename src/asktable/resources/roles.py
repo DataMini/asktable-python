@@ -7,7 +7,7 @@ from typing import Optional
 import httpx
 
 from ..types import role_list_params, role_create_params, role_update_params, role_get_variables_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -49,13 +49,13 @@ class RolesResource(SyncAPIResource):
         self,
         *,
         name: str,
-        policy_ids: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
+        policy_ids: Optional[SequenceNotStr[str]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Role:
         """
         创建一个新的角色
@@ -97,7 +97,7 @@ class RolesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Role:
         """
         获取某个角色
@@ -125,14 +125,14 @@ class RolesResource(SyncAPIResource):
         self,
         role_id: str,
         *,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        policy_ids: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
+        name: Optional[str] | Omit = omit,
+        policy_ids: Optional[SequenceNotStr[str]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Role:
         """
         更新某个角色
@@ -170,16 +170,16 @@ class RolesResource(SyncAPIResource):
     def list(
         self,
         *,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        role_ids: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        size: int | NotGiven = NOT_GIVEN,
+        name: Optional[str] | Omit = omit,
+        page: int | Omit = omit,
+        role_ids: Optional[SequenceNotStr[str]] | Omit = omit,
+        size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPage[Role]:
         """
         查询所有的角色
@@ -231,7 +231,7 @@ class RolesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         删除某个角色
@@ -264,7 +264,7 @@ class RolesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RoleGetPolicesResponse:
         """
         查询某个角色的所有策略
@@ -292,14 +292,14 @@ class RolesResource(SyncAPIResource):
         self,
         role_id: str,
         *,
-        bot_id: Optional[str] | NotGiven = NOT_GIVEN,
-        datasource_ids: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
+        bot_id: Optional[str] | Omit = omit,
+        datasource_ids: Optional[SequenceNotStr[str]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         查询某个角色的所有变量
@@ -362,13 +362,13 @@ class AsyncRolesResource(AsyncAPIResource):
         self,
         *,
         name: str,
-        policy_ids: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
+        policy_ids: Optional[SequenceNotStr[str]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Role:
         """
         创建一个新的角色
@@ -410,7 +410,7 @@ class AsyncRolesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Role:
         """
         获取某个角色
@@ -438,14 +438,14 @@ class AsyncRolesResource(AsyncAPIResource):
         self,
         role_id: str,
         *,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        policy_ids: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
+        name: Optional[str] | Omit = omit,
+        policy_ids: Optional[SequenceNotStr[str]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Role:
         """
         更新某个角色
@@ -483,16 +483,16 @@ class AsyncRolesResource(AsyncAPIResource):
     def list(
         self,
         *,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        role_ids: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        size: int | NotGiven = NOT_GIVEN,
+        name: Optional[str] | Omit = omit,
+        page: int | Omit = omit,
+        role_ids: Optional[SequenceNotStr[str]] | Omit = omit,
+        size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Role, AsyncPage[Role]]:
         """
         查询所有的角色
@@ -544,7 +544,7 @@ class AsyncRolesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         删除某个角色
@@ -577,7 +577,7 @@ class AsyncRolesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RoleGetPolicesResponse:
         """
         查询某个角色的所有策略
@@ -605,14 +605,14 @@ class AsyncRolesResource(AsyncAPIResource):
         self,
         role_id: str,
         *,
-        bot_id: Optional[str] | NotGiven = NOT_GIVEN,
-        datasource_ids: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
+        bot_id: Optional[str] | Omit = omit,
+        datasource_ids: Optional[SequenceNotStr[str]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         查询某个角色的所有变量

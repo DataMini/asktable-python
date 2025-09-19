@@ -6,7 +6,7 @@ from typing import Optional
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -55,14 +55,14 @@ class TestCaseResource(SyncAPIResource):
         *,
         expected_sql: str,
         question: str,
-        role_id: Optional[str] | NotGiven = NOT_GIVEN,
-        role_variables: Optional[object] | NotGiven = NOT_GIVEN,
+        role_id: Optional[str] | Omit = omit,
+        role_variables: Optional[object] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TestCaseCreateResponse:
         """
         Create Test Case Endpoint
@@ -113,7 +113,7 @@ class TestCaseResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TestCaseRetrieveResponse:
         """
         Get Test Case Endpoint
@@ -146,14 +146,14 @@ class TestCaseResource(SyncAPIResource):
         ats_id: str,
         expected_sql: str,
         question: str,
-        role_id: Optional[str] | NotGiven = NOT_GIVEN,
-        role_variables: Optional[object] | NotGiven = NOT_GIVEN,
+        role_id: Optional[str] | Omit = omit,
+        role_variables: Optional[object] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TestCaseUpdateResponse:
         """
         Update Test Case Endpoint
@@ -200,14 +200,14 @@ class TestCaseResource(SyncAPIResource):
         self,
         ats_id: str,
         *,
-        page: int | NotGiven = NOT_GIVEN,
-        size: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPage[TestCaseListResponse]:
         """
         Get Test Cases Endpoint
@@ -256,7 +256,7 @@ class TestCaseResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Delete Test Case Endpoint
@@ -309,14 +309,14 @@ class AsyncTestCaseResource(AsyncAPIResource):
         *,
         expected_sql: str,
         question: str,
-        role_id: Optional[str] | NotGiven = NOT_GIVEN,
-        role_variables: Optional[object] | NotGiven = NOT_GIVEN,
+        role_id: Optional[str] | Omit = omit,
+        role_variables: Optional[object] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TestCaseCreateResponse:
         """
         Create Test Case Endpoint
@@ -367,7 +367,7 @@ class AsyncTestCaseResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TestCaseRetrieveResponse:
         """
         Get Test Case Endpoint
@@ -400,14 +400,14 @@ class AsyncTestCaseResource(AsyncAPIResource):
         ats_id: str,
         expected_sql: str,
         question: str,
-        role_id: Optional[str] | NotGiven = NOT_GIVEN,
-        role_variables: Optional[object] | NotGiven = NOT_GIVEN,
+        role_id: Optional[str] | Omit = omit,
+        role_variables: Optional[object] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TestCaseUpdateResponse:
         """
         Update Test Case Endpoint
@@ -454,14 +454,14 @@ class AsyncTestCaseResource(AsyncAPIResource):
         self,
         ats_id: str,
         *,
-        page: int | NotGiven = NOT_GIVEN,
-        size: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[TestCaseListResponse, AsyncPage[TestCaseListResponse]]:
         """
         Get Test Cases Endpoint
@@ -510,7 +510,7 @@ class AsyncTestCaseResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Delete Test Case Endpoint

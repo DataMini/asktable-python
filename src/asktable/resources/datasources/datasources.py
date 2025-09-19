@@ -30,7 +30,7 @@ from .indexes import (
     IndexesResourceWithStreamingResponse,
     AsyncIndexesResourceWithStreamingResponse,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
+from ..._types import Body, Omit, Query, Headers, NotGiven, FileTypes, omit, not_given
 from ..._utils import extract_files, maybe_transform, deepcopy_minimal, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -117,14 +117,14 @@ class DatasourcesResource(SyncAPIResource):
             "hologres",
             "maxcompute",
         ],
-        access_config: Optional[datasource_create_params.AccessConfig] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
+        access_config: Optional[datasource_create_params.AccessConfig] | Omit = omit,
+        name: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Datasource:
         """
         创建一个新的数据源
@@ -169,7 +169,7 @@ class DatasourcesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasourceRetrieveResponse:
         """
         根据 id 获取指定数据源
@@ -197,8 +197,8 @@ class DatasourcesResource(SyncAPIResource):
         self,
         datasource_id: str,
         *,
-        access_config: Optional[datasource_update_params.AccessConfig] | NotGiven = NOT_GIVEN,
-        desc: Optional[str] | NotGiven = NOT_GIVEN,
+        access_config: Optional[datasource_update_params.AccessConfig] | Omit = omit,
+        desc: Optional[str] | Omit = omit,
         engine: Optional[
             Literal[
                 "mysql",
@@ -226,20 +226,20 @@ class DatasourcesResource(SyncAPIResource):
                 "maxcompute",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        field_count: Optional[int] | NotGiven = NOT_GIVEN,
-        meta_error: Optional[str] | NotGiven = NOT_GIVEN,
-        meta_status: Optional[Literal["processing", "failed", "success", "unprocessed"]] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        sample_questions: Optional[str] | NotGiven = NOT_GIVEN,
-        schema_count: Optional[int] | NotGiven = NOT_GIVEN,
-        table_count: Optional[int] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        field_count: Optional[int] | Omit = omit,
+        meta_error: Optional[str] | Omit = omit,
+        meta_status: Optional[Literal["processing", "failed", "success", "unprocessed"]] | Omit = omit,
+        name: Optional[str] | Omit = omit,
+        sample_questions: Optional[str] | Omit = omit,
+        schema_count: Optional[int] | Omit = omit,
+        table_count: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Datasource:
         """
         更新指定数据源信息
@@ -301,15 +301,15 @@ class DatasourcesResource(SyncAPIResource):
     def list(
         self,
         *,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        size: int | NotGiven = NOT_GIVEN,
+        name: Optional[str] | Omit = omit,
+        page: int | Omit = omit,
+        size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPage[Datasource]:
         """
         获取所有的数据源
@@ -356,7 +356,7 @@ class DatasourcesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         根据 id 删除指定数据源
@@ -390,7 +390,7 @@ class DatasourcesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         为数据源添加文件
@@ -432,7 +432,7 @@ class DatasourcesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         删除数据源的单个文件
@@ -467,7 +467,7 @@ class DatasourcesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasourceRetrieveRuntimeMetaResponse:
         """
         获取指定数据源的运行时元数据
@@ -501,14 +501,14 @@ class DatasourcesResource(SyncAPIResource):
         identifiable_type: Optional[
             Literal["plain", "person_name", "email", "ssn", "id", "phone", "address", "company", "bank_card"]
         ]
-        | NotGiven = NOT_GIVEN,
-        visibility: Optional[bool] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        visibility: Optional[bool] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         更新数据源的某个字段的描述
@@ -615,14 +615,14 @@ class AsyncDatasourcesResource(AsyncAPIResource):
             "hologres",
             "maxcompute",
         ],
-        access_config: Optional[datasource_create_params.AccessConfig] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
+        access_config: Optional[datasource_create_params.AccessConfig] | Omit = omit,
+        name: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Datasource:
         """
         创建一个新的数据源
@@ -667,7 +667,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasourceRetrieveResponse:
         """
         根据 id 获取指定数据源
@@ -695,8 +695,8 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         self,
         datasource_id: str,
         *,
-        access_config: Optional[datasource_update_params.AccessConfig] | NotGiven = NOT_GIVEN,
-        desc: Optional[str] | NotGiven = NOT_GIVEN,
+        access_config: Optional[datasource_update_params.AccessConfig] | Omit = omit,
+        desc: Optional[str] | Omit = omit,
         engine: Optional[
             Literal[
                 "mysql",
@@ -724,20 +724,20 @@ class AsyncDatasourcesResource(AsyncAPIResource):
                 "maxcompute",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        field_count: Optional[int] | NotGiven = NOT_GIVEN,
-        meta_error: Optional[str] | NotGiven = NOT_GIVEN,
-        meta_status: Optional[Literal["processing", "failed", "success", "unprocessed"]] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        sample_questions: Optional[str] | NotGiven = NOT_GIVEN,
-        schema_count: Optional[int] | NotGiven = NOT_GIVEN,
-        table_count: Optional[int] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        field_count: Optional[int] | Omit = omit,
+        meta_error: Optional[str] | Omit = omit,
+        meta_status: Optional[Literal["processing", "failed", "success", "unprocessed"]] | Omit = omit,
+        name: Optional[str] | Omit = omit,
+        sample_questions: Optional[str] | Omit = omit,
+        schema_count: Optional[int] | Omit = omit,
+        table_count: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Datasource:
         """
         更新指定数据源信息
@@ -799,15 +799,15 @@ class AsyncDatasourcesResource(AsyncAPIResource):
     def list(
         self,
         *,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        size: int | NotGiven = NOT_GIVEN,
+        name: Optional[str] | Omit = omit,
+        page: int | Omit = omit,
+        size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Datasource, AsyncPage[Datasource]]:
         """
         获取所有的数据源
@@ -854,7 +854,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         根据 id 删除指定数据源
@@ -888,7 +888,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         为数据源添加文件
@@ -930,7 +930,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         删除数据源的单个文件
@@ -965,7 +965,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DatasourceRetrieveRuntimeMetaResponse:
         """
         获取指定数据源的运行时元数据
@@ -999,14 +999,14 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         identifiable_type: Optional[
             Literal["plain", "person_name", "email", "ssn", "id", "phone", "address", "company", "bank_card"]
         ]
-        | NotGiven = NOT_GIVEN,
-        visibility: Optional[bool] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        visibility: Optional[bool] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         更新数据源的某个字段的描述

@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -55,7 +55,7 @@ class APIKeysResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APIKeyCreateResponse:
         """
         创建 API Key
@@ -91,7 +91,7 @@ class APIKeysResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APIKeyListResponse:
         """
         List Api Keys
@@ -125,7 +125,7 @@ class APIKeysResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete Api Key View
@@ -156,16 +156,16 @@ class APIKeysResource(SyncAPIResource):
         self,
         project_id: str,
         *,
-        ak_role: Literal["sys", "admin", "asker", "visitor"] | NotGiven = NOT_GIVEN,
-        chat_role: Optional[api_key_create_token_params.ChatRole] | NotGiven = NOT_GIVEN,
-        token_ttl: int | NotGiven = NOT_GIVEN,
-        user_profile: Optional[object] | NotGiven = NOT_GIVEN,
+        ak_role: Literal["sys", "admin", "asker", "visitor"] | Omit = omit,
+        chat_role: Optional[api_key_create_token_params.ChatRole] | Omit = omit,
+        token_ttl: int | Omit = omit,
+        user_profile: Optional[object] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Create Token
@@ -237,7 +237,7 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APIKeyCreateResponse:
         """
         创建 API Key
@@ -273,7 +273,7 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APIKeyListResponse:
         """
         List Api Keys
@@ -307,7 +307,7 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete Api Key View
@@ -338,16 +338,16 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         self,
         project_id: str,
         *,
-        ak_role: Literal["sys", "admin", "asker", "visitor"] | NotGiven = NOT_GIVEN,
-        chat_role: Optional[api_key_create_token_params.ChatRole] | NotGiven = NOT_GIVEN,
-        token_ttl: int | NotGiven = NOT_GIVEN,
-        user_profile: Optional[object] | NotGiven = NOT_GIVEN,
+        ak_role: Literal["sys", "admin", "asker", "visitor"] | Omit = omit,
+        chat_role: Optional[api_key_create_token_params.ChatRole] | Omit = omit,
+        token_ttl: int | Omit = omit,
+        user_profile: Optional[object] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         Create Token
