@@ -19,6 +19,8 @@ class ModelGroup(BaseModel):
 
     omni: str
 
+    report: str
+
     sql: str
 
 
