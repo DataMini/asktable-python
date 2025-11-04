@@ -95,6 +95,7 @@ class DatasourceRetrieveResponse(BaseModel):
         "mogdb",
         "hologres",
         "maxcompute",
+        "dap",
     ]
     """数据源引擎"""
 

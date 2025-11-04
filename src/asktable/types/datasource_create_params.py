@@ -41,6 +41,7 @@ class DatasourceCreateParams(TypedDict, total=False):
             "mogdb",
             "hologres",
             "maxcompute",
+            "dap",
         ]
     ]
     """数据源引擎"""

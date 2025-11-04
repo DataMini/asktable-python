@@ -40,6 +40,7 @@ class Datasource(BaseModel):
         "mogdb",
         "hologres",
         "maxcompute",
+        "dap",
     ]
     """数据源引擎"""
 

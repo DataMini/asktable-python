@@ -116,6 +116,7 @@ class DatasourcesResource(SyncAPIResource):
             "mogdb",
             "hologres",
             "maxcompute",
+            "dap",
         ],
         access_config: Optional[datasource_create_params.AccessConfig] | Omit = omit,
         name: Optional[str] | Omit = omit,
@@ -224,6 +225,7 @@ class DatasourcesResource(SyncAPIResource):
                 "mogdb",
                 "hologres",
                 "maxcompute",
+                "dap",
             ]
         ]
         | Omit = omit,
@@ -614,6 +616,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
             "mogdb",
             "hologres",
             "maxcompute",
+            "dap",
         ],
         access_config: Optional[datasource_create_params.AccessConfig] | Omit = omit,
         name: Optional[str] | Omit = omit,
@@ -722,6 +725,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
                 "mogdb",
                 "hologres",
                 "maxcompute",
+                "dap",
             ]
         ]
         | Omit = omit,
