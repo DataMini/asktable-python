@@ -1,4 +1,4 @@
 configured_endpoints: 107
-openapi_spec_url: https://storage.googleapis.com/stainless-sdk-openapi-specs/datamini%2Fasktable-18a8c8242c5e5c5886a2a31908480384759e5c2239664797372c109538408917.yml
-openapi_spec_hash: a7c5019fc13696353a6a97d4a68cf729
+openapi_spec_url: https://storage.googleapis.com/stainless-sdk-openapi-specs/datamini%2Fasktable-e9513714b0d3fd53715ea1a78b820e41ef772998c50ce2f77db525e5ae06430b.yml
+openapi_spec_hash: 30ced87cff8e18070ff9d274acc1ba6c
 config_hash: acdf4142177ed1932c2d82372693f811

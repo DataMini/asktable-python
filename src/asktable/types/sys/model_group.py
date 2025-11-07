@@ -21,5 +21,8 @@ class ModelGroup(BaseModel):
     omni: str
     """通用模型"""
 
+    report: str
+    """报告模型"""
+
     sql: str
     """SQL 模型"""
