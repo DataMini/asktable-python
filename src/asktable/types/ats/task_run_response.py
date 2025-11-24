@@ -19,9 +19,9 @@ class ModelGroup(BaseModel):
 
     omni: str
 
-    report: str
-
     sql: str
+
+    report: Optional[str] = None
 
 
 class TaskRunResponse(BaseModel):
