@@ -2,6 +2,7 @@
 
 from typing import List, Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from .._models import BaseModel
 
@@ -11,7 +12,7 @@ __all__ = ["AnswerResponse", "Answer", "AnswerAttachment", "Request", "Timing"]
 class AnswerAttachment(BaseModel):
     info: object
 
-    type: str
+    type: Literal["data_json"]
     """The type of the attachment"""
 
 

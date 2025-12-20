@@ -72,14 +72,6 @@ from .roles import (
     RolesResourceWithStreamingResponse,
     AsyncRolesResourceWithStreamingResponse,
 )
-from .caches import (
-    CachesResource,
-    AsyncCachesResource,
-    CachesResourceWithRawResponse,
-    AsyncCachesResourceWithRawResponse,
-    CachesResourceWithStreamingResponse,
-    AsyncCachesResourceWithStreamingResponse,
-)
 from .polish import (
     PolishResource,
     AsyncPolishResource,
@@ -238,12 +230,6 @@ __all__ = [
     "AsyncSqlsResourceWithRawResponse",
     "SqlsResourceWithStreamingResponse",
     "AsyncSqlsResourceWithStreamingResponse",
-    "CachesResource",
-    "AsyncCachesResource",
-    "CachesResourceWithRawResponse",
-    "AsyncCachesResourceWithRawResponse",
-    "CachesResourceWithStreamingResponse",
-    "AsyncCachesResourceWithStreamingResponse",
     "IntegrationResource",
     "AsyncIntegrationResource",
     "IntegrationResourceWithRawResponse",

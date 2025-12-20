@@ -55,7 +55,6 @@ from .training_create_params import TrainingCreateParams as TrainingCreateParams
 from .training_delete_params import TrainingDeleteParams as TrainingDeleteParams
 from .training_list_response import TrainingListResponse as TrainingListResponse
 from .training_update_params import TrainingUpdateParams as TrainingUpdateParams
-from .sy_update_config_params import SyUpdateConfigParams as SyUpdateConfigParams
 from .auth_create_token_params import AuthCreateTokenParams as AuthCreateTokenParams
 from .datasource_create_params import DatasourceCreateParams as DatasourceCreateParams
 from .datasource_update_params import DatasourceUpdateParams as DatasourceUpdateParams
@@ -66,7 +65,6 @@ from .training_create_response import TrainingCreateResponse as TrainingCreateRe
 from .training_update_response import TrainingUpdateResponse as TrainingUpdateResponse
 from .role_get_polices_response import RoleGetPolicesResponse as RoleGetPolicesResponse
 from .role_get_variables_params import RoleGetVariablesParams as RoleGetVariablesParams
-from .sy_update_config_response import SyUpdateConfigResponse as SyUpdateConfigResponse
 from .datasource_add_file_params import DatasourceAddFileParams as DatasourceAddFileParams
 from .preference_create_response import PreferenceCreateResponse as PreferenceCreateResponse
 from .preference_update_response import PreferenceUpdateResponse as PreferenceUpdateResponse

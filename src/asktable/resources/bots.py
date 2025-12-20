@@ -51,7 +51,6 @@ class BotsResource(SyncAPIResource):
         name: str,
         color_theme: Optional[str] | Omit = omit,
         debug: bool | Omit = omit,
-        extapi_ids: SequenceNotStr[str] | Omit = omit,
         interaction_rules: Iterable[bot_create_params.InteractionRule] | Omit = omit,
         magic_input: Optional[str] | Omit = omit,
         max_rows: int | Omit = omit,
@@ -78,8 +77,6 @@ class BotsResource(SyncAPIResource):
           color_theme: 颜色主题
 
           debug: 调试模式
-
-          extapi_ids: 扩展 API ID 列表，扩展 API ID 的逗号分隔列表。
 
           interaction_rules: 交互规则列表，用于定义 bot 的行为规则
 
@@ -113,7 +110,6 @@ class BotsResource(SyncAPIResource):
                     "name": name,
                     "color_theme": color_theme,
                     "debug": debug,
-                    "extapi_ids": extapi_ids,
                     "interaction_rules": interaction_rules,
                     "magic_input": magic_input,
                     "max_rows": max_rows,
@@ -172,7 +168,6 @@ class BotsResource(SyncAPIResource):
         color_theme: Optional[str] | Omit = omit,
         datasource_ids: Optional[SequenceNotStr[str]] | Omit = omit,
         debug: Optional[bool] | Omit = omit,
-        extapi_ids: Optional[SequenceNotStr[str]] | Omit = omit,
         interaction_rules: Optional[Iterable[bot_update_params.InteractionRule]] | Omit = omit,
         magic_input: Optional[str] | Omit = omit,
         max_rows: Optional[int] | Omit = omit,
@@ -200,8 +195,6 @@ class BotsResource(SyncAPIResource):
           datasource_ids: 数据源 ID，目前只支持 1 个数据源。
 
           debug: 调试模式
-
-          extapi_ids: 扩展 API ID 列表，扩展 API ID 的逗号分隔列表。
 
           interaction_rules: 交互规则列表，用于定义 bot 的行为规则
 
@@ -239,7 +232,6 @@ class BotsResource(SyncAPIResource):
                     "color_theme": color_theme,
                     "datasource_ids": datasource_ids,
                     "debug": debug,
-                    "extapi_ids": extapi_ids,
                     "interaction_rules": interaction_rules,
                     "magic_input": magic_input,
                     "max_rows": max_rows,
@@ -412,7 +404,6 @@ class AsyncBotsResource(AsyncAPIResource):
         name: str,
         color_theme: Optional[str] | Omit = omit,
         debug: bool | Omit = omit,
-        extapi_ids: SequenceNotStr[str] | Omit = omit,
         interaction_rules: Iterable[bot_create_params.InteractionRule] | Omit = omit,
         magic_input: Optional[str] | Omit = omit,
         max_rows: int | Omit = omit,
@@ -439,8 +430,6 @@ class AsyncBotsResource(AsyncAPIResource):
           color_theme: 颜色主题
 
           debug: 调试模式
-
-          extapi_ids: 扩展 API ID 列表，扩展 API ID 的逗号分隔列表。
 
           interaction_rules: 交互规则列表，用于定义 bot 的行为规则
 
@@ -474,7 +463,6 @@ class AsyncBotsResource(AsyncAPIResource):
                     "name": name,
                     "color_theme": color_theme,
                     "debug": debug,
-                    "extapi_ids": extapi_ids,
                     "interaction_rules": interaction_rules,
                     "magic_input": magic_input,
                     "max_rows": max_rows,
@@ -533,7 +521,6 @@ class AsyncBotsResource(AsyncAPIResource):
         color_theme: Optional[str] | Omit = omit,
         datasource_ids: Optional[SequenceNotStr[str]] | Omit = omit,
         debug: Optional[bool] | Omit = omit,
-        extapi_ids: Optional[SequenceNotStr[str]] | Omit = omit,
         interaction_rules: Optional[Iterable[bot_update_params.InteractionRule]] | Omit = omit,
         magic_input: Optional[str] | Omit = omit,
         max_rows: Optional[int] | Omit = omit,
@@ -561,8 +548,6 @@ class AsyncBotsResource(AsyncAPIResource):
           datasource_ids: 数据源 ID，目前只支持 1 个数据源。
 
           debug: 调试模式
-
-          extapi_ids: 扩展 API ID 列表，扩展 API ID 的逗号分隔列表。
 
           interaction_rules: 交互规则列表，用于定义 bot 的行为规则
 
@@ -600,7 +585,6 @@ class AsyncBotsResource(AsyncAPIResource):
                     "color_theme": color_theme,
                     "datasource_ids": datasource_ids,
                     "debug": debug,
-                    "extapi_ids": extapi_ids,
                     "interaction_rules": interaction_rules,
                     "magic_input": magic_input,
                     "max_rows": max_rows,

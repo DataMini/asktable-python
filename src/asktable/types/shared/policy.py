@@ -10,6 +10,12 @@ __all__ = ["Policy", "DatasetConfig", "DatasetConfigRegexPatterns"]
 
 
 class DatasetConfigRegexPatterns(BaseModel):
+    """
+    正则表达式。
+        - 描述：用于匹配指定数据源中Schema（DB）、Table和Field名称的三个正则表达式，即同时满足这三个正则表达式的DB、Table和Field才被允许访问。
+        - 注意：此字段为可选项。如果未提供，则默认包含指定数据源的所有数据。
+    """
+
     fields_regex_pattern: Optional[str] = None
     """Field 正则表达式，空值默认全选"""
 

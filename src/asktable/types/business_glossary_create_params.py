@@ -15,6 +15,8 @@ class BusinessGlossaryCreateParams(TypedDict, total=False):
 
 
 class Body(TypedDict, total=False):
+    """Schema for creating a new document"""
+
     definition: Required[str]
     """业务术语定义"""
 

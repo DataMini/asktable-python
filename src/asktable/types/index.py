@@ -9,6 +9,8 @@ __all__ = ["Index"]
 
 
 class Index(BaseModel):
+    """索引响应模型"""
+
     id: str
     """索引 ID"""
 

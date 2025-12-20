@@ -22,6 +22,12 @@ class PolicyCreateParams(TypedDict, total=False):
 
 
 class DatasetConfigRegexPatterns(TypedDict, total=False):
+    """
+    正则表达式。
+        - 描述：用于匹配指定数据源中Schema（DB）、Table和Field名称的三个正则表达式，即同时满足这三个正则表达式的DB、Table和Field才被允许访问。
+        - 注意：此字段为可选项。如果未提供，则默认包含指定数据源的所有数据。
+    """
+
     fields_regex_pattern: Optional[str]
     """Field 正则表达式，空值默认全选"""
 
@@ -33,6 +39,8 @@ class DatasetConfigRegexPatterns(TypedDict, total=False):
 
 
 class DatasetConfig(TypedDict, total=False):
+    """数据集配置"""
+
     datasource_ids: Required[SequenceNotStr[str]]
     """
     数据源 ID 列表，必填。 - 描述：用于指定策略适用的数据源。可以使用通配符 _ 表示所

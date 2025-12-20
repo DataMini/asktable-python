@@ -23,9 +23,6 @@ class BotUpdateParams(TypedDict, total=False):
     debug: Optional[bool]
     """调试模式"""
 
-    extapi_ids: Optional[SequenceNotStr[str]]
-    """扩展 API ID 列表，扩展 API ID 的逗号分隔列表。"""
-
     interaction_rules: Optional[Iterable[InteractionRule]]
     """交互规则列表，用于定义 bot 的行为规则"""
 
