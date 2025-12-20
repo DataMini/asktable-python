@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Mapping
+from typing import TYPE_CHECKING, Any, Mapping
 from typing_extensions import Self, override
 
 import httpx
@@ -20,26 +20,8 @@ from ._types import (
     not_given,
 )
 from ._utils import is_given, get_async_library
+from ._compat import cached_property
 from ._version import __version__
-from .resources import (
-    auth,
-    bots,
-    sqls,
-    files,
-    roles,
-    caches,
-    polish,
-    scores,
-    answers,
-    project,
-    policies,
-    trainings,
-    dataframes,
-    integration,
-    preferences,
-    securetunnels,
-    business_glossary,
-)
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import AsktableError, APIStatusError
 from ._base_client import (
@@ -47,11 +29,52 @@ from ._base_client import (
     SyncAPIClient,
     AsyncAPIClient,
 )
-from .resources.ats import ats
-from .resources.sys import sys
-from .resources.user import user
-from .resources.chats import chats
-from .resources.datasources import datasources
+
+if TYPE_CHECKING:
+    from .resources import (
+        ats,
+        sys,
+        auth,
+        bots,
+        sqls,
+        user,
+        chats,
+        files,
+        roles,
+        polish,
+        scores,
+        answers,
+        project,
+        policies,
+        trainings,
+        dataframes,
+        datasources,
+        integration,
+        preferences,
+        securetunnels,
+        business_glossary,
+    )
+    from .resources.auth import AuthResource, AsyncAuthResource
+    from .resources.bots import BotsResource, AsyncBotsResource
+    from .resources.sqls import SqlsResource, AsyncSqlsResource
+    from .resources.files import FilesResource, AsyncFilesResource
+    from .resources.roles import RolesResource, AsyncRolesResource
+    from .resources.polish import PolishResource, AsyncPolishResource
+    from .resources.scores import ScoresResource, AsyncScoresResource
+    from .resources.answers import AnswersResource, AsyncAnswersResource
+    from .resources.ats.ats import ATSResource, AsyncATSResource
+    from .resources.project import ProjectResource, AsyncProjectResource
+    from .resources.sys.sys import SysResource, AsyncSysResource
+    from .resources.policies import PoliciesResource, AsyncPoliciesResource
+    from .resources.trainings import TrainingsResource, AsyncTrainingsResource
+    from .resources.user.user import UserResource, AsyncUserResource
+    from .resources.dataframes import DataframesResource, AsyncDataframesResource
+    from .resources.chats.chats import ChatsResource, AsyncChatsResource
+    from .resources.integration import IntegrationResource, AsyncIntegrationResource
+    from .resources.preferences import PreferencesResource, AsyncPreferencesResource
+    from .resources.securetunnels import SecuretunnelsResource, AsyncSecuretunnelsResource
+    from .resources.business_glossary import BusinessGlossaryResource, AsyncBusinessGlossaryResource
+    from .resources.datasources.datasources import DatasourcesResource, AsyncDatasourcesResource
 
 __all__ = [
     "Timeout",
@@ -66,31 +89,6 @@ __all__ = [
 
 
 class Asktable(SyncAPIClient):
-    sys: sys.SysResource
-    securetunnels: securetunnels.SecuretunnelsResource
-    roles: roles.RolesResource
-    policies: policies.PoliciesResource
-    chats: chats.ChatsResource
-    datasources: datasources.DatasourcesResource
-    bots: bots.BotsResource
-    auth: auth.AuthResource
-    answers: answers.AnswersResource
-    sqls: sqls.SqlsResource
-    caches: caches.CachesResource
-    integration: integration.IntegrationResource
-    business_glossary: business_glossary.BusinessGlossaryResource
-    preferences: preferences.PreferencesResource
-    trainings: trainings.TrainingsResource
-    project: project.ProjectResource
-    scores: scores.ScoresResource
-    files: files.FilesResource
-    dataframes: dataframes.DataframesResource
-    polish: polish.PolishResource
-    user: user.UserResource
-    ats: ats.ATSResource
-    with_raw_response: AsktableWithRawResponse
-    with_streaming_response: AsktableWithStreamedResponse
-
     # client options
     api_key: str
 
@@ -145,30 +143,139 @@ class Asktable(SyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.sys = sys.SysResource(self)
-        self.securetunnels = securetunnels.SecuretunnelsResource(self)
-        self.roles = roles.RolesResource(self)
-        self.policies = policies.PoliciesResource(self)
-        self.chats = chats.ChatsResource(self)
-        self.datasources = datasources.DatasourcesResource(self)
-        self.bots = bots.BotsResource(self)
-        self.auth = auth.AuthResource(self)
-        self.answers = answers.AnswersResource(self)
-        self.sqls = sqls.SqlsResource(self)
-        self.caches = caches.CachesResource(self)
-        self.integration = integration.IntegrationResource(self)
-        self.business_glossary = business_glossary.BusinessGlossaryResource(self)
-        self.preferences = preferences.PreferencesResource(self)
-        self.trainings = trainings.TrainingsResource(self)
-        self.project = project.ProjectResource(self)
-        self.scores = scores.ScoresResource(self)
-        self.files = files.FilesResource(self)
-        self.dataframes = dataframes.DataframesResource(self)
-        self.polish = polish.PolishResource(self)
-        self.user = user.UserResource(self)
-        self.ats = ats.ATSResource(self)
-        self.with_raw_response = AsktableWithRawResponse(self)
-        self.with_streaming_response = AsktableWithStreamedResponse(self)
+    @cached_property
+    def sys(self) -> SysResource:
+        from .resources.sys import SysResource
+
+        return SysResource(self)
+
+    @cached_property
+    def securetunnels(self) -> SecuretunnelsResource:
+        from .resources.securetunnels import SecuretunnelsResource
+
+        return SecuretunnelsResource(self)
+
+    @cached_property
+    def roles(self) -> RolesResource:
+        from .resources.roles import RolesResource
+
+        return RolesResource(self)
+
+    @cached_property
+    def policies(self) -> PoliciesResource:
+        from .resources.policies import PoliciesResource
+
+        return PoliciesResource(self)
+
+    @cached_property
+    def chats(self) -> ChatsResource:
+        from .resources.chats import ChatsResource
+
+        return ChatsResource(self)
+
+    @cached_property
+    def datasources(self) -> DatasourcesResource:
+        from .resources.datasources import DatasourcesResource
+
+        return DatasourcesResource(self)
+
+    @cached_property
+    def bots(self) -> BotsResource:
+        from .resources.bots import BotsResource
+
+        return BotsResource(self)
+
+    @cached_property
+    def auth(self) -> AuthResource:
+        from .resources.auth import AuthResource
+
+        return AuthResource(self)
+
+    @cached_property
+    def answers(self) -> AnswersResource:
+        from .resources.answers import AnswersResource
+
+        return AnswersResource(self)
+
+    @cached_property
+    def sqls(self) -> SqlsResource:
+        from .resources.sqls import SqlsResource
+
+        return SqlsResource(self)
+
+    @cached_property
+    def integration(self) -> IntegrationResource:
+        from .resources.integration import IntegrationResource
+
+        return IntegrationResource(self)
+
+    @cached_property
+    def business_glossary(self) -> BusinessGlossaryResource:
+        from .resources.business_glossary import BusinessGlossaryResource
+
+        return BusinessGlossaryResource(self)
+
+    @cached_property
+    def preferences(self) -> PreferencesResource:
+        from .resources.preferences import PreferencesResource
+
+        return PreferencesResource(self)
+
+    @cached_property
+    def trainings(self) -> TrainingsResource:
+        from .resources.trainings import TrainingsResource
+
+        return TrainingsResource(self)
+
+    @cached_property
+    def project(self) -> ProjectResource:
+        from .resources.project import ProjectResource
+
+        return ProjectResource(self)
+
+    @cached_property
+    def scores(self) -> ScoresResource:
+        from .resources.scores import ScoresResource
+
+        return ScoresResource(self)
+
+    @cached_property
+    def files(self) -> FilesResource:
+        from .resources.files import FilesResource
+
+        return FilesResource(self)
+
+    @cached_property
+    def dataframes(self) -> DataframesResource:
+        from .resources.dataframes import DataframesResource
+
+        return DataframesResource(self)
+
+    @cached_property
+    def polish(self) -> PolishResource:
+        from .resources.polish import PolishResource
+
+        return PolishResource(self)
+
+    @cached_property
+    def user(self) -> UserResource:
+        from .resources.user import UserResource
+
+        return UserResource(self)
+
+    @cached_property
+    def ats(self) -> ATSResource:
+        from .resources.ats import ATSResource
+
+        return ATSResource(self)
+
+    @cached_property
+    def with_raw_response(self) -> AsktableWithRawResponse:
+        return AsktableWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsktableWithStreamedResponse:
+        return AsktableWithStreamedResponse(self)
 
     @property
     @override
@@ -276,31 +383,6 @@ class Asktable(SyncAPIClient):
 
 
 class AsyncAsktable(AsyncAPIClient):
-    sys: sys.AsyncSysResource
-    securetunnels: securetunnels.AsyncSecuretunnelsResource
-    roles: roles.AsyncRolesResource
-    policies: policies.AsyncPoliciesResource
-    chats: chats.AsyncChatsResource
-    datasources: datasources.AsyncDatasourcesResource
-    bots: bots.AsyncBotsResource
-    auth: auth.AsyncAuthResource
-    answers: answers.AsyncAnswersResource
-    sqls: sqls.AsyncSqlsResource
-    caches: caches.AsyncCachesResource
-    integration: integration.AsyncIntegrationResource
-    business_glossary: business_glossary.AsyncBusinessGlossaryResource
-    preferences: preferences.AsyncPreferencesResource
-    trainings: trainings.AsyncTrainingsResource
-    project: project.AsyncProjectResource
-    scores: scores.AsyncScoresResource
-    files: files.AsyncFilesResource
-    dataframes: dataframes.AsyncDataframesResource
-    polish: polish.AsyncPolishResource
-    user: user.AsyncUserResource
-    ats: ats.AsyncATSResource
-    with_raw_response: AsyncAsktableWithRawResponse
-    with_streaming_response: AsyncAsktableWithStreamedResponse
-
     # client options
     api_key: str
 
@@ -355,30 +437,139 @@ class AsyncAsktable(AsyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.sys = sys.AsyncSysResource(self)
-        self.securetunnels = securetunnels.AsyncSecuretunnelsResource(self)
-        self.roles = roles.AsyncRolesResource(self)
-        self.policies = policies.AsyncPoliciesResource(self)
-        self.chats = chats.AsyncChatsResource(self)
-        self.datasources = datasources.AsyncDatasourcesResource(self)
-        self.bots = bots.AsyncBotsResource(self)
-        self.auth = auth.AsyncAuthResource(self)
-        self.answers = answers.AsyncAnswersResource(self)
-        self.sqls = sqls.AsyncSqlsResource(self)
-        self.caches = caches.AsyncCachesResource(self)
-        self.integration = integration.AsyncIntegrationResource(self)
-        self.business_glossary = business_glossary.AsyncBusinessGlossaryResource(self)
-        self.preferences = preferences.AsyncPreferencesResource(self)
-        self.trainings = trainings.AsyncTrainingsResource(self)
-        self.project = project.AsyncProjectResource(self)
-        self.scores = scores.AsyncScoresResource(self)
-        self.files = files.AsyncFilesResource(self)
-        self.dataframes = dataframes.AsyncDataframesResource(self)
-        self.polish = polish.AsyncPolishResource(self)
-        self.user = user.AsyncUserResource(self)
-        self.ats = ats.AsyncATSResource(self)
-        self.with_raw_response = AsyncAsktableWithRawResponse(self)
-        self.with_streaming_response = AsyncAsktableWithStreamedResponse(self)
+    @cached_property
+    def sys(self) -> AsyncSysResource:
+        from .resources.sys import AsyncSysResource
+
+        return AsyncSysResource(self)
+
+    @cached_property
+    def securetunnels(self) -> AsyncSecuretunnelsResource:
+        from .resources.securetunnels import AsyncSecuretunnelsResource
+
+        return AsyncSecuretunnelsResource(self)
+
+    @cached_property
+    def roles(self) -> AsyncRolesResource:
+        from .resources.roles import AsyncRolesResource
+
+        return AsyncRolesResource(self)
+
+    @cached_property
+    def policies(self) -> AsyncPoliciesResource:
+        from .resources.policies import AsyncPoliciesResource
+
+        return AsyncPoliciesResource(self)
+
+    @cached_property
+    def chats(self) -> AsyncChatsResource:
+        from .resources.chats import AsyncChatsResource
+
+        return AsyncChatsResource(self)
+
+    @cached_property
+    def datasources(self) -> AsyncDatasourcesResource:
+        from .resources.datasources import AsyncDatasourcesResource
+
+        return AsyncDatasourcesResource(self)
+
+    @cached_property
+    def bots(self) -> AsyncBotsResource:
+        from .resources.bots import AsyncBotsResource
+
+        return AsyncBotsResource(self)
+
+    @cached_property
+    def auth(self) -> AsyncAuthResource:
+        from .resources.auth import AsyncAuthResource
+
+        return AsyncAuthResource(self)
+
+    @cached_property
+    def answers(self) -> AsyncAnswersResource:
+        from .resources.answers import AsyncAnswersResource
+
+        return AsyncAnswersResource(self)
+
+    @cached_property
+    def sqls(self) -> AsyncSqlsResource:
+        from .resources.sqls import AsyncSqlsResource
+
+        return AsyncSqlsResource(self)
+
+    @cached_property
+    def integration(self) -> AsyncIntegrationResource:
+        from .resources.integration import AsyncIntegrationResource
+
+        return AsyncIntegrationResource(self)
+
+    @cached_property
+    def business_glossary(self) -> AsyncBusinessGlossaryResource:
+        from .resources.business_glossary import AsyncBusinessGlossaryResource
+
+        return AsyncBusinessGlossaryResource(self)
+
+    @cached_property
+    def preferences(self) -> AsyncPreferencesResource:
+        from .resources.preferences import AsyncPreferencesResource
+
+        return AsyncPreferencesResource(self)
+
+    @cached_property
+    def trainings(self) -> AsyncTrainingsResource:
+        from .resources.trainings import AsyncTrainingsResource
+
+        return AsyncTrainingsResource(self)
+
+    @cached_property
+    def project(self) -> AsyncProjectResource:
+        from .resources.project import AsyncProjectResource
+
+        return AsyncProjectResource(self)
+
+    @cached_property
+    def scores(self) -> AsyncScoresResource:
+        from .resources.scores import AsyncScoresResource
+
+        return AsyncScoresResource(self)
+
+    @cached_property
+    def files(self) -> AsyncFilesResource:
+        from .resources.files import AsyncFilesResource
+
+        return AsyncFilesResource(self)
+
+    @cached_property
+    def dataframes(self) -> AsyncDataframesResource:
+        from .resources.dataframes import AsyncDataframesResource
+
+        return AsyncDataframesResource(self)
+
+    @cached_property
+    def polish(self) -> AsyncPolishResource:
+        from .resources.polish import AsyncPolishResource
+
+        return AsyncPolishResource(self)
+
+    @cached_property
+    def user(self) -> AsyncUserResource:
+        from .resources.user import AsyncUserResource
+
+        return AsyncUserResource(self)
+
+    @cached_property
+    def ats(self) -> AsyncATSResource:
+        from .resources.ats import AsyncATSResource
+
+        return AsyncATSResource(self)
+
+    @cached_property
+    def with_raw_response(self) -> AsyncAsktableWithRawResponse:
+        return AsyncAsktableWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncAsktableWithStreamedResponse:
+        return AsyncAsktableWithStreamedResponse(self)
 
     @property
     @override
@@ -486,113 +677,535 @@ class AsyncAsktable(AsyncAPIClient):
 
 
 class AsktableWithRawResponse:
+    _client: Asktable
+
     def __init__(self, client: Asktable) -> None:
-        self.sys = sys.SysResourceWithRawResponse(client.sys)
-        self.securetunnels = securetunnels.SecuretunnelsResourceWithRawResponse(client.securetunnels)
-        self.roles = roles.RolesResourceWithRawResponse(client.roles)
-        self.policies = policies.PoliciesResourceWithRawResponse(client.policies)
-        self.chats = chats.ChatsResourceWithRawResponse(client.chats)
-        self.datasources = datasources.DatasourcesResourceWithRawResponse(client.datasources)
-        self.bots = bots.BotsResourceWithRawResponse(client.bots)
-        self.auth = auth.AuthResourceWithRawResponse(client.auth)
-        self.answers = answers.AnswersResourceWithRawResponse(client.answers)
-        self.sqls = sqls.SqlsResourceWithRawResponse(client.sqls)
-        self.caches = caches.CachesResourceWithRawResponse(client.caches)
-        self.integration = integration.IntegrationResourceWithRawResponse(client.integration)
-        self.business_glossary = business_glossary.BusinessGlossaryResourceWithRawResponse(client.business_glossary)
-        self.preferences = preferences.PreferencesResourceWithRawResponse(client.preferences)
-        self.trainings = trainings.TrainingsResourceWithRawResponse(client.trainings)
-        self.project = project.ProjectResourceWithRawResponse(client.project)
-        self.scores = scores.ScoresResourceWithRawResponse(client.scores)
-        self.files = files.FilesResourceWithRawResponse(client.files)
-        self.dataframes = dataframes.DataframesResourceWithRawResponse(client.dataframes)
-        self.polish = polish.PolishResourceWithRawResponse(client.polish)
-        self.user = user.UserResourceWithRawResponse(client.user)
-        self.ats = ats.ATSResourceWithRawResponse(client.ats)
+        self._client = client
+
+    @cached_property
+    def sys(self) -> sys.SysResourceWithRawResponse:
+        from .resources.sys import SysResourceWithRawResponse
+
+        return SysResourceWithRawResponse(self._client.sys)
+
+    @cached_property
+    def securetunnels(self) -> securetunnels.SecuretunnelsResourceWithRawResponse:
+        from .resources.securetunnels import SecuretunnelsResourceWithRawResponse
+
+        return SecuretunnelsResourceWithRawResponse(self._client.securetunnels)
+
+    @cached_property
+    def roles(self) -> roles.RolesResourceWithRawResponse:
+        from .resources.roles import RolesResourceWithRawResponse
+
+        return RolesResourceWithRawResponse(self._client.roles)
+
+    @cached_property
+    def policies(self) -> policies.PoliciesResourceWithRawResponse:
+        from .resources.policies import PoliciesResourceWithRawResponse
+
+        return PoliciesResourceWithRawResponse(self._client.policies)
+
+    @cached_property
+    def chats(self) -> chats.ChatsResourceWithRawResponse:
+        from .resources.chats import ChatsResourceWithRawResponse
+
+        return ChatsResourceWithRawResponse(self._client.chats)
+
+    @cached_property
+    def datasources(self) -> datasources.DatasourcesResourceWithRawResponse:
+        from .resources.datasources import DatasourcesResourceWithRawResponse
+
+        return DatasourcesResourceWithRawResponse(self._client.datasources)
+
+    @cached_property
+    def bots(self) -> bots.BotsResourceWithRawResponse:
+        from .resources.bots import BotsResourceWithRawResponse
+
+        return BotsResourceWithRawResponse(self._client.bots)
+
+    @cached_property
+    def auth(self) -> auth.AuthResourceWithRawResponse:
+        from .resources.auth import AuthResourceWithRawResponse
+
+        return AuthResourceWithRawResponse(self._client.auth)
+
+    @cached_property
+    def answers(self) -> answers.AnswersResourceWithRawResponse:
+        from .resources.answers import AnswersResourceWithRawResponse
+
+        return AnswersResourceWithRawResponse(self._client.answers)
+
+    @cached_property
+    def sqls(self) -> sqls.SqlsResourceWithRawResponse:
+        from .resources.sqls import SqlsResourceWithRawResponse
+
+        return SqlsResourceWithRawResponse(self._client.sqls)
+
+    @cached_property
+    def integration(self) -> integration.IntegrationResourceWithRawResponse:
+        from .resources.integration import IntegrationResourceWithRawResponse
+
+        return IntegrationResourceWithRawResponse(self._client.integration)
+
+    @cached_property
+    def business_glossary(self) -> business_glossary.BusinessGlossaryResourceWithRawResponse:
+        from .resources.business_glossary import BusinessGlossaryResourceWithRawResponse
+
+        return BusinessGlossaryResourceWithRawResponse(self._client.business_glossary)
+
+    @cached_property
+    def preferences(self) -> preferences.PreferencesResourceWithRawResponse:
+        from .resources.preferences import PreferencesResourceWithRawResponse
+
+        return PreferencesResourceWithRawResponse(self._client.preferences)
+
+    @cached_property
+    def trainings(self) -> trainings.TrainingsResourceWithRawResponse:
+        from .resources.trainings import TrainingsResourceWithRawResponse
+
+        return TrainingsResourceWithRawResponse(self._client.trainings)
+
+    @cached_property
+    def project(self) -> project.ProjectResourceWithRawResponse:
+        from .resources.project import ProjectResourceWithRawResponse
+
+        return ProjectResourceWithRawResponse(self._client.project)
+
+    @cached_property
+    def scores(self) -> scores.ScoresResourceWithRawResponse:
+        from .resources.scores import ScoresResourceWithRawResponse
+
+        return ScoresResourceWithRawResponse(self._client.scores)
+
+    @cached_property
+    def files(self) -> files.FilesResourceWithRawResponse:
+        from .resources.files import FilesResourceWithRawResponse
+
+        return FilesResourceWithRawResponse(self._client.files)
+
+    @cached_property
+    def dataframes(self) -> dataframes.DataframesResourceWithRawResponse:
+        from .resources.dataframes import DataframesResourceWithRawResponse
+
+        return DataframesResourceWithRawResponse(self._client.dataframes)
+
+    @cached_property
+    def polish(self) -> polish.PolishResourceWithRawResponse:
+        from .resources.polish import PolishResourceWithRawResponse
+
+        return PolishResourceWithRawResponse(self._client.polish)
+
+    @cached_property
+    def user(self) -> user.UserResourceWithRawResponse:
+        from .resources.user import UserResourceWithRawResponse
+
+        return UserResourceWithRawResponse(self._client.user)
+
+    @cached_property
+    def ats(self) -> ats.ATSResourceWithRawResponse:
+        from .resources.ats import ATSResourceWithRawResponse
+
+        return ATSResourceWithRawResponse(self._client.ats)
 
 
 class AsyncAsktableWithRawResponse:
+    _client: AsyncAsktable
+
     def __init__(self, client: AsyncAsktable) -> None:
-        self.sys = sys.AsyncSysResourceWithRawResponse(client.sys)
-        self.securetunnels = securetunnels.AsyncSecuretunnelsResourceWithRawResponse(client.securetunnels)
-        self.roles = roles.AsyncRolesResourceWithRawResponse(client.roles)
-        self.policies = policies.AsyncPoliciesResourceWithRawResponse(client.policies)
-        self.chats = chats.AsyncChatsResourceWithRawResponse(client.chats)
-        self.datasources = datasources.AsyncDatasourcesResourceWithRawResponse(client.datasources)
-        self.bots = bots.AsyncBotsResourceWithRawResponse(client.bots)
-        self.auth = auth.AsyncAuthResourceWithRawResponse(client.auth)
-        self.answers = answers.AsyncAnswersResourceWithRawResponse(client.answers)
-        self.sqls = sqls.AsyncSqlsResourceWithRawResponse(client.sqls)
-        self.caches = caches.AsyncCachesResourceWithRawResponse(client.caches)
-        self.integration = integration.AsyncIntegrationResourceWithRawResponse(client.integration)
-        self.business_glossary = business_glossary.AsyncBusinessGlossaryResourceWithRawResponse(
-            client.business_glossary
-        )
-        self.preferences = preferences.AsyncPreferencesResourceWithRawResponse(client.preferences)
-        self.trainings = trainings.AsyncTrainingsResourceWithRawResponse(client.trainings)
-        self.project = project.AsyncProjectResourceWithRawResponse(client.project)
-        self.scores = scores.AsyncScoresResourceWithRawResponse(client.scores)
-        self.files = files.AsyncFilesResourceWithRawResponse(client.files)
-        self.dataframes = dataframes.AsyncDataframesResourceWithRawResponse(client.dataframes)
-        self.polish = polish.AsyncPolishResourceWithRawResponse(client.polish)
-        self.user = user.AsyncUserResourceWithRawResponse(client.user)
-        self.ats = ats.AsyncATSResourceWithRawResponse(client.ats)
+        self._client = client
+
+    @cached_property
+    def sys(self) -> sys.AsyncSysResourceWithRawResponse:
+        from .resources.sys import AsyncSysResourceWithRawResponse
+
+        return AsyncSysResourceWithRawResponse(self._client.sys)
+
+    @cached_property
+    def securetunnels(self) -> securetunnels.AsyncSecuretunnelsResourceWithRawResponse:
+        from .resources.securetunnels import AsyncSecuretunnelsResourceWithRawResponse
+
+        return AsyncSecuretunnelsResourceWithRawResponse(self._client.securetunnels)
+
+    @cached_property
+    def roles(self) -> roles.AsyncRolesResourceWithRawResponse:
+        from .resources.roles import AsyncRolesResourceWithRawResponse
+
+        return AsyncRolesResourceWithRawResponse(self._client.roles)
+
+    @cached_property
+    def policies(self) -> policies.AsyncPoliciesResourceWithRawResponse:
+        from .resources.policies import AsyncPoliciesResourceWithRawResponse
+
+        return AsyncPoliciesResourceWithRawResponse(self._client.policies)
+
+    @cached_property
+    def chats(self) -> chats.AsyncChatsResourceWithRawResponse:
+        from .resources.chats import AsyncChatsResourceWithRawResponse
+
+        return AsyncChatsResourceWithRawResponse(self._client.chats)
+
+    @cached_property
+    def datasources(self) -> datasources.AsyncDatasourcesResourceWithRawResponse:
+        from .resources.datasources import AsyncDatasourcesResourceWithRawResponse
+
+        return AsyncDatasourcesResourceWithRawResponse(self._client.datasources)
+
+    @cached_property
+    def bots(self) -> bots.AsyncBotsResourceWithRawResponse:
+        from .resources.bots import AsyncBotsResourceWithRawResponse
+
+        return AsyncBotsResourceWithRawResponse(self._client.bots)
+
+    @cached_property
+    def auth(self) -> auth.AsyncAuthResourceWithRawResponse:
+        from .resources.auth import AsyncAuthResourceWithRawResponse
+
+        return AsyncAuthResourceWithRawResponse(self._client.auth)
+
+    @cached_property
+    def answers(self) -> answers.AsyncAnswersResourceWithRawResponse:
+        from .resources.answers import AsyncAnswersResourceWithRawResponse
+
+        return AsyncAnswersResourceWithRawResponse(self._client.answers)
+
+    @cached_property
+    def sqls(self) -> sqls.AsyncSqlsResourceWithRawResponse:
+        from .resources.sqls import AsyncSqlsResourceWithRawResponse
+
+        return AsyncSqlsResourceWithRawResponse(self._client.sqls)
+
+    @cached_property
+    def integration(self) -> integration.AsyncIntegrationResourceWithRawResponse:
+        from .resources.integration import AsyncIntegrationResourceWithRawResponse
+
+        return AsyncIntegrationResourceWithRawResponse(self._client.integration)
+
+    @cached_property
+    def business_glossary(self) -> business_glossary.AsyncBusinessGlossaryResourceWithRawResponse:
+        from .resources.business_glossary import AsyncBusinessGlossaryResourceWithRawResponse
+
+        return AsyncBusinessGlossaryResourceWithRawResponse(self._client.business_glossary)
+
+    @cached_property
+    def preferences(self) -> preferences.AsyncPreferencesResourceWithRawResponse:
+        from .resources.preferences import AsyncPreferencesResourceWithRawResponse
+
+        return AsyncPreferencesResourceWithRawResponse(self._client.preferences)
+
+    @cached_property
+    def trainings(self) -> trainings.AsyncTrainingsResourceWithRawResponse:
+        from .resources.trainings import AsyncTrainingsResourceWithRawResponse
+
+        return AsyncTrainingsResourceWithRawResponse(self._client.trainings)
+
+    @cached_property
+    def project(self) -> project.AsyncProjectResourceWithRawResponse:
+        from .resources.project import AsyncProjectResourceWithRawResponse
+
+        return AsyncProjectResourceWithRawResponse(self._client.project)
+
+    @cached_property
+    def scores(self) -> scores.AsyncScoresResourceWithRawResponse:
+        from .resources.scores import AsyncScoresResourceWithRawResponse
+
+        return AsyncScoresResourceWithRawResponse(self._client.scores)
+
+    @cached_property
+    def files(self) -> files.AsyncFilesResourceWithRawResponse:
+        from .resources.files import AsyncFilesResourceWithRawResponse
+
+        return AsyncFilesResourceWithRawResponse(self._client.files)
+
+    @cached_property
+    def dataframes(self) -> dataframes.AsyncDataframesResourceWithRawResponse:
+        from .resources.dataframes import AsyncDataframesResourceWithRawResponse
+
+        return AsyncDataframesResourceWithRawResponse(self._client.dataframes)
+
+    @cached_property
+    def polish(self) -> polish.AsyncPolishResourceWithRawResponse:
+        from .resources.polish import AsyncPolishResourceWithRawResponse
+
+        return AsyncPolishResourceWithRawResponse(self._client.polish)
+
+    @cached_property
+    def user(self) -> user.AsyncUserResourceWithRawResponse:
+        from .resources.user import AsyncUserResourceWithRawResponse
+
+        return AsyncUserResourceWithRawResponse(self._client.user)
+
+    @cached_property
+    def ats(self) -> ats.AsyncATSResourceWithRawResponse:
+        from .resources.ats import AsyncATSResourceWithRawResponse
+
+        return AsyncATSResourceWithRawResponse(self._client.ats)
 
 
 class AsktableWithStreamedResponse:
+    _client: Asktable
+
     def __init__(self, client: Asktable) -> None:
-        self.sys = sys.SysResourceWithStreamingResponse(client.sys)
-        self.securetunnels = securetunnels.SecuretunnelsResourceWithStreamingResponse(client.securetunnels)
-        self.roles = roles.RolesResourceWithStreamingResponse(client.roles)
-        self.policies = policies.PoliciesResourceWithStreamingResponse(client.policies)
-        self.chats = chats.ChatsResourceWithStreamingResponse(client.chats)
-        self.datasources = datasources.DatasourcesResourceWithStreamingResponse(client.datasources)
-        self.bots = bots.BotsResourceWithStreamingResponse(client.bots)
-        self.auth = auth.AuthResourceWithStreamingResponse(client.auth)
-        self.answers = answers.AnswersResourceWithStreamingResponse(client.answers)
-        self.sqls = sqls.SqlsResourceWithStreamingResponse(client.sqls)
-        self.caches = caches.CachesResourceWithStreamingResponse(client.caches)
-        self.integration = integration.IntegrationResourceWithStreamingResponse(client.integration)
-        self.business_glossary = business_glossary.BusinessGlossaryResourceWithStreamingResponse(
-            client.business_glossary
-        )
-        self.preferences = preferences.PreferencesResourceWithStreamingResponse(client.preferences)
-        self.trainings = trainings.TrainingsResourceWithStreamingResponse(client.trainings)
-        self.project = project.ProjectResourceWithStreamingResponse(client.project)
-        self.scores = scores.ScoresResourceWithStreamingResponse(client.scores)
-        self.files = files.FilesResourceWithStreamingResponse(client.files)
-        self.dataframes = dataframes.DataframesResourceWithStreamingResponse(client.dataframes)
-        self.polish = polish.PolishResourceWithStreamingResponse(client.polish)
-        self.user = user.UserResourceWithStreamingResponse(client.user)
-        self.ats = ats.ATSResourceWithStreamingResponse(client.ats)
+        self._client = client
+
+    @cached_property
+    def sys(self) -> sys.SysResourceWithStreamingResponse:
+        from .resources.sys import SysResourceWithStreamingResponse
+
+        return SysResourceWithStreamingResponse(self._client.sys)
+
+    @cached_property
+    def securetunnels(self) -> securetunnels.SecuretunnelsResourceWithStreamingResponse:
+        from .resources.securetunnels import SecuretunnelsResourceWithStreamingResponse
+
+        return SecuretunnelsResourceWithStreamingResponse(self._client.securetunnels)
+
+    @cached_property
+    def roles(self) -> roles.RolesResourceWithStreamingResponse:
+        from .resources.roles import RolesResourceWithStreamingResponse
+
+        return RolesResourceWithStreamingResponse(self._client.roles)
+
+    @cached_property
+    def policies(self) -> policies.PoliciesResourceWithStreamingResponse:
+        from .resources.policies import PoliciesResourceWithStreamingResponse
+
+        return PoliciesResourceWithStreamingResponse(self._client.policies)
+
+    @cached_property
+    def chats(self) -> chats.ChatsResourceWithStreamingResponse:
+        from .resources.chats import ChatsResourceWithStreamingResponse
+
+        return ChatsResourceWithStreamingResponse(self._client.chats)
+
+    @cached_property
+    def datasources(self) -> datasources.DatasourcesResourceWithStreamingResponse:
+        from .resources.datasources import DatasourcesResourceWithStreamingResponse
+
+        return DatasourcesResourceWithStreamingResponse(self._client.datasources)
+
+    @cached_property
+    def bots(self) -> bots.BotsResourceWithStreamingResponse:
+        from .resources.bots import BotsResourceWithStreamingResponse
+
+        return BotsResourceWithStreamingResponse(self._client.bots)
+
+    @cached_property
+    def auth(self) -> auth.AuthResourceWithStreamingResponse:
+        from .resources.auth import AuthResourceWithStreamingResponse
+
+        return AuthResourceWithStreamingResponse(self._client.auth)
+
+    @cached_property
+    def answers(self) -> answers.AnswersResourceWithStreamingResponse:
+        from .resources.answers import AnswersResourceWithStreamingResponse
+
+        return AnswersResourceWithStreamingResponse(self._client.answers)
+
+    @cached_property
+    def sqls(self) -> sqls.SqlsResourceWithStreamingResponse:
+        from .resources.sqls import SqlsResourceWithStreamingResponse
+
+        return SqlsResourceWithStreamingResponse(self._client.sqls)
+
+    @cached_property
+    def integration(self) -> integration.IntegrationResourceWithStreamingResponse:
+        from .resources.integration import IntegrationResourceWithStreamingResponse
+
+        return IntegrationResourceWithStreamingResponse(self._client.integration)
+
+    @cached_property
+    def business_glossary(self) -> business_glossary.BusinessGlossaryResourceWithStreamingResponse:
+        from .resources.business_glossary import BusinessGlossaryResourceWithStreamingResponse
+
+        return BusinessGlossaryResourceWithStreamingResponse(self._client.business_glossary)
+
+    @cached_property
+    def preferences(self) -> preferences.PreferencesResourceWithStreamingResponse:
+        from .resources.preferences import PreferencesResourceWithStreamingResponse
+
+        return PreferencesResourceWithStreamingResponse(self._client.preferences)
+
+    @cached_property
+    def trainings(self) -> trainings.TrainingsResourceWithStreamingResponse:
+        from .resources.trainings import TrainingsResourceWithStreamingResponse
+
+        return TrainingsResourceWithStreamingResponse(self._client.trainings)
+
+    @cached_property
+    def project(self) -> project.ProjectResourceWithStreamingResponse:
+        from .resources.project import ProjectResourceWithStreamingResponse
+
+        return ProjectResourceWithStreamingResponse(self._client.project)
+
+    @cached_property
+    def scores(self) -> scores.ScoresResourceWithStreamingResponse:
+        from .resources.scores import ScoresResourceWithStreamingResponse
+
+        return ScoresResourceWithStreamingResponse(self._client.scores)
+
+    @cached_property
+    def files(self) -> files.FilesResourceWithStreamingResponse:
+        from .resources.files import FilesResourceWithStreamingResponse
+
+        return FilesResourceWithStreamingResponse(self._client.files)
+
+    @cached_property
+    def dataframes(self) -> dataframes.DataframesResourceWithStreamingResponse:
+        from .resources.dataframes import DataframesResourceWithStreamingResponse
+
+        return DataframesResourceWithStreamingResponse(self._client.dataframes)
+
+    @cached_property
+    def polish(self) -> polish.PolishResourceWithStreamingResponse:
+        from .resources.polish import PolishResourceWithStreamingResponse
+
+        return PolishResourceWithStreamingResponse(self._client.polish)
+
+    @cached_property
+    def user(self) -> user.UserResourceWithStreamingResponse:
+        from .resources.user import UserResourceWithStreamingResponse
+
+        return UserResourceWithStreamingResponse(self._client.user)
+
+    @cached_property
+    def ats(self) -> ats.ATSResourceWithStreamingResponse:
+        from .resources.ats import ATSResourceWithStreamingResponse
+
+        return ATSResourceWithStreamingResponse(self._client.ats)
 
 
 class AsyncAsktableWithStreamedResponse:
+    _client: AsyncAsktable
+
     def __init__(self, client: AsyncAsktable) -> None:
-        self.sys = sys.AsyncSysResourceWithStreamingResponse(client.sys)
-        self.securetunnels = securetunnels.AsyncSecuretunnelsResourceWithStreamingResponse(client.securetunnels)
-        self.roles = roles.AsyncRolesResourceWithStreamingResponse(client.roles)
-        self.policies = policies.AsyncPoliciesResourceWithStreamingResponse(client.policies)
-        self.chats = chats.AsyncChatsResourceWithStreamingResponse(client.chats)
-        self.datasources = datasources.AsyncDatasourcesResourceWithStreamingResponse(client.datasources)
-        self.bots = bots.AsyncBotsResourceWithStreamingResponse(client.bots)
-        self.auth = auth.AsyncAuthResourceWithStreamingResponse(client.auth)
-        self.answers = answers.AsyncAnswersResourceWithStreamingResponse(client.answers)
-        self.sqls = sqls.AsyncSqlsResourceWithStreamingResponse(client.sqls)
-        self.caches = caches.AsyncCachesResourceWithStreamingResponse(client.caches)
-        self.integration = integration.AsyncIntegrationResourceWithStreamingResponse(client.integration)
-        self.business_glossary = business_glossary.AsyncBusinessGlossaryResourceWithStreamingResponse(
-            client.business_glossary
-        )
-        self.preferences = preferences.AsyncPreferencesResourceWithStreamingResponse(client.preferences)
-        self.trainings = trainings.AsyncTrainingsResourceWithStreamingResponse(client.trainings)
-        self.project = project.AsyncProjectResourceWithStreamingResponse(client.project)
-        self.scores = scores.AsyncScoresResourceWithStreamingResponse(client.scores)
-        self.files = files.AsyncFilesResourceWithStreamingResponse(client.files)
-        self.dataframes = dataframes.AsyncDataframesResourceWithStreamingResponse(client.dataframes)
-        self.polish = polish.AsyncPolishResourceWithStreamingResponse(client.polish)
-        self.user = user.AsyncUserResourceWithStreamingResponse(client.user)
-        self.ats = ats.AsyncATSResourceWithStreamingResponse(client.ats)
+        self._client = client
+
+    @cached_property
+    def sys(self) -> sys.AsyncSysResourceWithStreamingResponse:
+        from .resources.sys import AsyncSysResourceWithStreamingResponse
+
+        return AsyncSysResourceWithStreamingResponse(self._client.sys)
+
+    @cached_property
+    def securetunnels(self) -> securetunnels.AsyncSecuretunnelsResourceWithStreamingResponse:
+        from .resources.securetunnels import AsyncSecuretunnelsResourceWithStreamingResponse
+
+        return AsyncSecuretunnelsResourceWithStreamingResponse(self._client.securetunnels)
+
+    @cached_property
+    def roles(self) -> roles.AsyncRolesResourceWithStreamingResponse:
+        from .resources.roles import AsyncRolesResourceWithStreamingResponse
+
+        return AsyncRolesResourceWithStreamingResponse(self._client.roles)
+
+    @cached_property
+    def policies(self) -> policies.AsyncPoliciesResourceWithStreamingResponse:
+        from .resources.policies import AsyncPoliciesResourceWithStreamingResponse
+
+        return AsyncPoliciesResourceWithStreamingResponse(self._client.policies)
+
+    @cached_property
+    def chats(self) -> chats.AsyncChatsResourceWithStreamingResponse:
+        from .resources.chats import AsyncChatsResourceWithStreamingResponse
+
+        return AsyncChatsResourceWithStreamingResponse(self._client.chats)
+
+    @cached_property
+    def datasources(self) -> datasources.AsyncDatasourcesResourceWithStreamingResponse:
+        from .resources.datasources import AsyncDatasourcesResourceWithStreamingResponse
+
+        return AsyncDatasourcesResourceWithStreamingResponse(self._client.datasources)
+
+    @cached_property
+    def bots(self) -> bots.AsyncBotsResourceWithStreamingResponse:
+        from .resources.bots import AsyncBotsResourceWithStreamingResponse
+
+        return AsyncBotsResourceWithStreamingResponse(self._client.bots)
+
+    @cached_property
+    def auth(self) -> auth.AsyncAuthResourceWithStreamingResponse:
+        from .resources.auth import AsyncAuthResourceWithStreamingResponse
+
+        return AsyncAuthResourceWithStreamingResponse(self._client.auth)
+
+    @cached_property
+    def answers(self) -> answers.AsyncAnswersResourceWithStreamingResponse:
+        from .resources.answers import AsyncAnswersResourceWithStreamingResponse
+
+        return AsyncAnswersResourceWithStreamingResponse(self._client.answers)
+
+    @cached_property
+    def sqls(self) -> sqls.AsyncSqlsResourceWithStreamingResponse:
+        from .resources.sqls import AsyncSqlsResourceWithStreamingResponse
+
+        return AsyncSqlsResourceWithStreamingResponse(self._client.sqls)
+
+    @cached_property
+    def integration(self) -> integration.AsyncIntegrationResourceWithStreamingResponse:
+        from .resources.integration import AsyncIntegrationResourceWithStreamingResponse
+
+        return AsyncIntegrationResourceWithStreamingResponse(self._client.integration)
+
+    @cached_property
+    def business_glossary(self) -> business_glossary.AsyncBusinessGlossaryResourceWithStreamingResponse:
+        from .resources.business_glossary import AsyncBusinessGlossaryResourceWithStreamingResponse
+
+        return AsyncBusinessGlossaryResourceWithStreamingResponse(self._client.business_glossary)
+
+    @cached_property
+    def preferences(self) -> preferences.AsyncPreferencesResourceWithStreamingResponse:
+        from .resources.preferences import AsyncPreferencesResourceWithStreamingResponse
+
+        return AsyncPreferencesResourceWithStreamingResponse(self._client.preferences)
+
+    @cached_property
+    def trainings(self) -> trainings.AsyncTrainingsResourceWithStreamingResponse:
+        from .resources.trainings import AsyncTrainingsResourceWithStreamingResponse
+
+        return AsyncTrainingsResourceWithStreamingResponse(self._client.trainings)
+
+    @cached_property
+    def project(self) -> project.AsyncProjectResourceWithStreamingResponse:
+        from .resources.project import AsyncProjectResourceWithStreamingResponse
+
+        return AsyncProjectResourceWithStreamingResponse(self._client.project)
+
+    @cached_property
+    def scores(self) -> scores.AsyncScoresResourceWithStreamingResponse:
+        from .resources.scores import AsyncScoresResourceWithStreamingResponse
+
+        return AsyncScoresResourceWithStreamingResponse(self._client.scores)
+
+    @cached_property
+    def files(self) -> files.AsyncFilesResourceWithStreamingResponse:
+        from .resources.files import AsyncFilesResourceWithStreamingResponse
+
+        return AsyncFilesResourceWithStreamingResponse(self._client.files)
+
+    @cached_property
+    def dataframes(self) -> dataframes.AsyncDataframesResourceWithStreamingResponse:
+        from .resources.dataframes import AsyncDataframesResourceWithStreamingResponse
+
+        return AsyncDataframesResourceWithStreamingResponse(self._client.dataframes)
+
+    @cached_property
+    def polish(self) -> polish.AsyncPolishResourceWithStreamingResponse:
+        from .resources.polish import AsyncPolishResourceWithStreamingResponse
+
+        return AsyncPolishResourceWithStreamingResponse(self._client.polish)
+
+    @cached_property
+    def user(self) -> user.AsyncUserResourceWithStreamingResponse:
+        from .resources.user import AsyncUserResourceWithStreamingResponse
+
+        return AsyncUserResourceWithStreamingResponse(self._client.user)
+
+    @cached_property
+    def ats(self) -> ats.AsyncATSResourceWithStreamingResponse:
+        from .resources.ats import AsyncATSResourceWithStreamingResponse
+
+        return AsyncATSResourceWithStreamingResponse(self._client.ats)
 
 
 Client = Asktable

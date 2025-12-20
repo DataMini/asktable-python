@@ -45,9 +45,6 @@ class Chatbot(BaseModel):
     debug: Optional[bool] = None
     """调试模式"""
 
-    extapi_ids: Optional[List[str]] = None
-    """扩展 API ID 列表，扩展 API ID 的逗号分隔列表。"""
-
     interaction_rules: Optional[List[InteractionRule]] = None
     """交互规则列表，用于定义 bot 的行为规则"""
 

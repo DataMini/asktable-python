@@ -11,6 +11,8 @@ __all__ = ["TaskRetrieveResponse", "ModelGroup"]
 
 
 class ModelGroup(BaseModel):
+    """运行使用的模型组"""
+
     agent: str
 
     fast: str

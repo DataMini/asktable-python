@@ -6,16 +6,6 @@ from asktable.types import Policy
 
 # Sys
 
-Types:
-
-```python
-from asktable.types import SyUpdateConfigResponse
-```
-
-Methods:
-
-- <code title="patch /v1/sys/config">client.sys.<a href="./src/asktable/resources/sys/sys.py">update_config</a>(\*\*<a href="src/asktable/types/sy_update_config_params.py">params</a>) -> <a href="./src/asktable/types/sy_update_config_response.py">SyUpdateConfigResponse</a></code>
-
 ## Projects
 
 Types:
@@ -228,12 +218,6 @@ Methods:
 
 - <code title="post /v1/single-turn/q2s">client.sqls.<a href="./src/asktable/resources/sqls.py">create</a>(\*\*<a href="src/asktable/types/sql_create_params.py">params</a>) -> <a href="./src/asktable/types/query_response.py">QueryResponse</a></code>
 - <code title="get /v1/single-turn/q2s">client.sqls.<a href="./src/asktable/resources/sqls.py">list</a>(\*\*<a href="src/asktable/types/sql_list_params.py">params</a>) -> <a href="./src/asktable/types/query_response.py">SyncPage[QueryResponse]</a></code>
-
-# Caches
-
-Methods:
-
-- <code title="delete /v1/caches/{cache_id}">client.caches.<a href="./src/asktable/resources/caches.py">delete</a>(cache_id) -> None</code>
 
 # Integration
 

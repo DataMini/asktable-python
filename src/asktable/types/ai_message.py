@@ -12,7 +12,7 @@ __all__ = ["AIMessage", "Content", "ContentAttachment", "ToolCall", "ToolCallFun
 class ContentAttachment(BaseModel):
     info: object
 
-    type: str
+    type: Literal["data_json"]
     """The type of the attachment"""
 
 

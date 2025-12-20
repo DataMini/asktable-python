@@ -33,7 +33,6 @@ class TestBots:
             name="name",
             color_theme="default",
             debug=True,
-            extapi_ids=["string"],
             interaction_rules=[
                 {
                     "enabled": True,
@@ -132,7 +131,6 @@ class TestBots:
             color_theme="default",
             datasource_ids=["ds_sJAbnNOUzu3R4DdCCOwe"],
             debug=True,
-            extapi_ids=["string"],
             interaction_rules=[
                 {
                     "enabled": True,
@@ -320,7 +318,6 @@ class TestAsyncBots:
             name="name",
             color_theme="default",
             debug=True,
-            extapi_ids=["string"],
             interaction_rules=[
                 {
                     "enabled": True,
@@ -419,7 +416,6 @@ class TestAsyncBots:
             color_theme="default",
             datasource_ids=["ds_sJAbnNOUzu3R4DdCCOwe"],
             debug=True,
-            extapi_ids=["string"],
             interaction_rules=[
                 {
                     "enabled": True,

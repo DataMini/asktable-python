@@ -8,6 +8,8 @@ __all__ = ["PreferenceRetrieveResponse"]
 
 
 class PreferenceRetrieveResponse(BaseModel):
+    """Schema for preference response"""
+
     id: str
     """偏好设置 ID"""
 

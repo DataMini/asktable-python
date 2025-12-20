@@ -9,6 +9,8 @@ __all__ = ["Entry"]
 
 
 class Entry(BaseModel):
+    """Schema for document response"""
+
     id: str
     """业务术语 ID"""
 

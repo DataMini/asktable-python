@@ -23,6 +23,8 @@ class APIKeyCreateTokenParams(TypedDict, total=False):
 
 
 class ChatRole(TypedDict, total=False):
+    """The chat role"""
+
     role_id: Optional[str]
     """The chat role ID"""
 
