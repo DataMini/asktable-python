@@ -13,9 +13,6 @@ class TestCaseCreateResponse(BaseModel):
     id: str
     """测试样例 ID"""
 
-    ats_id: str
-    """所属的测试集 ID"""
-
     created_at: datetime
     """创建时间"""
 
@@ -27,6 +24,9 @@ class TestCaseCreateResponse(BaseModel):
 
     question: str
     """用户提问"""
+
+    suite_id: str
+    """所属的测试集 ID"""
 
     role_id: Optional[str] = None
     """角色 ID"""

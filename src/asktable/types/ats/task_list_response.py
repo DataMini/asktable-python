@@ -33,9 +33,6 @@ class TaskListResponse(BaseModel):
     accuracy: float
     """测试正确率"""
 
-    ats_id: str
-    """测试集 ID"""
-
     completed_case_count: int
     """已完成测试用例数"""
 
@@ -53,6 +50,9 @@ class TaskListResponse(BaseModel):
 
     status: str
     """测试状态"""
+
+    suite_id: str
+    """测试集 ID"""
 
     total_case_count: int
     """测试用例总数"""

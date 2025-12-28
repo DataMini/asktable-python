@@ -21,9 +21,6 @@ class Item(BaseModel):
     id: str
     """测试用例运行记录 ID"""
 
-    ats_task_id: str
-    """对应的测试任务 ID"""
-
     created_at: datetime
     """创建时间"""
 
@@ -36,10 +33,13 @@ class Item(BaseModel):
     question: str
     """提问内容"""
 
+    run_id: str
+    """对应的测试任务 ID"""
+
     status: str
     """测试状态"""
 
-    atc_id: Optional[str] = None
+    case_id: Optional[str] = None
     """对应的测试用例 ID"""
 
     compare_logs: Optional[List[ItemCompareLog]] = None
