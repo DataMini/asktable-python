@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Optional
+
 import httpx
 
 from .task import (
@@ -185,7 +187,7 @@ class ATSResource(SyncAPIResource):
     def list(
         self,
         *,
-        datasource_id: str,
+        datasource_id: Optional[str] | Omit = omit,
         page: int | Omit = omit,
         size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -199,7 +201,7 @@ class ATSResource(SyncAPIResource):
         Get Test Sets Endpoint
 
         Args:
-          datasource_id: 数据源 ID
+          datasource_id: 数据源 ID，可选过滤条件
 
           page: Page number
 
@@ -418,7 +420,7 @@ class AsyncATSResource(AsyncAPIResource):
     def list(
         self,
         *,
-        datasource_id: str,
+        datasource_id: Optional[str] | Omit = omit,
         page: int | Omit = omit,
         size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -432,7 +434,7 @@ class AsyncATSResource(AsyncAPIResource):
         Get Test Sets Endpoint
 
         Args:
-          datasource_id: 数据源 ID
+          datasource_id: 数据源 ID，可选过滤条件
 
           page: Page number
 

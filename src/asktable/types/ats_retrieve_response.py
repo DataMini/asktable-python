@@ -1,5 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from typing import Optional
 from datetime import datetime
 
 from .._models import BaseModel
@@ -25,3 +26,9 @@ class ATSRetrieveResponse(BaseModel):
 
     project_id: str
     """项目 ID"""
+
+    case_count: Optional[int] = None
+    """测试用例数量"""
+
+    datasource_name: Optional[str] = None
+    """数据源名称"""
