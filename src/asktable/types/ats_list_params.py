@@ -2,14 +2,15 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing import Optional
+from typing_extensions import TypedDict
 
 __all__ = ["ATSListParams"]
 
 
 class ATSListParams(TypedDict, total=False):
-    datasource_id: Required[str]
-    """数据源 ID"""
+    datasource_id: Optional[str]
+    """数据源 ID，可选过滤条件"""
 
     page: int
     """Page number"""

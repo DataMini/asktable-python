@@ -139,9 +139,7 @@ class TestATS:
 
     @parametrize
     def test_method_list(self, client: Asktable) -> None:
-        ats = client.ats.list(
-            datasource_id="datasource_id",
-        )
+        ats = client.ats.list()
         assert_matches_type(SyncPage[ATSListResponse], ats, path=["response"])
 
     @parametrize
@@ -155,9 +153,7 @@ class TestATS:
 
     @parametrize
     def test_raw_response_list(self, client: Asktable) -> None:
-        response = client.ats.with_raw_response.list(
-            datasource_id="datasource_id",
-        )
+        response = client.ats.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -166,9 +162,7 @@ class TestATS:
 
     @parametrize
     def test_streaming_response_list(self, client: Asktable) -> None:
-        with client.ats.with_streaming_response.list(
-            datasource_id="datasource_id",
-        ) as response:
+        with client.ats.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -341,9 +335,7 @@ class TestAsyncATS:
 
     @parametrize
     async def test_method_list(self, async_client: AsyncAsktable) -> None:
-        ats = await async_client.ats.list(
-            datasource_id="datasource_id",
-        )
+        ats = await async_client.ats.list()
         assert_matches_type(AsyncPage[ATSListResponse], ats, path=["response"])
 
     @parametrize
@@ -357,9 +349,7 @@ class TestAsyncATS:
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncAsktable) -> None:
-        response = await async_client.ats.with_raw_response.list(
-            datasource_id="datasource_id",
-        )
+        response = await async_client.ats.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -368,9 +358,7 @@ class TestAsyncATS:
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncAsktable) -> None:
-        async with async_client.ats.with_streaming_response.list(
-            datasource_id="datasource_id",
-        ) as response:
+        async with async_client.ats.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
