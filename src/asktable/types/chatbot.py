@@ -27,7 +27,6 @@ class Chatbot(BaseModel):
     created_at: datetime
 
     datasource_ids: List[str]
-    """数据源 ID，目前只支持 1 个数据源。"""
 
     modified_at: datetime
 
