@@ -26,8 +26,9 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ...pagination import SyncPage, AsyncPage
-from ...types.chat import Chat
 from ..._base_client import AsyncPaginator, make_request_options
+from ...types.chat_list_response import ChatListResponse
+from ...types.chat_create_response import ChatCreateResponse
 from ...types.chat_retrieve_response import ChatRetrieveResponse
 
 __all__ = ["ChatsResource", "AsyncChatsResource"]
@@ -71,7 +72,7 @@ class ChatsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Chat:
+    ) -> ChatCreateResponse:
         """
         创建对话
 
@@ -111,7 +112,7 @@ class ChatsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Chat,
+            cast_to=ChatCreateResponse,
         )
 
     def retrieve(
@@ -158,7 +159,7 @@ class ChatsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncPage[Chat]:
+    ) -> SyncPage[ChatListResponse]:
         """
         查询对话列表
 
@@ -177,7 +178,7 @@ class ChatsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/v1/chats",
-            page=SyncPage[Chat],
+            page=SyncPage[ChatListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -191,7 +192,7 @@ class ChatsResource(SyncAPIResource):
                     chat_list_params.ChatListParams,
                 ),
             ),
-            model=Chat,
+            model=ChatListResponse,
         )
 
     def delete(
@@ -267,7 +268,7 @@ class AsyncChatsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Chat:
+    ) -> ChatCreateResponse:
         """
         创建对话
 
@@ -307,7 +308,7 @@ class AsyncChatsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Chat,
+            cast_to=ChatCreateResponse,
         )
 
     async def retrieve(
@@ -354,7 +355,7 @@ class AsyncChatsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[Chat, AsyncPage[Chat]]:
+    ) -> AsyncPaginator[ChatListResponse, AsyncPage[ChatListResponse]]:
         """
         查询对话列表
 
@@ -373,7 +374,7 @@ class AsyncChatsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/v1/chats",
-            page=AsyncPage[Chat],
+            page=AsyncPage[ChatListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -387,7 +388,7 @@ class AsyncChatsResource(AsyncAPIResource):
                     chat_list_params.ChatListParams,
                 ),
             ),
-            model=Chat,
+            model=ChatListResponse,
         )
 
     async def delete(
