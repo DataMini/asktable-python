@@ -6,7 +6,26 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["Meta", "Schemas", "SchemasTables", "SchemasTablesFields"]
+__all__ = ["Meta", "Schemas", "SchemasTables", "SchemasTablesFields", "SchemasTablesFieldsIndex"]
+
+
+class SchemasTablesFieldsIndex(BaseModel):
+    """索引信息"""
+
+    id: str
+    """索引 ID"""
+
+    distinct_count: Optional[int] = None
+    """不同值数量"""
+
+    index_value_count: Optional[int] = None
+    """索引值总数"""
+
+    status_msg: Optional[str] = None
+    """状态信息，为空表示成功"""
+
+    value_count: Optional[int] = None
+    """值总数"""
 
 
 class SchemasTablesFields(BaseModel):
@@ -38,6 +57,9 @@ class SchemasTablesFields(BaseModel):
         Literal["plain", "person_name", "email", "ssn", "id", "phone", "address", "company", "bank_card"]
     ] = None
     """identifiable type"""
+
+    index: Optional[SchemasTablesFieldsIndex] = None
+    """索引信息"""
 
     sample_data: Optional[str] = None
     """field sample data"""
