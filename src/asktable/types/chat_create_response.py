@@ -40,6 +40,9 @@ class ChatCreateResponse(BaseModel):
     数据
     """
 
+    role_name: Optional[str] = None
+    """角色名称"""
+
     role_variables: Optional[Dict[str, Union[str, int, bool]]] = None
     """在扮演这个角色时需要传递的变量值，用 Key-Value 形式传递"""
 
