@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from .chat import Chat as Chat
 from .meta import Meta as Meta
 from .role import Role as Role
 from .entry import Entry as Entry
@@ -33,6 +32,7 @@ from .file_ask_response import FileAskResponse as FileAskResponse
 from .sql_create_params import SqlCreateParams as SqlCreateParams
 from .answer_list_params import AnswerListParams as AnswerListParams
 from .chat_create_params import ChatCreateParams as ChatCreateParams
+from .chat_list_response import ChatListResponse as ChatListResponse
 from .policy_list_params import PolicyListParams as PolicyListParams
 from .role_create_params import RoleCreateParams as RoleCreateParams
 from .role_update_params import RoleUpdateParams as RoleUpdateParams
@@ -40,6 +40,7 @@ from .ats_create_response import ATSCreateResponse as ATSCreateResponse
 from .ats_update_response import ATSUpdateResponse as ATSUpdateResponse
 from .score_create_params import ScoreCreateParams as ScoreCreateParams
 from .answer_create_params import AnswerCreateParams as AnswerCreateParams
+from .chat_create_response import ChatCreateResponse as ChatCreateResponse
 from .policy_create_params import PolicyCreateParams as PolicyCreateParams
 from .policy_update_params import PolicyUpdateParams as PolicyUpdateParams
 from .polish_create_params import PolishCreateParams as PolishCreateParams

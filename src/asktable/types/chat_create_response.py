@@ -6,10 +6,10 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["Chat"]
+__all__ = ["ChatCreateResponse"]
 
 
-class Chat(BaseModel):
+class ChatCreateResponse(BaseModel):
     id: str
     """对话 ID"""
 
