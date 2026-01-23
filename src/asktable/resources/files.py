@@ -50,7 +50,7 @@ class FilesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        获取文件
+        下载文件
 
         Args:
           extra_headers: Send extra headers
@@ -104,7 +104,7 @@ class AsyncFilesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        获取文件
+        下载文件
 
         Args:
           extra_headers: Send extra headers
