@@ -41,6 +41,9 @@ class Chatbot(BaseModel):
     color_theme: Optional[str] = None
     """颜色主题"""
 
+    datasource_name: Optional[str] = None
+    """数据源名称"""
+
     debug: Optional[bool] = None
     """调试模式"""
 
