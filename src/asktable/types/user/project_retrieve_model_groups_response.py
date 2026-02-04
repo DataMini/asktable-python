@@ -1,10 +1,60 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
+from typing import List, Optional
+from datetime import datetime
 from typing_extensions import TypeAlias
 
-from ..sys.model_group import ModelGroup
+from ..._models import BaseModel
 
-__all__ = ["ProjectRetrieveModelGroupsResponse"]
+__all__ = [
+    "ProjectRetrieveModelGroupsResponse",
+    "ProjectRetrieveModelGroupsResponseItem",
+    "ProjectRetrieveModelGroupsResponseItemModels",
+]
 
-ProjectRetrieveModelGroupsResponse: TypeAlias = List[ModelGroup]
+
+class ProjectRetrieveModelGroupsResponseItemModels(BaseModel):
+    """角色→模型映射"""
+
+    agent: Optional[str] = None
+
+    canvas: Optional[str] = None
+
+    fast: Optional[str] = None
+
+    image: Optional[str] = None
+
+    omni: Optional[str] = None
+
+    report: Optional[str] = None
+
+    sql: Optional[str] = None
+
+
+class ProjectRetrieveModelGroupsResponseItem(BaseModel):
+    id: str
+    """模型组 ID"""
+
+    api_key: str
+    """解密后的 API 密钥"""
+
+    available_models: List[str]
+    """可用模型列表"""
+
+    base_url: str
+    """OpenAI 兼容 API 端点"""
+
+    created_at: datetime
+    """创建时间"""
+
+    models: ProjectRetrieveModelGroupsResponseItemModels
+    """角色 → 模型映射"""
+
+    modified_at: datetime
+    """修改时间"""
+
+    name: str
+    """模型组名称"""
+
+
+ProjectRetrieveModelGroupsResponse: TypeAlias = List[ProjectRetrieveModelGroupsResponseItem]

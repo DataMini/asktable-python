@@ -11,7 +11,7 @@ from asktable.types import Policy
 Types:
 
 ```python
-from asktable.types.sys import APIKey, ModelGroup, Project, ProjectModelGroupsResponse
+from asktable.types.sys import APIKey, Project
 ```
 
 Methods:
@@ -23,7 +23,6 @@ Methods:
 - <code title="delete /v1/sys/projects/{project_id}">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">delete</a>(project_id) -> object</code>
 - <code title="post /v1/sys/projects/{project_id}/export">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">export</a>(project_id) -> object</code>
 - <code title="post /v1/sys/projects/import">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">import\_</a>(\*\*<a href="src/asktable/types/sys/project_import_params.py">params</a>) -> object</code>
-- <code title="get /v1/sys/projects/model-groups">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">model_groups</a>() -> <a href="./src/asktable/types/sys/project_model_groups_response.py">ProjectModelGroupsResponse</a></code>
 
 ### APIKeys
 
