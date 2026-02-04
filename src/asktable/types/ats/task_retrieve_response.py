@@ -7,23 +7,7 @@ from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
-__all__ = ["TaskRetrieveResponse", "ModelGroup"]
-
-
-class ModelGroup(BaseModel):
-    """运行使用的模型组"""
-
-    agent: str
-
-    fast: str
-
-    name: str
-
-    omni: str
-
-    sql: str
-
-    report: Optional[str] = None
+__all__ = ["TaskRetrieveResponse"]
 
 
 class TaskRetrieveResponse(BaseModel):
@@ -63,7 +47,7 @@ class TaskRetrieveResponse(BaseModel):
     last_run: Optional[datetime] = None
     """上次测试运行时间"""
 
-    api_model_group: Optional[ModelGroup] = FieldInfo(alias="model_group", default=None)
+    api_model_group: Optional[object] = FieldInfo(alias="model_group", default=None)
     """运行使用的模型组"""
 
     status_message: Optional[str] = None
