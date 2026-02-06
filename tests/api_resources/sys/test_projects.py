@@ -11,6 +11,7 @@ from asktable import Asktable, AsyncAsktable
 from tests.utils import assert_matches_type
 from asktable.types.sys import (
     Project,
+    ProjectModelGroupsResponse,
 )
 from asktable.pagination import SyncPage, AsyncPage
 
@@ -278,6 +279,31 @@ class TestProjects:
 
         assert cast(Any, response.is_closed) is True
 
+    @parametrize
+    def test_method_model_groups(self, client: Asktable) -> None:
+        project = client.sys.projects.model_groups()
+        assert_matches_type(ProjectModelGroupsResponse, project, path=["response"])
+
+    @parametrize
+    def test_raw_response_model_groups(self, client: Asktable) -> None:
+        response = client.sys.projects.with_raw_response.model_groups()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        project = response.parse()
+        assert_matches_type(ProjectModelGroupsResponse, project, path=["response"])
+
+    @parametrize
+    def test_streaming_response_model_groups(self, client: Asktable) -> None:
+        with client.sys.projects.with_streaming_response.model_groups() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            project = response.parse()
+            assert_matches_type(ProjectModelGroupsResponse, project, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
 
 class TestAsyncProjects:
     parametrize = pytest.mark.parametrize(
@@ -539,5 +565,30 @@ class TestAsyncProjects:
 
             project = await response.parse()
             assert_matches_type(object, project, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_model_groups(self, async_client: AsyncAsktable) -> None:
+        project = await async_client.sys.projects.model_groups()
+        assert_matches_type(ProjectModelGroupsResponse, project, path=["response"])
+
+    @parametrize
+    async def test_raw_response_model_groups(self, async_client: AsyncAsktable) -> None:
+        response = await async_client.sys.projects.with_raw_response.model_groups()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        project = await response.parse()
+        assert_matches_type(ProjectModelGroupsResponse, project, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_model_groups(self, async_client: AsyncAsktable) -> None:
+        async with async_client.sys.projects.with_streaming_response.model_groups() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            project = await response.parse()
+            assert_matches_type(ProjectModelGroupsResponse, project, path=["response"])
 
         assert cast(Any, response.is_closed) is True

@@ -4,16 +4,12 @@ from typing import Dict, List, Optional
 from datetime import datetime
 from typing_extensions import TypeAlias
 
-from .._models import BaseModel
+from ..._models import BaseModel
 
-__all__ = [
-    "ProjectListModelGroupsResponse",
-    "ProjectListModelGroupsResponseItem",
-    "ProjectListModelGroupsResponseItemModels",
-]
+__all__ = ["ProjectModelGroupsResponse", "ProjectModelGroupsResponseItem", "ProjectModelGroupsResponseItemModels"]
 
 
-class ProjectListModelGroupsResponseItemModels(BaseModel):
+class ProjectModelGroupsResponseItemModels(BaseModel):
     """角色→模型映射"""
 
     agent: Optional[str] = None
@@ -31,7 +27,7 @@ class ProjectListModelGroupsResponseItemModels(BaseModel):
     sql: Optional[str] = None
 
 
-class ProjectListModelGroupsResponseItem(BaseModel):
+class ProjectModelGroupsResponseItem(BaseModel):
     id: str
     """模型组 ID"""
 
@@ -47,7 +43,7 @@ class ProjectListModelGroupsResponseItem(BaseModel):
     extra_headers: Dict[str, str]
     """额外请求头"""
 
-    models: ProjectListModelGroupsResponseItemModels
+    models: ProjectModelGroupsResponseItemModels
     """角色 → 模型映射"""
 
     modified_at: datetime
@@ -63,4 +59,4 @@ class ProjectListModelGroupsResponseItem(BaseModel):
     """是否为默认组"""
 
 
-ProjectListModelGroupsResponse: TypeAlias = List[ProjectListModelGroupsResponseItem]
+ProjectModelGroupsResponse: TypeAlias = List[ProjectModelGroupsResponseItem]
