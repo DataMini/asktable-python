@@ -28,6 +28,7 @@ from ....types.sys import project_list_params, project_create_params, project_im
 from ....pagination import SyncPage, AsyncPage
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.sys.project import Project
+from ....types.sys.project_model_groups_response import ProjectModelGroupsResponse
 
 __all__ = ["ProjectsResource", "AsyncProjectsResource"]
 
@@ -322,6 +323,25 @@ class ProjectsResource(SyncAPIResource):
             cast_to=object,
         )
 
+    def model_groups(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ProjectModelGroupsResponse:
+        """Get Model Groups"""
+        return self._get(
+            "/v1/sys/projects/model-groups",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ProjectModelGroupsResponse,
+        )
+
 
 class AsyncProjectsResource(AsyncAPIResource):
     @cached_property
@@ -613,6 +633,25 @@ class AsyncProjectsResource(AsyncAPIResource):
             cast_to=object,
         )
 
+    async def model_groups(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ProjectModelGroupsResponse:
+        """Get Model Groups"""
+        return await self._get(
+            "/v1/sys/projects/model-groups",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ProjectModelGroupsResponse,
+        )
+
 
 class ProjectsResourceWithRawResponse:
     def __init__(self, projects: ProjectsResource) -> None:
@@ -638,6 +677,9 @@ class ProjectsResourceWithRawResponse:
         )
         self.import_ = to_raw_response_wrapper(
             projects.import_,
+        )
+        self.model_groups = to_raw_response_wrapper(
+            projects.model_groups,
         )
 
     @cached_property
@@ -670,6 +712,9 @@ class AsyncProjectsResourceWithRawResponse:
         self.import_ = async_to_raw_response_wrapper(
             projects.import_,
         )
+        self.model_groups = async_to_raw_response_wrapper(
+            projects.model_groups,
+        )
 
     @cached_property
     def api_keys(self) -> AsyncAPIKeysResourceWithRawResponse:
@@ -701,6 +746,9 @@ class ProjectsResourceWithStreamingResponse:
         self.import_ = to_streamed_response_wrapper(
             projects.import_,
         )
+        self.model_groups = to_streamed_response_wrapper(
+            projects.model_groups,
+        )
 
     @cached_property
     def api_keys(self) -> APIKeysResourceWithStreamingResponse:
@@ -731,6 +779,9 @@ class AsyncProjectsResourceWithStreamingResponse:
         )
         self.import_ = async_to_streamed_response_wrapper(
             projects.import_,
+        )
+        self.model_groups = async_to_streamed_response_wrapper(
+            projects.model_groups,
         )
 
     @cached_property
