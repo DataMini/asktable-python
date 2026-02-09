@@ -46,6 +46,14 @@ class DatasourceUpdateParams(TypedDict, total=False):
             "mogdb",
             "hologres",
             "maxcompute",
+            "gaussdb",
+            "tdsqlmysql",
+            "tdsqlpg",
+            "kingbasees",
+            "gbase8c",
+            "yashandb",
+            "gbase8a",
+            "gaussdbdws",
             "dap",
         ]
     ]

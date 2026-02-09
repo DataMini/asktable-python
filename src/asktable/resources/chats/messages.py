@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import httpx
 
@@ -50,7 +50,8 @@ class MessagesResource(SyncAPIResource):
         self,
         chat_id: str,
         *,
-        question: str,
+        query_question: Optional[str] | Omit = omit,
+        body_question: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -62,6 +63,8 @@ class MessagesResource(SyncAPIResource):
         Send a message to the chat
 
         Args:
+          body_question: 用户问题
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -76,12 +79,15 @@ class MessagesResource(SyncAPIResource):
             MessageCreateResponse,
             self._post(
                 f"/v1/chats/{chat_id}/messages",
+                body=maybe_transform({"body_question": body_question}, message_create_params.MessageCreateParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    query=maybe_transform({"question": question}, message_create_params.MessageCreateParams),
+                    query=maybe_transform(
+                        {"query_question": query_question}, message_create_params.MessageCreateParams
+                    ),
                 ),
                 cast_to=cast(
                     Any, MessageCreateResponse
@@ -205,7 +211,8 @@ class AsyncMessagesResource(AsyncAPIResource):
         self,
         chat_id: str,
         *,
-        question: str,
+        query_question: Optional[str] | Omit = omit,
+        body_question: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -217,6 +224,8 @@ class AsyncMessagesResource(AsyncAPIResource):
         Send a message to the chat
 
         Args:
+          body_question: 用户问题
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -231,13 +240,16 @@ class AsyncMessagesResource(AsyncAPIResource):
             MessageCreateResponse,
             await self._post(
                 f"/v1/chats/{chat_id}/messages",
+                body=await async_maybe_transform(
+                    {"body_question": body_question}, message_create_params.MessageCreateParams
+                ),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
                     query=await async_maybe_transform(
-                        {"question": question}, message_create_params.MessageCreateParams
+                        {"query_question": query_question}, message_create_params.MessageCreateParams
                     ),
                 ),
                 cast_to=cast(

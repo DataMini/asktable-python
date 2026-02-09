@@ -26,7 +26,15 @@ class TestMessages:
     def test_method_create(self, client: Asktable) -> None:
         message = client.chats.messages.create(
             chat_id="chat_id",
-            question="question",
+        )
+        assert_matches_type(MessageCreateResponse, message, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params(self, client: Asktable) -> None:
+        message = client.chats.messages.create(
+            chat_id="chat_id",
+            query_question="question",
+            body_question="question",
         )
         assert_matches_type(MessageCreateResponse, message, path=["response"])
 
@@ -34,7 +42,6 @@ class TestMessages:
     def test_raw_response_create(self, client: Asktable) -> None:
         response = client.chats.messages.with_raw_response.create(
             chat_id="chat_id",
-            question="question",
         )
 
         assert response.is_closed is True
@@ -46,7 +53,6 @@ class TestMessages:
     def test_streaming_response_create(self, client: Asktable) -> None:
         with client.chats.messages.with_streaming_response.create(
             chat_id="chat_id",
-            question="question",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -61,7 +67,6 @@ class TestMessages:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `chat_id` but received ''"):
             client.chats.messages.with_raw_response.create(
                 chat_id="",
-                question="question",
             )
 
     @parametrize
@@ -169,7 +174,15 @@ class TestAsyncMessages:
     async def test_method_create(self, async_client: AsyncAsktable) -> None:
         message = await async_client.chats.messages.create(
             chat_id="chat_id",
-            question="question",
+        )
+        assert_matches_type(MessageCreateResponse, message, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncAsktable) -> None:
+        message = await async_client.chats.messages.create(
+            chat_id="chat_id",
+            query_question="question",
+            body_question="question",
         )
         assert_matches_type(MessageCreateResponse, message, path=["response"])
 
@@ -177,7 +190,6 @@ class TestAsyncMessages:
     async def test_raw_response_create(self, async_client: AsyncAsktable) -> None:
         response = await async_client.chats.messages.with_raw_response.create(
             chat_id="chat_id",
-            question="question",
         )
 
         assert response.is_closed is True
@@ -189,7 +201,6 @@ class TestAsyncMessages:
     async def test_streaming_response_create(self, async_client: AsyncAsktable) -> None:
         async with async_client.chats.messages.with_streaming_response.create(
             chat_id="chat_id",
-            question="question",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -204,7 +215,6 @@ class TestAsyncMessages:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `chat_id` but received ''"):
             await async_client.chats.messages.with_raw_response.create(
                 chat_id="",
-                question="question",
             )
 
     @parametrize

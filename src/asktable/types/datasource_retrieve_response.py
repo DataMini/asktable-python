@@ -95,6 +95,14 @@ class DatasourceRetrieveResponse(BaseModel):
         "mogdb",
         "hologres",
         "maxcompute",
+        "gaussdb",
+        "tdsqlmysql",
+        "tdsqlpg",
+        "kingbasees",
+        "gbase8c",
+        "yashandb",
+        "gbase8a",
+        "gaussdbdws",
         "dap",
     ]
     """数据源引擎"""

@@ -2,10 +2,16 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing import Optional
+from typing_extensions import Annotated, TypedDict
+
+from ..._utils import PropertyInfo
 
 __all__ = ["MessageCreateParams"]
 
 
 class MessageCreateParams(TypedDict, total=False):
-    question: Required[str]
+    query_question: Annotated[Optional[str], PropertyInfo(alias="question")]
+
+    body_question: Annotated[Optional[str], PropertyInfo(alias="question")]
+    """用户问题"""
