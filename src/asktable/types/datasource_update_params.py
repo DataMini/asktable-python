@@ -54,6 +54,7 @@ class DatasourceUpdateParams(TypedDict, total=False):
             "yashandb",
             "gbase8a",
             "gaussdbdws",
+            "bitable",
             "dap",
         ]
     ]
