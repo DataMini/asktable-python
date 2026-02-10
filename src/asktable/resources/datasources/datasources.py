@@ -124,6 +124,7 @@ class DatasourcesResource(SyncAPIResource):
             "yashandb",
             "gbase8a",
             "gaussdbdws",
+            "bitable",
             "dap",
         ],
         access_config: Optional[datasource_create_params.AccessConfig] | Omit = omit,
@@ -241,6 +242,7 @@ class DatasourcesResource(SyncAPIResource):
                 "yashandb",
                 "gbase8a",
                 "gaussdbdws",
+                "bitable",
                 "dap",
             ]
         ]
@@ -640,6 +642,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
             "yashandb",
             "gbase8a",
             "gaussdbdws",
+            "bitable",
             "dap",
         ],
         access_config: Optional[datasource_create_params.AccessConfig] | Omit = omit,
@@ -757,6 +760,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
                 "yashandb",
                 "gbase8a",
                 "gaussdbdws",
+                "bitable",
                 "dap",
             ]
         ]

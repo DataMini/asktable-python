@@ -103,6 +103,7 @@ class DatasourceRetrieveResponse(BaseModel):
         "yashandb",
         "gbase8a",
         "gaussdbdws",
+        "bitable",
         "dap",
     ]
     """数据源引擎"""

@@ -49,6 +49,7 @@ class DatasourceCreateParams(TypedDict, total=False):
             "yashandb",
             "gbase8a",
             "gaussdbdws",
+            "bitable",
             "dap",
         ]
     ]
