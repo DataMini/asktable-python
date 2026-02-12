@@ -35,6 +35,9 @@ class ProjectRetrieveModelGroupsResponseItem(BaseModel):
     id: str
     """模型组 ID"""
 
+    api_key: str
+    """API 密钥"""
+
     available_models: List[str]
     """可用模型列表"""
 
