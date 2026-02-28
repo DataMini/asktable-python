@@ -23,6 +23,8 @@ __all__ = ["IndexesResource", "AsyncIndexesResource"]
 
 
 class IndexesResource(SyncAPIResource):
+    """索引管理"""
+
     @cached_property
     def with_raw_response(self) -> IndexesResourceWithRawResponse:
         """
@@ -187,6 +189,8 @@ class IndexesResource(SyncAPIResource):
 
 
 class AsyncIndexesResource(AsyncAPIResource):
+    """索引管理"""
+
     @cached_property
     def with_raw_response(self) -> AsyncIndexesResourceWithRawResponse:
         """

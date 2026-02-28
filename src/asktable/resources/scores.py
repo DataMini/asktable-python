@@ -22,6 +22,8 @@ __all__ = ["ScoresResource", "AsyncScoresResource"]
 
 
 class ScoresResource(SyncAPIResource):
+    """评分"""
+
     @cached_property
     def with_raw_response(self) -> ScoresResourceWithRawResponse:
         """
@@ -93,6 +95,8 @@ class ScoresResource(SyncAPIResource):
 
 
 class AsyncScoresResource(AsyncAPIResource):
+    """评分"""
+
     @cached_property
     def with_raw_response(self) -> AsyncScoresResourceWithRawResponse:
         """

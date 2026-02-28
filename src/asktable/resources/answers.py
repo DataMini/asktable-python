@@ -25,6 +25,8 @@ __all__ = ["AnswersResource", "AsyncAnswersResource"]
 
 
 class AnswersResource(SyncAPIResource):
+    """单轮对话"""
+
     @cached_property
     def with_raw_response(self) -> AnswersResourceWithRawResponse:
         """
@@ -157,6 +159,8 @@ class AnswersResource(SyncAPIResource):
 
 
 class AsyncAnswersResource(AsyncAPIResource):
+    """单轮对话"""
+
     @cached_property
     def with_raw_response(self) -> AsyncAnswersResourceWithRawResponse:
         """

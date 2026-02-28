@@ -26,6 +26,8 @@ __all__ = ["PoliciesResource", "AsyncPoliciesResource"]
 
 
 class PoliciesResource(SyncAPIResource):
+    """策略管理"""
+
     @cached_property
     def with_raw_response(self) -> PoliciesResourceWithRawResponse:
         """
@@ -266,6 +268,8 @@ class PoliciesResource(SyncAPIResource):
 
 
 class AsyncPoliciesResource(AsyncAPIResource):
+    """策略管理"""
+
     @cached_property
     def with_raw_response(self) -> AsyncPoliciesResourceWithRawResponse:
         """

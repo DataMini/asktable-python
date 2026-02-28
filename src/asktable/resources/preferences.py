@@ -26,6 +26,8 @@ __all__ = ["PreferencesResource", "AsyncPreferencesResource"]
 
 
 class PreferencesResource(SyncAPIResource):
+    """偏好设置"""
+
     @cached_property
     def with_raw_response(self) -> PreferencesResourceWithRawResponse:
         """
@@ -171,6 +173,8 @@ class PreferencesResource(SyncAPIResource):
 
 
 class AsyncPreferencesResource(AsyncAPIResource):
+    """偏好设置"""
+
     @cached_property
     def with_raw_response(self) -> AsyncPreferencesResourceWithRawResponse:
         """

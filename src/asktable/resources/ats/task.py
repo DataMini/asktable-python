@@ -26,6 +26,8 @@ __all__ = ["TaskResource", "AsyncTaskResource"]
 
 
 class TaskResource(SyncAPIResource):
+    """测试系统"""
+
     @cached_property
     def with_raw_response(self) -> TaskResourceWithRawResponse:
         """
@@ -231,6 +233,8 @@ class TaskResource(SyncAPIResource):
 
 
 class AsyncTaskResource(AsyncAPIResource):
+    """测试系统"""
+
     @cached_property
     def with_raw_response(self) -> AsyncTaskResourceWithRawResponse:
         """

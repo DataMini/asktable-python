@@ -25,6 +25,8 @@ __all__ = ["IntegrationResource", "AsyncIntegrationResource"]
 
 
 class IntegrationResource(SyncAPIResource):
+    """与第三方平台集成"""
+
     @cached_property
     def with_raw_response(self) -> IntegrationResourceWithRawResponse:
         """
@@ -135,6 +137,8 @@ class IntegrationResource(SyncAPIResource):
 
 
 class AsyncIntegrationResource(AsyncAPIResource):
+    """与第三方平台集成"""
+
     @cached_property
     def with_raw_response(self) -> AsyncIntegrationResourceWithRawResponse:
         """

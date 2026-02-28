@@ -25,6 +25,8 @@ __all__ = ["ProjectResource", "AsyncProjectResource"]
 
 
 class ProjectResource(SyncAPIResource):
+    """我的项目"""
+
     @cached_property
     def with_raw_response(self) -> ProjectResourceWithRawResponse:
         """
@@ -127,6 +129,8 @@ class ProjectResource(SyncAPIResource):
 
 
 class AsyncProjectResource(AsyncAPIResource):
+    """我的项目"""
+
     @cached_property
     def with_raw_response(self) -> AsyncProjectResourceWithRawResponse:
         """

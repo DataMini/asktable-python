@@ -26,6 +26,8 @@ __all__ = ["RolesResource", "AsyncRolesResource"]
 
 
 class RolesResource(SyncAPIResource):
+    """角色管理"""
+
     @cached_property
     def with_raw_response(self) -> RolesResourceWithRawResponse:
         """
@@ -339,6 +341,8 @@ class RolesResource(SyncAPIResource):
 
 
 class AsyncRolesResource(AsyncAPIResource):
+    """角色管理"""
+
     @cached_property
     def with_raw_response(self) -> AsyncRolesResourceWithRawResponse:
         """

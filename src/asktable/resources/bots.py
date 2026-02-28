@@ -25,6 +25,8 @@ __all__ = ["BotsResource", "AsyncBotsResource"]
 
 
 class BotsResource(SyncAPIResource):
+    """机器人管理"""
+
     @cached_property
     def with_raw_response(self) -> BotsResourceWithRawResponse:
         """
@@ -378,6 +380,8 @@ class BotsResource(SyncAPIResource):
 
 
 class AsyncBotsResource(AsyncAPIResource):
+    """机器人管理"""
+
     @cached_property
     def with_raw_response(self) -> AsyncBotsResourceWithRawResponse:
         """

@@ -29,6 +29,7 @@ __all__ = ["TestCaseResource", "AsyncTestCaseResource"]
 
 class TestCaseResource(SyncAPIResource):
     __test__ = False
+    """测试系统"""
 
     @cached_property
     def with_raw_response(self) -> TestCaseResourceWithRawResponse:
@@ -284,6 +285,8 @@ class TestCaseResource(SyncAPIResource):
 
 
 class AsyncTestCaseResource(AsyncAPIResource):
+    """测试系统"""
+
     @cached_property
     def with_raw_response(self) -> AsyncTestCaseResourceWithRawResponse:
         """

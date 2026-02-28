@@ -24,6 +24,8 @@ __all__ = ["PolishResource", "AsyncPolishResource"]
 
 
 class PolishResource(SyncAPIResource):
+    """润色"""
+
     @cached_property
     def with_raw_response(self) -> PolishResourceWithRawResponse:
         """
@@ -92,6 +94,8 @@ class PolishResource(SyncAPIResource):
 
 
 class AsyncPolishResource(AsyncAPIResource):
+    """润色"""
+
     @cached_property
     def with_raw_response(self) -> AsyncPolishResourceWithRawResponse:
         """

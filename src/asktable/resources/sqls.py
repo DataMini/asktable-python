@@ -25,6 +25,8 @@ __all__ = ["SqlsResource", "AsyncSqlsResource"]
 
 
 class SqlsResource(SyncAPIResource):
+    """单轮对话"""
+
     @cached_property
     def with_raw_response(self) -> SqlsResourceWithRawResponse:
         """
@@ -153,6 +155,8 @@ class SqlsResource(SyncAPIResource):
 
 
 class AsyncSqlsResource(AsyncAPIResource):
+    """单轮对话"""
+
     @cached_property
     def with_raw_response(self) -> AsyncSqlsResourceWithRawResponse:
         """
