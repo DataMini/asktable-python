@@ -44,12 +44,16 @@ __all__ = ["ATSResource", "AsyncATSResource"]
 
 
 class ATSResource(SyncAPIResource):
+    """测试系统"""
+
     @cached_property
     def test_case(self) -> TestCaseResource:
+        """测试系统"""
         return TestCaseResource(self._client)
 
     @cached_property
     def task(self) -> TaskResource:
+        """测试系统"""
         return TaskResource(self._client)
 
     @cached_property
@@ -277,12 +281,16 @@ class ATSResource(SyncAPIResource):
 
 
 class AsyncATSResource(AsyncAPIResource):
+    """测试系统"""
+
     @cached_property
     def test_case(self) -> AsyncTestCaseResource:
+        """测试系统"""
         return AsyncTestCaseResource(self._client)
 
     @cached_property
     def task(self) -> AsyncTaskResource:
+        """测试系统"""
         return AsyncTaskResource(self._client)
 
     @cached_property
@@ -531,10 +539,12 @@ class ATSResourceWithRawResponse:
 
     @cached_property
     def test_case(self) -> TestCaseResourceWithRawResponse:
+        """测试系统"""
         return TestCaseResourceWithRawResponse(self._ats.test_case)
 
     @cached_property
     def task(self) -> TaskResourceWithRawResponse:
+        """测试系统"""
         return TaskResourceWithRawResponse(self._ats.task)
 
 
@@ -560,10 +570,12 @@ class AsyncATSResourceWithRawResponse:
 
     @cached_property
     def test_case(self) -> AsyncTestCaseResourceWithRawResponse:
+        """测试系统"""
         return AsyncTestCaseResourceWithRawResponse(self._ats.test_case)
 
     @cached_property
     def task(self) -> AsyncTaskResourceWithRawResponse:
+        """测试系统"""
         return AsyncTaskResourceWithRawResponse(self._ats.task)
 
 
@@ -589,10 +601,12 @@ class ATSResourceWithStreamingResponse:
 
     @cached_property
     def test_case(self) -> TestCaseResourceWithStreamingResponse:
+        """测试系统"""
         return TestCaseResourceWithStreamingResponse(self._ats.test_case)
 
     @cached_property
     def task(self) -> TaskResourceWithStreamingResponse:
+        """测试系统"""
         return TaskResourceWithStreamingResponse(self._ats.task)
 
 
@@ -618,8 +632,10 @@ class AsyncATSResourceWithStreamingResponse:
 
     @cached_property
     def test_case(self) -> AsyncTestCaseResourceWithStreamingResponse:
+        """测试系统"""
         return AsyncTestCaseResourceWithStreamingResponse(self._ats.test_case)
 
     @cached_property
     def task(self) -> AsyncTaskResourceWithStreamingResponse:
+        """测试系统"""
         return AsyncTaskResourceWithStreamingResponse(self._ats.task)

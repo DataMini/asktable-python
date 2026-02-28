@@ -24,6 +24,8 @@ __all__ = ["MetaResource", "AsyncMetaResource"]
 
 
 class MetaResource(SyncAPIResource):
+    """数据源管理"""
+
     @cached_property
     def with_raw_response(self) -> MetaResourceWithRawResponse:
         """
@@ -218,6 +220,8 @@ class MetaResource(SyncAPIResource):
 
 
 class AsyncMetaResource(AsyncAPIResource):
+    """数据源管理"""
+
     @cached_property
     def with_raw_response(self) -> AsyncMetaResourceWithRawResponse:
         """

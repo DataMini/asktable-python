@@ -26,6 +26,8 @@ __all__ = ["APIKeysResource", "AsyncAPIKeysResource"]
 
 
 class APIKeysResource(SyncAPIResource):
+    """系统管理"""
+
     @cached_property
     def with_raw_response(self) -> APIKeysResourceWithRawResponse:
         """
@@ -208,6 +210,8 @@ class APIKeysResource(SyncAPIResource):
 
 
 class AsyncAPIKeysResource(AsyncAPIResource):
+    """系统管理"""
+
     @cached_property
     def with_raw_response(self) -> AsyncAPIKeysResourceWithRawResponse:
         """

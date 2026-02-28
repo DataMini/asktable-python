@@ -27,6 +27,8 @@ __all__ = ["TrainingsResource", "AsyncTrainingsResource"]
 
 
 class TrainingsResource(SyncAPIResource):
+    """训练数据管理"""
+
     @cached_property
     def with_raw_response(self) -> TrainingsResourceWithRawResponse:
         """
@@ -239,6 +241,8 @@ class TrainingsResource(SyncAPIResource):
 
 
 class AsyncTrainingsResource(AsyncAPIResource):
+    """训练数据管理"""
+
     @cached_property
     def with_raw_response(self) -> AsyncTrainingsResourceWithRawResponse:
         """

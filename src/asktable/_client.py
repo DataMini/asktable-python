@@ -151,96 +151,112 @@ class Asktable(SyncAPIClient):
 
     @cached_property
     def securetunnels(self) -> SecuretunnelsResource:
+        """安全隧道"""
         from .resources.securetunnels import SecuretunnelsResource
 
         return SecuretunnelsResource(self)
 
     @cached_property
     def roles(self) -> RolesResource:
+        """角色管理"""
         from .resources.roles import RolesResource
 
         return RolesResource(self)
 
     @cached_property
     def policies(self) -> PoliciesResource:
+        """策略管理"""
         from .resources.policies import PoliciesResource
 
         return PoliciesResource(self)
 
     @cached_property
     def chats(self) -> ChatsResource:
+        """聊天管理"""
         from .resources.chats import ChatsResource
 
         return ChatsResource(self)
 
     @cached_property
     def datasources(self) -> DatasourcesResource:
+        """数据源管理"""
         from .resources.datasources import DatasourcesResource
 
         return DatasourcesResource(self)
 
     @cached_property
     def bots(self) -> BotsResource:
+        """机器人管理"""
         from .resources.bots import BotsResource
 
         return BotsResource(self)
 
     @cached_property
     def auth(self) -> AuthResource:
+        """AskTable 系统认证管理"""
         from .resources.auth import AuthResource
 
         return AuthResource(self)
 
     @cached_property
     def answers(self) -> AnswersResource:
+        """单轮对话"""
         from .resources.answers import AnswersResource
 
         return AnswersResource(self)
 
     @cached_property
     def sqls(self) -> SqlsResource:
+        """单轮对话"""
         from .resources.sqls import SqlsResource
 
         return SqlsResource(self)
 
     @cached_property
     def integration(self) -> IntegrationResource:
+        """与第三方平台集成"""
         from .resources.integration import IntegrationResource
 
         return IntegrationResource(self)
 
     @cached_property
     def business_glossary(self) -> BusinessGlossaryResource:
+        """业务术语管理"""
         from .resources.business_glossary import BusinessGlossaryResource
 
         return BusinessGlossaryResource(self)
 
     @cached_property
     def preferences(self) -> PreferencesResource:
+        """偏好设置"""
         from .resources.preferences import PreferencesResource
 
         return PreferencesResource(self)
 
     @cached_property
     def trainings(self) -> TrainingsResource:
+        """训练数据管理"""
         from .resources.trainings import TrainingsResource
 
         return TrainingsResource(self)
 
     @cached_property
     def project(self) -> ProjectResource:
+        """我的项目"""
         from .resources.project import ProjectResource
 
         return ProjectResource(self)
 
     @cached_property
     def scores(self) -> ScoresResource:
+        """评分"""
         from .resources.scores import ScoresResource
 
         return ScoresResource(self)
 
     @cached_property
     def files(self) -> FilesResource:
+        """数据源管理"""
         from .resources.files import FilesResource
 
         return FilesResource(self)
@@ -253,6 +269,7 @@ class Asktable(SyncAPIClient):
 
     @cached_property
     def polish(self) -> PolishResource:
+        """润色"""
         from .resources.polish import PolishResource
 
         return PolishResource(self)
@@ -265,6 +282,7 @@ class Asktable(SyncAPIClient):
 
     @cached_property
     def ats(self) -> ATSResource:
+        """测试系统"""
         from .resources.ats import ATSResource
 
         return ATSResource(self)
@@ -445,96 +463,112 @@ class AsyncAsktable(AsyncAPIClient):
 
     @cached_property
     def securetunnels(self) -> AsyncSecuretunnelsResource:
+        """安全隧道"""
         from .resources.securetunnels import AsyncSecuretunnelsResource
 
         return AsyncSecuretunnelsResource(self)
 
     @cached_property
     def roles(self) -> AsyncRolesResource:
+        """角色管理"""
         from .resources.roles import AsyncRolesResource
 
         return AsyncRolesResource(self)
 
     @cached_property
     def policies(self) -> AsyncPoliciesResource:
+        """策略管理"""
         from .resources.policies import AsyncPoliciesResource
 
         return AsyncPoliciesResource(self)
 
     @cached_property
     def chats(self) -> AsyncChatsResource:
+        """聊天管理"""
         from .resources.chats import AsyncChatsResource
 
         return AsyncChatsResource(self)
 
     @cached_property
     def datasources(self) -> AsyncDatasourcesResource:
+        """数据源管理"""
         from .resources.datasources import AsyncDatasourcesResource
 
         return AsyncDatasourcesResource(self)
 
     @cached_property
     def bots(self) -> AsyncBotsResource:
+        """机器人管理"""
         from .resources.bots import AsyncBotsResource
 
         return AsyncBotsResource(self)
 
     @cached_property
     def auth(self) -> AsyncAuthResource:
+        """AskTable 系统认证管理"""
         from .resources.auth import AsyncAuthResource
 
         return AsyncAuthResource(self)
 
     @cached_property
     def answers(self) -> AsyncAnswersResource:
+        """单轮对话"""
         from .resources.answers import AsyncAnswersResource
 
         return AsyncAnswersResource(self)
 
     @cached_property
     def sqls(self) -> AsyncSqlsResource:
+        """单轮对话"""
         from .resources.sqls import AsyncSqlsResource
 
         return AsyncSqlsResource(self)
 
     @cached_property
     def integration(self) -> AsyncIntegrationResource:
+        """与第三方平台集成"""
         from .resources.integration import AsyncIntegrationResource
 
         return AsyncIntegrationResource(self)
 
     @cached_property
     def business_glossary(self) -> AsyncBusinessGlossaryResource:
+        """业务术语管理"""
         from .resources.business_glossary import AsyncBusinessGlossaryResource
 
         return AsyncBusinessGlossaryResource(self)
 
     @cached_property
     def preferences(self) -> AsyncPreferencesResource:
+        """偏好设置"""
         from .resources.preferences import AsyncPreferencesResource
 
         return AsyncPreferencesResource(self)
 
     @cached_property
     def trainings(self) -> AsyncTrainingsResource:
+        """训练数据管理"""
         from .resources.trainings import AsyncTrainingsResource
 
         return AsyncTrainingsResource(self)
 
     @cached_property
     def project(self) -> AsyncProjectResource:
+        """我的项目"""
         from .resources.project import AsyncProjectResource
 
         return AsyncProjectResource(self)
 
     @cached_property
     def scores(self) -> AsyncScoresResource:
+        """评分"""
         from .resources.scores import AsyncScoresResource
 
         return AsyncScoresResource(self)
 
     @cached_property
     def files(self) -> AsyncFilesResource:
+        """数据源管理"""
         from .resources.files import AsyncFilesResource
 
         return AsyncFilesResource(self)
@@ -547,6 +581,7 @@ class AsyncAsktable(AsyncAPIClient):
 
     @cached_property
     def polish(self) -> AsyncPolishResource:
+        """润色"""
         from .resources.polish import AsyncPolishResource
 
         return AsyncPolishResource(self)
@@ -559,6 +594,7 @@ class AsyncAsktable(AsyncAPIClient):
 
     @cached_property
     def ats(self) -> AsyncATSResource:
+        """测试系统"""
         from .resources.ats import AsyncATSResource
 
         return AsyncATSResource(self)
@@ -690,96 +726,112 @@ class AsktableWithRawResponse:
 
     @cached_property
     def securetunnels(self) -> securetunnels.SecuretunnelsResourceWithRawResponse:
+        """安全隧道"""
         from .resources.securetunnels import SecuretunnelsResourceWithRawResponse
 
         return SecuretunnelsResourceWithRawResponse(self._client.securetunnels)
 
     @cached_property
     def roles(self) -> roles.RolesResourceWithRawResponse:
+        """角色管理"""
         from .resources.roles import RolesResourceWithRawResponse
 
         return RolesResourceWithRawResponse(self._client.roles)
 
     @cached_property
     def policies(self) -> policies.PoliciesResourceWithRawResponse:
+        """策略管理"""
         from .resources.policies import PoliciesResourceWithRawResponse
 
         return PoliciesResourceWithRawResponse(self._client.policies)
 
     @cached_property
     def chats(self) -> chats.ChatsResourceWithRawResponse:
+        """聊天管理"""
         from .resources.chats import ChatsResourceWithRawResponse
 
         return ChatsResourceWithRawResponse(self._client.chats)
 
     @cached_property
     def datasources(self) -> datasources.DatasourcesResourceWithRawResponse:
+        """数据源管理"""
         from .resources.datasources import DatasourcesResourceWithRawResponse
 
         return DatasourcesResourceWithRawResponse(self._client.datasources)
 
     @cached_property
     def bots(self) -> bots.BotsResourceWithRawResponse:
+        """机器人管理"""
         from .resources.bots import BotsResourceWithRawResponse
 
         return BotsResourceWithRawResponse(self._client.bots)
 
     @cached_property
     def auth(self) -> auth.AuthResourceWithRawResponse:
+        """AskTable 系统认证管理"""
         from .resources.auth import AuthResourceWithRawResponse
 
         return AuthResourceWithRawResponse(self._client.auth)
 
     @cached_property
     def answers(self) -> answers.AnswersResourceWithRawResponse:
+        """单轮对话"""
         from .resources.answers import AnswersResourceWithRawResponse
 
         return AnswersResourceWithRawResponse(self._client.answers)
 
     @cached_property
     def sqls(self) -> sqls.SqlsResourceWithRawResponse:
+        """单轮对话"""
         from .resources.sqls import SqlsResourceWithRawResponse
 
         return SqlsResourceWithRawResponse(self._client.sqls)
 
     @cached_property
     def integration(self) -> integration.IntegrationResourceWithRawResponse:
+        """与第三方平台集成"""
         from .resources.integration import IntegrationResourceWithRawResponse
 
         return IntegrationResourceWithRawResponse(self._client.integration)
 
     @cached_property
     def business_glossary(self) -> business_glossary.BusinessGlossaryResourceWithRawResponse:
+        """业务术语管理"""
         from .resources.business_glossary import BusinessGlossaryResourceWithRawResponse
 
         return BusinessGlossaryResourceWithRawResponse(self._client.business_glossary)
 
     @cached_property
     def preferences(self) -> preferences.PreferencesResourceWithRawResponse:
+        """偏好设置"""
         from .resources.preferences import PreferencesResourceWithRawResponse
 
         return PreferencesResourceWithRawResponse(self._client.preferences)
 
     @cached_property
     def trainings(self) -> trainings.TrainingsResourceWithRawResponse:
+        """训练数据管理"""
         from .resources.trainings import TrainingsResourceWithRawResponse
 
         return TrainingsResourceWithRawResponse(self._client.trainings)
 
     @cached_property
     def project(self) -> project.ProjectResourceWithRawResponse:
+        """我的项目"""
         from .resources.project import ProjectResourceWithRawResponse
 
         return ProjectResourceWithRawResponse(self._client.project)
 
     @cached_property
     def scores(self) -> scores.ScoresResourceWithRawResponse:
+        """评分"""
         from .resources.scores import ScoresResourceWithRawResponse
 
         return ScoresResourceWithRawResponse(self._client.scores)
 
     @cached_property
     def files(self) -> files.FilesResourceWithRawResponse:
+        """数据源管理"""
         from .resources.files import FilesResourceWithRawResponse
 
         return FilesResourceWithRawResponse(self._client.files)
@@ -792,6 +844,7 @@ class AsktableWithRawResponse:
 
     @cached_property
     def polish(self) -> polish.PolishResourceWithRawResponse:
+        """润色"""
         from .resources.polish import PolishResourceWithRawResponse
 
         return PolishResourceWithRawResponse(self._client.polish)
@@ -804,6 +857,7 @@ class AsktableWithRawResponse:
 
     @cached_property
     def ats(self) -> ats.ATSResourceWithRawResponse:
+        """测试系统"""
         from .resources.ats import ATSResourceWithRawResponse
 
         return ATSResourceWithRawResponse(self._client.ats)
@@ -823,96 +877,112 @@ class AsyncAsktableWithRawResponse:
 
     @cached_property
     def securetunnels(self) -> securetunnels.AsyncSecuretunnelsResourceWithRawResponse:
+        """安全隧道"""
         from .resources.securetunnels import AsyncSecuretunnelsResourceWithRawResponse
 
         return AsyncSecuretunnelsResourceWithRawResponse(self._client.securetunnels)
 
     @cached_property
     def roles(self) -> roles.AsyncRolesResourceWithRawResponse:
+        """角色管理"""
         from .resources.roles import AsyncRolesResourceWithRawResponse
 
         return AsyncRolesResourceWithRawResponse(self._client.roles)
 
     @cached_property
     def policies(self) -> policies.AsyncPoliciesResourceWithRawResponse:
+        """策略管理"""
         from .resources.policies import AsyncPoliciesResourceWithRawResponse
 
         return AsyncPoliciesResourceWithRawResponse(self._client.policies)
 
     @cached_property
     def chats(self) -> chats.AsyncChatsResourceWithRawResponse:
+        """聊天管理"""
         from .resources.chats import AsyncChatsResourceWithRawResponse
 
         return AsyncChatsResourceWithRawResponse(self._client.chats)
 
     @cached_property
     def datasources(self) -> datasources.AsyncDatasourcesResourceWithRawResponse:
+        """数据源管理"""
         from .resources.datasources import AsyncDatasourcesResourceWithRawResponse
 
         return AsyncDatasourcesResourceWithRawResponse(self._client.datasources)
 
     @cached_property
     def bots(self) -> bots.AsyncBotsResourceWithRawResponse:
+        """机器人管理"""
         from .resources.bots import AsyncBotsResourceWithRawResponse
 
         return AsyncBotsResourceWithRawResponse(self._client.bots)
 
     @cached_property
     def auth(self) -> auth.AsyncAuthResourceWithRawResponse:
+        """AskTable 系统认证管理"""
         from .resources.auth import AsyncAuthResourceWithRawResponse
 
         return AsyncAuthResourceWithRawResponse(self._client.auth)
 
     @cached_property
     def answers(self) -> answers.AsyncAnswersResourceWithRawResponse:
+        """单轮对话"""
         from .resources.answers import AsyncAnswersResourceWithRawResponse
 
         return AsyncAnswersResourceWithRawResponse(self._client.answers)
 
     @cached_property
     def sqls(self) -> sqls.AsyncSqlsResourceWithRawResponse:
+        """单轮对话"""
         from .resources.sqls import AsyncSqlsResourceWithRawResponse
 
         return AsyncSqlsResourceWithRawResponse(self._client.sqls)
 
     @cached_property
     def integration(self) -> integration.AsyncIntegrationResourceWithRawResponse:
+        """与第三方平台集成"""
         from .resources.integration import AsyncIntegrationResourceWithRawResponse
 
         return AsyncIntegrationResourceWithRawResponse(self._client.integration)
 
     @cached_property
     def business_glossary(self) -> business_glossary.AsyncBusinessGlossaryResourceWithRawResponse:
+        """业务术语管理"""
         from .resources.business_glossary import AsyncBusinessGlossaryResourceWithRawResponse
 
         return AsyncBusinessGlossaryResourceWithRawResponse(self._client.business_glossary)
 
     @cached_property
     def preferences(self) -> preferences.AsyncPreferencesResourceWithRawResponse:
+        """偏好设置"""
         from .resources.preferences import AsyncPreferencesResourceWithRawResponse
 
         return AsyncPreferencesResourceWithRawResponse(self._client.preferences)
 
     @cached_property
     def trainings(self) -> trainings.AsyncTrainingsResourceWithRawResponse:
+        """训练数据管理"""
         from .resources.trainings import AsyncTrainingsResourceWithRawResponse
 
         return AsyncTrainingsResourceWithRawResponse(self._client.trainings)
 
     @cached_property
     def project(self) -> project.AsyncProjectResourceWithRawResponse:
+        """我的项目"""
         from .resources.project import AsyncProjectResourceWithRawResponse
 
         return AsyncProjectResourceWithRawResponse(self._client.project)
 
     @cached_property
     def scores(self) -> scores.AsyncScoresResourceWithRawResponse:
+        """评分"""
         from .resources.scores import AsyncScoresResourceWithRawResponse
 
         return AsyncScoresResourceWithRawResponse(self._client.scores)
 
     @cached_property
     def files(self) -> files.AsyncFilesResourceWithRawResponse:
+        """数据源管理"""
         from .resources.files import AsyncFilesResourceWithRawResponse
 
         return AsyncFilesResourceWithRawResponse(self._client.files)
@@ -925,6 +995,7 @@ class AsyncAsktableWithRawResponse:
 
     @cached_property
     def polish(self) -> polish.AsyncPolishResourceWithRawResponse:
+        """润色"""
         from .resources.polish import AsyncPolishResourceWithRawResponse
 
         return AsyncPolishResourceWithRawResponse(self._client.polish)
@@ -937,6 +1008,7 @@ class AsyncAsktableWithRawResponse:
 
     @cached_property
     def ats(self) -> ats.AsyncATSResourceWithRawResponse:
+        """测试系统"""
         from .resources.ats import AsyncATSResourceWithRawResponse
 
         return AsyncATSResourceWithRawResponse(self._client.ats)
@@ -956,96 +1028,112 @@ class AsktableWithStreamedResponse:
 
     @cached_property
     def securetunnels(self) -> securetunnels.SecuretunnelsResourceWithStreamingResponse:
+        """安全隧道"""
         from .resources.securetunnels import SecuretunnelsResourceWithStreamingResponse
 
         return SecuretunnelsResourceWithStreamingResponse(self._client.securetunnels)
 
     @cached_property
     def roles(self) -> roles.RolesResourceWithStreamingResponse:
+        """角色管理"""
         from .resources.roles import RolesResourceWithStreamingResponse
 
         return RolesResourceWithStreamingResponse(self._client.roles)
 
     @cached_property
     def policies(self) -> policies.PoliciesResourceWithStreamingResponse:
+        """策略管理"""
         from .resources.policies import PoliciesResourceWithStreamingResponse
 
         return PoliciesResourceWithStreamingResponse(self._client.policies)
 
     @cached_property
     def chats(self) -> chats.ChatsResourceWithStreamingResponse:
+        """聊天管理"""
         from .resources.chats import ChatsResourceWithStreamingResponse
 
         return ChatsResourceWithStreamingResponse(self._client.chats)
 
     @cached_property
     def datasources(self) -> datasources.DatasourcesResourceWithStreamingResponse:
+        """数据源管理"""
         from .resources.datasources import DatasourcesResourceWithStreamingResponse
 
         return DatasourcesResourceWithStreamingResponse(self._client.datasources)
 
     @cached_property
     def bots(self) -> bots.BotsResourceWithStreamingResponse:
+        """机器人管理"""
         from .resources.bots import BotsResourceWithStreamingResponse
 
         return BotsResourceWithStreamingResponse(self._client.bots)
 
     @cached_property
     def auth(self) -> auth.AuthResourceWithStreamingResponse:
+        """AskTable 系统认证管理"""
         from .resources.auth import AuthResourceWithStreamingResponse
 
         return AuthResourceWithStreamingResponse(self._client.auth)
 
     @cached_property
     def answers(self) -> answers.AnswersResourceWithStreamingResponse:
+        """单轮对话"""
         from .resources.answers import AnswersResourceWithStreamingResponse
 
         return AnswersResourceWithStreamingResponse(self._client.answers)
 
     @cached_property
     def sqls(self) -> sqls.SqlsResourceWithStreamingResponse:
+        """单轮对话"""
         from .resources.sqls import SqlsResourceWithStreamingResponse
 
         return SqlsResourceWithStreamingResponse(self._client.sqls)
 
     @cached_property
     def integration(self) -> integration.IntegrationResourceWithStreamingResponse:
+        """与第三方平台集成"""
         from .resources.integration import IntegrationResourceWithStreamingResponse
 
         return IntegrationResourceWithStreamingResponse(self._client.integration)
 
     @cached_property
     def business_glossary(self) -> business_glossary.BusinessGlossaryResourceWithStreamingResponse:
+        """业务术语管理"""
         from .resources.business_glossary import BusinessGlossaryResourceWithStreamingResponse
 
         return BusinessGlossaryResourceWithStreamingResponse(self._client.business_glossary)
 
     @cached_property
     def preferences(self) -> preferences.PreferencesResourceWithStreamingResponse:
+        """偏好设置"""
         from .resources.preferences import PreferencesResourceWithStreamingResponse
 
         return PreferencesResourceWithStreamingResponse(self._client.preferences)
 
     @cached_property
     def trainings(self) -> trainings.TrainingsResourceWithStreamingResponse:
+        """训练数据管理"""
         from .resources.trainings import TrainingsResourceWithStreamingResponse
 
         return TrainingsResourceWithStreamingResponse(self._client.trainings)
 
     @cached_property
     def project(self) -> project.ProjectResourceWithStreamingResponse:
+        """我的项目"""
         from .resources.project import ProjectResourceWithStreamingResponse
 
         return ProjectResourceWithStreamingResponse(self._client.project)
 
     @cached_property
     def scores(self) -> scores.ScoresResourceWithStreamingResponse:
+        """评分"""
         from .resources.scores import ScoresResourceWithStreamingResponse
 
         return ScoresResourceWithStreamingResponse(self._client.scores)
 
     @cached_property
     def files(self) -> files.FilesResourceWithStreamingResponse:
+        """数据源管理"""
         from .resources.files import FilesResourceWithStreamingResponse
 
         return FilesResourceWithStreamingResponse(self._client.files)
@@ -1058,6 +1146,7 @@ class AsktableWithStreamedResponse:
 
     @cached_property
     def polish(self) -> polish.PolishResourceWithStreamingResponse:
+        """润色"""
         from .resources.polish import PolishResourceWithStreamingResponse
 
         return PolishResourceWithStreamingResponse(self._client.polish)
@@ -1070,6 +1159,7 @@ class AsktableWithStreamedResponse:
 
     @cached_property
     def ats(self) -> ats.ATSResourceWithStreamingResponse:
+        """测试系统"""
         from .resources.ats import ATSResourceWithStreamingResponse
 
         return ATSResourceWithStreamingResponse(self._client.ats)
@@ -1089,96 +1179,112 @@ class AsyncAsktableWithStreamedResponse:
 
     @cached_property
     def securetunnels(self) -> securetunnels.AsyncSecuretunnelsResourceWithStreamingResponse:
+        """安全隧道"""
         from .resources.securetunnels import AsyncSecuretunnelsResourceWithStreamingResponse
 
         return AsyncSecuretunnelsResourceWithStreamingResponse(self._client.securetunnels)
 
     @cached_property
     def roles(self) -> roles.AsyncRolesResourceWithStreamingResponse:
+        """角色管理"""
         from .resources.roles import AsyncRolesResourceWithStreamingResponse
 
         return AsyncRolesResourceWithStreamingResponse(self._client.roles)
 
     @cached_property
     def policies(self) -> policies.AsyncPoliciesResourceWithStreamingResponse:
+        """策略管理"""
         from .resources.policies import AsyncPoliciesResourceWithStreamingResponse
 
         return AsyncPoliciesResourceWithStreamingResponse(self._client.policies)
 
     @cached_property
     def chats(self) -> chats.AsyncChatsResourceWithStreamingResponse:
+        """聊天管理"""
         from .resources.chats import AsyncChatsResourceWithStreamingResponse
 
         return AsyncChatsResourceWithStreamingResponse(self._client.chats)
 
     @cached_property
     def datasources(self) -> datasources.AsyncDatasourcesResourceWithStreamingResponse:
+        """数据源管理"""
         from .resources.datasources import AsyncDatasourcesResourceWithStreamingResponse
 
         return AsyncDatasourcesResourceWithStreamingResponse(self._client.datasources)
 
     @cached_property
     def bots(self) -> bots.AsyncBotsResourceWithStreamingResponse:
+        """机器人管理"""
         from .resources.bots import AsyncBotsResourceWithStreamingResponse
 
         return AsyncBotsResourceWithStreamingResponse(self._client.bots)
 
     @cached_property
     def auth(self) -> auth.AsyncAuthResourceWithStreamingResponse:
+        """AskTable 系统认证管理"""
         from .resources.auth import AsyncAuthResourceWithStreamingResponse
 
         return AsyncAuthResourceWithStreamingResponse(self._client.auth)
 
     @cached_property
     def answers(self) -> answers.AsyncAnswersResourceWithStreamingResponse:
+        """单轮对话"""
         from .resources.answers import AsyncAnswersResourceWithStreamingResponse
 
         return AsyncAnswersResourceWithStreamingResponse(self._client.answers)
 
     @cached_property
     def sqls(self) -> sqls.AsyncSqlsResourceWithStreamingResponse:
+        """单轮对话"""
         from .resources.sqls import AsyncSqlsResourceWithStreamingResponse
 
         return AsyncSqlsResourceWithStreamingResponse(self._client.sqls)
 
     @cached_property
     def integration(self) -> integration.AsyncIntegrationResourceWithStreamingResponse:
+        """与第三方平台集成"""
         from .resources.integration import AsyncIntegrationResourceWithStreamingResponse
 
         return AsyncIntegrationResourceWithStreamingResponse(self._client.integration)
 
     @cached_property
     def business_glossary(self) -> business_glossary.AsyncBusinessGlossaryResourceWithStreamingResponse:
+        """业务术语管理"""
         from .resources.business_glossary import AsyncBusinessGlossaryResourceWithStreamingResponse
 
         return AsyncBusinessGlossaryResourceWithStreamingResponse(self._client.business_glossary)
 
     @cached_property
     def preferences(self) -> preferences.AsyncPreferencesResourceWithStreamingResponse:
+        """偏好设置"""
         from .resources.preferences import AsyncPreferencesResourceWithStreamingResponse
 
         return AsyncPreferencesResourceWithStreamingResponse(self._client.preferences)
 
     @cached_property
     def trainings(self) -> trainings.AsyncTrainingsResourceWithStreamingResponse:
+        """训练数据管理"""
         from .resources.trainings import AsyncTrainingsResourceWithStreamingResponse
 
         return AsyncTrainingsResourceWithStreamingResponse(self._client.trainings)
 
     @cached_property
     def project(self) -> project.AsyncProjectResourceWithStreamingResponse:
+        """我的项目"""
         from .resources.project import AsyncProjectResourceWithStreamingResponse
 
         return AsyncProjectResourceWithStreamingResponse(self._client.project)
 
     @cached_property
     def scores(self) -> scores.AsyncScoresResourceWithStreamingResponse:
+        """评分"""
         from .resources.scores import AsyncScoresResourceWithStreamingResponse
 
         return AsyncScoresResourceWithStreamingResponse(self._client.scores)
 
     @cached_property
     def files(self) -> files.AsyncFilesResourceWithStreamingResponse:
+        """数据源管理"""
         from .resources.files import AsyncFilesResourceWithStreamingResponse
 
         return AsyncFilesResourceWithStreamingResponse(self._client.files)
@@ -1191,6 +1297,7 @@ class AsyncAsktableWithStreamedResponse:
 
     @cached_property
     def polish(self) -> polish.AsyncPolishResourceWithStreamingResponse:
+        """润色"""
         from .resources.polish import AsyncPolishResourceWithStreamingResponse
 
         return AsyncPolishResourceWithStreamingResponse(self._client.polish)
@@ -1203,6 +1310,7 @@ class AsyncAsktableWithStreamedResponse:
 
     @cached_property
     def ats(self) -> ats.AsyncATSResourceWithStreamingResponse:
+        """测试系统"""
         from .resources.ats import AsyncATSResourceWithStreamingResponse
 
         return AsyncATSResourceWithStreamingResponse(self._client.ats)

@@ -34,8 +34,11 @@ __all__ = ["ProjectsResource", "AsyncProjectsResource"]
 
 
 class ProjectsResource(SyncAPIResource):
+    """系统管理"""
+
     @cached_property
     def api_keys(self) -> APIKeysResource:
+        """系统管理"""
         return APIKeysResource(self._client)
 
     @cached_property
@@ -344,8 +347,11 @@ class ProjectsResource(SyncAPIResource):
 
 
 class AsyncProjectsResource(AsyncAPIResource):
+    """系统管理"""
+
     @cached_property
     def api_keys(self) -> AsyncAPIKeysResource:
+        """系统管理"""
         return AsyncAPIKeysResource(self._client)
 
     @cached_property
@@ -684,6 +690,7 @@ class ProjectsResourceWithRawResponse:
 
     @cached_property
     def api_keys(self) -> APIKeysResourceWithRawResponse:
+        """系统管理"""
         return APIKeysResourceWithRawResponse(self._projects.api_keys)
 
 
@@ -718,6 +725,7 @@ class AsyncProjectsResourceWithRawResponse:
 
     @cached_property
     def api_keys(self) -> AsyncAPIKeysResourceWithRawResponse:
+        """系统管理"""
         return AsyncAPIKeysResourceWithRawResponse(self._projects.api_keys)
 
 
@@ -752,6 +760,7 @@ class ProjectsResourceWithStreamingResponse:
 
     @cached_property
     def api_keys(self) -> APIKeysResourceWithStreamingResponse:
+        """系统管理"""
         return APIKeysResourceWithStreamingResponse(self._projects.api_keys)
 
 
@@ -786,4 +795,5 @@ class AsyncProjectsResourceWithStreamingResponse:
 
     @cached_property
     def api_keys(self) -> AsyncAPIKeysResourceWithStreamingResponse:
+        """系统管理"""
         return AsyncAPIKeysResourceWithStreamingResponse(self._projects.api_keys)

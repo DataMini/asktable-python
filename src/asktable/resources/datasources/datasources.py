@@ -58,16 +58,21 @@ __all__ = ["DatasourcesResource", "AsyncDatasourcesResource"]
 
 
 class DatasourcesResource(SyncAPIResource):
+    """数据源管理"""
+
     @cached_property
     def meta(self) -> MetaResource:
+        """数据源管理"""
         return MetaResource(self._client)
 
     @cached_property
     def upload_params(self) -> UploadParamsResource:
+        """数据源管理"""
         return UploadParamsResource(self._client)
 
     @cached_property
     def indexes(self) -> IndexesResource:
+        """索引管理"""
         return IndexesResource(self._client)
 
     @cached_property
@@ -576,16 +581,21 @@ class DatasourcesResource(SyncAPIResource):
 
 
 class AsyncDatasourcesResource(AsyncAPIResource):
+    """数据源管理"""
+
     @cached_property
     def meta(self) -> AsyncMetaResource:
+        """数据源管理"""
         return AsyncMetaResource(self._client)
 
     @cached_property
     def upload_params(self) -> AsyncUploadParamsResource:
+        """数据源管理"""
         return AsyncUploadParamsResource(self._client)
 
     @cached_property
     def indexes(self) -> AsyncIndexesResource:
+        """索引管理"""
         return AsyncIndexesResource(self._client)
 
     @cached_property
@@ -1127,14 +1137,17 @@ class DatasourcesResourceWithRawResponse:
 
     @cached_property
     def meta(self) -> MetaResourceWithRawResponse:
+        """数据源管理"""
         return MetaResourceWithRawResponse(self._datasources.meta)
 
     @cached_property
     def upload_params(self) -> UploadParamsResourceWithRawResponse:
+        """数据源管理"""
         return UploadParamsResourceWithRawResponse(self._datasources.upload_params)
 
     @cached_property
     def indexes(self) -> IndexesResourceWithRawResponse:
+        """索引管理"""
         return IndexesResourceWithRawResponse(self._datasources.indexes)
 
 
@@ -1172,14 +1185,17 @@ class AsyncDatasourcesResourceWithRawResponse:
 
     @cached_property
     def meta(self) -> AsyncMetaResourceWithRawResponse:
+        """数据源管理"""
         return AsyncMetaResourceWithRawResponse(self._datasources.meta)
 
     @cached_property
     def upload_params(self) -> AsyncUploadParamsResourceWithRawResponse:
+        """数据源管理"""
         return AsyncUploadParamsResourceWithRawResponse(self._datasources.upload_params)
 
     @cached_property
     def indexes(self) -> AsyncIndexesResourceWithRawResponse:
+        """索引管理"""
         return AsyncIndexesResourceWithRawResponse(self._datasources.indexes)
 
 
@@ -1217,14 +1233,17 @@ class DatasourcesResourceWithStreamingResponse:
 
     @cached_property
     def meta(self) -> MetaResourceWithStreamingResponse:
+        """数据源管理"""
         return MetaResourceWithStreamingResponse(self._datasources.meta)
 
     @cached_property
     def upload_params(self) -> UploadParamsResourceWithStreamingResponse:
+        """数据源管理"""
         return UploadParamsResourceWithStreamingResponse(self._datasources.upload_params)
 
     @cached_property
     def indexes(self) -> IndexesResourceWithStreamingResponse:
+        """索引管理"""
         return IndexesResourceWithStreamingResponse(self._datasources.indexes)
 
 
@@ -1262,12 +1281,15 @@ class AsyncDatasourcesResourceWithStreamingResponse:
 
     @cached_property
     def meta(self) -> AsyncMetaResourceWithStreamingResponse:
+        """数据源管理"""
         return AsyncMetaResourceWithStreamingResponse(self._datasources.meta)
 
     @cached_property
     def upload_params(self) -> AsyncUploadParamsResourceWithStreamingResponse:
+        """数据源管理"""
         return AsyncUploadParamsResourceWithStreamingResponse(self._datasources.upload_params)
 
     @cached_property
     def indexes(self) -> AsyncIndexesResourceWithStreamingResponse:
+        """索引管理"""
         return AsyncIndexesResourceWithStreamingResponse(self._datasources.indexes)

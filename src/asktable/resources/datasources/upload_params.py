@@ -23,6 +23,8 @@ __all__ = ["UploadParamsResource", "AsyncUploadParamsResource"]
 
 
 class UploadParamsResource(SyncAPIResource):
+    """数据源管理"""
+
     @cached_property
     def with_raw_response(self) -> UploadParamsResourceWithRawResponse:
         """
@@ -87,6 +89,8 @@ class UploadParamsResource(SyncAPIResource):
 
 
 class AsyncUploadParamsResource(AsyncAPIResource):
+    """数据源管理"""
+
     @cached_property
     def with_raw_response(self) -> AsyncUploadParamsResourceWithRawResponse:
         """

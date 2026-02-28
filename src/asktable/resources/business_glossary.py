@@ -27,6 +27,8 @@ __all__ = ["BusinessGlossaryResource", "AsyncBusinessGlossaryResource"]
 
 
 class BusinessGlossaryResource(SyncAPIResource):
+    """业务术语管理"""
+
     @cached_property
     def with_raw_response(self) -> BusinessGlossaryResourceWithRawResponse:
         """
@@ -255,6 +257,8 @@ class BusinessGlossaryResource(SyncAPIResource):
 
 
 class AsyncBusinessGlossaryResource(AsyncAPIResource):
+    """业务术语管理"""
+
     @cached_property
     def with_raw_response(self) -> AsyncBusinessGlossaryResourceWithRawResponse:
         """

@@ -31,6 +31,8 @@ __all__ = ["SecuretunnelsResource", "AsyncSecuretunnelsResource"]
 
 
 class SecuretunnelsResource(SyncAPIResource):
+    """安全隧道"""
+
     @cached_property
     def with_raw_response(self) -> SecuretunnelsResourceWithRawResponse:
         """
@@ -300,6 +302,8 @@ class SecuretunnelsResource(SyncAPIResource):
 
 
 class AsyncSecuretunnelsResource(AsyncAPIResource):
+    """安全隧道"""
+
     @cached_property
     def with_raw_response(self) -> AsyncSecuretunnelsResourceWithRawResponse:
         """

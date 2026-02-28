@@ -19,6 +19,7 @@ __all__ = ["UserResource", "AsyncUserResource"]
 class UserResource(SyncAPIResource):
     @cached_property
     def projects(self) -> ProjectsResource:
+        """我的项目"""
         return ProjectsResource(self._client)
 
     @cached_property
@@ -44,6 +45,7 @@ class UserResource(SyncAPIResource):
 class AsyncUserResource(AsyncAPIResource):
     @cached_property
     def projects(self) -> AsyncProjectsResource:
+        """我的项目"""
         return AsyncProjectsResource(self._client)
 
     @cached_property
@@ -72,6 +74,7 @@ class UserResourceWithRawResponse:
 
     @cached_property
     def projects(self) -> ProjectsResourceWithRawResponse:
+        """我的项目"""
         return ProjectsResourceWithRawResponse(self._user.projects)
 
 
@@ -81,6 +84,7 @@ class AsyncUserResourceWithRawResponse:
 
     @cached_property
     def projects(self) -> AsyncProjectsResourceWithRawResponse:
+        """我的项目"""
         return AsyncProjectsResourceWithRawResponse(self._user.projects)
 
 
@@ -90,6 +94,7 @@ class UserResourceWithStreamingResponse:
 
     @cached_property
     def projects(self) -> ProjectsResourceWithStreamingResponse:
+        """我的项目"""
         return ProjectsResourceWithStreamingResponse(self._user.projects)
 
 
@@ -99,4 +104,5 @@ class AsyncUserResourceWithStreamingResponse:
 
     @cached_property
     def projects(self) -> AsyncProjectsResourceWithStreamingResponse:
+        """我的项目"""
         return AsyncProjectsResourceWithStreamingResponse(self._user.projects)

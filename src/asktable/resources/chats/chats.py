@@ -35,8 +35,11 @@ __all__ = ["ChatsResource", "AsyncChatsResource"]
 
 
 class ChatsResource(SyncAPIResource):
+    """聊天管理"""
+
     @cached_property
     def messages(self) -> MessagesResource:
+        """聊天管理"""
         return MessagesResource(self._client)
 
     @cached_property
@@ -231,8 +234,11 @@ class ChatsResource(SyncAPIResource):
 
 
 class AsyncChatsResource(AsyncAPIResource):
+    """聊天管理"""
+
     @cached_property
     def messages(self) -> AsyncMessagesResource:
+        """聊天管理"""
         return AsyncMessagesResource(self._client)
 
     @cached_property
@@ -445,6 +451,7 @@ class ChatsResourceWithRawResponse:
 
     @cached_property
     def messages(self) -> MessagesResourceWithRawResponse:
+        """聊天管理"""
         return MessagesResourceWithRawResponse(self._chats.messages)
 
 
@@ -467,6 +474,7 @@ class AsyncChatsResourceWithRawResponse:
 
     @cached_property
     def messages(self) -> AsyncMessagesResourceWithRawResponse:
+        """聊天管理"""
         return AsyncMessagesResourceWithRawResponse(self._chats.messages)
 
 
@@ -489,6 +497,7 @@ class ChatsResourceWithStreamingResponse:
 
     @cached_property
     def messages(self) -> MessagesResourceWithStreamingResponse:
+        """聊天管理"""
         return MessagesResourceWithStreamingResponse(self._chats.messages)
 
 
@@ -511,4 +520,5 @@ class AsyncChatsResourceWithStreamingResponse:
 
     @cached_property
     def messages(self) -> AsyncMessagesResourceWithStreamingResponse:
+        """聊天管理"""
         return AsyncMessagesResourceWithStreamingResponse(self._chats.messages)
