@@ -18,6 +18,7 @@ from ..._response import (
 )
 from ..._base_client import make_request_options
 from ...types.datasources import upload_param_create_params
+from ...types.datasources.upload_param_create_response import UploadParamCreateResponse
 
 __all__ = ["UploadParamsResource", "AsyncUploadParamsResource"]
 
@@ -55,7 +56,7 @@ class UploadParamsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> UploadParamCreateResponse:
         """
         获取 OSS 签名参数
 
@@ -84,7 +85,7 @@ class UploadParamsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=UploadParamCreateResponse,
         )
 
 
@@ -121,7 +122,7 @@ class AsyncUploadParamsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> UploadParamCreateResponse:
         """
         获取 OSS 签名参数
 
@@ -150,7 +151,7 @@ class AsyncUploadParamsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=UploadParamCreateResponse,
         )
 
 

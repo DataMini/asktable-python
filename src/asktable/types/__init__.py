@@ -38,6 +38,7 @@ from .role_create_params import RoleCreateParams as RoleCreateParams
 from .role_update_params import RoleUpdateParams as RoleUpdateParams
 from .ats_create_response import ATSCreateResponse as ATSCreateResponse
 from .ats_update_response import ATSUpdateResponse as ATSUpdateResponse
+from .bot_invite_response import BotInviteResponse as BotInviteResponse
 from .score_create_params import ScoreCreateParams as ScoreCreateParams
 from .answer_create_params import AnswerCreateParams as AnswerCreateParams
 from .chat_create_response import ChatCreateResponse as ChatCreateResponse
@@ -66,12 +67,14 @@ from .training_create_response import TrainingCreateResponse as TrainingCreateRe
 from .training_update_response import TrainingUpdateResponse as TrainingUpdateResponse
 from .role_get_polices_response import RoleGetPolicesResponse as RoleGetPolicesResponse
 from .role_get_variables_params import RoleGetVariablesParams as RoleGetVariablesParams
+from .auth_create_token_response import AuthCreateTokenResponse as AuthCreateTokenResponse
 from .datasource_add_file_params import DatasourceAddFileParams as DatasourceAddFileParams
 from .preference_create_response import PreferenceCreateResponse as PreferenceCreateResponse
 from .preference_update_response import PreferenceUpdateResponse as PreferenceUpdateResponse
 from .securetunnel_create_params import SecuretunnelCreateParams as SecuretunnelCreateParams
 from .securetunnel_update_params import SecuretunnelUpdateParams as SecuretunnelUpdateParams
 from .dataframe_retrieve_response import DataframeRetrieveResponse as DataframeRetrieveResponse
+from .role_get_variables_response import RoleGetVariablesResponse as RoleGetVariablesResponse
 from .datasource_retrieve_response import DatasourceRetrieveResponse as DatasourceRetrieveResponse
 from .preference_retrieve_response import PreferenceRetrieveResponse as PreferenceRetrieveResponse
 from .business_glossary_list_params import BusinessGlossaryListParams as BusinessGlossaryListParams

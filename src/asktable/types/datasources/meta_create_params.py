@@ -60,7 +60,7 @@ class MetaSchemas(TypedDict, total=False):
     origin_desc: Required[str]
     """schema description from database"""
 
-    custom_configs: Optional[object]
+    custom_configs: Optional[Dict[str, object]]
     """custom configs"""
 
     tables: Dict[str, MetaSchemasTables]

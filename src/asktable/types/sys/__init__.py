@@ -8,4 +8,6 @@ from .project_list_params import ProjectListParams as ProjectListParams
 from .project_create_params import ProjectCreateParams as ProjectCreateParams
 from .project_import_params import ProjectImportParams as ProjectImportParams
 from .project_update_params import ProjectUpdateParams as ProjectUpdateParams
+from .project_export_response import ProjectExportResponse as ProjectExportResponse
+from .project_import_response import ProjectImportResponse as ProjectImportResponse
 from .project_model_groups_response import ProjectModelGroupsResponse as ProjectModelGroupsResponse

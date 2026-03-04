@@ -9,7 +9,10 @@ import pytest
 
 from asktable import Asktable, AsyncAsktable
 from tests.utils import assert_matches_type
-from asktable.types import Chatbot
+from asktable.types import (
+    Chatbot,
+    BotInviteResponse,
+)
 from asktable.pagination import SyncPage, AsyncPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -261,7 +264,7 @@ class TestBots:
             bot_id="bot_id",
             project_id="project_id",
         )
-        assert_matches_type(object, bot, path=["response"])
+        assert_matches_type(BotInviteResponse, bot, path=["response"])
 
     @parametrize
     def test_raw_response_invite(self, client: Asktable) -> None:
@@ -273,7 +276,7 @@ class TestBots:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bot = response.parse()
-        assert_matches_type(object, bot, path=["response"])
+        assert_matches_type(BotInviteResponse, bot, path=["response"])
 
     @parametrize
     def test_streaming_response_invite(self, client: Asktable) -> None:
@@ -285,7 +288,7 @@ class TestBots:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             bot = response.parse()
-            assert_matches_type(object, bot, path=["response"])
+            assert_matches_type(BotInviteResponse, bot, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -546,7 +549,7 @@ class TestAsyncBots:
             bot_id="bot_id",
             project_id="project_id",
         )
-        assert_matches_type(object, bot, path=["response"])
+        assert_matches_type(BotInviteResponse, bot, path=["response"])
 
     @parametrize
     async def test_raw_response_invite(self, async_client: AsyncAsktable) -> None:
@@ -558,7 +561,7 @@ class TestAsyncBots:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bot = await response.parse()
-        assert_matches_type(object, bot, path=["response"])
+        assert_matches_type(BotInviteResponse, bot, path=["response"])
 
     @parametrize
     async def test_streaming_response_invite(self, async_client: AsyncAsktable) -> None:
@@ -570,7 +573,7 @@ class TestAsyncBots:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             bot = await response.parse()
-            assert_matches_type(object, bot, path=["response"])
+            assert_matches_type(BotInviteResponse, bot, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

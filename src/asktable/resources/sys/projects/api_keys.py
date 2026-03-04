@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import Dict, Optional
 from typing_extensions import Literal
 
 import httpx
@@ -21,6 +21,7 @@ from ...._base_client import make_request_options
 from ....types.sys.projects import api_key_create_params, api_key_create_token_params
 from ....types.sys.projects.api_key_list_response import APIKeyListResponse
 from ....types.sys.projects.api_key_create_response import APIKeyCreateResponse
+from ....types.sys.projects.api_key_create_token_response import APIKeyCreateTokenResponse
 
 __all__ = ["APIKeysResource", "AsyncAPIKeysResource"]
 
@@ -161,14 +162,14 @@ class APIKeysResource(SyncAPIResource):
         ak_role: Literal["sys", "admin", "asker", "visitor"] | Omit = omit,
         chat_role: Optional[api_key_create_token_params.ChatRole] | Omit = omit,
         token_ttl: int | Omit = omit,
-        user_profile: Optional[object] | Omit = omit,
+        user_profile: Optional[Dict[str, object]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> APIKeyCreateTokenResponse:
         """
         Create Token
 
@@ -205,7 +206,7 @@ class APIKeysResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=APIKeyCreateTokenResponse,
         )
 
 
@@ -345,14 +346,14 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         ak_role: Literal["sys", "admin", "asker", "visitor"] | Omit = omit,
         chat_role: Optional[api_key_create_token_params.ChatRole] | Omit = omit,
         token_ttl: int | Omit = omit,
-        user_profile: Optional[object] | Omit = omit,
+        user_profile: Optional[Dict[str, object]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> APIKeyCreateTokenResponse:
         """
         Create Token
 
@@ -389,7 +390,7 @@ class AsyncAPIKeysResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=APIKeyCreateTokenResponse,
         )
 
 

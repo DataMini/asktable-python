@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union, Optional
+from typing import Dict, Union, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .._types import SequenceNotStr
@@ -72,7 +72,7 @@ class AccessConfigAccessConfigConnectionCreate(TypedDict, total=False):
     db_version: Optional[str]
     """数据库版本"""
 
-    extra_config: Optional[object]
+    extra_config: Optional[Dict[str, object]]
     """额外配置"""
 
     password: Optional[str]

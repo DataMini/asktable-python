@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import Dict, Optional
 from typing_extensions import Required, TypedDict
 
 __all__ = ["TestCaseCreateParams"]
@@ -18,5 +18,5 @@ class TestCaseCreateParams(TypedDict, total=False):
     role_id: Optional[str]
     """角色 ID"""
 
-    role_variables: Optional[object]
+    role_variables: Optional[Dict[str, object]]
     """在扮演这个角色时需要传递的变量值，用 Key-Value 形式传递"""

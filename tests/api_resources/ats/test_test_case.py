@@ -39,7 +39,7 @@ class TestTestCase:
             expected_sql="expected_sql",
             question="question",
             role_id="role_id",
-            role_variables={},
+            role_variables={"foo": "bar"},
         )
         assert_matches_type(TestCaseCreateResponse, test_case, path=["response"])
 
@@ -146,7 +146,7 @@ class TestTestCase:
             expected_sql="expected_sql",
             question="question",
             role_id="role_id",
-            role_variables={},
+            role_variables={"foo": "bar"},
         )
         assert_matches_type(TestCaseUpdateResponse, test_case, path=["response"])
 
@@ -315,7 +315,7 @@ class TestAsyncTestCase:
             expected_sql="expected_sql",
             question="question",
             role_id="role_id",
-            role_variables={},
+            role_variables={"foo": "bar"},
         )
         assert_matches_type(TestCaseCreateResponse, test_case, path=["response"])
 
@@ -422,7 +422,7 @@ class TestAsyncTestCase:
             expected_sql="expected_sql",
             question="question",
             role_id="role_id",
-            role_variables={},
+            role_variables={"foo": "bar"},
         )
         assert_matches_type(TestCaseUpdateResponse, test_case, path=["response"])
 

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable, Optional
+from typing import Dict, Iterable, Optional
 from typing_extensions import Required, TypedDict
 
 from .._types import SequenceNotStr
@@ -29,5 +29,5 @@ class Body(TypedDict, total=False):
     aliases: Optional[SequenceNotStr[str]]
     """业务术语同义词"""
 
-    payload: Optional[object]
+    payload: Optional[Dict[str, object]]
     """业务术语元数据"""

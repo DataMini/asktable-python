@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import Dict, Optional
 from datetime import datetime
 
 from pydantic import Field as FieldInfo
@@ -47,7 +47,7 @@ class TaskRetrieveResponse(BaseModel):
     last_run: Optional[datetime] = None
     """上次测试运行时间"""
 
-    api_model_group: Optional[object] = FieldInfo(alias="model_group", default=None)
+    api_model_group: Optional[Dict[str, object]] = FieldInfo(alias="model_group", default=None)
     """运行使用的模型组"""
 
     status_message: Optional[str] = None

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union, Iterable, Optional
+from typing import Dict, Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 __all__ = [
@@ -89,7 +89,7 @@ class AccessConfigAccessConfigConnectionUpdate(TypedDict, total=False):
     db_version: Optional[str]
     """数据库版本"""
 
-    extra_config: Optional[object]
+    extra_config: Optional[Dict[str, object]]
     """额外配置"""
 
     host: Optional[str]
@@ -113,7 +113,7 @@ class AccessConfigAccessConfigFileUpdateFile(TypedDict, total=False):
 
     filename: Required[str]
 
-    custom_config: Optional[object]
+    custom_config: Optional[Dict[str, object]]
     """文件自定义配置"""
 
 

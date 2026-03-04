@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import Dict, Optional
 from datetime import datetime
 
 from .._models import BaseModel
@@ -26,7 +26,7 @@ class SecureTunnel(BaseModel):
 
     atst_server_port: Optional[int] = None
 
-    info: Optional[object] = None
+    info: Optional[Dict[str, object]] = None
 
     links_count: Optional[int] = None
 

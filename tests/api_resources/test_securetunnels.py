@@ -101,7 +101,7 @@ class TestSecuretunnels:
     def test_method_update_with_all_params(self, client: Asktable) -> None:
         securetunnel = client.securetunnels.update(
             securetunnel_id="securetunnel_id",
-            client_info={},
+            client_info={"foo": "bar"},
             name="我的测试机",
             unique_key="unique_key",
         )
@@ -342,7 +342,7 @@ class TestAsyncSecuretunnels:
     async def test_method_update_with_all_params(self, async_client: AsyncAsktable) -> None:
         securetunnel = await async_client.securetunnels.update(
             securetunnel_id="securetunnel_id",
-            client_info={},
+            client_info={"foo": "bar"},
             name="我的测试机",
             unique_key="unique_key",
         )

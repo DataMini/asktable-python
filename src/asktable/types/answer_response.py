@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -10,7 +10,7 @@ __all__ = ["AnswerResponse", "Answer", "AnswerAttachment", "Request", "Timing"]
 
 
 class AnswerAttachment(BaseModel):
-    info: object
+    info: Dict[str, object]
 
     type: Literal["data_json"]
     """The type of the attachment"""
@@ -38,7 +38,7 @@ class Request(BaseModel):
     数据
     """
 
-    role_variables: Optional[object] = None
+    role_variables: Optional[Dict[str, object]] = None
     """在扮演这个角色时需要传递的变量值，用 Key-Value 形式传递"""
 
     with_json: Optional[bool] = None

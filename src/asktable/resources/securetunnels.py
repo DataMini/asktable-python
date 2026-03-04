@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import Dict, Optional
 
 import httpx
 
@@ -123,7 +123,7 @@ class SecuretunnelsResource(SyncAPIResource):
         self,
         securetunnel_id: str,
         *,
-        client_info: Optional[object] | Omit = omit,
+        client_info: Optional[Dict[str, object]] | Omit = omit,
         name: Optional[str] | Omit = omit,
         unique_key: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -394,7 +394,7 @@ class AsyncSecuretunnelsResource(AsyncAPIResource):
         self,
         securetunnel_id: str,
         *,
-        client_info: Optional[object] | Omit = omit,
+        client_info: Optional[Dict[str, object]] | Omit = omit,
         name: Optional[str] | Omit = omit,
         unique_key: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

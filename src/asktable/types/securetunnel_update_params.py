@@ -2,14 +2,14 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import Dict, Optional
 from typing_extensions import TypedDict
 
 __all__ = ["SecuretunnelUpdateParams"]
 
 
 class SecuretunnelUpdateParams(TypedDict, total=False):
-    client_info: Optional[object]
+    client_info: Optional[Dict[str, object]]
     """客户端信息"""
 
     name: Optional[str]
