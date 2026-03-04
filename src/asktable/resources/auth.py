@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import Dict, Optional
 from typing_extensions import Literal
 
 import httpx
@@ -20,6 +20,7 @@ from .._response import (
 )
 from .._base_client import make_request_options
 from ..types.auth_me_response import AuthMeResponse
+from ..types.auth_create_token_response import AuthCreateTokenResponse
 
 __all__ = ["AuthResource", "AsyncAuthResource"]
 
@@ -52,14 +53,14 @@ class AuthResource(SyncAPIResource):
         ak_role: Literal["sys", "admin", "asker", "visitor"] | Omit = omit,
         chat_role: Optional[auth_create_token_params.ChatRole] | Omit = omit,
         token_ttl: int | Omit = omit,
-        user_profile: Optional[object] | Omit = omit,
+        user_profile: Optional[Dict[str, object]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> AuthCreateTokenResponse:
         """
         Create Token
 
@@ -94,7 +95,7 @@ class AuthResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=AuthCreateTokenResponse,
         )
 
     def me(
@@ -145,14 +146,14 @@ class AsyncAuthResource(AsyncAPIResource):
         ak_role: Literal["sys", "admin", "asker", "visitor"] | Omit = omit,
         chat_role: Optional[auth_create_token_params.ChatRole] | Omit = omit,
         token_ttl: int | Omit = omit,
-        user_profile: Optional[object] | Omit = omit,
+        user_profile: Optional[Dict[str, object]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> AuthCreateTokenResponse:
         """
         Create Token
 
@@ -187,7 +188,7 @@ class AsyncAuthResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=AuthCreateTokenResponse,
         )
 
     async def me(

@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 from datetime import datetime
 
 from .._models import BaseModel
@@ -32,5 +32,5 @@ class Entry(BaseModel):
     aliases: Optional[List[str]] = None
     """业务术语同义词"""
 
-    payload: Optional[object] = None
+    payload: Optional[Dict[str, object]] = None
     """业务术语元数据"""

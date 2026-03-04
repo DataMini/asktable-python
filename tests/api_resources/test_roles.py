@@ -12,6 +12,7 @@ from tests.utils import assert_matches_type
 from asktable.types import (
     Role,
     RoleGetPolicesResponse,
+    RoleGetVariablesResponse,
 )
 from asktable.pagination import SyncPage, AsyncPage
 
@@ -261,7 +262,7 @@ class TestRoles:
         role = client.roles.get_variables(
             role_id="role_id",
         )
-        assert_matches_type(object, role, path=["response"])
+        assert_matches_type(RoleGetVariablesResponse, role, path=["response"])
 
     @parametrize
     def test_method_get_variables_with_all_params(self, client: Asktable) -> None:
@@ -270,7 +271,7 @@ class TestRoles:
             bot_id="bot_id",
             datasource_ids=["string", "string"],
         )
-        assert_matches_type(object, role, path=["response"])
+        assert_matches_type(RoleGetVariablesResponse, role, path=["response"])
 
     @parametrize
     def test_raw_response_get_variables(self, client: Asktable) -> None:
@@ -281,7 +282,7 @@ class TestRoles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         role = response.parse()
-        assert_matches_type(object, role, path=["response"])
+        assert_matches_type(RoleGetVariablesResponse, role, path=["response"])
 
     @parametrize
     def test_streaming_response_get_variables(self, client: Asktable) -> None:
@@ -292,7 +293,7 @@ class TestRoles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             role = response.parse()
-            assert_matches_type(object, role, path=["response"])
+            assert_matches_type(RoleGetVariablesResponse, role, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -549,7 +550,7 @@ class TestAsyncRoles:
         role = await async_client.roles.get_variables(
             role_id="role_id",
         )
-        assert_matches_type(object, role, path=["response"])
+        assert_matches_type(RoleGetVariablesResponse, role, path=["response"])
 
     @parametrize
     async def test_method_get_variables_with_all_params(self, async_client: AsyncAsktable) -> None:
@@ -558,7 +559,7 @@ class TestAsyncRoles:
             bot_id="bot_id",
             datasource_ids=["string", "string"],
         )
-        assert_matches_type(object, role, path=["response"])
+        assert_matches_type(RoleGetVariablesResponse, role, path=["response"])
 
     @parametrize
     async def test_raw_response_get_variables(self, async_client: AsyncAsktable) -> None:
@@ -569,7 +570,7 @@ class TestAsyncRoles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         role = await response.parse()
-        assert_matches_type(object, role, path=["response"])
+        assert_matches_type(RoleGetVariablesResponse, role, path=["response"])
 
     @parametrize
     async def test_streaming_response_get_variables(self, async_client: AsyncAsktable) -> None:
@@ -580,7 +581,7 @@ class TestAsyncRoles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             role = await response.parse()
-            assert_matches_type(object, role, path=["response"])
+            assert_matches_type(RoleGetVariablesResponse, role, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

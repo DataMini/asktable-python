@@ -35,7 +35,7 @@ class TestMeta:
                     "foo": {
                         "name": "name",
                         "origin_desc": "origin_desc",
-                        "custom_configs": {},
+                        "custom_configs": {"foo": "bar"},
                         "tables": {
                             "foo": {
                                 "name": "name",
@@ -146,7 +146,7 @@ class TestMeta:
                     "foo": {
                         "name": "name",
                         "origin_desc": "origin_desc",
-                        "custom_configs": {},
+                        "custom_configs": {"foo": "bar"},
                         "tables": {
                             "foo": {
                                 "name": "name",
@@ -268,7 +268,7 @@ class TestAsyncMeta:
                     "foo": {
                         "name": "name",
                         "origin_desc": "origin_desc",
-                        "custom_configs": {},
+                        "custom_configs": {"foo": "bar"},
                         "tables": {
                             "foo": {
                                 "name": "name",
@@ -379,7 +379,7 @@ class TestAsyncMeta:
                     "foo": {
                         "name": "name",
                         "origin_desc": "origin_desc",
-                        "custom_configs": {},
+                        "custom_configs": {"foo": "bar"},
                         "tables": {
                             "foo": {
                                 "name": "name",

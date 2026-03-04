@@ -33,7 +33,7 @@ class TestAnswers:
             question="question",
             max_rows=0,
             role_id="role_id",
-            role_variables={},
+            role_variables={"foo": "bar"},
             with_json=True,
         )
         assert_matches_type(AnswerResponse, answer, path=["response"])
@@ -119,7 +119,7 @@ class TestAsyncAnswers:
             question="question",
             max_rows=0,
             role_id="role_id",
-            role_variables={},
+            role_variables={"foo": "bar"},
             with_json=True,
         )
         assert_matches_type(AnswerResponse, answer, path=["response"])

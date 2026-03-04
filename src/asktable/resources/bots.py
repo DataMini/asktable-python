@@ -20,6 +20,7 @@ from .._response import (
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.chatbot import Chatbot
+from ..types.bot_invite_response import BotInviteResponse
 
 __all__ = ["BotsResource", "AsyncBotsResource"]
 
@@ -351,7 +352,7 @@ class BotsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> BotInviteResponse:
         """
         邀请用户加入对话
 
@@ -375,7 +376,7 @@ class BotsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"project_id": project_id}, bot_invite_params.BotInviteParams),
             ),
-            cast_to=object,
+            cast_to=BotInviteResponse,
         )
 
 
@@ -706,7 +707,7 @@ class AsyncBotsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> BotInviteResponse:
         """
         邀请用户加入对话
 
@@ -730,7 +731,7 @@ class AsyncBotsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform({"project_id": project_id}, bot_invite_params.BotInviteParams),
             ),
-            cast_to=object,
+            cast_to=BotInviteResponse,
         )
 
 

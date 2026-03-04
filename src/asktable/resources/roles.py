@@ -21,6 +21,7 @@ from ..pagination import SyncPage, AsyncPage
 from ..types.role import Role
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.role_get_polices_response import RoleGetPolicesResponse
+from ..types.role_get_variables_response import RoleGetVariablesResponse
 
 __all__ = ["RolesResource", "AsyncRolesResource"]
 
@@ -302,7 +303,7 @@ class RolesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> RoleGetVariablesResponse:
         """
         查询某个角色的所有变量
 
@@ -336,7 +337,7 @@ class RolesResource(SyncAPIResource):
                     role_get_variables_params.RoleGetVariablesParams,
                 ),
             ),
-            cast_to=object,
+            cast_to=RoleGetVariablesResponse,
         )
 
 
@@ -617,7 +618,7 @@ class AsyncRolesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> RoleGetVariablesResponse:
         """
         查询某个角色的所有变量
 
@@ -651,7 +652,7 @@ class AsyncRolesResource(AsyncAPIResource):
                     role_get_variables_params.RoleGetVariablesParams,
                 ),
             ),
-            cast_to=object,
+            cast_to=RoleGetVariablesResponse,
         )
 
 

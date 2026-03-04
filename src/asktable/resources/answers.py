@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import Dict, Optional
 
 import httpx
 
@@ -53,7 +53,7 @@ class AnswersResource(SyncAPIResource):
         question: str,
         max_rows: Optional[int] | Omit = omit,
         role_id: Optional[str] | Omit = omit,
-        role_variables: Optional[object] | Omit = omit,
+        role_variables: Optional[Dict[str, object]] | Omit = omit,
         with_json: Optional[bool] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -187,7 +187,7 @@ class AsyncAnswersResource(AsyncAPIResource):
         question: str,
         max_rows: Optional[int] | Omit = omit,
         role_id: Optional[str] | Omit = omit,
-        role_variables: Optional[object] | Omit = omit,
+        role_variables: Optional[Dict[str, object]] | Omit = omit,
         with_json: Optional[bool] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

@@ -120,7 +120,7 @@ class TestBusinessGlossary:
             active=True,
             aliases=["string"],
             definition="definition",
-            payload={},
+            payload={"foo": "bar"},
             term="term",
         )
         assert_matches_type(Entry, business_glossary, path=["response"])
@@ -332,7 +332,7 @@ class TestAsyncBusinessGlossary:
             active=True,
             aliases=["string"],
             definition="definition",
-            payload={},
+            payload={"foo": "bar"},
             term="term",
         )
         assert_matches_type(Entry, business_glossary, path=["response"])

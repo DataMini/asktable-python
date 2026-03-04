@@ -105,7 +105,7 @@ class Schemas(BaseModel):
 
     tables: Dict[str, SchemasTables]
 
-    custom_configs: Optional[object] = None
+    custom_configs: Optional[Dict[str, object]] = None
     """custom configs"""
 
 

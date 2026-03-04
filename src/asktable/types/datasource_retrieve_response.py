@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
+from typing import Dict, List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal, TypeAlias
 
@@ -28,7 +28,7 @@ class AccessConfigAccessConfigConnectionResponse(BaseModel):
     db_version: Optional[str] = None
     """数据库版本"""
 
-    extra_config: Optional[object] = None
+    extra_config: Optional[Dict[str, object]] = None
     """额外配置"""
 
     port: Optional[int] = None
@@ -52,7 +52,7 @@ class AccessConfigAccessConfigFileResponseFile(BaseModel):
 
     filename: str
 
-    custom_config: Optional[object] = None
+    custom_config: Optional[Dict[str, object]] = None
     """文件自定义配置"""
 
 

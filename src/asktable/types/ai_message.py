@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -10,7 +10,7 @@ __all__ = ["AIMessage", "Content", "ContentAttachment", "ToolCall", "ToolCallFun
 
 
 class ContentAttachment(BaseModel):
-    info: object
+    info: Dict[str, object]
 
     type: Literal["data_json"]
     """The type of the attachment"""
@@ -48,7 +48,7 @@ class AIMessage(BaseModel):
 
     end_turn: Optional[bool] = None
 
-    metadata: Optional[object] = None
+    metadata: Optional[Dict[str, object]] = None
 
     name: Optional[str] = None
 

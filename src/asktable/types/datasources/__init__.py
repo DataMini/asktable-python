@@ -8,3 +8,4 @@ from .meta_update_params import MetaUpdateParams as MetaUpdateParams
 from .index_create_params import IndexCreateParams as IndexCreateParams
 from .meta_annotate_params import MetaAnnotateParams as MetaAnnotateParams
 from .upload_param_create_params import UploadParamCreateParams as UploadParamCreateParams
+from .upload_param_create_response import UploadParamCreateResponse as UploadParamCreateResponse

@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import Dict, Optional
 from datetime import datetime
 
 from ..._models import BaseModel
@@ -31,5 +31,5 @@ class TestCaseListResponse(BaseModel):
     role_id: Optional[str] = None
     """角色 ID"""
 
-    role_variables: Optional[object] = None
+    role_variables: Optional[Dict[str, object]] = None
     """在扮演这个角色时需要传递的变量值，用 Key-Value 形式传递"""

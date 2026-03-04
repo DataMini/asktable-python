@@ -11,7 +11,13 @@ from asktable.types import Policy
 Types:
 
 ```python
-from asktable.types.sys import APIKey, Project, ProjectModelGroupsResponse
+from asktable.types.sys import (
+    APIKey,
+    Project,
+    ProjectExportResponse,
+    ProjectImportResponse,
+    ProjectModelGroupsResponse,
+)
 ```
 
 Methods:
@@ -21,8 +27,8 @@ Methods:
 - <code title="patch /v1/sys/projects/{project_id}">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">update</a>(project_id, \*\*<a href="src/asktable/types/sys/project_update_params.py">params</a>) -> <a href="./src/asktable/types/sys/project.py">Project</a></code>
 - <code title="get /v1/sys/projects">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">list</a>(\*\*<a href="src/asktable/types/sys/project_list_params.py">params</a>) -> <a href="./src/asktable/types/sys/project.py">SyncPage[Project]</a></code>
 - <code title="delete /v1/sys/projects/{project_id}">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">delete</a>(project_id) -> object</code>
-- <code title="post /v1/sys/projects/{project_id}/export">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">export</a>(project_id) -> object</code>
-- <code title="post /v1/sys/projects/import">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">import\_</a>(\*\*<a href="src/asktable/types/sys/project_import_params.py">params</a>) -> object</code>
+- <code title="post /v1/sys/projects/{project_id}/export">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">export</a>(project_id) -> <a href="./src/asktable/types/sys/project_export_response.py">ProjectExportResponse</a></code>
+- <code title="post /v1/sys/projects/import">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">import\_</a>(\*\*<a href="src/asktable/types/sys/project_import_params.py">params</a>) -> <a href="./src/asktable/types/sys/project_import_response.py">ProjectImportResponse</a></code>
 - <code title="get /v1/sys/projects/model-groups">client.sys.projects.<a href="./src/asktable/resources/sys/projects/projects.py">model_groups</a>() -> <a href="./src/asktable/types/sys/project_model_groups_response.py">ProjectModelGroupsResponse</a></code>
 
 ### APIKeys
@@ -30,7 +36,11 @@ Methods:
 Types:
 
 ```python
-from asktable.types.sys.projects import APIKeyCreateResponse, APIKeyListResponse
+from asktable.types.sys.projects import (
+    APIKeyCreateResponse,
+    APIKeyListResponse,
+    APIKeyCreateTokenResponse,
+)
 ```
 
 Methods:
@@ -38,7 +48,7 @@ Methods:
 - <code title="post /v1/sys/projects/{project_id}/api-keys">client.sys.projects.api_keys.<a href="./src/asktable/resources/sys/projects/api_keys.py">create</a>(project_id, \*\*<a href="src/asktable/types/sys/projects/api_key_create_params.py">params</a>) -> <a href="./src/asktable/types/sys/projects/api_key_create_response.py">APIKeyCreateResponse</a></code>
 - <code title="get /v1/sys/projects/{project_id}/api-keys">client.sys.projects.api_keys.<a href="./src/asktable/resources/sys/projects/api_keys.py">list</a>(project_id) -> <a href="./src/asktable/types/sys/projects/api_key_list_response.py">APIKeyListResponse</a></code>
 - <code title="delete /v1/sys/projects/{project_id}/api-keys/{key_id}">client.sys.projects.api_keys.<a href="./src/asktable/resources/sys/projects/api_keys.py">delete</a>(key_id, \*, project_id) -> None</code>
-- <code title="post /v1/sys/projects/{project_id}/tokens">client.sys.projects.api_keys.<a href="./src/asktable/resources/sys/projects/api_keys.py">create_token</a>(project_id, \*\*<a href="src/asktable/types/sys/projects/api_key_create_token_params.py">params</a>) -> object</code>
+- <code title="post /v1/sys/projects/{project_id}/tokens">client.sys.projects.api_keys.<a href="./src/asktable/resources/sys/projects/api_keys.py">create_token</a>(project_id, \*\*<a href="src/asktable/types/sys/projects/api_key_create_token_params.py">params</a>) -> <a href="./src/asktable/types/sys/projects/api_key_create_token_response.py">APIKeyCreateTokenResponse</a></code>
 
 # Securetunnels
 
@@ -62,7 +72,7 @@ Methods:
 Types:
 
 ```python
-from asktable.types import Role, RoleGetPolicesResponse
+from asktable.types import Role, RoleGetPolicesResponse, RoleGetVariablesResponse
 ```
 
 Methods:
@@ -73,7 +83,7 @@ Methods:
 - <code title="get /v1/roles">client.roles.<a href="./src/asktable/resources/roles.py">list</a>(\*\*<a href="src/asktable/types/role_list_params.py">params</a>) -> <a href="./src/asktable/types/role.py">SyncPage[Role]</a></code>
 - <code title="delete /v1/roles/{role_id}">client.roles.<a href="./src/asktable/resources/roles.py">delete</a>(role_id) -> object</code>
 - <code title="get /v1/roles/{role_id}/policies">client.roles.<a href="./src/asktable/resources/roles.py">get_polices</a>(role_id) -> <a href="./src/asktable/types/role_get_polices_response.py">RoleGetPolicesResponse</a></code>
-- <code title="get /v1/roles/{role_id}/variables">client.roles.<a href="./src/asktable/resources/roles.py">get_variables</a>(role_id, \*\*<a href="src/asktable/types/role_get_variables_params.py">params</a>) -> object</code>
+- <code title="get /v1/roles/{role_id}/variables">client.roles.<a href="./src/asktable/resources/roles.py">get_variables</a>(role_id, \*\*<a href="src/asktable/types/role_get_variables_params.py">params</a>) -> <a href="./src/asktable/types/role_get_variables_response.py">RoleGetVariablesResponse</a></code>
 
 # Policies
 
@@ -158,9 +168,15 @@ Methods:
 
 ## UploadParams
 
+Types:
+
+```python
+from asktable.types.datasources import UploadParamCreateResponse
+```
+
 Methods:
 
-- <code title="post /v1/datasources/upload_params">client.datasources.upload_params.<a href="./src/asktable/resources/datasources/upload_params.py">create</a>(\*\*<a href="src/asktable/types/datasources/upload_param_create_params.py">params</a>) -> object</code>
+- <code title="post /v1/datasources/upload_params">client.datasources.upload_params.<a href="./src/asktable/resources/datasources/upload_params.py">create</a>(\*\*<a href="src/asktable/types/datasources/upload_param_create_params.py">params</a>) -> <a href="./src/asktable/types/datasources/upload_param_create_response.py">UploadParamCreateResponse</a></code>
 
 ## Indexes
 
@@ -175,7 +191,7 @@ Methods:
 Types:
 
 ```python
-from asktable.types import Chatbot
+from asktable.types import Chatbot, BotInviteResponse
 ```
 
 Methods:
@@ -185,19 +201,19 @@ Methods:
 - <code title="patch /v1/bots/{bot_id}">client.bots.<a href="./src/asktable/resources/bots.py">update</a>(bot_id, \*\*<a href="src/asktable/types/bot_update_params.py">params</a>) -> <a href="./src/asktable/types/chatbot.py">Chatbot</a></code>
 - <code title="get /v1/bots">client.bots.<a href="./src/asktable/resources/bots.py">list</a>(\*\*<a href="src/asktable/types/bot_list_params.py">params</a>) -> <a href="./src/asktable/types/chatbot.py">SyncPage[Chatbot]</a></code>
 - <code title="delete /v1/bots/{bot_id}">client.bots.<a href="./src/asktable/resources/bots.py">delete</a>(bot_id) -> object</code>
-- <code title="post /v1/bots/{bot_id}/invite">client.bots.<a href="./src/asktable/resources/bots.py">invite</a>(bot_id, \*\*<a href="src/asktable/types/bot_invite_params.py">params</a>) -> object</code>
+- <code title="post /v1/bots/{bot_id}/invite">client.bots.<a href="./src/asktable/resources/bots.py">invite</a>(bot_id, \*\*<a href="src/asktable/types/bot_invite_params.py">params</a>) -> <a href="./src/asktable/types/bot_invite_response.py">BotInviteResponse</a></code>
 
 # Auth
 
 Types:
 
 ```python
-from asktable.types import AuthMeResponse
+from asktable.types import AuthCreateTokenResponse, AuthMeResponse
 ```
 
 Methods:
 
-- <code title="post /v1/auth/tokens">client.auth.<a href="./src/asktable/resources/auth.py">create_token</a>(\*\*<a href="src/asktable/types/auth_create_token_params.py">params</a>) -> object</code>
+- <code title="post /v1/auth/tokens">client.auth.<a href="./src/asktable/resources/auth.py">create_token</a>(\*\*<a href="src/asktable/types/auth_create_token_params.py">params</a>) -> <a href="./src/asktable/types/auth_create_token_response.py">AuthCreateTokenResponse</a></code>
 - <code title="get /v1/auth/me">client.auth.<a href="./src/asktable/resources/auth.py">me</a>() -> <a href="./src/asktable/types/auth_me_response.py">AuthMeResponse</a></code>
 
 # Answers

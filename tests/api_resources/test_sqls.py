@@ -33,7 +33,7 @@ class TestSqls:
             question="question",
             parameterize=True,
             role_id="role_id",
-            role_variables={},
+            role_variables={"foo": "bar"},
         )
         assert_matches_type(QueryResponse, sql, path=["response"])
 
@@ -118,7 +118,7 @@ class TestAsyncSqls:
             question="question",
             parameterize=True,
             role_id="role_id",
-            role_variables={},
+            role_variables={"foo": "bar"},
         )
         assert_matches_type(QueryResponse, sql, path=["response"])
 

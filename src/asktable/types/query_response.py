@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import Dict, Optional
 from datetime import datetime
 
 from .._models import BaseModel
@@ -15,7 +15,7 @@ class Query(BaseModel):
     parameterized_sql: Optional[str] = None
     """参数化后的 SQL 语句"""
 
-    params: Optional[object] = None
+    params: Optional[Dict[str, object]] = None
     """参数"""
 
 
@@ -35,7 +35,7 @@ class Request(BaseModel):
     数据
     """
 
-    role_variables: Optional[object] = None
+    role_variables: Optional[Dict[str, object]] = None
     """在扮演这个角色时需要传递的变量值，用 Key-Value 形式传递"""
 
 

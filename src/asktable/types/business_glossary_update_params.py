@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import Dict, Optional
 from typing_extensions import TypedDict
 
 from .._types import SequenceNotStr
@@ -20,7 +20,7 @@ class BusinessGlossaryUpdateParams(TypedDict, total=False):
     definition: Optional[str]
     """业务术语定义"""
 
-    payload: Optional[object]
+    payload: Optional[Dict[str, object]]
     """业务术语元数据"""
 
     term: Optional[str]

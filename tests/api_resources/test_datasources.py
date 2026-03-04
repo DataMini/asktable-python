@@ -37,7 +37,7 @@ class TestDatasources:
                 "host": "192.168.0.10",
                 "db": "at_test",
                 "db_version": "5.7",
-                "extra_config": {"ssl_mode": "require"},
+                "extra_config": {"ssl_mode": "bar"},
                 "password": "root",
                 "port": 3306,
                 "securetunnel_id": "atst_123456",
@@ -123,7 +123,7 @@ class TestDatasources:
             access_config={
                 "db": "at_test",
                 "db_version": "5.7",
-                "extra_config": {"ssl_mode": "require"},
+                "extra_config": {"ssl_mode": "bar"},
                 "host": "192.168.0.10",
                 "password": "root",
                 "port": 3306,
@@ -249,7 +249,7 @@ class TestDatasources:
     def test_method_add_file(self, client: Asktable) -> None:
         datasource = client.datasources.add_file(
             datasource_id="datasource_id",
-            file=b"raw file contents",
+            file="file",
         )
         assert_matches_type(object, datasource, path=["response"])
 
@@ -257,7 +257,7 @@ class TestDatasources:
     def test_raw_response_add_file(self, client: Asktable) -> None:
         response = client.datasources.with_raw_response.add_file(
             datasource_id="datasource_id",
-            file=b"raw file contents",
+            file="file",
         )
 
         assert response.is_closed is True
@@ -269,7 +269,7 @@ class TestDatasources:
     def test_streaming_response_add_file(self, client: Asktable) -> None:
         with client.datasources.with_streaming_response.add_file(
             datasource_id="datasource_id",
-            file=b"raw file contents",
+            file="file",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -284,7 +284,7 @@ class TestDatasources:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `datasource_id` but received ''"):
             client.datasources.with_raw_response.add_file(
                 datasource_id="",
-                file=b"raw file contents",
+                file="file",
             )
 
     @parametrize
@@ -456,7 +456,7 @@ class TestAsyncDatasources:
                 "host": "192.168.0.10",
                 "db": "at_test",
                 "db_version": "5.7",
-                "extra_config": {"ssl_mode": "require"},
+                "extra_config": {"ssl_mode": "bar"},
                 "password": "root",
                 "port": 3306,
                 "securetunnel_id": "atst_123456",
@@ -542,7 +542,7 @@ class TestAsyncDatasources:
             access_config={
                 "db": "at_test",
                 "db_version": "5.7",
-                "extra_config": {"ssl_mode": "require"},
+                "extra_config": {"ssl_mode": "bar"},
                 "host": "192.168.0.10",
                 "password": "root",
                 "port": 3306,
@@ -668,7 +668,7 @@ class TestAsyncDatasources:
     async def test_method_add_file(self, async_client: AsyncAsktable) -> None:
         datasource = await async_client.datasources.add_file(
             datasource_id="datasource_id",
-            file=b"raw file contents",
+            file="file",
         )
         assert_matches_type(object, datasource, path=["response"])
 
@@ -676,7 +676,7 @@ class TestAsyncDatasources:
     async def test_raw_response_add_file(self, async_client: AsyncAsktable) -> None:
         response = await async_client.datasources.with_raw_response.add_file(
             datasource_id="datasource_id",
-            file=b"raw file contents",
+            file="file",
         )
 
         assert response.is_closed is True
@@ -688,7 +688,7 @@ class TestAsyncDatasources:
     async def test_streaming_response_add_file(self, async_client: AsyncAsktable) -> None:
         async with async_client.datasources.with_streaming_response.add_file(
             datasource_id="datasource_id",
-            file=b"raw file contents",
+            file="file",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -703,7 +703,7 @@ class TestAsyncDatasources:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `datasource_id` but received ''"):
             await async_client.datasources.with_raw_response.add_file(
                 datasource_id="",
-                file=b"raw file contents",
+                file="file",
             )
 
     @parametrize
