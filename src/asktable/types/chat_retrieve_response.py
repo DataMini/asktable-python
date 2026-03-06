@@ -21,9 +21,7 @@ class ChatRetrieveResponse(BaseModel):
 
     project_id: str
 
-    status: Literal["active", "pending", "error", "fatal"]
-
-    status_message: Optional[str] = None
+    status: Literal["active", "pending", "warning", "error"]
 
     bot_id: Optional[str] = None
     """
@@ -32,6 +30,8 @@ class ChatRetrieveResponse(BaseModel):
     """
 
     datasource_ids: Optional[List[str]] = None
+
+    error_detail: Optional[Dict[str, object]] = None
 
     name: Optional[str] = None
     """New name for the chat"""

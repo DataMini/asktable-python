@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import Dict, Optional
 from typing_extensions import Literal
 
 import httpx
@@ -253,11 +253,12 @@ class DatasourcesResource(SyncAPIResource):
         ]
         | Omit = omit,
         field_count: Optional[int] | Omit = omit,
-        meta_error: Optional[str] | Omit = omit,
-        meta_status: Optional[Literal["processing", "failed", "success", "unprocessed"]] | Omit = omit,
+        meta_status: Optional[Literal["unavailable", "available"]] | Omit = omit,
         name: Optional[str] | Omit = omit,
         sample_questions: Optional[str] | Omit = omit,
         schema_count: Optional[int] | Omit = omit,
+        sync_error: Optional[Dict[str, object]] | Omit = omit,
+        sync_status: Optional[Literal["processing", "success", "failed", "warning"]] | Omit = omit,
         table_count: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -278,15 +279,17 @@ class DatasourcesResource(SyncAPIResource):
 
           field_count: 字段数量
 
-          meta_error: 元数据处理错误
-
-          meta_status: 元数据处理状态
+          meta_status: 数据源可用性
 
           name: 数据源的名称
 
           sample_questions: 示例问题
 
           schema_count: 库数量
+
+          sync_error: 同步错误信息
+
+          sync_status: 同步状态
 
           table_count: 表数量
 
@@ -308,11 +311,12 @@ class DatasourcesResource(SyncAPIResource):
                     "desc": desc,
                     "engine": engine,
                     "field_count": field_count,
-                    "meta_error": meta_error,
                     "meta_status": meta_status,
                     "name": name,
                     "sample_questions": sample_questions,
                     "schema_count": schema_count,
+                    "sync_error": sync_error,
+                    "sync_status": sync_status,
                     "table_count": table_count,
                 },
                 datasource_update_params.DatasourceUpdateParams,
@@ -773,11 +777,12 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         ]
         | Omit = omit,
         field_count: Optional[int] | Omit = omit,
-        meta_error: Optional[str] | Omit = omit,
-        meta_status: Optional[Literal["processing", "failed", "success", "unprocessed"]] | Omit = omit,
+        meta_status: Optional[Literal["unavailable", "available"]] | Omit = omit,
         name: Optional[str] | Omit = omit,
         sample_questions: Optional[str] | Omit = omit,
         schema_count: Optional[int] | Omit = omit,
+        sync_error: Optional[Dict[str, object]] | Omit = omit,
+        sync_status: Optional[Literal["processing", "success", "failed", "warning"]] | Omit = omit,
         table_count: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -798,15 +803,17 @@ class AsyncDatasourcesResource(AsyncAPIResource):
 
           field_count: 字段数量
 
-          meta_error: 元数据处理错误
-
-          meta_status: 元数据处理状态
+          meta_status: 数据源可用性
 
           name: 数据源的名称
 
           sample_questions: 示例问题
 
           schema_count: 库数量
+
+          sync_error: 同步错误信息
+
+          sync_status: 同步状态
 
           table_count: 表数量
 
@@ -828,11 +835,12 @@ class AsyncDatasourcesResource(AsyncAPIResource):
                     "desc": desc,
                     "engine": engine,
                     "field_count": field_count,
-                    "meta_error": meta_error,
                     "meta_status": meta_status,
                     "name": name,
                     "sample_questions": sample_questions,
                     "schema_count": schema_count,
+                    "sync_error": sync_error,
+                    "sync_status": sync_status,
                     "table_count": table_count,
                 },
                 datasource_update_params.DatasourceUpdateParams,

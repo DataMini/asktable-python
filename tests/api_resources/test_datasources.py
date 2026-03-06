@@ -133,11 +133,12 @@ class TestDatasources:
             desc="数据源描述",
             engine="mysql",
             field_count=1,
-            meta_error="error message",
-            meta_status="success",
+            meta_status="available",
             name="用户库",
             sample_questions="示例问题",
             schema_count=1,
+            sync_error={"message": "bar"},
+            sync_status="success",
             table_count=1,
         )
         assert_matches_type(Datasource, datasource, path=["response"])
@@ -552,11 +553,12 @@ class TestAsyncDatasources:
             desc="数据源描述",
             engine="mysql",
             field_count=1,
-            meta_error="error message",
-            meta_status="success",
+            meta_status="available",
             name="用户库",
             sample_questions="示例问题",
             schema_count=1,
+            sync_error={"message": "bar"},
+            sync_status="success",
             table_count=1,
         )
         assert_matches_type(Datasource, datasource, path=["response"])

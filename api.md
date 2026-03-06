@@ -290,21 +290,6 @@ Methods:
 - <code title="patch /v1/preference">client.preferences.<a href="./src/asktable/resources/preferences.py">update</a>(\*\*<a href="src/asktable/types/preference_update_params.py">params</a>) -> <a href="./src/asktable/types/preference_update_response.py">PreferenceUpdateResponse</a></code>
 - <code title="delete /v1/preference">client.preferences.<a href="./src/asktable/resources/preferences.py">delete</a>() -> object</code>
 
-# Trainings
-
-Types:
-
-```python
-from asktable.types import TrainingCreateResponse, TrainingUpdateResponse, TrainingListResponse
-```
-
-Methods:
-
-- <code title="post /v1/training">client.trainings.<a href="./src/asktable/resources/trainings.py">create</a>(\*\*<a href="src/asktable/types/training_create_params.py">params</a>) -> <a href="./src/asktable/types/training_create_response.py">TrainingCreateResponse</a></code>
-- <code title="patch /v1/training/{id}">client.trainings.<a href="./src/asktable/resources/trainings.py">update</a>(id, \*\*<a href="src/asktable/types/training_update_params.py">params</a>) -> <a href="./src/asktable/types/training_update_response.py">TrainingUpdateResponse</a></code>
-- <code title="get /v1/training">client.trainings.<a href="./src/asktable/resources/trainings.py">list</a>(\*\*<a href="src/asktable/types/training_list_params.py">params</a>) -> <a href="./src/asktable/types/training_list_response.py">SyncPage[TrainingListResponse]</a></code>
-- <code title="delete /v1/training/{id}">client.trainings.<a href="./src/asktable/resources/trainings.py">delete</a>(id, \*\*<a href="src/asktable/types/training_delete_params.py">params</a>) -> object</code>
-
 # Project
 
 Types:

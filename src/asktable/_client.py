@@ -46,7 +46,6 @@ if TYPE_CHECKING:
         answers,
         project,
         policies,
-        trainings,
         dataframes,
         datasources,
         integration,
@@ -66,7 +65,6 @@ if TYPE_CHECKING:
     from .resources.project import ProjectResource, AsyncProjectResource
     from .resources.sys.sys import SysResource, AsyncSysResource
     from .resources.policies import PoliciesResource, AsyncPoliciesResource
-    from .resources.trainings import TrainingsResource, AsyncTrainingsResource
     from .resources.user.user import UserResource, AsyncUserResource
     from .resources.dataframes import DataframesResource, AsyncDataframesResource
     from .resources.chats.chats import ChatsResource, AsyncChatsResource
@@ -232,13 +230,6 @@ class Asktable(SyncAPIClient):
         from .resources.preferences import PreferencesResource
 
         return PreferencesResource(self)
-
-    @cached_property
-    def trainings(self) -> TrainingsResource:
-        """训练数据管理"""
-        from .resources.trainings import TrainingsResource
-
-        return TrainingsResource(self)
 
     @cached_property
     def project(self) -> ProjectResource:
@@ -546,13 +537,6 @@ class AsyncAsktable(AsyncAPIClient):
         return AsyncPreferencesResource(self)
 
     @cached_property
-    def trainings(self) -> AsyncTrainingsResource:
-        """训练数据管理"""
-        from .resources.trainings import AsyncTrainingsResource
-
-        return AsyncTrainingsResource(self)
-
-    @cached_property
     def project(self) -> AsyncProjectResource:
         """我的项目"""
         from .resources.project import AsyncProjectResource
@@ -809,13 +793,6 @@ class AsktableWithRawResponse:
         return PreferencesResourceWithRawResponse(self._client.preferences)
 
     @cached_property
-    def trainings(self) -> trainings.TrainingsResourceWithRawResponse:
-        """训练数据管理"""
-        from .resources.trainings import TrainingsResourceWithRawResponse
-
-        return TrainingsResourceWithRawResponse(self._client.trainings)
-
-    @cached_property
     def project(self) -> project.ProjectResourceWithRawResponse:
         """我的项目"""
         from .resources.project import ProjectResourceWithRawResponse
@@ -958,13 +935,6 @@ class AsyncAsktableWithRawResponse:
         from .resources.preferences import AsyncPreferencesResourceWithRawResponse
 
         return AsyncPreferencesResourceWithRawResponse(self._client.preferences)
-
-    @cached_property
-    def trainings(self) -> trainings.AsyncTrainingsResourceWithRawResponse:
-        """训练数据管理"""
-        from .resources.trainings import AsyncTrainingsResourceWithRawResponse
-
-        return AsyncTrainingsResourceWithRawResponse(self._client.trainings)
 
     @cached_property
     def project(self) -> project.AsyncProjectResourceWithRawResponse:
@@ -1111,13 +1081,6 @@ class AsktableWithStreamedResponse:
         return PreferencesResourceWithStreamingResponse(self._client.preferences)
 
     @cached_property
-    def trainings(self) -> trainings.TrainingsResourceWithStreamingResponse:
-        """训练数据管理"""
-        from .resources.trainings import TrainingsResourceWithStreamingResponse
-
-        return TrainingsResourceWithStreamingResponse(self._client.trainings)
-
-    @cached_property
     def project(self) -> project.ProjectResourceWithStreamingResponse:
         """我的项目"""
         from .resources.project import ProjectResourceWithStreamingResponse
@@ -1260,13 +1223,6 @@ class AsyncAsktableWithStreamedResponse:
         from .resources.preferences import AsyncPreferencesResourceWithStreamingResponse
 
         return AsyncPreferencesResourceWithStreamingResponse(self._client.preferences)
-
-    @cached_property
-    def trainings(self) -> trainings.AsyncTrainingsResourceWithStreamingResponse:
-        """训练数据管理"""
-        from .resources.trainings import AsyncTrainingsResourceWithStreamingResponse
-
-        return AsyncTrainingsResourceWithStreamingResponse(self._client.trainings)
 
     @cached_property
     def project(self) -> project.AsyncProjectResourceWithStreamingResponse:

@@ -112,14 +112,6 @@ from .policies import (
     PoliciesResourceWithStreamingResponse,
     AsyncPoliciesResourceWithStreamingResponse,
 )
-from .trainings import (
-    TrainingsResource,
-    AsyncTrainingsResource,
-    TrainingsResourceWithRawResponse,
-    AsyncTrainingsResourceWithRawResponse,
-    TrainingsResourceWithStreamingResponse,
-    AsyncTrainingsResourceWithStreamingResponse,
-)
 from .dataframes import (
     DataframesResource,
     AsyncDataframesResource,
@@ -248,12 +240,6 @@ __all__ = [
     "AsyncPreferencesResourceWithRawResponse",
     "PreferencesResourceWithStreamingResponse",
     "AsyncPreferencesResourceWithStreamingResponse",
-    "TrainingsResource",
-    "AsyncTrainingsResource",
-    "TrainingsResourceWithRawResponse",
-    "AsyncTrainingsResourceWithRawResponse",
-    "TrainingsResourceWithStreamingResponse",
-    "AsyncTrainingsResourceWithStreamingResponse",
     "ProjectResource",
     "AsyncProjectResource",
     "ProjectResourceWithRawResponse",
