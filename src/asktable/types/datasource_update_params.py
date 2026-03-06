@@ -63,11 +63,8 @@ class DatasourceUpdateParams(TypedDict, total=False):
     field_count: Optional[int]
     """字段数量"""
 
-    meta_error: Optional[str]
-    """元数据处理错误"""
-
-    meta_status: Optional[Literal["processing", "failed", "success", "unprocessed"]]
-    """元数据处理状态"""
+    meta_status: Optional[Literal["unavailable", "available"]]
+    """数据源可用性"""
 
     name: Optional[str]
     """数据源的名称"""
@@ -77,6 +74,12 @@ class DatasourceUpdateParams(TypedDict, total=False):
 
     schema_count: Optional[int]
     """库数量"""
+
+    sync_error: Optional[Dict[str, object]]
+    """同步错误信息"""
+
+    sync_status: Optional[Literal["processing", "success", "failed", "warning"]]
+    """同步状态"""
 
     table_count: Optional[int]
     """表数量"""

@@ -108,14 +108,17 @@ class DatasourceRetrieveResponse(BaseModel):
     ]
     """数据源引擎"""
 
-    meta_status: Literal["processing", "failed", "success", "unprocessed"]
-    """元数据处理状态"""
+    meta_status: Literal["unavailable", "available"]
+    """数据源可用性"""
 
     modified_at: datetime
     """修改时间"""
 
     project_id: str
     """项目 ID"""
+
+    sync_status: Literal["processing", "success", "failed", "warning"]
+    """同步状态"""
 
     access_config: Optional[AccessConfig] = None
     """访问数据源的配置信息"""
@@ -126,9 +129,6 @@ class DatasourceRetrieveResponse(BaseModel):
     field_count: Optional[int] = None
     """字段数量"""
 
-    meta_error: Optional[str] = None
-    """元数据处理错误"""
-
     name: Optional[str] = None
     """数据源的名称"""
 
@@ -137,6 +137,12 @@ class DatasourceRetrieveResponse(BaseModel):
 
     schema_count: Optional[int] = None
     """库数量"""
+
+    sync_error: Optional[Dict[str, object]] = None
+    """同步错误信息"""
+
+    synced_at: Optional[datetime] = None
+    """上次同步完成时间"""
 
     table_count: Optional[int] = None
     """表数量"""

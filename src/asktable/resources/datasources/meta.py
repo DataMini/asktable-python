@@ -61,11 +61,7 @@ class MetaResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        创建数据源的 meta，如果已经存在，则删除旧的
-
-        如果上传了 meta，则使用用户上传的数据创建。
-
-        否则从数据源中自动获取。
+        初始化数据源的 meta。不允许覆盖已成功初始化的 meta，需使用 PUT 更新。
 
         Args:
           extra_headers: Send extra headers
@@ -257,11 +253,7 @@ class AsyncMetaResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        创建数据源的 meta，如果已经存在，则删除旧的
-
-        如果上传了 meta，则使用用户上传的数据创建。
-
-        否则从数据源中自动获取。
+        初始化数据源的 meta。不允许覆盖已成功初始化的 meta，需使用 PUT 更新。
 
         Args:
           extra_headers: Send extra headers

@@ -45,7 +45,6 @@ from .chat_create_response import ChatCreateResponse as ChatCreateResponse
 from .policy_create_params import PolicyCreateParams as PolicyCreateParams
 from .policy_update_params import PolicyUpdateParams as PolicyUpdateParams
 from .polish_create_params import PolishCreateParams as PolishCreateParams
-from .training_list_params import TrainingListParams as TrainingListParams
 from .ats_retrieve_response import ATSRetrieveResponse as ATSRetrieveResponse
 from .entry_with_definition import EntryWithDefinition as EntryWithDefinition
 from .project_update_params import ProjectUpdateParams as ProjectUpdateParams
@@ -53,18 +52,12 @@ from .score_create_response import ScoreCreateResponse as ScoreCreateResponse
 from .chat_retrieve_response import ChatRetrieveResponse as ChatRetrieveResponse
 from .datasource_list_params import DatasourceListParams as DatasourceListParams
 from .polish_create_response import PolishCreateResponse as PolishCreateResponse
-from .training_create_params import TrainingCreateParams as TrainingCreateParams
-from .training_delete_params import TrainingDeleteParams as TrainingDeleteParams
-from .training_list_response import TrainingListResponse as TrainingListResponse
-from .training_update_params import TrainingUpdateParams as TrainingUpdateParams
 from .auth_create_token_params import AuthCreateTokenParams as AuthCreateTokenParams
 from .datasource_create_params import DatasourceCreateParams as DatasourceCreateParams
 from .datasource_update_params import DatasourceUpdateParams as DatasourceUpdateParams
 from .preference_create_params import PreferenceCreateParams as PreferenceCreateParams
 from .preference_update_params import PreferenceUpdateParams as PreferenceUpdateParams
 from .securetunnel_list_params import SecuretunnelListParams as SecuretunnelListParams
-from .training_create_response import TrainingCreateResponse as TrainingCreateResponse
-from .training_update_response import TrainingUpdateResponse as TrainingUpdateResponse
 from .role_get_polices_response import RoleGetPolicesResponse as RoleGetPolicesResponse
 from .role_get_variables_params import RoleGetVariablesParams as RoleGetVariablesParams
 from .auth_create_token_response import AuthCreateTokenResponse as AuthCreateTokenResponse

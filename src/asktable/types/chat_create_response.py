@@ -21,15 +21,15 @@ class ChatCreateResponse(BaseModel):
 
     project_id: str
 
-    status: Literal["active", "pending", "error", "fatal"]
-
-    status_message: Optional[str] = None
+    status: Literal["active", "pending", "warning", "error"]
 
     bot_id: Optional[str] = None
     """
     机器人 ID，如果需要使用高级功能，请使用 bot_id 来创建对话。在机器人中你可以定义
     可以访问的数据、可以执行的任务以及是否开启调试模式等设置。
     """
+
+    error_detail: Optional[Dict[str, object]] = None
 
     name: Optional[str] = None
     """New name for the chat"""
