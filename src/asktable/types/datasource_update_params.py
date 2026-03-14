@@ -5,6 +5,8 @@ from __future__ import annotations
 from typing import Dict, Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
+from .._types import SequenceNotStr
+
 __all__ = [
     "DatasourceUpdateParams",
     "AccessConfig",
@@ -69,7 +71,7 @@ class DatasourceUpdateParams(TypedDict, total=False):
     name: Optional[str]
     """数据源的名称"""
 
-    sample_questions: Optional[str]
+    sample_questions: Optional[SequenceNotStr[str]]
     """示例问题"""
 
     schema_count: Optional[int]

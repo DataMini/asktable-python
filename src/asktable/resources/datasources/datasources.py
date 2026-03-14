@@ -30,7 +30,7 @@ from .indexes import (
     IndexesResourceWithStreamingResponse,
     AsyncIndexesResourceWithStreamingResponse,
 )
-from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -255,7 +255,7 @@ class DatasourcesResource(SyncAPIResource):
         field_count: Optional[int] | Omit = omit,
         meta_status: Optional[Literal["unavailable", "available"]] | Omit = omit,
         name: Optional[str] | Omit = omit,
-        sample_questions: Optional[str] | Omit = omit,
+        sample_questions: Optional[SequenceNotStr[str]] | Omit = omit,
         schema_count: Optional[int] | Omit = omit,
         sync_error: Optional[Dict[str, object]] | Omit = omit,
         sync_status: Optional[Literal["processing", "success", "failed", "warning"]] | Omit = omit,
@@ -779,7 +779,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         field_count: Optional[int] | Omit = omit,
         meta_status: Optional[Literal["unavailable", "available"]] | Omit = omit,
         name: Optional[str] | Omit = omit,
-        sample_questions: Optional[str] | Omit = omit,
+        sample_questions: Optional[SequenceNotStr[str]] | Omit = omit,
         schema_count: Optional[int] | Omit = omit,
         sync_error: Optional[Dict[str, object]] | Omit = omit,
         sync_status: Optional[Literal["processing", "success", "failed", "warning"]] | Omit = omit,

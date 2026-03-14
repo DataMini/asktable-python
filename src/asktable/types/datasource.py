@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, Optional
+from typing import Dict, List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -74,7 +74,7 @@ class Datasource(BaseModel):
     name: Optional[str] = None
     """数据源的名称"""
 
-    sample_questions: Optional[str] = None
+    sample_questions: Optional[List[str]] = None
     """示例问题"""
 
     schema_count: Optional[int] = None

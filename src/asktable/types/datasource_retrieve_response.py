@@ -132,7 +132,7 @@ class DatasourceRetrieveResponse(BaseModel):
     name: Optional[str] = None
     """数据源的名称"""
 
-    sample_questions: Optional[str] = None
+    sample_questions: Optional[List[str]] = None
     """示例问题"""
 
     schema_count: Optional[int] = None
