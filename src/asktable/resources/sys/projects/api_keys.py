@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -77,7 +77,7 @@ class APIKeysResource(SyncAPIResource):
         if not project_id:
             raise ValueError(f"Expected a non-empty value for `project_id` but received {project_id!r}")
         return self._post(
-            f"/v1/sys/projects/{project_id}/api-keys",
+            path_template("/v1/sys/projects/{project_id}/api-keys", project_id=project_id),
             body=maybe_transform({"ak_role": ak_role}, api_key_create_params.APIKeyCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -111,7 +111,7 @@ class APIKeysResource(SyncAPIResource):
         if not project_id:
             raise ValueError(f"Expected a non-empty value for `project_id` but received {project_id!r}")
         return self._get(
-            f"/v1/sys/projects/{project_id}/api-keys",
+            path_template("/v1/sys/projects/{project_id}/api-keys", project_id=project_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -148,7 +148,7 @@ class APIKeysResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `key_id` but received {key_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/v1/sys/projects/{project_id}/api-keys/{key_id}",
+            path_template("/v1/sys/projects/{project_id}/api-keys/{key_id}", project_id=project_id, key_id=key_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -193,7 +193,7 @@ class APIKeysResource(SyncAPIResource):
         if not project_id:
             raise ValueError(f"Expected a non-empty value for `project_id` but received {project_id!r}")
         return self._post(
-            f"/v1/sys/projects/{project_id}/tokens",
+            path_template("/v1/sys/projects/{project_id}/tokens", project_id=project_id),
             body=maybe_transform(
                 {
                     "ak_role": ak_role,
@@ -261,7 +261,7 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         if not project_id:
             raise ValueError(f"Expected a non-empty value for `project_id` but received {project_id!r}")
         return await self._post(
-            f"/v1/sys/projects/{project_id}/api-keys",
+            path_template("/v1/sys/projects/{project_id}/api-keys", project_id=project_id),
             body=await async_maybe_transform({"ak_role": ak_role}, api_key_create_params.APIKeyCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -295,7 +295,7 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         if not project_id:
             raise ValueError(f"Expected a non-empty value for `project_id` but received {project_id!r}")
         return await self._get(
-            f"/v1/sys/projects/{project_id}/api-keys",
+            path_template("/v1/sys/projects/{project_id}/api-keys", project_id=project_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -332,7 +332,7 @@ class AsyncAPIKeysResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `key_id` but received {key_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/v1/sys/projects/{project_id}/api-keys/{key_id}",
+            path_template("/v1/sys/projects/{project_id}/api-keys/{key_id}", project_id=project_id, key_id=key_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -377,7 +377,7 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         if not project_id:
             raise ValueError(f"Expected a non-empty value for `project_id` but received {project_id!r}")
         return await self._post(
-            f"/v1/sys/projects/{project_id}/tokens",
+            path_template("/v1/sys/projects/{project_id}/tokens", project_id=project_id),
             body=await async_maybe_transform(
                 {
                     "ak_role": ak_role,

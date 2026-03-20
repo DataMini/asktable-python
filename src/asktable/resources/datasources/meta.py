@@ -7,7 +7,7 @@ from typing import Dict, Optional
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -75,7 +75,7 @@ class MetaResource(SyncAPIResource):
         if not datasource_id:
             raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
         return self._post(
-            f"/v1/datasources/{datasource_id}/meta",
+            path_template("/v1/datasources/{datasource_id}/meta", datasource_id=datasource_id),
             body=maybe_transform(
                 {
                     "meta": meta,
@@ -125,7 +125,7 @@ class MetaResource(SyncAPIResource):
         if not datasource_id:
             raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
         return self._get(
-            f"/v1/datasources/{datasource_id}/meta",
+            path_template("/v1/datasources/{datasource_id}/meta", datasource_id=datasource_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -161,7 +161,7 @@ class MetaResource(SyncAPIResource):
         if not datasource_id:
             raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
         return self._put(
-            f"/v1/datasources/{datasource_id}/meta",
+            path_template("/v1/datasources/{datasource_id}/meta", datasource_id=datasource_id),
             body=maybe_transform(
                 {
                     "meta": meta,
@@ -206,7 +206,7 @@ class MetaResource(SyncAPIResource):
         if not datasource_id:
             raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
         return self._patch(
-            f"/v1/datasources/{datasource_id}/meta",
+            path_template("/v1/datasources/{datasource_id}/meta", datasource_id=datasource_id),
             body=maybe_transform({"schemas": schemas}, meta_annotate_params.MetaAnnotateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -267,7 +267,7 @@ class AsyncMetaResource(AsyncAPIResource):
         if not datasource_id:
             raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
         return await self._post(
-            f"/v1/datasources/{datasource_id}/meta",
+            path_template("/v1/datasources/{datasource_id}/meta", datasource_id=datasource_id),
             body=await async_maybe_transform(
                 {
                     "meta": meta,
@@ -317,7 +317,7 @@ class AsyncMetaResource(AsyncAPIResource):
         if not datasource_id:
             raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
         return await self._get(
-            f"/v1/datasources/{datasource_id}/meta",
+            path_template("/v1/datasources/{datasource_id}/meta", datasource_id=datasource_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -353,7 +353,7 @@ class AsyncMetaResource(AsyncAPIResource):
         if not datasource_id:
             raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
         return await self._put(
-            f"/v1/datasources/{datasource_id}/meta",
+            path_template("/v1/datasources/{datasource_id}/meta", datasource_id=datasource_id),
             body=await async_maybe_transform(
                 {
                     "meta": meta,
@@ -400,7 +400,7 @@ class AsyncMetaResource(AsyncAPIResource):
         if not datasource_id:
             raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
         return await self._patch(
-            f"/v1/datasources/{datasource_id}/meta",
+            path_template("/v1/datasources/{datasource_id}/meta", datasource_id=datasource_id),
             body=await async_maybe_transform({"schemas": schemas}, meta_annotate_params.MetaAnnotateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout

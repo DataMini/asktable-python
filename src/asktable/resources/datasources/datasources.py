@@ -31,7 +31,7 @@ from .indexes import (
     AsyncIndexesResourceWithStreamingResponse,
 )
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -201,7 +201,7 @@ class DatasourcesResource(SyncAPIResource):
         if not datasource_id:
             raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
         return self._get(
-            f"/v1/datasources/{datasource_id}",
+            path_template("/v1/datasources/{datasource_id}", datasource_id=datasource_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -304,7 +304,7 @@ class DatasourcesResource(SyncAPIResource):
         if not datasource_id:
             raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
         return self._patch(
-            f"/v1/datasources/{datasource_id}",
+            path_template("/v1/datasources/{datasource_id}", datasource_id=datasource_id),
             body=maybe_transform(
                 {
                     "access_config": access_config,
@@ -402,7 +402,7 @@ class DatasourcesResource(SyncAPIResource):
         if not datasource_id:
             raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
         return self._delete(
-            f"/v1/datasources/{datasource_id}",
+            path_template("/v1/datasources/{datasource_id}", datasource_id=datasource_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -440,7 +440,7 @@ class DatasourcesResource(SyncAPIResource):
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._post(
-            f"/v1/datasources/{datasource_id}/files",
+            path_template("/v1/datasources/{datasource_id}/files", datasource_id=datasource_id),
             body=maybe_transform({"file": file}, datasource_add_file_params.DatasourceAddFileParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -477,7 +477,9 @@ class DatasourcesResource(SyncAPIResource):
         if not file_id:
             raise ValueError(f"Expected a non-empty value for `file_id` but received {file_id!r}")
         return self._delete(
-            f"/v1/datasources/{datasource_id}/files/{file_id}",
+            path_template(
+                "/v1/datasources/{datasource_id}/files/{file_id}", datasource_id=datasource_id, file_id=file_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -510,7 +512,7 @@ class DatasourcesResource(SyncAPIResource):
         if not datasource_id:
             raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
         return self._get(
-            f"/v1/datasources/{datasource_id}/runtime-meta",
+            path_template("/v1/datasources/{datasource_id}/runtime-meta", datasource_id=datasource_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -555,7 +557,7 @@ class DatasourcesResource(SyncAPIResource):
         if not datasource_id:
             raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
         return self._patch(
-            f"/v1/datasources/{datasource_id}/field",
+            path_template("/v1/datasources/{datasource_id}/field", datasource_id=datasource_id),
             body=maybe_transform(
                 {
                     "identifiable_type": identifiable_type,
@@ -725,7 +727,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         if not datasource_id:
             raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
         return await self._get(
-            f"/v1/datasources/{datasource_id}",
+            path_template("/v1/datasources/{datasource_id}", datasource_id=datasource_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -828,7 +830,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         if not datasource_id:
             raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
         return await self._patch(
-            f"/v1/datasources/{datasource_id}",
+            path_template("/v1/datasources/{datasource_id}", datasource_id=datasource_id),
             body=await async_maybe_transform(
                 {
                     "access_config": access_config,
@@ -926,7 +928,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         if not datasource_id:
             raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
         return await self._delete(
-            f"/v1/datasources/{datasource_id}",
+            path_template("/v1/datasources/{datasource_id}", datasource_id=datasource_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -964,7 +966,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._post(
-            f"/v1/datasources/{datasource_id}/files",
+            path_template("/v1/datasources/{datasource_id}/files", datasource_id=datasource_id),
             body=await async_maybe_transform({"file": file}, datasource_add_file_params.DatasourceAddFileParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -1001,7 +1003,9 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         if not file_id:
             raise ValueError(f"Expected a non-empty value for `file_id` but received {file_id!r}")
         return await self._delete(
-            f"/v1/datasources/{datasource_id}/files/{file_id}",
+            path_template(
+                "/v1/datasources/{datasource_id}/files/{file_id}", datasource_id=datasource_id, file_id=file_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1034,7 +1038,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         if not datasource_id:
             raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
         return await self._get(
-            f"/v1/datasources/{datasource_id}/runtime-meta",
+            path_template("/v1/datasources/{datasource_id}/runtime-meta", datasource_id=datasource_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1079,7 +1083,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         if not datasource_id:
             raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
         return await self._patch(
-            f"/v1/datasources/{datasource_id}/field",
+            path_template("/v1/datasources/{datasource_id}/field", datasource_id=datasource_id),
             body=await async_maybe_transform(
                 {
                     "identifiable_type": identifiable_type,

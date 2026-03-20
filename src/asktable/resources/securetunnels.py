@@ -13,7 +13,7 @@ from ..types import (
     securetunnel_list_links_params,
 )
 from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -112,7 +112,7 @@ class SecuretunnelsResource(SyncAPIResource):
         if not securetunnel_id:
             raise ValueError(f"Expected a non-empty value for `securetunnel_id` but received {securetunnel_id!r}")
         return self._get(
-            f"/v1/securetunnels/{securetunnel_id}",
+            path_template("/v1/securetunnels/{securetunnel_id}", securetunnel_id=securetunnel_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -154,7 +154,7 @@ class SecuretunnelsResource(SyncAPIResource):
         if not securetunnel_id:
             raise ValueError(f"Expected a non-empty value for `securetunnel_id` but received {securetunnel_id!r}")
         return self._patch(
-            f"/v1/securetunnels/{securetunnel_id}",
+            path_template("/v1/securetunnels/{securetunnel_id}", securetunnel_id=securetunnel_id),
             body=maybe_transform(
                 {
                     "client_info": client_info,
@@ -243,7 +243,7 @@ class SecuretunnelsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `securetunnel_id` but received {securetunnel_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/v1/securetunnels/{securetunnel_id}",
+            path_template("/v1/securetunnels/{securetunnel_id}", securetunnel_id=securetunnel_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -282,7 +282,7 @@ class SecuretunnelsResource(SyncAPIResource):
         if not securetunnel_id:
             raise ValueError(f"Expected a non-empty value for `securetunnel_id` but received {securetunnel_id!r}")
         return self._get_api_list(
-            f"/v1/securetunnels/{securetunnel_id}/links",
+            path_template("/v1/securetunnels/{securetunnel_id}/links", securetunnel_id=securetunnel_id),
             page=SyncPage[SecuretunnelListLinksResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -383,7 +383,7 @@ class AsyncSecuretunnelsResource(AsyncAPIResource):
         if not securetunnel_id:
             raise ValueError(f"Expected a non-empty value for `securetunnel_id` but received {securetunnel_id!r}")
         return await self._get(
-            f"/v1/securetunnels/{securetunnel_id}",
+            path_template("/v1/securetunnels/{securetunnel_id}", securetunnel_id=securetunnel_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -425,7 +425,7 @@ class AsyncSecuretunnelsResource(AsyncAPIResource):
         if not securetunnel_id:
             raise ValueError(f"Expected a non-empty value for `securetunnel_id` but received {securetunnel_id!r}")
         return await self._patch(
-            f"/v1/securetunnels/{securetunnel_id}",
+            path_template("/v1/securetunnels/{securetunnel_id}", securetunnel_id=securetunnel_id),
             body=await async_maybe_transform(
                 {
                     "client_info": client_info,
@@ -514,7 +514,7 @@ class AsyncSecuretunnelsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `securetunnel_id` but received {securetunnel_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/v1/securetunnels/{securetunnel_id}",
+            path_template("/v1/securetunnels/{securetunnel_id}", securetunnel_id=securetunnel_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -553,7 +553,7 @@ class AsyncSecuretunnelsResource(AsyncAPIResource):
         if not securetunnel_id:
             raise ValueError(f"Expected a non-empty value for `securetunnel_id` but received {securetunnel_id!r}")
         return self._get_api_list(
-            f"/v1/securetunnels/{securetunnel_id}/links",
+            path_template("/v1/securetunnels/{securetunnel_id}/links", securetunnel_id=securetunnel_id),
             page=AsyncPage[SecuretunnelListLinksResponse],
             options=make_request_options(
                 extra_headers=extra_headers,

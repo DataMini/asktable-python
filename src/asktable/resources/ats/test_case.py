@@ -7,7 +7,7 @@ from typing import Dict, Optional
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -88,7 +88,7 @@ class TestCaseResource(SyncAPIResource):
         if not ats_id:
             raise ValueError(f"Expected a non-empty value for `ats_id` but received {ats_id!r}")
         return self._post(
-            f"/v1/ats/{ats_id}/test-case",
+            path_template("/v1/ats/{ats_id}/test-case", ats_id=ats_id),
             body=maybe_transform(
                 {
                     "expected_sql": expected_sql,
@@ -133,7 +133,7 @@ class TestCaseResource(SyncAPIResource):
         if not atc_id:
             raise ValueError(f"Expected a non-empty value for `atc_id` but received {atc_id!r}")
         return self._get(
-            f"/v1/ats/{ats_id}/test-case/{atc_id}",
+            path_template("/v1/ats/{ats_id}/test-case/{atc_id}", ats_id=ats_id, atc_id=atc_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -181,7 +181,7 @@ class TestCaseResource(SyncAPIResource):
         if not atc_id:
             raise ValueError(f"Expected a non-empty value for `atc_id` but received {atc_id!r}")
         return self._patch(
-            f"/v1/ats/{ats_id}/test-case/{atc_id}",
+            path_template("/v1/ats/{ats_id}/test-case/{atc_id}", ats_id=ats_id, atc_id=atc_id),
             body=maybe_transform(
                 {
                     "expected_sql": expected_sql,
@@ -229,7 +229,7 @@ class TestCaseResource(SyncAPIResource):
         if not ats_id:
             raise ValueError(f"Expected a non-empty value for `ats_id` but received {ats_id!r}")
         return self._get_api_list(
-            f"/v1/ats/{ats_id}/test-case",
+            path_template("/v1/ats/{ats_id}/test-case", ats_id=ats_id),
             page=SyncPage[TestCaseListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -276,7 +276,7 @@ class TestCaseResource(SyncAPIResource):
         if not atc_id:
             raise ValueError(f"Expected a non-empty value for `atc_id` but received {atc_id!r}")
         return self._delete(
-            f"/v1/ats/{ats_id}/test-case/{atc_id}",
+            path_template("/v1/ats/{ats_id}/test-case/{atc_id}", ats_id=ats_id, atc_id=atc_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -344,7 +344,7 @@ class AsyncTestCaseResource(AsyncAPIResource):
         if not ats_id:
             raise ValueError(f"Expected a non-empty value for `ats_id` but received {ats_id!r}")
         return await self._post(
-            f"/v1/ats/{ats_id}/test-case",
+            path_template("/v1/ats/{ats_id}/test-case", ats_id=ats_id),
             body=await async_maybe_transform(
                 {
                     "expected_sql": expected_sql,
@@ -389,7 +389,7 @@ class AsyncTestCaseResource(AsyncAPIResource):
         if not atc_id:
             raise ValueError(f"Expected a non-empty value for `atc_id` but received {atc_id!r}")
         return await self._get(
-            f"/v1/ats/{ats_id}/test-case/{atc_id}",
+            path_template("/v1/ats/{ats_id}/test-case/{atc_id}", ats_id=ats_id, atc_id=atc_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -437,7 +437,7 @@ class AsyncTestCaseResource(AsyncAPIResource):
         if not atc_id:
             raise ValueError(f"Expected a non-empty value for `atc_id` but received {atc_id!r}")
         return await self._patch(
-            f"/v1/ats/{ats_id}/test-case/{atc_id}",
+            path_template("/v1/ats/{ats_id}/test-case/{atc_id}", ats_id=ats_id, atc_id=atc_id),
             body=await async_maybe_transform(
                 {
                     "expected_sql": expected_sql,
@@ -485,7 +485,7 @@ class AsyncTestCaseResource(AsyncAPIResource):
         if not ats_id:
             raise ValueError(f"Expected a non-empty value for `ats_id` but received {ats_id!r}")
         return self._get_api_list(
-            f"/v1/ats/{ats_id}/test-case",
+            path_template("/v1/ats/{ats_id}/test-case", ats_id=ats_id),
             page=AsyncPage[TestCaseListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -532,7 +532,7 @@ class AsyncTestCaseResource(AsyncAPIResource):
         if not atc_id:
             raise ValueError(f"Expected a non-empty value for `atc_id` but received {atc_id!r}")
         return await self._delete(
-            f"/v1/ats/{ats_id}/test-case/{atc_id}",
+            path_template("/v1/ats/{ats_id}/test-case/{atc_id}", ats_id=ats_id, atc_id=atc_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

@@ -8,7 +8,7 @@ import httpx
 
 from ..types import role_list_params, role_create_params, role_update_params, role_get_variables_params
 from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -117,7 +117,7 @@ class RolesResource(SyncAPIResource):
         if not role_id:
             raise ValueError(f"Expected a non-empty value for `role_id` but received {role_id!r}")
         return self._get(
-            f"/v1/roles/{role_id}",
+            path_template("/v1/roles/{role_id}", role_id=role_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -156,7 +156,7 @@ class RolesResource(SyncAPIResource):
         if not role_id:
             raise ValueError(f"Expected a non-empty value for `role_id` but received {role_id!r}")
         return self._patch(
-            f"/v1/roles/{role_id}",
+            path_template("/v1/roles/{role_id}", role_id=role_id),
             body=maybe_transform(
                 {
                     "name": name,
@@ -251,7 +251,7 @@ class RolesResource(SyncAPIResource):
         if not role_id:
             raise ValueError(f"Expected a non-empty value for `role_id` but received {role_id!r}")
         return self._delete(
-            f"/v1/roles/{role_id}",
+            path_template("/v1/roles/{role_id}", role_id=role_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -284,7 +284,7 @@ class RolesResource(SyncAPIResource):
         if not role_id:
             raise ValueError(f"Expected a non-empty value for `role_id` but received {role_id!r}")
         return self._get(
-            f"/v1/roles/{role_id}/policies",
+            path_template("/v1/roles/{role_id}/policies", role_id=role_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -323,7 +323,7 @@ class RolesResource(SyncAPIResource):
         if not role_id:
             raise ValueError(f"Expected a non-empty value for `role_id` but received {role_id!r}")
         return self._get(
-            f"/v1/roles/{role_id}/variables",
+            path_template("/v1/roles/{role_id}/variables", role_id=role_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -432,7 +432,7 @@ class AsyncRolesResource(AsyncAPIResource):
         if not role_id:
             raise ValueError(f"Expected a non-empty value for `role_id` but received {role_id!r}")
         return await self._get(
-            f"/v1/roles/{role_id}",
+            path_template("/v1/roles/{role_id}", role_id=role_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -471,7 +471,7 @@ class AsyncRolesResource(AsyncAPIResource):
         if not role_id:
             raise ValueError(f"Expected a non-empty value for `role_id` but received {role_id!r}")
         return await self._patch(
-            f"/v1/roles/{role_id}",
+            path_template("/v1/roles/{role_id}", role_id=role_id),
             body=await async_maybe_transform(
                 {
                     "name": name,
@@ -566,7 +566,7 @@ class AsyncRolesResource(AsyncAPIResource):
         if not role_id:
             raise ValueError(f"Expected a non-empty value for `role_id` but received {role_id!r}")
         return await self._delete(
-            f"/v1/roles/{role_id}",
+            path_template("/v1/roles/{role_id}", role_id=role_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -599,7 +599,7 @@ class AsyncRolesResource(AsyncAPIResource):
         if not role_id:
             raise ValueError(f"Expected a non-empty value for `role_id` but received {role_id!r}")
         return await self._get(
-            f"/v1/roles/{role_id}/policies",
+            path_template("/v1/roles/{role_id}/policies", role_id=role_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -638,7 +638,7 @@ class AsyncRolesResource(AsyncAPIResource):
         if not role_id:
             raise ValueError(f"Expected a non-empty value for `role_id` but received {role_id!r}")
         return await self._get(
-            f"/v1/roles/{role_id}/variables",
+            path_template("/v1/roles/{role_id}/variables", role_id=role_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

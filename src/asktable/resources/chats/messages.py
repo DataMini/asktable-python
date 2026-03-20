@@ -7,7 +7,7 @@ from typing import Any, Optional, cast
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -80,7 +80,7 @@ class MessagesResource(SyncAPIResource):
         return cast(
             MessageCreateResponse,
             self._post(
-                f"/v1/chats/{chat_id}/messages",
+                path_template("/v1/chats/{chat_id}/messages", chat_id=chat_id),
                 body=maybe_transform({"body_question": body_question}, message_create_params.MessageCreateParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
@@ -128,7 +128,7 @@ class MessagesResource(SyncAPIResource):
         return cast(
             MessageRetrieveResponse,
             self._get(
-                f"/v1/chats/{chat_id}/messages/{message_id}",
+                path_template("/v1/chats/{chat_id}/messages/{message_id}", chat_id=chat_id, message_id=message_id),
                 options=make_request_options(
                     extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
                 ),
@@ -170,7 +170,7 @@ class MessagesResource(SyncAPIResource):
         if not chat_id:
             raise ValueError(f"Expected a non-empty value for `chat_id` but received {chat_id!r}")
         return self._get_api_list(
-            f"/v1/chats/{chat_id}/messages",
+            path_template("/v1/chats/{chat_id}/messages", chat_id=chat_id),
             page=SyncPage[MessageListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -243,7 +243,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         return cast(
             MessageCreateResponse,
             await self._post(
-                f"/v1/chats/{chat_id}/messages",
+                path_template("/v1/chats/{chat_id}/messages", chat_id=chat_id),
                 body=await async_maybe_transform(
                     {"body_question": body_question}, message_create_params.MessageCreateParams
                 ),
@@ -293,7 +293,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         return cast(
             MessageRetrieveResponse,
             await self._get(
-                f"/v1/chats/{chat_id}/messages/{message_id}",
+                path_template("/v1/chats/{chat_id}/messages/{message_id}", chat_id=chat_id, message_id=message_id),
                 options=make_request_options(
                     extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
                 ),
@@ -335,7 +335,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         if not chat_id:
             raise ValueError(f"Expected a non-empty value for `chat_id` but received {chat_id!r}")
         return self._get_api_list(
-            f"/v1/chats/{chat_id}/messages",
+            path_template("/v1/chats/{chat_id}/messages", chat_id=chat_id),
             page=AsyncPage[MessageListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
