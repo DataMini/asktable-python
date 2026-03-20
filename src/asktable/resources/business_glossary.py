@@ -8,7 +8,7 @@ import httpx
 
 from ..types import business_glossary_list_params, business_glossary_create_params, business_glossary_update_params
 from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -106,7 +106,7 @@ class BusinessGlossaryResource(SyncAPIResource):
         if not entry_id:
             raise ValueError(f"Expected a non-empty value for `entry_id` but received {entry_id!r}")
         return self._get(
-            f"/v1/business-glossary/{entry_id}",
+            path_template("/v1/business-glossary/{entry_id}", entry_id=entry_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -154,7 +154,7 @@ class BusinessGlossaryResource(SyncAPIResource):
         if not entry_id:
             raise ValueError(f"Expected a non-empty value for `entry_id` but received {entry_id!r}")
         return self._patch(
-            f"/v1/business-glossary/{entry_id}",
+            path_template("/v1/business-glossary/{entry_id}", entry_id=entry_id),
             body=maybe_transform(
                 {
                     "active": active,
@@ -248,7 +248,7 @@ class BusinessGlossaryResource(SyncAPIResource):
         if not entry_id:
             raise ValueError(f"Expected a non-empty value for `entry_id` but received {entry_id!r}")
         return self._delete(
-            f"/v1/business-glossary/{entry_id}",
+            path_template("/v1/business-glossary/{entry_id}", entry_id=entry_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -336,7 +336,7 @@ class AsyncBusinessGlossaryResource(AsyncAPIResource):
         if not entry_id:
             raise ValueError(f"Expected a non-empty value for `entry_id` but received {entry_id!r}")
         return await self._get(
-            f"/v1/business-glossary/{entry_id}",
+            path_template("/v1/business-glossary/{entry_id}", entry_id=entry_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -384,7 +384,7 @@ class AsyncBusinessGlossaryResource(AsyncAPIResource):
         if not entry_id:
             raise ValueError(f"Expected a non-empty value for `entry_id` but received {entry_id!r}")
         return await self._patch(
-            f"/v1/business-glossary/{entry_id}",
+            path_template("/v1/business-glossary/{entry_id}", entry_id=entry_id),
             body=await async_maybe_transform(
                 {
                     "active": active,
@@ -478,7 +478,7 @@ class AsyncBusinessGlossaryResource(AsyncAPIResource):
         if not entry_id:
             raise ValueError(f"Expected a non-empty value for `entry_id` but received {entry_id!r}")
         return await self._delete(
-            f"/v1/business-glossary/{entry_id}",
+            path_template("/v1/business-glossary/{entry_id}", entry_id=entry_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
