@@ -184,7 +184,7 @@ class Asktable(SyncAPIClient):
 
     @cached_property
     def bots(self) -> BotsResource:
-        """机器人管理"""
+        """AI 数据助手"""
         from .resources.bots import BotsResource
 
         return BotsResource(self)
@@ -489,7 +489,7 @@ class AsyncAsktable(AsyncAPIClient):
 
     @cached_property
     def bots(self) -> AsyncBotsResource:
-        """机器人管理"""
+        """AI 数据助手"""
         from .resources.bots import AsyncBotsResource
 
         return AsyncBotsResource(self)
@@ -745,7 +745,7 @@ class AsktableWithRawResponse:
 
     @cached_property
     def bots(self) -> bots.BotsResourceWithRawResponse:
-        """机器人管理"""
+        """AI 数据助手"""
         from .resources.bots import BotsResourceWithRawResponse
 
         return BotsResourceWithRawResponse(self._client.bots)
@@ -889,7 +889,7 @@ class AsyncAsktableWithRawResponse:
 
     @cached_property
     def bots(self) -> bots.AsyncBotsResourceWithRawResponse:
-        """机器人管理"""
+        """AI 数据助手"""
         from .resources.bots import AsyncBotsResourceWithRawResponse
 
         return AsyncBotsResourceWithRawResponse(self._client.bots)
@@ -1033,7 +1033,7 @@ class AsktableWithStreamedResponse:
 
     @cached_property
     def bots(self) -> bots.BotsResourceWithStreamingResponse:
-        """机器人管理"""
+        """AI 数据助手"""
         from .resources.bots import BotsResourceWithStreamingResponse
 
         return BotsResourceWithStreamingResponse(self._client.bots)
@@ -1177,7 +1177,7 @@ class AsyncAsktableWithStreamedResponse:
 
     @cached_property
     def bots(self) -> bots.AsyncBotsResourceWithStreamingResponse:
-        """机器人管理"""
+        """AI 数据助手"""
         from .resources.bots import AsyncBotsResourceWithStreamingResponse
 
         return AsyncBotsResourceWithStreamingResponse(self._client.bots)
