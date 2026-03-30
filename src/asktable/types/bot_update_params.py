@@ -24,7 +24,7 @@ class BotUpdateParams(TypedDict, total=False):
     """调试模式"""
 
     interaction_rules: Optional[Iterable[InteractionRule]]
-    """交互规则列表，用于定义 bot 的行为规则"""
+    """交互规则列表，用于定义 AI 数据助手的行为规则"""
 
     magic_input: Optional[str]
     """魔法提示词"""
@@ -39,7 +39,7 @@ class BotUpdateParams(TypedDict, total=False):
     """是否公开"""
 
     query_balance: Optional[int]
-    """bot 的查询次数，默认是 None，表示无限次查询，入参为大于等于 0 的整数"""
+    """AI 数据助手的查询次数，默认是 None，表示无限次查询，入参为大于等于 0 的整数"""
 
     sample_questions: Optional[SequenceNotStr[str]]
     """示例问题列表"""

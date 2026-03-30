@@ -26,7 +26,7 @@ __all__ = ["BotsResource", "AsyncBotsResource"]
 
 
 class BotsResource(SyncAPIResource):
-    """机器人管理"""
+    """AI 数据助手"""
 
     @cached_property
     def with_raw_response(self) -> BotsResourceWithRawResponse:
@@ -70,7 +70,7 @@ class BotsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Chatbot:
         """
-        创建一个新的 Bot
+        创建一个新的 AI 数据助手
 
         Args:
           datasource_ids: 数据源 ID，目前只支持 1 个数据源。
@@ -81,7 +81,7 @@ class BotsResource(SyncAPIResource):
 
           debug: 调试模式
 
-          interaction_rules: 交互规则列表，用于定义 bot 的行为规则
+          interaction_rules: 交互规则列表，用于定义 AI 数据助手的行为规则
 
           magic_input: 魔法提示词
 
@@ -89,7 +89,7 @@ class BotsResource(SyncAPIResource):
 
           publish: 是否公开
 
-          query_balance: bot 的查询次数，默认是 None，表示无限次查询，入参为大于等于 0 的整数
+          query_balance: AI 数据助手的查询次数，默认是 None，表示无限次查询，入参为大于等于 0 的整数
 
           sample_questions: 示例问题列表
 
@@ -142,7 +142,7 @@ class BotsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Chatbot:
         """
-        获取某个 Bot
+        获取某个 AI 数据助手
 
         Args:
           extra_headers: Send extra headers
@@ -188,7 +188,7 @@ class BotsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Chatbot:
         """
-        更新某个 Bot
+        更新某个 AI 数据助手
 
         Args:
           avatar_url: 头像 URL
@@ -199,7 +199,7 @@ class BotsResource(SyncAPIResource):
 
           debug: 调试模式
 
-          interaction_rules: 交互规则列表，用于定义 bot 的行为规则
+          interaction_rules: 交互规则列表，用于定义 AI 数据助手的行为规则
 
           magic_input: 魔法提示词
 
@@ -209,7 +209,7 @@ class BotsResource(SyncAPIResource):
 
           publish: 是否公开
 
-          query_balance: bot 的查询次数，默认是 None，表示无限次查询，入参为大于等于 0 的整数
+          query_balance: AI 数据助手的查询次数，默认是 None，表示无限次查询，入参为大于等于 0 的整数
 
           sample_questions: 示例问题列表
 
@@ -268,7 +268,7 @@ class BotsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPage[Chatbot]:
         """
-        查询所有 Bot
+        查询所有 AI 数据助手
 
         Args:
           bot_ids: Bot ID
@@ -320,7 +320,7 @@ class BotsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        删除某个 Bot
+        删除某个 AI 数据助手
 
         Args:
           extra_headers: Send extra headers
@@ -381,7 +381,7 @@ class BotsResource(SyncAPIResource):
 
 
 class AsyncBotsResource(AsyncAPIResource):
-    """机器人管理"""
+    """AI 数据助手"""
 
     @cached_property
     def with_raw_response(self) -> AsyncBotsResourceWithRawResponse:
@@ -425,7 +425,7 @@ class AsyncBotsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Chatbot:
         """
-        创建一个新的 Bot
+        创建一个新的 AI 数据助手
 
         Args:
           datasource_ids: 数据源 ID，目前只支持 1 个数据源。
@@ -436,7 +436,7 @@ class AsyncBotsResource(AsyncAPIResource):
 
           debug: 调试模式
 
-          interaction_rules: 交互规则列表，用于定义 bot 的行为规则
+          interaction_rules: 交互规则列表，用于定义 AI 数据助手的行为规则
 
           magic_input: 魔法提示词
 
@@ -444,7 +444,7 @@ class AsyncBotsResource(AsyncAPIResource):
 
           publish: 是否公开
 
-          query_balance: bot 的查询次数，默认是 None，表示无限次查询，入参为大于等于 0 的整数
+          query_balance: AI 数据助手的查询次数，默认是 None，表示无限次查询，入参为大于等于 0 的整数
 
           sample_questions: 示例问题列表
 
@@ -497,7 +497,7 @@ class AsyncBotsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Chatbot:
         """
-        获取某个 Bot
+        获取某个 AI 数据助手
 
         Args:
           extra_headers: Send extra headers
@@ -543,7 +543,7 @@ class AsyncBotsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Chatbot:
         """
-        更新某个 Bot
+        更新某个 AI 数据助手
 
         Args:
           avatar_url: 头像 URL
@@ -554,7 +554,7 @@ class AsyncBotsResource(AsyncAPIResource):
 
           debug: 调试模式
 
-          interaction_rules: 交互规则列表，用于定义 bot 的行为规则
+          interaction_rules: 交互规则列表，用于定义 AI 数据助手的行为规则
 
           magic_input: 魔法提示词
 
@@ -564,7 +564,7 @@ class AsyncBotsResource(AsyncAPIResource):
 
           publish: 是否公开
 
-          query_balance: bot 的查询次数，默认是 None，表示无限次查询，入参为大于等于 0 的整数
+          query_balance: AI 数据助手的查询次数，默认是 None，表示无限次查询，入参为大于等于 0 的整数
 
           sample_questions: 示例问题列表
 
@@ -623,7 +623,7 @@ class AsyncBotsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Chatbot, AsyncPage[Chatbot]]:
         """
-        查询所有 Bot
+        查询所有 AI 数据助手
 
         Args:
           bot_ids: Bot ID
@@ -675,7 +675,7 @@ class AsyncBotsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        删除某个 Bot
+        删除某个 AI 数据助手
 
         Args:
           extra_headers: Send extra headers

@@ -11,8 +11,8 @@ __all__ = ["ChatCreateParams"]
 class ChatCreateParams(TypedDict, total=False):
     bot_id: Optional[str]
     """
-    机器人 ID，如果需要使用高级功能，请使用 bot_id 来创建对话。在机器人中你可以定义
-    可以访问的数据、可以执行的任务以及是否开启调试模式等设置。
+    AI 数据助手 ID，如果需要使用高级功能，请使用 bot_id 来创建对话。在 AI 数据助手中
+    你可以定义可以访问的数据、可以执行的任务以及是否开启调试模式等设置。
     """
 
     name: Optional[str]

@@ -2,7 +2,9 @@
 
 from typing import Dict, List, Optional
 from datetime import datetime
-from typing_extensions import TypeAlias
+from typing_extensions import Literal, TypeAlias
+
+from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
@@ -10,6 +12,7 @@ __all__ = [
     "ProjectListModelGroupsResponse",
     "ProjectListModelGroupsResponseItem",
     "ProjectListModelGroupsResponseItemModels",
+    "ProjectListModelGroupsResponseItemModelConfigs",
 ]
 
 
@@ -29,6 +32,20 @@ class ProjectListModelGroupsResponseItemModels(BaseModel):
     report: Optional[str] = None
 
     sql: Optional[str] = None
+
+
+class ProjectListModelGroupsResponseItemModelConfigs(BaseModel):
+    """Per-model 配置，key 为 model ID"""
+
+    capabilities: Optional[Dict[str, object]] = None
+
+    context_window: Optional[int] = None
+
+    display_name: Optional[str] = None
+
+    enabled: Optional[bool] = None
+
+    provider_options: Optional[Dict[str, object]] = None
 
 
 class ProjectListModelGroupsResponseItem(BaseModel):
@@ -59,11 +76,19 @@ class ProjectListModelGroupsResponseItem(BaseModel):
     name: str
     """模型组名称"""
 
+    api_format: Optional[Literal["openai_chat", "anthropic"]] = None
+    """API 协议格式"""
+
     display_name: Optional[str] = None
     """展示名称"""
 
     is_default: Optional[bool] = None
     """是否为默认组"""
+
+    api_model_configs: Optional[Dict[str, ProjectListModelGroupsResponseItemModelConfigs]] = FieldInfo(
+        alias="model_configs", default=None
+    )
+    """Per-model 配置"""
 
 
 ProjectListModelGroupsResponse: TypeAlias = List[ProjectListModelGroupsResponseItem]
