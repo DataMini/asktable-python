@@ -133,6 +133,7 @@ class ProjectsResource(SyncAPIResource):
         self,
         project_id: str,
         *,
+        is_public: Optional[bool] | Omit = omit,
         llm_model_group: Optional[str] | Omit = omit,
         locked: Optional[bool] | Omit = omit,
         name: Optional[str] | Omit = omit,
@@ -147,6 +148,8 @@ class ProjectsResource(SyncAPIResource):
         Update Project
 
         Args:
+          is_public: 是否公开项目
+
           llm_model_group: 模型组
 
           locked: 是否锁定
@@ -167,6 +170,7 @@ class ProjectsResource(SyncAPIResource):
             path_template("/v1/sys/projects/{project_id}", project_id=project_id),
             body=maybe_transform(
                 {
+                    "is_public": is_public,
                     "llm_model_group": llm_model_group,
                     "locked": locked,
                     "name": name,
@@ -446,6 +450,7 @@ class AsyncProjectsResource(AsyncAPIResource):
         self,
         project_id: str,
         *,
+        is_public: Optional[bool] | Omit = omit,
         llm_model_group: Optional[str] | Omit = omit,
         locked: Optional[bool] | Omit = omit,
         name: Optional[str] | Omit = omit,
@@ -460,6 +465,8 @@ class AsyncProjectsResource(AsyncAPIResource):
         Update Project
 
         Args:
+          is_public: 是否公开项目
+
           llm_model_group: 模型组
 
           locked: 是否锁定
@@ -480,6 +487,7 @@ class AsyncProjectsResource(AsyncAPIResource):
             path_template("/v1/sys/projects/{project_id}", project_id=project_id),
             body=await async_maybe_transform(
                 {
+                    "is_public": is_public,
                     "llm_model_group": llm_model_group,
                     "locked": locked,
                     "name": name,
