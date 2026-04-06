@@ -9,6 +9,9 @@ __all__ = ["ProjectUpdateParams"]
 
 
 class ProjectUpdateParams(TypedDict, total=False):
+    is_public: Optional[bool]
+    """是否公开项目"""
+
     llm_model_group: Optional[str]
     """模型组"""
 
