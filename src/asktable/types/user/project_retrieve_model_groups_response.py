@@ -25,11 +25,7 @@ class ProjectRetrieveModelGroupsResponseItemModels(BaseModel):
 
     fast: Optional[str] = None
 
-    image: Optional[str] = None
-
     omni: Optional[str] = None
-
-    report: Optional[str] = None
 
     sql: Optional[str] = None
 
