@@ -1,5 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from typing import Optional
 from datetime import datetime
 
 from ..._models import BaseModel
@@ -14,9 +15,6 @@ class Project(BaseModel):
     created_at: datetime
     """创建时间"""
 
-    llm_model_group: str
-    """模型组"""
-
     locked: int
     """是否锁定"""
 
@@ -25,3 +23,6 @@ class Project(BaseModel):
 
     name: str
     """项目名称"""
+
+    llm_model_group: Optional[str] = None
+    """模型组，None 表示跟随系统默认"""
