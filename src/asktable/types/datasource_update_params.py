@@ -58,6 +58,7 @@ class DatasourceUpdateParams(TypedDict, total=False):
             "gaussdbdws",
             "bitable",
             "dap",
+            "duckdb",
         ]
     ]
     """数据源引擎"""
