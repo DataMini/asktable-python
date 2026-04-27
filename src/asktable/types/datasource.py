@@ -50,6 +50,7 @@ class Datasource(BaseModel):
         "gaussdbdws",
         "bitable",
         "dap",
+        "duckdb",
     ]
     """数据源引擎"""
 
