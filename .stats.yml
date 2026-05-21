@@ -1,4 +1,4 @@
-configured_endpoints: 101
-openapi_spec_url: https://storage.googleapis.com/stainless-sdk-openapi-specs/datamini/asktable-f6a8e67001f03d591a83a31ee109c15e762c1fdcda53b6a710d45e1f575fe677.yml
-openapi_spec_hash: 38321574df76b7905271862ed1e200f0
+configured_endpoints: 42
+openapi_spec_url: https://storage.googleapis.com/stainless-sdk-openapi-specs/datamini/asktable-6064089d0f0a5d76e93c2f98db16407c455177993a83f3e810356c50d6292ea0.yml
+openapi_spec_hash: d7813750404424e4fa3448a5bc827dbf
 config_hash: acdf4142177ed1932c2d82372693f811

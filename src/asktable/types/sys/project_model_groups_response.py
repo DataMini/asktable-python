@@ -21,13 +21,9 @@ class ProjectModelGroupsResponseItemModels(BaseModel):
 
     agent: Optional[str] = None
 
-    canvas: Optional[str] = None
-
     fast: Optional[str] = None
 
     omni: Optional[str] = None
-
-    sql: Optional[str] = None
 
 
 class ProjectModelGroupsResponseItemModelConfigs(BaseModel):
@@ -40,6 +36,8 @@ class ProjectModelGroupsResponseItemModelConfigs(BaseModel):
     display_name: Optional[str] = None
 
     enabled: Optional[bool] = None
+
+    passthrough_reasoning: Optional[bool] = None
 
     provider_options: Optional[Dict[str, object]] = None
 

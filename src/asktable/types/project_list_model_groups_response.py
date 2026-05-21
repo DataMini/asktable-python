@@ -1,90 +1,30 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
-from datetime import datetime
-from typing_extensions import Literal, TypeAlias
-
-from pydantic import Field as FieldInfo
+from typing import List, Optional
+from typing_extensions import TypeAlias
 
 from .._models import BaseModel
 
-__all__ = [
-    "ProjectListModelGroupsResponse",
-    "ProjectListModelGroupsResponseItem",
-    "ProjectListModelGroupsResponseItemModels",
-    "ProjectListModelGroupsResponseItemModelConfigs",
-]
-
-
-class ProjectListModelGroupsResponseItemModels(BaseModel):
-    """角色→模型映射"""
-
-    agent: Optional[str] = None
-
-    canvas: Optional[str] = None
-
-    fast: Optional[str] = None
-
-    omni: Optional[str] = None
-
-    sql: Optional[str] = None
-
-
-class ProjectListModelGroupsResponseItemModelConfigs(BaseModel):
-    """Per-model 配置，key 为 model ID"""
-
-    capabilities: Optional[Dict[str, object]] = None
-
-    context_window: Optional[int] = None
-
-    display_name: Optional[str] = None
-
-    enabled: Optional[bool] = None
-
-    provider_options: Optional[Dict[str, object]] = None
+__all__ = ["ProjectListModelGroupsResponse", "ProjectListModelGroupsResponseItem"]
 
 
 class ProjectListModelGroupsResponseItem(BaseModel):
+    """
+    项目级用户视角，仅暴露选择器需要的字段。
+    敏感配置（api_key/base_url/extra_headers/model_configs）由系统级端点处理。
+    """
+
     id: str
     """模型组 ID"""
 
-    api_key: str
-    """API 密钥"""
-
-    available_models: List[str]
-    """可用模型列表"""
-
-    base_url: str
-    """OpenAI 兼容 API 端点"""
-
-    created_at: datetime
-    """创建时间"""
-
-    extra_headers: Dict[str, str]
-    """额外请求头"""
-
-    models: ProjectListModelGroupsResponseItemModels
-    """角色 → 模型映射"""
-
-    modified_at: datetime
-    """修改时间"""
-
     name: str
-    """模型组名称"""
-
-    api_format: Optional[Literal["openai_chat", "anthropic"]] = None
-    """API 协议格式"""
+    """模型组名称（绑定 project.llm_model_group）"""
 
     display_name: Optional[str] = None
     """展示名称"""
 
     is_default: Optional[bool] = None
-    """是否为默认组"""
-
-    api_model_configs: Optional[Dict[str, ProjectListModelGroupsResponseItemModelConfigs]] = FieldInfo(
-        alias="model_configs", default=None
-    )
-    """Per-model 配置"""
+    """是否为系统默认组"""
 
 
 ProjectListModelGroupsResponse: TypeAlias = List[ProjectListModelGroupsResponseItem]

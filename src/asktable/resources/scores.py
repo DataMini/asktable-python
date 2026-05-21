@@ -16,7 +16,6 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
-from ..types.score_create_response import ScoreCreateResponse
 
 __all__ = ["ScoresResource", "AsyncScoresResource"]
 
@@ -55,17 +54,11 @@ class ScoresResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ScoreCreateResponse:
+    ) -> object:
         """
         Score
 
         Args:
-          chat_id: 聊天 ID
-
-          message_id: 消息 ID
-
-          score: 评分
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -90,7 +83,7 @@ class ScoresResource(SyncAPIResource):
                     score_create_params.ScoreCreateParams,
                 ),
             ),
-            cast_to=ScoreCreateResponse,
+            cast_to=object,
         )
 
 
@@ -128,17 +121,11 @@ class AsyncScoresResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ScoreCreateResponse:
+    ) -> object:
         """
         Score
 
         Args:
-          chat_id: 聊天 ID
-
-          message_id: 消息 ID
-
-          score: 评分
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -163,7 +150,7 @@ class AsyncScoresResource(AsyncAPIResource):
                     score_create_params.ScoreCreateParams,
                 ),
             ),
-            cast_to=ScoreCreateResponse,
+            cast_to=object,
         )
 
 

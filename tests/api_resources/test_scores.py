@@ -9,7 +9,6 @@ import pytest
 
 from asktable import Asktable, AsyncAsktable
 from tests.utils import assert_matches_type
-from asktable.types import ScoreCreateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,7 +23,7 @@ class TestScores:
             message_id="message_id",
             score=True,
         )
-        assert_matches_type(ScoreCreateResponse, score, path=["response"])
+        assert_matches_type(object, score, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Asktable) -> None:
@@ -37,7 +36,7 @@ class TestScores:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         score = response.parse()
-        assert_matches_type(ScoreCreateResponse, score, path=["response"])
+        assert_matches_type(object, score, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Asktable) -> None:
@@ -50,7 +49,7 @@ class TestScores:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             score = response.parse()
-            assert_matches_type(ScoreCreateResponse, score, path=["response"])
+            assert_matches_type(object, score, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -67,7 +66,7 @@ class TestAsyncScores:
             message_id="message_id",
             score=True,
         )
-        assert_matches_type(ScoreCreateResponse, score, path=["response"])
+        assert_matches_type(object, score, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncAsktable) -> None:
@@ -80,7 +79,7 @@ class TestAsyncScores:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         score = await response.parse()
-        assert_matches_type(ScoreCreateResponse, score, path=["response"])
+        assert_matches_type(object, score, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncAsktable) -> None:
@@ -93,6 +92,6 @@ class TestAsyncScores:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             score = await response.parse()
-            assert_matches_type(ScoreCreateResponse, score, path=["response"])
+            assert_matches_type(object, score, path=["response"])
 
         assert cast(Any, response.is_closed) is True

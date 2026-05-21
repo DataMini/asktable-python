@@ -50,7 +50,7 @@ class AuthResource(SyncAPIResource):
     def create_token(
         self,
         *,
-        ak_role: Literal["sys", "admin", "asker", "visitor"] | Omit = omit,
+        ak_role: Literal["sys", "admin", "asker"] | Omit = omit,
         chat_role: Optional[auth_create_token_params.ChatRole] | Omit = omit,
         token_ttl: int | Omit = omit,
         user_profile: Optional[Dict[str, object]] | Omit = omit,
@@ -143,7 +143,7 @@ class AsyncAuthResource(AsyncAPIResource):
     async def create_token(
         self,
         *,
-        ak_role: Literal["sys", "admin", "asker", "visitor"] | Omit = omit,
+        ak_role: Literal["sys", "admin", "asker"] | Omit = omit,
         chat_role: Optional[auth_create_token_params.ChatRole] | Omit = omit,
         token_ttl: int | Omit = omit,
         user_profile: Optional[Dict[str, object]] | Omit = omit,
