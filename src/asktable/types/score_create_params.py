@@ -9,10 +9,7 @@ __all__ = ["ScoreCreateParams"]
 
 class ScoreCreateParams(TypedDict, total=False):
     chat_id: Required[str]
-    """聊天 ID"""
 
     message_id: Required[str]
-    """消息 ID"""
 
     score: Required[bool]
-    """评分"""

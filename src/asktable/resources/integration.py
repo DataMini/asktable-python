@@ -6,7 +6,7 @@ from typing import Optional
 
 import httpx
 
-from ..types import integration_excel_csv_ask_params, integration_create_excel_ds_params
+from ..types import integration_excel_csv_ask_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -18,8 +18,6 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
-from ..types.datasource import Datasource
-from ..types.file_ask_response import FileAskResponse
 
 __all__ = ["IntegrationResource", "AsyncIntegrationResource"]
 
@@ -46,48 +44,6 @@ class IntegrationResource(SyncAPIResource):
         """
         return IntegrationResourceWithStreamingResponse(self)
 
-    def create_excel_ds(
-        self,
-        *,
-        file_url: str,
-        value_index: bool | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Datasource:
-        """
-        通过 Excel/CSV 文件 URL 创建数据源
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._post(
-            "/v1/integration/create_excel_ds",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "file_url": file_url,
-                        "value_index": value_index,
-                    },
-                    integration_create_excel_ds_params.IntegrationCreateExcelDsParams,
-                ),
-            ),
-            cast_to=Datasource,
-        )
-
     def excel_csv_ask(
         self,
         *,
@@ -100,9 +56,9 @@ class IntegrationResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FileAskResponse:
+    ) -> object:
         """
-        通过 Excel/CSV 文件 URL 添加数据并提问
+        Add Excel And Ask
 
         Args:
           file_url: 文件 URL(支持 Excel/CSV)
@@ -132,7 +88,7 @@ class IntegrationResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FileAskResponse,
+            cast_to=object,
         )
 
 
@@ -158,48 +114,6 @@ class AsyncIntegrationResource(AsyncAPIResource):
         """
         return AsyncIntegrationResourceWithStreamingResponse(self)
 
-    async def create_excel_ds(
-        self,
-        *,
-        file_url: str,
-        value_index: bool | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Datasource:
-        """
-        通过 Excel/CSV 文件 URL 创建数据源
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._post(
-            "/v1/integration/create_excel_ds",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "file_url": file_url,
-                        "value_index": value_index,
-                    },
-                    integration_create_excel_ds_params.IntegrationCreateExcelDsParams,
-                ),
-            ),
-            cast_to=Datasource,
-        )
-
     async def excel_csv_ask(
         self,
         *,
@@ -212,9 +126,9 @@ class AsyncIntegrationResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FileAskResponse:
+    ) -> object:
         """
-        通过 Excel/CSV 文件 URL 添加数据并提问
+        Add Excel And Ask
 
         Args:
           file_url: 文件 URL(支持 Excel/CSV)
@@ -244,7 +158,7 @@ class AsyncIntegrationResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FileAskResponse,
+            cast_to=object,
         )
 
 
@@ -252,9 +166,6 @@ class IntegrationResourceWithRawResponse:
     def __init__(self, integration: IntegrationResource) -> None:
         self._integration = integration
 
-        self.create_excel_ds = to_raw_response_wrapper(
-            integration.create_excel_ds,
-        )
         self.excel_csv_ask = to_raw_response_wrapper(
             integration.excel_csv_ask,
         )
@@ -264,9 +175,6 @@ class AsyncIntegrationResourceWithRawResponse:
     def __init__(self, integration: AsyncIntegrationResource) -> None:
         self._integration = integration
 
-        self.create_excel_ds = async_to_raw_response_wrapper(
-            integration.create_excel_ds,
-        )
         self.excel_csv_ask = async_to_raw_response_wrapper(
             integration.excel_csv_ask,
         )
@@ -276,9 +184,6 @@ class IntegrationResourceWithStreamingResponse:
     def __init__(self, integration: IntegrationResource) -> None:
         self._integration = integration
 
-        self.create_excel_ds = to_streamed_response_wrapper(
-            integration.create_excel_ds,
-        )
         self.excel_csv_ask = to_streamed_response_wrapper(
             integration.excel_csv_ask,
         )
@@ -288,9 +193,6 @@ class AsyncIntegrationResourceWithStreamingResponse:
     def __init__(self, integration: AsyncIntegrationResource) -> None:
         self._integration = integration
 
-        self.create_excel_ds = async_to_streamed_response_wrapper(
-            integration.create_excel_ds,
-        )
         self.excel_csv_ask = async_to_streamed_response_wrapper(
             integration.excel_csv_ask,
         )

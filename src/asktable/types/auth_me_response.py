@@ -9,7 +9,7 @@ __all__ = ["AuthMeResponse"]
 
 
 class AuthMeResponse(BaseModel):
-    ak_role: Literal["sys", "admin", "asker", "visitor"]
+    ak_role: Literal["sys", "admin", "asker"]
 
     project_id: str
 
