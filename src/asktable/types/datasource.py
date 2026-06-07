@@ -51,6 +51,7 @@ class Datasource(BaseModel):
         "bitable",
         "dap",
         "duckdb",
+        "workbook",
     ]
     """数据源引擎"""
 

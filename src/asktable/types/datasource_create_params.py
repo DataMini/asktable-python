@@ -12,6 +12,7 @@ __all__ = [
     "AccessConfig",
     "AccessConfigAccessConfigConnectionCreate",
     "AccessConfigAccessConfigFileCreate",
+    "AccessConfigAccessConfigWorkbookCreate",
 ]
 
 
@@ -52,6 +53,7 @@ class DatasourceCreateParams(TypedDict, total=False):
             "bitable",
             "dap",
             "duckdb",
+            "workbook",
         ]
     ]
     """数据源引擎"""
@@ -94,4 +96,13 @@ class AccessConfigAccessConfigFileCreate(TypedDict, total=False):
     """数据源文件 URL 列表, 创建时可以传入 URL"""
 
 
-AccessConfig: TypeAlias = Union[AccessConfigAccessConfigConnectionCreate, AccessConfigAccessConfigFileCreate]
+class AccessConfigAccessConfigWorkbookCreate(TypedDict, total=False):
+    """workbook 创建时前端不传 workbook_id，flow 用 datasource_id 填充。"""
+
+    workbook_id: Optional[str]
+    """workbook 标识，等于 datasource_id；创建时由 flow 分配"""
+
+
+AccessConfig: TypeAlias = Union[
+    AccessConfigAccessConfigConnectionCreate, AccessConfigAccessConfigFileCreate, AccessConfigAccessConfigWorkbookCreate
+]
