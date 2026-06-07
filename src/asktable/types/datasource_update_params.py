@@ -59,6 +59,7 @@ class DatasourceUpdateParams(TypedDict, total=False):
             "bitable",
             "dap",
             "duckdb",
+            "workbook",
         ]
     ]
     """数据源引擎"""

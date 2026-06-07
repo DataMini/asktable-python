@@ -12,6 +12,7 @@ __all__ = [
     "AccessConfigAccessConfigConnectionResponse",
     "AccessConfigAccessConfigFileResponse",
     "AccessConfigAccessConfigFileResponseFile",
+    "AccessConfigAccessConfigWorkbookResponse",
 ]
 
 
@@ -61,7 +62,17 @@ class AccessConfigAccessConfigFileResponse(BaseModel):
     """数据源文件 ID 列表"""
 
 
-AccessConfig: TypeAlias = Union[AccessConfigAccessConfigConnectionResponse, AccessConfigAccessConfigFileResponse, None]
+class AccessConfigAccessConfigWorkbookResponse(BaseModel):
+    workbook_id: Optional[str] = None
+    """workbook 标识，等于 datasource_id；创建时由 flow 分配"""
+
+
+AccessConfig: TypeAlias = Union[
+    AccessConfigAccessConfigConnectionResponse,
+    AccessConfigAccessConfigFileResponse,
+    AccessConfigAccessConfigWorkbookResponse,
+    None,
+]
 
 
 class DatasourceRetrieveResponse(BaseModel):
@@ -106,6 +117,7 @@ class DatasourceRetrieveResponse(BaseModel):
         "bitable",
         "dap",
         "duckdb",
+        "workbook",
     ]
     """数据源引擎"""
 

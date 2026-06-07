@@ -132,6 +132,7 @@ class DatasourcesResource(SyncAPIResource):
             "bitable",
             "dap",
             "duckdb",
+            "workbook",
         ],
         access_config: Optional[datasource_create_params.AccessConfig] | Omit = omit,
         name: Optional[str] | Omit = omit,
@@ -251,6 +252,7 @@ class DatasourcesResource(SyncAPIResource):
                 "bitable",
                 "dap",
                 "duckdb",
+                "workbook",
             ]
         ]
         | Omit = omit,
@@ -660,6 +662,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
             "bitable",
             "dap",
             "duckdb",
+            "workbook",
         ],
         access_config: Optional[datasource_create_params.AccessConfig] | Omit = omit,
         name: Optional[str] | Omit = omit,
@@ -779,6 +782,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
                 "bitable",
                 "dap",
                 "duckdb",
+                "workbook",
             ]
         ]
         | Omit = omit,
