@@ -29,13 +29,13 @@ class ProjectModelGroupsResponseItemModels(BaseModel):
 class ProjectModelGroupsResponseItemModelConfigs(BaseModel):
     """Per-model 配置，key 为 model ID"""
 
-    capabilities: Optional[Dict[str, object]] = None
-
     context_window: Optional[int] = None
 
     display_name: Optional[str] = None
 
     enabled: Optional[bool] = None
+
+    mode_options: Optional[Dict[str, Dict[str, object]]] = None
 
     passthrough_reasoning: Optional[bool] = None
 
