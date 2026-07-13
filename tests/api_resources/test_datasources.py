@@ -34,10 +34,11 @@ class TestDatasources:
         datasource = client.datasources.create(
             engine="mysql",
             access_config={
-                "host": "192.168.0.10",
+                "credentials": "credentials",
                 "db": "at_test",
                 "db_version": "5.7",
                 "extra_config": {"ssl_mode": "bar"},
+                "host": "192.168.0.10",
                 "password": "root",
                 "port": 3306,
                 "securetunnel_id": "atst_123456",
@@ -121,6 +122,7 @@ class TestDatasources:
         datasource = client.datasources.update(
             datasource_id="datasource_id",
             access_config={
+                "credentials": "credentials",
                 "db": "at_test",
                 "db_version": "5.7",
                 "extra_config": {"ssl_mode": "bar"},
@@ -454,10 +456,11 @@ class TestAsyncDatasources:
         datasource = await async_client.datasources.create(
             engine="mysql",
             access_config={
-                "host": "192.168.0.10",
+                "credentials": "credentials",
                 "db": "at_test",
                 "db_version": "5.7",
                 "extra_config": {"ssl_mode": "bar"},
+                "host": "192.168.0.10",
                 "password": "root",
                 "port": 3306,
                 "securetunnel_id": "atst_123456",
@@ -541,6 +544,7 @@ class TestAsyncDatasources:
         datasource = await async_client.datasources.update(
             datasource_id="datasource_id",
             access_config={
+                "credentials": "credentials",
                 "db": "at_test",
                 "db_version": "5.7",
                 "extra_config": {"ssl_mode": "bar"},

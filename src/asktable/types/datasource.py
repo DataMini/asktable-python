@@ -48,7 +48,7 @@ class Datasource(BaseModel):
         "yashandb",
         "gbase8a",
         "gaussdbdws",
-        "bitable",
+        "bigquery",
         "dap",
         "duckdb",
         "workbook",
@@ -64,7 +64,7 @@ class Datasource(BaseModel):
     project_id: str
     """项目 ID"""
 
-    sync_status: Literal["processing", "success", "failed", "warning"]
+    sync_status: Literal["queued", "processing", "success", "failed", "warning"]
     """同步状态"""
 
     desc: Optional[str] = None
