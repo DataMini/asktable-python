@@ -129,7 +129,7 @@ class DatasourcesResource(SyncAPIResource):
             "yashandb",
             "gbase8a",
             "gaussdbdws",
-            "bitable",
+            "bigquery",
             "dap",
             "duckdb",
             "workbook",
@@ -249,7 +249,7 @@ class DatasourcesResource(SyncAPIResource):
                 "yashandb",
                 "gbase8a",
                 "gaussdbdws",
-                "bitable",
+                "bigquery",
                 "dap",
                 "duckdb",
                 "workbook",
@@ -262,7 +262,7 @@ class DatasourcesResource(SyncAPIResource):
         sample_questions: Optional[SequenceNotStr[str]] | Omit = omit,
         schema_count: Optional[int] | Omit = omit,
         sync_error: Optional[Dict[str, object]] | Omit = omit,
-        sync_status: Optional[Literal["processing", "success", "failed", "warning"]] | Omit = omit,
+        sync_status: Optional[Literal["queued", "processing", "success", "failed", "warning"]] | Omit = omit,
         table_count: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -659,7 +659,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
             "yashandb",
             "gbase8a",
             "gaussdbdws",
-            "bitable",
+            "bigquery",
             "dap",
             "duckdb",
             "workbook",
@@ -779,7 +779,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
                 "yashandb",
                 "gbase8a",
                 "gaussdbdws",
-                "bitable",
+                "bigquery",
                 "dap",
                 "duckdb",
                 "workbook",
@@ -792,7 +792,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         sample_questions: Optional[SequenceNotStr[str]] | Omit = omit,
         schema_count: Optional[int] | Omit = omit,
         sync_error: Optional[Dict[str, object]] | Omit = omit,
-        sync_status: Optional[Literal["processing", "success", "failed", "warning"]] | Omit = omit,
+        sync_status: Optional[Literal["queued", "processing", "success", "failed", "warning"]] | Omit = omit,
         table_count: Optional[int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

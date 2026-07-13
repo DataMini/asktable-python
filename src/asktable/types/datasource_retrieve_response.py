@@ -17,9 +17,6 @@ __all__ = [
 
 
 class AccessConfigAccessConfigConnectionResponse(BaseModel):
-    host: str
-    """数据库地址"""
-
     atst_link_id: Optional[str] = None
     """安全隧道链接 ID"""
 
@@ -31,6 +28,9 @@ class AccessConfigAccessConfigConnectionResponse(BaseModel):
 
     extra_config: Optional[Dict[str, object]] = None
     """额外配置"""
+
+    host: Optional[str] = None
+    """数据库地址"""
 
     port: Optional[int] = None
     """数据库端口"""
@@ -114,7 +114,7 @@ class DatasourceRetrieveResponse(BaseModel):
         "yashandb",
         "gbase8a",
         "gaussdbdws",
-        "bitable",
+        "bigquery",
         "dap",
         "duckdb",
         "workbook",
@@ -130,7 +130,7 @@ class DatasourceRetrieveResponse(BaseModel):
     project_id: str
     """项目 ID"""
 
-    sync_status: Literal["processing", "success", "failed", "warning"]
+    sync_status: Literal["queued", "processing", "success", "failed", "warning"]
     """同步状态"""
 
     access_config: Optional[AccessConfig] = None

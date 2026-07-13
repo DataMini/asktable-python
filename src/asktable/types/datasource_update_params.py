@@ -56,7 +56,7 @@ class DatasourceUpdateParams(TypedDict, total=False):
             "yashandb",
             "gbase8a",
             "gaussdbdws",
-            "bitable",
+            "bigquery",
             "dap",
             "duckdb",
             "workbook",
@@ -82,7 +82,7 @@ class DatasourceUpdateParams(TypedDict, total=False):
     sync_error: Optional[Dict[str, object]]
     """同步错误信息"""
 
-    sync_status: Optional[Literal["processing", "success", "failed", "warning"]]
+    sync_status: Optional[Literal["queued", "processing", "success", "failed", "warning"]]
     """同步状态"""
 
     table_count: Optional[int]
@@ -90,6 +90,9 @@ class DatasourceUpdateParams(TypedDict, total=False):
 
 
 class AccessConfigAccessConfigConnectionUpdate(TypedDict, total=False):
+    credentials: Optional[str]
+    """数据库凭证 JSON"""
+
     db: Optional[str]
     """数据库名称"""
 

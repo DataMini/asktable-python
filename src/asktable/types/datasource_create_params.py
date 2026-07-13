@@ -50,7 +50,7 @@ class DatasourceCreateParams(TypedDict, total=False):
             "yashandb",
             "gbase8a",
             "gaussdbdws",
-            "bitable",
+            "bigquery",
             "dap",
             "duckdb",
             "workbook",
@@ -66,8 +66,8 @@ class DatasourceCreateParams(TypedDict, total=False):
 
 
 class AccessConfigAccessConfigConnectionCreate(TypedDict, total=False):
-    host: Required[str]
-    """数据库地址"""
+    credentials: Optional[str]
+    """数据库凭证 JSON"""
 
     db: Optional[str]
     """数据库名称"""
@@ -78,10 +78,13 @@ class AccessConfigAccessConfigConnectionCreate(TypedDict, total=False):
     extra_config: Optional[Dict[str, object]]
     """额外配置"""
 
+    host: Optional[str]
+    """数据库地址"""
+
     password: Optional[str]
     """数据库密码"""
 
-    port: int
+    port: Optional[int]
     """数据库端口"""
 
     securetunnel_id: Optional[str]
