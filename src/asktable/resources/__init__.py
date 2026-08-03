@@ -40,14 +40,6 @@ from .polish import (
     PolishResourceWithStreamingResponse,
     AsyncPolishResourceWithStreamingResponse,
 )
-from .scores import (
-    ScoresResource,
-    AsyncScoresResource,
-    ScoresResourceWithRawResponse,
-    AsyncScoresResourceWithRawResponse,
-    ScoresResourceWithStreamingResponse,
-    AsyncScoresResourceWithStreamingResponse,
-)
 from .project import (
     ProjectResource,
     AsyncProjectResource,
@@ -72,14 +64,6 @@ from .datasources import (
     DatasourcesResourceWithStreamingResponse,
     AsyncDatasourcesResourceWithStreamingResponse,
 )
-from .integration import (
-    IntegrationResource,
-    AsyncIntegrationResource,
-    IntegrationResourceWithRawResponse,
-    AsyncIntegrationResourceWithRawResponse,
-    IntegrationResourceWithStreamingResponse,
-    AsyncIntegrationResourceWithStreamingResponse,
-)
 
 __all__ = [
     "SysResource",
@@ -100,24 +84,12 @@ __all__ = [
     "AsyncAuthResourceWithRawResponse",
     "AuthResourceWithStreamingResponse",
     "AsyncAuthResourceWithStreamingResponse",
-    "IntegrationResource",
-    "AsyncIntegrationResource",
-    "IntegrationResourceWithRawResponse",
-    "AsyncIntegrationResourceWithRawResponse",
-    "IntegrationResourceWithStreamingResponse",
-    "AsyncIntegrationResourceWithStreamingResponse",
     "ProjectResource",
     "AsyncProjectResource",
     "ProjectResourceWithRawResponse",
     "AsyncProjectResourceWithRawResponse",
     "ProjectResourceWithStreamingResponse",
     "AsyncProjectResourceWithStreamingResponse",
-    "ScoresResource",
-    "AsyncScoresResource",
-    "ScoresResourceWithRawResponse",
-    "AsyncScoresResourceWithRawResponse",
-    "ScoresResourceWithStreamingResponse",
-    "AsyncScoresResourceWithStreamingResponse",
     "FilesResource",
     "AsyncFilesResource",
     "FilesResourceWithRawResponse",

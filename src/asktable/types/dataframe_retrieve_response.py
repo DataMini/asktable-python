@@ -41,6 +41,3 @@ class DataframeRetrieveResponse(BaseModel):
 
     content: Optional[List[Dict[str, object]]] = None
     """内容"""
-
-    msg_id: Optional[str] = None
-    """消息 ID"""

@@ -41,7 +41,6 @@ class TestDatasources:
                 "host": "192.168.0.10",
                 "password": "root",
                 "port": 3306,
-                "securetunnel_id": "atst_123456",
                 "user": "root",
             },
             name="用户库",
@@ -129,7 +128,6 @@ class TestDatasources:
                 "host": "192.168.0.10",
                 "password": "root",
                 "port": 3306,
-                "securetunnel_id": "atst_123456",
                 "user": "root",
             },
             desc="数据源描述",
@@ -137,6 +135,7 @@ class TestDatasources:
             field_count=1,
             meta_status="available",
             name="用户库",
+            query_timeout_seconds=1,
             sample_questions=["示例问题1", "示例问题2"],
             schema_count=1,
             sync_error={"message": "bar"},
@@ -394,6 +393,7 @@ class TestDatasources:
             schema_name="schema_name",
             table_name="table_name",
             identifiable_type="plain",
+            semantic_type="PK",
             visibility=True,
         )
         assert_matches_type(object, datasource, path=["response"])
@@ -463,7 +463,6 @@ class TestAsyncDatasources:
                 "host": "192.168.0.10",
                 "password": "root",
                 "port": 3306,
-                "securetunnel_id": "atst_123456",
                 "user": "root",
             },
             name="用户库",
@@ -551,7 +550,6 @@ class TestAsyncDatasources:
                 "host": "192.168.0.10",
                 "password": "root",
                 "port": 3306,
-                "securetunnel_id": "atst_123456",
                 "user": "root",
             },
             desc="数据源描述",
@@ -559,6 +557,7 @@ class TestAsyncDatasources:
             field_count=1,
             meta_status="available",
             name="用户库",
+            query_timeout_seconds=1,
             sample_questions=["示例问题1", "示例问题2"],
             schema_count=1,
             sync_error={"message": "bar"},
@@ -816,6 +815,7 @@ class TestAsyncDatasources:
             schema_name="schema_name",
             table_name="table_name",
             identifiable_type="plain",
+            semantic_type="PK",
             visibility=True,
         )
         assert_matches_type(object, datasource, path=["response"])

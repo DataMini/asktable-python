@@ -46,10 +46,21 @@ class TestMeta:
                                         "origin_desc": "origin_desc",
                                         "data_type": "data_type",
                                         "identifiable_type": "plain",
+                                        "is_nullable": True,
+                                        "raw_data_type": "raw_data_type",
                                         "sample_data": "sample_data",
                                         "visibility": True,
                                     }
                                 },
+                                "foreign_keys": [
+                                    {
+                                        "constrained_columns": ["string"],
+                                        "referred_columns": ["string"],
+                                        "referred_table": "referred_table",
+                                        "referred_schema": "referred_schema",
+                                    }
+                                ],
+                                "primary_key": ["string"],
                                 "table_type": "table",
                             }
                         },
@@ -157,10 +168,21 @@ class TestMeta:
                                         "origin_desc": "origin_desc",
                                         "data_type": "data_type",
                                         "identifiable_type": "plain",
+                                        "is_nullable": True,
+                                        "raw_data_type": "raw_data_type",
                                         "sample_data": "sample_data",
                                         "visibility": True,
                                     }
                                 },
+                                "foreign_keys": [
+                                    {
+                                        "constrained_columns": ["string"],
+                                        "referred_columns": ["string"],
+                                        "referred_table": "referred_table",
+                                        "referred_schema": "referred_schema",
+                                    }
+                                ],
+                                "primary_key": ["string"],
                                 "table_type": "table",
                             }
                         },
@@ -279,10 +301,21 @@ class TestAsyncMeta:
                                         "origin_desc": "origin_desc",
                                         "data_type": "data_type",
                                         "identifiable_type": "plain",
+                                        "is_nullable": True,
+                                        "raw_data_type": "raw_data_type",
                                         "sample_data": "sample_data",
                                         "visibility": True,
                                     }
                                 },
+                                "foreign_keys": [
+                                    {
+                                        "constrained_columns": ["string"],
+                                        "referred_columns": ["string"],
+                                        "referred_table": "referred_table",
+                                        "referred_schema": "referred_schema",
+                                    }
+                                ],
+                                "primary_key": ["string"],
                                 "table_type": "table",
                             }
                         },
@@ -390,10 +423,21 @@ class TestAsyncMeta:
                                         "origin_desc": "origin_desc",
                                         "data_type": "data_type",
                                         "identifiable_type": "plain",
+                                        "is_nullable": True,
+                                        "raw_data_type": "raw_data_type",
                                         "sample_data": "sample_data",
                                         "visibility": True,
                                     }
                                 },
+                                "foreign_keys": [
+                                    {
+                                        "constrained_columns": ["string"],
+                                        "referred_columns": ["string"],
+                                        "referred_table": "referred_table",
+                                        "referred_schema": "referred_schema",
+                                    }
+                                ],
+                                "primary_key": ["string"],
                                 "table_type": "table",
                             }
                         },
