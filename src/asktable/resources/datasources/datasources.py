@@ -259,6 +259,7 @@ class DatasourcesResource(SyncAPIResource):
         field_count: Optional[int] | Omit = omit,
         meta_status: Optional[Literal["unavailable", "available"]] | Omit = omit,
         name: Optional[str] | Omit = omit,
+        query_timeout_seconds: Optional[int] | Omit = omit,
         sample_questions: Optional[SequenceNotStr[str]] | Omit = omit,
         schema_count: Optional[int] | Omit = omit,
         sync_error: Optional[Dict[str, object]] | Omit = omit,
@@ -286,6 +287,8 @@ class DatasourcesResource(SyncAPIResource):
           meta_status: 数据源可用性
 
           name: 数据源的名称
+
+          query_timeout_seconds: 查询超时秒数；空值表示继承系统配置
 
           sample_questions: 示例问题
 
@@ -317,6 +320,7 @@ class DatasourcesResource(SyncAPIResource):
                     "field_count": field_count,
                     "meta_status": meta_status,
                     "name": name,
+                    "query_timeout_seconds": query_timeout_seconds,
                     "sample_questions": sample_questions,
                     "schema_count": schema_count,
                     "sync_error": sync_error,
@@ -534,6 +538,64 @@ class DatasourcesResource(SyncAPIResource):
             Literal["plain", "person_name", "email", "ssn", "id", "phone", "address", "company", "bank_card"]
         ]
         | Omit = omit,
+        semantic_type: Optional[
+            Literal[
+                "PK",
+                "FK",
+                "Quantity",
+                "Share",
+                "Percentage",
+                "Currency",
+                "Income",
+                "Discount",
+                "Price",
+                "GrossMargin",
+                "Cost",
+                "Score",
+                "Duration",
+                "Latitude",
+                "Longitude",
+                "City",
+                "State",
+                "Country",
+                "ZipCode",
+                "Email",
+                "URL",
+                "ImageURL",
+                "AvatarURL",
+                "Category",
+                "Enum",
+                "Name",
+                "Title",
+                "Description",
+                "Comment",
+                "SerializedJSON",
+                "IPAddress",
+                "CreationTimestamp",
+                "CreationTime",
+                "CreationDate",
+                "JoinTimestamp",
+                "JoinTime",
+                "JoinDate",
+                "CancelationTimestamp",
+                "CancelationTime",
+                "CancelationDate",
+                "DeletionTimestamp",
+                "DeletionTime",
+                "DeletionDate",
+                "UpdatedTimestamp",
+                "UpdatedTime",
+                "UpdatedDate",
+                "Birthdate",
+                "Source",
+                "Author",
+                "Owner",
+                "Company",
+                "Product",
+                "Subscription",
+            ]
+        ]
+        | Omit = omit,
         visibility: Optional[bool] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -547,6 +609,11 @@ class DatasourcesResource(SyncAPIResource):
 
         Args:
           identifiable_type: identifiable type
+
+          semantic_type: 字段语义类型，协议照抄 Metabase（值 = :type/ 前缀去除后的名字）。
+
+              PK/FK 是关系类型，与语义共用一列（Metabase 同款）：来自同步元数据，非推断产物
+              ，classifier 一律跳过。其余值由 classifier 推断或人工设置。
 
           visibility: field visibility
 
@@ -565,6 +632,7 @@ class DatasourcesResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "identifiable_type": identifiable_type,
+                    "semantic_type": semantic_type,
                     "visibility": visibility,
                 },
                 datasource_update_field_params.DatasourceUpdateFieldParams,
@@ -789,6 +857,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
         field_count: Optional[int] | Omit = omit,
         meta_status: Optional[Literal["unavailable", "available"]] | Omit = omit,
         name: Optional[str] | Omit = omit,
+        query_timeout_seconds: Optional[int] | Omit = omit,
         sample_questions: Optional[SequenceNotStr[str]] | Omit = omit,
         schema_count: Optional[int] | Omit = omit,
         sync_error: Optional[Dict[str, object]] | Omit = omit,
@@ -816,6 +885,8 @@ class AsyncDatasourcesResource(AsyncAPIResource):
           meta_status: 数据源可用性
 
           name: 数据源的名称
+
+          query_timeout_seconds: 查询超时秒数；空值表示继承系统配置
 
           sample_questions: 示例问题
 
@@ -847,6 +918,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
                     "field_count": field_count,
                     "meta_status": meta_status,
                     "name": name,
+                    "query_timeout_seconds": query_timeout_seconds,
                     "sample_questions": sample_questions,
                     "schema_count": schema_count,
                     "sync_error": sync_error,
@@ -1064,6 +1136,64 @@ class AsyncDatasourcesResource(AsyncAPIResource):
             Literal["plain", "person_name", "email", "ssn", "id", "phone", "address", "company", "bank_card"]
         ]
         | Omit = omit,
+        semantic_type: Optional[
+            Literal[
+                "PK",
+                "FK",
+                "Quantity",
+                "Share",
+                "Percentage",
+                "Currency",
+                "Income",
+                "Discount",
+                "Price",
+                "GrossMargin",
+                "Cost",
+                "Score",
+                "Duration",
+                "Latitude",
+                "Longitude",
+                "City",
+                "State",
+                "Country",
+                "ZipCode",
+                "Email",
+                "URL",
+                "ImageURL",
+                "AvatarURL",
+                "Category",
+                "Enum",
+                "Name",
+                "Title",
+                "Description",
+                "Comment",
+                "SerializedJSON",
+                "IPAddress",
+                "CreationTimestamp",
+                "CreationTime",
+                "CreationDate",
+                "JoinTimestamp",
+                "JoinTime",
+                "JoinDate",
+                "CancelationTimestamp",
+                "CancelationTime",
+                "CancelationDate",
+                "DeletionTimestamp",
+                "DeletionTime",
+                "DeletionDate",
+                "UpdatedTimestamp",
+                "UpdatedTime",
+                "UpdatedDate",
+                "Birthdate",
+                "Source",
+                "Author",
+                "Owner",
+                "Company",
+                "Product",
+                "Subscription",
+            ]
+        ]
+        | Omit = omit,
         visibility: Optional[bool] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1077,6 +1207,11 @@ class AsyncDatasourcesResource(AsyncAPIResource):
 
         Args:
           identifiable_type: identifiable type
+
+          semantic_type: 字段语义类型，协议照抄 Metabase（值 = :type/ 前缀去除后的名字）。
+
+              PK/FK 是关系类型，与语义共用一列（Metabase 同款）：来自同步元数据，非推断产物
+              ，classifier 一律跳过。其余值由 classifier 推断或人工设置。
 
           visibility: field visibility
 
@@ -1095,6 +1230,7 @@ class AsyncDatasourcesResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "identifiable_type": identifiable_type,
+                    "semantic_type": semantic_type,
                     "visibility": visibility,
                 },
                 datasource_update_field_params.DatasourceUpdateFieldParams,

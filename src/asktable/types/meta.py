@@ -50,8 +50,14 @@ class SchemasTablesFields(BaseModel):
     origin_desc: str
     """field description from database"""
 
+    avg_length: Optional[float] = None
+    """sample average text length"""
+
     data_type: Optional[str] = None
     """field data type"""
+
+    distinct_count: Optional[int] = None
+    """sample distinct count"""
 
     identifiable_type: Optional[
         Literal["plain", "person_name", "email", "ssn", "id", "phone", "address", "company", "bank_card"]
@@ -61,8 +67,86 @@ class SchemasTablesFields(BaseModel):
     index: Optional[SchemasTablesFieldsIndex] = None
     """索引信息"""
 
+    is_nullable: Optional[bool] = None
+    """column nullability"""
+
+    max_value: Optional[str] = None
+    """sample maximum or latest"""
+
+    min_value: Optional[str] = None
+    """sample minimum or earliest"""
+
+    nil_pct: Optional[float] = None
+    """sample null ratio"""
+
+    raw_data_type: Optional[str] = None
+    """original DDL type string"""
+
     sample_data: Optional[str] = None
     """field sample data"""
+
+    semantic_type: Optional[
+        Literal[
+            "PK",
+            "FK",
+            "Quantity",
+            "Share",
+            "Percentage",
+            "Currency",
+            "Income",
+            "Discount",
+            "Price",
+            "GrossMargin",
+            "Cost",
+            "Score",
+            "Duration",
+            "Latitude",
+            "Longitude",
+            "City",
+            "State",
+            "Country",
+            "ZipCode",
+            "Email",
+            "URL",
+            "ImageURL",
+            "AvatarURL",
+            "Category",
+            "Enum",
+            "Name",
+            "Title",
+            "Description",
+            "Comment",
+            "SerializedJSON",
+            "IPAddress",
+            "CreationTimestamp",
+            "CreationTime",
+            "CreationDate",
+            "JoinTimestamp",
+            "JoinTime",
+            "JoinDate",
+            "CancelationTimestamp",
+            "CancelationTime",
+            "CancelationDate",
+            "DeletionTimestamp",
+            "DeletionTime",
+            "DeletionDate",
+            "UpdatedTimestamp",
+            "UpdatedTime",
+            "UpdatedDate",
+            "Birthdate",
+            "Source",
+            "Author",
+            "Owner",
+            "Company",
+            "Product",
+            "Subscription",
+        ]
+    ] = None
+    """字段语义类型，协议照抄 Metabase（值 = :type/ 前缀去除后的名字）。
+
+    PK/FK 是关系类型，与语义共用一列（Metabase 同款）：来自同步元数据，非推断产物
+    ，classifier 一律跳过。其余值由 classifier 推断或人工设置。
+    """
 
     visibility: Optional[bool] = None
     """field visibility"""
@@ -85,6 +169,12 @@ class SchemasTables(BaseModel):
 
     origin_desc: str
     """table description from database"""
+
+    profiled_at: Optional[datetime] = None
+    """last profiling time"""
+
+    row_count: Optional[int] = None
+    """sampled row count"""
 
     table_type: Optional[Literal["table", "view"]] = None
     """table type"""

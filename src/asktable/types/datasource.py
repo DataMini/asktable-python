@@ -76,6 +76,9 @@ class Datasource(BaseModel):
     name: Optional[str] = None
     """数据源的名称"""
 
+    query_timeout_seconds: Optional[int] = None
+    """数据源查询超时覆盖值"""
+
     sample_questions: Optional[List[str]] = None
     """示例问题"""
 

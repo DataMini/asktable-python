@@ -17,9 +17,6 @@ __all__ = [
 
 
 class AccessConfigAccessConfigConnectionResponse(BaseModel):
-    atst_link_id: Optional[str] = None
-    """安全隧道链接 ID"""
-
     db: Optional[str] = None
     """数据库名称"""
 
@@ -34,15 +31,6 @@ class AccessConfigAccessConfigConnectionResponse(BaseModel):
 
     port: Optional[int] = None
     """数据库端口"""
-
-    proxy_host: Optional[str] = None
-    """数据源代理地址"""
-
-    proxy_port: Optional[int] = None
-    """数据源代理端口"""
-
-    securetunnel_id: Optional[str] = None
-    """安全隧道 ID"""
 
     user: Optional[str] = None
     """数据库用户名"""
@@ -144,6 +132,9 @@ class DatasourceRetrieveResponse(BaseModel):
 
     name: Optional[str] = None
     """数据源的名称"""
+
+    query_timeout_seconds: Optional[int] = None
+    """数据源查询超时覆盖值"""
 
     sample_questions: Optional[List[str]] = None
     """示例问题"""

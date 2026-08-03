@@ -7,7 +7,6 @@ from .index import Index as Index
 from .shared import Policy as Policy
 from .datasource import Datasource as Datasource
 from .auth_me_response import AuthMeResponse as AuthMeResponse
-from .score_create_params import ScoreCreateParams as ScoreCreateParams
 from .polish_create_params import PolishCreateParams as PolishCreateParams
 from .project_update_params import ProjectUpdateParams as ProjectUpdateParams
 from .datasource_list_params import DatasourceListParams as DatasourceListParams
@@ -20,7 +19,6 @@ from .datasource_add_file_params import DatasourceAddFileParams as DatasourceAdd
 from .dataframe_retrieve_response import DataframeRetrieveResponse as DataframeRetrieveResponse
 from .datasource_retrieve_response import DatasourceRetrieveResponse as DatasourceRetrieveResponse
 from .datasource_update_field_params import DatasourceUpdateFieldParams as DatasourceUpdateFieldParams
-from .integration_excel_csv_ask_params import IntegrationExcelCsvAskParams as IntegrationExcelCsvAskParams
 from .project_list_model_groups_response import ProjectListModelGroupsResponse as ProjectListModelGroupsResponse
 from .datasource_retrieve_runtime_meta_response import (
     DatasourceRetrieveRuntimeMetaResponse as DatasourceRetrieveRuntimeMetaResponse,

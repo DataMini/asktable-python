@@ -35,16 +35,14 @@ from ._base_client import (
 )
 
 if TYPE_CHECKING:
-    from .resources import sys, auth, user, files, polish, scores, project, dataframes, datasources, integration
+    from .resources import sys, auth, user, files, polish, project, dataframes, datasources
     from .resources.auth import AuthResource, AsyncAuthResource
     from .resources.files import FilesResource, AsyncFilesResource
     from .resources.polish import PolishResource, AsyncPolishResource
-    from .resources.scores import ScoresResource, AsyncScoresResource
     from .resources.project import ProjectResource, AsyncProjectResource
     from .resources.sys.sys import SysResource, AsyncSysResource
     from .resources.user.user import UserResource, AsyncUserResource
     from .resources.dataframes import DataframesResource, AsyncDataframesResource
-    from .resources.integration import IntegrationResource, AsyncIntegrationResource
     from .resources.datasources.datasources import DatasourcesResource, AsyncDatasourcesResource
 
 __all__ = [
@@ -144,25 +142,11 @@ class Asktable(SyncAPIClient):
         return AuthResource(self)
 
     @cached_property
-    def integration(self) -> IntegrationResource:
-        """与第三方平台集成"""
-        from .resources.integration import IntegrationResource
-
-        return IntegrationResource(self)
-
-    @cached_property
     def project(self) -> ProjectResource:
         """我的项目"""
         from .resources.project import ProjectResource
 
         return ProjectResource(self)
-
-    @cached_property
-    def scores(self) -> ScoresResource:
-        """评分"""
-        from .resources.scores import ScoresResource
-
-        return ScoresResource(self)
 
     @cached_property
     def files(self) -> FilesResource:
@@ -388,25 +372,11 @@ class AsyncAsktable(AsyncAPIClient):
         return AsyncAuthResource(self)
 
     @cached_property
-    def integration(self) -> AsyncIntegrationResource:
-        """与第三方平台集成"""
-        from .resources.integration import AsyncIntegrationResource
-
-        return AsyncIntegrationResource(self)
-
-    @cached_property
     def project(self) -> AsyncProjectResource:
         """我的项目"""
         from .resources.project import AsyncProjectResource
 
         return AsyncProjectResource(self)
-
-    @cached_property
-    def scores(self) -> AsyncScoresResource:
-        """评分"""
-        from .resources.scores import AsyncScoresResource
-
-        return AsyncScoresResource(self)
 
     @cached_property
     def files(self) -> AsyncFilesResource:
@@ -574,25 +544,11 @@ class AsktableWithRawResponse:
         return AuthResourceWithRawResponse(self._client.auth)
 
     @cached_property
-    def integration(self) -> integration.IntegrationResourceWithRawResponse:
-        """与第三方平台集成"""
-        from .resources.integration import IntegrationResourceWithRawResponse
-
-        return IntegrationResourceWithRawResponse(self._client.integration)
-
-    @cached_property
     def project(self) -> project.ProjectResourceWithRawResponse:
         """我的项目"""
         from .resources.project import ProjectResourceWithRawResponse
 
         return ProjectResourceWithRawResponse(self._client.project)
-
-    @cached_property
-    def scores(self) -> scores.ScoresResourceWithRawResponse:
-        """评分"""
-        from .resources.scores import ScoresResourceWithRawResponse
-
-        return ScoresResourceWithRawResponse(self._client.scores)
 
     @cached_property
     def files(self) -> files.FilesResourceWithRawResponse:
@@ -648,25 +604,11 @@ class AsyncAsktableWithRawResponse:
         return AsyncAuthResourceWithRawResponse(self._client.auth)
 
     @cached_property
-    def integration(self) -> integration.AsyncIntegrationResourceWithRawResponse:
-        """与第三方平台集成"""
-        from .resources.integration import AsyncIntegrationResourceWithRawResponse
-
-        return AsyncIntegrationResourceWithRawResponse(self._client.integration)
-
-    @cached_property
     def project(self) -> project.AsyncProjectResourceWithRawResponse:
         """我的项目"""
         from .resources.project import AsyncProjectResourceWithRawResponse
 
         return AsyncProjectResourceWithRawResponse(self._client.project)
-
-    @cached_property
-    def scores(self) -> scores.AsyncScoresResourceWithRawResponse:
-        """评分"""
-        from .resources.scores import AsyncScoresResourceWithRawResponse
-
-        return AsyncScoresResourceWithRawResponse(self._client.scores)
 
     @cached_property
     def files(self) -> files.AsyncFilesResourceWithRawResponse:
@@ -722,25 +664,11 @@ class AsktableWithStreamedResponse:
         return AuthResourceWithStreamingResponse(self._client.auth)
 
     @cached_property
-    def integration(self) -> integration.IntegrationResourceWithStreamingResponse:
-        """与第三方平台集成"""
-        from .resources.integration import IntegrationResourceWithStreamingResponse
-
-        return IntegrationResourceWithStreamingResponse(self._client.integration)
-
-    @cached_property
     def project(self) -> project.ProjectResourceWithStreamingResponse:
         """我的项目"""
         from .resources.project import ProjectResourceWithStreamingResponse
 
         return ProjectResourceWithStreamingResponse(self._client.project)
-
-    @cached_property
-    def scores(self) -> scores.ScoresResourceWithStreamingResponse:
-        """评分"""
-        from .resources.scores import ScoresResourceWithStreamingResponse
-
-        return ScoresResourceWithStreamingResponse(self._client.scores)
 
     @cached_property
     def files(self) -> files.FilesResourceWithStreamingResponse:
@@ -796,25 +724,11 @@ class AsyncAsktableWithStreamedResponse:
         return AsyncAuthResourceWithStreamingResponse(self._client.auth)
 
     @cached_property
-    def integration(self) -> integration.AsyncIntegrationResourceWithStreamingResponse:
-        """与第三方平台集成"""
-        from .resources.integration import AsyncIntegrationResourceWithStreamingResponse
-
-        return AsyncIntegrationResourceWithStreamingResponse(self._client.integration)
-
-    @cached_property
     def project(self) -> project.AsyncProjectResourceWithStreamingResponse:
         """我的项目"""
         from .resources.project import AsyncProjectResourceWithStreamingResponse
 
         return AsyncProjectResourceWithStreamingResponse(self._client.project)
-
-    @cached_property
-    def scores(self) -> scores.AsyncScoresResourceWithStreamingResponse:
-        """评分"""
-        from .resources.scores import AsyncScoresResourceWithStreamingResponse
-
-        return AsyncScoresResourceWithStreamingResponse(self._client.scores)
 
     @cached_property
     def files(self) -> files.AsyncFilesResourceWithStreamingResponse:

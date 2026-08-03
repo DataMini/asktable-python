@@ -73,6 +73,9 @@ class DatasourceUpdateParams(TypedDict, total=False):
     name: Optional[str]
     """数据源的名称"""
 
+    query_timeout_seconds: Optional[int]
+    """查询超时秒数；空值表示继承系统配置"""
+
     sample_questions: Optional[SequenceNotStr[str]]
     """示例问题"""
 
@@ -110,9 +113,6 @@ class AccessConfigAccessConfigConnectionUpdate(TypedDict, total=False):
 
     port: Optional[int]
     """数据库端口"""
-
-    securetunnel_id: Optional[str]
-    """安全隧道 ID"""
 
     user: Optional[str]
     """数据库用户名"""

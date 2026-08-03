@@ -87,9 +87,6 @@ class AccessConfigAccessConfigConnectionCreate(TypedDict, total=False):
     port: Optional[int]
     """数据库端口"""
 
-    securetunnel_id: Optional[str]
-    """安全隧道 ID"""
-
     user: Optional[str]
     """数据库用户名"""
 
