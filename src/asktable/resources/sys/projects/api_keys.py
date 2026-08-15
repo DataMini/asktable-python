@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Dict, Union, Optional
+from datetime import datetime
 from typing_extensions import Literal
 
 import httpx
@@ -53,6 +54,8 @@ class APIKeysResource(SyncAPIResource):
         project_id: str,
         *,
         ak_role: Literal["sys", "admin", "asker"],
+        name: str,
+        expires_at: Union[str, datetime, None] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -66,6 +69,10 @@ class APIKeysResource(SyncAPIResource):
         Args:
           ak_role: API key 的角色
 
+          name: API Key 名称
+
+          expires_at: 过期时间；空表示不过期
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -78,7 +85,14 @@ class APIKeysResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `project_id` but received {project_id!r}")
         return self._post(
             path_template("/v1/sys/projects/{project_id}/api-keys", project_id=project_id),
-            body=maybe_transform({"ak_role": ak_role}, api_key_create_params.APIKeyCreateParams),
+            body=maybe_transform(
+                {
+                    "ak_role": ak_role,
+                    "name": name,
+                    "expires_at": expires_at,
+                },
+                api_key_create_params.APIKeyCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -237,6 +251,8 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         project_id: str,
         *,
         ak_role: Literal["sys", "admin", "asker"],
+        name: str,
+        expires_at: Union[str, datetime, None] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -250,6 +266,10 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         Args:
           ak_role: API key 的角色
 
+          name: API Key 名称
+
+          expires_at: 过期时间；空表示不过期
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -262,7 +282,14 @@ class AsyncAPIKeysResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `project_id` but received {project_id!r}")
         return await self._post(
             path_template("/v1/sys/projects/{project_id}/api-keys", project_id=project_id),
-            body=await async_maybe_transform({"ak_role": ak_role}, api_key_create_params.APIKeyCreateParams),
+            body=await async_maybe_transform(
+                {
+                    "ak_role": ak_role,
+                    "name": name,
+                    "expires_at": expires_at,
+                },
+                api_key_create_params.APIKeyCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

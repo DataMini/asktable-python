@@ -15,7 +15,7 @@ from .api_keys import (
     AsyncAPIKeysResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import path_template, maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, strip_not_given, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -66,6 +66,7 @@ class ProjectsResource(SyncAPIResource):
         self,
         *,
         name: str,
+        x_org_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -87,6 +88,7 @@ class ProjectsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"X-Org-Id": x_org_id}), **(extra_headers or {})}
         return self._post(
             "/v1/sys/projects",
             body=maybe_transform({"name": name}, project_create_params.ProjectCreateParams),
@@ -133,7 +135,6 @@ class ProjectsResource(SyncAPIResource):
         self,
         project_id: str,
         *,
-        is_public: Optional[bool] | Omit = omit,
         llm_model_group: Optional[str] | Omit = omit,
         locked: Optional[bool] | Omit = omit,
         name: Optional[str] | Omit = omit,
@@ -148,8 +149,6 @@ class ProjectsResource(SyncAPIResource):
         Update Project
 
         Args:
-          is_public: 是否公开项目
-
           llm_model_group: 模型组
 
           locked: 是否锁定
@@ -170,7 +169,6 @@ class ProjectsResource(SyncAPIResource):
             path_template("/v1/sys/projects/{project_id}", project_id=project_id),
             body=maybe_transform(
                 {
-                    "is_public": is_public,
                     "llm_model_group": llm_model_group,
                     "locked": locked,
                     "name": name,
@@ -304,6 +302,7 @@ class ProjectsResource(SyncAPIResource):
         self,
         *,
         body: Dict[str, object],
+        x_org_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -323,6 +322,7 @@ class ProjectsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"X-Org-Id": x_org_id}), **(extra_headers or {})}
         return self._post(
             "/v1/sys/projects/import",
             body=maybe_transform(body, project_import_params.ProjectImportParams),
@@ -383,6 +383,7 @@ class AsyncProjectsResource(AsyncAPIResource):
         self,
         *,
         name: str,
+        x_org_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -404,6 +405,7 @@ class AsyncProjectsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"X-Org-Id": x_org_id}), **(extra_headers or {})}
         return await self._post(
             "/v1/sys/projects",
             body=await async_maybe_transform({"name": name}, project_create_params.ProjectCreateParams),
@@ -450,7 +452,6 @@ class AsyncProjectsResource(AsyncAPIResource):
         self,
         project_id: str,
         *,
-        is_public: Optional[bool] | Omit = omit,
         llm_model_group: Optional[str] | Omit = omit,
         locked: Optional[bool] | Omit = omit,
         name: Optional[str] | Omit = omit,
@@ -465,8 +466,6 @@ class AsyncProjectsResource(AsyncAPIResource):
         Update Project
 
         Args:
-          is_public: 是否公开项目
-
           llm_model_group: 模型组
 
           locked: 是否锁定
@@ -487,7 +486,6 @@ class AsyncProjectsResource(AsyncAPIResource):
             path_template("/v1/sys/projects/{project_id}", project_id=project_id),
             body=await async_maybe_transform(
                 {
-                    "is_public": is_public,
                     "llm_model_group": llm_model_group,
                     "locked": locked,
                     "name": name,
@@ -621,6 +619,7 @@ class AsyncProjectsResource(AsyncAPIResource):
         self,
         *,
         body: Dict[str, object],
+        x_org_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -640,6 +639,7 @@ class AsyncProjectsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {**strip_not_given({"X-Org-Id": x_org_id}), **(extra_headers or {})}
         return await self._post(
             "/v1/sys/projects/import",
             body=await async_maybe_transform(body, project_import_params.ProjectImportParams),

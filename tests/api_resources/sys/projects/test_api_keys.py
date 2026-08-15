@@ -9,6 +9,7 @@ import pytest
 
 from asktable import Asktable, AsyncAsktable
 from tests.utils import assert_matches_type
+from asktable._utils import parse_datetime
 from asktable.types.sys.projects import (
     APIKeyListResponse,
     APIKeyCreateResponse,
@@ -26,6 +27,17 @@ class TestAPIKeys:
         api_key = client.sys.projects.api_keys.create(
             project_id="project_id",
             ak_role="admin",
+            name="x",
+        )
+        assert_matches_type(APIKeyCreateResponse, api_key, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params(self, client: Asktable) -> None:
+        api_key = client.sys.projects.api_keys.create(
+            project_id="project_id",
+            ak_role="admin",
+            name="x",
+            expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
         assert_matches_type(APIKeyCreateResponse, api_key, path=["response"])
 
@@ -34,6 +46,7 @@ class TestAPIKeys:
         response = client.sys.projects.api_keys.with_raw_response.create(
             project_id="project_id",
             ak_role="admin",
+            name="x",
         )
 
         assert response.is_closed is True
@@ -46,6 +59,7 @@ class TestAPIKeys:
         with client.sys.projects.api_keys.with_streaming_response.create(
             project_id="project_id",
             ak_role="admin",
+            name="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -61,6 +75,7 @@ class TestAPIKeys:
             client.sys.projects.api_keys.with_raw_response.create(
                 project_id="",
                 ak_role="admin",
+                name="x",
             )
 
     @parametrize
@@ -212,6 +227,17 @@ class TestAsyncAPIKeys:
         api_key = await async_client.sys.projects.api_keys.create(
             project_id="project_id",
             ak_role="admin",
+            name="x",
+        )
+        assert_matches_type(APIKeyCreateResponse, api_key, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncAsktable) -> None:
+        api_key = await async_client.sys.projects.api_keys.create(
+            project_id="project_id",
+            ak_role="admin",
+            name="x",
+            expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
         assert_matches_type(APIKeyCreateResponse, api_key, path=["response"])
 
@@ -220,6 +246,7 @@ class TestAsyncAPIKeys:
         response = await async_client.sys.projects.api_keys.with_raw_response.create(
             project_id="project_id",
             ak_role="admin",
+            name="x",
         )
 
         assert response.is_closed is True
@@ -232,6 +259,7 @@ class TestAsyncAPIKeys:
         async with async_client.sys.projects.api_keys.with_streaming_response.create(
             project_id="project_id",
             ak_role="admin",
+            name="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -247,6 +275,7 @@ class TestAsyncAPIKeys:
             await async_client.sys.projects.api_keys.with_raw_response.create(
                 project_id="",
                 ak_role="admin",
+                name="x",
             )
 
     @parametrize

@@ -14,7 +14,6 @@ class APIKeyCreateResponse(BaseModel):
     """API Key ID"""
 
     ak_role: Literal["sys", "admin", "asker"]
-    """API key 的角色"""
 
     created_at: datetime
     """创建时间"""
@@ -30,5 +29,14 @@ class APIKeyCreateResponse(BaseModel):
     status: int
     """状态"""
 
+    created_by: Optional[str] = None
+    """创建者 User ID"""
+
+    expires_at: Optional[datetime] = None
+    """过期时间"""
+
     last_used_at: Optional[datetime] = None
     """最后使用时间"""
+
+    name: Optional[str] = None
+    """API Key 名称；旧 key 可为空"""
