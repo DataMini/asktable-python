@@ -52,7 +52,7 @@ class TestProject:
     def test_method_update_with_all_params(self, client: Asktable) -> None:
         project = client.project.update(
             llm_model_group="llm_model_group",
-            name="name",
+            name="x",
         )
         assert_matches_type(Project, project, path=["response"])
 
@@ -141,7 +141,7 @@ class TestAsyncProject:
     async def test_method_update_with_all_params(self, async_client: AsyncAsktable) -> None:
         project = await async_client.project.update(
             llm_model_group="llm_model_group",
-            name="name",
+            name="x",
         )
         assert_matches_type(Project, project, path=["response"])
 
