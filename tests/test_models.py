@@ -1,15 +1,16 @@
 import json
-from typing import Any, Dict, List, Union, Optional, cast
+from typing import TYPE_CHECKING, Any, Dict, List, Union, Iterable, Optional, cast
 from datetime import datetime, timezone
-from typing_extensions import Literal, Annotated, TypeAliasType
+from collections import deque
+from typing_extensions import Literal, Annotated, TypedDict, TypeAliasType
 
 import pytest
 import pydantic
 from pydantic import Field
 
 from asktable._utils import PropertyInfo
-from asktable._compat import PYDANTIC_V2, parse_obj, model_dump, model_json
-from asktable._models import BaseModel, construct_type
+from asktable._compat import PYDANTIC_V1, parse_obj, model_dump, model_json
+from asktable._models import DISCRIMINATOR_CACHE, BaseModel, EagerIterable, construct_type
 
 
 class BasicModel(BaseModel):
@@ -294,12 +295,12 @@ def test_nested_union_invalid_data() -> None:
     assert cast(bool, m.foo) is True
 
     m = Model.construct(foo={"name": 3})
-    if PYDANTIC_V2:
-        assert isinstance(m.foo, Submodel1)
-        assert m.foo.name == 3  # type: ignore
-    else:
+    if PYDANTIC_V1:
         assert isinstance(m.foo, Submodel2)
         assert m.foo.name == "3"
+    else:
+        assert isinstance(m.foo, Submodel1)
+        assert m.foo.name == 3  # type: ignore
 
 
 def test_list_of_unions() -> None:
@@ -426,10 +427,10 @@ def test_iso8601_datetime() -> None:
 
     expected = datetime(2019, 12, 27, 18, 11, 19, 117000, tzinfo=timezone.utc)
 
-    if PYDANTIC_V2:
-        expected_json = '{"created_at":"2019-12-27T18:11:19.117000Z"}'
-    else:
+    if PYDANTIC_V1:
         expected_json = '{"created_at": "2019-12-27T18:11:19.117000+00:00"}'
+    else:
+        expected_json = '{"created_at":"2019-12-27T18:11:19.117000Z"}'
 
     model = Model.construct(created_at="2019-12-27T18:11:19.117Z")
     assert model.created_at == expected
@@ -531,7 +532,7 @@ def test_to_dict() -> None:
     assert m4.to_dict(mode="python") == {"created_at": datetime.fromisoformat(time_str)}
     assert m4.to_dict(mode="json") == {"created_at": time_str}
 
-    if not PYDANTIC_V2:
+    if PYDANTIC_V1:
         with pytest.raises(ValueError, match="warnings is only supported in Pydantic v2"):
             m.to_dict(warnings=False)
 
@@ -556,7 +557,7 @@ def test_forwards_compat_model_dump_method() -> None:
     assert m3.model_dump() == {"foo": None}
     assert m3.model_dump(exclude_none=True) == {}
 
-    if not PYDANTIC_V2:
+    if PYDANTIC_V1:
         with pytest.raises(ValueError, match="round_trip is only supported in Pydantic v2"):
             m.model_dump(round_trip=True)
 
@@ -580,10 +581,10 @@ def test_to_json() -> None:
     assert json.loads(m.to_json()) == {"FOO": "hello"}
     assert json.loads(m.to_json(use_api_names=False)) == {"foo": "hello"}
 
-    if PYDANTIC_V2:
-        assert m.to_json(indent=None) == '{"FOO":"hello"}'
-    else:
+    if PYDANTIC_V1:
         assert m.to_json(indent=None) == '{"FOO": "hello"}'
+    else:
+        assert m.to_json(indent=None) == '{"FOO":"hello"}'
 
     m2 = Model()
     assert json.loads(m2.to_json()) == {}
@@ -595,7 +596,7 @@ def test_to_json() -> None:
     assert json.loads(m3.to_json()) == {"FOO": None}
     assert json.loads(m3.to_json(exclude_none=True)) == {}
 
-    if not PYDANTIC_V2:
+    if PYDANTIC_V1:
         with pytest.raises(ValueError, match="warnings is only supported in Pydantic v2"):
             m.to_json(warnings=False)
 
@@ -622,7 +623,7 @@ def test_forwards_compat_model_dump_json_method() -> None:
     assert json.loads(m3.model_dump_json()) == {"foo": None}
     assert json.loads(m3.model_dump_json(exclude_none=True)) == {}
 
-    if not PYDANTIC_V2:
+    if PYDANTIC_V1:
         with pytest.raises(ValueError, match="round_trip is only supported in Pydantic v2"):
             m.model_dump_json(round_trip=True)
 
@@ -679,12 +680,12 @@ def test_discriminated_unions_invalid_data() -> None:
     )
     assert isinstance(m, A)
     assert m.type == "a"
-    if PYDANTIC_V2:
-        assert m.data == 100  # type: ignore[comparison-overlap]
-    else:
+    if PYDANTIC_V1:
         # pydantic v1 automatically converts inputs to strings
         # if the expected type is a str
         assert m.data == "100"
+    else:
+        assert m.data == 100  # type: ignore[comparison-overlap]
 
 
 def test_discriminated_unions_unknown_variant() -> None:
@@ -768,12 +769,12 @@ def test_discriminated_unions_with_aliases_invalid_data() -> None:
     )
     assert isinstance(m, A)
     assert m.foo_type == "a"
-    if PYDANTIC_V2:
-        assert m.data == 100  # type: ignore[comparison-overlap]
-    else:
+    if PYDANTIC_V1:
         # pydantic v1 automatically converts inputs to strings
         # if the expected type is a str
         assert m.data == "100"
+    else:
+        assert m.data == 100  # type: ignore[comparison-overlap]
 
 
 def test_discriminated_unions_overlapping_discriminators_invalid_data() -> None:
@@ -809,7 +810,7 @@ def test_discriminated_unions_invalid_data_uses_cache() -> None:
 
     UnionType = cast(Any, Union[A, B])
 
-    assert not hasattr(UnionType, "__discriminator__")
+    assert not DISCRIMINATOR_CACHE.get(UnionType)
 
     m = construct_type(
         value={"type": "b", "data": "foo"}, type_=cast(Any, Annotated[UnionType, PropertyInfo(discriminator="type")])
@@ -818,7 +819,7 @@ def test_discriminated_unions_invalid_data_uses_cache() -> None:
     assert m.type == "b"
     assert m.data == "foo"  # type: ignore[comparison-overlap]
 
-    discriminator = UnionType.__discriminator__
+    discriminator = DISCRIMINATOR_CACHE.get(UnionType)
     assert discriminator is not None
 
     m = construct_type(
@@ -830,10 +831,10 @@ def test_discriminated_unions_invalid_data_uses_cache() -> None:
 
     # if the discriminator details object stays the same between invocations then
     # we hit the cache
-    assert UnionType.__discriminator__ is discriminator
+    assert DISCRIMINATOR_CACHE.get(UnionType) is discriminator
 
 
-@pytest.mark.skipif(not PYDANTIC_V2, reason="TypeAliasType is not supported in Pydantic v1")
+@pytest.mark.skipif(PYDANTIC_V1, reason="TypeAliasType is not supported in Pydantic v1")
 def test_type_alias_type() -> None:
     Alias = TypeAliasType("Alias", str)  # pyright: ignore
 
@@ -849,7 +850,7 @@ def test_type_alias_type() -> None:
     assert m.union == "bar"
 
 
-@pytest.mark.skipif(not PYDANTIC_V2, reason="TypeAliasType is not supported in Pydantic v1")
+@pytest.mark.skipif(PYDANTIC_V1, reason="TypeAliasType is not supported in Pydantic v1")
 def test_field_named_cls() -> None:
     class Model(BaseModel):
         cls: str
@@ -934,3 +935,83 @@ def test_nested_discriminated_union() -> None:
     )
     assert isinstance(model, Type1)
     assert isinstance(model.value, InnerType2)
+
+
+@pytest.mark.skipif(PYDANTIC_V1, reason="this is only supported in pydantic v2 for now")
+def test_extra_properties() -> None:
+    class Item(BaseModel):
+        prop: int
+
+    class Model(BaseModel):
+        __pydantic_extra__: Dict[str, Item] = Field(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        other: str
+
+        if TYPE_CHECKING:
+
+            def __getattr__(self, attr: str) -> Item: ...
+
+    model = construct_type(
+        type_=Model,
+        value={
+            "a": {"prop": 1},
+            "other": "foo",
+        },
+    )
+    assert isinstance(model, Model)
+    assert model.a.prop == 1
+    assert isinstance(model.a, Item)
+    assert model.other == "foo"
+
+
+# NOTE: Workaround for Pydantic Iterable behavior.
+# Iterable fields are replaced with a ValidatorIterator and may be consumed
+# during serialization, which can cause subsequent dumps to return empty data.
+# See: https://github.com/pydantic/pydantic/issues/9541
+@pytest.mark.parametrize(
+    "data, expected_validated",
+    [
+        ([1, 2, 3], [1, 2, 3]),
+        ((1, 2, 3), (1, 2, 3)),
+        (set([1, 2, 3]), set([1, 2, 3])),
+        (iter([1, 2, 3]), [1, 2, 3]),
+        ([], []),
+        ((x for x in [1, 2, 3]), [1, 2, 3]),
+        (map(lambda x: x, [1, 2, 3]), [1, 2, 3]),
+        (frozenset([1, 2, 3]), frozenset([1, 2, 3])),
+        (deque([1, 2, 3]), deque([1, 2, 3])),
+    ],
+    ids=["list", "tuple", "set", "iterator", "empty", "generator", "map", "frozenset", "deque"],
+)
+@pytest.mark.skipif(PYDANTIC_V1, reason="this is only supported in pydantic v2")
+def test_iterable_construction(data: Iterable[int], expected_validated: Iterable[int]) -> None:
+    class TypeWithIterable(TypedDict):
+        items: EagerIterable[int]
+
+    class Model(BaseModel):
+        data: TypeWithIterable
+
+    m = Model.model_validate({"data": {"items": data}})
+    assert m.data["items"] == expected_validated
+
+    # Verify repeated dumps don't lose data (the original bug)
+    assert m.model_dump()["data"]["items"] == list(expected_validated)
+    assert m.model_dump()["data"]["items"] == list(expected_validated)
+
+
+@pytest.mark.skipif(PYDANTIC_V1, reason="this is only supported in pydantic v2")
+def test_iterable_construction_str_falls_back_to_list() -> None:
+    # str is iterable (over chars), but str(list_of_chars) produces the list's repr
+    # rather than reconstructing a string from items. We special-case str to fall
+    # back to list instead of attempting reconstruction.
+    class TypeWithIterable(TypedDict):
+        items: EagerIterable[str]
+
+    class Model(BaseModel):
+        data: TypeWithIterable
+
+    m = Model.model_validate({"data": {"items": "hello"}})
+
+    # falls back to list of chars rather than calling str(["h", "e", "l", "l", "o"])
+    assert m.data["items"] == ["h", "e", "l", "l", "o"]
+    assert m.model_dump()["data"]["items"] == ["h", "e", "l", "l", "o"]

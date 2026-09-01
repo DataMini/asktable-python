@@ -1,13 +1,5 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .ats import (
-    ATSResource,
-    AsyncATSResource,
-    ATSResourceWithRawResponse,
-    AsyncATSResourceWithRawResponse,
-    ATSResourceWithStreamingResponse,
-    AsyncATSResourceWithStreamingResponse,
-)
 from .sys import (
     SysResource,
     AsyncSysResource,
@@ -24,22 +16,6 @@ from .auth import (
     AuthResourceWithStreamingResponse,
     AsyncAuthResourceWithStreamingResponse,
 )
-from .bots import (
-    BotsResource,
-    AsyncBotsResource,
-    BotsResourceWithRawResponse,
-    AsyncBotsResourceWithRawResponse,
-    BotsResourceWithStreamingResponse,
-    AsyncBotsResourceWithStreamingResponse,
-)
-from .sqls import (
-    SqlsResource,
-    AsyncSqlsResource,
-    SqlsResourceWithRawResponse,
-    AsyncSqlsResourceWithRawResponse,
-    SqlsResourceWithStreamingResponse,
-    AsyncSqlsResourceWithStreamingResponse,
-)
 from .user import (
     UserResource,
     AsyncUserResource,
@@ -47,14 +23,6 @@ from .user import (
     AsyncUserResourceWithRawResponse,
     UserResourceWithStreamingResponse,
     AsyncUserResourceWithStreamingResponse,
-)
-from .chats import (
-    ChatsResource,
-    AsyncChatsResource,
-    ChatsResourceWithRawResponse,
-    AsyncChatsResourceWithRawResponse,
-    ChatsResourceWithStreamingResponse,
-    AsyncChatsResourceWithStreamingResponse,
 )
 from .files import (
     FilesResource,
@@ -64,22 +32,6 @@ from .files import (
     FilesResourceWithStreamingResponse,
     AsyncFilesResourceWithStreamingResponse,
 )
-from .roles import (
-    RolesResource,
-    AsyncRolesResource,
-    RolesResourceWithRawResponse,
-    AsyncRolesResourceWithRawResponse,
-    RolesResourceWithStreamingResponse,
-    AsyncRolesResourceWithStreamingResponse,
-)
-from .caches import (
-    CachesResource,
-    AsyncCachesResource,
-    CachesResourceWithRawResponse,
-    AsyncCachesResourceWithRawResponse,
-    CachesResourceWithStreamingResponse,
-    AsyncCachesResourceWithStreamingResponse,
-)
 from .polish import (
     PolishResource,
     AsyncPolishResource,
@@ -88,22 +40,6 @@ from .polish import (
     PolishResourceWithStreamingResponse,
     AsyncPolishResourceWithStreamingResponse,
 )
-from .scores import (
-    ScoresResource,
-    AsyncScoresResource,
-    ScoresResourceWithRawResponse,
-    AsyncScoresResourceWithRawResponse,
-    ScoresResourceWithStreamingResponse,
-    AsyncScoresResourceWithStreamingResponse,
-)
-from .answers import (
-    AnswersResource,
-    AsyncAnswersResource,
-    AnswersResourceWithRawResponse,
-    AsyncAnswersResourceWithRawResponse,
-    AnswersResourceWithStreamingResponse,
-    AsyncAnswersResourceWithStreamingResponse,
-)
 from .project import (
     ProjectResource,
     AsyncProjectResource,
@@ -111,22 +47,6 @@ from .project import (
     AsyncProjectResourceWithRawResponse,
     ProjectResourceWithStreamingResponse,
     AsyncProjectResourceWithStreamingResponse,
-)
-from .policies import (
-    PoliciesResource,
-    AsyncPoliciesResource,
-    PoliciesResourceWithRawResponse,
-    AsyncPoliciesResourceWithRawResponse,
-    PoliciesResourceWithStreamingResponse,
-    AsyncPoliciesResourceWithStreamingResponse,
-)
-from .trainings import (
-    TrainingsResource,
-    AsyncTrainingsResource,
-    TrainingsResourceWithRawResponse,
-    AsyncTrainingsResourceWithRawResponse,
-    TrainingsResourceWithStreamingResponse,
-    AsyncTrainingsResourceWithStreamingResponse,
 )
 from .dataframes import (
     DataframesResource,
@@ -144,38 +64,6 @@ from .datasources import (
     DatasourcesResourceWithStreamingResponse,
     AsyncDatasourcesResourceWithStreamingResponse,
 )
-from .integration import (
-    IntegrationResource,
-    AsyncIntegrationResource,
-    IntegrationResourceWithRawResponse,
-    AsyncIntegrationResourceWithRawResponse,
-    IntegrationResourceWithStreamingResponse,
-    AsyncIntegrationResourceWithStreamingResponse,
-)
-from .preferences import (
-    PreferencesResource,
-    AsyncPreferencesResource,
-    PreferencesResourceWithRawResponse,
-    AsyncPreferencesResourceWithRawResponse,
-    PreferencesResourceWithStreamingResponse,
-    AsyncPreferencesResourceWithStreamingResponse,
-)
-from .securetunnels import (
-    SecuretunnelsResource,
-    AsyncSecuretunnelsResource,
-    SecuretunnelsResourceWithRawResponse,
-    AsyncSecuretunnelsResourceWithRawResponse,
-    SecuretunnelsResourceWithStreamingResponse,
-    AsyncSecuretunnelsResourceWithStreamingResponse,
-)
-from .business_glossary import (
-    BusinessGlossaryResource,
-    AsyncBusinessGlossaryResource,
-    BusinessGlossaryResourceWithRawResponse,
-    AsyncBusinessGlossaryResourceWithRawResponse,
-    BusinessGlossaryResourceWithStreamingResponse,
-    AsyncBusinessGlossaryResourceWithStreamingResponse,
-)
 
 __all__ = [
     "SysResource",
@@ -184,102 +72,24 @@ __all__ = [
     "AsyncSysResourceWithRawResponse",
     "SysResourceWithStreamingResponse",
     "AsyncSysResourceWithStreamingResponse",
-    "SecuretunnelsResource",
-    "AsyncSecuretunnelsResource",
-    "SecuretunnelsResourceWithRawResponse",
-    "AsyncSecuretunnelsResourceWithRawResponse",
-    "SecuretunnelsResourceWithStreamingResponse",
-    "AsyncSecuretunnelsResourceWithStreamingResponse",
-    "RolesResource",
-    "AsyncRolesResource",
-    "RolesResourceWithRawResponse",
-    "AsyncRolesResourceWithRawResponse",
-    "RolesResourceWithStreamingResponse",
-    "AsyncRolesResourceWithStreamingResponse",
-    "PoliciesResource",
-    "AsyncPoliciesResource",
-    "PoliciesResourceWithRawResponse",
-    "AsyncPoliciesResourceWithRawResponse",
-    "PoliciesResourceWithStreamingResponse",
-    "AsyncPoliciesResourceWithStreamingResponse",
-    "ChatsResource",
-    "AsyncChatsResource",
-    "ChatsResourceWithRawResponse",
-    "AsyncChatsResourceWithRawResponse",
-    "ChatsResourceWithStreamingResponse",
-    "AsyncChatsResourceWithStreamingResponse",
     "DatasourcesResource",
     "AsyncDatasourcesResource",
     "DatasourcesResourceWithRawResponse",
     "AsyncDatasourcesResourceWithRawResponse",
     "DatasourcesResourceWithStreamingResponse",
     "AsyncDatasourcesResourceWithStreamingResponse",
-    "BotsResource",
-    "AsyncBotsResource",
-    "BotsResourceWithRawResponse",
-    "AsyncBotsResourceWithRawResponse",
-    "BotsResourceWithStreamingResponse",
-    "AsyncBotsResourceWithStreamingResponse",
     "AuthResource",
     "AsyncAuthResource",
     "AuthResourceWithRawResponse",
     "AsyncAuthResourceWithRawResponse",
     "AuthResourceWithStreamingResponse",
     "AsyncAuthResourceWithStreamingResponse",
-    "AnswersResource",
-    "AsyncAnswersResource",
-    "AnswersResourceWithRawResponse",
-    "AsyncAnswersResourceWithRawResponse",
-    "AnswersResourceWithStreamingResponse",
-    "AsyncAnswersResourceWithStreamingResponse",
-    "SqlsResource",
-    "AsyncSqlsResource",
-    "SqlsResourceWithRawResponse",
-    "AsyncSqlsResourceWithRawResponse",
-    "SqlsResourceWithStreamingResponse",
-    "AsyncSqlsResourceWithStreamingResponse",
-    "CachesResource",
-    "AsyncCachesResource",
-    "CachesResourceWithRawResponse",
-    "AsyncCachesResourceWithRawResponse",
-    "CachesResourceWithStreamingResponse",
-    "AsyncCachesResourceWithStreamingResponse",
-    "IntegrationResource",
-    "AsyncIntegrationResource",
-    "IntegrationResourceWithRawResponse",
-    "AsyncIntegrationResourceWithRawResponse",
-    "IntegrationResourceWithStreamingResponse",
-    "AsyncIntegrationResourceWithStreamingResponse",
-    "BusinessGlossaryResource",
-    "AsyncBusinessGlossaryResource",
-    "BusinessGlossaryResourceWithRawResponse",
-    "AsyncBusinessGlossaryResourceWithRawResponse",
-    "BusinessGlossaryResourceWithStreamingResponse",
-    "AsyncBusinessGlossaryResourceWithStreamingResponse",
-    "PreferencesResource",
-    "AsyncPreferencesResource",
-    "PreferencesResourceWithRawResponse",
-    "AsyncPreferencesResourceWithRawResponse",
-    "PreferencesResourceWithStreamingResponse",
-    "AsyncPreferencesResourceWithStreamingResponse",
-    "TrainingsResource",
-    "AsyncTrainingsResource",
-    "TrainingsResourceWithRawResponse",
-    "AsyncTrainingsResourceWithRawResponse",
-    "TrainingsResourceWithStreamingResponse",
-    "AsyncTrainingsResourceWithStreamingResponse",
     "ProjectResource",
     "AsyncProjectResource",
     "ProjectResourceWithRawResponse",
     "AsyncProjectResourceWithRawResponse",
     "ProjectResourceWithStreamingResponse",
     "AsyncProjectResourceWithStreamingResponse",
-    "ScoresResource",
-    "AsyncScoresResource",
-    "ScoresResourceWithRawResponse",
-    "AsyncScoresResourceWithRawResponse",
-    "ScoresResourceWithStreamingResponse",
-    "AsyncScoresResourceWithStreamingResponse",
     "FilesResource",
     "AsyncFilesResource",
     "FilesResourceWithRawResponse",
@@ -304,10 +114,4 @@ __all__ = [
     "AsyncUserResourceWithRawResponse",
     "UserResourceWithStreamingResponse",
     "AsyncUserResourceWithStreamingResponse",
-    "ATSResource",
-    "AsyncATSResource",
-    "ATSResourceWithRawResponse",
-    "AsyncATSResourceWithRawResponse",
-    "ATSResourceWithStreamingResponse",
-    "AsyncATSResourceWithStreamingResponse",
 ]

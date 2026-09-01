@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Union, Mapping
+from typing import TYPE_CHECKING, Any, Mapping
 from typing_extensions import Self, override
 
 import httpx
@@ -11,35 +11,21 @@ import httpx
 from . import _exceptions
 from ._qs import Querystring
 from ._types import (
-    NOT_GIVEN,
     Omit,
     Timeout,
     NotGiven,
     Transport,
     ProxiesTypes,
     RequestOptions,
+    not_given,
 )
-from ._utils import is_given, get_async_library
+from ._utils import (
+    is_given,
+    is_mapping_t,
+    get_async_library,
+)
+from ._compat import cached_property
 from ._version import __version__
-from .resources import (
-    auth,
-    bots,
-    sqls,
-    files,
-    roles,
-    caches,
-    polish,
-    scores,
-    answers,
-    project,
-    policies,
-    trainings,
-    dataframes,
-    integration,
-    preferences,
-    securetunnels,
-    business_glossary,
-)
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import AsktableError, APIStatusError
 from ._base_client import (
@@ -47,11 +33,17 @@ from ._base_client import (
     SyncAPIClient,
     AsyncAPIClient,
 )
-from .resources.ats import ats
-from .resources.sys import sys
-from .resources.user import user
-from .resources.chats import chats
-from .resources.datasources import datasources
+
+if TYPE_CHECKING:
+    from .resources import sys, auth, user, files, polish, project, dataframes, datasources
+    from .resources.auth import AuthResource, AsyncAuthResource
+    from .resources.files import FilesResource, AsyncFilesResource
+    from .resources.polish import PolishResource, AsyncPolishResource
+    from .resources.project import ProjectResource, AsyncProjectResource
+    from .resources.sys.sys import SysResource, AsyncSysResource
+    from .resources.user.user import UserResource, AsyncUserResource
+    from .resources.dataframes import DataframesResource, AsyncDataframesResource
+    from .resources.datasources.datasources import DatasourcesResource, AsyncDatasourcesResource
 
 __all__ = [
     "Timeout",
@@ -66,31 +58,6 @@ __all__ = [
 
 
 class Asktable(SyncAPIClient):
-    sys: sys.SysResource
-    securetunnels: securetunnels.SecuretunnelsResource
-    roles: roles.RolesResource
-    policies: policies.PoliciesResource
-    chats: chats.ChatsResource
-    datasources: datasources.DatasourcesResource
-    bots: bots.BotsResource
-    auth: auth.AuthResource
-    answers: answers.AnswersResource
-    sqls: sqls.SqlsResource
-    caches: caches.CachesResource
-    integration: integration.IntegrationResource
-    business_glossary: business_glossary.BusinessGlossaryResource
-    preferences: preferences.PreferencesResource
-    trainings: trainings.TrainingsResource
-    project: project.ProjectResource
-    scores: scores.ScoresResource
-    files: files.FilesResource
-    dataframes: dataframes.DataframesResource
-    polish: polish.PolishResource
-    user: user.UserResource
-    ats: ats.ATSResource
-    with_raw_response: AsktableWithRawResponse
-    with_streaming_response: AsktableWithStreamedResponse
-
     # client options
     api_key: str
 
@@ -99,7 +66,7 @@ class Asktable(SyncAPIClient):
         *,
         api_key: str | None = None,
         base_url: str | httpx.URL | None = None,
-        timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
+        timeout: float | Timeout | None | NotGiven = not_given,
         max_retries: int = DEFAULT_MAX_RETRIES,
         default_headers: Mapping[str, str] | None = None,
         default_query: Mapping[str, object] | None = None,
@@ -134,6 +101,15 @@ class Asktable(SyncAPIClient):
         if base_url is None:
             base_url = f"https://api.asktable.com"
 
+        custom_headers_env = os.environ.get("ASKTABLE_CUSTOM_HEADERS")
+        if custom_headers_env is not None:
+            parsed: dict[str, str] = {}
+            for line in custom_headers_env.split("\n"):
+                colon = line.find(":")
+                if colon >= 0:
+                    parsed[line[:colon].strip()] = line[colon + 1 :].strip()
+            default_headers = {**parsed, **(default_headers if is_mapping_t(default_headers) else {})}
+
         super().__init__(
             version=__version__,
             base_url=base_url,
@@ -145,30 +121,66 @@ class Asktable(SyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.sys = sys.SysResource(self)
-        self.securetunnels = securetunnels.SecuretunnelsResource(self)
-        self.roles = roles.RolesResource(self)
-        self.policies = policies.PoliciesResource(self)
-        self.chats = chats.ChatsResource(self)
-        self.datasources = datasources.DatasourcesResource(self)
-        self.bots = bots.BotsResource(self)
-        self.auth = auth.AuthResource(self)
-        self.answers = answers.AnswersResource(self)
-        self.sqls = sqls.SqlsResource(self)
-        self.caches = caches.CachesResource(self)
-        self.integration = integration.IntegrationResource(self)
-        self.business_glossary = business_glossary.BusinessGlossaryResource(self)
-        self.preferences = preferences.PreferencesResource(self)
-        self.trainings = trainings.TrainingsResource(self)
-        self.project = project.ProjectResource(self)
-        self.scores = scores.ScoresResource(self)
-        self.files = files.FilesResource(self)
-        self.dataframes = dataframes.DataframesResource(self)
-        self.polish = polish.PolishResource(self)
-        self.user = user.UserResource(self)
-        self.ats = ats.ATSResource(self)
-        self.with_raw_response = AsktableWithRawResponse(self)
-        self.with_streaming_response = AsktableWithStreamedResponse(self)
+    @cached_property
+    def sys(self) -> SysResource:
+        from .resources.sys import SysResource
+
+        return SysResource(self)
+
+    @cached_property
+    def datasources(self) -> DatasourcesResource:
+        """数据源管理"""
+        from .resources.datasources import DatasourcesResource
+
+        return DatasourcesResource(self)
+
+    @cached_property
+    def auth(self) -> AuthResource:
+        """AskTable 系统认证管理"""
+        from .resources.auth import AuthResource
+
+        return AuthResource(self)
+
+    @cached_property
+    def project(self) -> ProjectResource:
+        """我的项目"""
+        from .resources.project import ProjectResource
+
+        return ProjectResource(self)
+
+    @cached_property
+    def files(self) -> FilesResource:
+        """数据源管理"""
+        from .resources.files import FilesResource
+
+        return FilesResource(self)
+
+    @cached_property
+    def dataframes(self) -> DataframesResource:
+        from .resources.dataframes import DataframesResource
+
+        return DataframesResource(self)
+
+    @cached_property
+    def polish(self) -> PolishResource:
+        """润色"""
+        from .resources.polish import PolishResource
+
+        return PolishResource(self)
+
+    @cached_property
+    def user(self) -> UserResource:
+        from .resources.user import UserResource
+
+        return UserResource(self)
+
+    @cached_property
+    def with_raw_response(self) -> AsktableWithRawResponse:
+        return AsktableWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsktableWithStreamedResponse:
+        return AsktableWithStreamedResponse(self)
 
     @property
     @override
@@ -195,9 +207,9 @@ class Asktable(SyncAPIClient):
         *,
         api_key: str | None = None,
         base_url: str | httpx.URL | None = None,
-        timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | Timeout | None | NotGiven = not_given,
         http_client: httpx.Client | None = None,
-        max_retries: int | NotGiven = NOT_GIVEN,
+        max_retries: int | NotGiven = not_given,
         default_headers: Mapping[str, str] | None = None,
         set_default_headers: Mapping[str, str] | None = None,
         default_query: Mapping[str, object] | None = None,
@@ -276,31 +288,6 @@ class Asktable(SyncAPIClient):
 
 
 class AsyncAsktable(AsyncAPIClient):
-    sys: sys.AsyncSysResource
-    securetunnels: securetunnels.AsyncSecuretunnelsResource
-    roles: roles.AsyncRolesResource
-    policies: policies.AsyncPoliciesResource
-    chats: chats.AsyncChatsResource
-    datasources: datasources.AsyncDatasourcesResource
-    bots: bots.AsyncBotsResource
-    auth: auth.AsyncAuthResource
-    answers: answers.AsyncAnswersResource
-    sqls: sqls.AsyncSqlsResource
-    caches: caches.AsyncCachesResource
-    integration: integration.AsyncIntegrationResource
-    business_glossary: business_glossary.AsyncBusinessGlossaryResource
-    preferences: preferences.AsyncPreferencesResource
-    trainings: trainings.AsyncTrainingsResource
-    project: project.AsyncProjectResource
-    scores: scores.AsyncScoresResource
-    files: files.AsyncFilesResource
-    dataframes: dataframes.AsyncDataframesResource
-    polish: polish.AsyncPolishResource
-    user: user.AsyncUserResource
-    ats: ats.AsyncATSResource
-    with_raw_response: AsyncAsktableWithRawResponse
-    with_streaming_response: AsyncAsktableWithStreamedResponse
-
     # client options
     api_key: str
 
@@ -309,7 +296,7 @@ class AsyncAsktable(AsyncAPIClient):
         *,
         api_key: str | None = None,
         base_url: str | httpx.URL | None = None,
-        timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
+        timeout: float | Timeout | None | NotGiven = not_given,
         max_retries: int = DEFAULT_MAX_RETRIES,
         default_headers: Mapping[str, str] | None = None,
         default_query: Mapping[str, object] | None = None,
@@ -344,6 +331,15 @@ class AsyncAsktable(AsyncAPIClient):
         if base_url is None:
             base_url = f"https://api.asktable.com"
 
+        custom_headers_env = os.environ.get("ASKTABLE_CUSTOM_HEADERS")
+        if custom_headers_env is not None:
+            parsed: dict[str, str] = {}
+            for line in custom_headers_env.split("\n"):
+                colon = line.find(":")
+                if colon >= 0:
+                    parsed[line[:colon].strip()] = line[colon + 1 :].strip()
+            default_headers = {**parsed, **(default_headers if is_mapping_t(default_headers) else {})}
+
         super().__init__(
             version=__version__,
             base_url=base_url,
@@ -355,30 +351,66 @@ class AsyncAsktable(AsyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.sys = sys.AsyncSysResource(self)
-        self.securetunnels = securetunnels.AsyncSecuretunnelsResource(self)
-        self.roles = roles.AsyncRolesResource(self)
-        self.policies = policies.AsyncPoliciesResource(self)
-        self.chats = chats.AsyncChatsResource(self)
-        self.datasources = datasources.AsyncDatasourcesResource(self)
-        self.bots = bots.AsyncBotsResource(self)
-        self.auth = auth.AsyncAuthResource(self)
-        self.answers = answers.AsyncAnswersResource(self)
-        self.sqls = sqls.AsyncSqlsResource(self)
-        self.caches = caches.AsyncCachesResource(self)
-        self.integration = integration.AsyncIntegrationResource(self)
-        self.business_glossary = business_glossary.AsyncBusinessGlossaryResource(self)
-        self.preferences = preferences.AsyncPreferencesResource(self)
-        self.trainings = trainings.AsyncTrainingsResource(self)
-        self.project = project.AsyncProjectResource(self)
-        self.scores = scores.AsyncScoresResource(self)
-        self.files = files.AsyncFilesResource(self)
-        self.dataframes = dataframes.AsyncDataframesResource(self)
-        self.polish = polish.AsyncPolishResource(self)
-        self.user = user.AsyncUserResource(self)
-        self.ats = ats.AsyncATSResource(self)
-        self.with_raw_response = AsyncAsktableWithRawResponse(self)
-        self.with_streaming_response = AsyncAsktableWithStreamedResponse(self)
+    @cached_property
+    def sys(self) -> AsyncSysResource:
+        from .resources.sys import AsyncSysResource
+
+        return AsyncSysResource(self)
+
+    @cached_property
+    def datasources(self) -> AsyncDatasourcesResource:
+        """数据源管理"""
+        from .resources.datasources import AsyncDatasourcesResource
+
+        return AsyncDatasourcesResource(self)
+
+    @cached_property
+    def auth(self) -> AsyncAuthResource:
+        """AskTable 系统认证管理"""
+        from .resources.auth import AsyncAuthResource
+
+        return AsyncAuthResource(self)
+
+    @cached_property
+    def project(self) -> AsyncProjectResource:
+        """我的项目"""
+        from .resources.project import AsyncProjectResource
+
+        return AsyncProjectResource(self)
+
+    @cached_property
+    def files(self) -> AsyncFilesResource:
+        """数据源管理"""
+        from .resources.files import AsyncFilesResource
+
+        return AsyncFilesResource(self)
+
+    @cached_property
+    def dataframes(self) -> AsyncDataframesResource:
+        from .resources.dataframes import AsyncDataframesResource
+
+        return AsyncDataframesResource(self)
+
+    @cached_property
+    def polish(self) -> AsyncPolishResource:
+        """润色"""
+        from .resources.polish import AsyncPolishResource
+
+        return AsyncPolishResource(self)
+
+    @cached_property
+    def user(self) -> AsyncUserResource:
+        from .resources.user import AsyncUserResource
+
+        return AsyncUserResource(self)
+
+    @cached_property
+    def with_raw_response(self) -> AsyncAsktableWithRawResponse:
+        return AsyncAsktableWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncAsktableWithStreamedResponse:
+        return AsyncAsktableWithStreamedResponse(self)
 
     @property
     @override
@@ -405,9 +437,9 @@ class AsyncAsktable(AsyncAPIClient):
         *,
         api_key: str | None = None,
         base_url: str | httpx.URL | None = None,
-        timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | Timeout | None | NotGiven = not_given,
         http_client: httpx.AsyncClient | None = None,
-        max_retries: int | NotGiven = NOT_GIVEN,
+        max_retries: int | NotGiven = not_given,
         default_headers: Mapping[str, str] | None = None,
         set_default_headers: Mapping[str, str] | None = None,
         default_query: Mapping[str, object] | None = None,
@@ -486,113 +518,243 @@ class AsyncAsktable(AsyncAPIClient):
 
 
 class AsktableWithRawResponse:
+    _client: Asktable
+
     def __init__(self, client: Asktable) -> None:
-        self.sys = sys.SysResourceWithRawResponse(client.sys)
-        self.securetunnels = securetunnels.SecuretunnelsResourceWithRawResponse(client.securetunnels)
-        self.roles = roles.RolesResourceWithRawResponse(client.roles)
-        self.policies = policies.PoliciesResourceWithRawResponse(client.policies)
-        self.chats = chats.ChatsResourceWithRawResponse(client.chats)
-        self.datasources = datasources.DatasourcesResourceWithRawResponse(client.datasources)
-        self.bots = bots.BotsResourceWithRawResponse(client.bots)
-        self.auth = auth.AuthResourceWithRawResponse(client.auth)
-        self.answers = answers.AnswersResourceWithRawResponse(client.answers)
-        self.sqls = sqls.SqlsResourceWithRawResponse(client.sqls)
-        self.caches = caches.CachesResourceWithRawResponse(client.caches)
-        self.integration = integration.IntegrationResourceWithRawResponse(client.integration)
-        self.business_glossary = business_glossary.BusinessGlossaryResourceWithRawResponse(client.business_glossary)
-        self.preferences = preferences.PreferencesResourceWithRawResponse(client.preferences)
-        self.trainings = trainings.TrainingsResourceWithRawResponse(client.trainings)
-        self.project = project.ProjectResourceWithRawResponse(client.project)
-        self.scores = scores.ScoresResourceWithRawResponse(client.scores)
-        self.files = files.FilesResourceWithRawResponse(client.files)
-        self.dataframes = dataframes.DataframesResourceWithRawResponse(client.dataframes)
-        self.polish = polish.PolishResourceWithRawResponse(client.polish)
-        self.user = user.UserResourceWithRawResponse(client.user)
-        self.ats = ats.ATSResourceWithRawResponse(client.ats)
+        self._client = client
+
+    @cached_property
+    def sys(self) -> sys.SysResourceWithRawResponse:
+        from .resources.sys import SysResourceWithRawResponse
+
+        return SysResourceWithRawResponse(self._client.sys)
+
+    @cached_property
+    def datasources(self) -> datasources.DatasourcesResourceWithRawResponse:
+        """数据源管理"""
+        from .resources.datasources import DatasourcesResourceWithRawResponse
+
+        return DatasourcesResourceWithRawResponse(self._client.datasources)
+
+    @cached_property
+    def auth(self) -> auth.AuthResourceWithRawResponse:
+        """AskTable 系统认证管理"""
+        from .resources.auth import AuthResourceWithRawResponse
+
+        return AuthResourceWithRawResponse(self._client.auth)
+
+    @cached_property
+    def project(self) -> project.ProjectResourceWithRawResponse:
+        """我的项目"""
+        from .resources.project import ProjectResourceWithRawResponse
+
+        return ProjectResourceWithRawResponse(self._client.project)
+
+    @cached_property
+    def files(self) -> files.FilesResourceWithRawResponse:
+        """数据源管理"""
+        from .resources.files import FilesResourceWithRawResponse
+
+        return FilesResourceWithRawResponse(self._client.files)
+
+    @cached_property
+    def dataframes(self) -> dataframes.DataframesResourceWithRawResponse:
+        from .resources.dataframes import DataframesResourceWithRawResponse
+
+        return DataframesResourceWithRawResponse(self._client.dataframes)
+
+    @cached_property
+    def polish(self) -> polish.PolishResourceWithRawResponse:
+        """润色"""
+        from .resources.polish import PolishResourceWithRawResponse
+
+        return PolishResourceWithRawResponse(self._client.polish)
+
+    @cached_property
+    def user(self) -> user.UserResourceWithRawResponse:
+        from .resources.user import UserResourceWithRawResponse
+
+        return UserResourceWithRawResponse(self._client.user)
 
 
 class AsyncAsktableWithRawResponse:
+    _client: AsyncAsktable
+
     def __init__(self, client: AsyncAsktable) -> None:
-        self.sys = sys.AsyncSysResourceWithRawResponse(client.sys)
-        self.securetunnels = securetunnels.AsyncSecuretunnelsResourceWithRawResponse(client.securetunnels)
-        self.roles = roles.AsyncRolesResourceWithRawResponse(client.roles)
-        self.policies = policies.AsyncPoliciesResourceWithRawResponse(client.policies)
-        self.chats = chats.AsyncChatsResourceWithRawResponse(client.chats)
-        self.datasources = datasources.AsyncDatasourcesResourceWithRawResponse(client.datasources)
-        self.bots = bots.AsyncBotsResourceWithRawResponse(client.bots)
-        self.auth = auth.AsyncAuthResourceWithRawResponse(client.auth)
-        self.answers = answers.AsyncAnswersResourceWithRawResponse(client.answers)
-        self.sqls = sqls.AsyncSqlsResourceWithRawResponse(client.sqls)
-        self.caches = caches.AsyncCachesResourceWithRawResponse(client.caches)
-        self.integration = integration.AsyncIntegrationResourceWithRawResponse(client.integration)
-        self.business_glossary = business_glossary.AsyncBusinessGlossaryResourceWithRawResponse(
-            client.business_glossary
-        )
-        self.preferences = preferences.AsyncPreferencesResourceWithRawResponse(client.preferences)
-        self.trainings = trainings.AsyncTrainingsResourceWithRawResponse(client.trainings)
-        self.project = project.AsyncProjectResourceWithRawResponse(client.project)
-        self.scores = scores.AsyncScoresResourceWithRawResponse(client.scores)
-        self.files = files.AsyncFilesResourceWithRawResponse(client.files)
-        self.dataframes = dataframes.AsyncDataframesResourceWithRawResponse(client.dataframes)
-        self.polish = polish.AsyncPolishResourceWithRawResponse(client.polish)
-        self.user = user.AsyncUserResourceWithRawResponse(client.user)
-        self.ats = ats.AsyncATSResourceWithRawResponse(client.ats)
+        self._client = client
+
+    @cached_property
+    def sys(self) -> sys.AsyncSysResourceWithRawResponse:
+        from .resources.sys import AsyncSysResourceWithRawResponse
+
+        return AsyncSysResourceWithRawResponse(self._client.sys)
+
+    @cached_property
+    def datasources(self) -> datasources.AsyncDatasourcesResourceWithRawResponse:
+        """数据源管理"""
+        from .resources.datasources import AsyncDatasourcesResourceWithRawResponse
+
+        return AsyncDatasourcesResourceWithRawResponse(self._client.datasources)
+
+    @cached_property
+    def auth(self) -> auth.AsyncAuthResourceWithRawResponse:
+        """AskTable 系统认证管理"""
+        from .resources.auth import AsyncAuthResourceWithRawResponse
+
+        return AsyncAuthResourceWithRawResponse(self._client.auth)
+
+    @cached_property
+    def project(self) -> project.AsyncProjectResourceWithRawResponse:
+        """我的项目"""
+        from .resources.project import AsyncProjectResourceWithRawResponse
+
+        return AsyncProjectResourceWithRawResponse(self._client.project)
+
+    @cached_property
+    def files(self) -> files.AsyncFilesResourceWithRawResponse:
+        """数据源管理"""
+        from .resources.files import AsyncFilesResourceWithRawResponse
+
+        return AsyncFilesResourceWithRawResponse(self._client.files)
+
+    @cached_property
+    def dataframes(self) -> dataframes.AsyncDataframesResourceWithRawResponse:
+        from .resources.dataframes import AsyncDataframesResourceWithRawResponse
+
+        return AsyncDataframesResourceWithRawResponse(self._client.dataframes)
+
+    @cached_property
+    def polish(self) -> polish.AsyncPolishResourceWithRawResponse:
+        """润色"""
+        from .resources.polish import AsyncPolishResourceWithRawResponse
+
+        return AsyncPolishResourceWithRawResponse(self._client.polish)
+
+    @cached_property
+    def user(self) -> user.AsyncUserResourceWithRawResponse:
+        from .resources.user import AsyncUserResourceWithRawResponse
+
+        return AsyncUserResourceWithRawResponse(self._client.user)
 
 
 class AsktableWithStreamedResponse:
+    _client: Asktable
+
     def __init__(self, client: Asktable) -> None:
-        self.sys = sys.SysResourceWithStreamingResponse(client.sys)
-        self.securetunnels = securetunnels.SecuretunnelsResourceWithStreamingResponse(client.securetunnels)
-        self.roles = roles.RolesResourceWithStreamingResponse(client.roles)
-        self.policies = policies.PoliciesResourceWithStreamingResponse(client.policies)
-        self.chats = chats.ChatsResourceWithStreamingResponse(client.chats)
-        self.datasources = datasources.DatasourcesResourceWithStreamingResponse(client.datasources)
-        self.bots = bots.BotsResourceWithStreamingResponse(client.bots)
-        self.auth = auth.AuthResourceWithStreamingResponse(client.auth)
-        self.answers = answers.AnswersResourceWithStreamingResponse(client.answers)
-        self.sqls = sqls.SqlsResourceWithStreamingResponse(client.sqls)
-        self.caches = caches.CachesResourceWithStreamingResponse(client.caches)
-        self.integration = integration.IntegrationResourceWithStreamingResponse(client.integration)
-        self.business_glossary = business_glossary.BusinessGlossaryResourceWithStreamingResponse(
-            client.business_glossary
-        )
-        self.preferences = preferences.PreferencesResourceWithStreamingResponse(client.preferences)
-        self.trainings = trainings.TrainingsResourceWithStreamingResponse(client.trainings)
-        self.project = project.ProjectResourceWithStreamingResponse(client.project)
-        self.scores = scores.ScoresResourceWithStreamingResponse(client.scores)
-        self.files = files.FilesResourceWithStreamingResponse(client.files)
-        self.dataframes = dataframes.DataframesResourceWithStreamingResponse(client.dataframes)
-        self.polish = polish.PolishResourceWithStreamingResponse(client.polish)
-        self.user = user.UserResourceWithStreamingResponse(client.user)
-        self.ats = ats.ATSResourceWithStreamingResponse(client.ats)
+        self._client = client
+
+    @cached_property
+    def sys(self) -> sys.SysResourceWithStreamingResponse:
+        from .resources.sys import SysResourceWithStreamingResponse
+
+        return SysResourceWithStreamingResponse(self._client.sys)
+
+    @cached_property
+    def datasources(self) -> datasources.DatasourcesResourceWithStreamingResponse:
+        """数据源管理"""
+        from .resources.datasources import DatasourcesResourceWithStreamingResponse
+
+        return DatasourcesResourceWithStreamingResponse(self._client.datasources)
+
+    @cached_property
+    def auth(self) -> auth.AuthResourceWithStreamingResponse:
+        """AskTable 系统认证管理"""
+        from .resources.auth import AuthResourceWithStreamingResponse
+
+        return AuthResourceWithStreamingResponse(self._client.auth)
+
+    @cached_property
+    def project(self) -> project.ProjectResourceWithStreamingResponse:
+        """我的项目"""
+        from .resources.project import ProjectResourceWithStreamingResponse
+
+        return ProjectResourceWithStreamingResponse(self._client.project)
+
+    @cached_property
+    def files(self) -> files.FilesResourceWithStreamingResponse:
+        """数据源管理"""
+        from .resources.files import FilesResourceWithStreamingResponse
+
+        return FilesResourceWithStreamingResponse(self._client.files)
+
+    @cached_property
+    def dataframes(self) -> dataframes.DataframesResourceWithStreamingResponse:
+        from .resources.dataframes import DataframesResourceWithStreamingResponse
+
+        return DataframesResourceWithStreamingResponse(self._client.dataframes)
+
+    @cached_property
+    def polish(self) -> polish.PolishResourceWithStreamingResponse:
+        """润色"""
+        from .resources.polish import PolishResourceWithStreamingResponse
+
+        return PolishResourceWithStreamingResponse(self._client.polish)
+
+    @cached_property
+    def user(self) -> user.UserResourceWithStreamingResponse:
+        from .resources.user import UserResourceWithStreamingResponse
+
+        return UserResourceWithStreamingResponse(self._client.user)
 
 
 class AsyncAsktableWithStreamedResponse:
+    _client: AsyncAsktable
+
     def __init__(self, client: AsyncAsktable) -> None:
-        self.sys = sys.AsyncSysResourceWithStreamingResponse(client.sys)
-        self.securetunnels = securetunnels.AsyncSecuretunnelsResourceWithStreamingResponse(client.securetunnels)
-        self.roles = roles.AsyncRolesResourceWithStreamingResponse(client.roles)
-        self.policies = policies.AsyncPoliciesResourceWithStreamingResponse(client.policies)
-        self.chats = chats.AsyncChatsResourceWithStreamingResponse(client.chats)
-        self.datasources = datasources.AsyncDatasourcesResourceWithStreamingResponse(client.datasources)
-        self.bots = bots.AsyncBotsResourceWithStreamingResponse(client.bots)
-        self.auth = auth.AsyncAuthResourceWithStreamingResponse(client.auth)
-        self.answers = answers.AsyncAnswersResourceWithStreamingResponse(client.answers)
-        self.sqls = sqls.AsyncSqlsResourceWithStreamingResponse(client.sqls)
-        self.caches = caches.AsyncCachesResourceWithStreamingResponse(client.caches)
-        self.integration = integration.AsyncIntegrationResourceWithStreamingResponse(client.integration)
-        self.business_glossary = business_glossary.AsyncBusinessGlossaryResourceWithStreamingResponse(
-            client.business_glossary
-        )
-        self.preferences = preferences.AsyncPreferencesResourceWithStreamingResponse(client.preferences)
-        self.trainings = trainings.AsyncTrainingsResourceWithStreamingResponse(client.trainings)
-        self.project = project.AsyncProjectResourceWithStreamingResponse(client.project)
-        self.scores = scores.AsyncScoresResourceWithStreamingResponse(client.scores)
-        self.files = files.AsyncFilesResourceWithStreamingResponse(client.files)
-        self.dataframes = dataframes.AsyncDataframesResourceWithStreamingResponse(client.dataframes)
-        self.polish = polish.AsyncPolishResourceWithStreamingResponse(client.polish)
-        self.user = user.AsyncUserResourceWithStreamingResponse(client.user)
-        self.ats = ats.AsyncATSResourceWithStreamingResponse(client.ats)
+        self._client = client
+
+    @cached_property
+    def sys(self) -> sys.AsyncSysResourceWithStreamingResponse:
+        from .resources.sys import AsyncSysResourceWithStreamingResponse
+
+        return AsyncSysResourceWithStreamingResponse(self._client.sys)
+
+    @cached_property
+    def datasources(self) -> datasources.AsyncDatasourcesResourceWithStreamingResponse:
+        """数据源管理"""
+        from .resources.datasources import AsyncDatasourcesResourceWithStreamingResponse
+
+        return AsyncDatasourcesResourceWithStreamingResponse(self._client.datasources)
+
+    @cached_property
+    def auth(self) -> auth.AsyncAuthResourceWithStreamingResponse:
+        """AskTable 系统认证管理"""
+        from .resources.auth import AsyncAuthResourceWithStreamingResponse
+
+        return AsyncAuthResourceWithStreamingResponse(self._client.auth)
+
+    @cached_property
+    def project(self) -> project.AsyncProjectResourceWithStreamingResponse:
+        """我的项目"""
+        from .resources.project import AsyncProjectResourceWithStreamingResponse
+
+        return AsyncProjectResourceWithStreamingResponse(self._client.project)
+
+    @cached_property
+    def files(self) -> files.AsyncFilesResourceWithStreamingResponse:
+        """数据源管理"""
+        from .resources.files import AsyncFilesResourceWithStreamingResponse
+
+        return AsyncFilesResourceWithStreamingResponse(self._client.files)
+
+    @cached_property
+    def dataframes(self) -> dataframes.AsyncDataframesResourceWithStreamingResponse:
+        from .resources.dataframes import AsyncDataframesResourceWithStreamingResponse
+
+        return AsyncDataframesResourceWithStreamingResponse(self._client.dataframes)
+
+    @cached_property
+    def polish(self) -> polish.AsyncPolishResourceWithStreamingResponse:
+        """润色"""
+        from .resources.polish import AsyncPolishResourceWithStreamingResponse
+
+        return AsyncPolishResourceWithStreamingResponse(self._client.polish)
+
+    @cached_property
+    def user(self) -> user.AsyncUserResourceWithStreamingResponse:
+        from .resources.user import AsyncUserResourceWithStreamingResponse
+
+        return AsyncUserResourceWithStreamingResponse(self._client.user)
 
 
 Client = Asktable

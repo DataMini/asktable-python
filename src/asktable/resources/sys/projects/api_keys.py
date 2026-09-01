@@ -2,13 +2,14 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import Dict, Union, Optional
+from datetime import datetime
 from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -21,11 +22,14 @@ from ...._base_client import make_request_options
 from ....types.sys.projects import api_key_create_params, api_key_create_token_params
 from ....types.sys.projects.api_key_list_response import APIKeyListResponse
 from ....types.sys.projects.api_key_create_response import APIKeyCreateResponse
+from ....types.sys.projects.api_key_create_token_response import APIKeyCreateTokenResponse
 
 __all__ = ["APIKeysResource", "AsyncAPIKeysResource"]
 
 
 class APIKeysResource(SyncAPIResource):
+    """系统管理"""
+
     @cached_property
     def with_raw_response(self) -> APIKeysResourceWithRawResponse:
         """
@@ -49,19 +53,25 @@ class APIKeysResource(SyncAPIResource):
         self,
         project_id: str,
         *,
-        ak_role: Literal["sys", "admin", "asker", "visitor"],
+        ak_role: Literal["sys", "admin", "asker"],
+        name: str,
+        expires_at: Union[str, datetime, None] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APIKeyCreateResponse:
         """
         创建 API Key
 
         Args:
           ak_role: API key 的角色
+
+          name: API Key 名称
+
+          expires_at: 过期时间；空表示不过期
 
           extra_headers: Send extra headers
 
@@ -74,8 +84,15 @@ class APIKeysResource(SyncAPIResource):
         if not project_id:
             raise ValueError(f"Expected a non-empty value for `project_id` but received {project_id!r}")
         return self._post(
-            f"/v1/sys/projects/{project_id}/api-keys",
-            body=maybe_transform({"ak_role": ak_role}, api_key_create_params.APIKeyCreateParams),
+            path_template("/v1/sys/projects/{project_id}/api-keys", project_id=project_id),
+            body=maybe_transform(
+                {
+                    "ak_role": ak_role,
+                    "name": name,
+                    "expires_at": expires_at,
+                },
+                api_key_create_params.APIKeyCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -91,7 +108,7 @@ class APIKeysResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APIKeyListResponse:
         """
         List Api Keys
@@ -108,7 +125,7 @@ class APIKeysResource(SyncAPIResource):
         if not project_id:
             raise ValueError(f"Expected a non-empty value for `project_id` but received {project_id!r}")
         return self._get(
-            f"/v1/sys/projects/{project_id}/api-keys",
+            path_template("/v1/sys/projects/{project_id}/api-keys", project_id=project_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -125,7 +142,7 @@ class APIKeysResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete Api Key View
@@ -145,7 +162,7 @@ class APIKeysResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `key_id` but received {key_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/v1/sys/projects/{project_id}/api-keys/{key_id}",
+            path_template("/v1/sys/projects/{project_id}/api-keys/{key_id}", project_id=project_id, key_id=key_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -156,17 +173,17 @@ class APIKeysResource(SyncAPIResource):
         self,
         project_id: str,
         *,
-        ak_role: Literal["sys", "admin", "asker", "visitor"] | NotGiven = NOT_GIVEN,
-        chat_role: Optional[api_key_create_token_params.ChatRole] | NotGiven = NOT_GIVEN,
-        token_ttl: int | NotGiven = NOT_GIVEN,
-        user_profile: Optional[object] | NotGiven = NOT_GIVEN,
+        ak_role: Literal["sys", "admin", "asker"] | Omit = omit,
+        chat_role: Optional[api_key_create_token_params.ChatRole] | Omit = omit,
+        token_ttl: int | Omit = omit,
+        user_profile: Optional[Dict[str, object]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> APIKeyCreateTokenResponse:
         """
         Create Token
 
@@ -190,7 +207,7 @@ class APIKeysResource(SyncAPIResource):
         if not project_id:
             raise ValueError(f"Expected a non-empty value for `project_id` but received {project_id!r}")
         return self._post(
-            f"/v1/sys/projects/{project_id}/tokens",
+            path_template("/v1/sys/projects/{project_id}/tokens", project_id=project_id),
             body=maybe_transform(
                 {
                     "ak_role": ak_role,
@@ -203,11 +220,13 @@ class APIKeysResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=APIKeyCreateTokenResponse,
         )
 
 
 class AsyncAPIKeysResource(AsyncAPIResource):
+    """系统管理"""
+
     @cached_property
     def with_raw_response(self) -> AsyncAPIKeysResourceWithRawResponse:
         """
@@ -231,19 +250,25 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         self,
         project_id: str,
         *,
-        ak_role: Literal["sys", "admin", "asker", "visitor"],
+        ak_role: Literal["sys", "admin", "asker"],
+        name: str,
+        expires_at: Union[str, datetime, None] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APIKeyCreateResponse:
         """
         创建 API Key
 
         Args:
           ak_role: API key 的角色
+
+          name: API Key 名称
+
+          expires_at: 过期时间；空表示不过期
 
           extra_headers: Send extra headers
 
@@ -256,8 +281,15 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         if not project_id:
             raise ValueError(f"Expected a non-empty value for `project_id` but received {project_id!r}")
         return await self._post(
-            f"/v1/sys/projects/{project_id}/api-keys",
-            body=await async_maybe_transform({"ak_role": ak_role}, api_key_create_params.APIKeyCreateParams),
+            path_template("/v1/sys/projects/{project_id}/api-keys", project_id=project_id),
+            body=await async_maybe_transform(
+                {
+                    "ak_role": ak_role,
+                    "name": name,
+                    "expires_at": expires_at,
+                },
+                api_key_create_params.APIKeyCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -273,7 +305,7 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APIKeyListResponse:
         """
         List Api Keys
@@ -290,7 +322,7 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         if not project_id:
             raise ValueError(f"Expected a non-empty value for `project_id` but received {project_id!r}")
         return await self._get(
-            f"/v1/sys/projects/{project_id}/api-keys",
+            path_template("/v1/sys/projects/{project_id}/api-keys", project_id=project_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -307,7 +339,7 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete Api Key View
@@ -327,7 +359,7 @@ class AsyncAPIKeysResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `key_id` but received {key_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/v1/sys/projects/{project_id}/api-keys/{key_id}",
+            path_template("/v1/sys/projects/{project_id}/api-keys/{key_id}", project_id=project_id, key_id=key_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -338,17 +370,17 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         self,
         project_id: str,
         *,
-        ak_role: Literal["sys", "admin", "asker", "visitor"] | NotGiven = NOT_GIVEN,
-        chat_role: Optional[api_key_create_token_params.ChatRole] | NotGiven = NOT_GIVEN,
-        token_ttl: int | NotGiven = NOT_GIVEN,
-        user_profile: Optional[object] | NotGiven = NOT_GIVEN,
+        ak_role: Literal["sys", "admin", "asker"] | Omit = omit,
+        chat_role: Optional[api_key_create_token_params.ChatRole] | Omit = omit,
+        token_ttl: int | Omit = omit,
+        user_profile: Optional[Dict[str, object]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> APIKeyCreateTokenResponse:
         """
         Create Token
 
@@ -372,7 +404,7 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         if not project_id:
             raise ValueError(f"Expected a non-empty value for `project_id` but received {project_id!r}")
         return await self._post(
-            f"/v1/sys/projects/{project_id}/tokens",
+            path_template("/v1/sys/projects/{project_id}/tokens", project_id=project_id),
             body=await async_maybe_transform(
                 {
                     "ak_role": ak_role,
@@ -385,7 +417,7 @@ class AsyncAPIKeysResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=APIKeyCreateTokenResponse,
         )
 
 

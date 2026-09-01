@@ -9,7 +9,7 @@ import pytest
 
 from asktable import Asktable, AsyncAsktable
 from tests.utils import assert_matches_type
-from asktable.types import AuthMeResponse
+from asktable.types import AuthMeResponse, AuthCreateTokenResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -20,7 +20,7 @@ class TestAuth:
     @parametrize
     def test_method_create_token(self, client: Asktable) -> None:
         auth = client.auth.create_token()
-        assert_matches_type(object, auth, path=["response"])
+        assert_matches_type(AuthCreateTokenResponse, auth, path=["response"])
 
     @parametrize
     def test_method_create_token_with_all_params(self, client: Asktable) -> None:
@@ -28,12 +28,12 @@ class TestAuth:
             ak_role="asker",
             chat_role={
                 "role_id": "1",
-                "role_variables": {"id": "42"},
+                "role_variables": {"id": "bar"},
             },
             token_ttl=900,
-            user_profile={"name": "张三"},
+            user_profile={"name": "bar"},
         )
-        assert_matches_type(object, auth, path=["response"])
+        assert_matches_type(AuthCreateTokenResponse, auth, path=["response"])
 
     @parametrize
     def test_raw_response_create_token(self, client: Asktable) -> None:
@@ -42,7 +42,7 @@ class TestAuth:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         auth = response.parse()
-        assert_matches_type(object, auth, path=["response"])
+        assert_matches_type(AuthCreateTokenResponse, auth, path=["response"])
 
     @parametrize
     def test_streaming_response_create_token(self, client: Asktable) -> None:
@@ -51,7 +51,7 @@ class TestAuth:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             auth = response.parse()
-            assert_matches_type(object, auth, path=["response"])
+            assert_matches_type(AuthCreateTokenResponse, auth, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -89,7 +89,7 @@ class TestAsyncAuth:
     @parametrize
     async def test_method_create_token(self, async_client: AsyncAsktable) -> None:
         auth = await async_client.auth.create_token()
-        assert_matches_type(object, auth, path=["response"])
+        assert_matches_type(AuthCreateTokenResponse, auth, path=["response"])
 
     @parametrize
     async def test_method_create_token_with_all_params(self, async_client: AsyncAsktable) -> None:
@@ -97,12 +97,12 @@ class TestAsyncAuth:
             ak_role="asker",
             chat_role={
                 "role_id": "1",
-                "role_variables": {"id": "42"},
+                "role_variables": {"id": "bar"},
             },
             token_ttl=900,
-            user_profile={"name": "张三"},
+            user_profile={"name": "bar"},
         )
-        assert_matches_type(object, auth, path=["response"])
+        assert_matches_type(AuthCreateTokenResponse, auth, path=["response"])
 
     @parametrize
     async def test_raw_response_create_token(self, async_client: AsyncAsktable) -> None:
@@ -111,7 +111,7 @@ class TestAsyncAuth:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         auth = await response.parse()
-        assert_matches_type(object, auth, path=["response"])
+        assert_matches_type(AuthCreateTokenResponse, auth, path=["response"])
 
     @parametrize
     async def test_streaming_response_create_token(self, async_client: AsyncAsktable) -> None:
@@ -120,7 +120,7 @@ class TestAsyncAuth:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             auth = await response.parse()
-            assert_matches_type(object, auth, path=["response"])
+            assert_matches_type(AuthCreateTokenResponse, auth, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

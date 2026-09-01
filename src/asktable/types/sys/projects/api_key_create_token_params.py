@@ -2,14 +2,14 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import Dict, Optional
 from typing_extensions import Literal, TypedDict
 
 __all__ = ["APIKeyCreateTokenParams", "ChatRole"]
 
 
 class APIKeyCreateTokenParams(TypedDict, total=False):
-    ak_role: Literal["sys", "admin", "asker", "visitor"]
+    ak_role: Literal["sys", "admin", "asker"]
     """The role for the API key"""
 
     chat_role: Optional[ChatRole]
@@ -18,13 +18,15 @@ class APIKeyCreateTokenParams(TypedDict, total=False):
     token_ttl: int
     """The time-to-live for the token in seconds"""
 
-    user_profile: Optional[object]
+    user_profile: Optional[Dict[str, object]]
     """Optional user profile data"""
 
 
 class ChatRole(TypedDict, total=False):
+    """The chat role"""
+
     role_id: Optional[str]
     """The chat role ID"""
 
-    role_variables: Optional[object]
+    role_variables: Optional[Dict[str, object]]
     """The chat role variables"""

@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
+from typing import Dict, Optional
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -24,6 +24,8 @@ __all__ = ["MetaResource", "AsyncMetaResource"]
 
 
 class MetaResource(SyncAPIResource):
+    """数据源管理"""
+
     @cached_property
     def with_raw_response(self) -> MetaResourceWithRawResponse:
         """
@@ -47,23 +49,19 @@ class MetaResource(SyncAPIResource):
         self,
         datasource_id: str,
         *,
-        async_process_meta: bool | NotGiven = NOT_GIVEN,
-        value_index: bool | NotGiven = NOT_GIVEN,
-        meta: Optional[meta_create_params.Meta] | NotGiven = NOT_GIVEN,
-        selected_tables: Optional[Dict[str, List[str]]] | NotGiven = NOT_GIVEN,
+        async_process_meta: bool | Omit = omit,
+        value_index: bool | Omit = omit,
+        meta: Optional[meta_create_params.Meta] | Omit = omit,
+        selected_tables: Optional[Dict[str, SequenceNotStr[str]]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        创建数据源的 meta，如果已经存在，则删除旧的
-
-        如果上传了 meta，则使用用户上传的数据创建。
-
-        否则从数据源中自动获取。
+        初始化数据源的 meta。不允许覆盖已成功初始化的 meta，需使用 PUT 更新。
 
         Args:
           extra_headers: Send extra headers
@@ -77,7 +75,7 @@ class MetaResource(SyncAPIResource):
         if not datasource_id:
             raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
         return self._post(
-            f"/v1/datasources/{datasource_id}/meta",
+            path_template("/v1/datasources/{datasource_id}/meta", datasource_id=datasource_id),
             body=maybe_transform(
                 {
                     "meta": meta,
@@ -110,7 +108,7 @@ class MetaResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Meta:
         """
         从数据源中获取最新的元数据
@@ -127,7 +125,7 @@ class MetaResource(SyncAPIResource):
         if not datasource_id:
             raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
         return self._get(
-            f"/v1/datasources/{datasource_id}/meta",
+            path_template("/v1/datasources/{datasource_id}/meta", datasource_id=datasource_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -138,15 +136,15 @@ class MetaResource(SyncAPIResource):
         self,
         datasource_id: str,
         *,
-        async_process_meta: bool | NotGiven = NOT_GIVEN,
-        meta: Optional[meta_update_params.Meta] | NotGiven = NOT_GIVEN,
-        selected_tables: Optional[Dict[str, List[str]]] | NotGiven = NOT_GIVEN,
+        async_process_meta: bool | Omit = omit,
+        meta: Optional[meta_update_params.Meta] | Omit = omit,
+        selected_tables: Optional[Dict[str, SequenceNotStr[str]]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         用于更新 DB 类型的数据源的 Meta（增加新表或者删除老表）
@@ -163,7 +161,7 @@ class MetaResource(SyncAPIResource):
         if not datasource_id:
             raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
         return self._put(
-            f"/v1/datasources/{datasource_id}/meta",
+            path_template("/v1/datasources/{datasource_id}/meta", datasource_id=datasource_id),
             body=maybe_transform(
                 {
                     "meta": meta,
@@ -191,7 +189,7 @@ class MetaResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         修改数据 meta 的描述，用来修改表和字段的备注
@@ -208,7 +206,7 @@ class MetaResource(SyncAPIResource):
         if not datasource_id:
             raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
         return self._patch(
-            f"/v1/datasources/{datasource_id}/meta",
+            path_template("/v1/datasources/{datasource_id}/meta", datasource_id=datasource_id),
             body=maybe_transform({"schemas": schemas}, meta_annotate_params.MetaAnnotateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -218,6 +216,8 @@ class MetaResource(SyncAPIResource):
 
 
 class AsyncMetaResource(AsyncAPIResource):
+    """数据源管理"""
+
     @cached_property
     def with_raw_response(self) -> AsyncMetaResourceWithRawResponse:
         """
@@ -241,23 +241,19 @@ class AsyncMetaResource(AsyncAPIResource):
         self,
         datasource_id: str,
         *,
-        async_process_meta: bool | NotGiven = NOT_GIVEN,
-        value_index: bool | NotGiven = NOT_GIVEN,
-        meta: Optional[meta_create_params.Meta] | NotGiven = NOT_GIVEN,
-        selected_tables: Optional[Dict[str, List[str]]] | NotGiven = NOT_GIVEN,
+        async_process_meta: bool | Omit = omit,
+        value_index: bool | Omit = omit,
+        meta: Optional[meta_create_params.Meta] | Omit = omit,
+        selected_tables: Optional[Dict[str, SequenceNotStr[str]]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        创建数据源的 meta，如果已经存在，则删除旧的
-
-        如果上传了 meta，则使用用户上传的数据创建。
-
-        否则从数据源中自动获取。
+        初始化数据源的 meta。不允许覆盖已成功初始化的 meta，需使用 PUT 更新。
 
         Args:
           extra_headers: Send extra headers
@@ -271,7 +267,7 @@ class AsyncMetaResource(AsyncAPIResource):
         if not datasource_id:
             raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
         return await self._post(
-            f"/v1/datasources/{datasource_id}/meta",
+            path_template("/v1/datasources/{datasource_id}/meta", datasource_id=datasource_id),
             body=await async_maybe_transform(
                 {
                     "meta": meta,
@@ -304,7 +300,7 @@ class AsyncMetaResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Meta:
         """
         从数据源中获取最新的元数据
@@ -321,7 +317,7 @@ class AsyncMetaResource(AsyncAPIResource):
         if not datasource_id:
             raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
         return await self._get(
-            f"/v1/datasources/{datasource_id}/meta",
+            path_template("/v1/datasources/{datasource_id}/meta", datasource_id=datasource_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -332,15 +328,15 @@ class AsyncMetaResource(AsyncAPIResource):
         self,
         datasource_id: str,
         *,
-        async_process_meta: bool | NotGiven = NOT_GIVEN,
-        meta: Optional[meta_update_params.Meta] | NotGiven = NOT_GIVEN,
-        selected_tables: Optional[Dict[str, List[str]]] | NotGiven = NOT_GIVEN,
+        async_process_meta: bool | Omit = omit,
+        meta: Optional[meta_update_params.Meta] | Omit = omit,
+        selected_tables: Optional[Dict[str, SequenceNotStr[str]]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         用于更新 DB 类型的数据源的 Meta（增加新表或者删除老表）
@@ -357,7 +353,7 @@ class AsyncMetaResource(AsyncAPIResource):
         if not datasource_id:
             raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
         return await self._put(
-            f"/v1/datasources/{datasource_id}/meta",
+            path_template("/v1/datasources/{datasource_id}/meta", datasource_id=datasource_id),
             body=await async_maybe_transform(
                 {
                     "meta": meta,
@@ -387,7 +383,7 @@ class AsyncMetaResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         修改数据 meta 的描述，用来修改表和字段的备注
@@ -404,7 +400,7 @@ class AsyncMetaResource(AsyncAPIResource):
         if not datasource_id:
             raise ValueError(f"Expected a non-empty value for `datasource_id` but received {datasource_id!r}")
         return await self._patch(
-            f"/v1/datasources/{datasource_id}/meta",
+            path_template("/v1/datasources/{datasource_id}/meta", datasource_id=datasource_id),
             body=await async_maybe_transform({"schemas": schemas}, meta_annotate_params.MetaAnnotateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout

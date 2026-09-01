@@ -4,8 +4,8 @@ from __future__ import annotations
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -23,6 +23,8 @@ __all__ = ["IndexesResource", "AsyncIndexesResource"]
 
 
 class IndexesResource(SyncAPIResource):
+    """索引管理"""
+
     @cached_property
     def with_raw_response(self) -> IndexesResourceWithRawResponse:
         """
@@ -49,13 +51,13 @@ class IndexesResource(SyncAPIResource):
         field_name: str,
         schema_name: str,
         table_name: str,
-        async_process: bool | NotGiven = NOT_GIVEN,
+        async_process: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         创建索引 Args: ds_id: 数据源 ID index: 索引创建参数，包含
@@ -79,7 +81,7 @@ class IndexesResource(SyncAPIResource):
         if not ds_id:
             raise ValueError(f"Expected a non-empty value for `ds_id` but received {ds_id!r}")
         return self._post(
-            f"/v1/datasources/{ds_id}/indexes",
+            path_template("/v1/datasources/{ds_id}/indexes", ds_id=ds_id),
             body=maybe_transform(
                 {
                     "field_name": field_name,
@@ -102,14 +104,14 @@ class IndexesResource(SyncAPIResource):
         self,
         ds_id: str,
         *,
-        page: int | NotGiven = NOT_GIVEN,
-        size: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPage[Index]:
         """
         获取数据源的所有索引 Args: ds_id: 数据源 ID Returns: 索引列表，包含索引的完整信
@@ -131,7 +133,7 @@ class IndexesResource(SyncAPIResource):
         if not ds_id:
             raise ValueError(f"Expected a non-empty value for `ds_id` but received {ds_id!r}")
         return self._get_api_list(
-            f"/v1/datasources/{ds_id}/indexes",
+            path_template("/v1/datasources/{ds_id}/indexes", ds_id=ds_id),
             page=SyncPage[Index],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -159,7 +161,7 @@ class IndexesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         删除索引 Args: ds_id: 数据源 ID index_id: 索引 ID
@@ -178,7 +180,7 @@ class IndexesResource(SyncAPIResource):
         if not index_id:
             raise ValueError(f"Expected a non-empty value for `index_id` but received {index_id!r}")
         return self._delete(
-            f"/v1/datasources/{ds_id}/indexes/{index_id}",
+            path_template("/v1/datasources/{ds_id}/indexes/{index_id}", ds_id=ds_id, index_id=index_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -187,6 +189,8 @@ class IndexesResource(SyncAPIResource):
 
 
 class AsyncIndexesResource(AsyncAPIResource):
+    """索引管理"""
+
     @cached_property
     def with_raw_response(self) -> AsyncIndexesResourceWithRawResponse:
         """
@@ -213,13 +217,13 @@ class AsyncIndexesResource(AsyncAPIResource):
         field_name: str,
         schema_name: str,
         table_name: str,
-        async_process: bool | NotGiven = NOT_GIVEN,
+        async_process: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         创建索引 Args: ds_id: 数据源 ID index: 索引创建参数，包含
@@ -243,7 +247,7 @@ class AsyncIndexesResource(AsyncAPIResource):
         if not ds_id:
             raise ValueError(f"Expected a non-empty value for `ds_id` but received {ds_id!r}")
         return await self._post(
-            f"/v1/datasources/{ds_id}/indexes",
+            path_template("/v1/datasources/{ds_id}/indexes", ds_id=ds_id),
             body=await async_maybe_transform(
                 {
                     "field_name": field_name,
@@ -268,14 +272,14 @@ class AsyncIndexesResource(AsyncAPIResource):
         self,
         ds_id: str,
         *,
-        page: int | NotGiven = NOT_GIVEN,
-        size: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        size: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Index, AsyncPage[Index]]:
         """
         获取数据源的所有索引 Args: ds_id: 数据源 ID Returns: 索引列表，包含索引的完整信
@@ -297,7 +301,7 @@ class AsyncIndexesResource(AsyncAPIResource):
         if not ds_id:
             raise ValueError(f"Expected a non-empty value for `ds_id` but received {ds_id!r}")
         return self._get_api_list(
-            f"/v1/datasources/{ds_id}/indexes",
+            path_template("/v1/datasources/{ds_id}/indexes", ds_id=ds_id),
             page=AsyncPage[Index],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -325,7 +329,7 @@ class AsyncIndexesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
         删除索引 Args: ds_id: 数据源 ID index_id: 索引 ID
@@ -344,7 +348,7 @@ class AsyncIndexesResource(AsyncAPIResource):
         if not index_id:
             raise ValueError(f"Expected a non-empty value for `index_id` but received {index_id!r}")
         return await self._delete(
-            f"/v1/datasources/{ds_id}/indexes/{index_id}",
+            path_template("/v1/datasources/{ds_id}/indexes/{index_id}", ds_id=ds_id, index_id=index_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

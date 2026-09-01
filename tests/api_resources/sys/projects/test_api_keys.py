@@ -9,9 +9,11 @@ import pytest
 
 from asktable import Asktable, AsyncAsktable
 from tests.utils import assert_matches_type
+from asktable._utils import parse_datetime
 from asktable.types.sys.projects import (
     APIKeyListResponse,
     APIKeyCreateResponse,
+    APIKeyCreateTokenResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -25,6 +27,17 @@ class TestAPIKeys:
         api_key = client.sys.projects.api_keys.create(
             project_id="project_id",
             ak_role="admin",
+            name="x",
+        )
+        assert_matches_type(APIKeyCreateResponse, api_key, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params(self, client: Asktable) -> None:
+        api_key = client.sys.projects.api_keys.create(
+            project_id="project_id",
+            ak_role="admin",
+            name="x",
+            expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
         assert_matches_type(APIKeyCreateResponse, api_key, path=["response"])
 
@@ -33,6 +46,7 @@ class TestAPIKeys:
         response = client.sys.projects.api_keys.with_raw_response.create(
             project_id="project_id",
             ak_role="admin",
+            name="x",
         )
 
         assert response.is_closed is True
@@ -45,6 +59,7 @@ class TestAPIKeys:
         with client.sys.projects.api_keys.with_streaming_response.create(
             project_id="project_id",
             ak_role="admin",
+            name="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -60,6 +75,7 @@ class TestAPIKeys:
             client.sys.projects.api_keys.with_raw_response.create(
                 project_id="",
                 ak_role="admin",
+                name="x",
             )
 
     @parametrize
@@ -153,7 +169,7 @@ class TestAPIKeys:
         api_key = client.sys.projects.api_keys.create_token(
             project_id="project_id",
         )
-        assert_matches_type(object, api_key, path=["response"])
+        assert_matches_type(APIKeyCreateTokenResponse, api_key, path=["response"])
 
     @parametrize
     def test_method_create_token_with_all_params(self, client: Asktable) -> None:
@@ -162,12 +178,12 @@ class TestAPIKeys:
             ak_role="asker",
             chat_role={
                 "role_id": "1",
-                "role_variables": {"id": "42"},
+                "role_variables": {"id": "bar"},
             },
             token_ttl=900,
-            user_profile={"name": "张三"},
+            user_profile={"name": "bar"},
         )
-        assert_matches_type(object, api_key, path=["response"])
+        assert_matches_type(APIKeyCreateTokenResponse, api_key, path=["response"])
 
     @parametrize
     def test_raw_response_create_token(self, client: Asktable) -> None:
@@ -178,7 +194,7 @@ class TestAPIKeys:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         api_key = response.parse()
-        assert_matches_type(object, api_key, path=["response"])
+        assert_matches_type(APIKeyCreateTokenResponse, api_key, path=["response"])
 
     @parametrize
     def test_streaming_response_create_token(self, client: Asktable) -> None:
@@ -189,7 +205,7 @@ class TestAPIKeys:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             api_key = response.parse()
-            assert_matches_type(object, api_key, path=["response"])
+            assert_matches_type(APIKeyCreateTokenResponse, api_key, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -211,6 +227,17 @@ class TestAsyncAPIKeys:
         api_key = await async_client.sys.projects.api_keys.create(
             project_id="project_id",
             ak_role="admin",
+            name="x",
+        )
+        assert_matches_type(APIKeyCreateResponse, api_key, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncAsktable) -> None:
+        api_key = await async_client.sys.projects.api_keys.create(
+            project_id="project_id",
+            ak_role="admin",
+            name="x",
+            expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
         assert_matches_type(APIKeyCreateResponse, api_key, path=["response"])
 
@@ -219,6 +246,7 @@ class TestAsyncAPIKeys:
         response = await async_client.sys.projects.api_keys.with_raw_response.create(
             project_id="project_id",
             ak_role="admin",
+            name="x",
         )
 
         assert response.is_closed is True
@@ -231,6 +259,7 @@ class TestAsyncAPIKeys:
         async with async_client.sys.projects.api_keys.with_streaming_response.create(
             project_id="project_id",
             ak_role="admin",
+            name="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -246,6 +275,7 @@ class TestAsyncAPIKeys:
             await async_client.sys.projects.api_keys.with_raw_response.create(
                 project_id="",
                 ak_role="admin",
+                name="x",
             )
 
     @parametrize
@@ -339,7 +369,7 @@ class TestAsyncAPIKeys:
         api_key = await async_client.sys.projects.api_keys.create_token(
             project_id="project_id",
         )
-        assert_matches_type(object, api_key, path=["response"])
+        assert_matches_type(APIKeyCreateTokenResponse, api_key, path=["response"])
 
     @parametrize
     async def test_method_create_token_with_all_params(self, async_client: AsyncAsktable) -> None:
@@ -348,12 +378,12 @@ class TestAsyncAPIKeys:
             ak_role="asker",
             chat_role={
                 "role_id": "1",
-                "role_variables": {"id": "42"},
+                "role_variables": {"id": "bar"},
             },
             token_ttl=900,
-            user_profile={"name": "张三"},
+            user_profile={"name": "bar"},
         )
-        assert_matches_type(object, api_key, path=["response"])
+        assert_matches_type(APIKeyCreateTokenResponse, api_key, path=["response"])
 
     @parametrize
     async def test_raw_response_create_token(self, async_client: AsyncAsktable) -> None:
@@ -364,7 +394,7 @@ class TestAsyncAPIKeys:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         api_key = await response.parse()
-        assert_matches_type(object, api_key, path=["response"])
+        assert_matches_type(APIKeyCreateTokenResponse, api_key, path=["response"])
 
     @parametrize
     async def test_streaming_response_create_token(self, async_client: AsyncAsktable) -> None:
@@ -375,7 +405,7 @@ class TestAsyncAPIKeys:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             api_key = await response.parse()
-            assert_matches_type(object, api_key, path=["response"])
+            assert_matches_type(APIKeyCreateTokenResponse, api_key, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

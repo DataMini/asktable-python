@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Union, Iterable, Optional
+from typing import Dict, Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
+
+from .._types import SequenceNotStr
 
 __all__ = [
     "DatasourceUpdateParams",
@@ -44,6 +46,20 @@ class DatasourceUpdateParams(TypedDict, total=False):
             "databend",
             "sqlserver",
             "mogdb",
+            "hologres",
+            "maxcompute",
+            "gaussdb",
+            "tdsqlmysql",
+            "tdsqlpg",
+            "kingbasees",
+            "gbase8c",
+            "yashandb",
+            "gbase8a",
+            "gaussdbdws",
+            "bigquery",
+            "dap",
+            "duckdb",
+            "workbook",
         ]
     ]
     """数据源引擎"""
@@ -51,33 +67,42 @@ class DatasourceUpdateParams(TypedDict, total=False):
     field_count: Optional[int]
     """字段数量"""
 
-    meta_error: Optional[str]
-    """元数据处理错误"""
-
-    meta_status: Optional[Literal["processing", "failed", "success", "unprocessed"]]
-    """元数据处理状态"""
+    meta_status: Optional[Literal["unavailable", "available"]]
+    """数据源可用性"""
 
     name: Optional[str]
     """数据源的名称"""
 
-    sample_questions: Optional[str]
+    query_timeout_seconds: Optional[int]
+    """查询超时秒数；空值表示继承系统配置"""
+
+    sample_questions: Optional[SequenceNotStr[str]]
     """示例问题"""
 
     schema_count: Optional[int]
     """库数量"""
+
+    sync_error: Optional[Dict[str, object]]
+    """同步错误信息"""
+
+    sync_status: Optional[Literal["queued", "processing", "success", "failed", "warning"]]
+    """同步状态"""
 
     table_count: Optional[int]
     """表数量"""
 
 
 class AccessConfigAccessConfigConnectionUpdate(TypedDict, total=False):
+    credentials: Optional[str]
+    """数据库凭证 JSON"""
+
     db: Optional[str]
     """数据库名称"""
 
     db_version: Optional[str]
     """数据库版本"""
 
-    extra_config: Optional[object]
+    extra_config: Optional[Dict[str, object]]
     """额外配置"""
 
     host: Optional[str]
@@ -89,9 +114,6 @@ class AccessConfigAccessConfigConnectionUpdate(TypedDict, total=False):
     port: Optional[int]
     """数据库端口"""
 
-    securetunnel_id: Optional[str]
-    """安全隧道 ID"""
-
     user: Optional[str]
     """数据库用户名"""
 
@@ -101,7 +123,7 @@ class AccessConfigAccessConfigFileUpdateFile(TypedDict, total=False):
 
     filename: Required[str]
 
-    custom_config: Optional[object]
+    custom_config: Optional[Dict[str, object]]
     """文件自定义配置"""
 
 

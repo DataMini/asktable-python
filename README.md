@@ -3,7 +3,7 @@
 <!-- prettier-ignore -->
 [![PyPI version](https://img.shields.io/pypi/v/asktable.svg?label=pypi%20(stable))](https://pypi.org/project/asktable/)
 
-The Asktable Python library provides convenient access to the Asktable REST API from any Python 3.8+
+The Asktable Python library provides convenient access to the Asktable REST API from any Python 3.9+
 application. The library includes type definitions for all request params and response fields,
 and offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx).
 
@@ -83,6 +83,7 @@ pip install asktable[aiohttp]
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
 
 ```python
+import os
 import asyncio
 from asktable import DefaultAioHttpClient
 from asktable import AsyncAsktable
@@ -90,7 +91,7 @@ from asktable import AsyncAsktable
 
 async def main() -> None:
     async with AsyncAsktable(
-        api_key="My API Key",
+        api_key=os.environ.get("ASKTABLE_API_KEY"),  # This is the default and can be omitted
         http_client=DefaultAioHttpClient(),
     ) as client:
         datasource = await client.datasources.create(
@@ -189,24 +190,6 @@ response = client.sys.projects.api_keys.create_token(
 )
 print(response.chat_role)
 ```
-
-## File uploads
-
-Request parameters that correspond to file uploads can be passed as `bytes`, or a [`PathLike`](https://docs.python.org/3/library/os.html#os.PathLike) instance or a tuple of `(filename, contents, media type)`.
-
-```python
-from pathlib import Path
-from asktable import Asktable
-
-client = Asktable()
-
-client.datasources.add_file(
-    datasource_id="datasource_id",
-    file=Path("/path/to/file"),
-)
-```
-
-The async client uses the exact same interface. If you pass a [`PathLike`](https://docs.python.org/3/library/os.html#os.PathLike) instance, the file contents will be read asynchronously automatically.
 
 ## Handling errors
 
@@ -469,7 +452,7 @@ print(asktable.__version__)
 
 ## Requirements
 
-Python 3.8 or higher.
+Python 3.9 or higher.
 
 ## Contributing
 

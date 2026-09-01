@@ -9,6 +9,7 @@ import pytest
 
 from asktable import Asktable, AsyncAsktable
 from tests.utils import assert_matches_type
+from asktable.types.datasources import UploadParamCreateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -19,7 +20,7 @@ class TestUploadParams:
     @parametrize
     def test_method_create(self, client: Asktable) -> None:
         upload_param = client.datasources.upload_params.create()
-        assert_matches_type(object, upload_param, path=["response"])
+        assert_matches_type(UploadParamCreateResponse, upload_param, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Asktable) -> None:
@@ -27,7 +28,7 @@ class TestUploadParams:
             expiration=60,
             file_max_size=524288000,
         )
-        assert_matches_type(object, upload_param, path=["response"])
+        assert_matches_type(UploadParamCreateResponse, upload_param, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Asktable) -> None:
@@ -36,7 +37,7 @@ class TestUploadParams:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         upload_param = response.parse()
-        assert_matches_type(object, upload_param, path=["response"])
+        assert_matches_type(UploadParamCreateResponse, upload_param, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Asktable) -> None:
@@ -45,7 +46,7 @@ class TestUploadParams:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             upload_param = response.parse()
-            assert_matches_type(object, upload_param, path=["response"])
+            assert_matches_type(UploadParamCreateResponse, upload_param, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -58,7 +59,7 @@ class TestAsyncUploadParams:
     @parametrize
     async def test_method_create(self, async_client: AsyncAsktable) -> None:
         upload_param = await async_client.datasources.upload_params.create()
-        assert_matches_type(object, upload_param, path=["response"])
+        assert_matches_type(UploadParamCreateResponse, upload_param, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncAsktable) -> None:
@@ -66,7 +67,7 @@ class TestAsyncUploadParams:
             expiration=60,
             file_max_size=524288000,
         )
-        assert_matches_type(object, upload_param, path=["response"])
+        assert_matches_type(UploadParamCreateResponse, upload_param, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncAsktable) -> None:
@@ -75,7 +76,7 @@ class TestAsyncUploadParams:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         upload_param = await response.parse()
-        assert_matches_type(object, upload_param, path=["response"])
+        assert_matches_type(UploadParamCreateResponse, upload_param, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncAsktable) -> None:
@@ -84,6 +85,6 @@ class TestAsyncUploadParams:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             upload_param = await response.parse()
-            assert_matches_type(object, upload_param, path=["response"])
+            assert_matches_type(UploadParamCreateResponse, upload_param, path=["response"])
 
         assert cast(Any, response.is_closed) is True

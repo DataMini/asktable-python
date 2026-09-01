@@ -2,14 +2,17 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Optional
+from typing import Dict, Union, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
+
+from .._types import SequenceNotStr
 
 __all__ = [
     "DatasourceCreateParams",
     "AccessConfig",
     "AccessConfigAccessConfigConnectionCreate",
     "AccessConfigAccessConfigFileCreate",
+    "AccessConfigAccessConfigWorkbookCreate",
 ]
 
 
@@ -37,6 +40,20 @@ class DatasourceCreateParams(TypedDict, total=False):
             "databend",
             "sqlserver",
             "mogdb",
+            "hologres",
+            "maxcompute",
+            "gaussdb",
+            "tdsqlmysql",
+            "tdsqlpg",
+            "kingbasees",
+            "gbase8c",
+            "yashandb",
+            "gbase8a",
+            "gaussdbdws",
+            "bigquery",
+            "dap",
+            "duckdb",
+            "workbook",
         ]
     ]
     """数据源引擎"""
@@ -49,8 +66,8 @@ class DatasourceCreateParams(TypedDict, total=False):
 
 
 class AccessConfigAccessConfigConnectionCreate(TypedDict, total=False):
-    host: Required[str]
-    """数据库地址"""
+    credentials: Optional[str]
+    """数据库凭证 JSON"""
 
     db: Optional[str]
     """数据库名称"""
@@ -58,25 +75,34 @@ class AccessConfigAccessConfigConnectionCreate(TypedDict, total=False):
     db_version: Optional[str]
     """数据库版本"""
 
-    extra_config: Optional[object]
+    extra_config: Optional[Dict[str, object]]
     """额外配置"""
+
+    host: Optional[str]
+    """数据库地址"""
 
     password: Optional[str]
     """数据库密码"""
 
-    port: int
+    port: Optional[int]
     """数据库端口"""
-
-    securetunnel_id: Optional[str]
-    """安全隧道 ID"""
 
     user: Optional[str]
     """数据库用户名"""
 
 
 class AccessConfigAccessConfigFileCreate(TypedDict, total=False):
-    files: Required[List[str]]
+    files: Required[SequenceNotStr[str]]
     """数据源文件 URL 列表, 创建时可以传入 URL"""
 
 
-AccessConfig: TypeAlias = Union[AccessConfigAccessConfigConnectionCreate, AccessConfigAccessConfigFileCreate]
+class AccessConfigAccessConfigWorkbookCreate(TypedDict, total=False):
+    """workbook 创建时前端不传 workbook_id，flow 用 datasource_id 填充。"""
+
+    workbook_id: Optional[str]
+    """workbook 标识，等于 datasource_id；创建时由 flow 分配"""
+
+
+AccessConfig: TypeAlias = Union[
+    AccessConfigAccessConfigConnectionCreate, AccessConfigAccessConfigFileCreate, AccessConfigAccessConfigWorkbookCreate
+]

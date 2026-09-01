@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
+from typing import Dict, List, Optional
 from datetime import datetime
 
 from .._models import BaseModel
@@ -12,23 +12,17 @@ class DataframeRetrieveResponse(BaseModel):
     id: str
     """ID"""
 
-    chart_options: object
+    chart_options: Dict[str, object]
     """图表选项"""
-
-    content: List[object]
-    """内容"""
 
     created_at: datetime
     """创建时间"""
 
-    header: List[object]
+    header: List[Dict[str, object]]
     """表头"""
 
     modified_at: datetime
     """更新时间"""
-
-    msg_id: str
-    """消息 ID"""
 
     project_id: str
     """项目 ID"""
@@ -41,3 +35,9 @@ class DataframeRetrieveResponse(BaseModel):
 
     title: str
     """标题"""
+
+    chart_config: Optional[Dict[str, object]] = None
+    """ChartSpec 图表配置"""
+
+    content: Optional[List[Dict[str, object]]] = None
+    """内容"""

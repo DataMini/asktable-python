@@ -11,6 +11,8 @@ from asktable import Asktable, AsyncAsktable
 from tests.utils import assert_matches_type
 from asktable.types.sys import (
     Project,
+    ProjectExportResponse,
+    ProjectImportResponse,
     ProjectModelGroupsResponse,
 )
 from asktable.pagination import SyncPage, AsyncPage
@@ -24,14 +26,22 @@ class TestProjects:
     @parametrize
     def test_method_create(self, client: Asktable) -> None:
         project = client.sys.projects.create(
-            name="name",
+            name="x",
+        )
+        assert_matches_type(Project, project, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params(self, client: Asktable) -> None:
+        project = client.sys.projects.create(
+            name="x",
+            x_org_id="X-Org-Id",
         )
         assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Asktable) -> None:
         response = client.sys.projects.with_raw_response.create(
-            name="name",
+            name="x",
         )
 
         assert response.is_closed is True
@@ -42,7 +52,7 @@ class TestProjects:
     @parametrize
     def test_streaming_response_create(self, client: Asktable) -> None:
         with client.sys.projects.with_streaming_response.create(
-            name="name",
+            name="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -103,7 +113,7 @@ class TestProjects:
             project_id="project_id",
             llm_model_group="llm_model_group",
             locked=True,
-            name="name",
+            name="x",
         )
         assert_matches_type(Project, project, path=["response"])
 
@@ -215,7 +225,7 @@ class TestProjects:
         project = client.sys.projects.export(
             "project_id",
         )
-        assert_matches_type(object, project, path=["response"])
+        assert_matches_type(ProjectExportResponse, project, path=["response"])
 
     @parametrize
     def test_raw_response_export(self, client: Asktable) -> None:
@@ -226,7 +236,7 @@ class TestProjects:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         project = response.parse()
-        assert_matches_type(object, project, path=["response"])
+        assert_matches_type(ProjectExportResponse, project, path=["response"])
 
     @parametrize
     def test_streaming_response_export(self, client: Asktable) -> None:
@@ -237,7 +247,7 @@ class TestProjects:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             project = response.parse()
-            assert_matches_type(object, project, path=["response"])
+            assert_matches_type(ProjectExportResponse, project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -251,31 +261,39 @@ class TestProjects:
     @parametrize
     def test_method_import(self, client: Asktable) -> None:
         project = client.sys.projects.import_(
-            body={},
+            body={"foo": "bar"},
         )
-        assert_matches_type(object, project, path=["response"])
+        assert_matches_type(ProjectImportResponse, project, path=["response"])
+
+    @parametrize
+    def test_method_import_with_all_params(self, client: Asktable) -> None:
+        project = client.sys.projects.import_(
+            body={"foo": "bar"},
+            x_org_id="X-Org-Id",
+        )
+        assert_matches_type(ProjectImportResponse, project, path=["response"])
 
     @parametrize
     def test_raw_response_import(self, client: Asktable) -> None:
         response = client.sys.projects.with_raw_response.import_(
-            body={},
+            body={"foo": "bar"},
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         project = response.parse()
-        assert_matches_type(object, project, path=["response"])
+        assert_matches_type(ProjectImportResponse, project, path=["response"])
 
     @parametrize
     def test_streaming_response_import(self, client: Asktable) -> None:
         with client.sys.projects.with_streaming_response.import_(
-            body={},
+            body={"foo": "bar"},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             project = response.parse()
-            assert_matches_type(object, project, path=["response"])
+            assert_matches_type(ProjectImportResponse, project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -313,14 +331,22 @@ class TestAsyncProjects:
     @parametrize
     async def test_method_create(self, async_client: AsyncAsktable) -> None:
         project = await async_client.sys.projects.create(
-            name="name",
+            name="x",
+        )
+        assert_matches_type(Project, project, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncAsktable) -> None:
+        project = await async_client.sys.projects.create(
+            name="x",
+            x_org_id="X-Org-Id",
         )
         assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncAsktable) -> None:
         response = await async_client.sys.projects.with_raw_response.create(
-            name="name",
+            name="x",
         )
 
         assert response.is_closed is True
@@ -331,7 +357,7 @@ class TestAsyncProjects:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncAsktable) -> None:
         async with async_client.sys.projects.with_streaming_response.create(
-            name="name",
+            name="x",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -392,7 +418,7 @@ class TestAsyncProjects:
             project_id="project_id",
             llm_model_group="llm_model_group",
             locked=True,
-            name="name",
+            name="x",
         )
         assert_matches_type(Project, project, path=["response"])
 
@@ -504,7 +530,7 @@ class TestAsyncProjects:
         project = await async_client.sys.projects.export(
             "project_id",
         )
-        assert_matches_type(object, project, path=["response"])
+        assert_matches_type(ProjectExportResponse, project, path=["response"])
 
     @parametrize
     async def test_raw_response_export(self, async_client: AsyncAsktable) -> None:
@@ -515,7 +541,7 @@ class TestAsyncProjects:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         project = await response.parse()
-        assert_matches_type(object, project, path=["response"])
+        assert_matches_type(ProjectExportResponse, project, path=["response"])
 
     @parametrize
     async def test_streaming_response_export(self, async_client: AsyncAsktable) -> None:
@@ -526,7 +552,7 @@ class TestAsyncProjects:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             project = await response.parse()
-            assert_matches_type(object, project, path=["response"])
+            assert_matches_type(ProjectExportResponse, project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -540,31 +566,39 @@ class TestAsyncProjects:
     @parametrize
     async def test_method_import(self, async_client: AsyncAsktable) -> None:
         project = await async_client.sys.projects.import_(
-            body={},
+            body={"foo": "bar"},
         )
-        assert_matches_type(object, project, path=["response"])
+        assert_matches_type(ProjectImportResponse, project, path=["response"])
+
+    @parametrize
+    async def test_method_import_with_all_params(self, async_client: AsyncAsktable) -> None:
+        project = await async_client.sys.projects.import_(
+            body={"foo": "bar"},
+            x_org_id="X-Org-Id",
+        )
+        assert_matches_type(ProjectImportResponse, project, path=["response"])
 
     @parametrize
     async def test_raw_response_import(self, async_client: AsyncAsktable) -> None:
         response = await async_client.sys.projects.with_raw_response.import_(
-            body={},
+            body={"foo": "bar"},
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         project = await response.parse()
-        assert_matches_type(object, project, path=["response"])
+        assert_matches_type(ProjectImportResponse, project, path=["response"])
 
     @parametrize
     async def test_streaming_response_import(self, async_client: AsyncAsktable) -> None:
         async with async_client.sys.projects.with_streaming_response.import_(
-            body={},
+            body={"foo": "bar"},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             project = await response.parse()
-            assert_matches_type(object, project, path=["response"])
+            assert_matches_type(ProjectImportResponse, project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

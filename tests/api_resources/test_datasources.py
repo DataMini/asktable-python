@@ -34,13 +34,13 @@ class TestDatasources:
         datasource = client.datasources.create(
             engine="mysql",
             access_config={
-                "host": "192.168.0.10",
+                "credentials": "credentials",
                 "db": "at_test",
                 "db_version": "5.7",
-                "extra_config": {"ssl_mode": "require"},
+                "extra_config": {"ssl_mode": "bar"},
+                "host": "192.168.0.10",
                 "password": "root",
                 "port": 3306,
-                "securetunnel_id": "atst_123456",
                 "user": "root",
             },
             name="用户库",
@@ -121,23 +121,25 @@ class TestDatasources:
         datasource = client.datasources.update(
             datasource_id="datasource_id",
             access_config={
+                "credentials": "credentials",
                 "db": "at_test",
                 "db_version": "5.7",
-                "extra_config": {"ssl_mode": "require"},
+                "extra_config": {"ssl_mode": "bar"},
                 "host": "192.168.0.10",
                 "password": "root",
                 "port": 3306,
-                "securetunnel_id": "atst_123456",
                 "user": "root",
             },
             desc="数据源描述",
             engine="mysql",
             field_count=1,
-            meta_error="error message",
-            meta_status="success",
+            meta_status="available",
             name="用户库",
-            sample_questions="示例问题",
+            query_timeout_seconds=1,
+            sample_questions=["示例问题1", "示例问题2"],
             schema_count=1,
+            sync_error={"message": "bar"},
+            sync_status="success",
             table_count=1,
         )
         assert_matches_type(Datasource, datasource, path=["response"])
@@ -249,7 +251,7 @@ class TestDatasources:
     def test_method_add_file(self, client: Asktable) -> None:
         datasource = client.datasources.add_file(
             datasource_id="datasource_id",
-            file=b"raw file contents",
+            file="file",
         )
         assert_matches_type(object, datasource, path=["response"])
 
@@ -257,7 +259,7 @@ class TestDatasources:
     def test_raw_response_add_file(self, client: Asktable) -> None:
         response = client.datasources.with_raw_response.add_file(
             datasource_id="datasource_id",
-            file=b"raw file contents",
+            file="file",
         )
 
         assert response.is_closed is True
@@ -269,7 +271,7 @@ class TestDatasources:
     def test_streaming_response_add_file(self, client: Asktable) -> None:
         with client.datasources.with_streaming_response.add_file(
             datasource_id="datasource_id",
-            file=b"raw file contents",
+            file="file",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -284,7 +286,7 @@ class TestDatasources:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `datasource_id` but received ''"):
             client.datasources.with_raw_response.add_file(
                 datasource_id="",
-                file=b"raw file contents",
+                file="file",
             )
 
     @parametrize
@@ -391,6 +393,7 @@ class TestDatasources:
             schema_name="schema_name",
             table_name="table_name",
             identifiable_type="plain",
+            semantic_type="PK",
             visibility=True,
         )
         assert_matches_type(object, datasource, path=["response"])
@@ -453,13 +456,13 @@ class TestAsyncDatasources:
         datasource = await async_client.datasources.create(
             engine="mysql",
             access_config={
-                "host": "192.168.0.10",
+                "credentials": "credentials",
                 "db": "at_test",
                 "db_version": "5.7",
-                "extra_config": {"ssl_mode": "require"},
+                "extra_config": {"ssl_mode": "bar"},
+                "host": "192.168.0.10",
                 "password": "root",
                 "port": 3306,
-                "securetunnel_id": "atst_123456",
                 "user": "root",
             },
             name="用户库",
@@ -540,23 +543,25 @@ class TestAsyncDatasources:
         datasource = await async_client.datasources.update(
             datasource_id="datasource_id",
             access_config={
+                "credentials": "credentials",
                 "db": "at_test",
                 "db_version": "5.7",
-                "extra_config": {"ssl_mode": "require"},
+                "extra_config": {"ssl_mode": "bar"},
                 "host": "192.168.0.10",
                 "password": "root",
                 "port": 3306,
-                "securetunnel_id": "atst_123456",
                 "user": "root",
             },
             desc="数据源描述",
             engine="mysql",
             field_count=1,
-            meta_error="error message",
-            meta_status="success",
+            meta_status="available",
             name="用户库",
-            sample_questions="示例问题",
+            query_timeout_seconds=1,
+            sample_questions=["示例问题1", "示例问题2"],
             schema_count=1,
+            sync_error={"message": "bar"},
+            sync_status="success",
             table_count=1,
         )
         assert_matches_type(Datasource, datasource, path=["response"])
@@ -668,7 +673,7 @@ class TestAsyncDatasources:
     async def test_method_add_file(self, async_client: AsyncAsktable) -> None:
         datasource = await async_client.datasources.add_file(
             datasource_id="datasource_id",
-            file=b"raw file contents",
+            file="file",
         )
         assert_matches_type(object, datasource, path=["response"])
 
@@ -676,7 +681,7 @@ class TestAsyncDatasources:
     async def test_raw_response_add_file(self, async_client: AsyncAsktable) -> None:
         response = await async_client.datasources.with_raw_response.add_file(
             datasource_id="datasource_id",
-            file=b"raw file contents",
+            file="file",
         )
 
         assert response.is_closed is True
@@ -688,7 +693,7 @@ class TestAsyncDatasources:
     async def test_streaming_response_add_file(self, async_client: AsyncAsktable) -> None:
         async with async_client.datasources.with_streaming_response.add_file(
             datasource_id="datasource_id",
-            file=b"raw file contents",
+            file="file",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -703,7 +708,7 @@ class TestAsyncDatasources:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `datasource_id` but received ''"):
             await async_client.datasources.with_raw_response.add_file(
                 datasource_id="",
-                file=b"raw file contents",
+                file="file",
             )
 
     @parametrize
@@ -810,6 +815,7 @@ class TestAsyncDatasources:
             schema_name="schema_name",
             table_name="table_name",
             identifiable_type="plain",
+            semantic_type="PK",
             visibility=True,
         )
         assert_matches_type(object, datasource, path=["response"])
